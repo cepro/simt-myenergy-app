@@ -17,5 +17,6 @@ sequenceDiagram
     Supabase->>App: forbidden
     end
 
-    note over Supabase: NOTE: determine if a user has registered<br/>by looking at auth.users.last_sign_in_at.
+    note over Supabase: NOTE: Uncheck "Allow new users to sign up" in Supabase Auth<br/>to ensure users who are not in the database are forbidden to register
+    note over Supabase: NOTE: determine if a user has registered<br/>by looking at<br/> auth.users.last_sign_in_at.
 ```
