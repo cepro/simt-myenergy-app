@@ -8,9 +8,9 @@ With this setup I was able to:
 - create a customer
 - obtain authorization for future payments
 - make 3 payments without any user interaction
+- test with and without 3d secure cards
 
 Untested:
-- 3d secure cards
 - error conditions - insufficient funds, card authorization failed, etc.
 
 ## Steps
@@ -23,10 +23,11 @@ Actual steps I took:
 - created a setup intent also with curl (step 3 in stripe docs)
 - created the app in client/ and server/ in this repo which configures and shows the payment form to the user
     - see below for how to configure and start it
+    - NOTE: setup intent client secret embedded in client/index.js (update it there for new setups), same for the passthrough user email
 - ran the app and filled in the payment details on the form
-- capture the setup_intent from the response
+- get the paument_method id created from the previous step by querying https://api.stripe.com/v1/payment_methods 
 - use server/submit-payment-intent.js
-    - insert the setup_intent and customer_id
+    - insert the payment_method id from the previous step and customer_id
     - tweak amount and description as desired
     - run script multiple times to make multiple payments
     - check customer under the stripe dashboard to see the payments:
