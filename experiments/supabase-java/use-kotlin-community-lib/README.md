@@ -11,6 +11,10 @@ Running the code in App.java discovered that you'd need to add dependencies for 
 
 Basically it's quite clunky to do so I think it's not a good approach.
 
-## Alternative
+## Alternative 1
 
 Maybe generate a client from openapi spec or just write a simple one that makes the REST calls as needed.
+
+## Alternative 2
+
+Setup Kotlin support in our projects and use it whereever we'd like to use this or other Kotlin libraries.
