@@ -13,9 +13,9 @@ Basically it's quite clunky to do so I think it's not a good approach.
 
 ## Alternative 1
 
-Maybe generate a client from openapi spec or just write a simple one that makes the REST calls as needed.
-
-OpenApi spec seems only available for the postgREST stuff which is all custom tables, available here(requires APIKEY): https://rkzgrxssutcwrauaazjz.supabase.co/rest/v1
+Maybe generate a client from openapi spec:
+- postgREST (custom tables), available here(requires APIKEY): https://rkzgrxssutcwrauaazjz.supabase.co/rest/v1
+- auth in the gotrue repo: https://github.com/supabase/gotrue/blob/master/openapi.yaml
 
 ## Alternative 2
 
