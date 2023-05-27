@@ -16,6 +16,7 @@ Basically it's quite clunky to do so I think it's not a good approach.
 Maybe generate a client from openapi spec:
 - postgREST (custom tables), available here(requires APIKEY): https://rkzgrxssutcwrauaazjz.supabase.co/rest/v1
 - auth in the gotrue repo: https://github.com/supabase/gotrue/blob/master/openapi.yaml
+  - see here [supabase-java/generate-client](https://github.com/cepro/simt-myenergy-app-prototype/tree/main/experiments/supabase-java/generate-client)
 
 ## Alternative 2
 
