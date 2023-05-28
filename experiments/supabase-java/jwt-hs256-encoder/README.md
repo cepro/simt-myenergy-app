@@ -8,6 +8,6 @@ Modify the properties in JwtEncoderApplication to customize the token.
 
 ## JWT Secret Setup
 
-Copy src/main/resources/secrets.sample.properties to src/main/resources/secrets.properties and either:
+Copy [src/main/resources/secrets.sample.properties](src/main/resources/secrets.sample.properties) to [src/main/resources/secrets.properties](src/main/resources/secrets.properties) and either:
 - insert your Supabase JWT secret there or
 - generate one for testing (see instructions in the file) 
