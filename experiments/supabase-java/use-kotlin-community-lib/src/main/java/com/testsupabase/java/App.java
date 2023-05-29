@@ -21,6 +21,6 @@ public class App {
         GoTrueConfig goTrueConfig = new GoTrueConfig();
         GoTrueImpl goTrue = new GoTrueImpl(client, goTrueConfig);
 
-        goTrue.reauthenticate();
+        // goTrue.reauthenticate();
     }
 }
