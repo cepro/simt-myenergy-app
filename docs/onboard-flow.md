@@ -14,16 +14,19 @@ sequenceDiagram
     participant Supabase
     participant Stripe
     
-    Cepro->>Supabase: Create linked rows in `places` and `customers`<br/> in Supabase [includes customer email]
+    Cepro->>Supabase: Create linked rows in `properties` and `customers`<br/> in Supabase [includes customer email]
     Supabase->>Stripe: Triggers Stripe Customer record creation
 
     Cepro->>Customer: Send an invite either:<br/>- manually or<br/>- by Supabase trigger
     
-    Customer->>App: Clicks link in invite email<br/>loads the app
+    Customer->>App: Clicks link in invite email
+    App->>Customer: loads the app
     Customer->>App: Submit register form
     
     App->>Supabase: Register by email / password
+
     alt Email in Customers, not in auth.users
+      Supabase->>Supabase: Creates `auth.users` record<br/>IF customers setup for this email<br/>(TODO:how to check this? Postgres config?)
       Supabase->>Customer: password saved and confirmation sent
     else Email in Customers, already in auth.users
       Supabase->>Customer: already registered message - go to login page
@@ -31,6 +34,5 @@ sequenceDiagram
       Supabase->>App: forbidden
     end
 
-   Customer->>App: Clicks confirmation link in email<br/>NOTE: NOT currently supported by flutterflow integration (GDPR requirement though)
    App->>App: Authenticated, show main page
 ```
