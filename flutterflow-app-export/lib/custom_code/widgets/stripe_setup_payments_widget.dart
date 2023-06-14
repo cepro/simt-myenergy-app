@@ -3,6 +3,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'index.dart'; // Imports other custom widgets
+import '/custom_code/actions/index.dart'; // Imports custom actions
 import '/flutter_flow/custom_functions.dart'; // Imports custom functions
 import 'package:flutter/material.dart';
 // Begin custom widget code
@@ -17,7 +18,7 @@ import 'package:webview_flutter_web/webview_flutter_web.dart';
 
 // TODO: this will be different in dev and deployed envs
 const String paymentElementURIBase =
-    'https://fgx0zcbb8d.execute-api.us-east-1.amazonaws.com/Prod/payment-setup.html';
+    'https://es2mhcpqgv.eu-west-1.awsapprunner.com/payment-setup.html';
 
 class StripeSetupPaymentsWidget extends StatefulWidget {
   const StripeSetupPaymentsWidget(
@@ -39,13 +40,9 @@ class StripeSetupPaymentsWidgetState extends State<StripeSetupPaymentsWidget> {
   StripeSetupPaymentsWidgetState(String? jwtToken) {
     _controller = PlatformWebViewController(
       const PlatformWebViewControllerCreationParams(),
-    )..loadRequest(
-        LoadRequestParams(
-            uri: Uri.parse(paymentElementURIBase),
-            headers: Map.of({
-              'Authorization': 'Bearer ' + (jwtToken ?? ''),
-            })),
-      );
+    )..loadRequest(LoadRequestParams(
+        uri: Uri.parse(
+            paymentElementURIBase + "?access_token=" + (jwtToken ?? ""))));
   }
 
   @override

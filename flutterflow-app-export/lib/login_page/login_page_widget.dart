@@ -1,9 +1,11 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -24,7 +26,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
   late LoginPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
 
   final animationsMap = {
     'rowOnPageLoadAnimation': AnimationInfo(
@@ -112,14 +113,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
   void dispose() {
     _model.dispose();
 
-    _unfocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
+      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -132,10 +134,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
               Align(
                 alignment: AlignmentDirectional(1.0, -1.4),
                 child: Container(
-                  width: 500.0,
-                  height: 500.0,
+                  width: 0.0,
+                  height: 0.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).tertiary,
+                    color: Colors.white,
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -164,10 +166,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 Align(
                   alignment: AlignmentDirectional(-1.25, -1.5),
                   child: Container(
-                    width: 600.0,
-                    height: 600.0,
+                    width: 0.0,
+                    height: 0.0,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: Colors.white,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -183,7 +185,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                     width: 300.0,
                     height: 300.0,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondary,
+                      color: Colors.white,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -196,10 +198,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 Align(
                   alignment: AlignmentDirectional(1.0, -0.95),
                   child: Container(
-                    width: 700.0,
-                    height: 700.0,
+                    width: 0.0,
+                    height: 0.0,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondary,
+                      color: Colors.white,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -599,58 +601,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   FFButtonWidget(
                                                                     onPressed:
                                                                         () async {
-                                                                      context.pushNamed(
-                                                                          'forgotPasswordPage');
-                                                                    },
-                                                                    text:
-                                                                        'Forgot Password?',
-                                                                    options:
-                                                                        FFButtonOptions(
-                                                                      width:
-                                                                          140.0,
-                                                                      height:
-                                                                          40.0,
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).bodySmallFamily,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
-                                                                          ),
-                                                                      elevation:
-                                                                          0.0,
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                        width:
-                                                                            1.0,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              50.0),
-                                                                    ),
-                                                                  ),
-                                                                  FFButtonWidget(
-                                                                    onPressed:
-                                                                        () async {
                                                                       GoRouter.of(
                                                                               context)
                                                                           .prepareAuthEvent();
@@ -671,10 +621,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         return;
                                                                       }
 
-                                                                      context.goNamedAuth(
-                                                                          'HomePage',
-                                                                          context
-                                                                              .mounted);
+                                                                      if (loggedIn) {
+                                                                        _model.jwtToken =
+                                                                            await actions.getJwtToken();
+                                                                        FFAppState().jwtToken =
+                                                                            _model.jwtToken!;
+
+                                                                        context.pushNamedAuth(
+                                                                            'HomePage',
+                                                                            context.mounted);
+                                                                      }
+
+                                                                      setState(
+                                                                          () {});
                                                                     },
                                                                     text:
                                                                         'Sign In',

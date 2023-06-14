@@ -54,6 +54,8 @@ class _AltNav2WidgetState extends State<AltNav2Widget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: 60.0,
       height: double.infinity,
@@ -135,7 +137,7 @@ class _AltNav2WidgetState extends State<AltNav2Widget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.pushNamed(
-                        'teamMembers',
+                        'BillingPage',
                         extra: <String, dynamic>{
                           kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,
@@ -153,39 +155,14 @@ class _AltNav2WidgetState extends State<AltNav2Widget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
                           child: Icon(
-                            Icons.group_rounded,
-                            color: widget.navFour,
+                            Icons.list,
+                            color: widget.navThree,
                             size: 24.0,
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                        child: Icon(
-                          Icons.home_work_rounded,
-                          color: widget.navFive,
-                          size: 24.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(
-                  height: 8.0,
-                  thickness: 2.0,
-                  indent: 12.0,
-                  endIndent: 12.0,
-                  color: FlutterFlowTheme.of(context).lineColor,
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
@@ -196,7 +173,7 @@ class _AltNav2WidgetState extends State<AltNav2Widget> {
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       context.pushNamed(
-                        'billing',
+                        'PaymentPage',
                         extra: <String, dynamic>{
                           kTransitionInfoKey: TransitionInfo(
                             hasTransition: true,
@@ -221,24 +198,6 @@ class _AltNav2WidgetState extends State<AltNav2Widget> {
                         ),
                       ],
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                        child: Icon(
-                          Icons.settings_sharp,
-                          color: widget.navSix,
-                          size: 24.0,
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ],

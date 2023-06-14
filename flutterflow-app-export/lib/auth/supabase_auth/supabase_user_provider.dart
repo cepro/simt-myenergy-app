@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class MyenergyBillingPrototypeSupabaseUser extends BaseAuthUser {
-  MyenergyBillingPrototypeSupabaseUser(this.user);
+class MyEnergySupabaseUser extends BaseAuthUser {
+  MyEnergySupabaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -42,7 +42,7 @@ class MyenergyBillingPrototypeSupabaseUser extends BaseAuthUser {
 /// [SupaFlow.client.auth.onAuthStateChange] does not yield any values until the
 /// user is already authenticated. So we add a default null user to the stream,
 /// if we need to interact with the [currentUser] before logging in.
-Stream<BaseAuthUser> myenergyBillingPrototypeSupabaseUserStream() {
+Stream<BaseAuthUser> myEnergySupabaseUserStream() {
   final supabaseAuthStream = SupaFlow.client.auth.onAuthStateChange.debounce(
       (authState) => authState.event == AuthChangeEvent.tokenRefreshed
           ? TimerStream(authState, Duration(seconds: 1))
@@ -52,8 +52,7 @@ Stream<BaseAuthUser> myenergyBillingPrototypeSupabaseUserStream() {
           : supabaseAuthStream)
       .map<BaseAuthUser>(
     (authState) {
-      currentUser =
-          MyenergyBillingPrototypeSupabaseUser(authState?.session?.user);
+      currentUser = MyEnergySupabaseUser(authState?.session?.user);
       return currentUser!;
     },
   );

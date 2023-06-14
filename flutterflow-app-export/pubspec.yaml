@@ -1,4 +1,4 @@
-name: myenergy_billing_prototype
+name: my_energy
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -27,15 +27,13 @@ dependencies:
     sdk: flutter
   app_links: 3.4.1
   auto_size_text: 3.0.0
-  badges: 2.0.2
   cached_network_image: 3.2.1
-  data_table_2: 2.3.12
   equatable: 2.0.3
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.0
   font_awesome_flutter: 10.1.0
   from_css_color: 2.0.0
-  go_router: 3.1.0
+  go_router: 7.1.1
   google_fonts: 4.0.3
   hive: 2.2.3
   intl: 0.17.0
@@ -56,7 +54,8 @@ dependencies:
   supabase: 1.6.3
   supabase_flutter: 1.7.0
   timeago: 3.2.2
-  url_launcher: 6.1.10
+  universal_html: 2.0.9
+  url_launcher: 6.1.11
   url_launcher_android: 6.0.27
   url_launcher_ios: 6.1.4
   url_launcher_platform_interface: 2.1.2

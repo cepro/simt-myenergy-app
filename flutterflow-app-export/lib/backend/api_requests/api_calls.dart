@@ -16,7 +16,7 @@ class GetCustomersPaymentMethodsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Payment Methods',
       apiUrl:
-          'https://fgx0zcbb8d.execute-api.us-east-1.amazonaws.com/Prod/customers/paymentMethods',
+          'https://es2mhcpqgv.eu-west-1.awsapprunner.com/customers/paymentMethods',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -35,6 +35,55 @@ class GetCustomersPaymentMethodsCall {
         r'''$[*]''',
         true,
       );
+}
+
+class CreateStripeCheckoutSessionCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Create Stripe Checkout Session',
+      apiUrl:
+          'https://es2mhcpqgv.eu-west-1.awsapprunner.com/customers/checkoutSession',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic checkoutPageURI(dynamic response) => getJsonField(
+        response,
+        r'''$.checkoutPageURI''',
+      );
+}
+
+class DeleteCustomersPaymentMethodCopyCall {
+  static Future<ApiCallResponse> call({
+    String? id = '',
+    String? bearerToken = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete Customers Payment Method Copy',
+      apiUrl:
+          'https://es2mhcpqgv.eu-west-1.awsapprunner.com/customers/paymentMethods/${id}',
+      callType: ApiCallType.DELETE,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
 }
 
 class ApiPagingParams {
@@ -62,11 +111,11 @@ String _serializeList(List? list) {
   }
 }
 
-String _serializeJson(dynamic jsonVar) {
-  jsonVar ??= {};
+String _serializeJson(dynamic jsonVar, [bool isList = false]) {
+  jsonVar ??= (isList ? [] : {});
   try {
     return json.encode(jsonVar);
   } catch (_) {
-    return '{}';
+    return isList ? '[]' : '{}';
   }
 }

@@ -10,6 +10,11 @@ import 'place.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
-String? supabaseJwtToken() {
-  return currentJwtToken;
+int jsonArrayLength(dynamic responseJSON) {
+  // Given an argument of  type JSON compute the length of the JSON if it is an array
+  if (responseJSON is List) {
+    return responseJSON.length;
+  } else {
+    return 0;
+  }
 }

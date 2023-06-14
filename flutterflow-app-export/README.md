@@ -1,4 +1,4 @@
-# myenergy-billing-prototype
+# MyEnergy
 
 A new Flutter project.
 
