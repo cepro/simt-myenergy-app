@@ -18,5 +18,6 @@ class SupaFlow {
   static Future initialize() => Supabase.initialize(
         url: _kSupabaseUrl,
         anonKey: _kSupabaseAnonKey,
+        debug: false,
       );
 }

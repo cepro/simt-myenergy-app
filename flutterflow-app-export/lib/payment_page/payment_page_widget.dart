@@ -223,7 +223,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                   .size
                                                   .width *
                                               1.0,
-                                          height: 210.0,
+                                          height: 230.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -235,8 +235,16 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Container(
-                                                    width: 375.0,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            1.0,
                                                     height: 210.0,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 375.0,
+                                                      maxHeight: 210.0,
+                                                    ),
                                                     decoration: BoxDecoration(),
                                                     child: wrapWithModel(
                                                       model: _model
@@ -675,7 +683,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       navTwoIcon: Icon(
-                        Icons.grain,
+                        Icons.list,
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       navThreeIcon: Icon(
@@ -683,7 +691,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                       navFourIcon: Icon(
-                        Icons.group_rounded,
+                        Icons.settings,
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       navFiveIcon: Icon(

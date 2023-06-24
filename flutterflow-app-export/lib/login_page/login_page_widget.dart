@@ -150,8 +150,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 Align(
                   alignment: AlignmentDirectional(-2.0, -1.5),
                   child: Container(
-                    width: 350.0,
-                    height: 350.0,
+                    width: 0.0,
+                    height: 0.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).primary,
                       shape: BoxShape.circle,
@@ -182,8 +182,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 Align(
                   alignment: AlignmentDirectional(2.5, -1.2),
                   child: Container(
-                    width: 300.0,
-                    height: 300.0,
+                    width: 0.0,
+                    height: 0.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -211,8 +211,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 child: ClipRRect(
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
-                      sigmaX: 40.0,
-                      sigmaY: 40.0,
+                      sigmaX: 0.0,
+                      sigmaY: 0.0,
                     ),
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -622,6 +622,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       }
 
                                                                       if (loggedIn) {
+                                                                        await Future.delayed(const Duration(
+                                                                            milliseconds:
+                                                                                500));
                                                                         _model.jwtToken =
                                                                             await actions.getJwtToken();
                                                                         FFAppState().jwtToken =

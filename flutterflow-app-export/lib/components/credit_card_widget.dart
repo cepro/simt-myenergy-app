@@ -102,42 +102,17 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 32.0, 20.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 22.0, 20.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Balance',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Outfit',
-                            color: Colors.white,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.normal,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
-                          ),
-                    ),
-                  ],
+                  children: [],
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 8.0, 20.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      '£0',
-                      style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily: 'Outfit',
-                            color: Colors.white,
-                            fontSize: 32.0,
-                            fontWeight: FontWeight.w600,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context)
-                                    .displaySmallFamily),
-                          ),
-                    ),
-                  ],
+                  children: [],
                 ),
               ),
               Padding(

@@ -86,6 +86,56 @@ class DeleteCustomersPaymentMethodCopyCall {
   }
 }
 
+class UpdateTopupPreferencesCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    int? amount,
+    int? threshold,
+  }) {
+    final body = '''
+{
+  "amount": ${amount},
+  "threshold": ${threshold}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update Topup Preferences',
+      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/topup',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class GetTopupPreferencesCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Topup Preferences',
+      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/topup',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
