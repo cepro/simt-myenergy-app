@@ -12,9 +12,6 @@ cd $APP_HOME
 echo "\nBuilding flutter app ..."
 flutter build web
 
-HTML=build/web/index.html
-echo "\nAdding SPA github pages snippet to $HTML ..."
-
 echo "\nCopying build/web to $GH_PAGES_HOME ..."
 rm -rf $GH_PAGES_HOME/*
 cp -r build/web/* $GH_PAGES_HOME
