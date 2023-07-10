@@ -29,11 +29,13 @@ rm -rf $GH_PAGES_HOME/*
 cp -r build/web/* $GH_PAGES_HOME
 cd $GH_PAGES_HOME
 
+# TODO: this could be put in gh pages repo and restored like the other ones
+#       below. or visa versa ...
 echo "\nAdd our favicon.ico"
 cp $THIS_PROJECT/favicon.ico $GH_PAGES_HOME
 
 # we blow away everything before copying over the flutter app
 # but we want the following files as customizations and addons:
-git restore README.md manifest.json CNAME 404.html
+git restore README.md manifest.json CNAME 404.html favicon.png
 
 git status
