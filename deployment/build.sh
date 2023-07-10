@@ -12,6 +12,18 @@ cd $APP_HOME
 echo "\nBuilding flutter app ..."
 flutter build web
 
+HTML=build/web/index.html
+echo "\nAdding SPA github pages snippet to $HTML ..."
+ 
+SPLIT_LINE_NUM=`grep -n "</head>" $HTML | cut -d: -f1`
+NUM_LINES=`wc -l $HTML | cut -d" " -f1`
+
+NEW_HTML=$HTML.new
+head -`expr $SPLIT_LINE_NUM - 1` $HTML > $NEW_HTML
+cat $THIS_PROJECT/gh-pages-hack-snippet.html >> $NEW_HTML
+tail -`expr $NUM_LINES - $SPLIT_LINE_NUM + 1` $HTML >> $NEW_HTML
+mv $NEW_HTML $HTML
+
 echo "\nCopying build/web to $GH_PAGES_HOME ..."
 rm -rf $GH_PAGES_HOME/*
 cp -r build/web/* $GH_PAGES_HOME
