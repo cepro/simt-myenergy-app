@@ -20,5 +20,5 @@ cd $GH_PAGES_HOME
 echo "\nAdd our favicon.ico"
 cp $THIS_PROJECT/favicon.ico $GH_PAGES_HOME
 
-git restore README.md manifest.json
+git restore README.md manifest.json CNAME
 git status
