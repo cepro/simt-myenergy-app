@@ -20,5 +20,8 @@ cd $GH_PAGES_HOME
 echo "\nAdd our favicon.ico"
 cp $THIS_PROJECT/favicon.ico $GH_PAGES_HOME
 
-git restore README.md manifest.json CNAME
+# we blow away everything before copying over the flutter app
+# but we want the following files as customizations and addons:
+git restore README.md manifest.json CNAME 404.html
+
 git status
