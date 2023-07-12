@@ -76,14 +76,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? ContractAcceptPageWidget()
+          : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? ContractAcceptPageWidget()
+              : LoginPageWidget(),
         ),
         FFRoute(
           name: 'loginPage',
@@ -96,22 +98,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ForgotPasswordPageWidget(),
         ),
         FFRoute(
-          name: 'PaymentPage',
-          path: '/payment',
-          requireAuth: true,
-          builder: (context, params) => PaymentPageWidget(),
-        ),
-        FFRoute(
           name: 'HomePage',
           path: '/home',
           requireAuth: true,
           builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
+          name: 'PaymentPage',
+          path: '/payment',
+          requireAuth: true,
+          builder: (context, params) => PaymentPageWidget(),
+        ),
+        FFRoute(
           name: 'TopupPage',
           path: '/topup',
           requireAuth: true,
           builder: (context, params) => TopupPageWidget(),
+        ),
+        FFRoute(
+          name: 'ContractAcceptPage',
+          path: '/contract',
+          requireAuth: true,
+          builder: (context, params) => ContractAcceptPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

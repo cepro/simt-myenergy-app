@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'flutter_flow/request_manager.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'backend/supabase/supabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,11 +16,8 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      _isCacheOverride =
-          prefs.getBool('ff_isCacheOverride') ?? _isCacheOverride;
-    });
-    _safeInit(() {
-      _jwtToken = prefs.getString('ff_jwtToken') ?? _jwtToken;
+      _contractsSigned =
+          prefs.getBool('ff_contractsSigned') ?? _contractsSigned;
     });
   }
 
@@ -32,42 +28,12 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  bool _isCacheOverride = true;
-  bool get isCacheOverride => _isCacheOverride;
-  set isCacheOverride(bool _value) {
-    _isCacheOverride = _value;
-    prefs.setBool('ff_isCacheOverride', _value);
+  bool _contractsSigned = false;
+  bool get contractsSigned => _contractsSigned;
+  set contractsSigned(bool _value) {
+    _contractsSigned = _value;
+    prefs.setBool('ff_contractsSigned', _value);
   }
-
-  DateTime? _lastCacheTime = DateTime.fromMillisecondsSinceEpoch(946659600000);
-  DateTime? get lastCacheTime => _lastCacheTime;
-  set lastCacheTime(DateTime? _value) {
-    _lastCacheTime = _value;
-  }
-
-  String _jwtToken = '';
-  String get jwtToken => _jwtToken;
-  set jwtToken(String _value) {
-    _jwtToken = _value;
-    prefs.setString('ff_jwtToken', _value);
-  }
-
-  final _paymentMethodsQueryAppLevelManager =
-      FutureRequestManager<ApiCallResponse>();
-  Future<ApiCallResponse> paymentMethodsQueryAppLevel({
-    String? uniqueQueryKey,
-    bool? overrideCache,
-    required Future<ApiCallResponse> Function() requestFn,
-  }) =>
-      _paymentMethodsQueryAppLevelManager.performRequest(
-        uniqueQueryKey: uniqueQueryKey,
-        overrideCache: overrideCache,
-        requestFn: requestFn,
-      );
-  void clearPaymentMethodsQueryAppLevelCache() =>
-      _paymentMethodsQueryAppLevelManager.clear();
-  void clearPaymentMethodsQueryAppLevelCacheKey(String? uniqueKey) =>
-      _paymentMethodsQueryAppLevelManager.clearRequest(uniqueKey);
 }
 
 LatLng? _latLngFromString(String? val) {

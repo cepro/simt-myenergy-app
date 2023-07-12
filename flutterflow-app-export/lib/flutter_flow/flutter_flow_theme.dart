@@ -141,7 +141,7 @@ abstract class FlutterFlowTheme {
 }
 
 DeviceSize getDeviceSize(BuildContext context) {
-  final width = MediaQuery.of(context).size.width;
+  final width = MediaQuery.sizeOf(context).width;
   if (width < 479) {
     return DeviceSize.mobile;
   } else if (width < 991) {

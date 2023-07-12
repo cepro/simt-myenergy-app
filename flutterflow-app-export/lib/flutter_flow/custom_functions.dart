@@ -23,3 +23,14 @@ int jsonArrayLength(dynamic responseJSON) {
 bool isJwtExpired(String wwwAuthenticateHeader) {
   return wwwAuthenticateHeader.contains('Jwt expired');
 }
+
+int arrayLengthOrNegativeOneIfNotArray(dynamic responseJSON) {
+  // Given an argument of type JSON compute the length of the JSON if it is an array
+  if (responseJSON is List) {
+    return responseJSON.length;
+  } else {
+    // using -1 to indicate argument passed was either null or not a List.
+    // -1 is a precise value that we can set up a definite comparison against in the UI.
+    return -1;
+  }
+}

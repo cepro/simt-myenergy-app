@@ -30,11 +30,16 @@ class MyEnergySupabaseUser extends BaseAuthUser {
     // Reloads the user when checking in order to get the most up to date
     // email verified status.
     if (loggedIn && user!.emailConfirmedAt == null) {
-      SupaFlow.client.auth
-          .refreshSession()
-          .then((_) => user = SupaFlow.client.auth.currentUser);
+      refreshUser();
     }
     return user?.emailConfirmedAt != null;
+  }
+
+  @override
+  Future refreshUser() async {
+    await SupaFlow.client.auth
+        .refreshSession()
+        .then((_) => user = SupaFlow.client.auth.currentUser);
   }
 }
 

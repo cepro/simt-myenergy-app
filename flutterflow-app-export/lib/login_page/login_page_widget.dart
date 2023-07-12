@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -621,22 +620,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         return;
                                                                       }
 
-                                                                      if (loggedIn) {
+                                                                      if (loggedIn ==
+                                                                          true) {
                                                                         await Future.delayed(const Duration(
                                                                             milliseconds:
                                                                                 500));
-                                                                        _model.jwtToken =
-                                                                            await actions.getJwtToken();
-                                                                        FFAppState().jwtToken =
-                                                                            _model.jwtToken!;
 
                                                                         context.pushNamedAuth(
-                                                                            'HomePage',
+                                                                            'ContractAcceptPage',
                                                                             context.mounted);
                                                                       }
-
-                                                                      setState(
-                                                                          () {});
                                                                     },
                                                                     text:
                                                                         'Sign In',
@@ -955,7 +948,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   }
 
                                                                   context.goNamedAuth(
-                                                                      'HomePage',
+                                                                      'ContractAcceptPage',
                                                                       context
                                                                           .mounted);
                                                                 },

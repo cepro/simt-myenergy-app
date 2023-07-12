@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -23,8 +22,6 @@ class LoginPageModel extends FlutterFlowModel {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
-  // Stores action output result for [Custom Action - getJwtToken] action in Button-Login widget.
-  String? jwtToken;
   // State field(s) for emailAddress-Create widget.
   TextEditingController? emailAddressCreateController;
   String? Function(BuildContext, String?)?

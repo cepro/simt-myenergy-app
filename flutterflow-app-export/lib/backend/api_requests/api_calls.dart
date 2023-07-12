@@ -16,7 +16,35 @@ class GetCustomersPaymentMethodsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Payment Methods',
       apiUrl:
-          'https://es2mhcpqgv.eu-west-1.awsapprunner.com/customers/paymentMethods',
+          'https://c2xw3up7c7.eu-west-1.awsapprunner.com/customers/paymentMethods',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic allRecords(dynamic response) => getJsonField(
+        response,
+        r'''$[*]''',
+        true,
+      );
+}
+
+class GetCustomersContractsCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Customers Contracts',
+      apiUrl:
+          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/customers/paymentMethods',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +72,7 @@ class CreateStripeCheckoutSessionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Create Stripe Checkout Session',
       apiUrl:
-          'https://es2mhcpqgv.eu-west-1.awsapprunner.com/customers/checkoutSession',
+          'https://c2xw3up7c7.eu-west-1.awsapprunner.com/customers/checkoutSession',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -64,15 +92,15 @@ class CreateStripeCheckoutSessionCall {
       );
 }
 
-class DeleteCustomersPaymentMethodCopyCall {
+class DeleteCustomersPaymentMethodCall {
   static Future<ApiCallResponse> call({
     String? id = '',
     String? bearerToken = '',
   }) {
     return ApiManager.instance.makeApiCall(
-      callName: 'Delete Customers Payment Method Copy',
+      callName: 'Delete Customers Payment Method',
       apiUrl:
-          'https://es2mhcpqgv.eu-west-1.awsapprunner.com/customers/paymentMethods/${id}',
+          'https://c2xw3up7c7.eu-west-1.awsapprunner.com/customers/paymentMethods/${id}',
       callType: ApiCallType.DELETE,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -100,7 +128,36 @@ class UpdateTopupPreferencesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Update Topup Preferences',
       apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/topup',
-      callType: ApiCallType.POST,
+      callType: ApiCallType.PUT,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class MarkContractSignedCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? contractId = '',
+  }) {
+    final body = '''
+{
+  "amount": <amount>,
+  "threshold": <threshold>
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Mark Contract Signed',
+      apiUrl:
+          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/${contractId}/sign',
+      callType: ApiCallType.PUT,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
       },
