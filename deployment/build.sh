@@ -13,6 +13,12 @@ echo "\nBuilding flutter app ..."
 flutter build web
 
 HTML=build/web/index.html
+
+echo "\nPatch $HTML adding leading '/'s ...\n"
+cd build/web
+patch -R -p0 < $THIS_PROJECT/index.html.patch 
+cd -
+
 echo "\nAdding SPA github pages snippet to $HTML ..."
  
 SPLIT_LINE_NUM=`grep -n "</head>" $HTML | cut -d: -f1`
