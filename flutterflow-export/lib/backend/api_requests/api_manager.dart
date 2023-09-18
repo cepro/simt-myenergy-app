@@ -113,8 +113,10 @@ class ApiManager {
   static Map<String, String> toStringMap(Map map) =>
       map.map((key, value) => MapEntry(key.toString(), value.toString()));
 
-  static String asQueryParams(Map<String, dynamic> map) =>
-      map.entries.map((e) => "${e.key}=${e.value}").join('&');
+  static String asQueryParams(Map<String, dynamic> map) => map.entries
+      .map((e) =>
+          "${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value.toString())}")
+      .join('&');
 
   static Future<ApiCallResponse> urlRequest(
     ApiCallType callType,
@@ -125,10 +127,9 @@ class ApiManager {
     bool decodeUtf8,
   ) async {
     if (params.isNotEmpty) {
-      final lastUriPart = apiUrl.split('/').last;
-      final needsParamSpecifier = !lastUriPart.contains('?');
-      apiUrl =
-          '$apiUrl${needsParamSpecifier ? '?' : ''}${asQueryParams(params)}';
+      final specifier =
+          Uri.parse(apiUrl).queryParameters.isNotEmpty ? '&' : '?';
+      apiUrl = '$apiUrl$specifier${asQueryParams(params)}';
     }
     final makeRequest = callType == ApiCallType.GET ? http.get : http.delete;
     final response =

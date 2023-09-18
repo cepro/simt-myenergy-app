@@ -191,106 +191,112 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.pushNamed(
-                    'PaymentPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
+            if (FFAppState().supplyContractSigned)
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed(
+                      'PaymentPage',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                        ),
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        child: Icon(
+                          Icons.credit_card_rounded,
+                          color: widget.navTwo,
+                          size: 24.0,
+                        ),
                       ),
-                    },
-                  );
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                      child: Icon(
-                        Icons.credit_card_rounded,
-                        color: widget.navFour,
-                        size: 24.0,
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Payment',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: widget.navTwo,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Payment',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: widget.navFour,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.pushNamed(
-                    'TopupPage',
-                    extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
-                        hasTransition: true,
-                        transitionType: PageTransitionType.fade,
-                        duration: Duration(milliseconds: 0),
+            if (FFAppState().supplyContractSigned)
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed(
+                      'TopupPage',
+                      extra: <String, dynamic>{
+                        kTransitionInfoKey: TransitionInfo(
+                          hasTransition: true,
+                          transitionType: PageTransitionType.fade,
+                          duration: Duration(milliseconds: 0),
+                        ),
+                      },
+                    );
+                  },
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        child: Icon(
+                          Icons.settings,
+                          color: widget.navFour,
+                          size: 24.0,
+                        ),
                       ),
-                    },
-                  );
-                },
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                      child: Icon(
-                        Icons.settings,
-                        color: widget.navFive,
-                        size: 24.0,
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Topups',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: widget.navFour,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'Topups',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: widget.navFive,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
             Expanded(
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
@@ -352,7 +358,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                           children: [
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  0.95, 0.0),
+                                                  0.95, 0.00),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -366,7 +372,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  -0.85, 0.0),
+                                                  -0.85, 0.00),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,
@@ -448,7 +454,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                           children: [
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  -0.9, 0.0),
+                                                  -0.90, 0.00),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -462,7 +468,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  0.9, 0.0),
+                                                  0.90, 0.00),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,

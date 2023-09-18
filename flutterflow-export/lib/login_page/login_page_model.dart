@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -15,6 +16,11 @@ class LoginPageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
   // State field(s) for emailAddress widget.
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
@@ -22,6 +28,8 @@ class LoginPageModel extends FlutterFlowModel {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
+  // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
+  bool? getAccountsResult;
   // State field(s) for emailAddress-Create widget.
   TextEditingController? emailAddressCreateController;
   String? Function(BuildContext, String?)?
@@ -40,6 +48,7 @@ class LoginPageModel extends FlutterFlowModel {
 
   void dispose() {
     unfocusNode.dispose();
+    tabBarController?.dispose();
     emailAddressController?.dispose();
     passwordController?.dispose();
     emailAddressCreateController?.dispose();

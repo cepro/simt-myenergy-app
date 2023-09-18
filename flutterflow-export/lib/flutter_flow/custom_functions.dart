@@ -34,3 +34,7 @@ int arrayLengthOrNegativeOneIfNotArray(dynamic responseJSON) {
     return -1;
   }
 }
+
+bool isListEmpty(List<dynamic>? jsonList) {
+  return jsonList == null || jsonList.length == 0;
+}

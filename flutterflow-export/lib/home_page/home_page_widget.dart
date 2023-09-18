@@ -1,10 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/components/contract_list_row_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
-import '/components/meter_balance_widget.dart';
 import '/components/mobile_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,9 +33,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().contractsSigned == false) {
-        context.pushNamed('ContractAcceptPage');
-      }
+      _model.supplyContract = await actions.getContractsByTypeFromAccountsJSON(
+        FFAppState().accountsJSON.toList(),
+        'supply',
+      );
+      _model.solarContract = await actions.getContractsByTypeFromAccountsJSON(
+        FFAppState().accountsJSON.toList(),
+        'solar',
+      );
+      _model.solarMeterSerial = await actions.getMeterSerialByType(
+        FFAppState().accountsJSON.toList(),
+        'solar',
+        FFAppState().meterSerials,
+      );
+      _model.supplyMeterSerial = await actions.getMeterSerialByType(
+        FFAppState().accountsJSON.toList(),
+        'supply',
+        FFAppState().meterSerials,
+      );
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -114,8 +131,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         Expanded(
                                           flex: 12,
                                           child: Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                            alignment: AlignmentDirectional(
+                                                0.00, 0.00),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -124,7 +141,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            -1.0, 1.0),
+                                                            -1.00, 1.00),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
@@ -169,7 +186,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          1.0, -1.0),
+                                                          1.00, -1.00),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.min,
@@ -215,44 +232,553 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         color: FlutterFlowTheme.of(context)
                                             .lineColor,
                                       ),
-                                    wrapWithModel(
-                                      model: _model.meterBalanceModel,
-                                      updateCallback: () => setState(() {}),
-                                      child: MeterBalanceWidget(),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 30.0, 0.0, 0.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 15.0, 15.0, 15.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    'Supply',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMediumFamily,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMediumFamily),
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.00, 0.00),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Flexible(
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1.00,
+                                                                          0.00),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      'Meter',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .headlineSmall,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      _model
+                                                                          .supplyMeterSerial,
+                                                                      'unknown',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '£31.50',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Contract',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            if (_model
+                                                                    .supplyContract !=
+                                                                null)
+                                                              Expanded(
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .contractListRowModel1,
+                                                                  updateCallback:
+                                                                      () => setState(
+                                                                          () {}),
+                                                                  child:
+                                                                      ContractListRowWidget(
+                                                                    readOnly:
+                                                                        getJsonField(
+                                                                              _model.supplyContract,
+                                                                              r'''$.signedDate''',
+                                                                            ) !=
+                                                                            null,
+                                                                    contractJSON:
+                                                                        _model
+                                                                            .supplyContract!,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 16.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      'Transactions',
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 30.0, 0.0, 0.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 15.0, 15.0, 15.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    'Solar',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMediumFamily,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMediumFamily),
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.00, 0.00),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Flexible(
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          -1.00,
+                                                                          0.00),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    child: Text(
+                                                                      'Meter',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .headlineSmall,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      _model
+                                                                          .solarMeterSerial,
+                                                                      'unknown',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Contract',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            if (_model
+                                                                    .supplyContract !=
+                                                                null)
+                                                              Expanded(
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .contractListRowModel2,
+                                                                  updateCallback:
+                                                                      () => setState(
+                                                                          () {}),
+                                                                  child:
+                                                                      ContractListRowWidget(
+                                                                    readOnly:
+                                                                        getJsonField(
+                                                                              _model.solarContract,
+                                                                              r'''$.signedDate''',
+                                                                            ) !=
+                                                                            null,
+                                                                    contractJSON:
+                                                                        _model
+                                                                            .solarContract!,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 30.0, 0.0, 0.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 15.0, 15.0, 15.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Text(
+                                                    'EV',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMediumFamily,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .underline,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMediumFamily),
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 10.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Coming soon ...',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .headlineMedium,
+                                                              .headlineSmall,
                                                     ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 50.0, 0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 16.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        'Transactions',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -280,7 +806,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.0, 0.0),
+                                                          0.00, 0.00),
                                                   child: Icon(
                                                     Icons.account_balance,
                                                     color: FlutterFlowTheme.of(
@@ -318,7 +844,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            'Prepay meter topup',
+                                                            'Supply meter topup',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodySmall,
@@ -428,7 +954,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.0, 0.0),
+                                                          0.00, 0.00),
                                                   child: Icon(
                                                     Icons.account_balance,
                                                     color: FlutterFlowTheme.of(
@@ -466,7 +992,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            'Prepay meter topup',
+                                                            'Supply meter topup',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodySmall,
@@ -579,11 +1105,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                       navTwoIcon: Icon(
-                        Icons.list,
+                        Icons.credit_card_rounded,
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       navThreeIcon: Icon(
-                        Icons.credit_card_rounded,
+                        Icons.contact_page,
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       navFourIcon: Icon(

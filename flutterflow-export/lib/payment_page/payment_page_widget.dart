@@ -88,9 +88,9 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                 updateCallback: () => setState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).secondaryText,
-                  navTwo: FlutterFlowTheme.of(context).secondaryText,
+                  navTwo: FlutterFlowTheme.of(context).alternate,
                   navThree: FlutterFlowTheme.of(context).secondaryText,
-                  navFour: FlutterFlowTheme.of(context).alternate,
+                  navFour: FlutterFlowTheme.of(context).secondaryText,
                   navFive: FlutterFlowTheme.of(context).secondaryText,
                   navSix: FlutterFlowTheme.of(context).secondaryText,
                 ),
@@ -387,7 +387,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          -1.0, 0.0),
+                                                          -1.00, 0.00),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
@@ -618,12 +618,12 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                         color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       navTwoIcon: Icon(
-                        Icons.list,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                      navThreeIcon: Icon(
                         Icons.credit_card_rounded,
                         color: FlutterFlowTheme.of(context).alternate,
+                      ),
+                      navThreeIcon: Icon(
+                        Icons.contact_page,
+                        color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                       navFourIcon: Icon(
                         Icons.settings,

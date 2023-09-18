@@ -3,15 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
-import '../flutter_flow_theme.dart';
 
 import '/backend/supabase/supabase.dart';
 import '../../auth/base_auth_user_provider.dart';
 
-import '../../index.dart';
-import '../../main.dart';
-import '../lat_lng.dart';
-import '../place.dart';
+import '/index.dart';
+import '/main.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -76,32 +77,27 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? ContractAcceptPageWidget()
-          : LoginPageWidget(),
+      errorBuilder: (context, state) =>
+          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? ContractAcceptPageWidget()
-              : LoginPageWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
         ),
         FFRoute(
           name: 'loginPage',
           path: '/login',
-          builder: (context, params) => LoginPageWidget(),
+          builder: (context, params) => LoginPageWidget(
+            emailPrefill: params.getParam('emailPrefill', ParamType.String),
+            fromInvite: params.getParam('fromInvite', ParamType.bool),
+          ),
         ),
         FFRoute(
           name: 'forgotPasswordPage',
           path: '/forgotPassword',
           builder: (context, params) => ForgotPasswordPageWidget(),
-        ),
-        FFRoute(
-          name: 'HomePage',
-          path: '/home',
-          requireAuth: true,
-          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'PaymentPage',
@@ -110,16 +106,35 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PaymentPageWidget(),
         ),
         FFRoute(
+          name: 'ContractsPageNotUsed',
+          path: '/contracts',
+          builder: (context, params) => ContractsPageNotUsedWidget(),
+        ),
+        FFRoute(
           name: 'TopupPage',
           path: '/topup',
           requireAuth: true,
           builder: (context, params) => TopupPageWidget(),
         ),
         FFRoute(
-          name: 'ContractAcceptPage',
-          path: '/contract',
+          name: 'HomePage',
+          path: '/home',
           requireAuth: true,
-          builder: (context, params) => ContractAcceptPageWidget(),
+          builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'InviteLandingPage',
+          path: '/invite/:inviteToken',
+          builder: (context, params) => InviteLandingPageWidget(
+            inviteToken: params.getParam('inviteToken', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'AboutPage',
+          path: '/about',
+          builder: (context, params) => AboutPageWidget(
+            inviteToken: params.getParam('inviteToken', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -306,7 +321,9 @@ class FFRoute {
                     width: 50.0,
                     height: 50.0,
                     child: CircularProgressIndicator(
-                      color: FlutterFlowTheme.of(context).primary,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
                   ),
                 )

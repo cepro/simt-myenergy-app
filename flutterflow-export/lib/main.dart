@@ -53,13 +53,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
     userStream = myEnergySupabaseUserStream()
       ..listen((user) => _appStateNotifier.update(user));
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      Duration(seconds: 1),
+      Duration(milliseconds: 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -85,8 +86,14 @@ class _MyAppState extends State<MyApp> {
       ],
       locale: _locale,
       supportedLocales: const [Locale('en', '')],
-      theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        scrollbarTheme: ScrollbarThemeData(),
+      ),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scrollbarTheme: ScrollbarThemeData(),
+      ),
       themeMode: _themeMode,
       routerConfig: _router,
     );

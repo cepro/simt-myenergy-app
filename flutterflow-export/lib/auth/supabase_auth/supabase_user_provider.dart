@@ -22,6 +22,15 @@ class MyEnergySupabaseUser extends BaseAuthUser {
       throw UnsupportedError('The delete user operation is not yet supported.');
 
   @override
+  Future? updateEmail(String email) async {
+    final response =
+        await SupaFlow.client.auth.updateUser(UserAttributes(email: email));
+    if (response.user != null) {
+      user = response.user;
+    }
+  }
+
+  @override
   Future? sendEmailVerification() => throw UnsupportedError(
       'The send email verification operation is not yet supported.');
 

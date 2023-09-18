@@ -37,14 +37,13 @@ class GetCustomersPaymentMethodsCall {
       );
 }
 
-class GetCustomersContractsCall {
+class GetCustomersAccountsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
   }) {
     return ApiManager.instance.makeApiCall(
-      callName: 'Get Customers Contracts',
-      apiUrl:
-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/customers/paymentMethods',
+      callName: 'Get Customers Accounts',
+      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/account',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -119,21 +118,23 @@ class UpdateTopupPreferencesCall {
     String? bearerToken = '',
     int? amount,
     int? threshold,
+    String? walletId = '',
   }) {
-    final body = '''
+    final ffApiRequestBody = '''
 {
   "amount": ${amount},
   "threshold": ${threshold}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Topup Preferences',
-      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/topup',
+      apiUrl:
+          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet/${walletId}/topupPreference',
       callType: ApiCallType.PUT,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
       },
       params: {},
-      body: body,
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -148,11 +149,8 @@ class MarkContractSignedCall {
     String? bearerToken = '',
     String? contractId = '',
   }) {
-    final body = '''
-{
-  "amount": <amount>,
-  "threshold": <threshold>
-}''';
+    final ffApiRequestBody = '''
+{}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Mark Contract Signed',
       apiUrl:
@@ -162,7 +160,7 @@ class MarkContractSignedCall {
         'Authorization': 'Bearer ${bearerToken}',
       },
       params: {},
-      body: body,
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -172,18 +170,37 @@ class MarkContractSignedCall {
   }
 }
 
-class GetTopupPreferencesCall {
+class GetWalletsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
   }) {
     return ApiManager.instance.makeApiCall(
-      callName: 'Get Topup Preferences',
-      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/topup',
+      callName: 'Get Wallets',
+      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${bearerToken}',
       },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class CustomerInviteLookupCall {
+  static Future<ApiCallResponse> call({
+    String? inviteToken = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Customer Invite Lookup',
+      apiUrl:
+          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/customer/invite/${inviteToken}',
+      callType: ApiCallType.GET,
+      headers: {},
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,

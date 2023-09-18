@@ -3,9 +3,10 @@ import 'backend/api_requests/api_manager.dart';
 import 'backend/supabase/supabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
-  static final FFAppState _instance = FFAppState._internal();
+  static FFAppState _instance = FFAppState._internal();
 
   factory FFAppState() {
     return _instance;
@@ -13,11 +14,35 @@ class FFAppState extends ChangeNotifier {
 
   FFAppState._internal();
 
+  static void reset() {
+    _instance = FFAppState._internal();
+  }
+
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      _contractsSigned =
-          prefs.getBool('ff_contractsSigned') ?? _contractsSigned;
+      _accountsJSON = prefs.getStringList('ff_accountsJSON')?.map((x) {
+            try {
+              return jsonDecode(x);
+            } catch (e) {
+              print("Can't decode persisted json. Error: $e.");
+              return {};
+            }
+          }).toList() ??
+          _accountsJSON;
+    });
+    _safeInit(() {
+      _supplyContractSigned =
+          prefs.getBool('ff_supplyContractSigned') ?? _supplyContractSigned;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_meterSerials')) {
+        try {
+          _meterSerials = jsonDecode(prefs.getString('ff_meterSerials') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
     });
   }
 
@@ -28,11 +53,59 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  bool _contractsSigned = false;
-  bool get contractsSigned => _contractsSigned;
-  set contractsSigned(bool _value) {
-    _contractsSigned = _value;
-    prefs.setBool('ff_contractsSigned', _value);
+  List<dynamic> _accountsJSON = [];
+  List<dynamic> get accountsJSON => _accountsJSON;
+  set accountsJSON(List<dynamic> _value) {
+    _accountsJSON = _value;
+    prefs.setStringList(
+        'ff_accountsJSON', _value.map((x) => jsonEncode(x)).toList());
+  }
+
+  void addToAccountsJSON(dynamic _value) {
+    _accountsJSON.add(_value);
+    prefs.setStringList(
+        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeFromAccountsJSON(dynamic _value) {
+    _accountsJSON.remove(_value);
+    prefs.setStringList(
+        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
+  }
+
+  void removeAtIndexFromAccountsJSON(int _index) {
+    _accountsJSON.removeAt(_index);
+    prefs.setStringList(
+        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
+  }
+
+  void updateAccountsJSONAtIndex(
+    int _index,
+    dynamic Function(dynamic) updateFn,
+  ) {
+    _accountsJSON[_index] = updateFn(_accountsJSON[_index]);
+    prefs.setStringList(
+        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
+  }
+
+  void insertAtIndexInAccountsJSON(int _index, dynamic _value) {
+    _accountsJSON.insert(_index, _value);
+    prefs.setStringList(
+        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
+  }
+
+  bool _supplyContractSigned = false;
+  bool get supplyContractSigned => _supplyContractSigned;
+  set supplyContractSigned(bool _value) {
+    _supplyContractSigned = _value;
+    prefs.setBool('ff_supplyContractSigned', _value);
+  }
+
+  dynamic _meterSerials;
+  dynamic get meterSerials => _meterSerials;
+  set meterSerials(dynamic _value) {
+    _meterSerials = _value;
+    prefs.setString('ff_meterSerials', jsonEncode(_value));
   }
 }
 

@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
@@ -6,20 +7,22 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class TopupPageModel extends FlutterFlowModel {
+  ///  Local state fields for this page.
+
+  bool haveWallet = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
-  // Stores action output result for [Custom Action - getJwtToken] action in TopupPage widget.
-  String? jwtToken;
-  // Stores action output result for [Backend Call - API (Get Topup Preferences)] action in TopupPage widget.
+  // Stores action output result for [Backend Call - API (Get Wallets)] action in TopupPage widget.
   ApiCallResponse? topupPreferencesGetOutput;
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;

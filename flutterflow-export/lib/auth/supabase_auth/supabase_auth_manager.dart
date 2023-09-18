@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import '../auth_manager.dart';
+import '/auth/auth_manager.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'email_auth.dart';
 import 'supabase_user_provider.dart';
 
-export '../base_auth_user_provider.dart';
+export '/auth/base_auth_user_provider.dart';
 
 class SupabaseAuthManager extends AuthManager with EmailSignInManager {
   @override
@@ -28,6 +29,29 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
         SnackBar(content: Text('Error: ${e.message!}')),
       );
     }
+  }
+
+  @override
+  Future updateEmail({
+    required String email,
+    required BuildContext context,
+  }) async {
+    try {
+      if (!loggedIn) {
+        print('Error: update email attempted with no logged in user!');
+        return;
+      }
+      await currentUser?.updateEmail(email);
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.message!}')),
+      );
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Email change confirmation email sent')),
+    );
   }
 
   @override
@@ -87,6 +111,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
       // doesn't assign the currentUser in time.
       if (authUser != null) {
         currentUser = authUser;
+        AppStateNotifier.instance.update(authUser);
       }
       return authUser;
     } on AuthException catch (e) {

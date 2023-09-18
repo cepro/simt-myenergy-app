@@ -76,6 +76,11 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
               size: 24.0,
             ),
             onPressed: () async {
+              setState(() {
+                FFAppState().accountsJSON = [];
+                FFAppState().meterSerials = null;
+                FFAppState().supplyContractSigned = false;
+              });
               GoRouter.of(context).prepareAuthEvent();
               await authManager.signOut();
               GoRouter.of(context).clearRedirectLocation();

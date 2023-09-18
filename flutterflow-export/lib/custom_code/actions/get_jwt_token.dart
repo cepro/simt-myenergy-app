@@ -11,6 +11,9 @@ import 'package:flutter/material.dart';
 
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+// Appears this is also available as a variable under Authentication > User ID
+// see https://docs.flutterflow.io/data-and-backend/supabase/supabase-authentication/email#whats-next
+// That would make this function redundant ...
 Future<String?> getJwtToken() async {
   String? token = await HiveLocalStorage().accessToken();
   if (token == null) return token;
