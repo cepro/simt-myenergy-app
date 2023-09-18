@@ -1,0 +1,24 @@
+#!/bin/sh
+THIS_PROJECT=`pwd`/`dirname $0`/..
+RUN_HOME=/tmp/myenergy-local-run-`date +'%s'`
+EXPORT_DIR=$THIS_PROJECT/flutterflow-export
+PATCHES=$THIS_PROJECT/patches/local
+
+echo "RUN_HOME: $RUN_HOME"
+mkdir $RUN_HOME
+cp -rf $EXPORT_DIR/* $RUN_HOME/.
+cd $RUN_HOME
+
+echo "\nApplying patches ..."
+
+echo "\nPatch 1: api call addresses to localhost ...\n"
+patch -p0 < $PATCHES/api_calls.dart.patch 
+
+echo "\nPatch 2: supabase address and key to localhost ...\n"
+patch -p0 < $PATCHES/supabase.dart.patch 
+
+echo "\nPatch 3: fix for gh://FlutterFlow/flutterflow-issues #1471 ...\n"
+patch -p0 < $PATCHES/fix-flutterflow-github-issue-1471.patch
+
+echo "\nRun app ...\n"
+flutter run -d chrome --web-hostname 0.0.0.0 --web-port 4242 --web-browser-flag "--disable-web-security"

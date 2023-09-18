@@ -15,7 +15,6 @@ flutter build web
 echo "\nApplying patches ..."
 PATCHES=$THIS_PROJECT/patches/github-pages
 
-HTML=build/web/index.html
 cd build/web
 
 echo "\nPatch 1: add leading '/'s ...\n"

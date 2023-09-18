@@ -1,7 +1,6 @@
 #!/bin/sh
 EXPORT_DIR=`dirname $0`/../flutterflow-export
 
-
 # clean export - ensures any files deleted from the app are removed from the repo too
 rm -rf $EXPORT_DIR/* $EXPORT_DIR/.[^.]*
 

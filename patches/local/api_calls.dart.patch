@@ -1,0 +1,50 @@
+--- ./lib/backend/api_requests/api_calls.dart
++++ ./lib/backend/api_requests/api_calls.dart
+@@ -43,7 +43,7 @@ class GetCustomersAccountsCall {
+   }) {
+     return ApiManager.instance.makeApiCall(
+       callName: 'Get Customers Accounts',
+-      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/account',
++      apiUrl: 'http://localhost:8080/account',
+       callType: ApiCallType.GET,
+       headers: {
+         'Content-Type': 'application/json',
+@@ -127,8 +127,7 @@ class UpdateTopupPreferencesCall {
+ }''';
+     return ApiManager.instance.makeApiCall(
+       callName: 'Update Topup Preferences',
+-      apiUrl:
+-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet/${walletId}/topupPreference',
++      apiUrl: 'http://localhost:8080/wallet/${walletId}/topupPreference',
+       callType: ApiCallType.PUT,
+       headers: {
+         'Authorization': 'Bearer ${bearerToken}',
+@@ -153,8 +152,7 @@ class MarkContractSignedCall {
+ {}''';
+     return ApiManager.instance.makeApiCall(
+       callName: 'Mark Contract Signed',
+-      apiUrl:
+-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/${contractId}/sign',
++      apiUrl: 'http://localhost:8080/contract/${contractId}/sign',
+       callType: ApiCallType.PUT,
+       headers: {
+         'Authorization': 'Bearer ${bearerToken}',
+@@ -176,7 +174,7 @@ class GetWalletsCall {
+   }) {
+     return ApiManager.instance.makeApiCall(
+       callName: 'Get Wallets',
+-      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet',
++      apiUrl: 'http://localhost:8080/wallet',
+       callType: ApiCallType.GET,
+       headers: {
+         'Content-Type': 'application/json',
+@@ -197,8 +195,7 @@ class CustomerInviteLookupCall {
+   }) {
+     return ApiManager.instance.makeApiCall(
+       callName: 'Customer Invite Lookup',
+-      apiUrl:
+-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/customer/invite/${inviteToken}',
++      apiUrl: 'http://localhost:8080/customer/invite/${inviteToken}',
+       callType: ApiCallType.GET,
+       headers: {},
+       params: {},
