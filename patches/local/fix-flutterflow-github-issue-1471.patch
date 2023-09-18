@@ -1,6 +1,6 @@
 --- ./lib/login_page/login_page_widget.dart
 +++ ./lib/login_page/login_page_widget.dart
-@@ -651,10 +651,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
+@@ -684,10 +684,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                            .passwordController
                                                                            .text,
                                                                      );
@@ -11,3 +11,15 @@
  
                                                                      if (loggedIn ==
                                                                          true) {
+@@ -1080,10 +1076,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
+                                                                       .passwordCreateController
+                                                                       .text,
+                                                                 );
+-                                                                if (user ==
+-                                                                    null) {
+-                                                                  return;
+-                                                                }
+ 
+                                                                 if (loggedIn) {
+                                                                   await action_blocks
+

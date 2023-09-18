@@ -375,6 +375,34 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         children: [
+                                                          if (_model.loginError)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Sign In failure, try again or contact support.',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
@@ -636,6 +664,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
+                                                                    setState(
+                                                                        () {
+                                                                      _model.loginError =
+                                                                          false;
+                                                                    });
                                                                     GoRouter.of(
                                                                             context)
                                                                         .prepareAuthEvent();
@@ -671,24 +704,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                             context.mounted);
                                                                       }
                                                                     } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'User not logged in. Failure to signin?',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 9700),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondary,
-                                                                        ),
-                                                                      );
+                                                                      setState(
+                                                                          () {
+                                                                        _model.loginError =
+                                                                            true;
+                                                                      });
                                                                     }
 
                                                                     setState(
@@ -769,6 +789,34 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium,
+                                                              ),
+                                                            ),
+                                                          if (_model.loginError)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Sign Up failure, try again or contact support.',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
                                                               ),
                                                             ),
                                                           Padding(
@@ -1013,6 +1061,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
+                                                                setState(() {
+                                                                  _model.loginError =
+                                                                      false;
+                                                                });
                                                                 GoRouter.of(
                                                                         context)
                                                                     .prepareAuthEvent();
@@ -1033,10 +1085,23 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   return;
                                                                 }
 
-                                                                context.goNamedAuth(
-                                                                    'HomePage',
-                                                                    context
-                                                                        .mounted);
+                                                                if (loggedIn) {
+                                                                  await action_blocks
+                                                                      .getAndSaveAccounts(
+                                                                          context);
+                                                                  if (_model
+                                                                      .getAccountsResult!) {
+                                                                    context.pushNamedAuth(
+                                                                        'HomePage',
+                                                                        context
+                                                                            .mounted);
+                                                                  }
+                                                                } else {
+                                                                  setState(() {
+                                                                    _model.loginError =
+                                                                        true;
+                                                                  });
+                                                                }
                                                               },
                                                               text:
                                                                   'Create Account',
