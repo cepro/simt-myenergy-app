@@ -1,0 +1,28 @@
+# see emnify swagger at https://cdn.emnify.net/api/doc/swagger.html
+
+@appToken = <add token>
+# Auth token - issued from a request to /authenticate with the apptoken (see api-token.txt)
+@authToken = <add token>
+@uri = https://cdn.emnify.net/api/v1
+
+# Get new auth token
+GET {{uri}}/authenticate
+accept: application/json
+Content-Type: application/json
+
+{
+  "application_token": "{{appToken}}"
+}
+
+
+GET {{uri}}/endpoint?q=tags:wlce
+Authorization: Bearer {{authToken}}
+
+GET {{uri}}/endpoint/13128367
+Authorization: Bearer {{authToken}}
+
+GET {{uri}}/endpoint/13128367/connectivity
+Authorization: Bearer {{authToken}}
+
+
+
