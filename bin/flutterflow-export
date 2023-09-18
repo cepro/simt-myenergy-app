@@ -1,8 +1,11 @@
 #!/bin/sh
 EXPORT_DIR=`dirname $0`/../flutterflow-export
 
+
 # clean export - ensures any files deleted from the app are removed from the repo too
 rm -rf $EXPORT_DIR/* $EXPORT_DIR/.[^.]*
+
+echo "\nExporting flutterflow code ...\n"
 
 flutterflow export-code \
     --project myenergy-billing-prototype-wbk8s3 \
