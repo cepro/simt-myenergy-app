@@ -1,4 +1,3 @@
-# Simtricity MyEnergy Prototype
+# Simtricity MyEnergy App
 
-A repo for the Myenergy app prototype and various experiments with stripe billing, supabase auth, Flutter and Dart.
-
+This repo holds the code for the MyEnergy app.
