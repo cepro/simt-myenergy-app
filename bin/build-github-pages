@@ -9,27 +9,22 @@ $THIS_PROJECT/bin/flutterflow-export
 cp -rf $THIS_PROJECT/flutterflow-export/* $BUILD_HOME/.
 cd $BUILD_HOME
 
-echo "\nBuilding for web ..."
+echo "Building for web ...\n"
 flutter build web
 
 echo "\nApplying patches ..."
 PATCHES=$THIS_PROJECT/patches/github-pages
 
 HTML=build/web/index.html
-echo "\nPatch $HTML adding leading '/'s ...\n"
 cd build/web
+
+echo "\nPatch 1: add leading '/'s ...\n"
 patch -R -p0 < $PATCHES/index.html.patch 
+
+echo "\nPatch 2: apply SPA 404 redirect hack ...\n"
+patch    -p0 < $PATCHES/gh-pages-hack-snippet.html.patch 
+
 cd - > /dev/null
-
-echo "\nAdding SPA github pages snippet to $HTML ..."
-SPLIT_LINE_NUM=`grep -n "</head>" $HTML | cut -d: -f1`
-NUM_LINES=`wc -l $HTML | cut -d" " -f1`
-
-NEW_HTML=$HTML.new
-head -`expr $SPLIT_LINE_NUM - 1` $HTML > $NEW_HTML
-cat $PATCHES/gh-pages-hack-snippet.html >> $NEW_HTML
-tail -`expr $NUM_LINES - $SPLIT_LINE_NUM + 1` $HTML >> $NEW_HTML
-mv $NEW_HTML $HTML
 
 GH_PAGES_HOME=$THIS_PROJECT/../simt-myenergy-gh-pages
 echo "\nCopying build/web to $GH_PAGES_HOME ..."
