@@ -1,27 +1,28 @@
 #!/bin/sh
 THIS_PROJECT=`pwd`/`dirname $0`/..
+PATCHES=$THIS_PROJECT/patches
 
 BUILD_HOME=/tmp/myenergy-pages-build-`date +'%s'`
 mkdir $BUILD_HOME
 echo "BUILD_HOME: $BUILD_HOME"
 
-$THIS_PROJECT/bin/flutterflow-export
+$THIS_PROJECT/bin/flutterflow-export || exit 1
 cp -rf $THIS_PROJECT/flutterflow-export/* $BUILD_HOME/.
 cd $BUILD_HOME
 
-echo "Building for web ...\n"
-flutter build web
+echo "Fix Patch 1: fix for gh://FlutterFlow/flutterflow-issues #1471 ...\n"
+patch -p0 < $PATCHES/fixes/fix-flutterflow-github-issue-1471.patch || exit 1
 
-echo "\nApplying patches ..."
-PATCHES=$THIS_PROJECT/patches/github-pages
+echo "Building for web ...\n"
+flutter build web || exit 1
 
 cd build/web
 
-echo "\nPatch 1: add leading '/'s ...\n"
-patch -R -p0 < $PATCHES/index.html.patch 
+echo "\nGithub Pages Patch 1: add leading '/'s ...\n"
+patch -R -p0 < $PATCHES/github-pages/index.html.patch || exit 1
 
-echo "\nPatch 2: apply SPA 404 redirect hack ...\n"
-patch    -p0 < $PATCHES/gh-pages-hack-snippet.html.patch 
+echo "\nGithub Pages Patch 2: apply SPA 404 redirect hack ...\n"
+patch    -p0 < $PATCHES/github-pages/gh-pages-hack-snippet.html.patch || exit 1
 
 cd - > /dev/null
 

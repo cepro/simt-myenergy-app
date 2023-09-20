@@ -120,7 +120,7 @@ class _ContractListRowWidgetState extends State<ContractListRowWidget> {
                           ),
                         );
                       },
-                    ).then((value) => setState(() {}));
+                    ).then((value) => safeSetState(() {}));
                   },
                   text: widget.readOnly == true ? 'View' : 'Sign',
                   options: FFButtonOptions(
