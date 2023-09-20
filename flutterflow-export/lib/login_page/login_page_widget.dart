@@ -693,7 +693,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         true) {
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
-                                                                              500));
+                                                                              1000));
                                                                       _model.getAccountsResult =
                                                                           await action_blocks
                                                                               .getAndSaveAccounts(context);
@@ -1086,6 +1086,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 }
 
                                                                 if (loggedIn) {
+                                                                  await Future.delayed(
+                                                                      const Duration(
+                                                                          milliseconds:
+                                                                              1000));
                                                                   await action_blocks
                                                                       .getAndSaveAccounts(
                                                                           context);

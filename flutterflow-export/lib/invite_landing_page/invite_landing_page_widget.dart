@@ -50,7 +50,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
-        await Future.delayed(const Duration(milliseconds: 5000));
+        await Future.delayed(const Duration(milliseconds: 1000));
 
         context.pushNamed(
           'loginPage',
