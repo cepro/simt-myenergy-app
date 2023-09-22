@@ -1,0 +1,32 @@
+#!/bin/sh
+#
+# Copy the exported app from flutterflow-export/ to local-stage/ and apply
+# patches.
+#
+# --export will export a fresh copy from flutterflow before making the copy.
+#
+THIS_PROJECT=`pwd`/`dirname $0`/..
+LOCAL_STAGE=$THIS_PROJECT/local-stage
+EXPORT_DIR=$THIS_PROJECT/flutterflow-export
+PATCHES=$THIS_PROJECT/patches
+
+if [ "$1" = "--export" ]; then
+    $THIS_PROJECT/bin/flutterflow-export
+fi
+
+echo "LOCAL_STAGE: $LOCAL_STAGE"
+rm -rf $LOCAL_STAGE
+mkdir $LOCAL_STAGE
+cp -rf $EXPORT_DIR/* $LOCAL_STAGE/.
+cd $LOCAL_STAGE
+
+echo "\nApplying patches ..."
+
+echo "\nPatch 1: api call addresses to localhost ...\n"
+patch -p0 < $PATCHES/local/api_calls.dart.patch 
+
+echo "\nPatch 2: supabase address and key to localhost ...\n"
+patch -p0 < $PATCHES/local/supabase.dart.patch 
+
+echo "\nPatch 3: fix for gh://FlutterFlow/flutterflow-issues #1471 ...\n"
+patch -p0 < $PATCHES/fixes/fix-flutterflow-github-issue-1471.patch

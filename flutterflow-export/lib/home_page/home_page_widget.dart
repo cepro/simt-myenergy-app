@@ -637,7 +637,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               MainAxisSize.min,
                                                           children: [
                                                             if (_model
-                                                                    .supplyContract !=
+                                                                    .solarContract !=
                                                                 null)
                                                               Expanded(
                                                                 child:
