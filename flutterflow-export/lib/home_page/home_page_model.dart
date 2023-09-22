@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/components/contract_list_row_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
@@ -13,6 +14,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HomePageModel extends FlutterFlowModel {
+  ///  Local state fields for this page.
+
+  String singleWalletBalance = 'unknown';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -24,6 +29,8 @@ class HomePageModel extends FlutterFlowModel {
   String? solarMeterSerial;
   // Stores action output result for [Custom Action - getMeterSerialByType] action in HomePage widget.
   String? supplyMeterSerial;
+  // Stores action output result for [Backend Call - API (Get Wallets)] action in HomePage widget.
+  ApiCallResponse? homePageGetWallets;
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for LogoutButton component.

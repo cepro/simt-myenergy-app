@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/components/contract_list_row_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
@@ -51,6 +52,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         'supply',
         FFAppState().meterSerials,
       );
+      _model.homePageGetWallets = await GetWalletsCall.call(
+        bearerToken: currentJwtToken,
+      );
+      if ((_model.homePageGetWallets?.succeeded ?? true)) {
+        setState(() {
+          _model.singleWalletBalance = '£${getJsonField(
+            (_model.homePageGetWallets?.jsonBody ?? ''),
+            r'''$[0].balance''',
+          ).toString().toString()}';
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Failure getting wallet balance',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -378,7 +403,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0,
                                                                             0.0),
                                                                     child: Text(
-                                                                      '£31.50',
+                                                                      _model
+                                                                          .singleWalletBalance,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .titleSmall,

@@ -20,6 +20,10 @@ Future<String?> getMeterSerialByType(
         r'$[?(@.contract.terms.type=="'
         "$meterType\")].property.${meterType}MeterUUID",
         true);
+    if (meterIdResult == null) {
+      return null;
+    }
+
     var meterId = meterIdResult.isNotEmpty ? meterIdResult[0].toString() : null;
     var meterSerial = null;
     if (meterId != null) {

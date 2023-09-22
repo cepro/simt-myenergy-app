@@ -15,8 +15,8 @@ if [ "$1" = "--export" ]; then
 fi
 
 echo "LOCAL_STAGE: $LOCAL_STAGE"
-rm -rf $LOCAL_STAGE
-mkdir $LOCAL_STAGE
+rm -rf $LOCAL_STAGE/lib $LOCAL_STAGE/web $LOCAL_STAGE/assets $LOCAL_STAGE/pubspec* 
+mkdir -p $LOCAL_STAGE
 cp -rf $EXPORT_DIR/* $LOCAL_STAGE/.
 cd $LOCAL_STAGE
 

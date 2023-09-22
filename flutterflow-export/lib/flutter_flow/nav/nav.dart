@@ -117,17 +117,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => TopupPageWidget(),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/home',
-          requireAuth: true,
-          builder: (context, params) => HomePageWidget(),
-        ),
-        FFRoute(
           name: 'InviteLandingPage',
           path: '/invite/:inviteToken',
           builder: (context, params) => InviteLandingPageWidget(
             inviteToken: params.getParam('inviteToken', ParamType.String),
           ),
+        ),
+        FFRoute(
+          name: 'HomePage',
+          path: '/home',
+          requireAuth: true,
+          builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
           name: 'AboutPage',
