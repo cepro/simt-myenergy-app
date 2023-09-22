@@ -23,10 +23,10 @@ cd $LOCAL_STAGE
 echo "\nApplying patches ..."
 
 echo "\nPatch 1: api call addresses to localhost ...\n"
-patch -p0 < $PATCHES/local/api_calls.dart.patch 
+patch -p0 < $PATCHES/local/api_calls.dart.patch || exit 2
 
 echo "\nPatch 2: supabase address and key to localhost ...\n"
-patch -p0 < $PATCHES/local/supabase.dart.patch 
+patch -p0 < $PATCHES/local/supabase.dart.patch  || exit 2
 
 echo "\nPatch 3: fix for gh://FlutterFlow/flutterflow-issues #1471 ...\n"
-patch -p0 < $PATCHES/fixes/fix-flutterflow-github-issue-1471.patch
+patch -p0 < $PATCHES/fixes/fix-flutterflow-github-issue-1471.patch || exit 2

@@ -694,11 +694,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
                                                                               1000));
-                                                                      _model.getAccountsResult =
+                                                                      _model.getAccountsResultSignIn =
                                                                           await action_blocks
                                                                               .getAndSaveAccounts(context);
                                                                       if (_model
-                                                                          .getAccountsResult!) {
+                                                                          .getAccountsResultSignIn!) {
                                                                         context.pushNamedAuth(
                                                                             'HomePage',
                                                                             context.mounted);
@@ -1090,11 +1090,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       const Duration(
                                                                           milliseconds:
                                                                               1000));
-                                                                  await action_blocks
-                                                                      .getAndSaveAccounts(
-                                                                          context);
+                                                                  _model.getAccountsResultSignup =
+                                                                      await action_blocks
+                                                                          .getAndSaveAccounts(
+                                                                              context);
                                                                   if (_model
-                                                                      .getAccountsResult!) {
+                                                                      .getAccountsResultSignup!) {
                                                                     context.pushNamedAuth(
                                                                         'HomePage',
                                                                         context
@@ -1106,6 +1107,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         true;
                                                                   });
                                                                 }
+
+                                                                setState(() {});
                                                               },
                                                               text:
                                                                   'Create Account',

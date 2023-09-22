@@ -33,7 +33,7 @@ class LoginPageModel extends FlutterFlowModel {
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
   // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
-  bool? getAccountsResult;
+  bool? getAccountsResultSignIn;
   // State field(s) for emailAddress-Create widget.
   TextEditingController? emailAddressCreateController;
   String? Function(BuildContext, String?)?
@@ -42,6 +42,8 @@ class LoginPageModel extends FlutterFlowModel {
   TextEditingController? passwordCreateController;
   late bool passwordCreateVisibility;
   String? Function(BuildContext, String?)? passwordCreateControllerValidator;
+  // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
+  bool? getAccountsResultSignup;
 
   /// Initialization and disposal methods.
 
