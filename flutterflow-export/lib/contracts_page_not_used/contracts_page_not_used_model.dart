@@ -1,15 +1,17 @@
-import '/components/contract_list_row_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
+import '/components/supply_contract_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'contracts_page_not_used_widget.dart' show ContractsPageNotUsedWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ContractsPageNotUsedModel extends FlutterFlowModel {
+class ContractsPageNotUsedModel
+    extends FlutterFlowModel<ContractsPageNotUsedWidget> {
   ///  Local state fields for this page.
 
   bool haveWallet = false;

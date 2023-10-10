@@ -1,28 +1,28 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'forgot_password_page_widget.dart' show ForgotPasswordPageWidget;
+import '/actions/actions.dart' as action_blocks;
+import 'supply_contract_sign_or_view_modal_widget.dart'
+    show SupplyContractSignOrViewModalWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ForgotPasswordPageModel
-    extends FlutterFlowModel<ForgotPasswordPageWidget> {
-  ///  State fields for stateful widgets in this page.
+class SupplyContractSignOrViewModalModel
+    extends FlutterFlowModel<SupplyContractSignOrViewModalWidget> {
+  ///  State fields for stateful widgets in this component.
 
-  // State field(s) for emailAddress widget.
-  TextEditingController? emailAddressController;
-  String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  // Stores action output result for [Backend Call - API (Mark Contract Signed)] action in Button widget.
+  ApiCallResponse? signSupplyContractResult;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
 
-  void dispose() {
-    emailAddressController?.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks are added here.
 

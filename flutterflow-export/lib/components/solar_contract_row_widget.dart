@@ -1,15 +1,15 @@
-import '/components/contract_acceptance_modal_widget.dart';
+import '/components/solar_contract_choose_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'contract_list_row_model.dart';
-export 'contract_list_row_model.dart';
+import 'solar_contract_row_model.dart';
+export 'solar_contract_row_model.dart';
 
-class ContractListRowWidget extends StatefulWidget {
-  const ContractListRowWidget({
+class SolarContractRowWidget extends StatefulWidget {
+  const SolarContractRowWidget({
     Key? key,
     required this.contractJSON,
     required this.readOnly,
@@ -19,11 +19,11 @@ class ContractListRowWidget extends StatefulWidget {
   final bool? readOnly;
 
   @override
-  _ContractListRowWidgetState createState() => _ContractListRowWidgetState();
+  _SolarContractRowWidgetState createState() => _SolarContractRowWidgetState();
 }
 
-class _ContractListRowWidgetState extends State<ContractListRowWidget> {
-  late ContractListRowModel _model;
+class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
+  late SolarContractRowModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -34,7 +34,7 @@ class _ContractListRowWidgetState extends State<ContractListRowWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ContractListRowModel());
+    _model = createModel(context, () => SolarContractRowModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -77,23 +77,26 @@ class _ContractListRowWidgetState extends State<ContractListRowWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    getJsonField(
-                      widget.contractJSON,
-                      r'''$.terms.type''',
-                    ).toString(),
-                    style: FlutterFlowTheme.of(context).titleMedium,
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                    child: Text(
+                  if (widget.readOnly == true)
+                    Text(
                       getJsonField(
                         widget.contractJSON,
-                        r'''$.description''',
+                        r'''$.terms.type''',
                       ).toString(),
-                      style: FlutterFlowTheme.of(context).bodySmall,
+                      style: FlutterFlowTheme.of(context).titleMedium,
                     ),
-                  ),
+                  if (widget.readOnly == true)
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                      child: Text(
+                        getJsonField(
+                          widget.contractJSON,
+                          r'''$.description''',
+                        ).toString(),
+                        style: FlutterFlowTheme.of(context).bodySmall,
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -114,7 +117,7 @@ class _ContractListRowWidgetState extends State<ContractListRowWidget> {
                       builder: (context) {
                         return Padding(
                           padding: MediaQuery.viewInsetsOf(context),
-                          child: ContractAcceptanceModalWidget(
+                          child: SolarContractChooseOrViewModalWidget(
                             contractJSON: widget.contractJSON!,
                             readOnly: widget.readOnly!,
                           ),
@@ -122,7 +125,7 @@ class _ContractListRowWidgetState extends State<ContractListRowWidget> {
                       },
                     ).then((value) => safeSetState(() {}));
                   },
-                  text: widget.readOnly == true ? 'View' : 'Sign',
+                  text: widget.readOnly == true ? 'View' : 'Choose Contract',
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:

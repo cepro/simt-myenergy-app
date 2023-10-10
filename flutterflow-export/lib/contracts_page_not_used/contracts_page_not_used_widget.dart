@@ -1,7 +1,7 @@
-import '/components/contract_list_row_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
+import '/components/supply_contract_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -45,7 +45,9 @@ class _ContractsPageNotUsedWidgetState
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -218,7 +220,7 @@ class _ContractsPageNotUsedWidgetState
                                             contractJSON[contractJSONIndex];
                                         return Container(
                                           decoration: BoxDecoration(),
-                                          child: ContractListRowWidget(
+                                          child: SupplyContractRowWidget(
                                             key: Key(
                                                 'Keyo3k_${contractJSONIndex}_of_${contractJSON.length}'),
                                             contractJSON: contractJSONItem,

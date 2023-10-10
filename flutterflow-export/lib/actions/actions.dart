@@ -56,12 +56,14 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
       getJsonField(
         (getAccountsResponse?.jsonBody ?? ''),
         r'''$.accounts''',
+        true,
       )!,
       'supply',
     );
     FFAppState().accountsJSON = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.accounts''',
+      true,
     )!
         .toList()
         .cast<dynamic>();

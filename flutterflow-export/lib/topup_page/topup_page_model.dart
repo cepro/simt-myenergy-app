@@ -8,12 +8,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'topup_page_widget.dart' show TopupPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class TopupPageModel extends FlutterFlowModel {
+class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
   ///  Local state fields for this page.
 
   bool haveWallet = false;

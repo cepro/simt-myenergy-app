@@ -128,6 +128,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     _model.emailAddressCreateController ??=
         TextEditingController(text: widget.emailPrefill);
     _model.passwordCreateController ??= TextEditingController();
+    _model.confirmCreateController ??= TextEditingController();
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -150,7 +151,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -819,6 +822,35 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     ),
                                                               ),
                                                             ),
+                                                          if (_model
+                                                              .signupPasswordMismatch)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Passwords don\'t match. Try again.',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
@@ -1053,6 +1085,133 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
+                                                                        24.0,
+                                                                        12.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            child:
+                                                                TextFormField(
+                                                              controller: _model
+                                                                  .confirmCreateController,
+                                                              obscureText: !_model
+                                                                  .confirmCreateVisibility,
+                                                              decoration:
+                                                                  InputDecoration(
+                                                                labelText:
+                                                                    'Password',
+                                                                labelStyle:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall,
+                                                                hintText:
+                                                                    'Confirm your password...',
+                                                                hintStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall,
+                                                                enabledBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .lineColor,
+                                                                    width: 1.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                                focusedBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Color(
+                                                                        0x00000000),
+                                                                    width: 1.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                                errorBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    width: 1.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                                focusedErrorBorder:
+                                                                    OutlineInputBorder(
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                    width: 1.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                                filled: true,
+                                                                fillColor: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                contentPadding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20.0,
+                                                                            24.0,
+                                                                            20.0,
+                                                                            24.0),
+                                                                suffixIcon:
+                                                                    InkWell(
+                                                                  onTap: () =>
+                                                                      setState(
+                                                                    () => _model
+                                                                            .confirmCreateVisibility =
+                                                                        !_model
+                                                                            .confirmCreateVisibility,
+                                                                  ),
+                                                                  focusNode: FocusNode(
+                                                                      skipTraversal:
+                                                                          true),
+                                                                  child: Icon(
+                                                                    _model.confirmCreateVisibility
+                                                                        ? Icons
+                                                                            .visibility_outlined
+                                                                        : Icons
+                                                                            .visibility_off_outlined,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium,
+                                                              validator: _model
+                                                                  .confirmCreateControllerValidator
+                                                                  .asValidator(
+                                                                      context),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
                                                                         0.0,
                                                                         16.0,
                                                                         0.0,
@@ -1061,49 +1220,62 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
-                                                                setState(() {
-                                                                  _model.loginError =
-                                                                      false;
-                                                                });
-                                                                GoRouter.of(
-                                                                        context)
-                                                                    .prepareAuthEvent();
+                                                                if (_model
+                                                                        .passwordCreateController
+                                                                        .text ==
+                                                                    _model
+                                                                        .confirmCreateController
+                                                                        .text) {
+                                                                  setState(() {
+                                                                    _model.loginError =
+                                                                        false;
+                                                                    _model.signupPasswordMismatch =
+                                                                        false;
+                                                                  });
+                                                                  GoRouter.of(
+                                                                          context)
+                                                                      .prepareAuthEvent();
 
-                                                                final user =
-                                                                    await authManager
-                                                                        .createAccountWithEmail(
-                                                                  context,
-                                                                  _model
-                                                                      .emailAddressCreateController
-                                                                      .text,
-                                                                  _model
-                                                                      .passwordCreateController
-                                                                      .text,
-                                                                );
-                                                                if (user ==
-                                                                    null) {
-                                                                  return;
-                                                                }
+                                                                  final user =
+                                                                      await authManager
+                                                                          .createAccountWithEmail(
+                                                                    context,
+                                                                    _model
+                                                                        .emailAddressCreateController
+                                                                        .text,
+                                                                    _model
+                                                                        .passwordCreateController
+                                                                        .text,
+                                                                  );
+                                                                  if (user ==
+                                                                      null) {
+                                                                    return;
+                                                                  }
 
-                                                                if (loggedIn) {
-                                                                  await Future.delayed(
-                                                                      const Duration(
-                                                                          milliseconds:
-                                                                              1000));
-                                                                  _model.getAccountsResultSignup =
-                                                                      await action_blocks
-                                                                          .getAndSaveAccounts(
-                                                                              context);
-                                                                  if (_model
-                                                                      .getAccountsResultSignup!) {
-                                                                    context.pushNamedAuth(
-                                                                        'HomePage',
-                                                                        context
-                                                                            .mounted);
+                                                                  if (loggedIn) {
+                                                                    await Future.delayed(const Duration(
+                                                                        milliseconds:
+                                                                            1000));
+                                                                    _model.getAccountsResultSignup =
+                                                                        await action_blocks
+                                                                            .getAndSaveAccounts(context);
+                                                                    if (_model
+                                                                        .getAccountsResultSignup!) {
+                                                                      context.pushNamedAuth(
+                                                                          'HomePage',
+                                                                          context
+                                                                              .mounted);
+                                                                    }
+                                                                  } else {
+                                                                    setState(
+                                                                        () {
+                                                                      _model.loginError =
+                                                                          true;
+                                                                    });
                                                                   }
                                                                 } else {
                                                                   setState(() {
-                                                                    _model.loginError =
+                                                                    _model.signupPasswordMismatch =
                                                                         true;
                                                                   });
                                                                 }

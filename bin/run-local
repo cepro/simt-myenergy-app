@@ -4,6 +4,8 @@
 #
 # --export will force a fresh export and patch
 #
+set -e
+
 THIS_PROJECT=`pwd`/`dirname $0`/..
 LOCAL_STAGE=$THIS_PROJECT/local-stage
 

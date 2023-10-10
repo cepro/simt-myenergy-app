@@ -8,11 +8,11 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'contract_acceptance_modal_model.dart';
-export 'contract_acceptance_modal_model.dart';
+import 'supply_contract_sign_or_view_modal_model.dart';
+export 'supply_contract_sign_or_view_modal_model.dart';
 
-class ContractAcceptanceModalWidget extends StatefulWidget {
-  const ContractAcceptanceModalWidget({
+class SupplyContractSignOrViewModalWidget extends StatefulWidget {
+  const SupplyContractSignOrViewModalWidget({
     Key? key,
     required this.contractJSON,
     required this.readOnly,
@@ -22,13 +22,13 @@ class ContractAcceptanceModalWidget extends StatefulWidget {
   final bool? readOnly;
 
   @override
-  _ContractAcceptanceModalWidgetState createState() =>
-      _ContractAcceptanceModalWidgetState();
+  _SupplyContractSignOrViewModalWidgetState createState() =>
+      _SupplyContractSignOrViewModalWidgetState();
 }
 
-class _ContractAcceptanceModalWidgetState
-    extends State<ContractAcceptanceModalWidget> {
-  late ContractAcceptanceModalModel _model;
+class _SupplyContractSignOrViewModalWidgetState
+    extends State<SupplyContractSignOrViewModalWidget> {
+  late SupplyContractSignOrViewModalModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -39,7 +39,7 @@ class _ContractAcceptanceModalWidgetState
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ContractAcceptanceModalModel());
+    _model = createModel(context, () => SupplyContractSignOrViewModalModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -183,7 +183,7 @@ class _ContractAcceptanceModalWidgetState
                       if (!widget.readOnly!)
                         FFButtonWidget(
                           onPressed: () async {
-                            _model.signContractResult =
+                            _model.signSupplyContractResult =
                                 await MarkContractSignedCall.call(
                               bearerToken: currentJwtToken,
                               contractId: getJsonField(
@@ -191,7 +191,7 @@ class _ContractAcceptanceModalWidgetState
                                 r'''$.id''',
                               ).toString(),
                             );
-                            if ((_model.signContractResult?.succeeded ??
+                            if ((_model.signSupplyContractResult?.succeeded ??
                                 true)) {
                               await action_blocks.getAndSaveAccounts(context);
                               Navigator.pop(context);
@@ -201,12 +201,12 @@ class _ContractAcceptanceModalWidgetState
                               await action_blocks.handleMyEnergyApiCallFailure(
                                 context,
                                 wwwAuthenticateHeader: (_model
-                                        .signContractResult
+                                        .signSupplyContractResult
                                         ?.getHeader('www-authenticate') ??
                                     ''),
-                                httpStatusCode:
-                                    (_model.signContractResult?.statusCode ??
-                                        200),
+                                httpStatusCode: (_model
+                                        .signSupplyContractResult?.statusCode ??
+                                    200),
                               );
                             }
 

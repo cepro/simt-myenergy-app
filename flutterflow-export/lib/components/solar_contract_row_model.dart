@@ -1,11 +1,13 @@
+import '/components/solar_contract_choose_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'meter_balance_widget.dart' show MeterBalanceWidget;
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'solar_contract_row_widget.dart' show SolarContractRowWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class MeterBalanceModel extends FlutterFlowModel<MeterBalanceWidget> {
+class SolarContractRowModel extends FlutterFlowModel<SolarContractRowWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}

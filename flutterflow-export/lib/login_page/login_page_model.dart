@@ -6,16 +6,19 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import 'login_page_widget.dart' show LoginPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class LoginPageModel extends FlutterFlowModel {
+class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   ///  Local state fields for this page.
 
   bool loginError = false;
+
+  bool signupPasswordMismatch = false;
 
   ///  State fields for stateful widgets in this page.
 
@@ -42,6 +45,10 @@ class LoginPageModel extends FlutterFlowModel {
   TextEditingController? passwordCreateController;
   late bool passwordCreateVisibility;
   String? Function(BuildContext, String?)? passwordCreateControllerValidator;
+  // State field(s) for confirm-Create widget.
+  TextEditingController? confirmCreateController;
+  late bool confirmCreateVisibility;
+  String? Function(BuildContext, String?)? confirmCreateControllerValidator;
   // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
   bool? getAccountsResultSignup;
 
@@ -50,6 +57,7 @@ class LoginPageModel extends FlutterFlowModel {
   void initState(BuildContext context) {
     passwordVisibility = false;
     passwordCreateVisibility = false;
+    confirmCreateVisibility = false;
   }
 
   void dispose() {
@@ -59,6 +67,7 @@ class LoginPageModel extends FlutterFlowModel {
     passwordController?.dispose();
     emailAddressCreateController?.dispose();
     passwordCreateController?.dispose();
+    confirmCreateController?.dispose();
   }
 
   /// Action blocks are added here.

@@ -1,9 +1,10 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/components/contract_list_row_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
+import '/components/solar_contract_row_widget.dart';
+import '/components/supply_contract_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -93,7 +94,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -284,7 +287,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       MainAxisSize.max,
                                                   children: [
                                                     Text(
-                                                      'Supply',
+                                                      'Electricity Supply',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -351,7 +354,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        'Meter',
+                                                                        'Meter Credit Balance',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall,
                                                                       ),
@@ -442,7 +445,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0,
                                                                             0.0),
                                                                 child: Text(
-                                                                  'Contract',
+                                                                  'Tariff',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .headlineSmall,
@@ -462,12 +465,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   child:
                                                                       wrapWithModel(
                                                                     model: _model
-                                                                        .contractListRowModel1,
+                                                                        .supplyContractRowModel,
                                                                     updateCallback: () =>
                                                                         setState(
                                                                             () {}),
                                                                     child:
-                                                                        ContractListRowWidget(
+                                                                        SupplyContractRowWidget(
                                                                       readOnly:
                                                                           getJsonField(
                                                                                 _model.supplyContract,
@@ -657,7 +660,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0,
                                                                             0.0),
                                                                 child: Text(
-                                                                  'Contract',
+                                                                  'SUA Contract',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .headlineSmall,
@@ -677,12 +680,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   child:
                                                                       wrapWithModel(
                                                                     model: _model
-                                                                        .contractListRowModel2,
+                                                                        .solarContractRowModel,
                                                                     updateCallback: () =>
                                                                         setState(
                                                                             () {}),
                                                                     child:
-                                                                        ContractListRowWidget(
+                                                                        SolarContractRowWidget(
                                                                       readOnly:
                                                                           getJsonField(
                                                                                 _model.solarContract,
