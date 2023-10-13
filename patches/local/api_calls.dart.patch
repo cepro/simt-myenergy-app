@@ -1,6 +1,6 @@
 --- ./lib/backend/api_requests/api_calls.dart
 +++ ./lib/backend/api_requests/api_calls.dart
-@@ -43,7 +43,7 @@ class GetCustomersAccountsCall {
+@@ -42,7 +42,7 @@ class GetCustomersAccountsCall {
    }) {
      return ApiManager.instance.makeApiCall(
        callName: 'Get Customers Accounts',
@@ -9,27 +9,25 @@
        callType: ApiCallType.GET,
        headers: {
          'Content-Type': 'application/json',
-@@ -127,8 +127,7 @@ class UpdateTopupPreferencesCall {
- }''';
+@@ -127,7 +127,7 @@ class UpdateTopupPreferencesCall {
      return ApiManager.instance.makeApiCall(
        callName: 'Update Topup Preferences',
--      apiUrl:
+       apiUrl:
 -          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet/${walletId}/topupPreference',
-+      apiUrl: 'http://localhost:8080/wallet/${walletId}/topupPreference',
++          'http://localhost:8080/wallet/${walletId}/topupPreference',
        callType: ApiCallType.PUT,
        headers: {
          'Authorization': 'Bearer ${bearerToken}',
-@@ -153,8 +152,7 @@ class MarkContractSignedCall {
- {}''';
+@@ -153,7 +153,7 @@ class MarkContractSignedCall {
      return ApiManager.instance.makeApiCall(
        callName: 'Mark Contract Signed',
--      apiUrl:
+       apiUrl:
 -          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/${contractId}/sign',
-+      apiUrl: 'http://localhost:8080/contract/${contractId}/sign',
++          'http://localhost:8080/contract/${contractId}/sign',
        callType: ApiCallType.PUT,
        headers: {
          'Authorization': 'Bearer ${bearerToken}',
-@@ -176,7 +174,7 @@ class GetWalletsCall {
+@@ -175,7 +175,7 @@ class GetWalletsCall {
    }) {
      return ApiManager.instance.makeApiCall(
        callName: 'Get Wallets',
@@ -38,13 +36,21 @@
        callType: ApiCallType.GET,
        headers: {
          'Content-Type': 'application/json',
-@@ -197,8 +195,7 @@ class CustomerInviteLookupCall {
-   }) {
+@@ -197,7 +197,7 @@ class CustomerInviteLookupCall {
      return ApiManager.instance.makeApiCall(
        callName: 'Customer Invite Lookup',
--      apiUrl:
+       apiUrl:
 -          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/customer/invite/${inviteToken}',
-+      apiUrl: 'http://localhost:8080/customer/invite/${inviteToken}',
++          'http://localhost:8080/customer/invite/${inviteToken}',
        callType: ApiCallType.GET,
        headers: {},
        params: {},
+@@ -216,7 +216,7 @@ class ContractSigningEmbedCall {
+     return ApiManager.instance.makeApiCall(
+       callName: 'Contract Signing Embed',
+       apiUrl:
+-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/signing-embed.html',
++          'http://localhost:8080/contract/signing-embed.html',
+       callType: ApiCallType.GET,
+       headers: {
+         'Authorization': 'Bearer ${bearerToken}',
