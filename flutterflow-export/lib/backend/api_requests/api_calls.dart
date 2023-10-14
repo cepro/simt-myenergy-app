@@ -209,6 +209,27 @@ class CustomerInviteLookupCall {
   }
 }
 
+class ContractSigningEmbedCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Contract Signing Embed',
+      apiUrl:
+          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/signing-embed.html',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

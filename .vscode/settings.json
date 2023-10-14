@@ -1,0 +1,8 @@
+{
+    "files.exclude": {
+        "**/local-stage": true,
+        "**/flutterflow-export/": true,
+        "flutterflow-export/": true
+    },
+    "dart.analysisExcludedFolders": []
+}

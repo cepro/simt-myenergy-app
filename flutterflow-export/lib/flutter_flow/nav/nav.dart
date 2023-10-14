@@ -136,6 +136,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/home',
           requireAuth: true,
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'SigningEmbedPage',
+          path: '/signingEmbedPage',
+          builder: (context, params) => SigningEmbedPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
