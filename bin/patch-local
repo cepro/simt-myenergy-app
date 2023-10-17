@@ -24,8 +24,8 @@ cd $LOCAL_STAGE
 
 echo "\nApplying patches ..."
 
-echo "\nPatch 1: api call addresses to localhost ...\n"
-patch -p0 < $PATCHES/local/api_calls.dart.patch
+echo "\nPatch 1: api call addresses to localhost ...\n\nreplacing remote addresses with local addresses in api_calls.dart"
+sed -i -e 's/https:\/\/[^\/]*/http:\/\/localhost:8080/' lib/backend/api_requests/api_calls.dart
 
 echo "\nPatch 2: supabase address and key to localhost ...\n"
 patch -p0 < $PATCHES/local/supabase.dart.patch

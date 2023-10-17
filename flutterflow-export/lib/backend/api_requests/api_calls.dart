@@ -212,13 +212,38 @@ class CustomerInviteLookupCall {
 class ContractSigningEmbedCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
+    String? id = '',
+    String? termsSubtype = '',
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Contract Signing Embed',
       apiUrl:
-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/signing-embed.html',
+          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/${id}/signing-embed.html',
       callType: ApiCallType.GET,
       headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {
+        'termsSubtype': termsSubtype,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class ContractTermsLatestCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Contract Terms latest',
+      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contractTerms',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
         'Authorization': 'Bearer ${bearerToken}',
       },
       params: {},
