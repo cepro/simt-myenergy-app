@@ -6,26 +6,28 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'contract_choice_card_model.dart';
-export 'contract_choice_card_model.dart';
+import 'supply_contract_card_model.dart';
+export 'supply_contract_card_model.dart';
 
-class ContractChoiceCardWidget extends StatefulWidget {
-  const ContractChoiceCardWidget({
+class SupplyContractCardWidget extends StatefulWidget {
+  const SupplyContractCardWidget({
     Key? key,
-    required this.description,
     required this.title,
+    required this.readOnly,
+    required this.contractJSON,
   }) : super(key: key);
 
-  final String? description;
   final String? title;
+  final bool? readOnly;
+  final dynamic contractJSON;
 
   @override
-  _ContractChoiceCardWidgetState createState() =>
-      _ContractChoiceCardWidgetState();
+  _SupplyContractCardWidgetState createState() =>
+      _SupplyContractCardWidgetState();
 }
 
-class _ContractChoiceCardWidgetState extends State<ContractChoiceCardWidget> {
-  late ContractChoiceCardModel _model;
+class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
+  late SupplyContractCardModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,7 +38,7 @@ class _ContractChoiceCardWidgetState extends State<ContractChoiceCardWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ContractChoiceCardModel());
+    _model = createModel(context, () => SupplyContractCardModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -108,7 +110,10 @@ class _ContractChoiceCardWidgetState extends State<ContractChoiceCardWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Text(
-                  widget.description!,
+                  getJsonField(
+                    widget.contractJSON,
+                    r'''$.terms.summaryText''',
+                  ).toString(),
                   style: FlutterFlowTheme.of(context).labelMedium,
                 ),
               ),
@@ -121,52 +126,17 @@ class _ContractChoiceCardWidgetState extends State<ContractChoiceCardWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  FFButtonWidget(
-                    onPressed: () async {
-                      await actions.openPDF(
-                        'https://drive.google.com/file/d/1MNl-cYmBerlyra4xTWPlVLoWMqqCEqMJ/view?usp=sharing',
-                      );
-                    },
-                    text: 'PDF',
-                    icon: Icon(
-                      Icons.cloud_download_rounded,
-                      size: 15.0,
-                    ),
-                    options: FFButtonOptions(
-                      width: 130.0,
-                      height: 36.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .titleSmall
-                          .override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).titleSmallFamily,
-                            color: FlutterFlowTheme.of(context).primaryBtnText,
-                            fontSize: 14.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).titleSmallFamily),
-                          ),
-                      elevation: 0.0,
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(1.00, 0.00),
-                    child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                  if (widget.readOnly == true)
+                    FFButtonWidget(
+                      onPressed: () async {
+                        await actions.openPDF(
+                          'https://drive.google.com/file/d/1MNl-cYmBerlyra4xTWPlVLoWMqqCEqMJ/view?usp=sharing',
+                        );
                       },
-                      text: 'Sign',
-                      icon: FaIcon(
-                        FontAwesomeIcons.pencilAlt,
+                      text: 'PDF',
+                      icon: Icon(
+                        Icons.cloud_download_rounded,
+                        size: 15.0,
                       ),
                       options: FFButtonOptions(
                         width: 130.0,
@@ -196,7 +166,61 @@ class _ContractChoiceCardWidgetState extends State<ContractChoiceCardWidget> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                  ),
+                  if (widget.readOnly == false)
+                    Align(
+                      alignment: AlignmentDirectional(1.00, 0.00),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed(
+                            'SigningEmbedPage',
+                            queryParameters: {
+                              'contractId': serializeParam(
+                                getJsonField(
+                                  widget.contractJSON,
+                                  r'''$.id''',
+                                ).toString(),
+                                ParamType.String,
+                              ),
+                              'termsSubtype': serializeParam(
+                                '',
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        text: 'Sign',
+                        icon: FaIcon(
+                          FontAwesomeIcons.pencilAlt,
+                        ),
+                        options: FFButtonOptions(
+                          width: 130.0,
+                          height: 36.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primary,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleSmallFamily,
+                                color:
+                                    FlutterFlowTheme.of(context).primaryBtnText,
+                                fontSize: 14.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .titleSmallFamily),
+                              ),
+                          elevation: 0.0,
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primary,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ],

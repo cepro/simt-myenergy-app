@@ -1,4 +1,4 @@
-import '/components/contract_choice_card_widget.dart';
+import '/components/solar_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,10 +13,14 @@ class SolarContractChooseOrViewModalWidget extends StatefulWidget {
     Key? key,
     required this.contractJSON,
     required this.readOnly,
+    required this.termsSolar30Year,
+    required this.termsSolarShortTerm,
   }) : super(key: key);
 
   final dynamic contractJSON;
   final bool? readOnly;
+  final dynamic termsSolar30Year;
+  final dynamic termsSolarShortTerm;
 
   @override
   _SolarContractChooseOrViewModalWidgetState createState() =>
@@ -82,7 +86,9 @@ class _SolarContractChooseOrViewModalWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
                         child: Text(
-                          'Choose Solar Contract',
+                          widget.readOnly!
+                              ? 'Solar Contract'
+                              : 'Choose Solar Contract',
                           style: FlutterFlowTheme.of(context).headlineMedium,
                         ),
                       ),
@@ -109,24 +115,44 @@ class _SolarContractChooseOrViewModalWidgetState
                   thickness: 2.0,
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
-                wrapWithModel(
-                  model: _model.contractChoiceCardModel1,
-                  updateCallback: () => setState(() {}),
-                  child: ContractChoiceCardWidget(
-                    description:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                    title: '30 Years',
+                if ((widget.readOnly == false) ||
+                    (getJsonField(
+                          widget.contractJSON,
+                          r'''$.terms.subtype''',
+                        ) ==
+                        getJsonField(
+                          widget.termsSolar30Year,
+                          r'''$.subtype''',
+                        )))
+                  wrapWithModel(
+                    model: _model.solarContractCardModel1,
+                    updateCallback: () => setState(() {}),
+                    child: SolarContractCardWidget(
+                      title: '30 Years',
+                      readOnly: widget.readOnly!,
+                      contractJSON: widget.contractJSON!,
+                      termsJSON: widget.termsSolar30Year!,
+                    ),
                   ),
-                ),
-                wrapWithModel(
-                  model: _model.contractChoiceCardModel2,
-                  updateCallback: () => setState(() {}),
-                  child: ContractChoiceCardWidget(
-                    description:
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                    title: 'Short Term',
+                if (widget.readOnly! ||
+                    (getJsonField(
+                          widget.contractJSON,
+                          r'''$.terms.subtype''',
+                        ) ==
+                        getJsonField(
+                          widget.termsSolarShortTerm,
+                          r'''$.subtype''',
+                        )))
+                  wrapWithModel(
+                    model: _model.solarContractCardModel2,
+                    updateCallback: () => setState(() {}),
+                    child: SolarContractCardWidget(
+                      title: 'Short Term',
+                      readOnly: widget.readOnly!,
+                      contractJSON: widget.contractJSON!,
+                      termsJSON: widget.termsSolarShortTerm!,
+                    ),
                   ),
-                ),
               ],
             ),
           ),

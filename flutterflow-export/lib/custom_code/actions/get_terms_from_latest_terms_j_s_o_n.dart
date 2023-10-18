@@ -9,17 +9,27 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<dynamic> getContractsByTypeFromAccountsJSON(
-  List<dynamic> accountsJSON,
-  String contractType,
+Future<dynamic> getTermsFromLatestTermsJSON(
+  List<dynamic> terms,
+  String termsType,
+  String? termsSubtype,
 ) async {
   try {
+    String subtypeValueOrNull =
+        termsSubtype == null ? 'null' : '"' + termsSubtype + '"';
+
     // wrap in a try because the json path expression will throw
     // a RangeError when there are no unsigned contracts.
     // in this case we just want to return null to denote none are
     // there.
-    List<dynamic> result = getJsonField(accountsJSON,
-        r'$[?(@.contract.type=="' + contractType + r'")].contract', true);
+    List<dynamic> result = getJsonField(
+        terms,
+        r'$[?(@.type=="' +
+            termsType +
+            r'" && @.subtype==' +
+            subtypeValueOrNull +
+            r')]',
+        true);
     return (result.length > 0) ? result[0] : null;
   } catch (_) {
     return null;

@@ -12,7 +12,14 @@ import 'signing_embed_page_model.dart';
 export 'signing_embed_page_model.dart';
 
 class SigningEmbedPageWidget extends StatefulWidget {
-  const SigningEmbedPageWidget({Key? key}) : super(key: key);
+  const SigningEmbedPageWidget({
+    Key? key,
+    required this.contractId,
+    this.termsSubtype,
+  }) : super(key: key);
+
+  final String? contractId;
+  final String? termsSubtype;
 
   @override
   _SigningEmbedPageWidgetState createState() => _SigningEmbedPageWidgetState();
@@ -32,9 +39,10 @@ class _SigningEmbedPageWidgetState extends State<SigningEmbedPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.contractSigningEmbedResponse = await ContractSigningEmbedCall.call(
         bearerToken: currentJwtToken,
+        id: widget.contractId,
+        termsSubtype: widget.termsSubtype,
       );
       if ((_model.contractSigningEmbedResponse?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 1000));
         setState(() {
           _model.contractSigningEmbedHTML =
               (_model.contractSigningEmbedResponse?.bodyText ?? '');

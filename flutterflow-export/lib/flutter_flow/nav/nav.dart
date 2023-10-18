@@ -139,8 +139,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'SigningEmbedPage',
-          path: '/signingEmbedPage',
-          builder: (context, params) => SigningEmbedPageWidget(),
+          path: '/contract-sign',
+          builder: (context, params) => SigningEmbedPageWidget(
+            contractId: params.getParam('contractId', ParamType.String),
+            termsSubtype: params.getParam('termsSubtype', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

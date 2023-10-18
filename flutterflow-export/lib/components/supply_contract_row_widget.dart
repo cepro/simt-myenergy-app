@@ -81,7 +81,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                   Text(
                     getJsonField(
                       widget.contractJSON,
-                      r'''$.terms.type''',
+                      r'''$.type''',
                     ).toString(),
                     style: FlutterFlowTheme.of(context).titleMedium,
                   ),
