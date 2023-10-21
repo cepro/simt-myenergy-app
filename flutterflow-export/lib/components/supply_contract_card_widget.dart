@@ -148,7 +148,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                         await actions.openPDF(
                           getJsonField(
                             widget.contractJSON,
-                            r'''$.signedContractUrl''',
+                            r'''$.signedContractURL''',
                           ).toString(),
                         );
                       },
