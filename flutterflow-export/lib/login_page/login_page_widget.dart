@@ -8,6 +8,7 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -124,11 +125,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     )..addListener(() => setState(() {}));
     _model.emailAddressController ??=
         TextEditingController(text: widget.emailPrefill);
+    _model.emailAddressFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
     _model.emailAddressCreateController ??=
         TextEditingController(text: widget.emailPrefill);
+    _model.emailAddressCreateFocusNode ??= FocusNode();
     _model.passwordCreateController ??= TextEditingController();
+    _model.passwordCreateFocusNode ??= FocusNode();
     _model.confirmCreateController ??= TextEditingController();
+    _model.confirmCreateFocusNode ??= FocusNode();
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -148,6 +154,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -418,6 +433,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .emailAddressController,
+                                                              focusNode: _model
+                                                                  .emailAddressFocusNode,
                                                               obscureText:
                                                                   false,
                                                               decoration:
@@ -521,6 +538,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .passwordController,
+                                                              focusNode: _model
+                                                                  .passwordFocusNode,
                                                               obscureText: !_model
                                                                   .passwordVisibility,
                                                               decoration:
@@ -863,6 +882,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .emailAddressCreateController,
+                                                              focusNode: _model
+                                                                  .emailAddressCreateFocusNode,
                                                               obscureText:
                                                                   false,
                                                               decoration:
@@ -966,6 +987,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .passwordCreateController,
+                                                              focusNode: _model
+                                                                  .passwordCreateFocusNode,
                                                               obscureText: !_model
                                                                   .passwordCreateVisibility,
                                                               decoration:
@@ -1093,6 +1116,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .confirmCreateController,
+                                                              focusNode: _model
+                                                                  .confirmCreateFocusNode,
                                                               obscureText: !_model
                                                                   .confirmCreateVisibility,
                                                               decoration:

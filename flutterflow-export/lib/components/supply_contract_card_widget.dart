@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -117,6 +118,21 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                   style: FlutterFlowTheme.of(context).labelMedium,
                 ),
               ),
+              if (getJsonField(
+                    widget.contractJSON,
+                    r'''$.signedDate''',
+                  ) !=
+                  null)
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                  child: Text(
+                    'Signed Date: ${getJsonField(
+                      widget.contractJSON,
+                      r'''$.signedDate''',
+                    ).toString()}',
+                    style: FlutterFlowTheme.of(context).labelMedium,
+                  ),
+                ),
               Divider(
                 height: 24.0,
                 thickness: 2.0,
@@ -130,7 +146,10 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                     FFButtonWidget(
                       onPressed: () async {
                         await actions.openPDF(
-                          'https://drive.google.com/file/d/1MNl-cYmBerlyra4xTWPlVLoWMqqCEqMJ/view?usp=sharing',
+                          getJsonField(
+                            widget.contractJSON,
+                            r'''$.signedContractUrl''',
+                          ).toString(),
                         );
                       },
                       text: 'PDF',

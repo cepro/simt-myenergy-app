@@ -9,6 +9,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'login_page_widget.dart' show LoginPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,23 +30,28 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
       tabBarController != null ? tabBarController!.index : 0;
 
   // State field(s) for emailAddress widget.
+  FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
   // State field(s) for password widget.
+  FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
   // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
   bool? getAccountsResultSignIn;
   // State field(s) for emailAddress-Create widget.
+  FocusNode? emailAddressCreateFocusNode;
   TextEditingController? emailAddressCreateController;
   String? Function(BuildContext, String?)?
       emailAddressCreateControllerValidator;
   // State field(s) for password-Create widget.
+  FocusNode? passwordCreateFocusNode;
   TextEditingController? passwordCreateController;
   late bool passwordCreateVisibility;
   String? Function(BuildContext, String?)? passwordCreateControllerValidator;
   // State field(s) for confirm-Create widget.
+  FocusNode? confirmCreateFocusNode;
   TextEditingController? confirmCreateController;
   late bool confirmCreateVisibility;
   String? Function(BuildContext, String?)? confirmCreateControllerValidator;
@@ -63,10 +69,19 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   void dispose() {
     unfocusNode.dispose();
     tabBarController?.dispose();
+    emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
+
+    passwordFocusNode?.dispose();
     passwordController?.dispose();
+
+    emailAddressCreateFocusNode?.dispose();
     emailAddressCreateController?.dispose();
+
+    passwordCreateFocusNode?.dispose();
     passwordCreateController?.dispose();
+
+    confirmCreateFocusNode?.dispose();
     confirmCreateController?.dispose();
   }
 

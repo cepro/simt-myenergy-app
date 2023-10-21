@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'solar_contract_row_model.dart';
@@ -120,13 +121,13 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                         await actions.getTermsFromLatestTermsJSON(
                       (_model.contractTermsLatest?.jsonBody ?? ''),
                       'solar',
-                      'shortterm',
+                      'short_term',
                     );
                     _model.termsSolar30Year =
                         await actions.getTermsFromLatestTermsJSON(
                       (_model.contractTermsLatest?.jsonBody ?? ''),
                       'solar',
-                      '30year',
+                      'thirty_year',
                     );
                     await showModalBottomSheet(
                       isScrollControlled: true,

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'solar_contract_choose_or_view_modal_widget.dart'
     show SolarContractChooseOrViewModalWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
