@@ -1,5 +1,6 @@
 import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
+import '/components/logo_container_row_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,6 +25,8 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Model for LogoContainerRow component.
+  late LogoContainerRowModel logoContainerRowModel;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -61,6 +64,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
+    logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
     passwordVisibility = false;
     passwordCreateVisibility = false;
     confirmCreateVisibility = false;
@@ -68,6 +72,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    logoContainerRowModel.dispose();
     tabBarController?.dispose();
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();

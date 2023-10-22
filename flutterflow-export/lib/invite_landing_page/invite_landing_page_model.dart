@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/logo_container_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -15,13 +16,18 @@ class InviteLandingPageModel extends FlutterFlowModel<InviteLandingPageWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (Customer Invite Lookup)] action in InviteLandingPage widget.
   ApiCallResponse? inviteLookupResult;
+  // Model for LogoContainerRow component.
+  late LogoContainerRowModel logoContainerRowModel;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
+    logoContainerRowModel.dispose();
   }
 
   /// Action blocks are added here.
