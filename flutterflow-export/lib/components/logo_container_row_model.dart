@@ -1,15 +1,15 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
-import 'contract_choice_card_widget.dart' show ContractChoiceCardWidget;
+import 'logo_container_row_widget.dart' show LogoContainerRowWidget;
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ContractChoiceCardModel
-    extends FlutterFlowModel<ContractChoiceCardWidget> {
+class LogoContainerRowModel extends FlutterFlowModel<LogoContainerRowWidget> {
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}

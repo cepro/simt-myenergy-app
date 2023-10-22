@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'supply_contract_row_model.dart';
@@ -81,7 +82,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                   Text(
                     getJsonField(
                       widget.contractJSON,
-                      r'''$.terms.type''',
+                      r'''$.type''',
                     ).toString(),
                     style: FlutterFlowTheme.of(context).titleMedium,
                   ),

@@ -1,5 +1,6 @@
 import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
+import '/components/logo_container_row_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,6 +9,7 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -36,26 +38,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = {
-    'rowOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 100.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 100.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 100.ms,
-          duration: 600.ms,
-          begin: Offset(0.0, 20.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
     'containerOnPageLoadAnimation': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -124,11 +106,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     )..addListener(() => setState(() {}));
     _model.emailAddressController ??=
         TextEditingController(text: widget.emailPrefill);
+    _model.emailAddressFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
     _model.emailAddressCreateController ??=
         TextEditingController(text: widget.emailPrefill);
+    _model.emailAddressCreateFocusNode ??= FocusNode();
     _model.passwordCreateController ??= TextEditingController();
+    _model.passwordCreateFocusNode ??= FocusNode();
     _model.confirmCreateController ??= TextEditingController();
+    _model.confirmCreateFocusNode ??= FocusNode();
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -148,6 +135,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -259,55 +255,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 64.0, 0.0, 24.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Image.asset(
-                                          'assets/images/Twitter-profile.png',
-                                          width: 50.0,
-                                          height: 50.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.47, 0.25),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Water Lilies',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleMediumFamily,
-                                                        fontSize: 24.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleMediumFamily),
-                                                      ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ).animateOnPageLoad(
-                                    animationsMap['rowOnPageLoadAnimation']!),
+                              wrapWithModel(
+                                model: _model.logoContainerRowModel,
+                                updateCallback: () => setState(() {}),
+                                child: LogoContainerRowWidget(),
                               ),
                               Expanded(
                                 child: Align(
@@ -418,6 +369,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .emailAddressController,
+                                                              focusNode: _model
+                                                                  .emailAddressFocusNode,
                                                               obscureText:
                                                                   false,
                                                               decoration:
@@ -521,6 +474,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .passwordController,
+                                                              focusNode: _model
+                                                                  .passwordFocusNode,
                                                               obscureText: !_model
                                                                   .passwordVisibility,
                                                               decoration:
@@ -863,6 +818,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .emailAddressCreateController,
+                                                              focusNode: _model
+                                                                  .emailAddressCreateFocusNode,
                                                               obscureText:
                                                                   false,
                                                               decoration:
@@ -966,6 +923,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .passwordCreateController,
+                                                              focusNode: _model
+                                                                  .passwordCreateFocusNode,
                                                               obscureText: !_model
                                                                   .passwordCreateVisibility,
                                                               decoration:
@@ -1093,6 +1052,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 TextFormField(
                                                               controller: _model
                                                                   .confirmCreateController,
+                                                              focusNode: _model
+                                                                  .confirmCreateFocusNode,
                                                               obscureText: !_model
                                                                   .confirmCreateVisibility,
                                                               decoration:

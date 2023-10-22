@@ -1,8 +1,12 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/components/solar_contract_choose_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'solar_contract_row_model.dart';
@@ -81,7 +85,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                     Text(
                       getJsonField(
                         widget.contractJSON,
-                        r'''$.terms.type''',
+                        r'''$.type''',
                       ).toString(),
                       style: FlutterFlowTheme.of(context).titleMedium,
                     ),
@@ -109,6 +113,22 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
+                    _model.contractTermsLatest =
+                        await ContractTermsLatestCall.call(
+                      bearerToken: currentJwtToken,
+                    );
+                    _model.termsSolarShortTerm =
+                        await actions.getTermsFromLatestTermsJSON(
+                      (_model.contractTermsLatest?.jsonBody ?? ''),
+                      'solar',
+                      'short_term',
+                    );
+                    _model.termsSolar30Year =
+                        await actions.getTermsFromLatestTermsJSON(
+                      (_model.contractTermsLatest?.jsonBody ?? ''),
+                      'solar',
+                      'thirty_year',
+                    );
                     await showModalBottomSheet(
                       isScrollControlled: true,
                       backgroundColor: Colors.transparent,
@@ -120,10 +140,14 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                           child: SolarContractChooseOrViewModalWidget(
                             contractJSON: widget.contractJSON!,
                             readOnly: widget.readOnly!,
+                            termsSolar30Year: _model.termsSolar30Year!,
+                            termsSolarShortTerm: _model.termsSolarShortTerm!,
                           ),
                         );
                       },
                     ).then((value) => safeSetState(() {}));
+
+                    setState(() {});
                   },
                   text: widget.readOnly == true ? 'View' : 'Choose Contract',
                   options: FFButtonOptions(

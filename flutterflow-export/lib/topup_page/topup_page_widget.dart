@@ -10,6 +10,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'topup_page_model.dart';
@@ -75,7 +76,9 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
     });
 
     _model.minimumBalanceController ??= TextEditingController(text: '30');
+    _model.minimumBalanceFocusNode ??= FocusNode();
     _model.topUpAmountController ??= TextEditingController(text: '50');
+    _model.topUpAmountFocusNode ??= FocusNode();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -88,6 +91,15 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -290,6 +302,8 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                         child: TextFormField(
                                                           controller: _model
                                                               .minimumBalanceController,
+                                                          focusNode: _model
+                                                              .minimumBalanceFocusNode,
                                                           onFieldSubmitted:
                                                               (_) async {
                                                             if (_model.formKey
@@ -392,6 +406,8 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                         child: TextFormField(
                                                           controller: _model
                                                               .topUpAmountController,
+                                                          focusNode: _model
+                                                              .topUpAmountFocusNode,
                                                           onFieldSubmitted:
                                                               (_) async {
                                                             if (_model.formKey

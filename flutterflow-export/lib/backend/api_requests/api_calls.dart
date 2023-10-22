@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import '../../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -11,7 +11,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 class GetCustomersPaymentMethodsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Payment Methods',
       apiUrl:
@@ -39,7 +39,7 @@ class GetCustomersPaymentMethodsCall {
 class GetCustomersAccountsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Accounts',
       apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/account',
@@ -66,7 +66,7 @@ class GetCustomersAccountsCall {
 class CreateStripeCheckoutSessionCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Create Stripe Checkout Session',
       apiUrl:
@@ -94,7 +94,7 @@ class DeleteCustomersPaymentMethodCall {
   static Future<ApiCallResponse> call({
     String? id = '',
     String? bearerToken = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Customers Payment Method',
       apiUrl:
@@ -118,7 +118,7 @@ class UpdateTopupPreferencesCall {
     int? amount,
     int? threshold,
     String? walletId = '',
-  }) {
+  }) async {
     final ffApiRequestBody = '''
 {
   "amount": ${amount},
@@ -147,7 +147,7 @@ class MarkContractSignedCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
     String? contractId = '',
-  }) {
+  }) async {
     final ffApiRequestBody = '''
 {}''';
     return ApiManager.instance.makeApiCall(
@@ -172,7 +172,7 @@ class MarkContractSignedCall {
 class GetWalletsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Wallets',
       apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet',
@@ -193,13 +193,59 @@ class GetWalletsCall {
 class CustomerInviteLookupCall {
   static Future<ApiCallResponse> call({
     String? inviteToken = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Customer Invite Lookup',
       apiUrl:
           'https://qecg6jbdmm.eu-west-1.awsapprunner.com/customer/invite/${inviteToken}',
       callType: ApiCallType.GET,
       headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class ContractSigningEmbedCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? id = '',
+    String? termsSubtype = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Contract Signing Embed',
+      apiUrl:
+          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/${id}/signing-embed.html',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {
+        'termsSubtype': termsSubtype,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class ContractTermsLatestCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Contract Terms latest',
+      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contractTerms',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,

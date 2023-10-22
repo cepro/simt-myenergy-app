@@ -1,9 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/logo_container_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'invite_landing_page_model.dart';
@@ -38,20 +40,6 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
         inviteToken: widget.inviteToken,
       );
       if ((_model.inviteLookupResult?.succeeded ?? true)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              (_model.inviteLookupResult?.jsonBody ?? '').toString(),
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
-          ),
-        );
-        await Future.delayed(const Duration(milliseconds: 1000));
-
         context.pushNamed(
           'loginPage',
           queryParameters: {
@@ -85,6 +73,15 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -96,20 +93,38 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              if ((_model.inviteLookupResult?.statusCode ?? 200) != 200)
-                Text(
-                  'invite invalid',
-                  style: FlutterFlowTheme.of(context).bodyMedium,
+          child: Container(
+            width: double.infinity,
+            height: double.infinity,
+            child: Stack(
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                      child: wrapWithModel(
+                        model: _model.logoContainerRowModel,
+                        updateCallback: () => setState(() {}),
+                        child: LogoContainerRowWidget(),
+                      ),
+                    ),
+                    if ((_model.inviteLookupResult?.statusCode ?? 200) != 200)
+                      Text(
+                        'Oops seems that invite is no longer valid. Contact us to receive a fresh invite.',
+                        style: FlutterFlowTheme.of(context).bodyLarge,
+                      ),
+                    if (_model.inviteLookupResult == null)
+                      Text(
+                        'checking invite ...',
+                        style: FlutterFlowTheme.of(context).bodyLarge,
+                      ),
+                  ],
                 ),
-              if (_model.inviteLookupResult == null)
-                Text(
-                  'checking invite ...',
-                  style: FlutterFlowTheme.of(context).bodyMedium,
-                ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/supabase/supabase.dart';
-import '../../auth/base_auth_user_provider.dart';
+import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -136,6 +136,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/home',
           requireAuth: true,
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'SigningEmbedPage',
+          path: '/contract-sign',
+          builder: (context, params) => SigningEmbedPageWidget(
+            contractId: params.getParam('contractId', ParamType.String),
+            termsSubtype: params.getParam('termsSubtype', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

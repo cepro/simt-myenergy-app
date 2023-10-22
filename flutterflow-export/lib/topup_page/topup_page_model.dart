@@ -11,6 +11,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'topup_page_widget.dart' show TopupPageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -30,6 +31,7 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;
   // State field(s) for MinimumBalance widget.
+  FocusNode? minimumBalanceFocusNode;
   TextEditingController? minimumBalanceController;
   String? Function(BuildContext, String?)? minimumBalanceControllerValidator;
   String? _minimumBalanceControllerValidator(
@@ -49,6 +51,7 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
   }
 
   // State field(s) for TopUpAmount widget.
+  FocusNode? topUpAmountFocusNode;
   TextEditingController? topUpAmountController;
   String? Function(BuildContext, String?)? topUpAmountControllerValidator;
   String? _topUpAmountControllerValidator(BuildContext context, String? val) {
@@ -85,8 +88,12 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
     unfocusNode.dispose();
     mainWebNavModel.dispose();
     logoutButtonModel.dispose();
+    minimumBalanceFocusNode?.dispose();
     minimumBalanceController?.dispose();
+
+    topUpAmountFocusNode?.dispose();
     topUpAmountController?.dispose();
+
     mobileNavModel.dispose();
   }
 
