@@ -88,18 +88,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
         ),
         FFRoute(
+          name: 'PaymentPage',
+          path: '/payment',
+          requireAuth: true,
+          builder: (context, params) => PaymentPageWidget(),
+        ),
+        FFRoute(
           name: 'loginPage',
           path: '/login',
           builder: (context, params) => LoginPageWidget(
             emailPrefill: params.getParam('emailPrefill', ParamType.String),
             fromInvite: params.getParam('fromInvite', ParamType.bool),
           ),
-        ),
-        FFRoute(
-          name: 'PaymentPage',
-          path: '/payment',
-          requireAuth: true,
-          builder: (context, params) => PaymentPageWidget(),
         ),
         FFRoute(
           name: 'ContractsPageNotUsed',
@@ -136,14 +136,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/home',
           requireAuth: true,
           builder: (context, params) => HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'SigningEmbedPage',
-          path: '/contract-sign',
-          builder: (context, params) => SigningEmbedPageWidget(
-            contractId: params.getParam('contractId', ParamType.String),
-            termsSubtype: params.getParam('termsSubtype', ParamType.String),
-          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

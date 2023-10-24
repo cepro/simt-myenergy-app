@@ -87,3 +87,33 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
     return false;
   }
 }
+
+Future<String?> contractSignEmbed(
+  BuildContext context, {
+  required String? contractId,
+  String? termsSubtype,
+}) async {
+  ApiCallResponse? contractSigningEmbedResponse;
+
+  contractSigningEmbedResponse = await ContractSigningEmbedCall.call(
+    bearerToken: currentJwtToken,
+    id: contractId,
+    termsSubtype: termsSubtype,
+  );
+  if ((contractSigningEmbedResponse?.succeeded ?? true)) {
+    return (contractSigningEmbedResponse?.bodyText ?? '');
+  }
+
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        'Failed:${(contractSigningEmbedResponse?.bodyText ?? '')}',
+        style: TextStyle(),
+      ),
+      duration: Duration(milliseconds: 4000),
+      backgroundColor: FlutterFlowTheme.of(context).secondary,
+    ),
+  );
+
+  return null;
+}

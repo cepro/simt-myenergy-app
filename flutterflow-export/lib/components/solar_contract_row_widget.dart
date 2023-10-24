@@ -113,39 +113,48 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    _model.contractTermsLatest =
-                        await ContractTermsLatestCall.call(
-                      bearerToken: currentJwtToken,
-                    );
-                    _model.termsSolarShortTerm =
-                        await actions.getTermsFromLatestTermsJSON(
-                      (_model.contractTermsLatest?.jsonBody ?? ''),
-                      'solar',
-                      'short_term',
-                    );
-                    _model.termsSolar30Year =
-                        await actions.getTermsFromLatestTermsJSON(
-                      (_model.contractTermsLatest?.jsonBody ?? ''),
-                      'solar',
-                      'thirty_year',
-                    );
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      enableDrag: false,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: SolarContractChooseOrViewModalWidget(
-                            contractJSON: widget.contractJSON!,
-                            readOnly: widget.readOnly!,
-                            termsSolar30Year: _model.termsSolar30Year!,
-                            termsSolarShortTerm: _model.termsSolarShortTerm!,
-                          ),
-                        );
-                      },
-                    ).then((value) => safeSetState(() {}));
+                    if (widget.readOnly!) {
+                      await actions.openPDF(
+                        getJsonField(
+                          widget.contractJSON,
+                          r'''$.signedContractURL''',
+                        ).toString(),
+                      );
+                    } else {
+                      _model.contractTermsLatest =
+                          await ContractTermsLatestCall.call(
+                        bearerToken: currentJwtToken,
+                      );
+                      _model.termsSolarShortTerm =
+                          await actions.getTermsFromLatestTermsJSON(
+                        (_model.contractTermsLatest?.jsonBody ?? ''),
+                        'solar',
+                        'short_term',
+                      );
+                      _model.termsSolar30Year =
+                          await actions.getTermsFromLatestTermsJSON(
+                        (_model.contractTermsLatest?.jsonBody ?? ''),
+                        'solar',
+                        'thirty_year',
+                      );
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        enableDrag: false,
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: MediaQuery.viewInsetsOf(context),
+                            child: SolarContractChooseOrViewModalWidget(
+                              contractJSON: widget.contractJSON!,
+                              readOnly: widget.readOnly!,
+                              termsSolar30Year: _model.termsSolar30Year!,
+                              termsSolarShortTerm: _model.termsSolarShortTerm!,
+                            ),
+                          );
+                        },
+                      ).then((value) => safeSetState(() {}));
+                    }
 
                     setState(() {});
                   },

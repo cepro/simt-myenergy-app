@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,13 +13,13 @@ class SupplyContractCardWidget extends StatefulWidget {
   const SupplyContractCardWidget({
     Key? key,
     required this.title,
-    required this.readOnly,
     required this.contractJSON,
+    required this.setSignEmbedHTML,
   }) : super(key: key);
 
   final String? title;
-  final bool? readOnly;
   final dynamic contractJSON;
+  final Future<dynamic> Function()? setSignEmbedHTML;
 
   @override
   _SupplyContractCardWidgetState createState() =>
@@ -118,21 +117,6 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                   style: FlutterFlowTheme.of(context).labelMedium,
                 ),
               ),
-              if (getJsonField(
-                    widget.contractJSON,
-                    r'''$.signedDate''',
-                  ) !=
-                  null)
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                  child: Text(
-                    'Signed Date: ${getJsonField(
-                      widget.contractJSON,
-                      r'''$.signedDate''',
-                    ).toString()}',
-                    style: FlutterFlowTheme.of(context).labelMedium,
-                  ),
-                ),
               Divider(
                 height: 24.0,
                 thickness: 2.0,
@@ -142,20 +126,15 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (widget.readOnly == true)
-                    FFButtonWidget(
+                  Align(
+                    alignment: AlignmentDirectional(1.00, 0.00),
+                    child: FFButtonWidget(
                       onPressed: () async {
-                        await actions.openPDF(
-                          getJsonField(
-                            widget.contractJSON,
-                            r'''$.signedContractURL''',
-                          ).toString(),
-                        );
+                        await widget.setSignEmbedHTML?.call();
                       },
-                      text: 'PDF',
-                      icon: Icon(
-                        Icons.cloud_download_rounded,
-                        size: 15.0,
+                      text: 'Sign',
+                      icon: FaIcon(
+                        FontAwesomeIcons.pencilAlt,
                       ),
                       options: FFButtonOptions(
                         width: 130.0,
@@ -185,61 +164,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                     ),
-                  if (widget.readOnly == false)
-                    Align(
-                      alignment: AlignmentDirectional(1.00, 0.00),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed(
-                            'SigningEmbedPage',
-                            queryParameters: {
-                              'contractId': serializeParam(
-                                getJsonField(
-                                  widget.contractJSON,
-                                  r'''$.id''',
-                                ).toString(),
-                                ParamType.String,
-                              ),
-                              'termsSubtype': serializeParam(
-                                '',
-                                ParamType.String,
-                              ),
-                            }.withoutNulls,
-                          );
-                        },
-                        text: 'Sign',
-                        icon: FaIcon(
-                          FontAwesomeIcons.pencilAlt,
-                        ),
-                        options: FFButtonOptions(
-                          width: 130.0,
-                          height: 36.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle: FlutterFlowTheme.of(context)
-                              .titleSmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleSmallFamily,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryBtnText,
-                                fontSize: 14.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleSmallFamily),
-                              ),
-                          elevation: 0.0,
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                    ),
+                  ),
                 ],
               ),
             ],

@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'supply_contract_card_widget.dart' show SupplyContractCardWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

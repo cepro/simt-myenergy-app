@@ -2,6 +2,8 @@ import '/components/supply_contract_sign_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
+import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -106,45 +108,64 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                FFButtonWidget(
-                  onPressed: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      enableDrag: false,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.viewInsetsOf(context),
-                          child: SupplyContractSignOrViewModalWidget(
-                            contractJSON: widget.contractJSON!,
-                            readOnly: widget.readOnly!,
-                          ),
+                Builder(
+                  builder: (context) => FFButtonWidget(
+                    onPressed: () async {
+                      if (widget.readOnly!) {
+                        await actions.openPDF(
+                          getJsonField(
+                            widget.contractJSON,
+                            r'''$.signedContractURL''',
+                          ).toString(),
                         );
-                      },
-                    ).then((value) => safeSetState(() {}));
-                  },
-                  text: widget.readOnly == true ? 'View' : 'Sign',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).titleSmallFamily,
-                          color: Colors.white,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).titleSmallFamily),
-                        ),
-                    elevation: 3.0,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
+                      } else {
+                        await showAlignedDialog(
+                          context: context,
+                          isGlobal: true,
+                          avoidOverflow: false,
+                          targetAnchor: AlignmentDirectional(0.0, 0.0)
+                              .resolve(Directionality.of(context)),
+                          followerAnchor: AlignmentDirectional(0.0, 0.0)
+                              .resolve(Directionality.of(context)),
+                          builder: (dialogContext) {
+                            return Material(
+                              color: Colors.transparent,
+                              child: Container(
+                                height: double.infinity,
+                                width: double.infinity,
+                                child: SupplyContractSignOrViewModalWidget(
+                                  contractJSON: widget.contractJSON!,
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) => setState(() {}));
+                      }
+                    },
+                    text: widget.readOnly == true ? 'View' : 'Sign',
+                    options: FFButtonOptions(
+                      height: 40.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleSmallFamily,
+                            color: Colors.white,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleSmallFamily),
+                          ),
+                      elevation: 3.0,
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
               ],
