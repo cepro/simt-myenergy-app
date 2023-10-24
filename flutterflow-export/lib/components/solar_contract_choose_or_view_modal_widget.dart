@@ -62,7 +62,7 @@ class _SolarContractChooseOrViewModalWidgetState
     return Align(
       alignment: AlignmentDirectional(0.00, 0.00),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
         child: Container(
           width: double.infinity,
           height: double.infinity,
@@ -182,10 +182,10 @@ class _SolarContractChooseOrViewModalWidgetState
                           _model.docusealEmbedHTML != '')
                         Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
-                          height: MediaQuery.sizeOf(context).height * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 0.85,
                           child: custom_widgets.ContractSigningWidget(
                             width: MediaQuery.sizeOf(context).width * 1.0,
-                            height: MediaQuery.sizeOf(context).height * 1.0,
+                            height: MediaQuery.sizeOf(context).height * 0.85,
                             html: _model.docusealEmbedHTML!,
                           ),
                         ),
