@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_choose_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -16,10 +17,10 @@ class SolarContractRowModel extends FlutterFlowModel<SolarContractRowWidget> {
 
   // Stores action output result for [Backend Call - API (Contract Terms latest)] action in Button widget.
   ApiCallResponse? contractTermsLatest;
-  // Stores action output result for [Custom Action - getTermsFromLatestTermsJSON] action in Button widget.
-  dynamic? termsSolarShortTerm;
-  // Stores action output result for [Custom Action - getTermsFromLatestTermsJSON] action in Button widget.
-  dynamic? termsSolar30Year;
+  // Stores action output result for [Custom Action - getTermsByTypeAndSubtype] action in Button widget.
+  ContractTermsStruct? termsSolarShortTerm;
+  // Stores action output result for [Custom Action - getTermsByTypeAndSubtype] action in Button widget.
+  ContractTermsStruct? termsSolar30Year;
 
   /// Initialization and disposal methods.
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'backend/supabase/supabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,17 +22,6 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _safeInit(() {
-      _accountsJSON = prefs.getStringList('ff_accountsJSON')?.map((x) {
-            try {
-              return jsonDecode(x);
-            } catch (e) {
-              print("Can't decode persisted json. Error: $e.");
-              return {};
-            }
-          }).toList() ??
-          _accountsJSON;
-    });
-    _safeInit(() {
       _supplyContractSigned =
           prefs.getBool('ff_supplyContractSigned') ?? _supplyContractSigned;
     });
@@ -44,6 +34,36 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _accounts = prefs
+              .getStringList('ff_accounts')
+              ?.map((x) {
+                try {
+                  return AccountStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _accounts;
+    });
+    _safeInit(() {
+      _contractTerms = prefs
+              .getStringList('ff_contractTerms')
+              ?.map((x) {
+                try {
+                  return ContractTermsStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _contractTerms;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -52,47 +72,6 @@ class FFAppState extends ChangeNotifier {
   }
 
   late SharedPreferences prefs;
-
-  List<dynamic> _accountsJSON = [];
-  List<dynamic> get accountsJSON => _accountsJSON;
-  set accountsJSON(List<dynamic> _value) {
-    _accountsJSON = _value;
-    prefs.setStringList(
-        'ff_accountsJSON', _value.map((x) => jsonEncode(x)).toList());
-  }
-
-  void addToAccountsJSON(dynamic _value) {
-    _accountsJSON.add(_value);
-    prefs.setStringList(
-        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeFromAccountsJSON(dynamic _value) {
-    _accountsJSON.remove(_value);
-    prefs.setStringList(
-        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
-  }
-
-  void removeAtIndexFromAccountsJSON(int _index) {
-    _accountsJSON.removeAt(_index);
-    prefs.setStringList(
-        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
-  }
-
-  void updateAccountsJSONAtIndex(
-    int _index,
-    dynamic Function(dynamic) updateFn,
-  ) {
-    _accountsJSON[_index] = updateFn(_accountsJSON[_index]);
-    prefs.setStringList(
-        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
-  }
-
-  void insertAtIndexInAccountsJSON(int _index, dynamic _value) {
-    _accountsJSON.insert(_index, _value);
-    prefs.setStringList(
-        'ff_accountsJSON', _accountsJSON.map((x) => jsonEncode(x)).toList());
-  }
 
   bool _supplyContractSigned = false;
   bool get supplyContractSigned => _supplyContractSigned;
@@ -106,6 +85,88 @@ class FFAppState extends ChangeNotifier {
   set meterSerials(dynamic _value) {
     _meterSerials = _value;
     prefs.setString('ff_meterSerials', jsonEncode(_value));
+  }
+
+  List<AccountStruct> _accounts = [];
+  List<AccountStruct> get accounts => _accounts;
+  set accounts(List<AccountStruct> _value) {
+    _accounts = _value;
+    prefs.setStringList(
+        'ff_accounts', _value.map((x) => x.serialize()).toList());
+  }
+
+  void addToAccounts(AccountStruct _value) {
+    _accounts.add(_value);
+    prefs.setStringList(
+        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromAccounts(AccountStruct _value) {
+    _accounts.remove(_value);
+    prefs.setStringList(
+        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAccounts(int _index) {
+    _accounts.removeAt(_index);
+    prefs.setStringList(
+        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+  }
+
+  void updateAccountsAtIndex(
+    int _index,
+    AccountStruct Function(AccountStruct) updateFn,
+  ) {
+    _accounts[_index] = updateFn(_accounts[_index]);
+    prefs.setStringList(
+        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInAccounts(int _index, AccountStruct _value) {
+    _accounts.insert(_index, _value);
+    prefs.setStringList(
+        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+  }
+
+  List<ContractTermsStruct> _contractTerms = [];
+  List<ContractTermsStruct> get contractTerms => _contractTerms;
+  set contractTerms(List<ContractTermsStruct> _value) {
+    _contractTerms = _value;
+    prefs.setStringList(
+        'ff_contractTerms', _value.map((x) => x.serialize()).toList());
+  }
+
+  void addToContractTerms(ContractTermsStruct _value) {
+    _contractTerms.add(_value);
+    prefs.setStringList(
+        'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromContractTerms(ContractTermsStruct _value) {
+    _contractTerms.remove(_value);
+    prefs.setStringList(
+        'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromContractTerms(int _index) {
+    _contractTerms.removeAt(_index);
+    prefs.setStringList(
+        'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
+  }
+
+  void updateContractTermsAtIndex(
+    int _index,
+    ContractTermsStruct Function(ContractTermsStruct) updateFn,
+  ) {
+    _contractTerms[_index] = updateFn(_contractTerms[_index]);
+    prefs.setStringList(
+        'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInContractTerms(int _index, ContractTermsStruct _value) {
+    _contractTerms.insert(_index, _value);
+    prefs.setStringList(
+        'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
   }
 }
 

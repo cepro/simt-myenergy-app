@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/supply_contract_sign_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -14,11 +15,11 @@ export 'supply_contract_row_model.dart';
 class SupplyContractRowWidget extends StatefulWidget {
   const SupplyContractRowWidget({
     Key? key,
-    required this.contractJSON,
+    required this.contract,
     required this.readOnly,
   }) : super(key: key);
 
-  final dynamic contractJSON;
+  final ContractStruct? contract;
   final bool? readOnly;
 
   @override
@@ -82,19 +83,19 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    getJsonField(
-                      widget.contractJSON,
-                      r'''$.type''',
-                    ).toString(),
+                    valueOrDefault<String>(
+                      widget.contract?.type,
+                      'unknown',
+                    ),
                     style: FlutterFlowTheme.of(context).titleMedium,
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: Text(
-                      getJsonField(
-                        widget.contractJSON,
-                        r'''$.description''',
-                      ).toString(),
+                      valueOrDefault<String>(
+                        widget.contract?.description,
+                        'unknown',
+                      ),
                       style: FlutterFlowTheme.of(context).bodySmall,
                     ),
                   ),
@@ -113,12 +114,15 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                     onPressed: () async {
                       if (widget.readOnly!) {
                         await actions.openPDF(
-                          getJsonField(
-                            widget.contractJSON,
-                            r'''$.signedContractURL''',
-                          ).toString(),
+                          widget.contract!.signedContractURL,
                         );
                       } else {
+                        _model.supplyContractTerms =
+                            await actions.getTermsByTypeAndSubtype(
+                          FFAppState().contractTerms.toList(),
+                          'supply',
+                          null,
+                        );
                         await showAlignedDialog(
                           context: context,
                           isGlobal: true,
@@ -134,13 +138,16 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                                 height: double.infinity,
                                 width: double.infinity,
                                 child: SupplyContractSignOrViewModalWidget(
-                                  contractJSON: widget.contractJSON!,
+                                  contract: widget.contract!,
+                                  terms: _model.supplyContractTerms!,
                                 ),
                               ),
                             );
                           },
                         ).then((value) => setState(() {}));
                       }
+
+                      setState(() {});
                     },
                     text: widget.readOnly == true ? 'View' : 'Sign',
                     options: FFButtonOptions(

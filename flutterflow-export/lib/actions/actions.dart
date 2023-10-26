@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/api_requests/api_manager.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -44,7 +45,8 @@ Future handleMyEnergyApiCallFailure(
 
 Future<bool?> getAndSaveAccounts(BuildContext context) async {
   ApiCallResponse? getAccountsResponse;
-  dynamic? supplyContract;
+  List<AccountStruct>? accounts;
+  ContractStruct? supplyContractData;
 
   // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
   getAccountsResponse = await GetCustomersAccountsCall.call(
@@ -52,30 +54,25 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
   );
   if ((getAccountsResponse?.succeeded ?? true)) {
     await Future.delayed(const Duration(milliseconds: 500));
-    supplyContract = await actions.getContractsByTypeFromAccountsJSON(
+    accounts = await actions.accountsJSONToAccountsDataType(
       getJsonField(
         (getAccountsResponse?.jsonBody ?? ''),
         r'''$.accounts''',
         true,
       )!,
+    );
+    supplyContractData = await actions.getContractsByTypeFromAccountsData(
+      accounts!.toList(),
       'supply',
     );
-    FFAppState().accountsJSON = getJsonField(
-      (getAccountsResponse?.jsonBody ?? ''),
-      r'''$.accounts''',
-      true,
-    )!
-        .toList()
-        .cast<dynamic>();
     FFAppState().meterSerials = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.meterSerials''',
     );
-    FFAppState().supplyContractSigned = getJsonField(
-          supplyContract,
-          r'''$.signedDate''',
-        ) !=
-        null;
+    FFAppState().supplyContractSigned =
+        supplyContractData?.signedDate != null &&
+            supplyContractData?.signedDate != '';
+    FFAppState().accounts = accounts!.toList().cast<AccountStruct>();
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
@@ -116,4 +113,32 @@ Future<String?> contractSignEmbed(
   );
 
   return null;
+}
+
+Future<bool> getAndSaveContractTerms(BuildContext context) async {
+  ApiCallResponse? getContractTermsResponse;
+  List<ContractTermsStruct>? contractTermsDataType;
+
+  getContractTermsResponse = await ContractTermsLatestCall.call(
+    bearerToken: currentJwtToken,
+  );
+  if ((getContractTermsResponse?.succeeded ?? true)) {
+    await Future.delayed(const Duration(milliseconds: 500));
+    contractTermsDataType =
+        await actions.contractTermsJSONToContractTermsDataType(
+      (getContractTermsResponse?.jsonBody ?? ''),
+    );
+    FFAppState().contractTerms =
+        contractTermsDataType!.toList().cast<ContractTermsStruct>();
+  } else {
+    await action_blocks.handleMyEnergyApiCallFailure(
+      context,
+      wwwAuthenticateHeader:
+          (getContractTermsResponse?.getHeader('www-authenticate') ?? ''),
+      httpStatusCode: (getContractTermsResponse?.statusCode ?? 200),
+    );
+    return false;
+  }
+
+  return true;
 }

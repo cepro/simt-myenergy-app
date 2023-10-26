@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/supply_contract_sign_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,6 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class SupplyContractRowModel extends FlutterFlowModel<SupplyContractRowWidget> {
+  ///  State fields for stateful widgets in this component.
+
+  // Stores action output result for [Custom Action - getTermsByTypeAndSubtype] action in Button widget.
+  ContractTermsStruct? supplyContractTerms;
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}

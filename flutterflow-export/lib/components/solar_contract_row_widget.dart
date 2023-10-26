@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_choose_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -15,11 +16,11 @@ export 'solar_contract_row_model.dart';
 class SolarContractRowWidget extends StatefulWidget {
   const SolarContractRowWidget({
     Key? key,
-    required this.contractJSON,
+    required this.contract,
     required this.readOnly,
   }) : super(key: key);
 
-  final dynamic contractJSON;
+  final ContractStruct? contract;
   final bool? readOnly;
 
   @override
@@ -83,10 +84,10 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                 children: [
                   if (widget.readOnly == true)
                     Text(
-                      getJsonField(
-                        widget.contractJSON,
-                        r'''$.type''',
-                      ).toString(),
+                      valueOrDefault<String>(
+                        widget.contract?.type,
+                        'unknown',
+                      ),
                       style: FlutterFlowTheme.of(context).titleMedium,
                     ),
                   if (widget.readOnly == true)
@@ -94,10 +95,10 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                       child: Text(
-                        getJsonField(
-                          widget.contractJSON,
-                          r'''$.description''',
-                        ).toString(),
+                        valueOrDefault<String>(
+                          widget.contract?.description,
+                          'unknown',
+                        ),
                         style: FlutterFlowTheme.of(context).bodySmall,
                       ),
                     ),
@@ -115,10 +116,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                   onPressed: () async {
                     if (widget.readOnly!) {
                       await actions.openPDF(
-                        getJsonField(
-                          widget.contractJSON,
-                          r'''$.signedContractURL''',
-                        ).toString(),
+                        widget.contract!.signedContractURL,
                       );
                     } else {
                       _model.contractTermsLatest =
@@ -126,14 +124,14 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                         bearerToken: currentJwtToken,
                       );
                       _model.termsSolarShortTerm =
-                          await actions.getTermsFromLatestTermsJSON(
-                        (_model.contractTermsLatest?.jsonBody ?? ''),
+                          await actions.getTermsByTypeAndSubtype(
+                        FFAppState().contractTerms.toList(),
                         'solar',
                         'short_term',
                       );
                       _model.termsSolar30Year =
-                          await actions.getTermsFromLatestTermsJSON(
-                        (_model.contractTermsLatest?.jsonBody ?? ''),
+                          await actions.getTermsByTypeAndSubtype(
+                        FFAppState().contractTerms.toList(),
                         'solar',
                         'thirty_year',
                       );
@@ -146,9 +144,9 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                           return Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: SolarContractChooseOrViewModalWidget(
-                              contractJSON: widget.contractJSON!,
                               readOnly: widget.readOnly!,
                               termsSolar30Year: _model.termsSolar30Year!,
+                              contract: widget.contract!,
                               termsSolarShortTerm: _model.termsSolarShortTerm!,
                             ),
                           );

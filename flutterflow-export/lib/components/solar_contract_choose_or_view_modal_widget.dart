@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -14,16 +15,16 @@ export 'solar_contract_choose_or_view_modal_model.dart';
 class SolarContractChooseOrViewModalWidget extends StatefulWidget {
   const SolarContractChooseOrViewModalWidget({
     Key? key,
-    required this.contractJSON,
+    required this.contract,
     required this.readOnly,
     required this.termsSolar30Year,
     required this.termsSolarShortTerm,
   }) : super(key: key);
 
-  final dynamic contractJSON;
+  final ContractStruct? contract;
   final bool? readOnly;
-  final dynamic termsSolar30Year;
-  final dynamic termsSolarShortTerm;
+  final ContractTermsStruct? termsSolar30Year;
+  final ContractTermsStruct? termsSolarShortTerm;
 
   @override
   _SolarContractChooseOrViewModalWidgetState createState() =>
@@ -129,16 +130,13 @@ class _SolarContractChooseOrViewModalWidgetState
                               updateCallback: () => setState(() {}),
                               child: SolarContractCardWidget(
                                 title: '30 Years',
-                                contractJSON: widget.contractJSON!,
-                                termsJSON: widget.termsSolar30Year!,
+                                contract: widget.contract!,
+                                terms: widget.termsSolar30Year!,
                                 setSignEmbedHTML: () async {
                                   _model.signEmbedHTMLThirtyYear =
                                       await action_blocks.contractSignEmbed(
                                     context,
-                                    contractId: getJsonField(
-                                      widget.contractJSON,
-                                      r'''$.id''',
-                                    ).toString(),
+                                    contractId: widget.contract?.id,
                                     termsSubtype: 'thirty_year',
                                   );
                                   setState(() {
@@ -155,16 +153,13 @@ class _SolarContractChooseOrViewModalWidgetState
                               updateCallback: () => setState(() {}),
                               child: SolarContractCardWidget(
                                 title: 'Short Term',
-                                contractJSON: widget.contractJSON!,
-                                termsJSON: widget.termsSolarShortTerm!,
+                                contract: widget.contract!,
+                                terms: widget.termsSolarShortTerm!,
                                 setSignEmbedHTML: () async {
                                   _model.signEmbedHTMLShortTerm =
                                       await action_blocks.contractSignEmbed(
                                     context,
-                                    contractId: getJsonField(
-                                      widget.contractJSON,
-                                      r'''$.id''',
-                                    ).toString(),
+                                    contractId: widget.contract?.id,
                                     termsSubtype: 'short_term',
                                   );
                                   setState(() {

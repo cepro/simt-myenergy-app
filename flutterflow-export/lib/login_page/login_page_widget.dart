@@ -652,11 +652,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
                                                                               1000));
-                                                                      _model.getAccountsResultSignIn =
+                                                                      _model.getAccountsFromSigninResult =
                                                                           await action_blocks
                                                                               .getAndSaveAccounts(context);
+                                                                      _model.getTermsFromSigninResult =
+                                                                          await action_blocks
+                                                                              .getAndSaveContractTerms(context);
                                                                       if (_model
-                                                                          .getAccountsResultSignIn!) {
+                                                                              .getAccountsFromSigninResult! &&
+                                                                          _model
+                                                                              .getTermsFromSigninResult!) {
                                                                         context.pushNamedAuth(
                                                                             'HomePage',
                                                                             context.mounted);
@@ -1217,11 +1222,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     await Future.delayed(const Duration(
                                                                         milliseconds:
                                                                             1000));
-                                                                    _model.getAccountsResultSignup =
+                                                                    _model.getAccountsFromSignupResult =
                                                                         await action_blocks
                                                                             .getAndSaveAccounts(context);
+                                                                    _model.getTermsFromSignupResult =
+                                                                        await action_blocks
+                                                                            .getAndSaveContractTerms(context);
                                                                     if (_model
-                                                                        .getAccountsResultSignup!) {
+                                                                            .getAccountsFromSignupResult! &&
+                                                                        _model
+                                                                            .getTermsFromSignupResult!) {
                                                                       context.pushNamedAuth(
                                                                           'HomePage',
                                                                           context

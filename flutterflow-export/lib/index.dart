@@ -1,8 +1,6 @@
 // Export pages
 export '/payment_page/payment_page_widget.dart' show PaymentPageWidget;
 export '/login_page/login_page_widget.dart' show LoginPageWidget;
-export '/contracts_page_not_used/contracts_page_not_used_widget.dart'
-    show ContractsPageNotUsedWidget;
 export '/forgot_password_page/forgot_password_page_widget.dart'
     show ForgotPasswordPageWidget;
 export '/topup_page/topup_page_widget.dart' show TopupPageWidget;

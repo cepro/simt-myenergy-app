@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -78,9 +79,9 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
             ),
             onPressed: () async {
               setState(() {
-                FFAppState().accountsJSON = [];
                 FFAppState().meterSerials = null;
                 FFAppState().supplyContractSigned = false;
+                FFAppState().accounts = [];
               });
               GoRouter.of(context).prepareAuthEvent();
               await authManager.signOut();

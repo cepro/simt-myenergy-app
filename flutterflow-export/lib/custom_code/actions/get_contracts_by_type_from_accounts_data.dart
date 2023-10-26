@@ -10,8 +10,12 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:universal_html/html.dart' as html;
-
-Future<String> getPageURIOnWeb() async {
-  return html.window.location.href;
+Future<ContractStruct?> getContractsByTypeFromAccountsData(
+  List<AccountStruct> accounts,
+  String contractType,
+) async {
+  AccountStruct? account = accounts.firstWhere(
+      (account) => account.contract.type == contractType,
+      orElse: () => new AccountStruct());
+  return account.contract;
 }

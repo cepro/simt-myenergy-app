@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -13,13 +14,15 @@ class SupplyContractCardWidget extends StatefulWidget {
   const SupplyContractCardWidget({
     Key? key,
     required this.title,
-    required this.contractJSON,
+    required this.contract,
     required this.setSignEmbedHTML,
+    required this.terms,
   }) : super(key: key);
 
   final String? title;
-  final dynamic contractJSON;
+  final ContractStruct? contract;
   final Future<dynamic> Function()? setSignEmbedHTML;
+  final ContractTermsStruct? terms;
 
   @override
   _SupplyContractCardWidgetState createState() =>
@@ -110,10 +113,10 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Text(
-                  getJsonField(
-                    widget.contractJSON,
-                    r'''$.terms.summaryText''',
-                  ).toString(),
+                  valueOrDefault<String>(
+                    widget.terms?.summaryText,
+                    'unknown',
+                  ),
                   style: FlutterFlowTheme.of(context).labelMedium,
                 ),
               ),

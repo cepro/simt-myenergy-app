@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
@@ -36,21 +37,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.supplyContract = await actions.getContractsByTypeFromAccountsJSON(
-        FFAppState().accountsJSON.toList(),
+      _model.supplyContract = await actions.getContractsByTypeFromAccountsData(
+        FFAppState().accounts.toList(),
         'supply',
       );
-      _model.solarContract = await actions.getContractsByTypeFromAccountsJSON(
-        FFAppState().accountsJSON.toList(),
+      _model.solarContract = await actions.getContractsByTypeFromAccountsData(
+        FFAppState().accounts.toList(),
         'solar',
       );
-      _model.solarMeterSerial = await actions.getMeterSerialByType(
-        FFAppState().accountsJSON.toList(),
+      _model.solarMeterSerial = await actions.getMeterSerialByTypeData(
+        FFAppState().accounts.toList(),
         'solar',
         FFAppState().meterSerials,
       );
-      _model.supplyMeterSerial = await actions.getMeterSerialByType(
-        FFAppState().accountsJSON.toList(),
+      _model.supplyMeterSerial = await actions.getMeterSerialByTypeData(
+        FFAppState().accounts.toList(),
         'supply',
         FFAppState().meterSerials,
       );
@@ -481,13 +482,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             () {}),
                                                                     child:
                                                                         SupplyContractRowWidget(
-                                                                      readOnly:
-                                                                          getJsonField(
-                                                                                _model.supplyContract,
-                                                                                r'''$.signedDate''',
-                                                                              ) !=
-                                                                              null,
-                                                                      contractJSON:
+                                                                      readOnly: _model.supplyContract?.signedDate !=
+                                                                              null &&
+                                                                          _model.supplyContract?.signedDate !=
+                                                                              '',
+                                                                      contract:
                                                                           _model
                                                                               .supplyContract!,
                                                                     ),
@@ -696,13 +695,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             () {}),
                                                                     child:
                                                                         SolarContractRowWidget(
-                                                                      readOnly:
-                                                                          getJsonField(
-                                                                                _model.solarContract,
-                                                                                r'''$.signedDate''',
-                                                                              ) !=
-                                                                              null,
-                                                                      contractJSON:
+                                                                      readOnly: _model.solarContract?.signedDate !=
+                                                                              null &&
+                                                                          _model.solarContract?.signedDate !=
+                                                                              '',
+                                                                      contract:
                                                                           _model
                                                                               .solarContract!,
                                                                     ),

@@ -42,7 +42,9 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
   // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
-  bool? getAccountsResultSignIn;
+  bool? getAccountsFromSigninResult;
+  // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Login widget.
+  bool? getTermsFromSigninResult;
   // State field(s) for emailAddress-Create widget.
   FocusNode? emailAddressCreateFocusNode;
   TextEditingController? emailAddressCreateController;
@@ -59,7 +61,9 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   late bool confirmCreateVisibility;
   String? Function(BuildContext, String?)? confirmCreateControllerValidator;
   // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
-  bool? getAccountsResultSignup;
+  bool? getAccountsFromSignupResult;
+  // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Login widget.
+  bool? getTermsFromSignupResult;
 
   /// Initialization and disposal methods.
 

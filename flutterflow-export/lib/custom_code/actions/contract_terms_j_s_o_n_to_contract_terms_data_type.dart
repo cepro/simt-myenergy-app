@@ -10,8 +10,13 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:universal_html/html.dart' as html;
+Future<List<ContractTermsStruct>> contractTermsJSONToContractTermsDataType(
+    List<dynamic> contractTermsJSON) async {
+  List<ContractTermsStruct> termsList = [];
 
-Future<String> getPageURIOnWeb() async {
-  return html.window.location.href;
+  for (var terms in contractTermsJSON) {
+    termsList.add(ContractTermsStruct.fromMap(terms));
+  }
+
+  return termsList;
 }

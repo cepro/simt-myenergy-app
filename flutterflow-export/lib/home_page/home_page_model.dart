@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
@@ -24,13 +25,13 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Custom Action - getContractsByTypeFromAccountsJSON] action in HomePage widget.
-  dynamic? supplyContract;
-  // Stores action output result for [Custom Action - getContractsByTypeFromAccountsJSON] action in HomePage widget.
-  dynamic? solarContract;
-  // Stores action output result for [Custom Action - getMeterSerialByType] action in HomePage widget.
+  // Stores action output result for [Custom Action - getContractsByTypeFromAccountsData] action in HomePage widget.
+  ContractStruct? supplyContract;
+  // Stores action output result for [Custom Action - getContractsByTypeFromAccountsData] action in HomePage widget.
+  ContractStruct? solarContract;
+  // Stores action output result for [Custom Action - getMeterSerialByTypeData] action in HomePage widget.
   String? solarMeterSerial;
-  // Stores action output result for [Custom Action - getMeterSerialByType] action in HomePage widget.
+  // Stores action output result for [Custom Action - getMeterSerialByTypeData] action in HomePage widget.
   String? supplyMeterSerial;
   // Stores action output result for [Backend Call - API (Get Wallets)] action in HomePage widget.
   ApiCallResponse? homePageGetWallets;

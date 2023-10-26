@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/supply_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -14,10 +15,12 @@ export 'supply_contract_sign_or_view_modal_model.dart';
 class SupplyContractSignOrViewModalWidget extends StatefulWidget {
   const SupplyContractSignOrViewModalWidget({
     Key? key,
-    required this.contractJSON,
+    required this.contract,
+    required this.terms,
   }) : super(key: key);
 
-  final dynamic contractJSON;
+  final ContractStruct? contract;
+  final ContractTermsStruct? terms;
 
   @override
   _SupplyContractSignOrViewModalWidgetState createState() =>
@@ -118,15 +121,13 @@ class _SupplyContractSignOrViewModalWidgetState
                           updateCallback: () => setState(() {}),
                           child: SupplyContractCardWidget(
                             title: 'Supply Contract',
-                            contractJSON: widget.contractJSON!,
+                            contract: widget.contract!,
+                            terms: widget.terms!,
                             setSignEmbedHTML: () async {
                               _model.signEmbedHTML =
                                   await action_blocks.contractSignEmbed(
                                 context,
-                                contractId: getJsonField(
-                                  widget.contractJSON,
-                                  r'''$.id''',
-                                ).toString(),
+                                contractId: widget.contract?.id,
                               );
                               setState(() {
                                 _model.docusealEmbedHTML = _model.signEmbedHTML;
