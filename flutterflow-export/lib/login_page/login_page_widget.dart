@@ -622,6 +622,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 FFButtonWidget(
                                                                   onPressed:
                                                                       () async {
+                                                                    var _shouldSetState =
+                                                                        false;
                                                                     setState(
                                                                         () {
                                                                       _model.loginError =
@@ -655,9 +657,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       _model.getAccountsFromSigninResult =
                                                                           await action_blocks
                                                                               .getAndSaveAccounts(context);
+                                                                      _shouldSetState =
+                                                                          true;
                                                                       _model.getTermsFromSigninResult =
                                                                           await action_blocks
                                                                               .getAndSaveContractTerms(context);
+                                                                      _shouldSetState =
+                                                                          true;
                                                                       if (_model
                                                                               .getAccountsFromSigninResult! &&
                                                                           _model
@@ -665,17 +671,32 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         context.pushNamedAuth(
                                                                             'HomePage',
                                                                             context.mounted);
+                                                                      } else {
+                                                                        if (_shouldSetState)
+                                                                          setState(
+                                                                              () {});
+                                                                        return;
                                                                       }
+
+                                                                      if (_shouldSetState)
+                                                                        setState(
+                                                                            () {});
+                                                                      return;
                                                                     } else {
                                                                       setState(
                                                                           () {
                                                                         _model.loginError =
                                                                             true;
                                                                       });
+                                                                      if (_shouldSetState)
+                                                                        setState(
+                                                                            () {});
+                                                                      return;
                                                                     }
 
-                                                                    setState(
-                                                                        () {});
+                                                                    if (_shouldSetState)
+                                                                      setState(
+                                                                          () {});
                                                                   },
                                                                   text:
                                                                       'Sign In',
