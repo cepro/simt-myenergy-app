@@ -88,8 +88,8 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            'https://freesvg.org/img/docs.png',
+                          child: Image.asset(
+                            'assets/images/docs.png',
                             width: 100.0,
                             height: 70.0,
                             fit: BoxFit.cover,
