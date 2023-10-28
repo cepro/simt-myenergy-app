@@ -121,10 +121,14 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
             Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Icon(
-                  Icons.all_inclusive,
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 44.0,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/Twitter-profile.png',
+                    width: 44.0,
+                    height: 44.0,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),

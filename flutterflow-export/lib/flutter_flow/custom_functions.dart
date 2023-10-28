@@ -12,15 +12,6 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
-int jsonArrayLength(dynamic responseJSON) {
-  // Given an argument of  type JSON compute the length of the JSON if it is an array
-  if (responseJSON is List) {
-    return responseJSON.length;
-  } else {
-    return 0;
-  }
-}
-
 bool isJwtExpired(String wwwAuthenticateHeader) {
   return wwwAuthenticateHeader.contains('Jwt expired');
 }
@@ -38,4 +29,14 @@ int arrayLengthOrNegativeOneIfNotArray(dynamic responseJSON) {
 
 bool isListEmpty(List<dynamic>? jsonList) {
   return jsonList == null || jsonList.length == 0;
+}
+
+ContractStruct? getContractByType(
+  List<AccountStruct> accounts,
+  String type,
+) {
+  AccountStruct? account = accounts.firstWhere(
+      (account) => account.contract.type == type,
+      orElse: () => new AccountStruct());
+  return account.contract;
 }

@@ -46,7 +46,6 @@ Future handleMyEnergyApiCallFailure(
 Future<bool?> getAndSaveAccounts(BuildContext context) async {
   ApiCallResponse? getAccountsResponse;
   List<AccountStruct>? accounts;
-  ContractStruct? supplyContractData;
 
   // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
   getAccountsResponse = await GetCustomersAccountsCall.call(
@@ -61,17 +60,16 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
         true,
       )!,
     );
-    supplyContractData = await actions.getContractsByTypeFromAccountsData(
-      accounts!.toList(),
-      'supply',
-    );
     FFAppState().meterSerials = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.meterSerials''',
     );
-    FFAppState().supplyContractSigned =
-        supplyContractData?.signedDate != null &&
-            supplyContractData?.signedDate != '';
+    FFAppState().supplyContractSigned = functions
+                .getContractByType(accounts!.toList(), 'supply')
+                ?.signedDate !=
+            null &&
+        functions.getContractByType(accounts!.toList(), 'supply')?.signedDate !=
+            '';
     FFAppState().accounts = accounts!.toList().cast<AccountStruct>();
     return true;
   } else {

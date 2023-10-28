@@ -1,6 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
@@ -10,6 +9,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -37,14 +37,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.supplyContract = await actions.getContractsByTypeFromAccountsData(
-        FFAppState().accounts.toList(),
-        'supply',
-      );
-      _model.solarContract = await actions.getContractsByTypeFromAccountsData(
-        FFAppState().accounts.toList(),
-        'solar',
-      );
       _model.solarMeterSerial = await actions.getMeterSerialByTypeData(
         FFAppState().accounts.toList(),
         'solar',
@@ -271,7 +263,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         color: FlutterFlowTheme.of(context)
                                             .lineColor,
                                       ),
-                                    if (_model.supplyContract != null)
+                                    if (functions.getContractByType(
+                                            FFAppState().accounts.toList(),
+                                            'supply') !=
+                                        null)
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 30.0, 0.0, 0.0),
@@ -469,8 +464,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 MainAxisSize
                                                                     .min,
                                                             children: [
-                                                              if (_model
-                                                                      .supplyContract !=
+                                                              if (functions.getContractByType(
+                                                                      FFAppState()
+                                                                          .accounts
+                                                                          .toList(),
+                                                                      'supply') !=
                                                                   null)
                                                                 Expanded(
                                                                   child:
@@ -482,13 +480,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             () {}),
                                                                     child:
                                                                         SupplyContractRowWidget(
-                                                                      readOnly: _model.supplyContract?.signedDate !=
+                                                                      readOnly: functions.getContractByType(FFAppState().accounts.toList(), 'supply')?.signedDate !=
                                                                               null &&
-                                                                          _model.supplyContract?.signedDate !=
+                                                                          functions.getContractByType(FFAppState().accounts.toList(), 'supply')?.signedDate !=
                                                                               '',
-                                                                      contract:
-                                                                          _model
-                                                                              .supplyContract!,
+                                                                      contract: functions.getContractByType(
+                                                                          FFAppState()
+                                                                              .accounts
+                                                                              .toList(),
+                                                                          'supply')!,
                                                                     ),
                                                                   ),
                                                                 ),
@@ -504,7 +504,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                       ),
-                                    if (_model.solarContract != null)
+                                    if (functions.getContractByType(
+                                            FFAppState().accounts.toList(),
+                                            'solar') !=
+                                        null)
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 30.0, 0.0, 0.0),
@@ -682,8 +685,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 MainAxisSize
                                                                     .min,
                                                             children: [
-                                                              if (_model
-                                                                      .solarContract !=
+                                                              if (functions.getContractByType(
+                                                                      FFAppState()
+                                                                          .accounts
+                                                                          .toList(),
+                                                                      'solar') !=
                                                                   null)
                                                                 Expanded(
                                                                   child:
@@ -695,13 +701,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             () {}),
                                                                     child:
                                                                         SolarContractRowWidget(
-                                                                      readOnly: _model.solarContract?.signedDate !=
+                                                                      readOnly: functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.signedDate !=
                                                                               null &&
-                                                                          _model.solarContract?.signedDate !=
+                                                                          functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.signedDate !=
                                                                               '',
-                                                                      contract:
-                                                                          _model
-                                                                              .solarContract!,
+                                                                      contract: functions.getContractByType(
+                                                                          FFAppState()
+                                                                              .accounts
+                                                                              .toList(),
+                                                                          'solar')!,
                                                                     ),
                                                                   ),
                                                                 ),

@@ -10,8 +10,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:universal_html/html.dart' as html;
-
-Future<String> getPageURIOnWeb() async {
-  return html.window.location.href;
+Future appStateNotifyListeners() async {
+  FFAppState().update(() {});
 }
