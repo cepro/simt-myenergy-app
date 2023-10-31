@@ -127,52 +127,60 @@ class _SolarContractChooseOrViewModalWidgetState
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            wrapWithModel(
-                              model: _model.solar30YearContractCardModel,
-                              updateCallback: () => setState(() {}),
-                              child: SolarContractCardWidget(
-                                title: '30 Years',
-                                contract: widget.contract!,
-                                terms: widget.termsSolar30Year!,
-                                setSignEmbedHTML: () async {
-                                  _model.signEmbedHTMLThirtyYear =
-                                      await action_blocks.contractSignEmbed(
-                                    context,
-                                    contractId: widget.contract?.id,
-                                    termsSubtype: 'thirty_year',
-                                  );
-                                  setState(() {
-                                    _model.docusealEmbedHTML =
-                                        _model.signEmbedHTMLThirtyYear;
-                                  });
+                            if ((widget.contract?.termsId == null ||
+                                    widget.contract?.termsId == '') ||
+                                (widget.contract?.termsId ==
+                                    widget.termsSolar30Year?.id))
+                              wrapWithModel(
+                                model: _model.solar30YearContractCardModel,
+                                updateCallback: () => setState(() {}),
+                                child: SolarContractCardWidget(
+                                  title: '30 Years',
+                                  contract: widget.contract!,
+                                  terms: widget.termsSolar30Year!,
+                                  setSignEmbedHTML: () async {
+                                    _model.signEmbedHTMLThirtyYear =
+                                        await action_blocks.contractSignEmbed(
+                                      context,
+                                      contractId: widget.contract?.id,
+                                      termsSubtype: 'thirty_year',
+                                    );
+                                    setState(() {
+                                      _model.docusealEmbedHTML =
+                                          _model.signEmbedHTMLThirtyYear;
+                                    });
 
-                                  setState(() {});
-                                },
+                                    setState(() {});
+                                  },
+                                ),
                               ),
-                            ),
-                            wrapWithModel(
-                              model: _model.solarShortTermContractCardModel,
-                              updateCallback: () => setState(() {}),
-                              child: SolarContractCardWidget(
-                                title: 'Short Term',
-                                contract: widget.contract!,
-                                terms: widget.termsSolarShortTerm!,
-                                setSignEmbedHTML: () async {
-                                  _model.signEmbedHTMLShortTerm =
-                                      await action_blocks.contractSignEmbed(
-                                    context,
-                                    contractId: widget.contract?.id,
-                                    termsSubtype: 'short_term',
-                                  );
-                                  setState(() {
-                                    _model.docusealEmbedHTML =
-                                        _model.signEmbedHTMLShortTerm;
-                                  });
+                            if ((widget.contract?.termsId == null ||
+                                    widget.contract?.termsId == '') ||
+                                (widget.contract?.termsId ==
+                                    widget.termsSolarShortTerm?.id))
+                              wrapWithModel(
+                                model: _model.solarShortTermContractCardModel,
+                                updateCallback: () => setState(() {}),
+                                child: SolarContractCardWidget(
+                                  title: 'Short Term',
+                                  contract: widget.contract!,
+                                  terms: widget.termsSolarShortTerm!,
+                                  setSignEmbedHTML: () async {
+                                    _model.signEmbedHTMLShortTerm =
+                                        await action_blocks.contractSignEmbed(
+                                      context,
+                                      contractId: widget.contract?.id,
+                                      termsSubtype: 'short_term',
+                                    );
+                                    setState(() {
+                                      _model.docusealEmbedHTML =
+                                          _model.signEmbedHTMLShortTerm;
+                                    });
 
-                                  setState(() {});
-                                },
+                                    setState(() {});
+                                  },
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       if (_model.docusealEmbedHTML != null &&

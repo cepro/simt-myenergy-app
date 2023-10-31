@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,7 +103,8 @@ class _SupplyContractSignOrViewModalWidgetState
                           size: 24.0,
                         ),
                         onPressed: () async {
-                          Navigator.pop(context);
+                          context.safePop();
+                          await actions.appStateNotifyListeners();
                         },
                       ),
                     ],
