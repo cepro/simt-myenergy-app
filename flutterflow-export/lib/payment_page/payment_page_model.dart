@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/credit_card_widget.dart';
+import '/components/direct_debit_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
@@ -34,6 +35,8 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
   late LogoutButtonModel logoutButtonModel;
   // Model for CreditCard component.
   late CreditCardWidgetModel creditCardModel;
+  // Model for DirectDebit component.
+  late DirectDebitModel directDebitModel;
   // Stores action output result for [Backend Call - API (Delete Customers Payment Method)] action in Button widget.
   ApiCallResponse? deletePaymentMethodResult;
   // Stores action output result for [Backend Call - API (Create Stripe Checkout Session)] action in Button widget.
@@ -47,6 +50,7 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
+    directDebitModel = createModel(context, () => DirectDebitModel());
     mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
@@ -55,6 +59,7 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
     mainWebNavModel.dispose();
     logoutButtonModel.dispose();
     creditCardModel.dispose();
+    directDebitModel.dispose();
     mobileNavModel.dispose();
   }
 

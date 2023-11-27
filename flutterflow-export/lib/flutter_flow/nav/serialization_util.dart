@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
 import '/backend/schema/structs/index.dart';
+
 import '/backend/supabase/supabase.dart';
 
 import '../../flutter_flow/lat_lng.dart';

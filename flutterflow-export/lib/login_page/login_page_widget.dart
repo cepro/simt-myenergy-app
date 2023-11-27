@@ -107,15 +107,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     _model.emailAddressController ??=
         TextEditingController(text: widget.emailPrefill);
     _model.emailAddressFocusNode ??= FocusNode();
+
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
     _model.emailAddressCreateController ??=
         TextEditingController(text: widget.emailPrefill);
     _model.emailAddressCreateFocusNode ??= FocusNode();
+
     _model.passwordCreateController ??= TextEditingController();
     _model.passwordCreateFocusNode ??= FocusNode();
+
     _model.confirmCreateController ??= TextEditingController();
     _model.confirmCreateFocusNode ??= FocusNode();
+
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||

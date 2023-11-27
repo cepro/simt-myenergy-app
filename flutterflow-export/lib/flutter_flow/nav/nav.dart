@@ -6,6 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
+
 import '/backend/supabase/supabase.dart';
 import '/auth/base_auth_user_provider.dart';
 
@@ -89,18 +90,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
         ),
         FFRoute(
-          name: 'PaymentPage',
-          path: '/payment',
-          requireAuth: true,
-          builder: (context, params) => PaymentPageWidget(),
-        ),
-        FFRoute(
           name: 'loginPage',
           path: '/login',
           builder: (context, params) => LoginPageWidget(
             emailPrefill: params.getParam('emailPrefill', ParamType.String),
             fromInvite: params.getParam('fromInvite', ParamType.bool),
           ),
+        ),
+        FFRoute(
+          name: 'PaymentPage',
+          path: '/payment',
+          requireAuth: true,
+          builder: (context, params) => PaymentPageWidget(),
         ),
         FFRoute(
           name: 'forgotPasswordPage',

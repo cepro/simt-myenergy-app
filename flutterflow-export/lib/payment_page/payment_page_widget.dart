@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/credit_card_widget.dart';
+import '/components/direct_debit_widget.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
@@ -227,37 +228,89 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                   maxHeight: 210.0,
                                                 ),
                                                 decoration: BoxDecoration(),
-                                                child: wrapWithModel(
-                                                  model: _model.creditCardModel,
-                                                  updateCallback: () =>
-                                                      setState(() {}),
-                                                  child: CreditCardWidget(
-                                                    last4Digits: getJsonField(
-                                                      (_model.getPaymentMethodsOutput
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$[0].card.last4''',
-                                                    ).toString(),
-                                                    expiryYear: getJsonField(
-                                                      (_model.getPaymentMethodsOutput
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$[0].card.expiryYear''',
-                                                    ),
-                                                    expiryMonth: getJsonField(
-                                                      (_model.getPaymentMethodsOutput
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$[0].card.expiryMonth''',
-                                                    ),
-                                                    cardBrand: getJsonField(
-                                                      (_model.getPaymentMethodsOutput
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$[0].card.brand''',
-                                                    ).toString(),
-                                                  ),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    if (getJsonField(
+                                                          (_model.getPaymentMethodsOutput
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$[0].card''',
+                                                        ) !=
+                                                        null)
+                                                      wrapWithModel(
+                                                        model: _model
+                                                            .creditCardModel,
+                                                        updateCallback: () =>
+                                                            setState(() {}),
+                                                        child: CreditCardWidget(
+                                                          last4Digits:
+                                                              getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].card.last4''',
+                                                          ).toString(),
+                                                          expiryYear:
+                                                              getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].card.expiryYear''',
+                                                          ),
+                                                          expiryMonth:
+                                                              getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].card.expiryMonth''',
+                                                          ),
+                                                          cardBrand:
+                                                              getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].card.brand''',
+                                                          ).toString(),
+                                                        ),
+                                                      ),
+                                                    if (getJsonField(
+                                                          (_model.getPaymentMethodsOutput
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                          r'''$[0].directDebit''',
+                                                        ) !=
+                                                        null)
+                                                      wrapWithModel(
+                                                        model: _model
+                                                            .directDebitModel,
+                                                        updateCallback: () =>
+                                                            setState(() {}),
+                                                        child:
+                                                            DirectDebitWidget(
+                                                          last4Digits:
+                                                              getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].directDebit.last4''',
+                                                          ).toString(),
+                                                          sortCode:
+                                                              getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].directDebit.sortCode''',
+                                                          ).toString(),
+                                                        ),
+                                                      ),
+                                                  ],
                                                 ),
+                                              ),
+                                              Container(
+                                                width: 200.0,
+                                                decoration: BoxDecoration(),
                                               ),
                                             ],
                                           ),

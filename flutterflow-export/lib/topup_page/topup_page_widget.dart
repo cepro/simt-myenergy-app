@@ -77,8 +77,10 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
 
     _model.minimumBalanceController ??= TextEditingController(text: '30');
     _model.minimumBalanceFocusNode ??= FocusNode();
+
     _model.topUpAmountController ??= TextEditingController(text: '50');
     _model.topUpAmountFocusNode ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
