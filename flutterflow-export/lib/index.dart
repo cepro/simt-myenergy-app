@@ -8,3 +8,5 @@ export '/invite_landing_page/invite_landing_page_widget.dart'
     show InviteLandingPageWidget;
 export '/about_page/about_page_widget.dart' show AboutPageWidget;
 export '/home_page/home_page_widget.dart' show HomePageWidget;
+export '/accounts_list_page/accounts_list_page_widget.dart'
+    show AccountsListPageWidget;
