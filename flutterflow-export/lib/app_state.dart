@@ -64,6 +64,49 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _contractTerms;
     });
+    _safeInit(() {
+      _sites = prefs
+              .getStringList('ff_sites')
+              ?.map((x) {
+                try {
+                  return SiteStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _sites;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_site')) {
+        try {
+          final serializedData = prefs.getString('ff_site') ?? '{}';
+          _site = SiteStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
+    _safeInit(() {
+      _properties = prefs
+              .getStringList('ff_properties')
+              ?.map((x) {
+                try {
+                  return PropertyStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _properties;
+    });
+    _safeInit(() {
+      _customerId = prefs.getString('ff_customerId') ?? _customerId;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -167,6 +210,111 @@ class FFAppState extends ChangeNotifier {
     _contractTerms.insert(_index, _value);
     prefs.setStringList(
         'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
+  }
+
+  List<SiteStruct> _sites = [];
+  List<SiteStruct> get sites => _sites;
+  set sites(List<SiteStruct> _value) {
+    _sites = _value;
+    prefs.setStringList('ff_sites', _value.map((x) => x.serialize()).toList());
+  }
+
+  void addToSites(SiteStruct _value) {
+    _sites.add(_value);
+    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromSites(SiteStruct _value) {
+    _sites.remove(_value);
+    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromSites(int _index) {
+    _sites.removeAt(_index);
+    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
+  }
+
+  void updateSitesAtIndex(
+    int _index,
+    SiteStruct Function(SiteStruct) updateFn,
+  ) {
+    _sites[_index] = updateFn(_sites[_index]);
+    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInSites(int _index, SiteStruct _value) {
+    _sites.insert(_index, _value);
+    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
+  }
+
+  SiteStruct _site = SiteStruct.fromSerializableMap(jsonDecode('{}'));
+  SiteStruct get site => _site;
+  set site(SiteStruct _value) {
+    _site = _value;
+    prefs.setString('ff_site', _value.serialize());
+  }
+
+  void updateSiteStruct(Function(SiteStruct) updateFn) {
+    updateFn(_site);
+    prefs.setString('ff_site', _site.serialize());
+  }
+
+  List<PropertyStruct> _properties = [];
+  List<PropertyStruct> get properties => _properties;
+  set properties(List<PropertyStruct> _value) {
+    _properties = _value;
+    prefs.setStringList(
+        'ff_properties', _value.map((x) => x.serialize()).toList());
+  }
+
+  void addToProperties(PropertyStruct _value) {
+    _properties.add(_value);
+    prefs.setStringList(
+        'ff_properties', _properties.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromProperties(PropertyStruct _value) {
+    _properties.remove(_value);
+    prefs.setStringList(
+        'ff_properties', _properties.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromProperties(int _index) {
+    _properties.removeAt(_index);
+    prefs.setStringList(
+        'ff_properties', _properties.map((x) => x.serialize()).toList());
+  }
+
+  void updatePropertiesAtIndex(
+    int _index,
+    PropertyStruct Function(PropertyStruct) updateFn,
+  ) {
+    _properties[_index] = updateFn(_properties[_index]);
+    prefs.setStringList(
+        'ff_properties', _properties.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInProperties(int _index, PropertyStruct _value) {
+    _properties.insert(_index, _value);
+    prefs.setStringList(
+        'ff_properties', _properties.map((x) => x.serialize()).toList());
+  }
+
+  PropertyStruct _property = PropertyStruct();
+  PropertyStruct get property => _property;
+  set property(PropertyStruct _value) {
+    _property = _value;
+  }
+
+  void updatePropertyStruct(Function(PropertyStruct) updateFn) {
+    updateFn(_property);
+  }
+
+  String _customerId = '';
+  String get customerId => _customerId;
+  set customerId(String _value) {
+    _customerId = _value;
+    prefs.setString('ff_customerId', _value);
   }
 }
 

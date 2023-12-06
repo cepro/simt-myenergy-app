@@ -56,7 +56,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             (_model.homePageGetWallets?.jsonBody ?? ''),
             r'''$[0].balance''',
           ).toString().toString()}';
+          _model.isOwner =
+              FFAppState().properties.first.owner == FFAppState().customerId;
         });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '${functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.hasDescription()?.toString()}',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -263,10 +277,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         color: FlutterFlowTheme.of(context)
                                             .lineColor,
                                       ),
-                                    if (functions.getContractByType(
-                                            FFAppState().accounts.toList(),
-                                            'supply') !=
-                                        null)
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.00, 0.00),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Property',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 10.0, 0.0, 0.0),
+                                            child: Text(
+                                              '${FFAppState().properties.first.plot}/${FFAppState().properties.first.description}',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    if (functions
+                                            .getContractByType(
+                                                FFAppState().accounts.toList(),
+                                                'supply')
+                                            ?.hasId() ==
+                                        true)
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 30.0, 0.0, 0.0),
@@ -464,34 +507,28 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 MainAxisSize
                                                                     .min,
                                                             children: [
-                                                              if (functions.getContractByType(
-                                                                      FFAppState()
-                                                                          .accounts
-                                                                          .toList(),
-                                                                      'supply') !=
-                                                                  null)
-                                                                Expanded(
+                                                              Expanded(
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .supplyContractRowModel,
+                                                                  updateCallback:
+                                                                      () => setState(
+                                                                          () {}),
                                                                   child:
-                                                                      wrapWithModel(
-                                                                    model: _model
-                                                                        .supplyContractRowModel,
-                                                                    updateCallback: () =>
-                                                                        setState(
-                                                                            () {}),
-                                                                    child:
-                                                                        SupplyContractRowWidget(
-                                                                      readOnly: functions.getContractByType(FFAppState().accounts.toList(), 'supply')?.signedDate !=
-                                                                              null &&
-                                                                          functions.getContractByType(FFAppState().accounts.toList(), 'supply')?.signedDate !=
-                                                                              '',
-                                                                      contract: functions.getContractByType(
-                                                                          FFAppState()
-                                                                              .accounts
-                                                                              .toList(),
-                                                                          'supply')!,
-                                                                    ),
+                                                                      SupplyContractRowWidget(
+                                                                    readOnly: functions.getContractByType(FFAppState().accounts.toList(), 'supply')?.signedDate !=
+                                                                            null &&
+                                                                        functions.getContractByType(FFAppState().accounts.toList(), 'supply')?.signedDate !=
+                                                                            '',
+                                                                    contract: functions.getContractByType(
+                                                                        FFAppState()
+                                                                            .accounts
+                                                                            .toList(),
+                                                                        'supply')!,
                                                                   ),
                                                                 ),
+                                                              ),
                                                             ],
                                                           ),
                                                         ],
@@ -504,10 +541,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                       ),
-                                    if (functions.getContractByType(
-                                            FFAppState().accounts.toList(),
-                                            'solar') !=
-                                        null)
+                                    if (functions
+                                            .getContractByType(
+                                                FFAppState().accounts.toList(),
+                                                'solar')
+                                            ?.hasId() ==
+                                        true)
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 30.0, 0.0, 0.0),
@@ -685,37 +724,111 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 MainAxisSize
                                                                     .min,
                                                             children: [
-                                                              if (functions.getContractByType(
-                                                                      FFAppState()
-                                                                          .accounts
-                                                                          .toList(),
-                                                                      'solar') !=
-                                                                  null)
-                                                                Expanded(
+                                                              Expanded(
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .solarContractRowModel,
+                                                                  updateCallback:
+                                                                      () => setState(
+                                                                          () {}),
                                                                   child:
-                                                                      wrapWithModel(
-                                                                    model: _model
-                                                                        .solarContractRowModel,
-                                                                    updateCallback: () =>
-                                                                        setState(
-                                                                            () {}),
-                                                                    child:
-                                                                        SolarContractRowWidget(
-                                                                      readOnly: functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.signedDate !=
-                                                                              null &&
-                                                                          functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.signedDate !=
-                                                                              '',
-                                                                      contract: functions.getContractByType(
-                                                                          FFAppState()
-                                                                              .accounts
-                                                                              .toList(),
-                                                                          'solar')!,
-                                                                    ),
+                                                                      SolarContractRowWidget(
+                                                                    readOnly: functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.signedDate !=
+                                                                            null &&
+                                                                        functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.signedDate !=
+                                                                            '',
+                                                                    contract: functions.getContractByType(
+                                                                        FFAppState()
+                                                                            .accounts
+                                                                            .toList(),
+                                                                        'solar')!,
                                                                   ),
                                                                 ),
+                                                              ),
                                                             ],
                                                           ),
                                                         ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    if (_model.isOwner &&
+                                        !functions
+                                            .getContractByType(
+                                                FFAppState().accounts.toList(),
+                                                'supply')!
+                                            .hasId())
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 30.0, 0.0, 0.0),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    15.0, 15.0, 15.0, 15.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      'Electricty Supply',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .headlineMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMediumFamily,
+                                                                decoration:
+                                                                    TextDecoration
+                                                                        .underline,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .headlineMediumFamily),
+                                                              ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        'Owner view when not occupant - TODO add status, contract signer name?',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
                                                       ),
                                                     ),
                                                   ],

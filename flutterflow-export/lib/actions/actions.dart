@@ -71,6 +71,19 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
         functions.getContractByType(accounts!.toList(), 'supply')?.signedDate !=
             '';
     FFAppState().accounts = accounts!.toList().cast<AccountStruct>();
+    FFAppState().properties = functions
+        .getPropertiesFromAccounts(accounts!.toList())
+        .toList()
+        .cast<PropertyStruct>();
+    FFAppState().sites = functions
+        .getSitesFromProperties(
+            functions.getPropertiesFromAccounts(accounts!.toList()).toList())
+        .toList()
+        .cast<SiteStruct>();
+    FFAppState().customerId = getJsonField(
+      (getAccountsResponse?.jsonBody ?? ''),
+      r'''$.customerId''',
+    ).toString().toString();
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(

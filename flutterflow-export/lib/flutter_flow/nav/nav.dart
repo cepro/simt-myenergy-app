@@ -129,16 +129,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/home',
-          requireAuth: true,
-          builder: (context, params) => HomePageWidget(),
-        ),
-        FFRoute(
           name: 'AccountsListPage',
           path: '/accounts',
           requireAuth: true,
           builder: (context, params) => AccountsListPageWidget(),
+        ),
+        FFRoute(
+          name: 'HomePage',
+          path: '/home',
+          requireAuth: true,
+          builder: (context, params) => HomePageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

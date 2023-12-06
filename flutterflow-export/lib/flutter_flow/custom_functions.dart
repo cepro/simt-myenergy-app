@@ -27,6 +27,22 @@ int arrayLengthOrNegativeOneIfNotArray(dynamic responseJSON) {
   }
 }
 
+List<PropertyStruct> getPropertiesFromAccounts(List<AccountStruct> accounts) {
+  return accounts
+      .map((a) => a.property)
+      // remove duplicates by converting to a Set
+      .toSet()
+      .toList();
+}
+
+List<SiteStruct> getSitesFromProperties(List<PropertyStruct> properties) {
+  return properties
+      .map((p) => p.site)
+      // remove duplicates by converting to a Set
+      .toSet()
+      .toList();
+}
+
 bool isListEmpty(List<dynamic>? jsonList) {
   return jsonList == null || jsonList.length == 0;
 }

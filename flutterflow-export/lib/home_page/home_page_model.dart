@@ -22,6 +22,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   String singleWalletBalance = 'unknown';
 
+  bool isOwner = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
