@@ -10,19 +10,14 @@ $THIS_PROJECT/bin/flutterflow-export || exit 1
 cp -rf $THIS_PROJECT/flutterflow-export/* $BUILD_HOME/.
 cd $BUILD_HOME
 
-echo "Fix Patch 1: fix for gh://FlutterFlow/flutterflow-issues #1471 ...\n"
-patch -p0 < $PATCHES/fixes/fix-flutterflow-github-issue-1471.patch || exit 1
+$THIS_PROJECT/bin/patch-app $PATCHES
 
 echo "Building for web ...\n"
 flutter build web || exit 1
 
 cd build/web
 
-echo "\nGithub Pages Patch 1: add leading '/'s ...\n"
-patch -R -p0 < $PATCHES/github-pages/index.html.patch || exit 1
-
-echo "\nGithub Pages Patch 2: apply SPA 404 redirect hack ...\n"
-patch    -p0 < $PATCHES/github-pages/gh-pages-hack-snippet.html.patch || exit 1
+$THIS_PROJECT/bin/patch-for-github-pages $PATCHES
 
 cd - > /dev/null
 

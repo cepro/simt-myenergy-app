@@ -22,20 +22,8 @@ mkdir -p $LOCAL_STAGE
 cp -rf $EXPORT_DIR/* $LOCAL_STAGE/.
 cd $LOCAL_STAGE
 
-echo "\nApplying patches ..."
-
-echo "\nPatch 1: api call addresses to localhost ...\n\nreplacing remote addresses with local addresses in api_calls.dart"
-sed -i -e 's/https:\/\/qecg6jbdmm[^\/]*/http:\/\/localhost:8080/' lib/backend/api_requests/api_calls.dart
-sed -i -e 's/https:\/\/c2xw3up7c7[^\/]*/http:\/\/localhost:8090/' lib/backend/api_requests/api_calls.dart
-
-echo "\nPatch 2: supabase address and key to localhost ...\n"
-patch -p0 < $PATCHES/local/supabase.dart.patch
-
-echo "\nPatch 3: fix for gh://FlutterFlow/flutterflow-issues #1471 ...\n"
-patch -p0 < $PATCHES/fixes/fix-flutterflow-github-issue-1471.patch
-
-echo "\nPatch 4: sentry init ...\n"
-patch -p0 < $PATCHES/sentry/sentry-init.patch
+$THIS_PROJECT/bin/patch-for-local $PATCHES
+$THIS_PROJECT/bin/patch-app $PATCHES
 
 if [ ! -f ".fvm" ]; then  
     if ! type fvm >/dev/null; then

@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+PATCHES=$1
+
+echo "\n\nApply patches for local ..."
+
+echo "\nPatch 1: api call addresses to localhost ...\n\nreplacing remote addresses with local addresses in api_calls.dart"
+sed -i -e 's/https:\/\/qecg6jbdmm[^\/]*/http:\/\/localhost:8080/' lib/backend/api_requests/api_calls.dart
+sed -i -e 's/https:\/\/c2xw3up7c7[^\/]*/http:\/\/localhost:8090/' lib/backend/api_requests/api_calls.dart
+
+echo "\nPatch 2: supabase address and key to localhost ...\n"
+patch -p0 < $PATCHES/local/supabase.dart.patch
