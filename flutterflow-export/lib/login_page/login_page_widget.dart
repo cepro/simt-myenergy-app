@@ -165,7 +165,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
             alignment: AlignmentDirectional(0.0, 1.0),
             children: [
               Align(
-                alignment: AlignmentDirectional(1.00, -1.40),
+                alignment: AlignmentDirectional(1.0, -1.4),
                 child: Container(
                   width: 0.0,
                   height: 0.0,
@@ -181,7 +181,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 desktop: false,
               ))
                 Align(
-                  alignment: AlignmentDirectional(-2.00, -1.50),
+                  alignment: AlignmentDirectional(-2.0, -1.5),
                   child: Container(
                     width: 0.0,
                     height: 0.0,
@@ -197,7 +197,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 tablet: false,
               ))
                 Align(
-                  alignment: AlignmentDirectional(-1.25, -1.50),
+                  alignment: AlignmentDirectional(-1.25, -1.5),
                   child: Container(
                     width: 0.0,
                     height: 0.0,
@@ -213,7 +213,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 desktop: false,
               ))
                 Align(
-                  alignment: AlignmentDirectional(2.50, -1.20),
+                  alignment: AlignmentDirectional(2.5, -1.2),
                   child: Container(
                     width: 0.0,
                     height: 0.0,
@@ -229,7 +229,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                 tablet: false,
               ))
                 Align(
-                  alignment: AlignmentDirectional(1.00, -0.95),
+                  alignment: AlignmentDirectional(1.0, -0.95),
                   child: Container(
                     width: 0.0,
                     height: 0.0,
@@ -240,7 +240,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                   ),
                 ),
               Align(
-                alignment: AlignmentDirectional(0.00, 1.00),
+                alignment: AlignmentDirectional(0.0, 1.0),
                 child: ClipRRect(
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
@@ -248,14 +248,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                       sigmaY: 0.0,
                     ),
                     child: Align(
-                      alignment: AlignmentDirectional(0.00, 1.00),
+                      alignment: AlignmentDirectional(0.0, 1.0),
                       child: Container(
                         width: double.infinity,
                         height: double.infinity,
                         decoration: BoxDecoration(),
-                        alignment: AlignmentDirectional(0.00, 1.00),
+                        alignment: AlignmentDirectional(0.0, 1.0),
                         child: Align(
-                          alignment: AlignmentDirectional(0.00, 1.00),
+                          alignment: AlignmentDirectional(0.0, 1.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -267,7 +267,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                               ),
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0.00, 1.00),
+                                  alignment: AlignmentDirectional(0.0, 1.0),
                                   child: Container(
                                     width: double.infinity,
                                     height: 500.0,
@@ -658,7 +658,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         true) {
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
-                                                                              1000));
+                                                                              500));
                                                                       _model.getAccountsFromSigninResult =
                                                                           await action_blocks
                                                                               .getAndSaveAccounts(context);
@@ -1090,7 +1090,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               decoration:
                                                                   InputDecoration(
                                                                 labelText:
-                                                                    'Password',
+                                                                    'Confirm',
                                                                 labelStyle:
                                                                     FlutterFlowTheme.of(
                                                                             context)
@@ -1212,6 +1212,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
+                                                                var _shouldSetState =
+                                                                    false;
                                                                 if (_model
                                                                         .passwordCreateController
                                                                         .text ==
@@ -1251,9 +1253,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     _model.getAccountsFromSignupResult =
                                                                         await action_blocks
                                                                             .getAndSaveAccounts(context);
+                                                                    _shouldSetState =
+                                                                        true;
                                                                     _model.getTermsFromSignupResult =
                                                                         await action_blocks
                                                                             .getAndSaveContractTerms(context);
+                                                                    _shouldSetState =
+                                                                        true;
                                                                     if (_model
                                                                             .getAccountsFromSignupResult! &&
                                                                         _model
@@ -1262,6 +1268,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                           'HomePage',
                                                                           context
                                                                               .mounted);
+                                                                    } else {
+                                                                      if (_shouldSetState)
+                                                                        setState(
+                                                                            () {});
+                                                                      return;
                                                                     }
                                                                   } else {
                                                                     setState(
@@ -1277,7 +1288,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   });
                                                                 }
 
-                                                                setState(() {});
+                                                                if (_shouldSetState)
+                                                                  setState(
+                                                                      () {});
                                                               },
                                                               text:
                                                                   'Create Account',

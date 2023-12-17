@@ -34,6 +34,9 @@ patch -p0 < $PATCHES/local/supabase.dart.patch
 echo "\nPatch 3: fix for gh://FlutterFlow/flutterflow-issues #1471 ...\n"
 patch -p0 < $PATCHES/fixes/fix-flutterflow-github-issue-1471.patch
 
+echo "\nPatch 4: sentry init ...\n"
+patch -p0 < $PATCHES/sentry/sentry-init.patch
+
 if [ ! -f ".fvm" ]; then  
     if ! type fvm >/dev/null; then
       echo "\nfvm not installed.\n\nsee https://fvm.app/docs/getting_started/installation for installation details.\n"

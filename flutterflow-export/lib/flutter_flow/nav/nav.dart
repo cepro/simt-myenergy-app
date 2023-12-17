@@ -109,6 +109,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ForgotPasswordPageWidget(),
         ),
         FFRoute(
+          name: 'AccountsListPage',
+          path: '/accounts',
+          requireAuth: true,
+          builder: (context, params) => AccountsListPageWidget(),
+        ),
+        FFRoute(
           name: 'TopupPage',
           path: '/topup',
           requireAuth: true,
@@ -127,12 +133,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => AboutPageWidget(
             inviteToken: params.getParam('inviteToken', ParamType.String),
           ),
-        ),
-        FFRoute(
-          name: 'AccountsListPage',
-          path: '/accounts',
-          requireAuth: true,
-          builder: (context, params) => AccountsListPageWidget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -339,13 +339,20 @@ class FFRoute {
                   key: state.pageKey,
                   child: child,
                   transitionDuration: transitionInfo.duration,
-                  transitionsBuilder: PageTransition(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) =>
+                          PageTransition(
                     type: transitionInfo.transitionType,
                     duration: transitionInfo.duration,
                     reverseDuration: transitionInfo.duration,
                     alignment: transitionInfo.alignment,
                     child: child,
-                  ).transitionsBuilder,
+                  ).buildTransitions(
+                    context,
+                    animation,
+                    secondaryAnimation,
+                    child,
+                  ),
                 )
               : MaterialPage(key: state.pageKey, child: child);
         },

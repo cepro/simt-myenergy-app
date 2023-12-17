@@ -26,14 +26,15 @@ class GetCustomersPaymentMethodsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 
-  static dynamic allRecords(dynamic response) => getJsonField(
+  static List? allRecords(dynamic response) => getJsonField(
         response,
         r'''$[*]''',
         true,
-      );
+      ) as List?;
 }
 
 class GetCustomersAccountsCall {
@@ -53,14 +54,15 @@ class GetCustomersAccountsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 
-  static dynamic allRecords(dynamic response) => getJsonField(
+  static List? allRecords(dynamic response) => getJsonField(
         response,
         r'''$[*]''',
         true,
-      );
+      ) as List?;
 }
 
 class CreateStripeCheckoutSessionCall {
@@ -81,6 +83,7 @@ class CreateStripeCheckoutSessionCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 
@@ -108,6 +111,7 @@ class DeleteCustomersPaymentMethodCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -139,6 +143,7 @@ class UpdateTopupPreferencesCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -165,6 +170,7 @@ class MarkContractSignedCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -186,6 +192,7 @@ class GetWalletsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -205,6 +212,7 @@ class CustomerInviteLookupCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -230,6 +238,7 @@ class ContractSigningEmbedCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -251,6 +260,7 @@ class ContractTermsLatestCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      alwaysAllowBody: false,
     );
   }
 }

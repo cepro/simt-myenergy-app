@@ -87,7 +87,7 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                     width: 120.0,
                     height: 50.0,
                     fit: BoxFit.cover,
-                    alignment: Alignment(1.00, 0.00),
+                    alignment: Alignment(1.0, 0.0),
                   ),
                 ),
               ],

@@ -139,7 +139,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
               children: [
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                    padding: EdgeInsets.all(4.0),
                     child: Text(
                       'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
                       style: FlutterFlowTheme.of(context).bodySmall,

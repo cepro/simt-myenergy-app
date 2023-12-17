@@ -60,9 +60,9 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   TextEditingController? confirmCreateController;
   late bool confirmCreateVisibility;
   String? Function(BuildContext, String?)? confirmCreateControllerValidator;
-  // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
+  // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Create-Account widget.
   bool? getAccountsFromSignupResult;
-  // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Login widget.
+  // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Create-Account widget.
   bool? getTermsFromSignupResult;
 
   /// Initialization and disposal methods.

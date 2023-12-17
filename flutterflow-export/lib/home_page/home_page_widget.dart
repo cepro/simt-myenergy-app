@@ -51,6 +51,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         bearerToken: currentJwtToken,
       );
       if ((_model.homePageGetWallets?.succeeded ?? true)) {
+        await Future.delayed(const Duration(milliseconds: 500));
         setState(() {
           _model.singleWalletBalance = '£${getJsonField(
             (_model.homePageGetWallets?.jsonBody ?? ''),
@@ -59,18 +60,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           _model.isOwner =
               FFAppState().properties.first.owner == FFAppState().customerId;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '${functions.getContractByType(FFAppState().accounts.toList(), 'solar')?.hasDescription()?.toString()}',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
-          ),
-        );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -176,8 +165,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         Expanded(
                                           flex: 12,
                                           child: Align(
-                                            alignment: AlignmentDirectional(
-                                                0.00, 0.00),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -186,7 +175,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   child: Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            -1.00, 1.00),
+                                                            -1.0, 1.0),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
@@ -231,7 +220,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          1.00, -1.00),
+                                                          1.0, -1.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.min,
@@ -279,7 +268,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     Align(
                                       alignment:
-                                          AlignmentDirectional(-1.00, 0.00),
+                                          AlignmentDirectional(-1.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -290,17 +279,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium,
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 10.0, 0.0, 0.0),
-                                            child: Text(
-                                              '${FFAppState().properties.first.plot}/${FFAppState().properties.first.description}',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge,
+                                          if (FFAppState()
+                                              .properties
+                                              .isNotEmpty)
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 10.0, 0.0, 0.0),
+                                              child: Text(
+                                                FFAppState()
+                                                    .properties
+                                                    .first
+                                                    .description,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge,
+                                              ),
                                             ),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -325,9 +320,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 15.0, 15.0, 15.0),
+                                            padding: EdgeInsets.all(15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
@@ -369,7 +362,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       child: Align(
                                                         alignment:
                                                             AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -392,8 +385,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   child: Align(
                                                                     alignment:
                                                                         AlignmentDirectional(
-                                                                            -1.00,
-                                                                            0.00),
+                                                                            -1.0,
+                                                                            0.0),
                                                                     child:
                                                                         Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -562,9 +555,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 15.0, 15.0, 15.0),
+                                            padding: EdgeInsets.all(15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
@@ -607,7 +598,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       child: Align(
                                                         alignment:
                                                             AlignmentDirectional(
-                                                                0.00, 0.00),
+                                                                0.0, 0.0),
                                                         child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -630,8 +621,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   child: Align(
                                                                     alignment:
                                                                         AlignmentDirectional(
-                                                                            -1.00,
-                                                                            0.00),
+                                                                            -1.0,
+                                                                            0.0),
                                                                     child:
                                                                         Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -779,9 +770,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             ),
                                           ),
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 15.0, 15.0, 15.0),
+                                            padding: EdgeInsets.all(15.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
@@ -852,9 +841,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15.0, 15.0, 15.0, 15.0),
+                                          padding: EdgeInsets.all(15.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -971,7 +958,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: Icon(
                                                     Icons.account_balance,
                                                     color: FlutterFlowTheme.of(
@@ -1119,7 +1106,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   ),
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0.00, 0.00),
+                                                          0.0, 0.0),
                                                   child: Icon(
                                                     Icons.account_balance,
                                                     color: FlutterFlowTheme.of(

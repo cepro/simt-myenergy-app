@@ -67,7 +67,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
               color: Color(0x428377F3),
               borderRadius: BorderRadius.circular(16.0),
             ),
-            alignment: AlignmentDirectional(0.00, 0.00),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Icon(
               Icons.contact_page_outlined,
               color: FlutterFlowTheme.of(context).primary,
@@ -84,18 +84,15 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                 children: [
                   Text(
                     valueOrDefault<String>(
-                      widget.contract?.type,
-                      'unknown',
+                      widget.contract?.description,
+                      '<description not set>',
                     ),
                     style: FlutterFlowTheme.of(context).titleMedium,
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: Text(
-                      valueOrDefault<String>(
-                        widget.contract?.description,
-                        'unknown',
-                      ),
+                      '',
                       style: FlutterFlowTheme.of(context).bodySmall,
                     ),
                   ),

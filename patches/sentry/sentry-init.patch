@@ -1,0 +1,74 @@
+--- ./lib/main.dart
++++ ./lib/main.dart
+@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
+ 
+ import 'package:flutter_localizations/flutter_localizations.dart';
+ import 'package:flutter_web_plugins/url_strategy.dart';
++import 'package:sentry_flutter/sentry_flutter.dart';
+ 
+ import 'auth/supabase_auth/supabase_user_provider.dart';
+ import 'auth/supabase_auth/auth_util.dart';
+@@ -16,25 +17,33 @@ import 'flutter_flow/internationalization.dart';
+ import 'flutter_flow/nav/nav.dart';
+ import 'index.dart';
+ 
+-void main() async {
+-  WidgetsFlutterBinding.ensureInitialized();
+-  usePathUrlStrategy();
+-
+-  await SupaFlow.initialize();
+-
+-  await FlutterFlowTheme.initialize();
+-
+-  final appState = FFAppState(); // Initialize FFAppState
+-  await appState.initializePersistedState();
+-
+-  // Start final custom actions code
+-  await actions.initSupabaseRealtimeSubscriptions();
+-  // End final custom actions code
+-
+-  runApp(ChangeNotifierProvider(
+-    create: (context) => appState,
+-    child: MyApp(),
+-  ));
++Future<void> main() async {
++  await SentryFlutter.init((options) {
++    options.dsn =
++        'https://303b6accf5d5191530135034864f9a2b@o4506408178745344.ingest.sentry.io/4506408185626624';
++    // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
++    // We recommend adjusting this value in production.
++    options.tracesSampleRate = 1.0;
++  }, appRunner: () async {
++    WidgetsFlutterBinding.ensureInitialized();
++    usePathUrlStrategy();
++
++    await SupaFlow.initialize();
++
++    await FlutterFlowTheme.initialize();
++
++    final appState = FFAppState(); // Initialize FFAppState
++    await appState.initializePersistedState();
++
++    // Start final custom actions code
++    await actions.initSupabaseRealtimeSubscriptions();
++    // End final custom actions code
++
++    return runApp(ChangeNotifierProvider(
++      create: (context) => appState,
++      child: MyApp(),
++    ));
++  });
+ }
+ 
+
+ class MyApp extends StatefulWidget {
+--- ./pubspec.yaml
++++ ./pubspec.yaml
+@@ -50,6 +50,7 @@ dependencies:
+   postgrest: 1.5.2
+   provider: 6.0.5
+   realtime_client: 1.4.0
++  sentry_flutter: 7.13.2
+   shared_preferences: 2.2.2
+   shared_preferences_android: 2.2.1
+   shared_preferences_foundation: 2.3.4

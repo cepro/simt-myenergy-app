@@ -363,7 +363,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                           children: [
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  0.95, 0.00),
+                                                  0.95, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -377,7 +377,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  -0.85, 0.00),
+                                                  -0.85, 0.0),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,
@@ -459,7 +459,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                           children: [
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  -0.90, 0.00),
+                                                  -0.9, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -473,7 +473,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                             ),
                                             Align(
                                               alignment: AlignmentDirectional(
-                                                  0.90, 0.00),
+                                                  0.9, 0.0),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,

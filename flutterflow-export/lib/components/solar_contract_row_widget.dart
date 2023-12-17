@@ -67,7 +67,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
               color: Color(0x428377F3),
               borderRadius: BorderRadius.circular(16.0),
             ),
-            alignment: AlignmentDirectional(0.00, 0.00),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Icon(
               Icons.contact_page_outlined,
               color: FlutterFlowTheme.of(context).primary,
@@ -85,8 +85,8 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                   if (widget.readOnly == true)
                     Text(
                       valueOrDefault<String>(
-                        widget.contract?.type,
-                        'unknown',
+                        widget.contract?.description,
+                        '<description not set>',
                       ),
                       style: FlutterFlowTheme.of(context).titleMedium,
                     ),
@@ -95,10 +95,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                       child: Text(
-                        valueOrDefault<String>(
-                          widget.contract?.description,
-                          'unknown',
-                        ),
+                        '',
                         style: FlutterFlowTheme.of(context).bodySmall,
                       ),
                     ),

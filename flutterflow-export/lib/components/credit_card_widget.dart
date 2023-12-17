@@ -54,7 +54,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+      padding: EdgeInsets.all(8.0),
       child: Container(
         width: double.infinity,
         height: 210.0,
@@ -78,7 +78,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+          padding: EdgeInsets.all(4.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
