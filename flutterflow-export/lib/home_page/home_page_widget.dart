@@ -749,12 +749,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                         ),
                                       ),
-                                    if (_model.isOwner &&
-                                        !functions
-                                            .getContractByType(
-                                                FFAppState().accounts.toList(),
-                                                'supply')!
-                                            .hasId())
+                                    if (false == true)
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 30.0, 0.0, 0.0),
@@ -813,7 +808,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   0.0,
                                                                   0.0),
                                                       child: Text(
-                                                        'Owner view when not occupant - TODO add status, contract signer name?',
+                                                        'TODO: Owner view of the supply account - contract status and is functioning status',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

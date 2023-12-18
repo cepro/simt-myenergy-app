@@ -13,7 +13,8 @@ cd $BUILD_HOME
 $THIS_PROJECT/bin/patch-app $PATCHES
 
 echo "Building for web ...\n"
-flutter build web || exit 1
+# --source-maps added for sentry
+flutter build web --source-maps || exit 1
 
 cd build/web
 
