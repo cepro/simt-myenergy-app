@@ -60,6 +60,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           _model.isOwner =
               FFAppState().properties.first.owner == FFAppState().customerId;
         });
+        setState(() {
+          FFAppState().supplyContractSigned = functions
+                      .getContractByType(
+                          FFAppState().accounts.toList(), 'supply')
+                      ?.signedDate !=
+                  null &&
+              functions
+                      .getContractByType(
+                          FFAppState().accounts.toList(), 'supply')
+                      ?.signedDate !=
+                  '';
+        });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
