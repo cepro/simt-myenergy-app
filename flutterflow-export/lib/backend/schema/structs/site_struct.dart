@@ -39,7 +39,7 @@ class SiteStruct extends BaseStruct {
       );
 
   static SiteStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? SiteStruct.fromMap(data) : null;
+      data is Map ? SiteStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'id': _id,

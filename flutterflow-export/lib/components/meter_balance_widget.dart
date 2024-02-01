@@ -8,10 +8,10 @@ import 'meter_balance_model.dart';
 export 'meter_balance_model.dart';
 
 class MeterBalanceWidget extends StatefulWidget {
-  const MeterBalanceWidget({Key? key}) : super(key: key);
+  const MeterBalanceWidget({super.key});
 
   @override
-  _MeterBalanceWidgetState createState() => _MeterBalanceWidgetState();
+  State<MeterBalanceWidget> createState() => _MeterBalanceWidgetState();
 }
 
 class _MeterBalanceWidgetState extends State<MeterBalanceWidget> {

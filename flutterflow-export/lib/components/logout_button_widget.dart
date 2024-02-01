@@ -11,10 +11,10 @@ import 'logout_button_model.dart';
 export 'logout_button_model.dart';
 
 class LogoutButtonWidget extends StatefulWidget {
-  const LogoutButtonWidget({Key? key}) : super(key: key);
+  const LogoutButtonWidget({super.key});
 
   @override
-  _LogoutButtonWidgetState createState() => _LogoutButtonWidgetState();
+  State<LogoutButtonWidget> createState() => _LogoutButtonWidgetState();
 }
 
 class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {

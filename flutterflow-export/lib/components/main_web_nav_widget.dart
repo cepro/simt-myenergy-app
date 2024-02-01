@@ -12,14 +12,14 @@ export 'main_web_nav_model.dart';
 
 class MainWebNavWidget extends StatefulWidget {
   const MainWebNavWidget({
-    Key? key,
+    super.key,
     this.navOne,
     this.navTwo,
     this.navThree,
     this.navFour,
     this.navFive,
     this.navSix,
-  }) : super(key: key);
+  });
 
   final Color? navOne;
   final Color? navTwo;
@@ -29,7 +29,7 @@ class MainWebNavWidget extends StatefulWidget {
   final Color? navSix;
 
   @override
-  _MainWebNavWidgetState createState() => _MainWebNavWidgetState();
+  State<MainWebNavWidget> createState() => _MainWebNavWidgetState();
 }
 
 class _MainWebNavWidgetState extends State<MainWebNavWidget>

@@ -9,12 +9,12 @@ export 'credit_card_widget_model.dart';
 
 class CreditCardWidget extends StatefulWidget {
   const CreditCardWidget({
-    Key? key,
+    super.key,
     required this.last4Digits,
     required this.expiryYear,
     required this.expiryMonth,
     required this.cardBrand,
-  }) : super(key: key);
+  });
 
   final String? last4Digits;
   final int? expiryYear;
@@ -22,7 +22,7 @@ class CreditCardWidget extends StatefulWidget {
   final String? cardBrand;
 
   @override
-  _CreditCardWidgetState createState() => _CreditCardWidgetState();
+  State<CreditCardWidget> createState() => _CreditCardWidgetState();
 }
 
 class _CreditCardWidgetState extends State<CreditCardWidget> {

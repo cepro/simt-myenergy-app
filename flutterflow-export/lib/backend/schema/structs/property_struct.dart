@@ -77,7 +77,7 @@ class PropertyStruct extends BaseStruct {
       );
 
   static PropertyStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? PropertyStruct.fromMap(data) : null;
+      data is Map ? PropertyStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'id': _id,

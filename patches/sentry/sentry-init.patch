@@ -64,10 +64,10 @@
  class MyApp extends StatefulWidget {
 --- ./pubspec.yaml
 +++ ./pubspec.yaml
-@@ -50,6 +50,7 @@ dependencies:
-   postgrest: 1.5.2
+@@ -51,6 +51,7 @@ dependencies:
    provider: 6.0.5
    realtime_client: 1.4.0
+   rxdart: 0.27.7
 +  sentry_flutter: 7.13.2
    shared_preferences: 2.2.2
    shared_preferences_android: 2.2.1

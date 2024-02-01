@@ -15,16 +15,16 @@ export 'supply_contract_sign_or_view_modal_model.dart';
 
 class SupplyContractSignOrViewModalWidget extends StatefulWidget {
   const SupplyContractSignOrViewModalWidget({
-    Key? key,
+    super.key,
     required this.contract,
     required this.terms,
-  }) : super(key: key);
+  });
 
   final ContractStruct? contract;
   final ContractTermsStruct? terms;
 
   @override
-  _SupplyContractSignOrViewModalWidgetState createState() =>
+  State<SupplyContractSignOrViewModalWidget> createState() =>
       _SupplyContractSignOrViewModalWidgetState();
 }
 

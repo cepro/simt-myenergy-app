@@ -15,16 +15,16 @@ export 'solar_contract_row_model.dart';
 
 class SolarContractRowWidget extends StatefulWidget {
   const SolarContractRowWidget({
-    Key? key,
+    super.key,
     required this.contract,
     required this.readOnly,
-  }) : super(key: key);
+  });
 
   final ContractStruct? contract;
   final bool? readOnly;
 
   @override
-  _SolarContractRowWidgetState createState() => _SolarContractRowWidgetState();
+  State<SolarContractRowWidget> createState() => _SolarContractRowWidgetState();
 }
 
 class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {

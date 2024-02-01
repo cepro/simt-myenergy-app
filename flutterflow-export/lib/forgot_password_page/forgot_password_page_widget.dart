@@ -11,10 +11,10 @@ import 'forgot_password_page_model.dart';
 export 'forgot_password_page_model.dart';
 
 class ForgotPasswordPageWidget extends StatefulWidget {
-  const ForgotPasswordPageWidget({Key? key}) : super(key: key);
+  const ForgotPasswordPageWidget({super.key});
 
   @override
-  _ForgotPasswordPageWidgetState createState() =>
+  State<ForgotPasswordPageWidget> createState() =>
       _ForgotPasswordPageWidgetState();
 }
 

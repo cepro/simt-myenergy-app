@@ -13,14 +13,14 @@ export 'invite_landing_page_model.dart';
 
 class InviteLandingPageWidget extends StatefulWidget {
   const InviteLandingPageWidget({
-    Key? key,
+    super.key,
     required this.inviteToken,
-  }) : super(key: key);
+  });
 
   final String? inviteToken;
 
   @override
-  _InviteLandingPageWidgetState createState() =>
+  State<InviteLandingPageWidget> createState() =>
       _InviteLandingPageWidgetState();
 }
 

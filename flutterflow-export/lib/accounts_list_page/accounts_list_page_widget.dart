@@ -13,10 +13,10 @@ import 'accounts_list_page_model.dart';
 export 'accounts_list_page_model.dart';
 
 class AccountsListPageWidget extends StatefulWidget {
-  const AccountsListPageWidget({Key? key}) : super(key: key);
+  const AccountsListPageWidget({super.key});
 
   @override
-  _AccountsListPageWidgetState createState() => _AccountsListPageWidgetState();
+  State<AccountsListPageWidget> createState() => _AccountsListPageWidgetState();
 }
 
 class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {

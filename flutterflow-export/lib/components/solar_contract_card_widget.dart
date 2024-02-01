@@ -12,20 +12,20 @@ export 'solar_contract_card_model.dart';
 
 class SolarContractCardWidget extends StatefulWidget {
   const SolarContractCardWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.contract,
     required this.terms,
     required this.setSignEmbedHTML,
-  }) : super(key: key);
+  });
 
   final String? title;
   final ContractStruct? contract;
   final ContractTermsStruct? terms;
-  final Future<dynamic> Function()? setSignEmbedHTML;
+  final Future Function()? setSignEmbedHTML;
 
   @override
-  _SolarContractCardWidgetState createState() =>
+  State<SolarContractCardWidget> createState() =>
       _SolarContractCardWidgetState();
 }
 

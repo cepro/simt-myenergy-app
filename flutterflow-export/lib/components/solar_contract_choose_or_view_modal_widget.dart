@@ -15,12 +15,12 @@ export 'solar_contract_choose_or_view_modal_model.dart';
 
 class SolarContractChooseOrViewModalWidget extends StatefulWidget {
   const SolarContractChooseOrViewModalWidget({
-    Key? key,
+    super.key,
     required this.contract,
     required this.readOnly,
     required this.termsSolar30Year,
     required this.termsSolarShortTerm,
-  }) : super(key: key);
+  });
 
   final ContractStruct? contract;
   final bool? readOnly;
@@ -28,7 +28,7 @@ class SolarContractChooseOrViewModalWidget extends StatefulWidget {
   final ContractTermsStruct? termsSolarShortTerm;
 
   @override
-  _SolarContractChooseOrViewModalWidgetState createState() =>
+  State<SolarContractChooseOrViewModalWidget> createState() =>
       _SolarContractChooseOrViewModalWidgetState();
 }
 

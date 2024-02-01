@@ -11,14 +11,14 @@ export 'about_page_model.dart';
 
 class AboutPageWidget extends StatefulWidget {
   const AboutPageWidget({
-    Key? key,
+    super.key,
     required this.inviteToken,
-  }) : super(key: key);
+  });
 
   final String? inviteToken;
 
   @override
-  _AboutPageWidgetState createState() => _AboutPageWidgetState();
+  State<AboutPageWidget> createState() => _AboutPageWidgetState();
 }
 
 class _AboutPageWidgetState extends State<AboutPageWidget> {

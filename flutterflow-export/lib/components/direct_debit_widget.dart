@@ -9,16 +9,16 @@ export 'direct_debit_model.dart';
 
 class DirectDebitWidget extends StatefulWidget {
   const DirectDebitWidget({
-    Key? key,
+    super.key,
     required this.last4Digits,
     required this.sortCode,
-  }) : super(key: key);
+  });
 
   final String? last4Digits;
   final String? sortCode;
 
   @override
-  _DirectDebitWidgetState createState() => _DirectDebitWidgetState();
+  State<DirectDebitWidget> createState() => _DirectDebitWidgetState();
 }
 
 class _DirectDebitWidgetState extends State<DirectDebitWidget> {

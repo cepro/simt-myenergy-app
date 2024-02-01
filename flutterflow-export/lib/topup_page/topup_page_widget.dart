@@ -17,10 +17,10 @@ import 'topup_page_model.dart';
 export 'topup_page_model.dart';
 
 class TopupPageWidget extends StatefulWidget {
-  const TopupPageWidget({Key? key}) : super(key: key);
+  const TopupPageWidget({super.key});
 
   @override
-  _TopupPageWidgetState createState() => _TopupPageWidgetState();
+  State<TopupPageWidget> createState() => _TopupPageWidgetState();
 }
 
 class _TopupPageWidgetState extends State<TopupPageWidget> {
@@ -46,7 +46,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
                 r'''$[0].topupThreshold''',
-              ).toString().toString(),
+              )?.toString()?.toString(),
               '30',
             );
           });
@@ -55,7 +55,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
                 r'''$[0].topupAmount''',
-              ).toString().toString(),
+              )?.toString()?.toString(),
               '50',
             );
           });

@@ -12,20 +12,20 @@ export 'supply_contract_card_model.dart';
 
 class SupplyContractCardWidget extends StatefulWidget {
   const SupplyContractCardWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.contract,
     required this.setSignEmbedHTML,
     required this.terms,
-  }) : super(key: key);
+  });
 
   final String? title;
   final ContractStruct? contract;
-  final Future<dynamic> Function()? setSignEmbedHTML;
+  final Future Function()? setSignEmbedHTML;
   final ContractTermsStruct? terms;
 
   @override
-  _SupplyContractCardWidgetState createState() =>
+  State<SupplyContractCardWidget> createState() =>
       _SupplyContractCardWidgetState();
 }
 

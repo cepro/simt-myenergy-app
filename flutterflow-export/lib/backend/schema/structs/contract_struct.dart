@@ -95,7 +95,7 @@ class ContractStruct extends BaseStruct {
       );
 
   static ContractStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? ContractStruct.fromMap(data) : null;
+      data is Map ? ContractStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
         'id': _id,

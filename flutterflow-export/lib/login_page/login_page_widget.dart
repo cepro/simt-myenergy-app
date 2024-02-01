@@ -18,17 +18,16 @@ export 'login_page_model.dart';
 
 class LoginPageWidget extends StatefulWidget {
   const LoginPageWidget({
-    Key? key,
+    super.key,
     this.emailPrefill,
     bool? fromInvite,
-  })  : this.fromInvite = fromInvite ?? false,
-        super(key: key);
+  }) : this.fromInvite = fromInvite ?? false;
 
   final String? emailPrefill;
   final bool fromInvite;
 
   @override
-  _LoginPageWidgetState createState() => _LoginPageWidgetState();
+  State<LoginPageWidget> createState() => _LoginPageWidgetState();
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget>
@@ -322,6 +321,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   ],
                                                   controller:
                                                       _model.tabBarController,
+                                                  onTap: (i) async {
+                                                    [
+                                                      () async {},
+                                                      () async {}
+                                                    ][i]();
+                                                  },
                                                 ),
                                               ),
                                               Expanded(

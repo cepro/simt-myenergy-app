@@ -87,8 +87,9 @@ class ContractTermsStruct extends BaseStruct {
         createdAt: data['createdAt'] as String?,
       );
 
-  static ContractTermsStruct? maybeFromMap(dynamic data) =>
-      data is Map<String, dynamic> ? ContractTermsStruct.fromMap(data) : null;
+  static ContractTermsStruct? maybeFromMap(dynamic data) => data is Map
+      ? ContractTermsStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'id': _id,

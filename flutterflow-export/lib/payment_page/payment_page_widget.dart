@@ -19,10 +19,10 @@ import 'payment_page_model.dart';
 export 'payment_page_model.dart';
 
 class PaymentPageWidget extends StatefulWidget {
-  const PaymentPageWidget({Key? key}) : super(key: key);
+  const PaymentPageWidget({super.key});
 
   @override
-  _PaymentPageWidgetState createState() => _PaymentPageWidgetState();
+  State<PaymentPageWidget> createState() => _PaymentPageWidgetState();
 }
 
 class _PaymentPageWidgetState extends State<PaymentPageWidget> {

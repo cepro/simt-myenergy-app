@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
-import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,16 +13,16 @@ export 'supply_contract_row_model.dart';
 
 class SupplyContractRowWidget extends StatefulWidget {
   const SupplyContractRowWidget({
-    Key? key,
+    super.key,
     required this.contract,
     required this.readOnly,
-  }) : super(key: key);
+  });
 
   final ContractStruct? contract;
   final bool? readOnly;
 
   @override
-  _SupplyContractRowWidgetState createState() =>
+  State<SupplyContractRowWidget> createState() =>
       _SupplyContractRowWidgetState();
 }
 
@@ -120,17 +119,15 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                           'supply',
                           null,
                         );
-                        await showAlignedDialog(
+                        await showDialog(
                           context: context,
-                          isGlobal: true,
-                          avoidOverflow: false,
-                          targetAnchor: AlignmentDirectional(0.0, 0.0)
-                              .resolve(Directionality.of(context)),
-                          followerAnchor: AlignmentDirectional(0.0, 0.0)
-                              .resolve(Directionality.of(context)),
                           builder: (dialogContext) {
-                            return Material(
-                              color: Colors.transparent,
+                            return Dialog(
+                              elevation: 0,
+                              insetPadding: EdgeInsets.zero,
+                              backgroundColor: Colors.transparent,
+                              alignment: AlignmentDirectional(0.0, 0.0)
+                                  .resolve(Directionality.of(context)),
                               child: Container(
                                 height: double.infinity,
                                 width: double.infinity,

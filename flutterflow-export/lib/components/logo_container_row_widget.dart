@@ -11,10 +11,10 @@ import 'logo_container_row_model.dart';
 export 'logo_container_row_model.dart';
 
 class LogoContainerRowWidget extends StatefulWidget {
-  const LogoContainerRowWidget({Key? key}) : super(key: key);
+  const LogoContainerRowWidget({super.key});
 
   @override
-  _LogoContainerRowWidgetState createState() => _LogoContainerRowWidgetState();
+  State<LogoContainerRowWidget> createState() => _LogoContainerRowWidgetState();
 }
 
 class _LogoContainerRowWidgetState extends State<LogoContainerRowWidget>
