@@ -16,7 +16,7 @@ class GetCustomersPaymentMethodsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Payment Methods',
       apiUrl:
-          'https://c2xw3up7c7.eu-west-1.awsapprunner.com/customers/paymentMethods',
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ class GetCustomersAccountsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Accounts',
-      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/account',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/account',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ class CreateStripeCheckoutSessionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Create Stripe Checkout Session',
       apiUrl:
-          'https://c2xw3up7c7.eu-west-1.awsapprunner.com/customers/checkoutSession',
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/checkoutSession',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -102,7 +102,7 @@ class DeleteCustomersPaymentMethodCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Customers Payment Method',
       apiUrl:
-          'https://c2xw3up7c7.eu-west-1.awsapprunner.com/customers/paymentMethods/${id}',
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods/${id}',
       callType: ApiCallType.DELETE,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -132,7 +132,7 @@ class UpdateTopupPreferencesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Update Topup Preferences',
       apiUrl:
-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet/${walletId}/topupPreference',
+          'https://simt-j-accounts-qa.fly.dev/wallet/${walletId}/topupPreference',
       callType: ApiCallType.PUT,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -158,8 +158,7 @@ class MarkContractSignedCall {
 {}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Mark Contract Signed',
-      apiUrl:
-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/${contractId}/sign',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/contract/${contractId}/sign',
       callType: ApiCallType.PUT,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -182,7 +181,7 @@ class GetWalletsCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Wallets',
-      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/wallet',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/wallet',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -205,7 +204,7 @@ class CustomerInviteLookupCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Customer Invite Lookup',
       apiUrl:
-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/customer/invite/${inviteToken}',
+          'https://simt-j-accounts-qa.fly.dev/customer/invite/${inviteToken}',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -227,7 +226,7 @@ class ContractSigningEmbedCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Contract Signing Embed',
       apiUrl:
-          'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contract/${id}/signing-embed.html',
+          'https://simt-j-accounts-qa.fly.dev/contract/${id}/signing-embed.html',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -250,7 +249,7 @@ class ContractTermsLatestCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Contract Terms latest',
-      apiUrl: 'https://qecg6jbdmm.eu-west-1.awsapprunner.com/contractTerms',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/contractTerms',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
