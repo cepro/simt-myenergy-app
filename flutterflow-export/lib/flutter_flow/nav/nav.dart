@@ -139,6 +139,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/home',
           requireAuth: true,
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'SysInfoPage',
+          path: '/sysinfo',
+          builder: (context, params) => SysInfoPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

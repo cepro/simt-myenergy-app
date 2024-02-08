@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+echo "\n\nApply patches for qa ..."
+
+echo "\nPatch 1: /sysinfo variables"
+sed -i -e 's/replace_me_environment/qa/' lib/sys_info_page/sys_info_page_widget.dart
+sed -i -e 's/replace_me_supabase_project/rkzgrxssutcwrauaazjz/' lib/sys_info_page/sys_info_page_widget.dart

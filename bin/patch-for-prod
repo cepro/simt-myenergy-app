@@ -3,7 +3,7 @@ set -e
 
 PATCHES=$1
 
-echo "\n\nApply patches for local ..."
+echo "\n\nApply patches for prod ..."
 
 echo "\nPatch 1: api call change '-qa' addresses to '-prod' ..."
 sed -i -e 's/simt-j-accounts-qa.fly.dev/simt-j-accounts-prod.fly.dev/' lib/backend/api_requests/api_calls.dart
@@ -11,3 +11,7 @@ sed -i -e 's/simt-j-billing-stripe-qa.fly.dev/simt-j-billing-stripe-prod.fly.dev
 
 echo "\nPatch 2: change supabase address and key to supabase prod instance ...\n"
 patch -p0 < $PATCHES/prod/supabase.dart.patch
+
+echo "\nPatch 3: /sysinfo variables"
+sed -i -e 's/replace_me_environment/prod/' lib/sys_info_page/sys_info_page_widget.dart
+sed -i -e 's/replace_me_supabase_project/pqlwxerasppsyleweruk/' lib/sys_info_page/sys_info_page_widget.dart

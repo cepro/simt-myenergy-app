@@ -20,6 +20,8 @@ $THIS_PROJECT/bin/patch-app $PATCHES
 
 if [ "$ENV" = "prod" ]; then
     $THIS_PROJECT/bin/patch-for-prod $PATCHES
+else
+    $THIS_PROJECT/bin/patch-for-qa
 fi
 
 echo "Building for web ...\n"

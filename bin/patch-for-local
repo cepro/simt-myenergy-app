@@ -11,3 +11,7 @@ sed -i -e 's/https:\/\/simt-j-billing-stripe-qa.fly.dev/http:\/\/localhost:8090/
 
 echo "\nPatch 2: supabase address and key to localhost ...\n"
 patch -p0 < $PATCHES/local/supabase.dart.patch
+
+echo "\nPatch 3: /sysinfo variables"
+sed -i -e 's/replace_me_environment/local/' lib/sys_info_page/sys_info_page_widget.dart
+sed -i -e 's/replace_me_supabase_project/local/' lib/sys_info_page/sys_info_page_widget.dart
