@@ -61,9 +61,9 @@ bin/run-local
 ```
 
 ## Build for github pages deployment
-Run the following to build the app: copy to the .
+Run the following to build the app and copy to the simt-myenergy-gh-pages/ folder.
 ```sh
-bin/build-github-pages
+bin/build-github-pages <qa|prod>
 ```
 
 The script will:
@@ -72,7 +72,7 @@ The script will:
  - build it
  - copy files to the simt-myenergy-gh-pages/ folder created in the setup step above
 
-Then from this repository:
+Then from that simt-myenergy-gh-pages/:
  - manually check the changes look okay
  - git commit
  - push changes

@@ -1,4 +1,10 @@
 #!/bin/sh
+if [ "$1" != "qa" ] && [ "$1" != "prod" ]; then
+    echo "Usage: build-github-pages <qa|prod>"
+    exit 1
+fi
+ENV=$1
+
 THIS_PROJECT=`pwd`/`dirname $0`/..
 PATCHES=$THIS_PROJECT/patches
 
@@ -12,6 +18,10 @@ cd $BUILD_HOME
 
 $THIS_PROJECT/bin/patch-app $PATCHES
 
+if [ "$ENV" = "prod" ]; then
+    $THIS_PROJECT/bin/patch-for-prod $PATCHES
+fi
+
 echo "Building for web ...\n"
 # --source-maps added for sentry
 flutter build web --source-maps || exit 1
@@ -22,7 +32,13 @@ $THIS_PROJECT/bin/patch-for-github-pages $PATCHES
 
 cd - > /dev/null
 
+# Checkout github pages branch for the $ENV 
 GH_PAGES_HOME=$THIS_PROJECT/../simt-myenergy-gh-pages
+cd $GH_PAGES_HOME
+git checkout $ENV-main
+cd - > /dev/null
+
+# Copy built files to the github pages folder 
 echo "\nCopying build/web to $GH_PAGES_HOME ..."
 rm -rf $GH_PAGES_HOME/*
 cp -r build/web/* $GH_PAGES_HOME
