@@ -1,7 +1,10 @@
 #!/bin/sh
 set -e
 
+. `dirname $0`/library.sh
+
 PATCHES=$1
+GIT_COMMIT=$2
 
 echo "\n\nApply patches for prod ..."
 
@@ -13,5 +16,9 @@ echo "\nPatch 2: change supabase address and key to supabase prod instance ...\n
 patch -p0 < $PATCHES/prod/supabase.dart.patch
 
 echo "\nPatch 3: /sysinfo variables"
-sed -i -e 's/replace_me_environment/prod/' lib/sys_info_page/sys_info_page_widget.dart
-sed -i -e 's/replace_me_supabase_project/pqlwxerasppsyleweruk/' lib/sys_info_page/sys_info_page_widget.dart
+setSysInfoEnvironment prod
+setSysInfoSupabaseProject pqlwxerasppsyleweruk
+setSysInfoGitCommit $GIT_COMMIT
+setSysInfoFlutterVersion
+setSysInfoBillingBaseURI simt-j-billing-stripe-prod.fly.dev
+setSysInfoAccountsBaseURI simt-j-accounts-prod.fly.dev

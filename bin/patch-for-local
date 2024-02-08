@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+. `dirname $0`/library.sh
+
 PATCHES=$1
 
 echo "\n\nApply patches for local ..."
@@ -13,5 +15,9 @@ echo "\nPatch 2: supabase address and key to localhost ...\n"
 patch -p0 < $PATCHES/local/supabase.dart.patch
 
 echo "\nPatch 3: /sysinfo variables"
-sed -i -e 's/replace_me_environment/local/' lib/sys_info_page/sys_info_page_widget.dart
-sed -i -e 's/replace_me_supabase_project/local/' lib/sys_info_page/sys_info_page_widget.dart
+setSysInfoEnvironment local
+setSysInfoSupabaseProject local
+setSysInfoGitCommit `getGitCommit`
+setSysInfoFlutterVersion
+setSysInfoBillingBaseURI "localhost:8080"
+setSysInfoAccountsBaseURI "localhost:8090"

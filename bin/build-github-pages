@@ -5,6 +5,10 @@ if [ "$1" != "qa" ] && [ "$1" != "prod" ]; then
 fi
 ENV=$1
 
+. `dirname $0`/library.sh
+
+GIT_COMMIT=`getGitCommit`
+
 THIS_PROJECT=`pwd`/`dirname $0`/..
 PATCHES=$THIS_PROJECT/patches
 
@@ -19,9 +23,9 @@ cd $BUILD_HOME
 $THIS_PROJECT/bin/patch-app $PATCHES
 
 if [ "$ENV" = "prod" ]; then
-    $THIS_PROJECT/bin/patch-for-prod $PATCHES
+    $THIS_PROJECT/bin/patch-for-prod $PATCHES $GIT_COMMIT
 else
-    $THIS_PROJECT/bin/patch-for-qa
+    $THIS_PROJECT/bin/patch-for-qa $GIT_COMMIT
 fi
 
 echo "Building for web ...\n"
