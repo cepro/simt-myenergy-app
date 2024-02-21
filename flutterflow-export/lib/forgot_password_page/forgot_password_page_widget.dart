@@ -178,8 +178,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                         color: Color(0xFF57636C),
                         fontSize: 14.0,
                         fontWeight: FontWeight.normal,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                        useGoogleFonts:
+                            GoogleFonts.asMap().containsKey('Lexend Deca'),
                       ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(

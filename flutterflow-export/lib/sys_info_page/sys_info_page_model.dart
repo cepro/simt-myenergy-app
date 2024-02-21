@@ -27,12 +27,14 @@ class SysInfoPageModel extends FlutterFlowModel<SysInfoPageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
     mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     mainWebNavModel.dispose();

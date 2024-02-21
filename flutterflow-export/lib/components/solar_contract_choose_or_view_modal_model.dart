@@ -32,6 +32,7 @@ class SolarContractChooseOrViewModalModel
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     solar30YearContractCardModel =
         createModel(context, () => SolarContractCardModel());
@@ -39,6 +40,7 @@ class SolarContractChooseOrViewModalModel
         createModel(context, () => SolarContractCardModel());
   }
 
+  @override
   void dispose() {
     solar30YearContractCardModel.dispose();
     solarShortTermContractCardModel.dispose();

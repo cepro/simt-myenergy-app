@@ -67,6 +67,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
     passwordVisibility = false;
@@ -74,6 +75,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     confirmCreateVisibility = false;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     logoContainerRowModel.dispose();

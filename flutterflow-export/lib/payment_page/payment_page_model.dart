@@ -46,6 +46,7 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
@@ -54,6 +55,7 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
     mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     mainWebNavModel.dispose();

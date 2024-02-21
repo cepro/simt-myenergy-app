@@ -76,6 +76,7 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
@@ -84,6 +85,7 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
     mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     mainWebNavModel.dispose();

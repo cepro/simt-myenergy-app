@@ -28,11 +28,13 @@ class SupplyContractSignOrViewModalModel
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     supplyContractCardModel =
         createModel(context, () => SupplyContractCardModel());
   }
 
+  @override
   void dispose() {
     supplyContractCardModel.dispose();
   }

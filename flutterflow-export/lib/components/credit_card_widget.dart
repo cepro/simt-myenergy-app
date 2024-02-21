@@ -129,8 +129,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             color: Colors.white,
                             fontSize: 14.0,
                             fontWeight: FontWeight.normal,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                            useGoogleFonts:
+                                GoogleFonts.asMap().containsKey('Roboto Mono'),
                           ),
                     ),
                     Text(
@@ -140,8 +140,8 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                             color: Colors.white,
                             fontSize: 14.0,
                             fontWeight: FontWeight.normal,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                            useGoogleFonts:
+                                GoogleFonts.asMap().containsKey('Roboto Mono'),
                           ),
                     ),
                   ],

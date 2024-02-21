@@ -105,8 +105,8 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                         color: Colors.white,
                         fontSize: 14.0,
                         fontWeight: FontWeight.normal,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                        useGoogleFonts:
+                            GoogleFonts.asMap().containsKey('Roboto Mono'),
                       ),
                 ),
               ],
@@ -124,8 +124,8 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                         color: Colors.white,
                         fontSize: 14.0,
                         fontWeight: FontWeight.normal,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                        useGoogleFonts:
+                            GoogleFonts.asMap().containsKey('Roboto Mono'),
                       ),
                 ),
               ],

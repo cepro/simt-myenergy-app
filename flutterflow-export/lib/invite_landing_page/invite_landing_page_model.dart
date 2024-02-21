@@ -21,10 +21,12 @@ class InviteLandingPageModel extends FlutterFlowModel<InviteLandingPageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     logoContainerRowModel.dispose();

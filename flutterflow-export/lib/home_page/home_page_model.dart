@@ -46,6 +46,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
@@ -55,6 +56,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     mainWebNavModel.dispose();
