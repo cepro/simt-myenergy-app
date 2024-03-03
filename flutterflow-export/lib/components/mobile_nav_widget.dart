@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'mobile_nav_model.dart';
@@ -183,14 +182,15 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           widget.navFourIcon!,
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
-                            child: Text(
-                              'Topups',
-                              style: FlutterFlowTheme.of(context).bodySmall,
+                          if (false)
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 0.0),
+                              child: Text(
+                                'Topups',
+                                style: FlutterFlowTheme.of(context).bodySmall,
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

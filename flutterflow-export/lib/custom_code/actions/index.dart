@@ -1,4 +1,6 @@
 export 'navigate_to_external_u_r_i.dart' show navigateToExternalURI;
+export 'monthly_usage_j_s_o_n_to_data_type.dart'
+    show monthlyUsageJSONToDataType;
 export 'contract_terms_j_s_o_n_to_contract_terms_data_type.dart'
     show contractTermsJSONToContractTermsDataType;
 export 'get_meter_serial_by_type_data.dart' show getMeterSerialByTypeData;

@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -124,17 +123,10 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
-                    'assets/images/Twitter-profile.png',
-                    width: 44.0,
-                    height: 44.0,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    'Water Lilies',
-                    style: FlutterFlowTheme.of(context).headlineMedium,
+                    'assets/images/wlce-banner-300.png',
+                    width: 220.0,
+                    height: 50.0,
+                    fit: BoxFit.fitWidth,
                   ),
                 ),
               ],
@@ -249,7 +241,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   ),
                 ),
               ),
-            if (FFAppState().supplyContractSigned)
+            if (false && FFAppState().supplyContractSigned)
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(

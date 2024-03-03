@@ -107,6 +107,21 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _customerId = prefs.getString('ff_customerId') ?? _customerId;
     });
+    _safeInit(() {
+      _monthlyUsage = prefs
+              .getStringList('ff_monthlyUsage')
+              ?.map((x) {
+                try {
+                  return MonthlyUsageStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _monthlyUsage;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -315,6 +330,53 @@ class FFAppState extends ChangeNotifier {
   set customerId(String _value) {
     _customerId = _value;
     prefs.setString('ff_customerId', _value);
+  }
+
+  List<MonthlyUsageStruct> _monthlyUsage = [];
+  List<MonthlyUsageStruct> get monthlyUsage => _monthlyUsage;
+  set monthlyUsage(List<MonthlyUsageStruct> _value) {
+    _monthlyUsage = _value;
+    prefs.setStringList(
+        'ff_monthlyUsage', _value.map((x) => x.serialize()).toList());
+  }
+
+  void addToMonthlyUsage(MonthlyUsageStruct _value) {
+    _monthlyUsage.add(_value);
+    prefs.setStringList(
+        'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromMonthlyUsage(MonthlyUsageStruct _value) {
+    _monthlyUsage.remove(_value);
+    prefs.setStringList(
+        'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromMonthlyUsage(int _index) {
+    _monthlyUsage.removeAt(_index);
+    prefs.setStringList(
+        'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
+  }
+
+  void updateMonthlyUsageAtIndex(
+    int _index,
+    MonthlyUsageStruct Function(MonthlyUsageStruct) updateFn,
+  ) {
+    _monthlyUsage[_index] = updateFn(_monthlyUsage[_index]);
+    prefs.setStringList(
+        'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInMonthlyUsage(int _index, MonthlyUsageStruct _value) {
+    _monthlyUsage.insert(_index, _value);
+    prefs.setStringList(
+        'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
+  }
+
+  dynamic _monthlyUsageJSON;
+  dynamic get monthlyUsageJSON => _monthlyUsageJSON;
+  set monthlyUsageJSON(dynamic _value) {
+    _monthlyUsageJSON = _value;
   }
 }
 

@@ -1,0 +1,168 @@
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'monthly_consumption_model.dart';
+export 'monthly_consumption_model.dart';
+
+class MonthlyConsumptionWidget extends StatefulWidget {
+  const MonthlyConsumptionWidget({super.key});
+
+  @override
+  State<MonthlyConsumptionWidget> createState() =>
+      _MonthlyConsumptionWidgetState();
+}
+
+class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
+  late MonthlyConsumptionModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => MonthlyConsumptionModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+      child: Container(
+        height: 350.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          border: Border.all(
+            color: FlutterFlowTheme.of(context).primary,
+            width: 1.0,
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Text(
+                    'Usage',
+                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).headlineMediumFamily,
+                          decoration: TextDecoration.underline,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context)
+                                  .headlineMediumFamily),
+                        ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Builder(
+                  builder: (context) {
+                    final monthlyUsage =
+                        FFAppState().monthlyUsage.toList().take(12).toList();
+                    return FlutterFlowDataTable<MonthlyUsageStruct>(
+                      controller: _model.paginatedDataTableController,
+                      data: monthlyUsage,
+                      columnsBuilder: (onSortChanged) => [
+                        DataColumn2(
+                          label: DefaultTextStyle.merge(
+                            softWrap: true,
+                            child: Text(
+                              'Month',
+                              style: FlutterFlowTheme.of(context).labelLarge,
+                            ),
+                          ),
+                        ),
+                        DataColumn2(
+                          label: DefaultTextStyle.merge(
+                            softWrap: true,
+                            child: Text(
+                              'Power (kWh)',
+                              style: FlutterFlowTheme.of(context).labelLarge,
+                            ),
+                          ),
+                        ),
+                        DataColumn2(
+                          label: DefaultTextStyle.merge(
+                            softWrap: true,
+                            child: Text(
+                              'Heat (kWh)',
+                              style: FlutterFlowTheme.of(context).labelLarge,
+                            ),
+                          ),
+                        ),
+                      ],
+                      dataRowBuilder: (monthlyUsageItem, monthlyUsageIndex,
+                              selected, onSelectChanged) =>
+                          DataRow(
+                        color: MaterialStateProperty.all(
+                          monthlyUsageIndex % 2 == 0
+                              ? FlutterFlowTheme.of(context).secondaryBackground
+                              : FlutterFlowTheme.of(context).primaryBackground,
+                        ),
+                        cells: [
+                          Text(
+                            valueOrDefault<String>(
+                              monthlyUsageItem.month,
+                              'null',
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
+                          Text(
+                            monthlyUsageItem.usagePower.toString(),
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
+                          Text(
+                            monthlyUsageItem.usageHeat.toString(),
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                          ),
+                        ].map((c) => DataCell(c)).toList(),
+                      ),
+                      paginated: true,
+                      selectable: false,
+                      hidePaginator: false,
+                      showFirstLastButtons: false,
+                      headingRowHeight: 56.0,
+                      dataRowHeight: 48.0,
+                      columnSpacing: 20.0,
+                      headingRowColor: FlutterFlowTheme.of(context).primary,
+                      borderRadius: BorderRadius.circular(8.0),
+                      addHorizontalDivider: true,
+                      addTopAndBottomDivider: false,
+                      hideDefaultHorizontalDivider: true,
+                      horizontalDividerColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      horizontalDividerThickness: 1.0,
+                      addVerticalDivider: false,
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

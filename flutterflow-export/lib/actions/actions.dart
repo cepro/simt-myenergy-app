@@ -46,6 +46,7 @@ Future handleMyEnergyApiCallFailure(
 Future<bool?> getAndSaveAccounts(BuildContext context) async {
   ApiCallResponse? getAccountsResponse;
   List<AccountStruct>? accounts;
+  List<MonthlyUsageStruct>? monthlyUsages;
 
   // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
   getAccountsResponse = await GetCustomersAccountsCall.call(
@@ -59,6 +60,12 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
         r'''$.accounts''',
         true,
       )!,
+    );
+    monthlyUsages = await actions.monthlyUsageJSONToDataType(
+      getJsonField(
+        (getAccountsResponse?.jsonBody ?? ''),
+        r'''$.monthlyUsage''',
+      ),
     );
     FFAppState().meterSerials = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
@@ -84,6 +91,8 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.customerId''',
     ).toString().toString();
+    FFAppState().monthlyUsage =
+        monthlyUsages!.toList().cast<MonthlyUsageStruct>();
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(

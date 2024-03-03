@@ -9,7 +9,6 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'supply_contract_sign_or_view_modal_widget.dart'
     show SupplyContractSignOrViewModalWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 

@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'logo_container_row_widget.dart' show LogoContainerRowWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

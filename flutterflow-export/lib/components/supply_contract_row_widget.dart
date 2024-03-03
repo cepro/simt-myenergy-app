@@ -5,7 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'supply_contract_row_model.dart';
@@ -63,12 +63,12 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
             width: 60.0,
             height: 60.0,
             decoration: BoxDecoration(
-              color: Color(0x428377F3),
+              color: FlutterFlowTheme.of(context).secondary,
               borderRadius: BorderRadius.circular(16.0),
             ),
             alignment: AlignmentDirectional(0.0, 0.0),
-            child: Icon(
-              Icons.contact_page_outlined,
+            child: FaIcon(
+              FontAwesomeIcons.fileContract,
               color: FlutterFlowTheme.of(context).primary,
               size: 32.0,
             ),
@@ -143,7 +143,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
 
                       setState(() {});
                     },
-                    text: widget.readOnly == true ? 'View' : 'Sign',
+                    text: widget.readOnly == true ? 'View' : 'Choose Contract',
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:

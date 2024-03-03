@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -85,26 +84,13 @@ class _LogoContainerRowWidgetState extends State<LogoContainerRowWidget>
           Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Image.asset(
-                'assets/images/Twitter-profile.png',
-                width: 50.0,
-                height: 50.0,
-                fit: BoxFit.cover,
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.47, 0.25),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    'Water Lilies',
-                    style: FlutterFlowTheme.of(context).titleMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).titleMediumFamily,
-                          fontSize: 24.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).titleMediumFamily),
-                        ),
-                  ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/images/wlce-banner-300.png',
+                  width: 220.0,
+                  height: 50.0,
+                  fit: BoxFit.cover,
                 ),
               ),
             ],

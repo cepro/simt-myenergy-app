@@ -12,7 +12,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'payment_page_model.dart';
@@ -70,15 +69,6 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -151,11 +141,22 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            'Payment',
-                                            style: FlutterFlowTheme.of(context)
-                                                .displaySmall,
-                                          ),
+                                          if (responsiveVisibility(
+                                            context: context,
+                                            tablet: false,
+                                            tabletLandscape: false,
+                                            desktop: false,
+                                          ))
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.asset(
+                                                'assets/images/wlce-banner-300.png',
+                                                width: 220.0,
+                                                height: 50.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                         ],
                                       ),
                                     ),
@@ -516,7 +517,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .info,
+                                                                .primary,
                                                         textStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -636,7 +637,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .info,
+                                                        .primary,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
