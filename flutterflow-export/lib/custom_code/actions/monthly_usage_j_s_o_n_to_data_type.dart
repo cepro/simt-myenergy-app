@@ -20,7 +20,10 @@ Future<List<MonthlyUsageStruct>> monthlyUsageJSONToDataType(
     DateFormat dateFormatter = DateFormat('MMMM y');
     String monthStr = dateFormatter.format(month);
     usages.add(MonthlyUsageStruct(
-        usageRec['usageHeat'], usageRec['usagePower'], monthStr));
+      usageHeat: usageRec['usageHeat'],
+      usagePower: usageRec['usagePower'],
+      month: monthStr,
+    ));
   });
 
   return usages;

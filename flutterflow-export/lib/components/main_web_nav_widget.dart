@@ -188,7 +188,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 ),
               ),
             ),
-            if (FFAppState().supplyContractSigned)
+            if (true || FFAppState().supplyContractSigned)
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(

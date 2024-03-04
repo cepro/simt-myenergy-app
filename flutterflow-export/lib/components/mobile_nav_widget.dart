@@ -74,7 +74,7 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
           ],
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 34.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +117,7 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                   ),
                 ),
               ),
-              if (FFAppState().supplyContractSigned)
+              if (true || FFAppState().supplyContractSigned)
                 Expanded(
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
