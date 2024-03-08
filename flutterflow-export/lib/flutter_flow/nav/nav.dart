@@ -144,6 +144,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'SysInfoPage',
           path: '/sysinfo',
           builder: (context, params) => SysInfoPageWidget(),
+        ),
+        FFRoute(
+          name: 'resetPasswordPage',
+          path: '/resetPassword',
+          builder: (context, params) => ResetPasswordPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

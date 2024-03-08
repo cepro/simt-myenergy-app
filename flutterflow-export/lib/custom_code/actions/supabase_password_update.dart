@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<bool> supabasePasswordReset(String email) async {
-  await SupaFlow.client.auth
-      // relative work here?  if not how to gt the domain. available or inject it as per sysinfo page ...
-      .resetPasswordForEmail(email,
-          redirectTo: "https://app-qa.waterlilies.energy/resetPassword");
-  return true;
+Future<bool> supabasePasswordUpdate(String newPassword) async {
+  UserResponse userResponse = await SupaFlow.client.auth
+      .updateUser(UserAttributes(password: newPassword));
+  print(userResponse.toString());
+  print(userResponse.user);
+  return (userResponse.user != null) ? true : false;
 }

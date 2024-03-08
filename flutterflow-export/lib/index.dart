@@ -11,3 +11,5 @@ export '/invite_landing_page/invite_landing_page_widget.dart'
 export '/about_page/about_page_widget.dart' show AboutPageWidget;
 export '/home_page/home_page_widget.dart' show HomePageWidget;
 export '/sys_info_page/sys_info_page_widget.dart' show SysInfoPageWidget;
+export '/reset_password_page/reset_password_page_widget.dart'
+    show ResetPasswordPageWidget;
