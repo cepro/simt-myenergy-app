@@ -50,8 +50,6 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Container(

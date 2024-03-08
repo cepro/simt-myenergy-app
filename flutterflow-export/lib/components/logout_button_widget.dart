@@ -42,8 +42,6 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Visibility(
       visible: responsiveVisibility(
         context: context,
@@ -78,7 +76,7 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
             ),
             onPressed: () async {
               setState(() {
-                FFAppState().meterSerials = null;
+                FFAppState().meters = null;
                 FFAppState().supplyContractSigned = false;
                 FFAppState().accounts = [];
               });

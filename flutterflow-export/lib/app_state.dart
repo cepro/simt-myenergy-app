@@ -26,9 +26,9 @@ class FFAppState extends ChangeNotifier {
           prefs.getBool('ff_supplyContractSigned') ?? _supplyContractSigned;
     });
     _safeInit(() {
-      if (prefs.containsKey('ff_meterSerials')) {
+      if (prefs.containsKey('ff_meters')) {
         try {
-          _meterSerials = jsonDecode(prefs.getString('ff_meterSerials') ?? '');
+          _meters = jsonDecode(prefs.getString('ff_meters') ?? '');
         } catch (e) {
           print("Can't decode persisted json. Error: $e.");
         }
@@ -138,11 +138,11 @@ class FFAppState extends ChangeNotifier {
     prefs.setBool('ff_supplyContractSigned', _value);
   }
 
-  dynamic _meterSerials;
-  dynamic get meterSerials => _meterSerials;
-  set meterSerials(dynamic _value) {
-    _meterSerials = _value;
-    prefs.setString('ff_meterSerials', jsonEncode(_value));
+  dynamic _meters;
+  dynamic get meters => _meters;
+  set meters(dynamic _value) {
+    _meters = _value;
+    prefs.setString('ff_meters', jsonEncode(_value));
   }
 
   List<AccountStruct> _accounts = [];

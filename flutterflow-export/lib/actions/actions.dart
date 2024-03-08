@@ -67,9 +67,9 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
         r'''$.monthlyUsage''',
       ),
     );
-    FFAppState().meterSerials = getJsonField(
+    FFAppState().meters = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
-      r'''$.meterSerials''',
+      r'''$.meters''',
     );
     FFAppState().supplyContractSigned = functions
                 .getContractByType(accounts!.toList(), 'supply')

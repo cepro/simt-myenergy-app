@@ -138,8 +138,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -589,6 +587,49 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   .passwordControllerValidator
                                                                   .asValidator(
                                                                       context),
+                                                            ),
+                                                          ),
+                                                          InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              if (_model
+                                                                  .emailAddressController
+                                                                  .text
+                                                                  .isEmpty) {
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Email required!',
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                                return;
+                                                              }
+                                                              await authManager
+                                                                  .resetPassword(
+                                                                email: _model
+                                                                    .emailAddressController
+                                                                    .text,
+                                                                context:
+                                                                    context,
+                                                              );
+                                                            },
+                                                            child: Text(
+                                                              'Forgot Password?',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium,
                                                             ),
                                                           ),
                                                           Padding(

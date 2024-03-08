@@ -69,8 +69,6 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -584,6 +582,31 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                                   context)
                                                               .bodyMediumFamily),
                                                 ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 15.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id lectus eu purus scelerisque hendrerit.\n\nAenean placerat libero et velit interdum, nec dictum arcu egestas.',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                            ),
                                           ),
                                           Padding(
                                             padding:

@@ -1,8 +1,8 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -42,17 +42,13 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100.0),
-        child: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: false,
-          title: Column(
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +69,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                         icon: Icon(
                           Icons.arrow_back_rounded,
                           color: FlutterFlowTheme.of(context).primaryText,
-                          size: 24.0,
+                          size: 30.0,
                         ),
                         onPressed: () async {
                           context.pop();
@@ -114,14 +110,6 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
               ),
             ],
           ),
-          actions: [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
-      ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(20.0, 4.0, 20.0, 8.0),
             child: Row(
@@ -215,19 +203,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
             child: FFButtonWidget(
               onPressed: () async {
-                if (_model.emailAddressController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        'Email required!',
-                      ),
-                    ),
-                  );
-                  return;
-                }
-                await authManager.resetPassword(
-                  email: _model.emailAddressController.text,
-                  context: context,
+                await actions.supabasePasswordReset(
+                  _model.emailAddressController.text,
                 );
               },
               text: 'Send Link',

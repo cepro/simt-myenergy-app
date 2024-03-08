@@ -46,8 +46,6 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Container(
       width: double.infinity,
       height: 210.0,

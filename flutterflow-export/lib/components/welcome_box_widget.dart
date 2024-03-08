@@ -40,8 +40,6 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
@@ -81,7 +79,14 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                       decoration: BoxDecoration(),
                       child: AutoSizeText(
                         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id lectus eu purus scelerisque hendrerit.\n\nAenean placerat libero et velit interdum, nec dictum arcu egestas.\nInteger elit justo, mattis quis enim ut, commodo condimentum lacus. Aliquam erat volutpat.\n\n Donec vel congue risus. Sed laoreet fermentum orci. Sed eu orci varius, vulputate justo id, ornare lorem.',
-                        style: FlutterFlowTheme.of(context).bodyMedium,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              fontWeight: FontWeight.normal,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
                       ),
                     ),
                   ),

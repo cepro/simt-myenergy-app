@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
@@ -12,6 +13,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,15 +40,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.solarMeterSerial = await actions.getMeterSerialByTypeData(
+      _model.solarMeter = await actions.getMeterByType(
         FFAppState().accounts.toList(),
         'solar',
-        FFAppState().meterSerials,
+        FFAppState().meters,
       );
-      _model.supplyMeterSerial = await actions.getMeterSerialByTypeData(
+      _model.supplyMeter = await actions.getMeterByType(
         FFAppState().accounts.toList(),
         'supply',
-        FFAppState().meterSerials,
+        FFAppState().meters,
       );
       _model.homePageGetWallets = await GetWalletsCall.call(
         bearerToken: currentJwtToken,
@@ -221,6 +223,76 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.end,
                                                     children: [
+                                                      if (responsiveVisibility(
+                                                        context: context,
+                                                        phone: false,
+                                                      ))
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      35.0,
+                                                                      0.0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await launchURL(
+                                                                  'tel:+44-117-205-4840');
+                                                            },
+                                                            text:
+                                                                '+44 117 205 4840',
+                                                            icon: Icon(
+                                                              Icons.phone_sharp,
+                                                              size: 15.0,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              height: 40.0,
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          24.0,
+                                                                          0.0,
+                                                                          24.0,
+                                                                          0.0),
+                                                              iconPadding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                      ),
+                                                              elevation: 3.0,
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8.0),
+                                                            ),
+                                                          ),
+                                                        ),
                                                       Align(
                                                         alignment:
                                                             AlignmentDirectional(
@@ -289,23 +361,58 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium,
                                           ),
-                                          if (FFAppState()
-                                              .properties
-                                              .isNotEmpty)
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 10.0, 0.0, 0.0),
-                                              child: Text(
-                                                FFAppState()
-                                                    .properties
-                                                    .first
-                                                    .description,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
+                                          Padding(
+                                            padding: EdgeInsets.all(5.0),
+                                            child: AlignedTooltip(
+                                              content: Padding(
+                                                  padding: EdgeInsets.all(4.0),
+                                                  child: Text(
+                                                    FFAppState()
+                                                        .properties
+                                                        .first
+                                                        .plot,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
                                                         .bodyLarge,
+                                                  )),
+                                              offset: 4.0,
+                                              preferredDirection:
+                                                  AxisDirection.down,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              elevation: 4.0,
+                                              tailBaseWidth: 24.0,
+                                              tailLength: 12.0,
+                                              waitDuration:
+                                                  Duration(milliseconds: 100),
+                                              showDuration:
+                                                  Duration(milliseconds: 1500),
+                                              triggerMode:
+                                                  TooltipTriggerMode.tap,
+                                              child: Visibility(
+                                                visible: FFAppState()
+                                                    .properties
+                                                    .isNotEmpty,
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    FFAppState()
+                                                        .properties
+                                                        .first
+                                                        .description,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge,
+                                                  ),
+                                                ),
                                               ),
                                             ),
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -447,8 +554,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       valueOrDefault<
                                                                           String>(
                                                                         _model
-                                                                            .supplyMeterSerial,
-                                                                        'unknown',
+                                                                            .supplyMeter
+                                                                            ?.serial,
+                                                                        'not available',
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
@@ -467,7 +575,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           .singleWalletBalance,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .titleSmall,
+                                                                          .titleSmall
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                            fontSize:
+                                                                                14.0,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                          ),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -675,8 +791,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     valueOrDefault<
                                                                         String>(
                                                                       _model
-                                                                          .supplyMeterSerial,
-                                                                      'EML2137580723',
+                                                                          .supplyMeter
+                                                                          ?.serial,
+                                                                      'not available',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      _model
+                                                                          .supplyMeter
+                                                                          ?.prepayEnabled
+                                                                          ?.toString(),
+                                                                      'not available',
                                                                     ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -691,10 +829,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    '£31.50',
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      _model
+                                                                          .supplyMeter
+                                                                          ?.balance
+                                                                          ?.toString(),
+                                                                      'not available',
+                                                                    ),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .titleSmall,
+                                                                        .titleSmall
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                        ),
                                                                   ),
                                                                 ),
                                                               ],
@@ -842,8 +995,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       valueOrDefault<
                                                                           String>(
                                                                         _model
-                                                                            .solarMeterSerial,
-                                                                        'unknown',
+                                                                            .solarMeter
+                                                                            ?.serial,
+                                                                        'not available',
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)

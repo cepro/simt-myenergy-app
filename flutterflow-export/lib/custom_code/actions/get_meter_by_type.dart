@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<String?> getMeterSerialByTypeData(
+Future<MeterStruct?> getMeterByType(
   List<AccountStruct> accounts,
   String meterType,
-  dynamic meterSerialsJSON,
+  dynamic metersJSON,
 ) async {
   AccountStruct? account = accounts.firstWhere(
       (account) => account.contract.type == meterType,
@@ -25,12 +25,11 @@ Future<String?> getMeterSerialByTypeData(
     return null;
   }
 
-  var meterSerial = null;
-  var meterSerialResult =
-      getJsonField(meterSerialsJSON, "\$['$meterId']", false);
-  if (meterSerialResult != null) {
-    meterSerial = meterSerialResult;
+  var meter = null;
+  var meterResult = getJsonField(metersJSON, "\$['$meterId']", false);
+  if (meterResult != null) {
+    meter = meterResult;
   }
 
-  return meterSerial;
+  return meter;
 }
