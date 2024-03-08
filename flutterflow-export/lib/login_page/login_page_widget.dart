@@ -589,47 +589,34 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       context),
                                                             ),
                                                           ),
-                                                          InkWell(
-                                                            splashColor: Colors
-                                                                .transparent,
-                                                            focusColor: Colors
-                                                                .transparent,
-                                                            hoverColor: Colors
-                                                                .transparent,
-                                                            highlightColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            onTap: () async {
-                                                              if (_model
-                                                                  .emailAddressController
-                                                                  .text
-                                                                  .isEmpty) {
-                                                                ScaffoldMessenger.of(
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        15.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                context.pushNamed(
+                                                                    'forgotPasswordPage');
+                                                              },
+                                                              child: Text(
+                                                                'Forgot Password?',
+                                                                style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        Text(
-                                                                      'Email required!',
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                                return;
-                                                              }
-                                                              await authManager
-                                                                  .resetPassword(
-                                                                email: _model
-                                                                    .emailAddressController
-                                                                    .text,
-                                                                context:
-                                                                    context,
-                                                              );
-                                                            },
-                                                            child: Text(
-                                                              'Forgot Password?',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium,
+                                                                    .bodyMedium,
+                                                              ),
                                                             ),
                                                           ),
                                                           Padding(

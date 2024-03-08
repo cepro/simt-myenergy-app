@@ -22,4 +22,7 @@ class SitesRow extends SupabaseDataRow {
 
   String? get name => getField<String>('name');
   set name(String? value) => setField<String>('name', value);
+
+  String? get code => getField<String>('code');
+  set code(String? value) => setField<String>('code', value);
 }

@@ -23,9 +23,10 @@ class ReportsRow extends SupabaseDataRow {
   String? get contract => getField<String>('contract');
   set contract(String? value) => setField<String>('contract', value);
 
-  String? get billingmonth => getField<String>('billingmonth');
-  set billingmonth(String? value) => setField<String>('billingmonth', value);
+  DateTime? get billingMonth => getField<DateTime>('billing_month');
+  set billingMonth(DateTime? value) =>
+      setField<DateTime>('billing_month', value);
 
-  String? get reporturl => getField<String>('reporturl');
-  set reporturl(String? value) => setField<String>('reporturl', value);
+  String? get reportUrl => getField<String>('report_url');
+  set reportUrl(String? value) => setField<String>('report_url', value);
 }

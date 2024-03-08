@@ -12,5 +12,5 @@ import 'package:flutter/material.dart';
 
 Future supabasePasswordReset(String email) async {
   await SupaFlow.client.auth
-      .resetPasswordForEmail(email, "https://duckduckgo.com/bang");
+      .resetPasswordForEmail(email, redirectTo: "https://duckduckgo.com/bang");
 }

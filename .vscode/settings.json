@@ -1,8 +1,9 @@
 {
-    "files.exclude": {
-        "**/local-stage": true,
-        "**/flutterflow-export/": true,
-        "flutterflow-export/": true
-    },
-    "dart.analysisExcludedFolders": []
+  "files.exclude": {
+    "**/local-stage": true,
+    "**/flutterflow-export/": true,
+    "flutterflow-export/": true
+  },
+  "dart.analysisExcludedFolders": [],
+  "dart.flutterSdkPath": ".fvm/versions/3.19.1"
 }
