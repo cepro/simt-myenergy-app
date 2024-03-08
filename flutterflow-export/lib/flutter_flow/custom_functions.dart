@@ -56,3 +56,12 @@ ContractStruct? getContractByType(
       orElse: () => new AccountStruct());
   return account.contract;
 }
+
+String formatCurrencyAmount(double amount) {
+  var f = NumberFormat("###.00", "en_GB");
+  return "£" + f.format(amount);
+}
+
+bool isPrepayMode(MeterStruct? meter) {
+  return meter != null && meter.prepayEnabled == true;
+}

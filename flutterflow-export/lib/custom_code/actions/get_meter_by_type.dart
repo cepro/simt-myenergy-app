@@ -15,9 +15,8 @@ Future<MeterStruct?> getMeterByType(
   String meterType,
   dynamic metersJSON,
 ) async {
-  AccountStruct? account = accounts.firstWhere(
-      (account) => account.contract.type == meterType,
-      orElse: () => new AccountStruct());
+  AccountStruct? account =
+      accounts.isNotEmpty ? accounts[0] : new AccountStruct();
   String? meterId = meterType == 'solar'
       ? account.property.solarMeterUUID
       : account.property.supplyMeterUUID;
@@ -28,7 +27,7 @@ Future<MeterStruct?> getMeterByType(
   var meter = null;
   var meterResult = getJsonField(metersJSON, "\$['$meterId']", false);
   if (meterResult != null) {
-    meter = meterResult;
+    meter = MeterStruct.fromMap(meterResult);
   }
 
   return meter;

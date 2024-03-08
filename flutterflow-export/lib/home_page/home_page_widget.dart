@@ -56,12 +56,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       if ((_model.homePageGetWallets?.succeeded ?? true)) {
         await Future.delayed(const Duration(milliseconds: 500));
         setState(() {
-          _model.singleWalletBalance = '£${getJsonField(
+          _model.singleWalletBalance =
+              functions.formatCurrencyAmount(getJsonField(
             (_model.homePageGetWallets?.jsonBody ?? ''),
             r'''$[0].balance''',
-          ).toString().toString()}';
+          ));
           _model.isOwner =
               FFAppState().properties.first.owner == FFAppState().customerId;
+          _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
         });
         setState(() {
           FFAppState().supplyContractSigned = functions
@@ -518,7 +520,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        'Meter Credit Balance',
+                                                                        'Meter Balance',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall,
                                                                       ),
@@ -561,29 +563,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium,
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      _model
-                                                                          .singleWalletBalance,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                            fontSize:
-                                                                                14.0,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                          ),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -712,7 +691,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.start,
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
@@ -754,7 +734,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0,
                                                                             0.0),
                                                                     child: Text(
-                                                                      'Meter Credit Balance',
+                                                                      'Meter Details',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .headlineSmall,
@@ -772,89 +752,129 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         0.0,
                                                                         0.0,
                                                                         0.0),
-                                                            child: Column(
+                                                            child: Row(
                                                               mainAxisSize:
                                                                   MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
+                                                                      .min,
                                                               children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           20.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      _model
-                                                                          .supplyMeter
-                                                                          ?.serial,
-                                                                      'not available',
+                                                                      child:
+                                                                          Text(
+                                                                        _model.supplyMeter!.prepayEnabled
+                                                                            ? 'Mode:  Prepay'
+                                                                            : 'Mode:  Credit',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium,
+                                                                      ),
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium,
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
                                                                           0.0,
                                                                           20.0,
                                                                           0.0,
                                                                           0.0),
-                                                                  child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      _model
-                                                                          .supplyMeter
-                                                                          ?.prepayEnabled
-                                                                          ?.toString(),
-                                                                      'not available',
+                                                                      child:
+                                                                          Text(
+                                                                        'Serial:  ${_model.supplyMeter?.serial}',
+                                                                        textAlign:
+                                                                            TextAlign.start,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium,
+                                                                      ),
                                                                     ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium,
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      _model
-                                                                          .supplyMeter
-                                                                          ?.balance
-                                                                          ?.toString(),
-                                                                      'not available',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).titleSmallFamily,
-                                                                          fontSize:
-                                                                              14.0,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
-                                                                        ),
-                                                                  ),
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),
                                                           ),
                                                         ],
                                                       ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        if (_model.inPrepayMode)
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: Text(
+                                                                  'Meter Balance',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmall,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            if (_model
+                                                                .inPrepayMode)
+                                                              Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  if (_model
+                                                                          .supplyMeter
+                                                                          ?.prepayEnabled ==
+                                                                      true)
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          16.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        functions.formatCurrencyAmount(_model
+                                                                            .supplyMeter!
+                                                                            .balance),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                              fontSize: 14.0,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                ],
+                                                              ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ],

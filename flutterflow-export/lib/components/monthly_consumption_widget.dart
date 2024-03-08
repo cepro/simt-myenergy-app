@@ -80,7 +80,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                 child: Builder(
                   builder: (context) {
                     final monthlyUsage =
-                        FFAppState().monthlyUsage.toList().take(12).toList();
+                        FFAppState().monthlyUsage.toList().take(24).toList();
                     return FlutterFlowDataTable<MonthlyUsageStruct>(
                       controller: _model.paginatedDataTableController,
                       data: monthlyUsage,

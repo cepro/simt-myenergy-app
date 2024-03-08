@@ -27,6 +27,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   bool isOwner = false;
 
+  bool inPrepayMode = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
