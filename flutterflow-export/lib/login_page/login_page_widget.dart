@@ -149,7 +149,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
           width: double.infinity,
           height: double.infinity,
           child: Stack(
-            alignment: AlignmentDirectional(0.0, 1.0),
+            alignment: AlignmentDirectional(0.0, -1.0),
             children: [
               Align(
                 alignment: AlignmentDirectional(1.0, -1.4),
@@ -245,7 +245,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                           alignment: AlignmentDirectional(0.0, 1.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               wrapWithModel(
                                 model: _model.logoContainerRowModel,
@@ -264,10 +264,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(16.0),
                                     ),
+                                    alignment: AlignmentDirectional(0.0, -1.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.start,
                                       children: [
                                         Expanded(
                                           child: Column(
@@ -337,7 +338,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'Sign In failure, try again or contact support.',
+                                                                'Sign In failure, try again or contact support at hello@waterlilies.energy.',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -813,7 +814,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'Sign Up failure, try again or contact support.',
+                                                                'Sign Up failure, try again or contact support at hello@waterlilies.energy.',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium

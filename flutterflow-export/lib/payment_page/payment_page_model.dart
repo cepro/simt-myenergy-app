@@ -1,9 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/credit_card_widget.dart';
 import '/components/direct_debit_widget.dart';
-import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
+import '/components/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -30,8 +30,8 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
   ApiCallResponse? getPaymentMethodsOutput;
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
-  // Model for LogoutButton component.
-  late LogoutButtonModel logoutButtonModel;
+  // Model for TopBarLoggedIn component.
+  late TopBarLoggedInModel topBarLoggedInModel;
   // Model for CreditCard component.
   late CreditCardWidgetModel creditCardModel;
   // Model for DirectDebit component.
@@ -48,7 +48,7 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
-    logoutButtonModel = createModel(context, () => LogoutButtonModel());
+    topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
     directDebitModel = createModel(context, () => DirectDebitModel());
     mobileNavModel = createModel(context, () => MobileNavModel());
@@ -58,7 +58,7 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
   void dispose() {
     unfocusNode.dispose();
     mainWebNavModel.dispose();
-    logoutButtonModel.dispose();
+    topBarLoggedInModel.dispose();
     creditCardModel.dispose();
     directDebitModel.dispose();
     mobileNavModel.dispose();

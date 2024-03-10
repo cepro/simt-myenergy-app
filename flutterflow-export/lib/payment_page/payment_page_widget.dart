@@ -1,9 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/components/credit_card_widget.dart';
 import '/components/direct_debit_widget.dart';
-import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
+import '/components/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -111,69 +111,10 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (responsiveVisibility(
-                                context: context,
-                                tabletLandscape: false,
-                                desktop: false,
-                              ))
-                                Container(
-                                  width: double.infinity,
-                                  height: 44.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    flex: 7,
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 12.0, 0.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          if (responsiveVisibility(
-                                            context: context,
-                                            tablet: false,
-                                            tabletLandscape: false,
-                                            desktop: false,
-                                          ))
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.asset(
-                                                'assets/images/wlce-banner-300.png',
-                                                width: 220.0,
-                                                height: 50.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        wrapWithModel(
-                                          model: _model.logoutButtonModel,
-                                          updateCallback: () => setState(() {}),
-                                          child: LogoutButtonWidget(),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                              wrapWithModel(
+                                model: _model.topBarLoggedInModel,
+                                updateCallback: () => setState(() {}),
+                                child: TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
                                 context: context,

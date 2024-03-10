@@ -1,12 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/logout_button_widget.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
 import '/components/monthly_consumption_widget.dart';
 import '/components/solar_contract_row_widget.dart';
 import '/components/supply_contract_row_widget.dart';
+import '/components/top_bar_logged_in_widget.dart';
 import '/components/welcome_box_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -40,8 +40,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ApiCallResponse? homePageGetWallets;
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
-  // Model for LogoutButton component.
-  late LogoutButtonModel logoutButtonModel;
+  // Model for TopBarLoggedIn component.
+  late TopBarLoggedInModel topBarLoggedInModel;
   // Model for WelcomeBox component.
   late WelcomeBoxModel welcomeBoxModel;
   // Model for SupplyContractRow component.
@@ -58,7 +58,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
-    logoutButtonModel = createModel(context, () => LogoutButtonModel());
+    topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     welcomeBoxModel = createModel(context, () => WelcomeBoxModel());
     supplyContractRowModel =
         createModel(context, () => SupplyContractRowModel());
@@ -72,7 +72,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void dispose() {
     unfocusNode.dispose();
     mainWebNavModel.dispose();
-    logoutButtonModel.dispose();
+    topBarLoggedInModel.dispose();
     welcomeBoxModel.dispose();
     supplyContractRowModel.dispose();
     solarContractRowModel.dispose();

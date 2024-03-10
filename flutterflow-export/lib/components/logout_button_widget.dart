@@ -42,52 +42,42 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Visibility(
-      visible: responsiveVisibility(
-        context: context,
-        phone: false,
+    return Container(
+      width: 35.0,
+      height: 35.0,
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).secondaryBackground,
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 4.0,
+            color: Color(0x33000000),
+            offset: Offset(0.0, 2.0),
+          )
+        ],
+        borderRadius: BorderRadius.circular(16.0),
       ),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-        child: Container(
-          width: 50.0,
-          height: 50.0,
-          decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 4.0,
-                color: Color(0x33000000),
-                offset: Offset(0.0, 2.0),
-              )
-            ],
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-          child: FlutterFlowIconButton(
-            borderColor: FlutterFlowTheme.of(context).lineColor,
-            borderRadius: 12.0,
-            borderWidth: 1.0,
-            buttonSize: 50.0,
-            fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-            icon: Icon(
-              Icons.logout,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 24.0,
-            ),
-            onPressed: () async {
-              setState(() {
-                FFAppState().meters = null;
-                FFAppState().supplyContractSigned = false;
-                FFAppState().accounts = [];
-              });
-              GoRouter.of(context).prepareAuthEvent();
-              await authManager.signOut();
-              GoRouter.of(context).clearRedirectLocation();
-
-              context.goNamedAuth('loginPage', context.mounted);
-            },
-          ),
+      child: FlutterFlowIconButton(
+        borderColor: FlutterFlowTheme.of(context).lineColor,
+        borderRadius: 12.0,
+        borderWidth: 1.0,
+        fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+        icon: Icon(
+          Icons.logout,
+          color: FlutterFlowTheme.of(context).secondaryText,
+          size: 20.0,
         ),
+        onPressed: () async {
+          setState(() {
+            FFAppState().meters = null;
+            FFAppState().supplyContractSigned = false;
+            FFAppState().accounts = [];
+          });
+          GoRouter.of(context).prepareAuthEvent();
+          await authManager.signOut();
+          GoRouter.of(context).clearRedirectLocation();
+
+          context.goNamedAuth('loginPage', context.mounted);
+        },
       ),
     );
   }
