@@ -101,437 +101,450 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Expanded(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 24.0, 16.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              wrapWithModel(
-                                model: _model.topBarLoggedInModel,
-                                updateCallback: () => setState(() {}),
-                                child: TopBarLoggedInWidget(),
-                              ),
-                              if (responsiveVisibility(
-                                context: context,
-                                phone: false,
-                                tablet: false,
-                              ))
-                                Divider(
-                                  height: 44.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                ),
-                              if (responsiveVisibility(
-                                context: context,
-                                tabletLandscape: false,
-                                desktop: false,
-                              ))
-                                Divider(
-                                  height: 24.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                ),
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 24.0, 16.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (functions
-                                          .arrayLengthOrNegativeOneIfNotArray(
-                                              _model.paymentMethods) >
-                                      0)
-                                    Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
-                                      height: 230.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Column(
+                                  wrapWithModel(
+                                    model: _model.topBarLoggedInModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: TopBarLoggedInWidget(),
+                                  ),
+                                  if (responsiveVisibility(
+                                    context: context,
+                                    phone: false,
+                                    tablet: false,
+                                  ))
+                                    Divider(
+                                      height: 44.0,
+                                      thickness: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                    ),
+                                  if (responsiveVisibility(
+                                    context: context,
+                                    tabletLandscape: false,
+                                    desktop: false,
+                                  ))
+                                    Divider(
+                                      height: 24.0,
+                                      thickness: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .lineColor,
+                                    ),
+                                  Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (functions
+                                              .arrayLengthOrNegativeOneIfNotArray(
+                                                  _model.paymentMethods) >
+                                          0)
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          height: 230.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Container(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Container(
+                                                    width: MediaQuery.sizeOf(
+                                                                context)
                                                             .width *
                                                         1.0,
-                                                height: 210.0,
-                                                constraints: BoxConstraints(
-                                                  maxWidth: 375.0,
-                                                  maxHeight: 210.0,
-                                                ),
-                                                decoration: BoxDecoration(),
+                                                    height: 210.0,
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 375.0,
+                                                      maxHeight: 210.0,
+                                                    ),
+                                                    decoration: BoxDecoration(),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        if (getJsonField(
+                                                              (_model.getPaymentMethodsOutput
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                              r'''$[0].card''',
+                                                            ) !=
+                                                            null)
+                                                          wrapWithModel(
+                                                            model: _model
+                                                                .creditCardModel,
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            child:
+                                                                CreditCardWidget(
+                                                              last4Digits:
+                                                                  getJsonField(
+                                                                (_model.getPaymentMethodsOutput
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[0].card.last4''',
+                                                              ).toString(),
+                                                              expiryYear:
+                                                                  getJsonField(
+                                                                (_model.getPaymentMethodsOutput
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[0].card.expiryYear''',
+                                                              ),
+                                                              expiryMonth:
+                                                                  getJsonField(
+                                                                (_model.getPaymentMethodsOutput
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[0].card.expiryMonth''',
+                                                              ),
+                                                              cardBrand:
+                                                                  getJsonField(
+                                                                (_model.getPaymentMethodsOutput
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[0].card.brand''',
+                                                              ).toString(),
+                                                            ),
+                                                          ),
+                                                        if (getJsonField(
+                                                              (_model.getPaymentMethodsOutput
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                              r'''$[0].directDebit''',
+                                                            ) !=
+                                                            null)
+                                                          wrapWithModel(
+                                                            model: _model
+                                                                .directDebitModel,
+                                                            updateCallback:
+                                                                () => setState(
+                                                                    () {}),
+                                                            child:
+                                                                DirectDebitWidget(
+                                                              last4Digits:
+                                                                  getJsonField(
+                                                                (_model.getPaymentMethodsOutput
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[0].directDebit.last4''',
+                                                              ).toString(),
+                                                              sortCode:
+                                                                  getJsonField(
+                                                                (_model.getPaymentMethodsOutput
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[0].directDebit.sortCode''',
+                                                              ).toString(),
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    width: 200.0,
+                                                    decoration: BoxDecoration(),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        50.0, 0.0, 0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    if (getJsonField(
-                                                          (_model.getPaymentMethodsOutput
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$[0].card''',
-                                                        ) !=
-                                                        null)
-                                                      wrapWithModel(
-                                                        model: _model
-                                                            .creditCardModel,
-                                                        updateCallback: () =>
-                                                            setState(() {}),
-                                                        child: CreditCardWidget(
-                                                          last4Digits:
-                                                              getJsonField(
-                                                            (_model.getPaymentMethodsOutput
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$[0].card.last4''',
-                                                          ).toString(),
-                                                          expiryYear:
-                                                              getJsonField(
-                                                            (_model.getPaymentMethodsOutput
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$[0].card.expiryYear''',
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      20.0),
+                                                          child: Text(
+                                                            'Extra Details (remove me):',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
                                                           ),
-                                                          expiryMonth:
-                                                              getJsonField(
-                                                            (_model.getPaymentMethodsOutput
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$[0].card.expiryMonth''',
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      40.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Id:',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
                                                           ),
-                                                          cardBrand:
-                                                              getJsonField(
-                                                            (_model.getPaymentMethodsOutput
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$[0].card.brand''',
-                                                          ).toString(),
                                                         ),
-                                                      ),
-                                                    if (getJsonField(
-                                                          (_model.getPaymentMethodsOutput
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$[0].directDebit''',
-                                                        ) !=
-                                                        null)
-                                                      wrapWithModel(
-                                                        model: _model
-                                                            .directDebitModel,
-                                                        updateCallback: () =>
-                                                            setState(() {}),
-                                                        child:
-                                                            DirectDebitWidget(
-                                                          last4Digits:
-                                                              getJsonField(
-                                                            (_model.getPaymentMethodsOutput
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$[0].directDebit.last4''',
-                                                          ).toString(),
-                                                          sortCode:
-                                                              getJsonField(
-                                                            (_model.getPaymentMethodsOutput
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$[0].directDebit.sortCode''',
-                                                          ).toString(),
-                                                        ),
-                                                      ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Container(
-                                                width: 200.0,
-                                                decoration: BoxDecoration(),
-                                              ),
-                                            ],
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    50.0, 0.0, 0.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  20.0),
-                                                      child: Text(
-                                                        'Extra Details (remove me):',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      18.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  40.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Id:',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      18.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].id''',
-                                                      ).toString(),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  20.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Email:',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      18.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].email''',
-                                                      ).toString(),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          -1.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 20.0,
-                                                                0.0, 0.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        _model.deletePaymentMethodResult =
-                                                            await DeleteCustomersPaymentMethodCall
-                                                                .call(
-                                                          bearerToken:
-                                                              _model.jwtToken,
-                                                          id: getJsonField(
+                                                        Text(
+                                                          getJsonField(
                                                             (_model.getPaymentMethodsOutput
                                                                     ?.jsonBody ??
                                                                 ''),
                                                             r'''$[0].id''',
                                                           ).toString(),
-                                                        );
-                                                        if ((_model.deletePaymentMethodResult
-                                                                    ?.statusCode ??
-                                                                200) ==
-                                                            200) {
-                                                          context.pushNamed(
-                                                              'PaymentPage');
-                                                        } else {
-                                                          await action_blocks
-                                                              .handleMyEnergyApiCallFailure(
-                                                            context,
-                                                            wwwAuthenticateHeader: (_model
-                                                                    .deletePaymentMethodResult
-                                                                    ?.getHeader(
-                                                                        'www-authenticate') ??
-                                                                ''),
-                                                            httpStatusCode: (_model
-                                                                    .checkoutPageURI
-                                                                    ?.statusCode ??
-                                                                200),
-                                                          );
-                                                        }
-
-                                                        setState(() {});
-                                                      },
-                                                      text: 'Remove',
-                                                      options: FFButtonOptions(
-                                                        height: 30.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      20.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Email:',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
                                                                 .override(
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleSmallFamily,
-                                                                  color: Colors
-                                                                      .white,
+                                                                      .bodyMediumFamily,
+                                                                  fontSize:
+                                                                      18.0,
                                                                   useGoogleFonts: GoogleFonts
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
+                                                                              .bodyMediumFamily),
                                                                 ),
-                                                        elevation: 3.0,
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
+                                                          ),
                                                         ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
+                                                        Text(
+                                                          getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].email''',
+                                                          ).toString(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    20.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: FFButtonWidget(
+                                                          onPressed: () async {
+                                                            _model.deletePaymentMethodResult =
+                                                                await DeleteCustomersPaymentMethodCall
+                                                                    .call(
+                                                              bearerToken:
+                                                                  _model
+                                                                      .jwtToken,
+                                                              id: getJsonField(
+                                                                (_model.getPaymentMethodsOutput
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$[0].id''',
+                                                              ).toString(),
+                                                            );
+                                                            if ((_model.deletePaymentMethodResult
+                                                                        ?.statusCode ??
+                                                                    200) ==
+                                                                200) {
+                                                              context.pushNamed(
+                                                                  'PaymentPage');
+                                                            } else {
+                                                              await action_blocks
+                                                                  .handleMyEnergyApiCallFailure(
+                                                                context,
+                                                                wwwAuthenticateHeader: (_model
+                                                                        .deletePaymentMethodResult
+                                                                        ?.getHeader(
+                                                                            'www-authenticate') ??
+                                                                    ''),
+                                                                httpStatusCode: (_model
+                                                                        .checkoutPageURI
+                                                                        ?.statusCode ??
+                                                                    200),
+                                                              );
+                                                            }
+
+                                                            setState(() {});
+                                                          },
+                                                          text: 'Remove',
+                                                          options:
+                                                              FFButtonOptions(
+                                                            height: 30.0,
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
+                                                            iconPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                    ),
+                                                            elevation: 3.0,
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                  if (functions
-                                          .arrayLengthOrNegativeOneIfNotArray(
-                                              _model.paymentMethods) ==
-                                      0)
-                                    Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Text(
-                                            'Add a new payment method',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  fontSize: 28.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
+                                        ),
+                                      if (functions
+                                              .arrayLengthOrNegativeOneIfNotArray(
+                                                  _model.paymentMethods) ==
+                                          0)
+                                        Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 15.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id lectus eu purus scelerisque hendrerit.\n\nAenean placerat libero et velit interdum, nec dictum arcu egestas.',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                'Add a new payment method',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          fontSize: 28.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 15.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id lectus eu purus scelerisque hendrerit.\n\nAenean placerat libero et velit interdum, nec dictum arcu egestas.',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
@@ -547,63 +560,67 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 20.0, 0.0, 0.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                _model.checkoutPageURI =
-                                                    await CreateStripeCheckoutSessionCall
-                                                        .call(
-                                                  bearerToken: _model.jwtToken,
-                                                );
-                                                if (_model.checkoutPageURI !=
-                                                    null) {
-                                                  await actions
-                                                      .navigateToExternalURI(
-                                                    CreateStripeCheckoutSessionCall
-                                                        .checkoutPageURI(
-                                                      (_model.checkoutPageURI
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                    ).toString(),
-                                                  );
-                                                } else {
-                                                  await action_blocks
-                                                      .handleMyEnergyApiCallFailure(
-                                                    context,
-                                                    wwwAuthenticateHeader: (_model
-                                                            .checkoutPageURI
-                                                            ?.getHeader(
-                                                                'www-authenticate') ??
-                                                        ''),
-                                                    httpStatusCode: (_model
-                                                            .checkoutPageURI
-                                                            ?.statusCode ??
-                                                        200),
-                                                  );
-                                                }
-
-                                                setState(() {});
-                                              },
-                                              text: 'Setup Payment with Stripe',
-                                              options: FFButtonOptions(
-                                                height: 40.0,
+                                                ),
+                                              ),
+                                              Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                        0.0, 20.0, 0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    _model.checkoutPageURI =
+                                                        await CreateStripeCheckoutSessionCall
+                                                            .call(
+                                                      bearerToken:
+                                                          _model.jwtToken,
+                                                    );
+                                                    if (_model
+                                                            .checkoutPageURI !=
+                                                        null) {
+                                                      await actions
+                                                          .navigateToExternalURI(
+                                                        CreateStripeCheckoutSessionCall
+                                                            .checkoutPageURI(
+                                                          (_model.checkoutPageURI
+                                                                  ?.jsonBody ??
+                                                              ''),
+                                                        ).toString(),
+                                                      );
+                                                    } else {
+                                                      await action_blocks
+                                                          .handleMyEnergyApiCallFailure(
+                                                        context,
+                                                        wwwAuthenticateHeader: (_model
+                                                                .checkoutPageURI
+                                                                ?.getHeader(
+                                                                    'www-authenticate') ??
+                                                            ''),
+                                                        httpStatusCode: (_model
+                                                                .checkoutPageURI
+                                                                ?.statusCode ??
+                                                            200),
+                                                      );
+                                                    }
+
+                                                    setState(() {});
+                                                  },
+                                                  text:
+                                                      'Setup Payment with Stripe',
+                                                  options: FFButtonOptions(
+                                                    height: 40.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
@@ -618,25 +635,28 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                                           context)
                                                                       .titleSmallFamily),
                                                         ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
+                                                    elevation: 3.0,
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
                                               ),
-                                            ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    ),
+                                        ),
+                                    ],
+                                  ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                   wrapWithModel(
