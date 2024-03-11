@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
 import '/components/monthly_consumption_widget.dart';
+import '/components/product_roadmap_box_widget.dart';
 import '/components/solar_contract_row_widget.dart';
 import '/components/supply_contract_row_widget.dart';
 import '/components/top_bar_logged_in_widget.dart';
@@ -277,6 +278,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       model: _model.welcomeBoxModel,
                                       updateCallback: () => setState(() {}),
                                       child: WelcomeBoxWidget(),
+                                    ),
+                                    wrapWithModel(
+                                      model: _model.productRoadmapBoxModel,
+                                      updateCallback: () => setState(() {}),
+                                      child: ProductRoadmapBoxWidget(),
                                     ),
                                     if (functions
                                             .getContractByType(
@@ -628,7 +634,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        _model.supplyMeter!.prepayEnabled
+                                                                        _model.inPrepayMode
                                                                             ? 'Mode:  Prepay'
                                                                             : 'Mode:  Credit',
                                                                         style: FlutterFlowTheme.of(context)

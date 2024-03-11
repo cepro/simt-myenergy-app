@@ -1,21 +1,22 @@
+import '/components/product_road_map_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'welcome_box_model.dart';
-export 'welcome_box_model.dart';
+import 'product_roadmap_box_model.dart';
+export 'product_roadmap_box_model.dart';
 
-class WelcomeBoxWidget extends StatefulWidget {
-  const WelcomeBoxWidget({super.key});
+class ProductRoadmapBoxWidget extends StatefulWidget {
+  const ProductRoadmapBoxWidget({super.key});
 
   @override
-  State<WelcomeBoxWidget> createState() => _WelcomeBoxWidgetState();
+  State<ProductRoadmapBoxWidget> createState() =>
+      _ProductRoadmapBoxWidgetState();
 }
 
-class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
-  late WelcomeBoxModel _model;
+class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
+  late ProductRoadmapBoxModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +27,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => WelcomeBoxModel());
+    _model = createModel(context, () => ProductRoadmapBoxModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -59,7 +60,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Welcome',
+                    'Product Roadmap',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).headlineMediumFamily,
@@ -76,7 +77,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                 children: [
                   Flexible(
                     child: Text(
-                      'The Water Lilies microgrid has been established to enable homes and electric vehicles to share solar energy across the Water Lilies estate; surplus solar is stored in the Water Lilies community battery for later use.',
+                      'The Cepro team is working hard to enable microgrid customers to manage all aspects of their energy use through this “MyEnergy” app. New features are being rolled out regularly.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -91,47 +92,48 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
+                  Flexible(
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: ProductRoadMapModalWidget(),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      },
+                      child: Text(
+                        'Click to show Product Roadmap',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              fontWeight: FontWeight.w600,
+                              decoration: TextDecoration.underline,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(),
-                      child: RichText(
-                        textScaler: MediaQuery.of(context).textScaler,
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'For further details please see the ',
-                              style: TextStyle(),
-                            ),
-                            TextSpan(
-                              text: 'Solution Brief',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                decoration: TextDecoration.underline,
-                              ),
-                              mouseCursor: SystemMouseCursors.click,
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () async {
-                                  await launchURL(
-                                      'https://drive.google.com/file/d/1xKHnGaLy94EFuS5L9YEL3yfP1-we1tKw/view');
-                                },
-                            ),
-                            TextSpan(
-                              text: '.',
-                              style: TextStyle(),
-                            )
-                          ],
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                fontWeight: FontWeight.w600,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
-                        ),
-                      ),
                     ),
                   ),
                 ],

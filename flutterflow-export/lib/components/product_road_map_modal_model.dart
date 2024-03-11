@@ -1,12 +1,15 @@
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'welcome_box_widget.dart' show WelcomeBoxWidget;
-import 'package:flutter/gestures.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'product_road_map_modal_widget.dart' show ProductRoadMapModalWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class WelcomeBoxModel extends FlutterFlowModel<WelcomeBoxWidget> {
+class ProductRoadMapModalModel
+    extends FlutterFlowModel<ProductRoadMapModalWidget> {
   /// Initialization and disposal methods.
 
   @override

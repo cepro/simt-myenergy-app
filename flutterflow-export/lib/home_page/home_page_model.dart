@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
 import '/components/monthly_consumption_widget.dart';
+import '/components/product_roadmap_box_widget.dart';
 import '/components/solar_contract_row_widget.dart';
 import '/components/supply_contract_row_widget.dart';
 import '/components/top_bar_logged_in_widget.dart';
@@ -44,6 +45,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late TopBarLoggedInModel topBarLoggedInModel;
   // Model for WelcomeBox component.
   late WelcomeBoxModel welcomeBoxModel;
+  // Model for ProductRoadmapBox component.
+  late ProductRoadmapBoxModel productRoadmapBoxModel;
   // Model for SupplyContractRow component.
   late SupplyContractRowModel supplyContractRowModel;
   // Model for SolarContractRow component.
@@ -60,6 +63,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     welcomeBoxModel = createModel(context, () => WelcomeBoxModel());
+    productRoadmapBoxModel =
+        createModel(context, () => ProductRoadmapBoxModel());
     supplyContractRowModel =
         createModel(context, () => SupplyContractRowModel());
     solarContractRowModel = createModel(context, () => SolarContractRowModel());
@@ -74,6 +79,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     mainWebNavModel.dispose();
     topBarLoggedInModel.dispose();
     welcomeBoxModel.dispose();
+    productRoadmapBoxModel.dispose();
     supplyContractRowModel.dispose();
     solarContractRowModel.dispose();
     monthlyConsumptionModel.dispose();

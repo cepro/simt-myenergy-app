@@ -1,24 +1,22 @@
 --- ./lib/login_page/login_page_widget.dart
 +++ ./lib/login_page/login_page_widget.dart
-@@ -687,10 +687,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
-                                                                           .passwordController
-                                                                           .text,
-                                                                     );
--                                                                    if (user ==
--                                                                        null) {
--                                                                      return;
--                                                                    }
+@@ -520,9 +520,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
+                                                                 .passwordController
+                                                                 .text,
+                                                           );
+-                                                          if (user == null) {
+-                                                            return;
+-                                                          }
  
-                                                                     if (loggedIn ==
-                                                                         true) {
-@@ -1247,10 +1243,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
-                                                                         .passwordCreateController
-                                                                         .text,
-                                                                   );
--                                                                  if (user ==
--                                                                      null) {
--                                                                    return;
--                                                                  }
+                                                           if (loggedIn ==
+                                                               true) {
+@@ -1053,9 +1050,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
+                                                               .passwordCreateController
+                                                               .text,
+                                                         );
+-                                                        if (user == null) {
+-                                                          return;
+-                                                        }
  
-                                                                   if (loggedIn) {
-                                                                     await Future.delayed(const Duration(
+                                                         if (loggedIn) {
+                                                           await Future.delayed(
