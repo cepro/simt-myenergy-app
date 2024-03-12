@@ -1,7 +1,6 @@
 import '/components/logout_button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'top_bar_logged_in_widget.dart' show TopBarLoggedInWidget;
 import 'package:flutter/material.dart';
