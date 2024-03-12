@@ -38,6 +38,45 @@ class GetCustomersPaymentMethodsCall {
       ) as List?;
 }
 
+class SendPaymentCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    int? amount,
+    String? description = '',
+    String? customerId = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "amount": ${amount},
+  "customerId": "${customerId}",
+  "description": "${description}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Send Payment',
+      apiUrl: 'https://simt-j-billing-stripe-qa.fly.dev/customers/payment',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? allRecords(dynamic response) => getJsonField(
+        response,
+        r'''$[*]''',
+        true,
+      ) as List?;
+}
+
 class GetCustomersAccountsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

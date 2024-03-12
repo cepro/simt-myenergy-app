@@ -89,10 +89,14 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
         .cast<SiteStruct>();
     FFAppState().customerId = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
-      r'''$.customerId''',
+      r'''$.customer.customerId''',
     ).toString().toString();
     FFAppState().monthlyUsage =
         monthlyUsages!.toList().cast<MonthlyUsageStruct>();
+    FFAppState().customerStatus = getJsonField(
+      (getAccountsResponse?.jsonBody ?? ''),
+      r'''$.customer.status''',
+    ).toString().toString();
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(

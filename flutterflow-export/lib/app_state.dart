@@ -122,6 +122,9 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _monthlyUsage;
     });
+    _safeInit(() {
+      _customerStatus = prefs.getString('ff_customerStatus') ?? _customerStatus;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -377,6 +380,13 @@ class FFAppState extends ChangeNotifier {
   dynamic get monthlyUsageJSON => _monthlyUsageJSON;
   set monthlyUsageJSON(dynamic _value) {
     _monthlyUsageJSON = _value;
+  }
+
+  String _customerStatus = '';
+  String get customerStatus => _customerStatus;
+  set customerStatus(String _value) {
+    _customerStatus = _value;
+    prefs.setString('ff_customerStatus', _value);
   }
 }
 

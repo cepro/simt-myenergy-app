@@ -2,6 +2,7 @@ import '/components/logout_button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -74,6 +75,23 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                  child: Container(
+                    width: 35.0,
+                    height: 35.0,
+                    child: custom_widgets.URIIconButtonWithTooltip(
+                      width: 35.0,
+                      height: 35.0,
+                      uri: 'mailto:foo@man.com',
+                      tooltipText: 'show me on hover',
+                      icon: Icon(
+                        Icons.mail,
+                        color: FlutterFlowTheme.of(context).primary,
+                      ),
+                    ),
+                  ),
+                ),
                 FFButtonWidget(
                   onPressed: () async {
                     await launchURL('tel:+44-117-205-4840');

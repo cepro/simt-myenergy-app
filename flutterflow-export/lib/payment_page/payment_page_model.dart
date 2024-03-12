@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/credit_card_widget.dart';
 import '/components/direct_debit_widget.dart';
@@ -21,6 +22,10 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
 
   dynamic paymentMethods;
 
+  bool sendPaymentFailure = false;
+
+  bool paymentSuccess = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -40,6 +45,20 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
   ApiCallResponse? deletePaymentMethodResult;
   // Stores action output result for [Backend Call - API (Create Stripe Checkout Session)] action in Button widget.
   ApiCallResponse? checkoutPageURI;
+  // State field(s) for customerIdField widget.
+  FocusNode? customerIdFieldFocusNode;
+  TextEditingController? customerIdFieldController;
+  String? Function(BuildContext, String?)? customerIdFieldControllerValidator;
+  // State field(s) for amountField widget.
+  FocusNode? amountFieldFocusNode;
+  TextEditingController? amountFieldController;
+  String? Function(BuildContext, String?)? amountFieldControllerValidator;
+  // State field(s) for descriptionField widget.
+  FocusNode? descriptionFieldFocusNode;
+  TextEditingController? descriptionFieldController;
+  String? Function(BuildContext, String?)? descriptionFieldControllerValidator;
+  // Stores action output result for [Backend Call - API (Send Payment)] action in Button widget.
+  ApiCallResponse? sendPaymentResult;
   // Model for mobileNav component.
   late MobileNavModel mobileNavModel;
 
@@ -61,6 +80,15 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
     topBarLoggedInModel.dispose();
     creditCardModel.dispose();
     directDebitModel.dispose();
+    customerIdFieldFocusNode?.dispose();
+    customerIdFieldController?.dispose();
+
+    amountFieldFocusNode?.dispose();
+    amountFieldController?.dispose();
+
+    descriptionFieldFocusNode?.dispose();
+    descriptionFieldController?.dispose();
+
     mobileNavModel.dispose();
   }
 
