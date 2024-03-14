@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:gotrue/gotrue.dart';
+
 Future<bool> supabasePasswordUpdate(String newPassword) async {
   UserResponse userResponse = await SupaFlow.client.auth
       .updateUser(UserAttributes(password: newPassword));
-  print(userResponse.toString());
-  print(userResponse.user);
   return (userResponse.user != null) ? true : false;
 }
