@@ -41,13 +41,13 @@ class GetCustomersPaymentMethodsCall {
 class SendPaymentCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
-    int? amount,
+    double? amount,
     String? description = '',
     String? customerId = '',
   }) async {
     final ffApiRequestBody = '''
 {
-  "amount": ${amount},
+  "amount": "${amount}",
   "customerId": "${customerId}",
   "description": "${description}"
 }''';

@@ -61,7 +61,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
     _model.customerIdFieldController ??= TextEditingController();
     _model.customerIdFieldFocusNode ??= FocusNode();
 
-    _model.amountFieldController ??= TextEditingController();
+    _model.amountFieldController ??= TextEditingController(text: '1.50');
     _model.amountFieldFocusNode ??= FocusNode();
 
     _model.descriptionFieldController ??= TextEditingController();
@@ -118,223 +118,824 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 24.0, 16.0, 0.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  wrapWithModel(
-                                    model: _model.topBarLoggedInModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: TopBarLoggedInWidget(),
-                                  ),
-                                  if (responsiveVisibility(
-                                    context: context,
-                                    phone: false,
-                                    tablet: false,
-                                  ))
-                                    Divider(
-                                      height: 44.0,
-                                      thickness: 1.0,
-                                      color: FlutterFlowTheme.of(context)
-                                          .lineColor,
+                            Container(
+                              constraints: BoxConstraints(
+                                maxWidth: 1024.0,
+                              ),
+                              decoration: BoxDecoration(),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 24.0, 16.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    wrapWithModel(
+                                      model: _model.topBarLoggedInModel,
+                                      updateCallback: () => setState(() {}),
+                                      child: TopBarLoggedInWidget(),
                                     ),
-                                  if (responsiveVisibility(
-                                    context: context,
-                                    tabletLandscape: false,
-                                    desktop: false,
-                                  ))
-                                    Divider(
-                                      height: 24.0,
-                                      thickness: 1.0,
-                                      color: FlutterFlowTheme.of(context)
-                                          .lineColor,
-                                    ),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      if (functions
-                                              .arrayLengthOrNegativeOneIfNotArray(
-                                                  _model.paymentMethods) >
-                                          0)
-                                        Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          height: 230.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                    if (responsiveVisibility(
+                                      context: context,
+                                      phone: false,
+                                      tablet: false,
+                                    ))
+                                      Divider(
+                                        height: 44.0,
+                                        thickness: 1.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .lineColor,
+                                      ),
+                                    if (responsiveVisibility(
+                                      context: context,
+                                      tabletLandscape: false,
+                                      desktop: false,
+                                    ))
+                                      Divider(
+                                        height: 24.0,
+                                        thickness: 1.0,
+                                        color: FlutterFlowTheme.of(context)
+                                            .lineColor,
+                                      ),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        if (functions
+                                                .arrayLengthOrNegativeOneIfNotArray(
+                                                    _model.paymentMethods) >
+                                            0)
+                                          Container(
+                                            constraints: BoxConstraints(
+                                              maxWidth: 333.0,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                if (getJsonField(
+                                                      (_model.getPaymentMethodsOutput
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$[0].directDebit''',
+                                                    ) !=
+                                                    null)
+                                                  wrapWithModel(
+                                                    model:
+                                                        _model.directDebitModel,
+                                                    updateCallback: () =>
+                                                        setState(() {}),
+                                                    child: DirectDebitWidget(
+                                                      last4Digits: getJsonField(
+                                                        (_model.getPaymentMethodsOutput
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$[0].directDebit.last4''',
+                                                      ).toString(),
+                                                      sortCode: getJsonField(
+                                                        (_model.getPaymentMethodsOutput
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$[0].directDebit.sortCode''',
+                                                      ).toString(),
+                                                    ),
+                                                  ),
+                                                if (getJsonField(
+                                                      (_model.getPaymentMethodsOutput
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$[0].card''',
+                                                    ) !=
+                                                    null)
+                                                  wrapWithModel(
+                                                    model:
+                                                        _model.creditCardModel,
+                                                    updateCallback: () =>
+                                                        setState(() {}),
+                                                    child: CreditCardWidget(
+                                                      last4Digits: getJsonField(
+                                                        (_model.getPaymentMethodsOutput
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$[0].card.last4''',
+                                                      ).toString(),
+                                                      expiryYear: getJsonField(
+                                                        (_model.getPaymentMethodsOutput
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$[0].card.expiryYear''',
+                                                      ),
+                                                      expiryMonth: getJsonField(
+                                                        (_model.getPaymentMethodsOutput
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$[0].card.expiryMonth''',
+                                                      ),
+                                                      cardBrand: getJsonField(
+                                                        (_model.getPaymentMethodsOutput
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$[0].card.brand''',
+                                                      ).toString(),
+                                                    ),
+                                                  ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 20.0,
+                                                                0.0, 0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        _model.deletePaymentMethodResult =
+                                                            await DeleteCustomersPaymentMethodCall
+                                                                .call(
+                                                          bearerToken:
+                                                              _model.jwtToken,
+                                                          id: getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].id''',
+                                                          ).toString(),
+                                                        );
+                                                        if ((_model.deletePaymentMethodResult
+                                                                    ?.statusCode ??
+                                                                200) ==
+                                                            200) {
+                                                          context.pushNamed(
+                                                              'PaymentPage');
+                                                        } else {
+                                                          await action_blocks
+                                                              .handleMyEnergyApiCallFailure(
+                                                            context,
+                                                            wwwAuthenticateHeader: (_model
+                                                                    .deletePaymentMethodResult
+                                                                    ?.getHeader(
+                                                                        'www-authenticate') ??
+                                                                ''),
+                                                            httpStatusCode: (_model
+                                                                    .checkoutPageURI
+                                                                    ?.statusCode ??
+                                                                200),
+                                                          );
+                                                        }
+
+                                                        setState(() {});
+                                                      },
+                                                      text:
+                                                          'Remove Payment Method',
+                                                      options: FFButtonOptions(
+                                                        height: 30.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    24.0,
+                                                                    0.0,
+                                                                    24.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily),
+                                                                ),
+                                                        elevation: 3.0,
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Container(
-                                                    width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        1.0,
-                                                    height: 210.0,
-                                                    constraints: BoxConstraints(
-                                                      maxWidth: 375.0,
-                                                      maxHeight: 210.0,
-                                                    ),
-                                                    decoration: BoxDecoration(),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        if (getJsonField(
-                                                              (_model.getPaymentMethodsOutput
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              r'''$[0].card''',
-                                                            ) !=
-                                                            null)
-                                                          wrapWithModel(
-                                                            model: _model
-                                                                .creditCardModel,
-                                                            updateCallback:
-                                                                () => setState(
-                                                                    () {}),
-                                                            child:
-                                                                CreditCardWidget(
-                                                              last4Digits:
-                                                                  getJsonField(
-                                                                (_model.getPaymentMethodsOutput
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                r'''$[0].card.last4''',
-                                                              ).toString(),
-                                                              expiryYear:
-                                                                  getJsonField(
-                                                                (_model.getPaymentMethodsOutput
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                r'''$[0].card.expiryYear''',
+                                        if (functions
+                                                .arrayLengthOrNegativeOneIfNotArray(
+                                                    _model.paymentMethods) ==
+                                            0)
+                                          Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Text(
+                                                  'Add a new payment method',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        fontSize: 28.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 15.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until you contract for energy supply. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply in April. You will be notified by email 24 hours before any payments are taken.\n',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 20.0, 0.0, 0.0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      _model.checkoutPageURI =
+                                                          await CreateStripeCheckoutSessionCall
+                                                              .call(
+                                                        bearerToken:
+                                                            _model.jwtToken,
+                                                      );
+                                                      if (_model
+                                                              .checkoutPageURI !=
+                                                          null) {
+                                                        await actions
+                                                            .navigateToExternalURI(
+                                                          CreateStripeCheckoutSessionCall
+                                                              .checkoutPageURI(
+                                                            (_model.checkoutPageURI
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          ).toString(),
+                                                        );
+                                                      } else {
+                                                        await action_blocks
+                                                            .handleMyEnergyApiCallFailure(
+                                                          context,
+                                                          wwwAuthenticateHeader: (_model
+                                                                  .checkoutPageURI
+                                                                  ?.getHeader(
+                                                                      'www-authenticate') ??
+                                                              ''),
+                                                          httpStatusCode: (_model
+                                                                  .checkoutPageURI
+                                                                  ?.statusCode ??
+                                                              200),
+                                                        );
+                                                      }
+
+                                                      setState(() {});
+                                                    },
+                                                    text:
+                                                        'Setup Payment with Stripe',
+                                                    options: FFButtonOptions(
+                                                      height: 40.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  24.0,
+                                                                  0.0,
+                                                                  24.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily,
+                                                                color: Colors
+                                                                    .white,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily),
                                                               ),
-                                                              expiryMonth:
-                                                                  getJsonField(
-                                                                (_model.getPaymentMethodsOutput
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                r'''$[0].card.expiryMonth''',
-                                                              ),
-                                                              cardBrand:
-                                                                  getJsonField(
-                                                                (_model.getPaymentMethodsOutput
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                r'''$[0].card.brand''',
-                                                              ).toString(),
-                                                            ),
-                                                          ),
-                                                        if (getJsonField(
-                                                              (_model.getPaymentMethodsOutput
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              r'''$[0].directDebit''',
-                                                            ) !=
-                                                            null)
-                                                          wrapWithModel(
-                                                            model: _model
-                                                                .directDebitModel,
-                                                            updateCallback:
-                                                                () => setState(
-                                                                    () {}),
-                                                            child:
-                                                                DirectDebitWidget(
-                                                              last4Digits:
-                                                                  getJsonField(
-                                                                (_model.getPaymentMethodsOutput
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                r'''$[0].directDebit.last4''',
-                                                              ).toString(),
-                                                              sortCode:
-                                                                  getJsonField(
-                                                                (_model.getPaymentMethodsOutput
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                r'''$[0].directDebit.sortCode''',
-                                                              ).toString(),
-                                                            ),
-                                                          ),
-                                                      ],
+                                                      elevation: 3.0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
                                                     ),
                                                   ),
-                                                  Container(
-                                                    width: 200.0,
-                                                    decoration: BoxDecoration(),
-                                                  ),
-                                                ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        if ((currentUserEmail ==
+                                                'damonrand@gmail.com') ||
+                                            (currentUserEmail ==
+                                                'nova@cepro.energy'))
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 50.0, 0.0, 0.0),
+                                            child: Container(
+                                              width: 500.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
                                               ),
-                                              Padding(
+                                              child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        50.0, 0.0, 0.0, 0.0),
+                                                        0.0, 12.0, 0.0, 0.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
                                                   children: [
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              -1.0, 0.0),
+                                                    Text(
+                                                      'Initiate a Payment',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                fontSize: 28.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
+                                                    if (_model
+                                                        .sendPaymentFailure)
+                                                      Text(
+                                                        _model.errorMessage,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    if (_model.paymentSuccess)
+                                                      Text(
+                                                        'Send payment succeeded',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  20.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .customerIdFieldController,
+                                                        focusNode: _model
+                                                            .customerIdFieldFocusNode,
+                                                        autofocus: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              'Stripe Customer ID',
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium,
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium,
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .lineColor,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0x00000000),
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                        validator: _model
+                                                            .customerIdFieldControllerValidator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  12.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .amountFieldController,
+                                                        focusNode: _model
+                                                            .amountFieldFocusNode,
+                                                        autofocus: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              'Amount (GBP)',
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium,
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium,
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .lineColor,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0x00000000),
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                        validator: _model
+                                                            .amountFieldControllerValidator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  12.0,
+                                                                  8.0,
+                                                                  0.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .descriptionFieldController,
+                                                        focusNode: _model
+                                                            .descriptionFieldFocusNode,
+                                                        autofocus: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              'Description',
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium,
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium,
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .lineColor,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0x00000000),
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          filled: true,
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                        validator: _model
+                                                            .descriptionFieldControllerValidator
+                                                            .asValidator(
+                                                                context),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  12.0,
+                                                                  0.0,
+                                                                  30.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
-                                                          _model.deletePaymentMethodResult =
-                                                              await DeleteCustomersPaymentMethodCall
+                                                          // Reset flags
+                                                          setState(() {
+                                                            _model.sendPaymentFailure =
+                                                                false;
+                                                            _model.paymentSuccess =
+                                                                false;
+                                                          });
+                                                          _model.sendPaymentResult =
+                                                              await SendPaymentCall
                                                                   .call(
+                                                            amount: double
+                                                                .tryParse(_model
+                                                                    .amountFieldController
+                                                                    .text),
+                                                            description: _model
+                                                                .descriptionFieldController
+                                                                .text,
+                                                            customerId: _model
+                                                                .customerIdFieldController
+                                                                .text,
                                                             bearerToken:
-                                                                _model.jwtToken,
-                                                            id: getJsonField(
-                                                              (_model.getPaymentMethodsOutput
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              r'''$[0].id''',
-                                                            ).toString(),
+                                                                currentJwtToken,
                                                           );
-                                                          if ((_model.deletePaymentMethodResult
-                                                                      ?.statusCode ??
-                                                                  200) ==
-                                                              200) {
-                                                            context.pushNamed(
-                                                                'PaymentPage');
+                                                          if ((_model
+                                                                  .sendPaymentResult
+                                                                  ?.succeeded ??
+                                                              true)) {
+                                                            // Set success flag
+                                                            setState(() {
+                                                              _model.paymentSuccess =
+                                                                  true;
+                                                            });
                                                           } else {
-                                                            await action_blocks
-                                                                .handleMyEnergyApiCallFailure(
-                                                              context,
-                                                              wwwAuthenticateHeader: (_model
-                                                                      .deletePaymentMethodResult
-                                                                      ?.getHeader(
-                                                                          'www-authenticate') ??
-                                                                  ''),
-                                                              httpStatusCode: (_model
-                                                                      .checkoutPageURI
-                                                                      ?.statusCode ??
-                                                                  200),
-                                                            );
+                                                            // Set failure flag
+                                                            setState(() {
+                                                              _model.sendPaymentFailure =
+                                                                  true;
+                                                              _model.errorMessage =
+                                                                  getJsonField(
+                                                                (_model.sendPaymentResult
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                                r'''$.message''',
+                                                              ).toString();
+                                                            });
                                                           }
 
                                                           setState(() {});
                                                         },
-                                                        text:
-                                                            'Remove Payment Method',
+                                                        text: 'Submit',
                                                         options:
                                                             FFButtonOptions(
-                                                          height: 30.0,
+                                                          height: 40.0,
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
@@ -384,626 +985,12 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                   ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      if (functions
-                                              .arrayLengthOrNegativeOneIfNotArray(
-                                                  _model.paymentMethods) ==
-                                          0)
-                                        Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'Add a new payment method',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          fontSize: 28.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 15.0, 0.0, 0.0),
-                                                child: Text(
-                                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id lectus eu purus scelerisque hendrerit.\n\nAenean placerat libero et velit interdum, nec dictum arcu egestas.',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 20.0, 0.0, 0.0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    _model.checkoutPageURI =
-                                                        await CreateStripeCheckoutSessionCall
-                                                            .call(
-                                                      bearerToken:
-                                                          _model.jwtToken,
-                                                    );
-                                                    if (_model
-                                                            .checkoutPageURI !=
-                                                        null) {
-                                                      await actions
-                                                          .navigateToExternalURI(
-                                                        CreateStripeCheckoutSessionCall
-                                                            .checkoutPageURI(
-                                                          (_model.checkoutPageURI
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        ).toString(),
-                                                      );
-                                                    } else {
-                                                      await action_blocks
-                                                          .handleMyEnergyApiCallFailure(
-                                                        context,
-                                                        wwwAuthenticateHeader: (_model
-                                                                .checkoutPageURI
-                                                                ?.getHeader(
-                                                                    'www-authenticate') ??
-                                                            ''),
-                                                        httpStatusCode: (_model
-                                                                .checkoutPageURI
-                                                                ?.statusCode ??
-                                                            200),
-                                                      );
-                                                    }
-
-                                                    setState(() {});
-                                                  },
-                                                  text:
-                                                      'Setup Payment with Stripe',
-                                                  options: FFButtonOptions(
-                                                    height: 40.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(24.0, 0.0,
-                                                                24.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color: Colors.white,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                    elevation: 3.0,
-                                                    borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      if ((currentUserEmail ==
-                                              'damonrand@gmail.com') ||
-                                          (currentUserEmail ==
-                                              'nova@cepro.energy'))
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 50.0, 0.0, 0.0),
-                                          child: Container(
-                                            width: 500.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 12.0, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Text(
-                                                    'Initiate a Payment',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          fontSize: 28.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                  if (_model.sendPaymentFailure)
-                                                    Text(
-                                                      'Send payment failed - see logs',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  if (_model.paymentSuccess)
-                                                    Text(
-                                                      'Send payment succeeded',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                    ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 20.0,
-                                                                8.0, 0.0),
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                          .customerIdFieldController,
-                                                      focusNode: _model
-                                                          .customerIdFieldFocusNode,
-                                                      autofocus: true,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        labelText:
-                                                            'Stripe Customer ID',
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium,
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium,
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .lineColor,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: Color(
-                                                                0x00000000),
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        filled: true,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
-                                                      validator: _model
-                                                          .customerIdFieldControllerValidator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 12.0,
-                                                                8.0, 0.0),
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                          .amountFieldController,
-                                                      focusNode: _model
-                                                          .amountFieldFocusNode,
-                                                      autofocus: true,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        labelText:
-                                                            'Amount (pence)',
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium,
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium,
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .lineColor,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: Color(
-                                                                0x00000000),
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        filled: true,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
-                                                      validator: _model
-                                                          .amountFieldControllerValidator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 12.0,
-                                                                8.0, 0.0),
-                                                    child: TextFormField(
-                                                      controller: _model
-                                                          .descriptionFieldController,
-                                                      focusNode: _model
-                                                          .descriptionFieldFocusNode,
-                                                      autofocus: true,
-                                                      obscureText: false,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        labelText:
-                                                            'Description',
-                                                        labelStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium,
-                                                        hintStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium,
-                                                        enabledBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .lineColor,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: Color(
-                                                                0x00000000),
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        errorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        focusedErrorBorder:
-                                                            OutlineInputBorder(
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .error,
-                                                            width: 2.0,
-                                                          ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                        ),
-                                                        filled: true,
-                                                        fillColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryBackground,
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium,
-                                                      validator: _model
-                                                          .descriptionFieldControllerValidator
-                                                          .asValidator(context),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 12.0,
-                                                                0.0, 30.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        // Reset flags
-                                                        setState(() {
-                                                          _model.sendPaymentFailure =
-                                                              false;
-                                                          _model.paymentSuccess =
-                                                              false;
-                                                        });
-                                                        _model.sendPaymentResult =
-                                                            await SendPaymentCall
-                                                                .call(
-                                                          amount: int.tryParse(
-                                                              _model
-                                                                  .amountFieldController
-                                                                  .text),
-                                                          description: _model
-                                                              .descriptionFieldController
-                                                              .text,
-                                                          customerId: _model
-                                                              .customerIdFieldController
-                                                              .text,
-                                                          bearerToken:
-                                                              currentJwtToken,
-                                                        );
-                                                        if ((_model
-                                                                .sendPaymentResult
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          // Set success flag
-                                                          setState(() {
-                                                            _model.paymentSuccess =
-                                                                true;
-                                                          });
-                                                        } else {
-                                                          // Set failure flag
-                                                          setState(() {
-                                                            _model.sendPaymentFailure =
-                                                                true;
-                                                          });
-                                                        }
-
-                                                        setState(() {});
-                                                      },
-                                                      text: 'Submit',
-                                                      options: FFButtonOptions(
-                                                        height: 40.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
-                                                                ),
-                                                        elevation: 3.0,
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
                                             ),
                                           ),
-                                        ),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

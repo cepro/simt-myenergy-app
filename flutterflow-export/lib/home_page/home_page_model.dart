@@ -28,7 +28,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   bool isOwner = false;
 
-  bool inPrepayMode = false;
+  bool? inPrepayMode;
 
   ///  State fields for stateful widgets in this page.
 

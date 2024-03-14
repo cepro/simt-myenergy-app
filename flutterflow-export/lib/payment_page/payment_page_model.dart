@@ -26,6 +26,8 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
 
   bool paymentSuccess = false;
 
+  String errorMessage = 'Send payment failed - see logs';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -37,10 +39,10 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;
-  // Model for CreditCard component.
-  late CreditCardWidgetModel creditCardModel;
   // Model for DirectDebit component.
   late DirectDebitModel directDebitModel;
+  // Model for CreditCard component.
+  late CreditCardWidgetModel creditCardModel;
   // Stores action output result for [Backend Call - API (Delete Customers Payment Method)] action in Button widget.
   ApiCallResponse? deletePaymentMethodResult;
   // Stores action output result for [Backend Call - API (Create Stripe Checkout Session)] action in Button widget.
@@ -68,8 +70,8 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
-    creditCardModel = createModel(context, () => CreditCardWidgetModel());
     directDebitModel = createModel(context, () => DirectDebitModel());
+    creditCardModel = createModel(context, () => CreditCardWidgetModel());
     mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
@@ -78,8 +80,8 @@ class PaymentPageModel extends FlutterFlowModel<PaymentPageWidget> {
     unfocusNode.dispose();
     mainWebNavModel.dispose();
     topBarLoggedInModel.dispose();
-    creditCardModel.dispose();
     directDebitModel.dispose();
+    creditCardModel.dispose();
     customerIdFieldFocusNode?.dispose();
     customerIdFieldController?.dispose();
 
