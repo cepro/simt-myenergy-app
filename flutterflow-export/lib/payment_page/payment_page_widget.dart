@@ -128,7 +128,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                     16.0, 24.0, 16.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     wrapWithModel(
                                       model: _model.topBarLoggedInModel,

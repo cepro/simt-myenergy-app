@@ -65,3 +65,7 @@ String formatCurrencyAmount(double amount) {
 bool isPrepayMode(MeterStruct? meter) {
   return meter != null && meter.prepayEnabled == true;
 }
+
+int stringLength(String str) {
+  return str.length;
+}

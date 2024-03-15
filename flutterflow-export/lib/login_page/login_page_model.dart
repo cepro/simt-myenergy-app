@@ -20,6 +20,8 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   bool signupPasswordMismatch = false;
 
+  bool signupPasswordWeak = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

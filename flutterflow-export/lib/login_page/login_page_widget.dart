@@ -166,7 +166,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                         alignment: AlignmentDirectional(0.0, -1.0),
                         child: Container(
                           width: double.infinity,
-                          height: 500.0,
+                          height: 600.0,
                           constraints: BoxConstraints(
                             maxWidth: 570.0,
                           ),
@@ -702,6 +702,33 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               ),
                                                     ),
                                                   ),
+                                                if (_model.signupPasswordWeak)
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 20.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Password length must be 8 or more.',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
+                                                  ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(24.0, 20.0,
@@ -1033,71 +1060,114 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           _model
                                                               .confirmCreateController
                                                               .text) {
-                                                        setState(() {
-                                                          _model.loginError =
-                                                              false;
-                                                          _model.signupPasswordMismatch =
-                                                              false;
-                                                        });
-                                                        GoRouter.of(context)
-                                                            .prepareAuthEvent();
+                                                        if (_model
+                                                                .passwordCreateController
+                                                                .text
+                                                                .length >=
+                                                            8) {
+                                                          setState(() {
+                                                            _model.loginError =
+                                                                false;
+                                                            _model.signupPasswordMismatch =
+                                                                false;
+                                                            _model.signupPasswordWeak =
+                                                                false;
+                                                          });
+                                                          GoRouter.of(context)
+                                                              .prepareAuthEvent();
+                                                          if (_model
+                                                                  .passwordCreateController
+                                                                  .text !=
+                                                              _model
+                                                                  .confirmCreateController
+                                                                  .text) {
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  'Passwords don\'t match!',
+                                                                ),
+                                                              ),
+                                                            );
+                                                            return;
+                                                          }
 
-                                                        final user =
-                                                            await authManager
-                                                                .createAccountWithEmail(
-                                                          context,
-                                                          _model
-                                                              .emailAddressCreateController
-                                                              .text,
-                                                          _model
-                                                              .passwordCreateController
-                                                              .text,
-                                                        );
-                                                        if (user == null) {
-                                                          return;
-                                                        }
+                                                          final user =
+                                                              await authManager
+                                                                  .createAccountWithEmail(
+                                                            context,
+                                                            _model
+                                                                .emailAddressCreateController
+                                                                .text,
+                                                            _model
+                                                                .passwordCreateController
+                                                                .text,
+                                                          );
+                                                          if (user == null) {
+                                                            return;
+                                                          }
 
-                                                        if (loggedIn) {
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
                                                                       1000));
-                                                          _model.getAccountsFromSignupResult =
-                                                              await action_blocks
-                                                                  .getAndSaveAccounts(
-                                                                      context);
-                                                          _shouldSetState =
-                                                              true;
-                                                          _model.getTermsFromSignupResult =
-                                                              await action_blocks
-                                                                  .getAndSaveContractTerms(
-                                                                      context);
-                                                          _shouldSetState =
-                                                              true;
-                                                          if (_model
-                                                                  .getAccountsFromSignupResult! &&
-                                                              _model
-                                                                  .getTermsFromSignupResult!) {
-                                                            context.pushNamedAuth(
-                                                                'HomePage',
-                                                                context
-                                                                    .mounted);
+                                                          if (loggedIn) {
+                                                            _model.getAccountsFromSignupResult =
+                                                                await action_blocks
+                                                                    .getAndSaveAccounts(
+                                                                        context);
+                                                            _shouldSetState =
+                                                                true;
+                                                            _model.getTermsFromSignupResult =
+                                                                await action_blocks
+                                                                    .getAndSaveContractTerms(
+                                                                        context);
+                                                            _shouldSetState =
+                                                                true;
+                                                            if (_model
+                                                                    .getAccountsFromSignupResult! &&
+                                                                _model
+                                                                    .getTermsFromSignupResult!) {
+                                                              context.pushNamedAuth(
+                                                                  'HomePage',
+                                                                  context
+                                                                      .mounted);
+
+                                                              if (_shouldSetState)
+                                                                setState(() {});
+                                                              return;
+                                                            } else {
+                                                              if (_shouldSetState)
+                                                                setState(() {});
+                                                              return;
+                                                            }
                                                           } else {
+                                                            setState(() {
+                                                              _model.loginError =
+                                                                  true;
+                                                            });
                                                             if (_shouldSetState)
                                                               setState(() {});
                                                             return;
                                                           }
                                                         } else {
                                                           setState(() {
-                                                            _model.loginError =
+                                                            _model.signupPasswordWeak =
                                                                 true;
                                                           });
+                                                          if (_shouldSetState)
+                                                            setState(() {});
+                                                          return;
                                                         }
                                                       } else {
                                                         setState(() {
                                                           _model.signupPasswordMismatch =
                                                               true;
                                                         });
+                                                        if (_shouldSetState)
+                                                          setState(() {});
+                                                        return;
                                                       }
 
                                                       if (_shouldSetState)
