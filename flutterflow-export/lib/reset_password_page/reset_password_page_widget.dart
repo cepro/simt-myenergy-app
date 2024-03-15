@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +76,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                 ),
               ),
               Container(
-                height: 350.0,
+                height: 400.0,
                 constraints: BoxConstraints(
                   maxWidth: 580.0,
                 ),
@@ -108,6 +109,24 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: Text(
                           'Passwords don\'t match. Try again.',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).error,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
+                      ),
+                    if (_model.passwordWeak)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        child: Text(
+                          'Password length must be 8 or more.',
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
@@ -255,30 +274,48 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          var _shouldSetState = false;
                           if (_model.newPasswordController.text ==
                               _model.confirmPasswordController.text) {
-                            setState(() {
-                              _model.passwordMismatch = false;
-                              _model.resetError = false;
-                            });
-                            _model.passwordUpdateSuccess =
-                                await actions.supabasePasswordUpdate(
-                              _model.newPasswordController.text,
-                            );
-                            if (_model.passwordUpdateSuccess!) {
-                              context.pushNamed('loginPage');
+                            if (!functions.isPasswordWeak(
+                                _model.newPasswordController.text)) {
+                              setState(() {
+                                _model.passwordMismatch = false;
+                                _model.resetError = false;
+                              });
+                              _model.passwordUpdateSuccess =
+                                  await actions.supabasePasswordUpdate(
+                                _model.newPasswordController.text,
+                              );
+                              _shouldSetState = true;
+                              if (_model.passwordUpdateSuccess!) {
+                                context.pushNamed('loginPage');
+
+                                if (_shouldSetState) setState(() {});
+                                return;
+                              } else {
+                                setState(() {
+                                  _model.resetError = true;
+                                });
+                                if (_shouldSetState) setState(() {});
+                                return;
+                              }
                             } else {
                               setState(() {
-                                _model.resetError = true;
+                                _model.passwordWeak = true;
                               });
+                              if (_shouldSetState) setState(() {});
+                              return;
                             }
                           } else {
                             setState(() {
                               _model.passwordMismatch = true;
                             });
+                            if (_shouldSetState) setState(() {});
+                            return;
                           }
 
-                          setState(() {});
+                          if (_shouldSetState) setState(() {});
                         },
                         text: 'Reset',
                         options: FFButtonOptions(

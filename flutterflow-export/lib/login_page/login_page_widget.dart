@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -1060,11 +1061,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           _model
                                                               .confirmCreateController
                                                               .text) {
-                                                        if (_model
+                                                        if (!functions
+                                                            .isPasswordWeak(_model
                                                                 .passwordCreateController
-                                                                .text
-                                                                .length >=
-                                                            8) {
+                                                                .text)) {
                                                           setState(() {
                                                             _model.loginError =
                                                                 false;

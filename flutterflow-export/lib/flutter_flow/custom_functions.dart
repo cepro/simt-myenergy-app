@@ -66,6 +66,8 @@ bool isPrepayMode(MeterStruct? meter) {
   return meter != null && meter.prepayEnabled == true;
 }
 
-int stringLength(String str) {
-  return str.length;
+bool isPasswordWeak(String password) {
+  // Keep rules in sync with the supabase auth password rules.
+  // Currently only a password length check:
+  return password.length < 8;
 }
