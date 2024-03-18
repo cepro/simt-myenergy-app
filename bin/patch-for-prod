@@ -6,7 +6,7 @@ set -e
 PATCHES=$1
 GIT_COMMIT=$2
 
-echo "\n\nApply patches for prod ..."
+echo "\n\n=====     Apply patches for prod     ====="
 
 echo "\nPatch 1: api call change '-qa' addresses to '-prod' ..."
 sed -i -e 's/simt-j-accounts-qa.fly.dev/simt-j-accounts-prod.fly.dev/' lib/backend/api_requests/api_calls.dart

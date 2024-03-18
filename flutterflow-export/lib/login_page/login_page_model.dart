@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'login_page_widget.dart' show LoginPageWidget;
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Custom Action - getHostname] action in loginPage widget.
+  String? getHostnameOutput;
   // Model for LogoContainerRow component.
   late LogoContainerRowModel logoContainerRowModel;
   // State field(s) for TabBar widget.
@@ -42,7 +45,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
-  // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Login widget.
+  // Stores action output result for [Action Block - GetCustomerDetailsAndInitAppState] action in Button-Login widget.
   bool? getAccountsFromSigninResult;
   // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Login widget.
   bool? getTermsFromSigninResult;
@@ -61,7 +64,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   TextEditingController? confirmCreateController;
   late bool confirmCreateVisibility;
   String? Function(BuildContext, String?)? confirmCreateControllerValidator;
-  // Stores action output result for [Action Block - GetAndSaveAccounts] action in Button-Create-Account widget.
+  // Stores action output result for [Action Block - GetCustomerDetailsAndInitAppState] action in Button-Create-Account widget.
   bool? getAccountsFromSignupResult;
   // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Create-Account widget.
   bool? getTermsFromSignupResult;

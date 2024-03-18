@@ -9,6 +9,7 @@ import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
 import '/backend/schema/structs/index.dart';
+import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
 import '/auth/supabase_auth/auth_util.dart';
 
@@ -70,4 +71,18 @@ bool isPasswordWeak(String password) {
   // Keep rules in sync with the supabase auth password rules.
   // Currently only a password length check:
   return password.length < 8;
+}
+
+SiteCodeEnum hostnameToSiteCode(String? hostname) {
+  if (hostname == null) return SiteCodeEnum.unknown;
+
+  if (hostname.endsWith('.waterlilies.energy')) {
+    return SiteCodeEnum.wlce;
+  }
+
+  if (hostname.endsWith('.hazelmead.energy')) {
+    return SiteCodeEnum.hmce;
+  }
+
+  return SiteCodeEnum.unknown;
 }

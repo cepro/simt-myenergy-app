@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_getters_setters
 
 import '/backend/schema/util/schema_util.dart';
+import '/backend/schema/enums/enums.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,7 +10,7 @@ class SiteStruct extends BaseStruct {
   SiteStruct({
     String? id,
     String? name,
-    String? code,
+    SiteCodeEnum? code,
   })  : _id = id,
         _name = name,
         _code = code;
@@ -27,15 +28,15 @@ class SiteStruct extends BaseStruct {
   bool hasName() => _name != null;
 
   // "code" field.
-  String? _code;
-  String get code => _code ?? '';
-  set code(String? val) => _code = val;
+  SiteCodeEnum? _code;
+  SiteCodeEnum? get code => _code;
+  set code(SiteCodeEnum? val) => _code = val;
   bool hasCode() => _code != null;
 
   static SiteStruct fromMap(Map<String, dynamic> data) => SiteStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
-        code: data['code'] as String?,
+        code: deserializeEnum<SiteCodeEnum>(data['code']),
       );
 
   static SiteStruct? maybeFromMap(dynamic data) =>
@@ -44,7 +45,7 @@ class SiteStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'name': _name,
-        'code': _code,
+        'code': _code?.serialize(),
       }.withoutNulls;
 
   @override
@@ -59,7 +60,7 @@ class SiteStruct extends BaseStruct {
         ),
         'code': serializeParam(
           _code,
-          ParamType.String,
+          ParamType.Enum,
         ),
       }.withoutNulls;
 
@@ -75,9 +76,9 @@ class SiteStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        code: deserializeParam(
+        code: deserializeParam<SiteCodeEnum>(
           data['code'],
-          ParamType.String,
+          ParamType.Enum,
           false,
         ),
       );
@@ -100,7 +101,7 @@ class SiteStruct extends BaseStruct {
 SiteStruct createSiteStruct({
   String? id,
   String? name,
-  String? code,
+  SiteCodeEnum? code,
 }) =>
     SiteStruct(
       id: id,

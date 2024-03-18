@@ -13,4 +13,5 @@ export 'accounts_j_s_o_n_to_accounts_data_type.dart'
     show accountsJSONToAccountsDataType;
 export 'app_state_notify_listeners.dart' show appStateNotifyListeners;
 export 'supabase_password_reset.dart' show supabasePasswordReset;
+export 'get_hostname.dart' show getHostname;
 export 'supabase_password_update.dart' show supabasePasswordUpdate;

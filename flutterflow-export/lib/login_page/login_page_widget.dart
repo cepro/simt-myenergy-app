@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -85,6 +86,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.getHostnameOutput = await actions.getHostname();
+      setState(() {
+        FFAppState().hostname = _model.getHostnameOutput!;
+      });
       if (widget.fromInvite) {
         // Focus Sign Up Tab
         setState(() {
@@ -138,6 +143,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -533,7 +540,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         500));
                                                             _model.getAccountsFromSigninResult =
                                                                 await action_blocks
-                                                                    .getAndSaveAccounts(
+                                                                    .getCustomerDetailsAndInitAppState(
                                                                         context);
                                                             _shouldSetState =
                                                                 true;
@@ -1115,7 +1122,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           if (loggedIn) {
                                                             _model.getAccountsFromSignupResult =
                                                                 await action_blocks
-                                                                    .getAndSaveAccounts(
+                                                                    .getCustomerDetailsAndInitAppState(
                                                                         context);
                                                             _shouldSetState =
                                                                 true;

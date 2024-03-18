@@ -43,6 +43,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -227,6 +229,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           _model.sendResetSuccess =
                               await actions.supabasePasswordReset(
                             _model.emailAddressController.text,
+                            FFAppState().hostname,
                           );
                           if (_model.sendResetSuccess!) {
                             setState(() {

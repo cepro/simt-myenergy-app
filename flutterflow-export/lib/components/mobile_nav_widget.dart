@@ -156,46 +156,6 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                     ),
                   ),
                 ),
-              if (FFAppState().supplyContractSigned)
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.pushNamed(
-                          'TopupPage',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.fade,
-                              duration: Duration(milliseconds: 0),
-                            ),
-                          },
-                        );
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          widget.navFourIcon!,
-                          if (false)
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 0.0),
-                              child: Text(
-                                'Topups',
-                                style: FlutterFlowTheme.of(context).bodySmall,
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
             ],
           ),
         ),

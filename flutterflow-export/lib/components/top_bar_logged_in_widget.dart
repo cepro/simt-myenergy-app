@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/components/logout_button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -41,6 +42,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
@@ -52,17 +55,36 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (responsiveVisibility(
-              context: context,
-              tabletLandscape: false,
-              desktop: false,
-            ))
+            if ((FFAppState().site == SiteCodeEnum.wlce) &&
+                responsiveVisibility(
+                  context: context,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
-                    'assets/images/wlce-banner-300.png',
+                    'assets/images/banner-wlce.png',
+                    width: 174.0,
+                    height: 37.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            if ((FFAppState().site == SiteCodeEnum.hmce) &&
+                responsiveVisibility(
+                  context: context,
+                  tabletLandscape: false,
+                  desktop: false,
+                ))
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/banner-hmce.png',
                     width: 174.0,
                     height: 37.0,
                     fit: BoxFit.cover,

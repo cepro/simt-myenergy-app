@@ -3,7 +3,7 @@ set -e
 
 PATCHES=$1
 
-echo "\nApply patches for github pages ...\n"
+echo "\n\n=====     Apply patches for github pages     ====="
 
 echo "\nPatch 1: add leading '/'s ...\n"
 patch -R -p0 < $PATCHES/github-pages/index.html.patch || exit 1

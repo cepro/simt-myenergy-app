@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/api_requests/api_manager.dart';
+import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -43,10 +44,11 @@ Future handleMyEnergyApiCallFailure(
   }
 }
 
-Future<bool?> getAndSaveAccounts(BuildContext context) async {
+Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   ApiCallResponse? getAccountsResponse;
   List<AccountStruct>? accounts;
   List<MonthlyUsageStruct>? monthlyUsages;
+  String? getHostnameResponse;
 
   // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
   getAccountsResponse = await GetCustomersAccountsCall.call(
@@ -67,6 +69,8 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
         r'''$.monthlyUsage''',
       ),
     );
+    // We get this on the login page but lets get it again to be sure it's set when all other app state is set.
+    getHostnameResponse = await actions.getHostname();
     FFAppState().meters = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.meters''',
@@ -97,6 +101,8 @@ Future<bool?> getAndSaveAccounts(BuildContext context) async {
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.customer.status''',
     ).toString().toString();
+    FFAppState().hostname = getHostnameResponse!;
+    FFAppState().site = functions.hostnameToSiteCode(getHostnameResponse);
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(

@@ -11,8 +11,9 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<bool> supabasePasswordReset(String email, String hostname) async {
-  await SupaFlow.client.auth.resetPasswordForEmail(email,
-      redirectTo: "https://" + hostname + "/resetPassword");
-  return true;
+import 'dart:html';
+
+Future<String> getHostname() async {
+  Uri uri = Uri.parse(window.location.href);
+  return uri.host;
 }

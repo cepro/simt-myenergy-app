@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
+import '/backend/schema/enums/enums.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'backend/supabase/supabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -80,16 +81,6 @@ class FFAppState extends ChangeNotifier {
           _sites;
     });
     _safeInit(() {
-      if (prefs.containsKey('ff_site')) {
-        try {
-          final serializedData = prefs.getString('ff_site') ?? '{}';
-          _site = SiteStruct.fromSerializableMap(jsonDecode(serializedData));
-        } catch (e) {
-          print("Can't decode persisted data type. Error: $e.");
-        }
-      }
-    });
-    _safeInit(() {
       _properties = prefs
               .getStringList('ff_properties')
               ?.map((x) {
@@ -124,6 +115,14 @@ class FFAppState extends ChangeNotifier {
     });
     _safeInit(() {
       _customerStatus = prefs.getString('ff_customerStatus') ?? _customerStatus;
+    });
+    _safeInit(() {
+      _hostname = prefs.getString('ff_hostname') ?? _hostname;
+    });
+    _safeInit(() {
+      _site = prefs.containsKey('ff_site')
+          ? deserializeEnum<SiteCodeEnum>(prefs.getString('ff_site'))
+          : _site;
     });
   }
 
@@ -265,18 +264,6 @@ class FFAppState extends ChangeNotifier {
     prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
   }
 
-  SiteStruct _site = SiteStruct.fromSerializableMap(jsonDecode('{}'));
-  SiteStruct get site => _site;
-  set site(SiteStruct _value) {
-    _site = _value;
-    prefs.setString('ff_site', _value.serialize());
-  }
-
-  void updateSiteStruct(Function(SiteStruct) updateFn) {
-    updateFn(_site);
-    prefs.setString('ff_site', _site.serialize());
-  }
-
   List<PropertyStruct> _properties = [];
   List<PropertyStruct> get properties => _properties;
   set properties(List<PropertyStruct> _value) {
@@ -387,6 +374,22 @@ class FFAppState extends ChangeNotifier {
   set customerStatus(String _value) {
     _customerStatus = _value;
     prefs.setString('ff_customerStatus', _value);
+  }
+
+  String _hostname = '';
+  String get hostname => _hostname;
+  set hostname(String _value) {
+    _hostname = _value;
+    prefs.setString('ff_hostname', _value);
+  }
+
+  SiteCodeEnum? _site = SiteCodeEnum.unknown;
+  SiteCodeEnum? get site => _site;
+  set site(SiteCodeEnum? _value) {
+    _site = _value;
+    _value != null
+        ? prefs.setString('ff_site', _value.serialize())
+        : prefs.remove('ff_site');
   }
 }
 

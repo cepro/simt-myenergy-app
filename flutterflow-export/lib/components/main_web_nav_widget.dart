@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -117,20 +118,36 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    'assets/images/wlce-banner-300.png',
-                    width: 220.0,
-                    height: 50.0,
-                    fit: BoxFit.fitWidth,
+            if (FFAppState().site == SiteCodeEnum.wlce)
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      'assets/images/banner-wlce.png',
+                      width: 220.0,
+                      height: 50.0,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            if (FFAppState().site == SiteCodeEnum.hmce)
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.asset(
+                      'assets/images/banner-hmce.png',
+                      width: 220.0,
+                      height: 50.0,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ],
+              ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
               child: Text(

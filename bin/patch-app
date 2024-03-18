@@ -3,10 +3,15 @@ set -e
 
 PATCHES=$1
 
-echo "\n\nApply app patches ..."
+echo "\n\n=====     Apply app patches     ====="
 
 echo "\nPatch 1: fix for gh://FlutterFlow/flutterflow-issues #1471 ..."
 sed -i -z 's/\s*if\s*(user\s*==\s*null)\s*{\s*return;\s*}//g' lib/login_page/login_page_widget.dart
 
 echo "\nPatch 2: sentry init ...\n"
 patch -p0 < $PATCHES/sentry/sentry-init.patch
+
+echo "\nPatch 3: site themes ...\n"
+patch -p0 < $PATCHES/theme/site_theme.patch
+cat $PATCHES/theme/*_site_theme.dart.snippet >> lib/flutter_flow/flutter_flow_theme.dart
+echo "\n"
