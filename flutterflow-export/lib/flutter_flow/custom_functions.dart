@@ -84,5 +84,10 @@ SiteCodeEnum hostnameToSiteCode(String? hostname) {
     return SiteCodeEnum.hmce;
   }
 
+  // local testing from bin/run-local default to wlce:
+  if (hostname == '0.0.0.0') {
+    return SiteCodeEnum.wlce;
+  }
+
   return SiteCodeEnum.unknown;
 }
