@@ -98,10 +98,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'PaymentPage',
-          path: '/payment',
+          name: 'PaymentsPage',
+          path: '/payments',
           requireAuth: true,
-          builder: (context, params) => PaymentPageWidget(),
+          builder: (context, params) => PaymentsPageWidget(),
         ),
         FFRoute(
           name: 'forgotPasswordPage',

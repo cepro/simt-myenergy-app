@@ -1032,7 +1032,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        'Electricty Supply',
+                                                        'Electricity Supply',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

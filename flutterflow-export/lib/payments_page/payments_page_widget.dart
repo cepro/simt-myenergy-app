@@ -15,25 +15,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'payment_page_model.dart';
-export 'payment_page_model.dart';
+import 'payments_page_model.dart';
+export 'payments_page_model.dart';
 
-class PaymentPageWidget extends StatefulWidget {
-  const PaymentPageWidget({super.key});
+class PaymentsPageWidget extends StatefulWidget {
+  const PaymentsPageWidget({super.key});
 
   @override
-  State<PaymentPageWidget> createState() => _PaymentPageWidgetState();
+  State<PaymentsPageWidget> createState() => _PaymentsPageWidgetState();
 }
 
-class _PaymentPageWidgetState extends State<PaymentPageWidget> {
-  late PaymentPageModel _model;
+class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
+  late PaymentsPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PaymentPageModel());
+    _model = createModel(context, () => PaymentsPageModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -270,7 +270,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                                                                 200) ==
                                                             200) {
                                                           context.pushNamed(
-                                                              'PaymentPage');
+                                                              'PaymentsPage');
                                                         } else {
                                                           await action_blocks
                                                               .handleMyEnergyApiCallFailure(

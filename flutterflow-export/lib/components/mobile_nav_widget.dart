@@ -128,7 +128,7 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                       highlightColor: Colors.transparent,
                       onTap: () async {
                         context.pushNamed(
-                          'PaymentPage',
+                          'PaymentsPage',
                           extra: <String, dynamic>{
                             kTransitionInfoKey: TransitionInfo(
                               hasTransition: true,
@@ -147,7 +147,7 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: Text(
-                              'Payment',
+                              'Payments',
                               style: FlutterFlowTheme.of(context).bodySmall,
                             ),
                           ),
