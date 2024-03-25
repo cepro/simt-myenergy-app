@@ -41,6 +41,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
       _model.getPaymentMethodsOutput =
           await GetCustomersPaymentMethodsCall.call(
         bearerToken: _model.jwtToken,
+        site: FFAppState().site?.name,
       );
       if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
         setState(() {
@@ -79,6 +80,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -264,6 +267,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                 ''),
                                                             r'''$[0].id''',
                                                           ).toString(),
+                                                          site: FFAppState()
+                                                              .site
+                                                              ?.name,
                                                         );
                                                         if ((_model.deletePaymentMethodResult
                                                                     ?.statusCode ??
@@ -414,6 +420,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                               .call(
                                                         bearerToken:
                                                             _model.jwtToken,
+                                                        site: FFAppState()
+                                                            .site
+                                                            ?.name,
                                                       );
                                                       if (_model
                                                               .checkoutPageURI !=
@@ -501,7 +510,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         if ((currentUserEmail ==
                                                 'damonrand@gmail.com') ||
                                             (currentUserEmail ==
-                                                'nova@cepro.energy'))
+                                                'nova@cepro.energy') ||
+                                            (currentUserEmail ==
+                                                'damon@a5gard.net'))
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -905,6 +916,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                 .text,
                                                             bearerToken:
                                                                 currentJwtToken,
+                                                            site: FFAppState()
+                                                                .site
+                                                                ?.name,
                                                           );
                                                           if ((_model
                                                                   .sendPaymentResult

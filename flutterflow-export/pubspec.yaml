@@ -72,11 +72,11 @@ dependencies:
   url_launcher_android: 6.3.0
   url_launcher_ios: 6.2.5
   url_launcher_platform_interface: 2.3.2
-  webview_flutter: 4.4.4
-  webview_flutter_android: 3.13.2
-  webview_flutter_platform_interface: 2.9.1
+  webview_flutter: 4.7.0
+  webview_flutter_android: 3.15.0
+  webview_flutter_platform_interface: 2.10.0
   webview_flutter_web:
-  webview_flutter_wkwebview: 3.10.2
+  webview_flutter_wkwebview: 3.12.0
 
 
   # The following adds the Cupertino Icons font to your application.

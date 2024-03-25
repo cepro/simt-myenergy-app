@@ -12,11 +12,12 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 class GetCustomersPaymentMethodsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
+    String? site = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Payment Methods',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods',
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods/${site}',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -44,6 +45,7 @@ class SendPaymentCall {
     double? amount,
     String? description = '',
     String? customerId = '',
+    String? site = '',
   }) async {
     final ffApiRequestBody = '''
 {
@@ -53,7 +55,8 @@ class SendPaymentCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Send Payment',
-      apiUrl: 'https://simt-j-billing-stripe-qa.fly.dev/customers/payment',
+      apiUrl:
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/payment/${site}',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -108,11 +111,12 @@ class GetCustomersAccountsCall {
 class CreateStripeCheckoutSessionCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
+    String? site = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Create Stripe Checkout Session',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/checkoutSession',
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/checkoutSession/${site}',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -137,11 +141,12 @@ class DeleteCustomersPaymentMethodCall {
   static Future<ApiCallResponse> call({
     String? id = '',
     String? bearerToken = '',
+    String? site = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Customers Payment Method',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods/${id}',
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods/${site}/${id}',
       callType: ApiCallType.DELETE,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
