@@ -106,6 +106,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'forgotPasswordPage',
           path: '/forgotPassword',
+          requireAuth: true,
           builder: (context, params) => ForgotPasswordPageWidget(),
         ),
         FFRoute(
@@ -123,6 +124,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'InviteLandingPage',
           path: '/invite/:inviteToken',
+          requireAuth: true,
           builder: (context, params) => InviteLandingPageWidget(
             inviteToken: params.getParam('inviteToken', ParamType.String),
           ),
@@ -130,6 +132,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AboutPage',
           path: '/about',
+          requireAuth: true,
           builder: (context, params) => AboutPageWidget(
             inviteToken: params.getParam('inviteToken', ParamType.String),
           ),
@@ -148,7 +151,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'resetPasswordPage',
           path: '/resetPassword',
+          requireAuth: true,
           builder: (context, params) => ResetPasswordPageWidget(),
+        ),
+        FFRoute(
+          name: 'MyEnergyPage',
+          path: '/myenergy',
+          requireAuth: true,
+          builder: (context, params) => MyEnergyPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

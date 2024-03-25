@@ -6,7 +6,7 @@ PATCHES=$1
 echo "\n\n=====     Apply app patches     ====="
 
 echo "\nPatch 1: fix for gh://FlutterFlow/flutterflow-issues #1471 ..."
-sed -i -z 's/\s*if\s*(user\s*==\s*null)\s*{\s*return;\s*}//g' lib/login_page/login_page_widget.dart
+sed -i -z 's/\s*if\s*(user\s*==\s*null)\s*{\s*return;\s*}//g' lib/pages/login_page/login_page_widget.dart
 
 echo "\nPatch 2: sentry init ...\n"
 patch -p0 < $PATCHES/sentry/sentry-init.patch
