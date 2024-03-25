@@ -1,7 +1,6 @@
 import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
-import '/components/mobile_nav/mobile_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -22,8 +21,6 @@ class AccountsListPageModel extends FlutterFlowModel<AccountsListPageWidget> {
   late MainWebNavModel mainWebNavModel;
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;
-  // Model for mobileNav component.
-  late MobileNavModel mobileNavModel;
 
   /// Initialization and disposal methods.
 
@@ -31,7 +28,6 @@ class AccountsListPageModel extends FlutterFlowModel<AccountsListPageWidget> {
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
-    mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
   @override
@@ -39,7 +35,6 @@ class AccountsListPageModel extends FlutterFlowModel<AccountsListPageWidget> {
     unfocusNode.dispose();
     mainWebNavModel.dispose();
     logoutButtonModel.dispose();
-    mobileNavModel.dispose();
   }
 
   /// Action blocks are added here.

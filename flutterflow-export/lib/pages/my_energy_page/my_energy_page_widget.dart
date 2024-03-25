@@ -1,5 +1,4 @@
 import '/components/main_web_nav/main_web_nav_widget.dart';
-import '/components/mobile_nav/mobile_nav_widget.dart';
 import '/components/monthly_consumption/monthly_consumption_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -589,32 +588,6 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                             ],
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  wrapWithModel(
-                    model: _model.mobileNavModel,
-                    updateCallback: () => setState(() {}),
-                    child: MobileNavWidget(
-                      navOneIcon: Icon(
-                        Icons.home_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                      navTwoIcon: Icon(
-                        Icons.electrical_services,
-                        color: FlutterFlowTheme.of(context).alternate,
-                      ),
-                      navThreeIcon: Icon(
-                        Icons.credit_card_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                      navFourIcon: Icon(
-                        Icons.settings,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                      navFiveIcon: Icon(
-                        Icons.home_work_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
                       ),
                     ),
                   ),

@@ -1,9 +1,7 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/components/credit_card/credit_card_widget.dart';
 import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
-import '/components/mobile_nav/mobile_nav_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -47,22 +45,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   ApiCallResponse? deletePaymentMethodResult;
   // Stores action output result for [Backend Call - API (Create Stripe Checkout Session)] action in Button widget.
   ApiCallResponse? checkoutPageURI;
-  // State field(s) for customerIdField widget.
-  FocusNode? customerIdFieldFocusNode;
-  TextEditingController? customerIdFieldController;
-  String? Function(BuildContext, String?)? customerIdFieldControllerValidator;
-  // State field(s) for amountField widget.
-  FocusNode? amountFieldFocusNode;
-  TextEditingController? amountFieldController;
-  String? Function(BuildContext, String?)? amountFieldControllerValidator;
-  // State field(s) for descriptionField widget.
-  FocusNode? descriptionFieldFocusNode;
-  TextEditingController? descriptionFieldController;
-  String? Function(BuildContext, String?)? descriptionFieldControllerValidator;
-  // Stores action output result for [Backend Call - API (Send Payment)] action in Button widget.
-  ApiCallResponse? sendPaymentResult;
-  // Model for mobileNav component.
-  late MobileNavModel mobileNavModel;
 
   /// Initialization and disposal methods.
 
@@ -72,7 +54,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     directDebitModel = createModel(context, () => DirectDebitModel());
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
-    mobileNavModel = createModel(context, () => MobileNavModel());
   }
 
   @override
@@ -82,16 +63,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     topBarLoggedInModel.dispose();
     directDebitModel.dispose();
     creditCardModel.dispose();
-    customerIdFieldFocusNode?.dispose();
-    customerIdFieldController?.dispose();
-
-    amountFieldFocusNode?.dispose();
-    amountFieldController?.dispose();
-
-    descriptionFieldFocusNode?.dispose();
-    descriptionFieldController?.dispose();
-
-    mobileNavModel.dispose();
   }
 
   /// Action blocks are added here.

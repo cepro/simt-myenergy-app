@@ -11,7 +11,7 @@ getFlutterVersion() {
   echo `flutter --version | grep "^Flutter" | sed -e 's/^Flutter \([^ ]*\).*/\1/'`
 }
 
-SYS_INFO_PAGE_SOURCE_PATH=lib/sys_info_page/sys_info_page_widget.dart
+SYS_INFO_PAGE_SOURCE_PATH=lib/pages/sys_info_page/sys_info_page_widget.dart
 
 setSysInfoEnvironment() {
   ENV=$1

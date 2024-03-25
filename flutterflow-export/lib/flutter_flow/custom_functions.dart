@@ -91,3 +91,9 @@ SiteCodeEnum hostnameToSiteCode(String? hostname) {
 
   return SiteCodeEnum.unknown;
 }
+
+bool isAdmin(String email) {
+  return (email == "nova@cepro.energy" ||
+      email == "damonrand@gmail.com" ||
+      email == "damon@a5gard.net");
+}

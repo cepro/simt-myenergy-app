@@ -81,13 +81,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : LoginPageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
         ),
         FFRoute(
           name: 'loginPage',
@@ -101,7 +101,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PaymentsPage',
           path: '/payments',
           requireAuth: true,
-          builder: (context, params) => PaymentsPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'PaymentsPage')
+              : PaymentsPageWidget(),
         ),
         FFRoute(
           name: 'forgotPasswordPage',
@@ -141,7 +143,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/home',
           requireAuth: true,
-          builder: (context, params) => HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         ),
         FFRoute(
           name: 'SysInfoPage',
@@ -158,7 +162,29 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'MyEnergyPage',
           path: '/myenergy',
           requireAuth: true,
-          builder: (context, params) => MyEnergyPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'MyEnergyPage')
+              : MyEnergyPageWidget(),
+        ),
+        FFRoute(
+          name: 'NewNav',
+          path: '/newNav',
+          requireAuth: true,
+          builder: (context, params) => NewNavWidget(),
+        ),
+        FFRoute(
+          name: 'ExpandedMenu',
+          path: '/expandedMenu',
+          requireAuth: true,
+          builder: (context, params) => ExpandedMenuWidget(),
+        ),
+        FFRoute(
+          name: 'AdminPayment',
+          path: '/adminPayment',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'AdminPayment')
+              : AdminPaymentWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

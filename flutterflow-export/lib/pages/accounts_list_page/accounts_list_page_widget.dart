@@ -1,7 +1,6 @@
 import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
-import '/components/mobile_nav/mobile_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -280,32 +279,6 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                  wrapWithModel(
-                    model: _model.mobileNavModel,
-                    updateCallback: () => setState(() {}),
-                    child: MobileNavWidget(
-                      navOneIcon: Icon(
-                        Icons.home_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                      navTwoIcon: Icon(
-                        Icons.credit_card_rounded,
-                        color: FlutterFlowTheme.of(context).alternate,
-                      ),
-                      navThreeIcon: Icon(
-                        Icons.contact_page,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                      navFourIcon: Icon(
-                        Icons.settings,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                      navFiveIcon: Icon(
-                        Icons.home_work_rounded,
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
                     ),
                   ),
                 ],

@@ -12,6 +12,7 @@ import 'auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
@@ -91,6 +92,98 @@ class _MyAppState extends State<MyApp> {
       ),
       themeMode: _themeMode,
       routerConfig: _router,
+    );
+  }
+}
+
+class NavBarPage extends StatefulWidget {
+  NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);
+
+  final String? initialPage;
+  final Widget? page;
+
+  @override
+  _NavBarPageState createState() => _NavBarPageState();
+}
+
+/// This is the private State class that goes with NavBarPage.
+class _NavBarPageState extends State<NavBarPage> {
+  String _currentPageName = 'HomePage';
+  late Widget? _currentPage;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentPageName = widget.initialPage ?? _currentPageName;
+    _currentPage = widget.page;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tabs = {
+      'HomePage': HomePageWidget(),
+      'MyEnergyPage': MyEnergyPageWidget(),
+      'PaymentsPage': PaymentsPageWidget(),
+      'AdminPayment': AdminPaymentWidget(),
+    };
+    final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
+
+    return Scaffold(
+      body: _currentPage ?? tabs[_currentPageName],
+      bottomNavigationBar: Visibility(
+        visible: responsiveVisibility(
+          context: context,
+          tabletLandscape: false,
+          desktop: false,
+        ),
+        child: BottomNavigationBar(
+          currentIndex: currentIndex,
+          onTap: (i) => setState(() {
+            _currentPage = null;
+            _currentPageName = tabs.keys.toList()[i];
+          }),
+          backgroundColor: Colors.white,
+          selectedItemColor: FlutterFlowTheme.of(context).alternate,
+          unselectedItemColor: FlutterFlowTheme.of(context).secondaryText,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          type: BottomNavigationBarType.fixed,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
+                size: 24.0,
+              ),
+              label: 'Home',
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.electrical_services,
+                size: 24.0,
+              ),
+              label: 'My Energy',
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.credit_card_rounded,
+                size: 24.0,
+              ),
+              label: 'Payments',
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.home_outlined,
+                size: 24.0,
+              ),
+              label: 'Home',
+              tooltip: '',
+            )
+          ],
+        ),
+      ),
     );
   }
 }
