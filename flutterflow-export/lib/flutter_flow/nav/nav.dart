@@ -159,14 +159,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ResetPasswordPageWidget(),
         ),
         FFRoute(
-          name: 'MyEnergyPage',
-          path: '/myenergy',
-          requireAuth: true,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MyEnergyPage')
-              : MyEnergyPageWidget(),
-        ),
-        FFRoute(
           name: 'NewNav',
           path: '/newNav',
           requireAuth: true,
@@ -176,15 +168,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ExpandedMenu',
           path: '/expandedMenu',
           requireAuth: true,
-          builder: (context, params) => ExpandedMenuWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'ExpandedMenu')
+              : ExpandedMenuWidget(),
         ),
         FFRoute(
           name: 'AdminPayment',
           path: '/adminPayment',
           requireAuth: true,
+          builder: (context, params) => AdminPaymentWidget(),
+        ),
+        FFRoute(
+          name: 'MyEnergyPage',
+          path: '/myenergy',
+          requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'AdminPayment')
-              : AdminPaymentWidget(),
+              ? NavBarPage(initialPage: 'MyEnergyPage')
+              : MyEnergyPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

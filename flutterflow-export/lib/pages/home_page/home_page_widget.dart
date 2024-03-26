@@ -142,7 +142,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
                       child: Container(
-                        width: 750.0,
+                        constraints: BoxConstraints(
+                          maxWidth: 1024.0,
+                        ),
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,

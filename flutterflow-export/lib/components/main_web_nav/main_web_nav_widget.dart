@@ -376,7 +376,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     context.pushNamed(
-                      'TopupPage',
+                      'AdminPayment',
                       extra: <String, dynamic>{
                         kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
@@ -402,7 +402,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
-                          'Admin Initiate Payment',
+                          'Admin Payment',
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(

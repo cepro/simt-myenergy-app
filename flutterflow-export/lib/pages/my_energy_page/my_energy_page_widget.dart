@@ -51,6 +51,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: Row(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (responsiveVisibility(
               context: context,
@@ -61,8 +62,8 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                 model: _model.mainWebNavModel,
                 updateCallback: () => setState(() {}),
                 child: MainWebNavWidget(
-                  navOne: FlutterFlowTheme.of(context).alternate,
-                  navTwo: FlutterFlowTheme.of(context).secondaryText,
+                  navOne: FlutterFlowTheme.of(context).secondaryText,
+                  navTwo: FlutterFlowTheme.of(context).alternate,
                   navThree: FlutterFlowTheme.of(context).secondaryText,
                   navFour: FlutterFlowTheme.of(context).secondaryText,
                   navFive: FlutterFlowTheme.of(context).secondaryText,
@@ -70,528 +71,128 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                 ),
               ),
             Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Column(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                      child: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 1024.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 10.0, 0.0),
+                          child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              Container(
-                                constraints: BoxConstraints(
-                                  maxWidth: 1024.0,
+                              wrapWithModel(
+                                model: _model.topBarLoggedInModel,
+                                updateCallback: () => setState(() {}),
+                                child: TopBarLoggedInWidget(),
+                              ),
+                              if (responsiveVisibility(
+                                context: context,
+                                phone: false,
+                                tablet: false,
+                              ))
+                                Divider(
+                                  height: 44.0,
+                                  thickness: 1.0,
+                                  color: FlutterFlowTheme.of(context).lineColor,
                                 ),
-                                decoration: BoxDecoration(),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 24.0, 16.0, 0.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Expanded(
-                                            flex: 12,
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: wrapWithModel(
-                                                model:
-                                                    _model.topBarLoggedInModel,
-                                                updateCallback: () =>
-                                                    setState(() {}),
-                                                child: TopBarLoggedInWidget(),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      if (responsiveVisibility(
-                                        context: context,
-                                        phone: false,
-                                        tablet: false,
-                                      ))
-                                        Divider(
-                                          height: 44.0,
-                                          thickness: 1.0,
-                                          color: FlutterFlowTheme.of(context)
-                                              .lineColor,
-                                        ),
-                                      if (responsiveVisibility(
-                                        context: context,
-                                        tabletLandscape: false,
-                                        desktop: false,
-                                      ))
-                                        Divider(
-                                          height: 24.0,
-                                          thickness: 1.0,
-                                          color: FlutterFlowTheme.of(context)
-                                              .lineColor,
-                                        ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Property',
+                              if (responsiveVisibility(
+                                context: context,
+                                tabletLandscape: false,
+                                desktop: false,
+                              ))
+                                Divider(
+                                  height: 24.0,
+                                  thickness: 1.0,
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'My Energy',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineMedium,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(5.0),
+                                      child: AlignedTooltip(
+                                        content: Padding(
+                                            padding: EdgeInsets.all(4.0),
+                                            child: Text(
+                                              FFAppState()
+                                                  .properties
+                                                  .first
+                                                  .plot,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .headlineMedium,
+                                                      .bodyLarge,
+                                            )),
+                                        offset: 4.0,
+                                        preferredDirection: AxisDirection.down,
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                        elevation: 4.0,
+                                        tailBaseWidth: 24.0,
+                                        tailLength: 12.0,
+                                        waitDuration:
+                                            Duration(milliseconds: 100),
+                                        showDuration:
+                                            Duration(milliseconds: 1500),
+                                        triggerMode: TooltipTriggerMode.tap,
+                                        child: Visibility(
+                                          visible: FFAppState()
+                                              .properties
+                                              .isNotEmpty,
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 10.0, 0.0, 0.0),
+                                            child: Text(
+                                              FFAppState()
+                                                  .properties
+                                                  .first
+                                                  .description,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge,
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.all(5.0),
-                                              child: AlignedTooltip(
-                                                content: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(4.0),
-                                                    child: Text(
-                                                      FFAppState()
-                                                          .properties
-                                                          .first
-                                                          .plot,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge,
-                                                    )),
-                                                offset: 4.0,
-                                                preferredDirection:
-                                                    AxisDirection.down,
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                backgroundColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                elevation: 4.0,
-                                                tailBaseWidth: 24.0,
-                                                tailLength: 12.0,
-                                                waitDuration:
-                                                    Duration(milliseconds: 100),
-                                                showDuration: Duration(
-                                                    milliseconds: 1500),
-                                                triggerMode:
-                                                    TooltipTriggerMode.tap,
-                                                child: Visibility(
-                                                  visible: FFAppState()
-                                                      .properties
-                                                      .isNotEmpty,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 10.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      FFAppState()
-                                                          .properties
-                                                          .first
-                                                          .description,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 50.0),
-                                        child: wrapWithModel(
-                                          model: _model.monthlyConsumptionModel,
-                                          updateCallback: () => setState(() {}),
-                                          child: MonthlyConsumptionWidget(),
-                                        ),
-                                      ),
-                                      if (false)
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 50.0, 0.0, 0.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 16.0, 0.0),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            'Transactions',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineMedium,
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
                                           ),
                                         ),
-                                      if (false)
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 12.0, 16.0, 24.0),
-                                          child: ListView(
-                                            padding: EdgeInsets.zero,
-                                            shrinkWrap: true,
-                                            scrollDirection: Axis.vertical,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 12.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Container(
-                                                      width: 60.0,
-                                                      height: 60.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0x428377F3),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(16.0),
-                                                      ),
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Icon(
-                                                        Icons.account_balance,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 32.0,
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 5,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Topup',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .titleMedium,
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'Supply meter topup',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodySmall,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    if (responsiveVisibility(
-                                                      context: context,
-                                                      phone: false,
-                                                    ))
-                                                      Expanded(
-                                                        flex: 3,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      24.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                'Amount',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleMedium,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  '£50.00',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    Expanded(
-                                                      flex: 3,
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Text(
-                                                            'Date',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleMedium,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              '01 June 2023',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodySmall,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 12.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Container(
-                                                      width: 60.0,
-                                                      height: 60.0,
-                                                      decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0x428377F3),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(16.0),
-                                                      ),
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Icon(
-                                                        Icons.account_balance,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 32.0,
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      flex: 5,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Topup',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .titleMedium,
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'Supply meter topup',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodySmall,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    if (responsiveVisibility(
-                                                      context: context,
-                                                      phone: false,
-                                                    ))
-                                                      Expanded(
-                                                        flex: 3,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      24.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                'Amount',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleMedium,
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  '£50.00',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall,
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    Expanded(
-                                                      flex: 3,
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .end,
-                                                        children: [
-                                                          Text(
-                                                            'Date',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .titleMedium,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              '23 April 2023',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodySmall,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                    ],
-                                  ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                              ),
+                              wrapWithModel(
+                                model: _model.monthlyConsumptionModel,
+                                updateCallback: () => setState(() {}),
+                                child: MonthlyConsumptionWidget(),
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

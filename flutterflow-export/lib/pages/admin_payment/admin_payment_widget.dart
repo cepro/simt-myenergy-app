@@ -88,7 +88,9 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
                       child: Container(
-                        width: 750.0,
+                        constraints: BoxConstraints(
+                          maxWidth: 1024.0,
+                        ),
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -124,6 +126,25 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
                                   thickness: 1.0,
                                   color: FlutterFlowTheme.of(context).lineColor,
                                 ),
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 25.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Admin Payment',
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineMedium,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                               wrapWithModel(
                                 model: _model.adminInitiatePaymentModel,
                                 updateCallback: () => setState(() {}),

@@ -124,7 +124,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'HomePage': HomePageWidget(),
       'MyEnergyPage': MyEnergyPageWidget(),
       'PaymentsPage': PaymentsPageWidget(),
-      'AdminPayment': AdminPaymentWidget(),
+      'ExpandedMenu': ExpandedMenuWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -175,10 +175,10 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.home_outlined,
+                Icons.menu,
                 size: 24.0,
               ),
-              label: 'Home',
+              label: 'More',
               tooltip: '',
             )
           ],

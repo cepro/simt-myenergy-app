@@ -13,8 +13,8 @@ export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/pages/sys_info_page/sys_info_page_widget.dart' show SysInfoPageWidget;
 export '/pages/reset_password_page/reset_password_page_widget.dart'
     show ResetPasswordPageWidget;
-export '/pages/my_energy_page/my_energy_page_widget.dart'
-    show MyEnergyPageWidget;
 export '/new_nav/new_nav_widget.dart' show NewNavWidget;
 export '/expanded_menu/expanded_menu_widget.dart' show ExpandedMenuWidget;
 export '/pages/admin_payment/admin_payment_widget.dart' show AdminPaymentWidget;
+export '/pages/my_energy_page/my_energy_page_widget.dart'
+    show MyEnergyPageWidget;

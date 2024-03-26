@@ -79,7 +79,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (responsiveVisibility(
               context: context,
@@ -91,294 +92,113 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                 updateCallback: () => setState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).secondaryText,
-                  navTwo: FlutterFlowTheme.of(context).alternate,
-                  navThree: FlutterFlowTheme.of(context).secondaryText,
+                  navTwo: FlutterFlowTheme.of(context).secondaryText,
+                  navThree: FlutterFlowTheme.of(context).alternate,
                   navFour: FlutterFlowTheme.of(context).secondaryText,
                   navFive: FlutterFlowTheme.of(context).secondaryText,
                   navSix: FlutterFlowTheme.of(context).secondaryText,
                 ),
               ),
             Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    child: Padding(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 50.0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              constraints: BoxConstraints(
-                                maxWidth: 1024.0,
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                      child: Container(
+                        constraints: BoxConstraints(
+                          maxWidth: 1024.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 10.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              wrapWithModel(
+                                model: _model.topBarLoggedInModel,
+                                updateCallback: () => setState(() {}),
+                                child: TopBarLoggedInWidget(),
                               ),
-                              decoration: BoxDecoration(),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 24.0, 16.0, 0.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    wrapWithModel(
-                                      model: _model.topBarLoggedInModel,
-                                      updateCallback: () => setState(() {}),
-                                      child: TopBarLoggedInWidget(),
-                                    ),
-                                    if (responsiveVisibility(
-                                      context: context,
-                                      phone: false,
-                                      tablet: false,
-                                    ))
-                                      Divider(
-                                        height: 44.0,
-                                        thickness: 1.0,
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
+                              if (responsiveVisibility(
+                                context: context,
+                                phone: false,
+                                tablet: false,
+                              ))
+                                Divider(
+                                  height: 44.0,
+                                  thickness: 1.0,
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                              if (responsiveVisibility(
+                                context: context,
+                                tabletLandscape: false,
+                                desktop: false,
+                              ))
+                                Divider(
+                                  height: 24.0,
+                                  thickness: 1.0,
+                                  color: FlutterFlowTheme.of(context).lineColor,
+                                ),
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 25.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Payments',
+                                        style: FlutterFlowTheme.of(context)
+                                            .headlineMedium,
                                       ),
-                                    if (responsiveVisibility(
-                                      context: context,
-                                      tabletLandscape: false,
-                                      desktop: false,
-                                    ))
-                                      Divider(
-                                        height: 24.0,
-                                        thickness: 1.0,
-                                        color: FlutterFlowTheme.of(context)
-                                            .lineColor,
-                                      ),
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        if (functions
-                                                .arrayLengthOrNegativeOneIfNotArray(
-                                                    _model.paymentMethods) >
-                                            0)
-                                          Container(
-                                            constraints: BoxConstraints(
-                                              maxWidth: 333.0,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                if (getJsonField(
-                                                      (_model.getPaymentMethodsOutput
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$[0].directDebit''',
-                                                    ) !=
-                                                    null)
-                                                  wrapWithModel(
-                                                    model:
-                                                        _model.directDebitModel,
-                                                    updateCallback: () =>
-                                                        setState(() {}),
-                                                    child: DirectDebitWidget(
-                                                      last4Digits: getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].directDebit.last4''',
-                                                      ).toString(),
-                                                      sortCode: getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].directDebit.sortCode''',
-                                                      ).toString(),
-                                                    ),
-                                                  ),
-                                                if (getJsonField(
-                                                      (_model.getPaymentMethodsOutput
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$[0].card''',
-                                                    ) !=
-                                                    null)
-                                                  wrapWithModel(
-                                                    model:
-                                                        _model.creditCardModel,
-                                                    updateCallback: () =>
-                                                        setState(() {}),
-                                                    child: CreditCardWidget(
-                                                      last4Digits: getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].card.last4''',
-                                                      ).toString(),
-                                                      expiryYear: getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].card.expiryYear''',
-                                                      ),
-                                                      expiryMonth: getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].card.expiryMonth''',
-                                                      ),
-                                                      cardBrand: getJsonField(
-                                                        (_model.getPaymentMethodsOutput
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$[0].card.brand''',
-                                                      ).toString(),
-                                                    ),
-                                                  ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 20.0,
-                                                                0.0, 0.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        _model.deletePaymentMethodResult =
-                                                            await DeleteCustomersPaymentMethodCall
-                                                                .call(
-                                                          bearerToken:
-                                                              _model.jwtToken,
-                                                          id: getJsonField(
-                                                            (_model.getPaymentMethodsOutput
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                            r'''$[0].id''',
-                                                          ).toString(),
-                                                          site: FFAppState()
-                                                              .site
-                                                              ?.name,
-                                                        );
-                                                        if ((_model.deletePaymentMethodResult
-                                                                    ?.statusCode ??
-                                                                200) ==
-                                                            200) {
-                                                          context.pushNamed(
-                                                              'PaymentsPage');
-                                                        } else {
-                                                          await action_blocks
-                                                              .handleMyEnergyApiCallFailure(
-                                                            context,
-                                                            wwwAuthenticateHeader: (_model
-                                                                    .deletePaymentMethodResult
-                                                                    ?.getHeader(
-                                                                        'www-authenticate') ??
-                                                                ''),
-                                                            httpStatusCode: (_model
-                                                                    .checkoutPageURI
-                                                                    ?.statusCode ??
-                                                                200),
-                                                          );
-                                                        }
-
-                                                        setState(() {});
-                                                      },
-                                                      text:
-                                                          'Remove Payment Method',
-                                                      options: FFButtonOptions(
-                                                        height: 30.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    24.0,
-                                                                    0.0,
-                                                                    24.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleSmallFamily),
-                                                                ),
-                                                        elevation: 3.0,
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, 0.0),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  1.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
                                           ),
-                                        if (functions
-                                                .arrayLengthOrNegativeOneIfNotArray(
-                                                    _model.paymentMethods) ==
-                                            0)
-                                          Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'Add a new payment method',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        fontSize: 28.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 20.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    'Payment History',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineSmall,
+                                                  ),
                                                 ),
-                                                Padding(
+                                              ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 1.0),
+                                                child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 15.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until you contract for energy supply. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply in April. You will be notified by email 24 hours before any payments are taken.\n',
+                                                    'Coming soon ...',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -398,116 +218,338 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                         ),
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 20.0, 0.0, 0.0),
-                                                  child: FFButtonWidget(
-                                                    onPressed: () async {
-                                                      _model.checkoutPageURI =
-                                                          await CreateStripeCheckoutSessionCall
-                                                              .call(
-                                                        bearerToken:
-                                                            _model.jwtToken,
-                                                        site: FFAppState()
-                                                            .site
-                                                            ?.name,
-                                                      );
-                                                      if (_model
-                                                              .checkoutPageURI !=
-                                                          null) {
-                                                        await actions
-                                                            .navigateToExternalURI(
-                                                          CreateStripeCheckoutSessionCall
-                                                              .checkoutPageURI(
-                                                            (_model.checkoutPageURI
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          ).toString(),
-                                                        );
-                                                      } else {
-                                                        await action_blocks
-                                                            .handleMyEnergyApiCallFailure(
-                                                          context,
-                                                          wwwAuthenticateHeader: (_model
-                                                                  .checkoutPageURI
-                                                                  ?.getHeader(
-                                                                      'www-authenticate') ??
-                                                              ''),
-                                                          httpStatusCode: (_model
-                                                                  .checkoutPageURI
-                                                                  ?.statusCode ??
-                                                              200),
-                                                        );
-                                                      }
-
-                                                      setState(() {});
-                                                    },
-                                                    text:
-                                                        'Setup Payment with Stripe',
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  0.0,
-                                                                  24.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmallFamily,
-                                                                color: Colors
-                                                                    .white,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .titleSmallFamily),
-                                                              ),
-                                                      elevation: 3.0,
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1.0,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                              ),
+                                            ],
                                           ),
-                                      ],
-                                    ),
-                                  ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              if (functions.arrayLengthOrNegativeOneIfNotArray(
+                                      _model.paymentMethods) >
+                                  0)
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Container(
+                                    constraints: BoxConstraints(
+                                      maxWidth: 333.0,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 15.0),
+                                          child: Text(
+                                            'Payment method',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineSmall,
+                                          ),
+                                        ),
+                                        if (getJsonField(
+                                              (_model.getPaymentMethodsOutput
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$[0].directDebit''',
+                                            ) !=
+                                            null)
+                                          wrapWithModel(
+                                            model: _model.directDebitModel,
+                                            updateCallback: () =>
+                                                setState(() {}),
+                                            child: DirectDebitWidget(
+                                              last4Digits: getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].directDebit.last4''',
+                                              ).toString(),
+                                              sortCode: getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].directDebit.sortCode''',
+                                              ).toString(),
+                                            ),
+                                          ),
+                                        if (getJsonField(
+                                              (_model.getPaymentMethodsOutput
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$[0].card''',
+                                            ) !=
+                                            null)
+                                          wrapWithModel(
+                                            model: _model.creditCardModel,
+                                            updateCallback: () =>
+                                                setState(() {}),
+                                            child: CreditCardWidget(
+                                              last4Digits: getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].card.last4''',
+                                              ).toString(),
+                                              expiryYear: getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].card.expiryYear''',
+                                              ),
+                                              expiryMonth: getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].card.expiryMonth''',
+                                              ),
+                                              cardBrand: getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].card.brand''',
+                                              ).toString(),
+                                            ),
+                                          ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 20.0, 0.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                _model.deletePaymentMethodResult =
+                                                    await DeleteCustomersPaymentMethodCall
+                                                        .call(
+                                                  bearerToken: _model.jwtToken,
+                                                  id: getJsonField(
+                                                    (_model.getPaymentMethodsOutput
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$[0].id''',
+                                                  ).toString(),
+                                                  site: FFAppState().site?.name,
+                                                );
+                                                if ((_model.deletePaymentMethodResult
+                                                            ?.statusCode ??
+                                                        200) ==
+                                                    200) {
+                                                  context.pushNamed(
+                                                      'PaymentsPage');
+                                                } else {
+                                                  await action_blocks
+                                                      .handleMyEnergyApiCallFailure(
+                                                    context,
+                                                    wwwAuthenticateHeader: (_model
+                                                            .deletePaymentMethodResult
+                                                            ?.getHeader(
+                                                                'www-authenticate') ??
+                                                        ''),
+                                                    httpStatusCode: (_model
+                                                            .checkoutPageURI
+                                                            ?.statusCode ??
+                                                        200),
+                                                  );
+                                                }
+
+                                                setState(() {});
+                                              },
+                                              text: 'Remove Payment Method',
+                                              options: FFButtonOptions(
+                                                height: 30.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              if (functions.arrayLengthOrNegativeOneIfNotArray(
+                                      _model.paymentMethods) ==
+                                  0)
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Text(
+                                            'Add a new payment method',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineSmall,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 15.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until you contract for energy supply. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply in April. You will be notified by email 24 hours before any payments are taken.\n',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily,
+                                                  fontWeight: FontWeight.w600,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMediumFamily),
+                                                ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 20.0, 0.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                _model.checkoutPageURI =
+                                                    await CreateStripeCheckoutSessionCall
+                                                        .call(
+                                                  bearerToken: _model.jwtToken,
+                                                  site: FFAppState().site?.name,
+                                                );
+                                                if (_model.checkoutPageURI !=
+                                                    null) {
+                                                  await actions
+                                                      .navigateToExternalURI(
+                                                    CreateStripeCheckoutSessionCall
+                                                        .checkoutPageURI(
+                                                      (_model.checkoutPageURI
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                    ).toString(),
+                                                  );
+                                                } else {
+                                                  await action_blocks
+                                                      .handleMyEnergyApiCallFailure(
+                                                    context,
+                                                    wwwAuthenticateHeader: (_model
+                                                            .checkoutPageURI
+                                                            ?.getHeader(
+                                                                'www-authenticate') ??
+                                                        ''),
+                                                    httpStatusCode: (_model
+                                                            .checkoutPageURI
+                                                            ?.statusCode ??
+                                                        200),
+                                                  );
+                                                }
+
+                                                setState(() {});
+                                              },
+                                              text: 'Setup Payment with Stripe',
+                                              options: FFButtonOptions(
+                                                height: 40.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        24.0, 0.0, 24.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                elevation: 3.0,
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

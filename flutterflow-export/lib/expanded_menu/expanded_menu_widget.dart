@@ -44,7 +44,7 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: SafeArea(
           top: true,
           child: Column(
@@ -70,8 +70,8 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                         size: 24.0,
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 12.0, 0.0, 12.0),
                         child: Text(
                           'Admin Initiate Payment',
                           style: FlutterFlowTheme.of(context).bodyMedium,
@@ -90,9 +90,11 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                     size: 24.0,
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                     child: Text(
                       'Extra Menu Item 2',
+                      textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ),
@@ -108,7 +110,8 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                     size: 24.0,
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                     child: Text(
                       'Extra Menu Item 3',
                       style: FlutterFlowTheme.of(context).bodyMedium,

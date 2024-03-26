@@ -60,7 +60,7 @@ class _AdminInitiatePaymentWidgetState
           (currentUserEmail == 'nova@cepro.energy') ||
           (currentUserEmail == 'damon@a5gard.net'),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
         child: Container(
           width: 500.0,
           decoration: BoxDecoration(
@@ -251,29 +251,41 @@ class _AdminInitiatePaymentWidgetState
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 30.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      // Reset flags
-                      setState(() {
-                        _model.sendPaymentFailure = false;
-                        _model.paymentSuccess = false;
-                      });
-                      _model.sendPaymentResult = await SendPaymentCall.call(
-                        amount:
-                            double.tryParse(_model.amountFieldController.text),
-                        description: _model.descriptionFieldController.text,
-                        customerId: _model.customerIdFieldController.text,
-                        bearerToken: currentJwtToken,
-                        site: FFAppState().site?.name,
-                      );
-                      if ((_model.sendPaymentResult?.succeeded ?? true)) {
-                        // Set success flag
+                      if ((_model.customerIdFieldController.text == null ||
+                              _model.customerIdFieldController.text == '') ||
+                          (_model.descriptionFieldController.text == null ||
+                              _model.descriptionFieldController.text == '') ||
+                          (_model.amountFieldController.text == null ||
+                              _model.amountFieldController.text == '')) {
+                        // Reset flags
                         setState(() {
-                          _model.paymentSuccess = true;
-                        });
-                      } else {
-                        // Set failure flag
-                        setState(() {
+                          _model.sendPaymentFailure = false;
                           _model.paymentSuccess = false;
-                          _model.sendPaymentFailure = true;
+                          _model.errorMessage = null;
+                        });
+                        _model.sendPaymentResult = await SendPaymentCall.call(
+                          amount: double.tryParse(
+                              _model.amountFieldController.text),
+                          description: _model.descriptionFieldController.text,
+                          customerId: _model.customerIdFieldController.text,
+                          bearerToken: currentJwtToken,
+                          site: FFAppState().site?.name,
+                        );
+                        if ((_model.sendPaymentResult?.succeeded ?? true)) {
+                          // Set success flag
+                          setState(() {
+                            _model.paymentSuccess = true;
+                          });
+                        } else {
+                          // Set failure flag
+                          setState(() {
+                            _model.paymentSuccess = false;
+                            _model.sendPaymentFailure = true;
+                          });
+                        }
+                      } else {
+                        setState(() {
+                          _model.errorMessage = 'one or more fields are blank';
                         });
                       }
 
