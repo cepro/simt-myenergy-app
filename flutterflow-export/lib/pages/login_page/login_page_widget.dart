@@ -713,6 +713,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     context
                                                                         .mounted);
                                                               } else {
+                                                                await action_blocks
+                                                                    .clearAppState(
+                                                                        context);
                                                                 GoRouter.of(
                                                                         context)
                                                                     .prepareAuthEvent();

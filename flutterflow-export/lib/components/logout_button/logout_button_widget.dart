@@ -1,9 +1,8 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/schema/enums/enums.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -71,19 +70,7 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
           size: 20.0,
         ),
         onPressed: () async {
-          setState(() {
-            FFAppState().meters = null;
-            FFAppState().supplyContractSigned = false;
-            FFAppState().accounts = [];
-            FFAppState().sites = [];
-            FFAppState().properties = [];
-            FFAppState().monthlyUsage = [];
-            FFAppState().monthlyUsageJSON = null;
-            FFAppState().site = SiteCodeEnum.unknown;
-            FFAppState().customerStatus = '';
-            FFAppState().isCeproUser = false;
-            FFAppState().contractTerms = [];
-          });
+          await action_blocks.clearAppState(context);
           GoRouter.of(context).prepareAuthEvent();
           await authManager.signOut();
           GoRouter.of(context).clearRedirectLocation();

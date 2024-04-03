@@ -176,3 +176,18 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
 
   return true;
 }
+
+Future clearAppState(BuildContext context) async {
+  // Clear All App State
+  FFAppState().meters = null;
+  FFAppState().supplyContractSigned = false;
+  FFAppState().accounts = [];
+  FFAppState().sites = [];
+  FFAppState().properties = [];
+  FFAppState().monthlyUsage = [];
+  FFAppState().monthlyUsageJSON = null;
+  FFAppState().site = SiteCodeEnum.unknown;
+  FFAppState().customerStatus = '';
+  FFAppState().isCeproUser = false;
+  FFAppState().contractTerms = [];
+}
