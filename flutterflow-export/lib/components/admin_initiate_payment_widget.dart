@@ -56,9 +56,7 @@ class _AdminInitiatePaymentWidgetState
     context.watch<FFAppState>();
 
     return Visibility(
-      visible: (currentUserEmail == 'damonrand@gmail.com') ||
-          (currentUserEmail == 'nova@cepro.energy') ||
-          (currentUserEmail == 'damon@a5gard.net'),
+      visible: FFAppState().isCeproUser,
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
         child: Container(
@@ -77,6 +75,7 @@ class _AdminInitiatePaymentWidgetState
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyMediumFamily,
                         fontSize: 28.0,
+                        letterSpacing: 0.0,
                         useGoogleFonts: GoogleFonts.asMap().containsKey(
                             FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
@@ -91,6 +90,7 @@ class _AdminInitiatePaymentWidgetState
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
                           color: FlutterFlowTheme.of(context).primary,
+                          letterSpacing: 0.0,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
@@ -102,6 +102,7 @@ class _AdminInitiatePaymentWidgetState
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
                           color: FlutterFlowTheme.of(context).primaryText,
+                          letterSpacing: 0.0,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
@@ -115,8 +116,24 @@ class _AdminInitiatePaymentWidgetState
                     obscureText: false,
                     decoration: InputDecoration(
                       labelText: 'Stripe Customer ID',
-                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                      labelStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
+                      hintStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).lineColor,
@@ -148,7 +165,14 @@ class _AdminInitiatePaymentWidgetState
                       filled: true,
                       fillColor: FlutterFlowTheme.of(context).primaryBackground,
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
+                    minLines: null,
                     validator: _model.customerIdFieldControllerValidator
                         .asValidator(context),
                   ),
@@ -162,8 +186,24 @@ class _AdminInitiatePaymentWidgetState
                     obscureText: false,
                     decoration: InputDecoration(
                       labelText: 'Amount (GBP)',
-                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                      labelStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
+                      hintStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).lineColor,
@@ -195,7 +235,14 @@ class _AdminInitiatePaymentWidgetState
                       filled: true,
                       fillColor: FlutterFlowTheme.of(context).primaryBackground,
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
+                    minLines: null,
                     validator: _model.amountFieldControllerValidator
                         .asValidator(context),
                   ),
@@ -209,8 +256,24 @@ class _AdminInitiatePaymentWidgetState
                     obscureText: false,
                     decoration: InputDecoration(
                       labelText: 'Description',
-                      labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                      hintStyle: FlutterFlowTheme.of(context).labelMedium,
+                      labelStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
+                      hintStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).lineColor,
@@ -242,7 +305,14 @@ class _AdminInitiatePaymentWidgetState
                       filled: true,
                       fillColor: FlutterFlowTheme.of(context).primaryBackground,
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
+                    minLines: null,
                     validator: _model.descriptionFieldControllerValidator
                         .asValidator(context),
                   ),
@@ -305,6 +375,7 @@ class _AdminInitiatePaymentWidgetState
                             fontFamily:
                                 FlutterFlowTheme.of(context).titleSmallFamily,
                             color: Colors.white,
+                            letterSpacing: 0.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).titleSmallFamily),
                           ),

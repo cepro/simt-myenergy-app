@@ -18,8 +18,6 @@ class InviteLandingPageModel extends FlutterFlowModel<InviteLandingPageWidget> {
   // Model for LogoContainerRow component.
   late LogoContainerRowModel logoContainerRowModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
@@ -30,8 +28,4 @@ class InviteLandingPageModel extends FlutterFlowModel<InviteLandingPageWidget> {
     unfocusNode.dispose();
     logoContainerRowModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

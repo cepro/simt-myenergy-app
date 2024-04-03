@@ -72,6 +72,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .headlineMediumFamily,
+                                letterSpacing: 0.0,
                                 decoration: TextDecoration.underline,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -95,7 +96,17 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                             softWrap: true,
                             child: Text(
                               'Month',
-                              style: FlutterFlowTheme.of(context).labelLarge,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelLargeFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelLargeFamily),
+                                  ),
                             ),
                           ),
                         ),
@@ -104,7 +115,17 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                             softWrap: true,
                             child: Text(
                               'Power (kWh)',
-                              style: FlutterFlowTheme.of(context).labelLarge,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelLargeFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelLargeFamily),
+                                  ),
                             ),
                           ),
                         ),
@@ -113,7 +134,17 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                             softWrap: true,
                             child: Text(
                               'Heat (kWh)',
-                              style: FlutterFlowTheme.of(context).labelLarge,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelLargeFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelLargeFamily),
+                                  ),
                             ),
                           ),
                         ),
@@ -132,15 +163,42 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                               monthlyUsageItem.month,
                               'null',
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                           ),
                           Text(
                             monthlyUsageItem.usagePower.toString(),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                           ),
                           Text(
                             monthlyUsageItem.usageHeat.toString(),
-                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
                           ),
                         ].map((c) => DataCell(c)).toList(),
                       ),

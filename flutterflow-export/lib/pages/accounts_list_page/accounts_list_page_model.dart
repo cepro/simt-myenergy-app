@@ -22,8 +22,6 @@ class AccountsListPageModel extends FlutterFlowModel<AccountsListPageWidget> {
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
@@ -36,8 +34,4 @@ class AccountsListPageModel extends FlutterFlowModel<AccountsListPageWidget> {
     mainWebNavModel.dispose();
     logoutButtonModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

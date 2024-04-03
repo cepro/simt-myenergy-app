@@ -64,6 +64,7 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).headlineMediumFamily,
+                          letterSpacing: 0.0,
                           decoration: TextDecoration.underline,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context)
@@ -81,6 +82,7 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyMediumFamily),
@@ -117,6 +119,7 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                               decoration: TextDecoration.underline,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(

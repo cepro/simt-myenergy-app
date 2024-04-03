@@ -1,4 +1,5 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -51,7 +52,10 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
           BoxShadow(
             blurRadius: 4.0,
             color: Color(0x33000000),
-            offset: Offset(0.0, 2.0),
+            offset: Offset(
+              0.0,
+              2.0,
+            ),
           )
         ],
         borderRadius: BorderRadius.circular(16.0),
@@ -71,6 +75,14 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
             FFAppState().meters = null;
             FFAppState().supplyContractSigned = false;
             FFAppState().accounts = [];
+            FFAppState().sites = [];
+            FFAppState().properties = [];
+            FFAppState().monthlyUsage = [];
+            FFAppState().monthlyUsageJSON = null;
+            FFAppState().site = SiteCodeEnum.unknown;
+            FFAppState().customerStatus = '';
+            FFAppState().isCeproUser = false;
+            FFAppState().contractTerms = [];
           });
           GoRouter.of(context).prepareAuthEvent();
           await authManager.signOut();

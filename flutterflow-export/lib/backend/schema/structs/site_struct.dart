@@ -29,7 +29,7 @@ class SiteStruct extends BaseStruct {
 
   // "code" field.
   SiteCodeEnum? _code;
-  SiteCodeEnum? get code => _code;
+  SiteCodeEnum get code => _code ?? SiteCodeEnum.unknown;
   set code(SiteCodeEnum? val) => _code = val;
   bool hasCode() => _code != null;
 

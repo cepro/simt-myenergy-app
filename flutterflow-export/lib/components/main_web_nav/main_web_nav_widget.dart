@@ -1,9 +1,7 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -110,7 +108,10 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
           BoxShadow(
             blurRadius: 0.0,
             color: FlutterFlowTheme.of(context).lineColor,
-            offset: Offset(1.0, 0.0),
+            offset: Offset(
+              1.0,
+              0.0,
+            ),
           )
         ],
       ),
@@ -154,7 +155,12 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
               child: Text(
                 'MENU',
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).bodyMediumFamily),
+                    ),
               ),
             ),
             Padding(
@@ -197,6 +203,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
                               color: widget.navOne,
+                              letterSpacing: 0.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .bodyMediumFamily),
@@ -250,6 +257,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
                                 color: widget.navTwo,
+                                letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodyMediumFamily),
@@ -303,6 +311,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
                                 color: widget.navThree,
+                                letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodyMediumFamily),
@@ -356,6 +365,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
                                 color: widget.navFour,
+                                letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodyMediumFamily),
@@ -366,7 +376,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   ),
                 ),
               ),
-            if (functions.isAdmin(currentUserEmail))
+            if (FFAppState().isCeproUser)
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(
@@ -409,6 +419,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
                                 color: widget.navFour,
+                                letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodyMediumFamily),
@@ -506,7 +517,10 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),
-                                                      offset: Offset(0.0, 2.0),
+                                                      offset: Offset(
+                                                        0.0,
+                                                        2.0,
+                                                      ),
                                                     )
                                                   ],
                                                   borderRadius:
@@ -602,7 +616,10 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),
-                                                      offset: Offset(0.0, 2.0),
+                                                      offset: Offset(
+                                                        0.0,
+                                                        2.0,
+                                                      ),
                                                     )
                                                   ],
                                                   borderRadius:

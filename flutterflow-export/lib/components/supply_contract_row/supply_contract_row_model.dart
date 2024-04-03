@@ -16,15 +16,9 @@ class SupplyContractRowModel extends FlutterFlowModel<SupplyContractRowWidget> {
   // Stores action output result for [Custom Action - getTermsByTypeAndSubtype] action in Button widget.
   ContractTermsStruct? supplyContractTerms;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {}
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

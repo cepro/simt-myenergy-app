@@ -124,6 +124,9 @@ class FFAppState extends ChangeNotifier {
           ? deserializeEnum<SiteCodeEnum>(prefs.getString('ff_site'))
           : _site;
     });
+    _safeInit(() {
+      _isCeproUser = prefs.getBool('ff_isCeproUser') ?? _isCeproUser;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -390,6 +393,13 @@ class FFAppState extends ChangeNotifier {
     _value != null
         ? prefs.setString('ff_site', _value.serialize())
         : prefs.remove('ff_site');
+  }
+
+  bool _isCeproUser = false;
+  bool get isCeproUser => _isCeproUser;
+  set isCeproUser(bool _value) {
+    _isCeproUser = _value;
+    prefs.setBool('ff_isCeproUser', _value);
   }
 }
 

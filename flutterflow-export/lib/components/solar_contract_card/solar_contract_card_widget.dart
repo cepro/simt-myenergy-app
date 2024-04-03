@@ -64,7 +64,10 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x2B202529),
-              offset: Offset(0.0, 2.0),
+              offset: Offset(
+                0.0,
+                2.0,
+              ),
             )
           ],
           borderRadius: BorderRadius.circular(8.0),
@@ -104,7 +107,13 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                           widget.title,
                           'Title Not Set',
                         ),
-                        style: FlutterFlowTheme.of(context).bodyLarge,
+                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyLargeFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyLargeFamily),
+                            ),
                       ),
                     ),
                   ),
@@ -117,7 +126,13 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                     widget.terms?.summaryText,
                     'unknown',
                   ),
-                  style: FlutterFlowTheme.of(context).labelMedium,
+                  style: FlutterFlowTheme.of(context).labelMedium.override(
+                        fontFamily:
+                            FlutterFlowTheme.of(context).labelMediumFamily,
+                        letterSpacing: 0.0,
+                        useGoogleFonts: GoogleFonts.asMap().containsKey(
+                            FlutterFlowTheme.of(context).labelMediumFamily),
+                      ),
                 ),
               ),
               Divider(
@@ -155,6 +170,7 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
                               fontSize: 14.0,
+                              letterSpacing: 0.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
                                       .titleSmallFamily),

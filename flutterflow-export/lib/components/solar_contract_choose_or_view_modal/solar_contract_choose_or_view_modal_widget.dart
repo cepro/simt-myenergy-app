@@ -90,7 +90,16 @@ class _SolarContractChooseOrViewModalWidgetState
                             widget.readOnly!
                                 ? 'Solar Contract'
                                 : 'Choose Solar Contract',
-                            style: FlutterFlowTheme.of(context).headlineMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .headlineMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .headlineMediumFamily),
+                                ),
                           ),
                         ),
                       ),

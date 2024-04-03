@@ -47,8 +47,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // Model for SupplyContractRow component.
   late SupplyContractRowModel supplyContractRowModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
@@ -69,8 +67,4 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     productRoadmapBoxModel.dispose();
     supplyContractRowModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

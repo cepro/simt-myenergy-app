@@ -65,7 +65,10 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                   BoxShadow(
                     blurRadius: 12.0,
                     color: Color(0x33000000),
-                    offset: Offset(0.0, 5.0),
+                    offset: Offset(
+                      0.0,
+                      5.0,
+                    ),
                   )
                 ],
                 borderRadius: BorderRadius.circular(16.0),
@@ -91,7 +94,16 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                                 Text(
                                   'Product Roadmap',
                                   style: FlutterFlowTheme.of(context)
-                                      .headlineLarge,
+                                      .headlineLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineLargeFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLargeFamily),
+                                      ),
                                 ),
                               ],
                             ),
@@ -118,7 +130,14 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: Text(
                         'This initial version (v1) of MyEnergy can be used to:\n    1. Check your smart meter serial number, mode and credit balance.\n    2. Review monthly energy consumption (power & lights, electric heat)\n    3. Add a payment method\n\nThe next app release (due in April) will support:\n    1. Signing your electricity supply agreement\n    2. Signing your solar installation usage agreement \n    3. Making payments for electricity consumption\n    4. Receiving credits for use of your solar installation',
-                        style: FlutterFlowTheme.of(context).labelLarge,
+                        style: FlutterFlowTheme.of(context).labelLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).labelLargeFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .labelLargeFamily),
+                            ),
                       ),
                     ),
                     Padding(
@@ -144,6 +163,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .titleSmallFamily,
                                     color: Colors.white,
+                                    letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)

@@ -46,8 +46,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   // Stores action output result for [Backend Call - API (Create Stripe Checkout Session)] action in Button widget.
   ApiCallResponse? checkoutPageURI;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
@@ -64,8 +62,4 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     directDebitModel.dispose();
     creditCardModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

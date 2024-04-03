@@ -35,8 +35,6 @@ class ResetPasswordPageModel extends FlutterFlowModel<ResetPasswordPageWidget> {
   // Stores action output result for [Custom Action - supabasePasswordUpdate] action in Button-Reset-Password widget.
   bool? passwordUpdateSuccess;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
@@ -53,8 +51,4 @@ class ResetPasswordPageModel extends FlutterFlowModel<ResetPasswordPageWidget> {
     confirmPasswordFocusNode?.dispose();
     confirmPasswordController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

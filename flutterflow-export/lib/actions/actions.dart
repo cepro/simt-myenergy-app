@@ -103,6 +103,10 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     ).toString().toString();
     FFAppState().hostname = getHostnameResponse!;
     FFAppState().site = functions.hostnameToSiteCode(getHostnameResponse);
+    FFAppState().isCeproUser = getJsonField(
+      (getAccountsResponse?.jsonBody ?? ''),
+      r'''$.customer.isCeproUser''',
+    );
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(

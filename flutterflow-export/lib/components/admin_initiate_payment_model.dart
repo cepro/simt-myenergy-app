@@ -35,8 +35,6 @@ class AdminInitiatePaymentModel
   // Stores action output result for [Backend Call - API (Send Payment)] action in Button widget.
   ApiCallResponse? sendPaymentResult;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -51,8 +49,4 @@ class AdminInitiatePaymentModel
     descriptionFieldFocusNode?.dispose();
     descriptionFieldController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

@@ -105,8 +105,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          15.0, 0.0, 15.0, 100.0),
                       child: Container(
                         constraints: BoxConstraints(
                           maxWidth: 1024.0,
@@ -159,7 +159,18 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       Text(
                                         'Payments',
                                         style: FlutterFlowTheme.of(context)
-                                            .headlineMedium,
+                                            .headlineMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMediumFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(FlutterFlowTheme
+                                                          .of(context)
+                                                      .headlineMediumFamily),
+                                            ),
                                       ),
                                       Align(
                                         alignment:
@@ -186,7 +197,20 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     'Payment History',
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .headlineSmall,
+                                                        .headlineSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineSmallFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmallFamily),
+                                                        ),
                                                   ),
                                                 ),
                                               ),
@@ -207,6 +231,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           useGoogleFonts: GoogleFonts
@@ -227,9 +252,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   ),
                                 ),
                               ),
-                              if (functions.arrayLengthOrNegativeOneIfNotArray(
-                                      _model.paymentMethods) >
-                                  0)
+                              if ((functions.arrayLengthOrNegativeOneIfNotArray(
+                                          _model.paymentMethods) >
+                                      0) &&
+                                  FFAppState().isCeproUser)
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
@@ -252,7 +278,19 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           child: Text(
                                             'Payment method',
                                             style: FlutterFlowTheme.of(context)
-                                                .headlineSmall,
+                                                .headlineSmall
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineSmallFamily,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineSmallFamily),
+                                                ),
                                           ),
                                         ),
                                         if (getJsonField(
@@ -386,6 +424,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                       context)
                                                                   .titleSmallFamily,
                                                           color: Colors.white,
+                                                          letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -408,9 +447,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     ),
                                   ),
                                 ),
-                              if (functions.arrayLengthOrNegativeOneIfNotArray(
-                                      _model.paymentMethods) ==
-                                  0)
+                              if ((functions.arrayLengthOrNegativeOneIfNotArray(
+                                          _model.paymentMethods) ==
+                                      0) &&
+                                  FFAppState().isCeproUser)
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
@@ -429,7 +469,19 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           child: Text(
                                             'Add a new payment method',
                                             style: FlutterFlowTheme.of(context)
-                                                .headlineSmall,
+                                                .headlineSmall
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineSmallFamily,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineSmallFamily),
+                                                ),
                                           ),
                                         ),
                                         Padding(
@@ -445,6 +497,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .bodyMediumFamily,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
@@ -521,6 +574,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                       context)
                                                                   .titleSmallFamily,
                                                           color: Colors.white,
+                                                          letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(

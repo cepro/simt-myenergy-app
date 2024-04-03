@@ -9,6 +9,13 @@ set -e
 THIS_PROJECT=`pwd`/`dirname $0`/..
 LOCAL_STAGE=$THIS_PROJECT/local-stage
 
+if [ "$1" = "hmce" ]; then
+  SITE_NAME=hazelmead
+else
+  SITE_NAME=waterlilies
+fi
+SITE_HOSTNAME=local.$SITE_NAME.energy
+
 # fix the following: paths are messed up when invoking like this:
 # if [ "$1" = "--export" ]; then
 #     $THIS_PROJECT/patch-local $1
@@ -16,4 +23,4 @@ LOCAL_STAGE=$THIS_PROJECT/local-stage
 
 cd $LOCAL_STAGE
 echo "\nRun app from $LOCAL_STAGE ...\n"
-flutter run -d chrome --web-hostname 0.0.0.0 --web-port 4242 --web-browser-flag "--disable-web-security"
+flutter run -d chrome --web-hostname $SITE_HOSTNAME --web-port 4242 --web-browser-flag "--disable-web-security"

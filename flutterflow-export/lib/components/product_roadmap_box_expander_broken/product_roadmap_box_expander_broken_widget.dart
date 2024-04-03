@@ -65,6 +65,7 @@ class _ProductRoadmapBoxExpanderBrokenWidgetState
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).headlineMediumFamily,
+                          letterSpacing: 0.0,
                           decoration: TextDecoration.underline,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context)
@@ -82,6 +83,7 @@ class _ProductRoadmapBoxExpanderBrokenWidgetState
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyMediumFamily),

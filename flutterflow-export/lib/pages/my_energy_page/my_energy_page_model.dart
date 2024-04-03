@@ -29,8 +29,6 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
   // Model for MonthlyConsumption component.
   late MonthlyConsumptionModel monthlyConsumptionModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
@@ -46,8 +44,4 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
     topBarLoggedInModel.dispose();
     monthlyConsumptionModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

@@ -76,8 +76,8 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          15.0, 0.0, 15.0, 100.0),
                       child: Container(
                         constraints: BoxConstraints(
                           maxWidth: 1024.0,
@@ -126,7 +126,17 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                     Text(
                                       'My Energy',
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium,
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMediumFamily),
+                                          ),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.all(5.0),
@@ -140,7 +150,20 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                                   .plot,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge,
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
                                             )),
                                         offset: 4.0,
                                         preferredDirection: AxisDirection.down,
@@ -172,7 +195,20 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                                   .description,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge,
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
                                             ),
                                           ),
                                         ),

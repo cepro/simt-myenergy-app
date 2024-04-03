@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
+
 import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
@@ -93,8 +94,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'loginPage',
           path: '/login',
           builder: (context, params) => LoginPageWidget(
-            emailPrefill: params.getParam('emailPrefill', ParamType.String),
-            fromInvite: params.getParam('fromInvite', ParamType.bool),
+            emailPrefill: params.getParam(
+              'emailPrefill',
+              ParamType.String,
+            ),
+            fromInvite: params.getParam(
+              'fromInvite',
+              ParamType.bool,
+            ),
+            errorMessage: params.getParam(
+              'errorMessage',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -108,7 +119,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'forgotPasswordPage',
           path: '/forgotPassword',
-          requireAuth: true,
           builder: (context, params) => ForgotPasswordPageWidget(),
         ),
         FFRoute(
@@ -128,15 +138,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/invite/:inviteToken',
           requireAuth: true,
           builder: (context, params) => InviteLandingPageWidget(
-            inviteToken: params.getParam('inviteToken', ParamType.String),
-          ),
-        ),
-        FFRoute(
-          name: 'AboutPage',
-          path: '/about',
-          requireAuth: true,
-          builder: (context, params) => AboutPageWidget(
-            inviteToken: params.getParam('inviteToken', ParamType.String),
+            inviteToken: params.getParam(
+              'inviteToken',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -157,12 +162,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/resetPassword',
           requireAuth: true,
           builder: (context, params) => ResetPasswordPageWidget(),
-        ),
-        FFRoute(
-          name: 'NewNav',
-          path: '/newNav',
-          requireAuth: true,
-          builder: (context, params) => NewNavWidget(),
         ),
         FFRoute(
           name: 'ExpandedMenu',
@@ -303,6 +302,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    StructBuilder<T>? structBuilder,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -320,6 +320,7 @@ class FFParameters {
       param,
       type,
       isList,
+      structBuilder: structBuilder,
     );
   }
 }

@@ -22,10 +22,12 @@ class LoginPageWidget extends StatefulWidget {
     super.key,
     this.emailPrefill,
     bool? fromInvite,
+    this.errorMessage,
   }) : this.fromInvite = fromInvite ?? false;
 
   final String? emailPrefill;
   final bool fromInvite;
+  final String? errorMessage;
 
   @override
   State<LoginPageWidget> createState() => _LoginPageWidgetState();
@@ -93,6 +95,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
         FFAppState().site =
             functions.hostnameToSiteCode(_model.getHostnameOutput);
       });
+      setState(() {});
       if (widget.fromInvite) {
         // Focus Sign Up Tab
         setState(() {
@@ -205,7 +208,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                             EdgeInsetsDirectional.fromSTEB(
                                                 24.0, 0.0, 24.0, 0.0),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium,
+                                            .titleMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMediumFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleMediumFamily),
+                                            ),
                                         unselectedLabelStyle: TextStyle(),
                                         indicatorColor:
                                             FlutterFlowTheme.of(context)
@@ -240,7 +255,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Sign In failure, try again or contact support at hello@waterlilies.energy.',
+                                                      'Sign In failure, try again or contact support at ${functions.supportEmail(FFAppState().site!)}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -252,6 +267,42 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                if (widget.errorMessage !=
+                                                        null &&
+                                                    widget.errorMessage != '')
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 20.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        widget.errorMessage,
+                                                        'no error',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -276,13 +327,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       hintText:
                                                           'Enter your email...',
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -345,7 +420,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                    minLines: null,
                                                     validator: _model
                                                         .emailAddressControllerValidator
                                                         .asValidator(context),
@@ -367,13 +456,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       hintText:
                                                           'Enter your password...',
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -458,7 +571,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                    minLines: null,
                                                     validator: _model
                                                         .passwordControllerValidator
                                                         .asValidator(context),
@@ -486,7 +613,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyMedium,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
                                                     ),
                                                   ),
                                                 ),
@@ -535,12 +674,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             return;
                                                           }
 
+                                                          await Future.delayed(
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      500));
                                                           if (loggedIn ==
                                                               true) {
-                                                            await Future.delayed(
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        500));
                                                             await Future.wait([
                                                               Future(() async {
                                                                 _model.getAccountsFromSigninResult =
@@ -563,10 +702,44 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     .getAccountsFromSigninResult! &&
                                                                 _model
                                                                     .getTermsFromSigninResult!) {
-                                                              context.pushNamedAuth(
-                                                                  'HomePage',
+                                                              if (functions.siteInSitesList(
+                                                                  FFAppState()
+                                                                      .sites
+                                                                      .toList(),
+                                                                  FFAppState()
+                                                                      .site!)) {
+                                                                context.pushNamedAuth(
+                                                                    'HomePage',
+                                                                    context
+                                                                        .mounted);
+                                                              } else {
+                                                                GoRouter.of(
+                                                                        context)
+                                                                    .prepareAuthEvent();
+                                                                await authManager
+                                                                    .signOut();
+                                                                GoRouter.of(
+                                                                        context)
+                                                                    .clearRedirectLocation();
+
+                                                                context
+                                                                    .goNamedAuth(
+                                                                  'loginPage',
                                                                   context
-                                                                      .mounted);
+                                                                      .mounted,
+                                                                  queryParameters:
+                                                                      {
+                                                                    'errorMessage':
+                                                                        serializeParam(
+                                                                      'Not authorised to log in to this site. If you think you should be, contact support at ${functions.supportEmail(FFAppState().site!)}',
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                  ignoreRedirect:
+                                                                      true,
+                                                                );
+                                                              }
                                                             } else {
                                                               if (_shouldSetState)
                                                                 setState(() {});
@@ -622,6 +795,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBtnText,
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -661,7 +836,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyMedium,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
                                                     ),
                                                   ),
                                                 if (_model.loginError)
@@ -683,6 +870,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -711,6 +900,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -738,6 +929,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -762,13 +955,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       hintText:
                                                           'Enter your email...',
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -831,7 +1048,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                    minLines: null,
                                                     validator: _model
                                                         .emailAddressCreateControllerValidator
                                                         .asValidator(context),
@@ -853,13 +1084,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       hintText:
                                                           'Enter your password...',
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -944,7 +1199,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                    minLines: null,
                                                     validator: _model
                                                         .passwordCreateControllerValidator
                                                         .asValidator(context),
@@ -966,13 +1235,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       labelStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       hintText:
                                                           'Confirm your password...',
                                                       hintStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall,
+                                                              .bodySmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodySmallFamily),
+                                                              ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
@@ -1057,7 +1350,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                    minLines: null,
                                                     validator: _model
                                                         .confirmCreateControllerValidator
                                                         .asValidator(context),
@@ -1228,6 +1535,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryBtnText,
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(

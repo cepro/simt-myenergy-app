@@ -51,8 +51,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       _model.homePageGetWallets = await GetWalletsCall.call(
         bearerToken: currentJwtToken,
       );
-      if ((_model.homePageGetWallets?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 1000));
+      if ((_model.homePageGetWallets?.succeeded ?? true) &&
+          ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
         setState(() {
           _model.singleWalletBalance =
               functions.formatCurrencyAmount(getJsonField(
@@ -139,8 +140,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          15.0, 0.0, 15.0, 100.0),
                       child: Container(
                         constraints: BoxConstraints(
                           maxWidth: 1024.0,
@@ -192,13 +193,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: Text(
                                         'Welcome ${currentUserEmail}',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodySmall,
+                                            .bodySmall
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmallFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodySmallFamily),
+                                            ),
                                       ),
                                     ),
                                     Text(
                                       'Property',
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineMedium,
+                                          .headlineMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMediumFamily),
+                                          ),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.all(5.0),
@@ -212,7 +235,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   .plot,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge,
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
                                             )),
                                         offset: 4.0,
                                         preferredDirection: AxisDirection.down,
@@ -244,7 +280,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   .description,
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyLarge,
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
                                             ),
                                           ),
                                         ),
@@ -295,6 +344,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .headlineMediumFamily,
+                                                          letterSpacing: 0.0,
                                                           decoration:
                                                               TextDecoration
                                                                   .underline,
@@ -354,7 +404,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   'Meter Details',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .headlineSmall,
+                                                                      .headlineSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                      ),
                                                                 ),
                                                               ),
                                                             ),
@@ -394,7 +452,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         : 'Mode:  Credit'),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
                                                               ),
                                                             ),
                                                             Padding(
@@ -412,7 +481,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         .start,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
                                                               ),
                                                             ),
                                                             if (_model
@@ -431,7 +511,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   'Balance:  ${functions.formatCurrencyAmount(_model.supplyMeter!.balance)}',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMedium,
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
                                                                 ),
                                                               ),
                                                           ],
@@ -467,7 +555,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             'Tariff',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .headlineSmall,
+                                                                .headlineSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmallFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily),
+                                                                ),
                                                           ),
                                                         ),
                                                       ],
@@ -552,6 +652,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .headlineMediumFamily,
+                                                          letterSpacing: 0.0,
                                                           decoration:
                                                               TextDecoration
                                                                   .underline,
@@ -611,7 +712,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   'Meter Details',
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .headlineSmall,
+                                                                      .headlineSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                      ),
                                                                 ),
                                                               ),
                                                             ),
@@ -646,12 +755,23 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    _model.inPrepayMode!
-                                                                        ? 'Mode:  Prepay'
-                                                                        : 'Mode:  Credit',
+                                                                    _model.inPrepayMode ==
+                                                                            null
+                                                                        ? 'Mode:  loading ...'
+                                                                        : (_model.inPrepayMode!
+                                                                            ? 'Mode: Prepay'
+                                                                            : 'Mode: Credit'),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyMedium,
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        ),
                                                                   ),
                                                                 ),
                                                                 Padding(
@@ -668,7 +788,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             .start,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyMedium,
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                        ),
                                                                   ),
                                                                 ),
                                                               ],
@@ -687,8 +815,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
                                                   children: [
-                                                    if (_model.inPrepayMode ??
-                                                        true)
+                                                    if ((_model.inPrepayMode !=
+                                                            null) &&
+                                                        _model.inPrepayMode!)
                                                       Row(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -705,7 +834,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               'Meter Balance',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .headlineSmall,
+                                                                  .headlineSmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .headlineSmallFamily,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                  ),
                                                             ),
                                                           ),
                                                         ],
@@ -745,6 +885,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               FlutterFlowTheme.of(context).titleSmallFamily,
                                                                           fontSize:
                                                                               14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                           useGoogleFonts:
                                                                               GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
                                                                         ),
@@ -795,6 +937,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .headlineMediumFamily,
+                                                          letterSpacing: 0.0,
                                                           decoration:
                                                               TextDecoration
                                                                   .underline,
@@ -819,7 +962,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   'TODO: Owner view of the supply account - contract status and is functioning status',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyMedium,
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                                 ),
                                               ),
                                             ],
@@ -860,6 +1016,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .headlineMediumFamily,
+                                                          letterSpacing: 0.0,
                                                           decoration:
                                                               TextDecoration
                                                                   .underline,
@@ -884,7 +1041,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   'Coming soon ...',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .headlineSmall,
+                                                      .headlineSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmallFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallFamily),
+                                                      ),
                                                 ),
                                               ),
                                             ],

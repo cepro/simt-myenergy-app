@@ -25,8 +25,6 @@ class SupplyContractSignOrViewModalModel
   // Stores action output result for [Action Block - ContractSignEmbed] action in SupplyContractCard widget.
   String? signEmbedHTML;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     supplyContractCardModel =
@@ -37,8 +35,4 @@ class SupplyContractSignOrViewModalModel
   void dispose() {
     supplyContractCardModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

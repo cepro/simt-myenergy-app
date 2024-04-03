@@ -29,8 +29,6 @@ class SolarContractChooseOrViewModalModel
   // Stores action output result for [Action Block - ContractSignEmbed] action in SolarShortTermContractCard widget.
   String? signEmbedHTMLShortTerm;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     solar30YearContractCardModel =
@@ -44,8 +42,4 @@ class SolarContractChooseOrViewModalModel
     solar30YearContractCardModel.dispose();
     solarShortTermContractCardModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

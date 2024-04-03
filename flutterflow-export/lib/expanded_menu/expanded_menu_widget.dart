@@ -1,8 +1,6 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +36,8 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -51,7 +51,7 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (functions.isAdmin(currentUserEmail))
+              if (FFAppState().isCeproUser)
                 InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -74,7 +74,16 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                             0.0, 12.0, 0.0, 12.0),
                         child: Text(
                           'Admin Initiate Payment',
-                          style: FlutterFlowTheme.of(context).bodyMedium,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
                         ),
                       ),
                     ],
@@ -95,7 +104,13 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                     child: Text(
                       'Extra Menu Item 2',
                       textAlign: TextAlign.start,
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                          ),
                     ),
                   ),
                 ],
@@ -114,7 +129,13 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                     child: Text(
                       'Extra Menu Item 3',
-                      style: FlutterFlowTheme.of(context).bodyMedium,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodyMediumFamily),
+                          ),
                     ),
                   ),
                 ],

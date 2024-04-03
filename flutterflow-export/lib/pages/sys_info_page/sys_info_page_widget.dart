@@ -119,7 +119,20 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                 'System Information',
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .displaySmall,
+                                                        .displaySmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .displaySmallFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displaySmallFamily),
+                                                        ),
                                               ),
                                             ],
                                           ),
@@ -213,14 +226,38 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .titleLarge,
+                                                              .titleLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleLargeFamily),
+                                                              ),
                                                     ),
                                                     subtitle: Text(
                                                       'replace_me_environment',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
                                                     ),
                                                     trailing: Icon(
                                                       Icons.arrow_forward_ios,
@@ -241,14 +278,38 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .titleLarge,
+                                                              .titleLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleLargeFamily),
+                                                              ),
                                                     ),
                                                     subtitle: Text(
                                                       'replace_me_supabase_project',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
                                                     ),
                                                     trailing: Icon(
                                                       Icons.arrow_forward_ios,
@@ -269,14 +330,38 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .titleLarge,
+                                                              .titleLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleLargeFamily),
+                                                              ),
                                                     ),
                                                     subtitle: Text(
                                                       'replace_me_app_git_commit',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
                                                     ),
                                                     trailing: Icon(
                                                       Icons.arrow_forward_ios,
@@ -297,14 +382,38 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .titleLarge,
+                                                              .titleLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleLargeFamily),
+                                                              ),
                                                     ),
                                                     subtitle: Text(
                                                       'replace_me_billing_stripe_domain',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
                                                     ),
                                                     trailing: Icon(
                                                       Icons.arrow_forward_ios,
@@ -325,14 +434,38 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .titleLarge,
+                                                              .titleLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleLargeFamily),
+                                                              ),
                                                     ),
                                                     subtitle: Text(
                                                       'replace_me_accounts_domain',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
                                                     ),
                                                     trailing: Icon(
                                                       Icons.arrow_forward_ios,
@@ -353,14 +486,38 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .titleLarge,
+                                                              .titleLarge
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLargeFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleLargeFamily),
+                                                              ),
                                                     ),
                                                     subtitle: Text(
                                                       'replace_me_flutter_version',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily),
+                                                              ),
                                                     ),
                                                     trailing: Icon(
                                                       Icons.arrow_forward_ios,

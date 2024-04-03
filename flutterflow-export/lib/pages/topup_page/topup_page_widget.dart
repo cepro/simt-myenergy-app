@@ -166,7 +166,20 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                               'Topups',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .displaySmall,
+                                                      .displaySmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmallFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .displaySmallFamily),
+                                                      ),
                                             ),
                                           ],
                                         ),
@@ -261,7 +274,20 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                   'Settings',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .headlineSmall,
+                                                      .headlineSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmallFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallFamily),
+                                                      ),
                                                 ),
                                               ),
                                               Form(
@@ -310,11 +336,33 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                             labelStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelMedium,
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                    ),
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelMedium,
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                    ),
                                                             enabledBorder:
                                                                 UnderlineInputBorder(
                                                               borderSide:
@@ -374,7 +422,20 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyMedium,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                          minLines: null,
                                                           validator: _model
                                                               .minimumBalanceControllerValidator
                                                               .asValidator(
@@ -414,11 +475,33 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                             labelStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelMedium,
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                    ),
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .labelMedium,
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).labelMediumFamily),
+                                                                    ),
                                                             enabledBorder:
                                                                 UnderlineInputBorder(
                                                               borderSide:
@@ -478,7 +561,20 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyMedium,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                          minLines: null,
                                                           validator: _model
                                                               .topUpAmountControllerValidator
                                                               .asValidator(
@@ -591,6 +687,8 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                               .titleSmallFamily,
                                                                       color: Colors
                                                                           .white,
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(

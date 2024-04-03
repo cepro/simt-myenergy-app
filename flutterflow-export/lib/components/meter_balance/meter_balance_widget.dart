@@ -74,14 +74,31 @@ class _MeterBalanceWidgetState extends State<MeterBalanceWidget> {
                     children: [
                       Text(
                         'Meter Balance',
-                        style: FlutterFlowTheme.of(context).titleMedium,
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleMediumFamily),
+                                ),
                       ),
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                         child: Text(
                           'Current balance on your prepay meter.',
-                          style: FlutterFlowTheme.of(context).bodySmall,
+                          style: FlutterFlowTheme.of(context)
+                              .bodySmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodySmallFamily),
+                              ),
                         ),
                       ),
                       Padding(
@@ -89,7 +106,16 @@ class _MeterBalanceWidgetState extends State<MeterBalanceWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: Text(
                           '£31.50',
-                          style: FlutterFlowTheme.of(context).displaySmall,
+                          style: FlutterFlowTheme.of(context)
+                              .displaySmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .displaySmallFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .displaySmallFamily),
+                              ),
                         ),
                       ),
                     ],

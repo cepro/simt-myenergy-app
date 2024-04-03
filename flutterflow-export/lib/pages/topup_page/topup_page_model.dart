@@ -70,8 +70,6 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
   // Stores action output result for [Backend Call - API (Update Topup Preferences)] action in Button widget.
   ApiCallResponse? updateTopupPreferenceOutput;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
@@ -91,8 +89,4 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
     topUpAmountFocusNode?.dispose();
     topUpAmountController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

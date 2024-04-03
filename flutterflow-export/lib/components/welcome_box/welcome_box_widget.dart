@@ -63,6 +63,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).headlineMediumFamily,
+                          letterSpacing: 0.0,
                           decoration: TextDecoration.underline,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context)
@@ -81,6 +82,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,
                             color: FlutterFlowTheme.of(context).secondaryText,
+                            letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyMediumFamily),
@@ -128,6 +130,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                                     .bodyMediumFamily,
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
+                                letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)

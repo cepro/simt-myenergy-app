@@ -54,7 +54,10 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
           BoxShadow(
             blurRadius: 6.0,
             color: Color(0x4B1A1F24),
-            offset: Offset(0.0, 2.0),
+            offset: Offset(
+              0.0,
+              2.0,
+            ),
           )
         ],
         gradient: LinearGradient(
@@ -103,6 +106,7 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,
                           fontSize: 14.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                           useGoogleFonts:
                               GoogleFonts.asMap().containsKey('Roboto Mono'),
@@ -122,6 +126,7 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,
                           fontSize: 14.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                           useGoogleFonts:
                               GoogleFonts.asMap().containsKey('Roboto Mono'),

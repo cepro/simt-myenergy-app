@@ -21,8 +21,6 @@ class SysInfoPageModel extends FlutterFlowModel<SysInfoPageWidget> {
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
@@ -35,8 +33,4 @@ class SysInfoPageModel extends FlutterFlowModel<SysInfoPageWidget> {
     mainWebNavModel.dispose();
     logoutButtonModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

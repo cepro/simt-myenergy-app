@@ -87,7 +87,13 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                         widget.contract?.description,
                         '<description not set>',
                       ),
-                      style: FlutterFlowTheme.of(context).titleMedium,
+                      style: FlutterFlowTheme.of(context).titleMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleMediumFamily),
+                          ),
                     ),
                   if (widget.readOnly == true)
                     Padding(
@@ -95,7 +101,13 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                       child: Text(
                         '',
-                        style: FlutterFlowTheme.of(context).bodySmall,
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodySmallFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodySmallFamily),
+                            ),
                       ),
                     ),
                 ],
@@ -164,6 +176,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                           fontFamily:
                               FlutterFlowTheme.of(context).titleSmallFamily,
                           color: Colors.white,
+                          letterSpacing: 0.0,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).titleSmallFamily),
                         ),

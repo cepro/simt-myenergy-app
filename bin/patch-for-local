@@ -5,7 +5,7 @@ set -e
 
 PATCHES=$1
 
-echo "\n\nApply patches for local ..."
+echo "\n\n=====     Apply patches for local     ====="
 
 echo "\nPatch 1: api call addresses to localhost ...\n\nreplacing remote addresses with local addresses in api_calls.dart"
 sed -i -e 's/https:\/\/simt-j-accounts-qa.fly.dev/http:\/\/localhost:8080/' lib/backend/api_requests/api_calls.dart

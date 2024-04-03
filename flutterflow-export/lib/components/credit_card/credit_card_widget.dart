@@ -58,7 +58,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
           BoxShadow(
             blurRadius: 6.0,
             color: Color(0x4B1A1F24),
-            offset: Offset(0.0, 2.0),
+            offset: Offset(
+              0.0,
+              2.0,
+            ),
           )
         ],
         gradient: LinearGradient(
@@ -90,6 +93,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                               FlutterFlowTheme.of(context).bodyMediumFamily,
                           color: Colors.white,
                           fontSize: 20.0,
+                          letterSpacing: 0.0,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
@@ -123,6 +127,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,
                           fontSize: 14.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                           useGoogleFonts:
                               GoogleFonts.asMap().containsKey('Roboto Mono'),
@@ -134,6 +139,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,
                           fontSize: 14.0,
+                          letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
                           useGoogleFonts:
                               GoogleFonts.asMap().containsKey('Roboto Mono'),

@@ -86,13 +86,25 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                       widget.contract?.description,
                       '<description not set>',
                     ),
-                    style: FlutterFlowTheme.of(context).titleMedium,
+                    style: FlutterFlowTheme.of(context).titleMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).titleMediumFamily),
+                        ),
                   ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: Text(
                       '',
-                      style: FlutterFlowTheme.of(context).bodySmall,
+                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodySmallFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).bodySmallFamily),
+                          ),
                     ),
                   ),
                 ],
@@ -157,6 +169,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                             fontFamily:
                                 FlutterFlowTheme.of(context).titleSmallFamily,
                             color: Colors.white,
+                            letterSpacing: 0.0,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).titleSmallFamily),
                           ),

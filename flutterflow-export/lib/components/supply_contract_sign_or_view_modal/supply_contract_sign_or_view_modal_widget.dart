@@ -84,7 +84,16 @@ class _SupplyContractSignOrViewModalWidgetState
                               0.0, 0.0, 12.0, 0.0),
                           child: Text(
                             'Electricity Supply Contract',
-                            style: FlutterFlowTheme.of(context).headlineMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .headlineMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .headlineMediumFamily),
+                                ),
                           ),
                         ),
                       ),

@@ -28,8 +28,6 @@ class ForgotPasswordPageModel
   // Stores action output result for [Custom Action - supabasePasswordReset] action in Button-Send-Reset-Link widget.
   bool? sendResetSuccess;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
@@ -41,8 +39,4 @@ class ForgotPasswordPageModel
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

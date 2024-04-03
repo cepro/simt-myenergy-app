@@ -70,8 +70,6 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
   // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Create-Account widget.
   bool? getTermsFromSignupResult;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     logoContainerRowModel = createModel(context, () => LogoContainerRowModel());
@@ -100,8 +98,4 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     confirmCreateFocusNode?.dispose();
     confirmCreateController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }
