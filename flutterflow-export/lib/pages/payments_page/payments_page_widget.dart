@@ -260,7 +260,25 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                             .fromSTEB(0.0, 15.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Coming Soon ...',
+                                                      () {
+                                                        if (!FFAppState()
+                                                            .isCeproUser) {
+                                                          return 'Coming Soon ...';
+                                                        } else if (!(_model
+                                                            .payments
+                                                            .isNotEmpty)) {
+                                                          return 'Loading ...';
+                                                        } else if (_model
+                                                                .payments
+                                                                .length ==
+                                                            0) {
+                                                          return 'No payments';
+                                                        } else {
+                                                          return _model
+                                                              .payments.length
+                                                              .toString();
+                                                        }
+                                                      }(),
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
