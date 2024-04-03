@@ -11,14 +11,13 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:supabase_flutter/supabase_flutter.dart';
+Future<List<PaymentStruct>> paymentsJSONToPaymentsDataType(
+    List<dynamic> paymentsJSON) async {
+  List<PaymentStruct> payments = [];
 
-// Appears this is also available as a variable under Authentication > User ID
-// see https://docs.flutterflow.io/data-and-backend/supabase/supabase-authentication/email#whats-next
-// That would make this function redundant ...
-Future<String?> getJwtToken() async {
-  String? token = await HiveLocalStorage().accessToken();
-  if (token == null) return token;
-  Map<String, dynamic> json = jsonDecode(token);
-  return json['currentSession']['access_token'];
+  for (var payment in paymentsJSON) {
+    payments.add(PaymentStruct.fromMap(payment));
+  }
+
+  return payments;
 }

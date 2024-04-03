@@ -39,6 +39,36 @@ class GetCustomersPaymentMethodsCall {
       ) as List?;
 }
 
+class GetCustomersPaymentsCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? site = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Customers Payments',
+      apiUrl:
+          'https://simt-j-billing-stripe-qa.fly.dev/customers/payment/${site}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? allRecords(dynamic response) => getJsonField(
+        response,
+        r'''$[*]''',
+        true,
+      ) as List?;
+}
+
 class SendPaymentCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

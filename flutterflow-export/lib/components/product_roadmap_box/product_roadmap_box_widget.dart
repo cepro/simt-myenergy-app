@@ -65,7 +65,6 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                           fontFamily:
                               FlutterFlowTheme.of(context).headlineMediumFamily,
                           letterSpacing: 0.0,
-                          decoration: TextDecoration.underline,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context)
                                   .headlineMediumFamily),

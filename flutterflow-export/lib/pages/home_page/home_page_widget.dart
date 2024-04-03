@@ -345,9 +345,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       context)
                                                                   .headlineMediumFamily,
                                                           letterSpacing: 0.0,
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .underline,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -653,9 +650,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       context)
                                                                   .headlineMediumFamily,
                                                           letterSpacing: 0.0,
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .underline,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -938,9 +932,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       context)
                                                                   .headlineMediumFamily,
                                                           letterSpacing: 0.0,
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .underline,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -1017,9 +1008,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       context)
                                                                   .headlineMediumFamily,
                                                           letterSpacing: 0.0,
-                                                          decoration:
-                                                              TextDecoration
-                                                                  .underline,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(

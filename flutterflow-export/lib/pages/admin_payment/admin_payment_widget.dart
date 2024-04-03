@@ -160,10 +160,13 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
                                     ),
                                   ),
                                 ),
-                                wrapWithModel(
-                                  model: _model.adminInitiatePaymentModel,
-                                  updateCallback: () => setState(() {}),
-                                  child: AdminInitiatePaymentWidget(),
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: wrapWithModel(
+                                    model: _model.adminInitiatePaymentModel,
+                                    updateCallback: () => setState(() {}),
+                                    child: AdminInitiatePaymentWidget(),
+                                  ),
                                 ),
                               ],
                             ),

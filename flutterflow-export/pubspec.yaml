@@ -66,7 +66,7 @@ dependencies:
   sqflite: 2.2.6
   storage_client: 1.5.4
   supabase: 1.11.11
-  supabase_flutter: 1.7.0
+  supabase_flutter: 1.10.24
   timeago: 3.2.2
   url_launcher: 6.1.11
   url_launcher_android: 6.3.0

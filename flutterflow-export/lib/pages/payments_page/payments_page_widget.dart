@@ -1,7 +1,10 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/credit_card/credit_card_widget.dart';
 import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
+import '/components/payments_list/payments_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -35,26 +38,53 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.jwtToken = await actions.getJwtToken();
-      _model.getPaymentMethodsOutput =
-          await GetCustomersPaymentMethodsCall.call(
-        bearerToken: _model.jwtToken,
-        site: FFAppState().site?.name,
-      );
-      if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
-        setState(() {
-          _model.paymentMethods =
-              (_model.getPaymentMethodsOutput?.jsonBody ?? '');
-        });
-      } else {
-        await action_blocks.handleMyEnergyApiCallFailure(
-          context,
-          wwwAuthenticateHeader:
-              (_model.getPaymentMethodsOutput?.getHeader('www-authenticate') ??
+      await Future.wait([
+        Future(() async {
+          _model.getPaymentMethodsOutput =
+              await GetCustomersPaymentMethodsCall.call(
+            bearerToken: currentJwtToken,
+            site: FFAppState().site?.name,
+          );
+          if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
+            setState(() {
+              _model.paymentMethods =
+                  (_model.getPaymentMethodsOutput?.jsonBody ?? '');
+            });
+          } else {
+            await action_blocks.handleMyEnergyApiCallFailure(
+              context,
+              wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
+                      ?.getHeader('www-authenticate') ??
                   ''),
-          httpStatusCode: (_model.getPaymentMethodsOutput?.statusCode ?? 200),
-        );
-      }
+              httpStatusCode:
+                  (_model.getPaymentMethodsOutput?.statusCode ?? 200),
+            );
+          }
+        }),
+        Future(() async {
+          _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
+            site: FFAppState().site?.name,
+            bearerToken: currentJwtToken,
+          );
+          if ((_model.getPaymentsOutput?.succeeded ?? true)) {
+            _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
+              (_model.getPaymentsOutput?.jsonBody ?? ''),
+            );
+            setState(() {
+              _model.payments =
+                  _model.paymentsTyped!.toList().cast<PaymentStruct>();
+            });
+          } else {
+            await action_blocks.handleMyEnergyApiCallFailure(
+              context,
+              wwwAuthenticateHeader:
+                  (_model.getPaymentsOutput?.getHeader('www-authenticate') ??
+                      ''),
+              httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
+            );
+          }
+        }),
+      ]);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -214,36 +244,16 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 1.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 15.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Coming soon ...',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
+                                              if (_model.payments.isNotEmpty)
+                                                wrapWithModel(
+                                                  model:
+                                                      _model.paymentsListModel,
+                                                  updateCallback: () =>
+                                                      setState(() {}),
+                                                  child: PaymentsListWidget(
+                                                    payments: _model.payments,
                                                   ),
                                                 ),
-                                              ),
                                             ],
                                           ),
                                         ),
@@ -266,184 +276,194 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 15.0),
-                                          child: Text(
-                                            'Payment method',
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineSmall
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineSmallFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(FlutterFlowTheme
-                                                              .of(context)
-                                                          .headlineSmallFamily),
-                                                ),
-                                          ),
-                                        ),
-                                        if (getJsonField(
-                                              (_model.getPaymentMethodsOutput
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$[0].directDebit''',
-                                            ) !=
-                                            null)
-                                          wrapWithModel(
-                                            model: _model.directDebitModel,
-                                            updateCallback: () =>
-                                                setState(() {}),
-                                            child: DirectDebitWidget(
-                                              last4Digits: getJsonField(
-                                                (_model.getPaymentMethodsOutput
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$[0].directDebit.last4''',
-                                              ).toString(),
-                                              sortCode: getJsonField(
-                                                (_model.getPaymentMethodsOutput
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$[0].directDebit.sortCode''',
-                                              ).toString(),
-                                            ),
-                                          ),
-                                        if (getJsonField(
-                                              (_model.getPaymentMethodsOutput
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$[0].card''',
-                                            ) !=
-                                            null)
-                                          wrapWithModel(
-                                            model: _model.creditCardModel,
-                                            updateCallback: () =>
-                                                setState(() {}),
-                                            child: CreditCardWidget(
-                                              last4Digits: getJsonField(
-                                                (_model.getPaymentMethodsOutput
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$[0].card.last4''',
-                                              ).toString(),
-                                              expiryYear: getJsonField(
-                                                (_model.getPaymentMethodsOutput
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$[0].card.expiryYear''',
-                                              ),
-                                              expiryMonth: getJsonField(
-                                                (_model.getPaymentMethodsOutput
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$[0].card.expiryMonth''',
-                                              ),
-                                              cardBrand: getJsonField(
-                                                (_model.getPaymentMethodsOutput
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$[0].card.brand''',
-                                              ).toString(),
-                                            ),
-                                          ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
-                                          child: Padding(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 3.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 20.0, 0.0, 0.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () async {
-                                                _model.deletePaymentMethodResult =
-                                                    await DeleteCustomersPaymentMethodCall
-                                                        .call(
-                                                  bearerToken: _model.jwtToken,
-                                                  id: getJsonField(
-                                                    (_model.getPaymentMethodsOutput
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$[0].id''',
-                                                  ).toString(),
-                                                  site: FFAppState().site?.name,
-                                                );
-                                                if ((_model.deletePaymentMethodResult
-                                                            ?.statusCode ??
-                                                        200) ==
-                                                    200) {
-                                                  context.pushNamed(
-                                                      'PaymentsPage');
-                                                } else {
-                                                  await action_blocks
-                                                      .handleMyEnergyApiCallFailure(
-                                                    context,
-                                                    wwwAuthenticateHeader: (_model
-                                                            .deletePaymentMethodResult
-                                                            ?.getHeader(
-                                                                'www-authenticate') ??
-                                                        ''),
-                                                    httpStatusCode: (_model
-                                                            .checkoutPageURI
-                                                            ?.statusCode ??
-                                                        200),
-                                                  );
-                                                }
-
-                                                setState(() {});
-                                              },
-                                              text: 'Remove Payment Method',
-                                              options: FFButtonOptions(
-                                                height: 30.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color: Colors.white,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
+                                                    0.0, 20.0, 0.0, 30.0),
+                                            child: Text(
+                                              'Payment method',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineSmallFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          if (getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].directDebit''',
+                                              ) !=
+                                              null)
+                                            wrapWithModel(
+                                              model: _model.directDebitModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: DirectDebitWidget(
+                                                last4Digits: getJsonField(
+                                                  (_model.getPaymentMethodsOutput
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$[0].directDebit.last4''',
+                                                ).toString(),
+                                                sortCode: getJsonField(
+                                                  (_model.getPaymentMethodsOutput
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$[0].directDebit.sortCode''',
+                                                ).toString(),
+                                              ),
+                                            ),
+                                          if (getJsonField(
+                                                (_model.getPaymentMethodsOutput
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                r'''$[0].card''',
+                                              ) !=
+                                              null)
+                                            wrapWithModel(
+                                              model: _model.creditCardModel,
+                                              updateCallback: () =>
+                                                  setState(() {}),
+                                              child: CreditCardWidget(
+                                                last4Digits: getJsonField(
+                                                  (_model.getPaymentMethodsOutput
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$[0].card.last4''',
+                                                ).toString(),
+                                                expiryYear: getJsonField(
+                                                  (_model.getPaymentMethodsOutput
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$[0].card.expiryYear''',
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                expiryMonth: getJsonField(
+                                                  (_model.getPaymentMethodsOutput
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$[0].card.expiryMonth''',
+                                                ),
+                                                cardBrand: getJsonField(
+                                                  (_model.getPaymentMethodsOutput
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$[0].card.brand''',
+                                                ).toString(),
+                                              ),
+                                            ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(-1.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 30.0, 0.0, 0.0),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  _model.deletePaymentMethodResult =
+                                                      await DeleteCustomersPaymentMethodCall
+                                                          .call(
+                                                    bearerToken:
+                                                        currentJwtToken,
+                                                    id: getJsonField(
+                                                      (_model.getPaymentMethodsOutput
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$[0].id''',
+                                                    ).toString(),
+                                                    site:
+                                                        FFAppState().site?.name,
+                                                  );
+                                                  if ((_model.deletePaymentMethodResult
+                                                              ?.statusCode ??
+                                                          200) ==
+                                                      200) {
+                                                    context.pushNamed(
+                                                        'PaymentsPage');
+                                                  } else {
+                                                    await action_blocks
+                                                        .handleMyEnergyApiCallFailure(
+                                                      context,
+                                                      wwwAuthenticateHeader: (_model
+                                                              .deletePaymentMethodResult
+                                                              ?.getHeader(
+                                                                  'www-authenticate') ??
+                                                          ''),
+                                                      httpStatusCode: (_model
+                                                              .checkoutPageURI
+                                                              ?.statusCode ??
+                                                          200),
+                                                    );
+                                                  }
+
+                                                  setState(() {});
+                                                },
+                                                text: 'Remove Payment Method',
+                                                options: FFButtonOptions(
+                                                  height: 30.0,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          24.0, 0.0, 24.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily,
+                                                            color: Colors.white,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmallFamily),
+                                                          ),
+                                                  elevation: 3.0,
+                                                  borderSide: BorderSide(
+                                                    color: Colors.transparent,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -520,8 +540,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 _model.checkoutPageURI =
                                                     await CreateStripeCheckoutSessionCall
                                                         .call(
-                                                  bearerToken: _model.jwtToken,
                                                   site: FFAppState().site?.name,
+                                                  bearerToken: currentJwtToken,
                                                 );
                                                 if (_model.checkoutPageURI !=
                                                     null) {

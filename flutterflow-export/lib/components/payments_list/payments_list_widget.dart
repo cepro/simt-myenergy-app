@@ -5,19 +5,23 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'monthly_consumption_model.dart';
-export 'monthly_consumption_model.dart';
+import 'payments_list_model.dart';
+export 'payments_list_model.dart';
 
-class MonthlyConsumptionWidget extends StatefulWidget {
-  const MonthlyConsumptionWidget({super.key});
+class PaymentsListWidget extends StatefulWidget {
+  const PaymentsListWidget({
+    super.key,
+    required this.payments,
+  });
+
+  final List<PaymentStruct>? payments;
 
   @override
-  State<MonthlyConsumptionWidget> createState() =>
-      _MonthlyConsumptionWidgetState();
+  State<PaymentsListWidget> createState() => _PaymentsListWidgetState();
 }
 
-class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
-  late MonthlyConsumptionModel _model;
+class _PaymentsListWidgetState extends State<PaymentsListWidget> {
+  late PaymentsListModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +32,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MonthlyConsumptionModel());
+    _model = createModel(context, () => PaymentsListModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -42,8 +46,6 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
@@ -60,41 +62,20 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
-                    child: Text(
-                      'Usage',
-                      style:
-                          FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineMediumFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily),
-                              ),
-                    ),
-                  ),
-                ],
-              ),
               Expanded(
                 child: Builder(
                   builder: (context) {
-                    final monthlyUsage =
-                        FFAppState().monthlyUsage.toList().take(24).toList();
-                    return FlutterFlowDataTable<MonthlyUsageStruct>(
+                    final payments =
+                        widget.payments!.toList().take(24).toList();
+                    return FlutterFlowDataTable<PaymentStruct>(
                       controller: _model.paginatedDataTableController,
-                      data: monthlyUsage,
+                      data: payments,
                       columnsBuilder: (onSortChanged) => [
                         DataColumn2(
                           label: DefaultTextStyle.merge(
                             softWrap: true,
                             child: Text(
-                              'Month',
+                              'Id',
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -113,7 +94,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                           label: DefaultTextStyle.merge(
                             softWrap: true,
                             child: Text(
-                              'Power (kWh)',
+                              'Amount',
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -132,7 +113,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                           label: DefaultTextStyle.merge(
                             softWrap: true,
                             child: Text(
-                              'Heat (kWh)',
+                              'Currency',
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -148,20 +129,17 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                           ),
                         ),
                       ],
-                      dataRowBuilder: (monthlyUsageItem, monthlyUsageIndex,
-                              selected, onSelectChanged) =>
+                      dataRowBuilder: (paymentsItem, paymentsIndex, selected,
+                              onSelectChanged) =>
                           DataRow(
                         color: MaterialStateProperty.all(
-                          monthlyUsageIndex % 2 == 0
+                          paymentsIndex % 2 == 0
                               ? FlutterFlowTheme.of(context).secondaryBackground
                               : FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         cells: [
                           Text(
-                            valueOrDefault<String>(
-                              monthlyUsageItem.month,
-                              'null',
-                            ),
+                            paymentsItem.id,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -174,7 +152,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                                 ),
                           ),
                           Text(
-                            monthlyUsageItem.usagePower.toString(),
+                            paymentsItem.amount.toString(),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -187,7 +165,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                                 ),
                           ),
                           Text(
-                            monthlyUsageItem.usageHeat.toString(),
+                            paymentsItem.currency,
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
