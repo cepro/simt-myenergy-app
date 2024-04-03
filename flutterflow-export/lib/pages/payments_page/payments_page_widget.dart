@@ -38,53 +38,58 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await Future.wait([
-        Future(() async {
-          _model.getPaymentMethodsOutput =
-              await GetCustomersPaymentMethodsCall.call(
-            bearerToken: currentJwtToken,
-            site: FFAppState().site?.name,
-          );
-          if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
-            setState(() {
-              _model.paymentMethods =
-                  (_model.getPaymentMethodsOutput?.jsonBody ?? '');
-            });
-          } else {
-            await action_blocks.handleMyEnergyApiCallFailure(
-              context,
-              wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
-                      ?.getHeader('www-authenticate') ??
-                  ''),
-              httpStatusCode:
-                  (_model.getPaymentMethodsOutput?.statusCode ?? 200),
+      if (FFAppState().isCeproUser == true) {
+        await Future.wait([
+          Future(() async {
+            _model.getPaymentMethodsOutput =
+                await GetCustomersPaymentMethodsCall.call(
+              bearerToken: currentJwtToken,
+              site: FFAppState().site?.name,
             );
-          }
-        }),
-        Future(() async {
-          _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
-            site: FFAppState().site?.name,
-            bearerToken: currentJwtToken,
-          );
-          if ((_model.getPaymentsOutput?.succeeded ?? true)) {
-            _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
-              (_model.getPaymentsOutput?.jsonBody ?? ''),
+            if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
+              setState(() {
+                _model.paymentMethods =
+                    (_model.getPaymentMethodsOutput?.jsonBody ?? '');
+              });
+            } else {
+              await action_blocks.handleMyEnergyApiCallFailure(
+                context,
+                wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
+                        ?.getHeader('www-authenticate') ??
+                    ''),
+                httpStatusCode:
+                    (_model.getPaymentMethodsOutput?.statusCode ?? 200),
+              );
+            }
+          }),
+          Future(() async {
+            _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
+              site: FFAppState().site?.name,
+              bearerToken: currentJwtToken,
             );
-            setState(() {
-              _model.payments =
-                  _model.paymentsTyped!.toList().cast<PaymentStruct>();
-            });
-          } else {
-            await action_blocks.handleMyEnergyApiCallFailure(
-              context,
-              wwwAuthenticateHeader:
-                  (_model.getPaymentsOutput?.getHeader('www-authenticate') ??
-                      ''),
-              httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
-            );
-          }
-        }),
-      ]);
+            if ((_model.getPaymentsOutput?.succeeded ?? true)) {
+              _model.paymentsTyped =
+                  await actions.paymentsJSONToPaymentsDataType(
+                (_model.getPaymentsOutput?.jsonBody ?? ''),
+              );
+              setState(() {
+                _model.payments =
+                    _model.paymentsTyped!.toList().cast<PaymentStruct>();
+              });
+            } else {
+              await action_blocks.handleMyEnergyApiCallFailure(
+                context,
+                wwwAuthenticateHeader:
+                    (_model.getPaymentsOutput?.getHeader('www-authenticate') ??
+                        ''),
+                httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
+              );
+            }
+          }),
+        ]);
+      } else {
+        return;
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -244,6 +249,37 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   ),
                                                 ),
                                               ),
+                                              if (!FFAppState().isCeproUser)
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 15.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Coming Soon ...',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
                                               if (_model.payments.isNotEmpty)
                                                 wrapWithModel(
                                                   model:
@@ -262,10 +298,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   ),
                                 ),
                               ),
-                              if ((functions.arrayLengthOrNegativeOneIfNotArray(
+                              if (FFAppState().isCeproUser &&
+                                  (functions.arrayLengthOrNegativeOneIfNotArray(
                                           _model.paymentMethods) >
-                                      0) &&
-                                  FFAppState().isCeproUser)
+                                      0))
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(

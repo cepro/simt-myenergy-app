@@ -60,8 +60,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             (_model.homePageGetWallets?.jsonBody ?? ''),
             r'''$[0].balance''',
           ));
-          _model.isOwner =
-              FFAppState().properties.first.owner == FFAppState().customerId;
+          _model.isOwner = (FFAppState().properties.isNotEmpty) &&
+              (FFAppState().properties.first.owner == FFAppState().customerId);
           _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
         });
         setState(() {
@@ -223,82 +223,84 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .headlineMediumFamily),
                                           ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.all(5.0),
-                                      child: AlignedTooltip(
-                                        content: Padding(
-                                            padding: EdgeInsets.all(4.0),
-                                            child: Text(
-                                              FFAppState()
-                                                  .properties
-                                                  .first
-                                                  .plot,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
-                                            )),
-                                        offset: 4.0,
-                                        preferredDirection: AxisDirection.down,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        backgroundColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                        elevation: 4.0,
-                                        tailBaseWidth: 24.0,
-                                        tailLength: 12.0,
-                                        waitDuration:
-                                            Duration(milliseconds: 100),
-                                        showDuration:
-                                            Duration(milliseconds: 1500),
-                                        triggerMode: TooltipTriggerMode.tap,
-                                        child: Visibility(
-                                          visible: FFAppState()
-                                              .properties
-                                              .isNotEmpty,
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 10.0, 0.0, 0.0),
-                                            child: Text(
-                                              FFAppState()
-                                                  .properties
-                                                  .first
-                                                  .description,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
+                                    if (FFAppState().properties.isNotEmpty)
+                                      Padding(
+                                        padding: EdgeInsets.all(5.0),
+                                        child: AlignedTooltip(
+                                          content: Padding(
+                                              padding: EdgeInsets.all(4.0),
+                                              child: Text(
+                                                FFAppState()
+                                                    .properties
+                                                    .first
+                                                    .plot,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyLargeFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily),
+                                                        ),
+                                              )),
+                                          offset: 4.0,
+                                          preferredDirection:
+                                              AxisDirection.down,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          elevation: 4.0,
+                                          tailBaseWidth: 24.0,
+                                          tailLength: 12.0,
+                                          waitDuration:
+                                              Duration(milliseconds: 100),
+                                          showDuration:
+                                              Duration(milliseconds: 1500),
+                                          triggerMode: TooltipTriggerMode.tap,
+                                          child: Visibility(
+                                            visible: FFAppState()
+                                                .properties
+                                                .isNotEmpty,
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 10.0, 0.0, 0.0),
+                                              child: Text(
+                                                FFAppState()
+                                                    .properties
+                                                    .first
+                                                    .description,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyLargeFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily),
+                                                        ),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
                                   ],
                                 ),
                               ),

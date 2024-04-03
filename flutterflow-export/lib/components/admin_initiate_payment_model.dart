@@ -12,7 +12,7 @@ class AdminInitiatePaymentModel
     extends FlutterFlowModel<AdminInitiatePaymentWidget> {
   ///  Local state fields for this component.
 
-  bool sendPaymentFailure = false;
+  bool showErrorMessage = false;
 
   bool paymentSuccess = false;
 

@@ -186,7 +186,6 @@ Future clearAppState(BuildContext context) async {
   FFAppState().properties = [];
   FFAppState().monthlyUsage = [];
   FFAppState().monthlyUsageJSON = null;
-  FFAppState().site = SiteCodeEnum.unknown;
   FFAppState().customerStatus = '';
   FFAppState().isCeproUser = false;
   FFAppState().contractTerms = [];

@@ -80,7 +80,7 @@ class _AdminInitiatePaymentWidgetState
                             FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
                 ),
-                if (_model.sendPaymentFailure)
+                if (_model.showErrorMessage)
                   Text(
                     valueOrDefault<String>(
                       _model.errorMessage,
@@ -321,15 +321,16 @@ class _AdminInitiatePaymentWidgetState
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 30.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      if ((_model.customerIdFieldController.text == null ||
-                              _model.customerIdFieldController.text == '') ||
-                          (_model.descriptionFieldController.text == null ||
-                              _model.descriptionFieldController.text == '') ||
-                          (_model.amountFieldController.text == null ||
-                              _model.amountFieldController.text == '')) {
+                      var _shouldSetState = false;
+                      if ((_model.customerIdFieldController.text != null &&
+                              _model.customerIdFieldController.text != '') &&
+                          (_model.descriptionFieldController.text != null &&
+                              _model.descriptionFieldController.text != '') &&
+                          (_model.amountFieldController.text != null &&
+                              _model.amountFieldController.text != '')) {
                         // Reset flags
                         setState(() {
-                          _model.sendPaymentFailure = false;
+                          _model.showErrorMessage = false;
                           _model.paymentSuccess = false;
                           _model.errorMessage = null;
                         });
@@ -341,6 +342,7 @@ class _AdminInitiatePaymentWidgetState
                           bearerToken: currentJwtToken,
                           site: FFAppState().site?.name,
                         );
+                        _shouldSetState = true;
                         if ((_model.sendPaymentResult?.succeeded ?? true)) {
                           // Set success flag
                           setState(() {
@@ -350,16 +352,21 @@ class _AdminInitiatePaymentWidgetState
                           // Set failure flag
                           setState(() {
                             _model.paymentSuccess = false;
-                            _model.sendPaymentFailure = true;
+                            _model.showErrorMessage = true;
+                            _model.errorMessage =
+                                'Send payment call failed. See backend logs.';
                           });
                         }
                       } else {
                         setState(() {
                           _model.errorMessage = 'one or more fields are blank';
+                          _model.showErrorMessage = true;
                         });
+                        if (_shouldSetState) setState(() {});
+                        return;
                       }
 
-                      setState(() {});
+                      if (_shouldSetState) setState(() {});
                     },
                     text: 'Submit',
                     options: FFButtonOptions(
