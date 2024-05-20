@@ -107,6 +107,15 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.customer.isCeproUser''',
     );
+    FFAppState().siteName = () {
+      if (FFAppState().site == SiteCodeEnum.wlce) {
+        return 'Water Lilies';
+      } else if (FFAppState().site == SiteCodeEnum.hmce) {
+        return 'Hazelmead';
+      } else {
+        return 'unknown';
+      }
+    }();
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(

@@ -40,6 +40,8 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
@@ -76,7 +78,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                 children: [
                   Flexible(
                     child: Text(
-                      'The Water Lilies microgrid has been established to enable homes and electric vehicles to share solar energy across the Water Lilies estate; surplus solar is stored in the Water Lilies community battery for later use.',
+                      'The ${FFAppState().siteName} microgrid has been established to enable homes and electric vehicles to share solar energy across the ${FFAppState().siteName} estate; surplus solar is stored in the ${FFAppState().siteName} community battery for later use.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,

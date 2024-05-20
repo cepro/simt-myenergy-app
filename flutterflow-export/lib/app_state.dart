@@ -127,6 +127,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _isCeproUser = prefs.getBool('ff_isCeproUser') ?? _isCeproUser;
     });
+    _safeInit(() {
+      _siteName = prefs.getString('ff_siteName') ?? _siteName;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -400,6 +403,13 @@ class FFAppState extends ChangeNotifier {
   set isCeproUser(bool _value) {
     _isCeproUser = _value;
     prefs.setBool('ff_isCeproUser', _value);
+  }
+
+  String _siteName = '';
+  String get siteName => _siteName;
+  set siteName(String _value) {
+    _siteName = _value;
+    prefs.setString('ff_siteName', _value);
   }
 }
 
