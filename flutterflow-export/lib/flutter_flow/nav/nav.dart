@@ -136,7 +136,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'InviteLandingPage',
           path: '/invite/:inviteToken',
-          requireAuth: true,
           builder: (context, params) => InviteLandingPageWidget(
             inviteToken: params.getParam(
               'inviteToken',
