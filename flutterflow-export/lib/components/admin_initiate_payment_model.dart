@@ -22,16 +22,18 @@ class AdminInitiatePaymentModel
 
   // State field(s) for customerIdField widget.
   FocusNode? customerIdFieldFocusNode;
-  TextEditingController? customerIdFieldController;
-  String? Function(BuildContext, String?)? customerIdFieldControllerValidator;
+  TextEditingController? customerIdFieldTextController;
+  String? Function(BuildContext, String?)?
+      customerIdFieldTextControllerValidator;
   // State field(s) for amountField widget.
   FocusNode? amountFieldFocusNode;
-  TextEditingController? amountFieldController;
-  String? Function(BuildContext, String?)? amountFieldControllerValidator;
+  TextEditingController? amountFieldTextController;
+  String? Function(BuildContext, String?)? amountFieldTextControllerValidator;
   // State field(s) for descriptionField widget.
   FocusNode? descriptionFieldFocusNode;
-  TextEditingController? descriptionFieldController;
-  String? Function(BuildContext, String?)? descriptionFieldControllerValidator;
+  TextEditingController? descriptionFieldTextController;
+  String? Function(BuildContext, String?)?
+      descriptionFieldTextControllerValidator;
   // Stores action output result for [Backend Call - API (Send Payment)] action in Button widget.
   ApiCallResponse? sendPaymentResult;
 
@@ -41,12 +43,12 @@ class AdminInitiatePaymentModel
   @override
   void dispose() {
     customerIdFieldFocusNode?.dispose();
-    customerIdFieldController?.dispose();
+    customerIdFieldTextController?.dispose();
 
     amountFieldFocusNode?.dispose();
-    amountFieldController?.dispose();
+    amountFieldTextController?.dispose();
 
     descriptionFieldFocusNode?.dispose();
-    descriptionFieldController?.dispose();
+    descriptionFieldTextController?.dispose();
   }
 }

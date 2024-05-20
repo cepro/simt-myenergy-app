@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -40,32 +41,33 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressController;
-  String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  TextEditingController? emailAddressTextController;
+  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
-  TextEditingController? passwordController;
+  TextEditingController? passwordTextController;
   late bool passwordVisibility;
-  String? Function(BuildContext, String?)? passwordControllerValidator;
+  String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // Stores action output result for [Action Block - GetCustomerDetailsAndInitAppState] action in Button-Login widget.
   bool? getAccountsFromSigninResult;
   // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Login widget.
   bool? getTermsFromSigninResult;
   // State field(s) for emailAddress-Create widget.
   FocusNode? emailAddressCreateFocusNode;
-  TextEditingController? emailAddressCreateController;
+  TextEditingController? emailAddressCreateTextController;
   String? Function(BuildContext, String?)?
-      emailAddressCreateControllerValidator;
+      emailAddressCreateTextControllerValidator;
   // State field(s) for password-Create widget.
   FocusNode? passwordCreateFocusNode;
-  TextEditingController? passwordCreateController;
+  TextEditingController? passwordCreateTextController;
   late bool passwordCreateVisibility;
-  String? Function(BuildContext, String?)? passwordCreateControllerValidator;
+  String? Function(BuildContext, String?)?
+      passwordCreateTextControllerValidator;
   // State field(s) for confirm-Create widget.
   FocusNode? confirmCreateFocusNode;
-  TextEditingController? confirmCreateController;
+  TextEditingController? confirmCreateTextController;
   late bool confirmCreateVisibility;
-  String? Function(BuildContext, String?)? confirmCreateControllerValidator;
+  String? Function(BuildContext, String?)? confirmCreateTextControllerValidator;
   // Stores action output result for [Action Block - GetCustomerDetailsAndInitAppState] action in Button-Create-Account widget.
   bool? getAccountsFromSignupResult;
   // Stores action output result for [Action Block - GetAndSaveContractTerms] action in Button-Create-Account widget.
@@ -85,18 +87,18 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
     logoContainerRowModel.dispose();
     tabBarController?.dispose();
     emailAddressFocusNode?.dispose();
-    emailAddressController?.dispose();
+    emailAddressTextController?.dispose();
 
     passwordFocusNode?.dispose();
-    passwordController?.dispose();
+    passwordTextController?.dispose();
 
     emailAddressCreateFocusNode?.dispose();
-    emailAddressCreateController?.dispose();
+    emailAddressCreateTextController?.dispose();
 
     passwordCreateFocusNode?.dispose();
-    passwordCreateController?.dispose();
+    passwordCreateTextController?.dispose();
 
     confirmCreateFocusNode?.dispose();
-    confirmCreateController?.dispose();
+    confirmCreateTextController?.dispose();
   }
 }

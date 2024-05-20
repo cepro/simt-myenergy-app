@@ -142,29 +142,26 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                       padding: EdgeInsets.all(5.0),
                                       child: AlignedTooltip(
                                         content: Padding(
-                                            padding: EdgeInsets.all(4.0),
-                                            child: Text(
-                                              FFAppState()
-                                                  .properties
-                                                  .first
-                                                  .plot,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
-                                            )),
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Text(
+                                            FFAppState().properties.first.plot,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyLargeFamily,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLargeFamily),
+                                                ),
+                                          ),
+                                        ),
                                         offset: 4.0,
                                         preferredDirection: AxisDirection.down,
                                         borderRadius:

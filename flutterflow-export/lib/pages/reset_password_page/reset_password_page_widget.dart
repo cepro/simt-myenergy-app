@@ -28,10 +28,10 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
     super.initState();
     _model = createModel(context, () => ResetPasswordPageModel());
 
-    _model.newPasswordController ??= TextEditingController();
+    _model.newPasswordTextController ??= TextEditingController();
     _model.newPasswordFocusNode ??= FocusNode();
 
-    _model.confirmPasswordController ??= TextEditingController();
+    _model.confirmPasswordTextController ??= TextEditingController();
     _model.confirmPasswordFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -147,7 +147,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 20.0, 24.0, 0.0),
                       child: TextFormField(
-                        controller: _model.newPasswordController,
+                        controller: _model.newPasswordTextController,
                         focusNode: _model.newPasswordFocusNode,
                         obscureText: !_model.newPasswordVisibility,
                         decoration: InputDecoration(
@@ -229,8 +229,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                                   FlutterFlowTheme.of(context)
                                       .bodyMediumFamily),
                             ),
-                        minLines: null,
-                        validator: _model.newPasswordControllerValidator
+                        validator: _model.newPasswordTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -238,7 +237,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 20.0, 24.0, 0.0),
                       child: TextFormField(
-                        controller: _model.confirmPasswordController,
+                        controller: _model.confirmPasswordTextController,
                         focusNode: _model.confirmPasswordFocusNode,
                         obscureText: !_model.confirmPasswordVisibility,
                         decoration: InputDecoration(
@@ -320,8 +319,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                                   FlutterFlowTheme.of(context)
                                       .bodyMediumFamily),
                             ),
-                        minLines: null,
-                        validator: _model.confirmPasswordControllerValidator
+                        validator: _model.confirmPasswordTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -331,17 +329,17 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           var _shouldSetState = false;
-                          if (_model.newPasswordController.text ==
-                              _model.confirmPasswordController.text) {
+                          if (_model.newPasswordTextController.text ==
+                              _model.confirmPasswordTextController.text) {
                             if (!functions.isPasswordWeak(
-                                _model.newPasswordController.text)) {
+                                _model.newPasswordTextController.text)) {
                               setState(() {
                                 _model.passwordMismatch = false;
                                 _model.resetError = false;
                               });
                               _model.passwordUpdateSuccess =
                                   await actions.supabasePasswordUpdate(
-                                _model.newPasswordController.text,
+                                _model.newPasswordTextController.text,
                               );
                               _shouldSetState = true;
                               if (_model.passwordUpdateSuccess!) {

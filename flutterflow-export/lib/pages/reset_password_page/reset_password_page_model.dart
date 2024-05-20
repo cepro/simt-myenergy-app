@@ -24,14 +24,15 @@ class ResetPasswordPageModel extends FlutterFlowModel<ResetPasswordPageWidget> {
   late LogoContainerRowModel logoContainerRowModel;
   // State field(s) for newPassword widget.
   FocusNode? newPasswordFocusNode;
-  TextEditingController? newPasswordController;
+  TextEditingController? newPasswordTextController;
   late bool newPasswordVisibility;
-  String? Function(BuildContext, String?)? newPasswordControllerValidator;
+  String? Function(BuildContext, String?)? newPasswordTextControllerValidator;
   // State field(s) for confirmPassword widget.
   FocusNode? confirmPasswordFocusNode;
-  TextEditingController? confirmPasswordController;
+  TextEditingController? confirmPasswordTextController;
   late bool confirmPasswordVisibility;
-  String? Function(BuildContext, String?)? confirmPasswordControllerValidator;
+  String? Function(BuildContext, String?)?
+      confirmPasswordTextControllerValidator;
   // Stores action output result for [Custom Action - supabasePasswordUpdate] action in Button-Reset-Password widget.
   bool? passwordUpdateSuccess;
 
@@ -46,9 +47,9 @@ class ResetPasswordPageModel extends FlutterFlowModel<ResetPasswordPageWidget> {
   void dispose() {
     logoContainerRowModel.dispose();
     newPasswordFocusNode?.dispose();
-    newPasswordController?.dispose();
+    newPasswordTextController?.dispose();
 
     confirmPasswordFocusNode?.dispose();
-    confirmPasswordController?.dispose();
+    confirmPasswordTextController?.dispose();
   }
 }

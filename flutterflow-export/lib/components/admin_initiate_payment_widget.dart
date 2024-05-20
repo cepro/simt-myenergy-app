@@ -32,13 +32,13 @@ class _AdminInitiatePaymentWidgetState
     super.initState();
     _model = createModel(context, () => AdminInitiatePaymentModel());
 
-    _model.customerIdFieldController ??= TextEditingController();
+    _model.customerIdFieldTextController ??= TextEditingController();
     _model.customerIdFieldFocusNode ??= FocusNode();
 
-    _model.amountFieldController ??= TextEditingController(text: '1.50');
+    _model.amountFieldTextController ??= TextEditingController(text: '1.50');
     _model.amountFieldFocusNode ??= FocusNode();
 
-    _model.descriptionFieldController ??= TextEditingController();
+    _model.descriptionFieldTextController ??= TextEditingController();
     _model.descriptionFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -110,7 +110,7 @@ class _AdminInitiatePaymentWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 20.0, 8.0, 0.0),
                   child: TextFormField(
-                    controller: _model.customerIdFieldController,
+                    controller: _model.customerIdFieldTextController,
                     focusNode: _model.customerIdFieldFocusNode,
                     autofocus: true,
                     obscureText: false,
@@ -172,15 +172,14 @@ class _AdminInitiatePaymentWidgetState
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
-                    minLines: null,
-                    validator: _model.customerIdFieldControllerValidator
+                    validator: _model.customerIdFieldTextControllerValidator
                         .asValidator(context),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
                   child: TextFormField(
-                    controller: _model.amountFieldController,
+                    controller: _model.amountFieldTextController,
                     focusNode: _model.amountFieldFocusNode,
                     autofocus: true,
                     obscureText: false,
@@ -242,15 +241,14 @@ class _AdminInitiatePaymentWidgetState
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
-                    minLines: null,
-                    validator: _model.amountFieldControllerValidator
+                    validator: _model.amountFieldTextControllerValidator
                         .asValidator(context),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
                   child: TextFormField(
-                    controller: _model.descriptionFieldController,
+                    controller: _model.descriptionFieldTextController,
                     focusNode: _model.descriptionFieldFocusNode,
                     autofocus: true,
                     obscureText: false,
@@ -312,8 +310,7 @@ class _AdminInitiatePaymentWidgetState
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
-                    minLines: null,
-                    validator: _model.descriptionFieldControllerValidator
+                    validator: _model.descriptionFieldTextControllerValidator
                         .asValidator(context),
                   ),
                 ),
@@ -322,12 +319,14 @@ class _AdminInitiatePaymentWidgetState
                   child: FFButtonWidget(
                     onPressed: () async {
                       var _shouldSetState = false;
-                      if ((_model.customerIdFieldController.text != null &&
-                              _model.customerIdFieldController.text != '') &&
-                          (_model.descriptionFieldController.text != null &&
-                              _model.descriptionFieldController.text != '') &&
-                          (_model.amountFieldController.text != null &&
-                              _model.amountFieldController.text != '')) {
+                      if ((_model.customerIdFieldTextController.text != null &&
+                              _model.customerIdFieldTextController.text !=
+                                  '') &&
+                          (_model.descriptionFieldTextController.text != null &&
+                              _model.descriptionFieldTextController.text !=
+                                  '') &&
+                          (_model.amountFieldTextController.text != null &&
+                              _model.amountFieldTextController.text != '')) {
                         // Reset flags
                         setState(() {
                           _model.showErrorMessage = false;
@@ -336,9 +335,10 @@ class _AdminInitiatePaymentWidgetState
                         });
                         _model.sendPaymentResult = await SendPaymentCall.call(
                           amount: double.tryParse(
-                              _model.amountFieldController.text),
-                          description: _model.descriptionFieldController.text,
-                          customerId: _model.customerIdFieldController.text,
+                              _model.amountFieldTextController.text),
+                          description:
+                              _model.descriptionFieldTextController.text,
+                          customerId: _model.customerIdFieldTextController.text,
                           bearerToken: currentJwtToken,
                           site: FFAppState().site?.name,
                         );

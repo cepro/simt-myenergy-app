@@ -28,7 +28,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
     super.initState();
     _model = createModel(context, () => ForgotPasswordPageModel());
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -191,7 +191,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 20.0, 24.0, 0.0),
                       child: TextFormField(
-                        controller: _model.emailAddressController,
+                        controller: _model.emailAddressTextController,
                         focusNode: _model.emailAddressFocusNode,
                         obscureText: false,
                         decoration: InputDecoration(
@@ -259,8 +259,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                                   FlutterFlowTheme.of(context)
                                       .bodyMediumFamily),
                             ),
-                        minLines: null,
-                        validator: _model.emailAddressControllerValidator
+                        validator: _model.emailAddressTextControllerValidator
                             .asValidator(context),
                       ),
                     ),
@@ -275,7 +274,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           });
                           _model.sendResetSuccess =
                               await actions.supabasePasswordReset(
-                            _model.emailAddressController.text,
+                            _model.emailAddressTextController.text,
                             FFAppState().hostname,
                           );
                           if (_model.sendResetSuccess!) {

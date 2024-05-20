@@ -40,7 +40,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
         if (!functions
             .isListEmpty((_model.topupPreferencesGetOutput?.jsonBody ?? ''))) {
           setState(() {
-            _model.minimumBalanceController?.text = valueOrDefault<String>(
+            _model.minimumBalanceTextController?.text = valueOrDefault<String>(
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
                 r'''$[0].topupThreshold''',
@@ -49,7 +49,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
             );
           });
           setState(() {
-            _model.topUpAmountController?.text = valueOrDefault<String>(
+            _model.topUpAmountTextController?.text = valueOrDefault<String>(
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
                 r'''$[0].topupAmount''',
@@ -73,10 +73,10 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
       }
     });
 
-    _model.minimumBalanceController ??= TextEditingController(text: '30');
+    _model.minimumBalanceTextController ??= TextEditingController(text: '30');
     _model.minimumBalanceFocusNode ??= FocusNode();
 
-    _model.topUpAmountController ??= TextEditingController(text: '50');
+    _model.topUpAmountTextController ??= TextEditingController(text: '50');
     _model.topUpAmountFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -313,7 +313,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                     0.0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .minimumBalanceController,
+                                                              .minimumBalanceTextController,
                                                           focusNode: _model
                                                               .minimumBalanceFocusNode,
                                                           onFieldSubmitted:
@@ -435,9 +435,8 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          minLines: null,
                                                           validator: _model
-                                                              .minimumBalanceControllerValidator
+                                                              .minimumBalanceTextControllerValidator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -452,7 +451,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                     0.0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .topUpAmountController,
+                                                              .topUpAmountTextController,
                                                           focusNode: _model
                                                               .topUpAmountFocusNode,
                                                           onFieldSubmitted:
@@ -574,9 +573,8 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
-                                                          minLines: null,
                                                           validator: _model
-                                                              .topUpAmountControllerValidator
+                                                              .topUpAmountTextControllerValidator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -598,11 +596,11 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                   currentJwtToken,
                                                               amount: int
                                                                   .tryParse(_model
-                                                                      .topUpAmountController
+                                                                      .topUpAmountTextController
                                                                       .text),
                                                               threshold: int
                                                                   .tryParse(_model
-                                                                      .minimumBalanceController
+                                                                      .minimumBalanceTextController
                                                                       .text),
                                                               walletId:
                                                                   getJsonField(

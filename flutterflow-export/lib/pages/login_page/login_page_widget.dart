@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -40,48 +41,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'containerOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 1.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0.0, 60.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'tabBarOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        VisibilityEffect(duration: 200.ms),
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 200.ms,
-          duration: 600.ms,
-          begin: Offset(0.0, 30.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -114,23 +74,65 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       length: 2,
       initialIndex: 0,
     )..addListener(() => setState(() {}));
-    _model.emailAddressController ??=
+    _model.emailAddressTextController ??=
         TextEditingController(text: widget.emailPrefill);
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    _model.emailAddressCreateController ??=
+    _model.emailAddressCreateTextController ??=
         TextEditingController(text: widget.emailPrefill);
     _model.emailAddressCreateFocusNode ??= FocusNode();
 
-    _model.passwordCreateController ??= TextEditingController();
+    _model.passwordCreateTextController ??= TextEditingController();
     _model.passwordCreateFocusNode ??= FocusNode();
 
-    _model.confirmCreateController ??= TextEditingController();
+    _model.confirmCreateTextController ??= TextEditingController();
     _model.confirmCreateFocusNode ??= FocusNode();
 
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 1.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(0.0, 60.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'tabBarOnPageLoadAnimation': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          VisibilityEffect(duration: 200.ms),
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 600.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(0.0, 30.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -317,7 +319,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           24.0, 0.0),
                                                   child: TextFormField(
                                                     controller: _model
-                                                        .emailAddressController,
+                                                        .emailAddressTextController,
                                                     focusNode: _model
                                                         .emailAddressFocusNode,
                                                     obscureText: false,
@@ -434,9 +436,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                                    minLines: null,
                                                     validator: _model
-                                                        .emailAddressControllerValidator
+                                                        .emailAddressTextControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
@@ -446,7 +447,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           24.0, 0.0),
                                                   child: TextFormField(
                                                     controller: _model
-                                                        .passwordController,
+                                                        .passwordTextController,
                                                     focusNode: _model
                                                         .passwordFocusNode,
                                                     obscureText: !_model
@@ -585,9 +586,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                           context)
                                                                       .bodyMediumFamily),
                                                         ),
-                                                    minLines: null,
                                                     validator: _model
-                                                        .passwordControllerValidator
+                                                        .passwordTextControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
@@ -664,10 +664,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   .signInWithEmail(
                                                             context,
                                                             _model
-                                                                .emailAddressController
+                                                                .emailAddressTextController
                                                                 .text,
                                                             _model
-                                                                .passwordController
+                                                                .passwordTextController
                                                                 .text,
                                                           );
                                                           if (user == null) {
@@ -942,7 +942,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         24.0, 20.0, 24.0, 0.0),
                                                 child: TextFormField(
                                                   controller: _model
-                                                      .emailAddressCreateController,
+                                                      .emailAddressCreateTextController,
                                                   focusNode: _model
                                                       .emailAddressCreateFocusNode,
                                                   obscureText: false,
@@ -1061,9 +1061,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  minLines: null,
                                                   validator: _model
-                                                      .emailAddressCreateControllerValidator
+                                                      .emailAddressCreateTextControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -1073,7 +1072,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         24.0, 12.0, 24.0, 0.0),
                                                 child: TextFormField(
                                                   controller: _model
-                                                      .passwordCreateController,
+                                                      .passwordCreateTextController,
                                                   focusNode: _model
                                                       .passwordCreateFocusNode,
                                                   obscureText: !_model
@@ -1215,9 +1214,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  minLines: null,
                                                   validator: _model
-                                                      .passwordCreateControllerValidator
+                                                      .passwordCreateTextControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -1227,7 +1225,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         24.0, 12.0, 24.0, 0.0),
                                                 child: TextFormField(
                                                   controller: _model
-                                                      .confirmCreateController,
+                                                      .confirmCreateTextController,
                                                   focusNode: _model
                                                       .confirmCreateFocusNode,
                                                   obscureText: !_model
@@ -1369,9 +1367,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         context)
                                                                     .bodyMediumFamily),
                                                       ),
-                                                  minLines: null,
                                                   validator: _model
-                                                      .confirmCreateControllerValidator
+                                                      .confirmCreateTextControllerValidator
                                                       .asValidator(context),
                                                 ),
                                               ),
@@ -1383,14 +1380,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   onPressed: () async {
                                                     var _shouldSetState = false;
                                                     if (_model
-                                                            .passwordCreateController
+                                                            .passwordCreateTextController
                                                             .text ==
                                                         _model
-                                                            .confirmCreateController
+                                                            .confirmCreateTextController
                                                             .text) {
                                                       if (!functions
                                                           .isPasswordWeak(_model
-                                                              .passwordCreateController
+                                                              .passwordCreateTextController
                                                               .text)) {
                                                         setState(() {
                                                           _model.loginError =
@@ -1403,10 +1400,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         GoRouter.of(context)
                                                             .prepareAuthEvent();
                                                         if (_model
-                                                                .passwordCreateController
+                                                                .passwordCreateTextController
                                                                 .text !=
                                                             _model
-                                                                .confirmCreateController
+                                                                .confirmCreateTextController
                                                                 .text) {
                                                           ScaffoldMessenger.of(
                                                                   context)
@@ -1425,10 +1422,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 .createAccountWithEmail(
                                                           context,
                                                           _model
-                                                              .emailAddressCreateController
+                                                              .emailAddressCreateTextController
                                                               .text,
                                                           _model
-                                                              .passwordCreateController
+                                                              .passwordCreateTextController
                                                               .text,
                                                         );
                                                         if (user == null) {

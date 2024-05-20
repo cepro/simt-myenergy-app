@@ -30,9 +30,10 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
   late LogoutButtonModel logoutButtonModel;
   // State field(s) for MinimumBalance widget.
   FocusNode? minimumBalanceFocusNode;
-  TextEditingController? minimumBalanceController;
-  String? Function(BuildContext, String?)? minimumBalanceControllerValidator;
-  String? _minimumBalanceControllerValidator(
+  TextEditingController? minimumBalanceTextController;
+  String? Function(BuildContext, String?)?
+      minimumBalanceTextControllerValidator;
+  String? _minimumBalanceTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
@@ -50,9 +51,10 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
 
   // State field(s) for TopUpAmount widget.
   FocusNode? topUpAmountFocusNode;
-  TextEditingController? topUpAmountController;
-  String? Function(BuildContext, String?)? topUpAmountControllerValidator;
-  String? _topUpAmountControllerValidator(BuildContext context, String? val) {
+  TextEditingController? topUpAmountTextController;
+  String? Function(BuildContext, String?)? topUpAmountTextControllerValidator;
+  String? _topUpAmountTextControllerValidator(
+      BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -74,8 +76,9 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
-    minimumBalanceControllerValidator = _minimumBalanceControllerValidator;
-    topUpAmountControllerValidator = _topUpAmountControllerValidator;
+    minimumBalanceTextControllerValidator =
+        _minimumBalanceTextControllerValidator;
+    topUpAmountTextControllerValidator = _topUpAmountTextControllerValidator;
   }
 
   @override
@@ -84,9 +87,9 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
     mainWebNavModel.dispose();
     logoutButtonModel.dispose();
     minimumBalanceFocusNode?.dispose();
-    minimumBalanceController?.dispose();
+    minimumBalanceTextController?.dispose();
 
     topUpAmountFocusNode?.dispose();
-    topUpAmountController?.dispose();
+    topUpAmountTextController?.dispose();
   }
 }
