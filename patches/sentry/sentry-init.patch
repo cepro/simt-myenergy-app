@@ -1,6 +1,6 @@
 --- ./lib/main.dart
 +++ ./lib/main.dart
-@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
+@@ -5,6 +5,7 @@
  
  import 'package:flutter_localizations/flutter_localizations.dart';
  import 'package:flutter_web_plugins/url_strategy.dart';
@@ -8,12 +8,12 @@
  
  import 'auth/supabase_auth/supabase_user_provider.dart';
  import 'auth/supabase_auth/auth_util.dart';
-@@ -16,25 +17,33 @@ import 'flutter_flow/internationalization.dart';
- import 'flutter_flow/nav/nav.dart';
+@@ -17,25 +18,33 @@
  import 'index.dart';
  
--void main() async {
+ void main() async {
 -  WidgetsFlutterBinding.ensureInitialized();
+-  GoRouter.optionURLReflectsImperativeAPIs = true;
 -  usePathUrlStrategy();
 -
 -  await SupaFlow.initialize();
@@ -31,7 +31,6 @@
 -    create: (context) => appState,
 -    child: MyApp(),
 -  ));
-+Future<void> main() async {
 +  await SentryFlutter.init((options) {
 +    options.dsn =
 +        'https://b378c6db98e5c54511fc29154355f563@o4506409083994112.ingest.sentry.io/4506409085042688';
@@ -40,27 +39,27 @@
 +    options.tracesSampleRate = 1.0;
 +  }, appRunner: () async {
 +    WidgetsFlutterBinding.ensureInitialized();
++    GoRouter.optionURLReflectsImperativeAPIs = true;
 +    usePathUrlStrategy();
-+
++  
 +    await SupaFlow.initialize();
-+
++  
 +    await FlutterFlowTheme.initialize();
-+
++  
 +    final appState = FFAppState(); // Initialize FFAppState
 +    await appState.initializePersistedState();
-+
++  
 +    // Start final custom actions code
 +    await actions.initSupabaseRealtimeSubscriptions();
 +    // End final custom actions code
-+
-+    return runApp(ChangeNotifierProvider(
++  
++    runApp(ChangeNotifierProvider(
 +      create: (context) => appState,
 +      child: MyApp(),
 +    ));
 +  });
  }
  
-
  class MyApp extends StatefulWidget {
 --- ./pubspec.yaml
 +++ ./pubspec.yaml
