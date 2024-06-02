@@ -51,11 +51,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getHostnameOutput = await actions.getHostname();
-      setState(() {
-        FFAppState().hostname = _model.getHostnameOutput!;
-        FFAppState().site =
-            functions.hostnameToSiteCode(_model.getHostnameOutput);
-      });
+      FFAppState().hostname = _model.getHostnameOutput!;
+      FFAppState().site =
+          functions.hostnameToSiteCode(_model.getHostnameOutput);
+      setState(() {});
+
       setState(() {});
       if (widget.fromInvite) {
         // Focus Sign Up Tab
@@ -652,10 +652,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         onPressed: () async {
                                                           var _shouldSetState =
                                                               false;
-                                                          setState(() {
-                                                            _model.loginError =
-                                                                false;
-                                                          });
+                                                          _model.loginError =
+                                                              false;
+                                                          setState(() {});
                                                           GoRouter.of(context)
                                                               .prepareAuthEvent();
 
@@ -753,10 +752,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               setState(() {});
                                                             return;
                                                           } else {
-                                                            setState(() {
-                                                              _model.loginError =
-                                                                  true;
-                                                            });
+                                                            _model.loginError =
+                                                                true;
+                                                            setState(() {});
                                                             if (_shouldSetState)
                                                               setState(() {});
                                                             return;
@@ -1389,14 +1387,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           .isPasswordWeak(_model
                                                               .passwordCreateTextController
                                                               .text)) {
-                                                        setState(() {
-                                                          _model.loginError =
-                                                              false;
-                                                          _model.signupPasswordMismatch =
-                                                              false;
-                                                          _model.signupPasswordWeak =
-                                                              false;
-                                                        });
+                                                        _model.loginError =
+                                                            false;
+                                                        _model.signupPasswordMismatch =
+                                                            false;
+                                                        _model.signupPasswordWeak =
+                                                            false;
+                                                        setState(() {});
                                                         GoRouter.of(context)
                                                             .prepareAuthEvent();
                                                         if (_model
@@ -1473,28 +1470,25 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             return;
                                                           }
                                                         } else {
-                                                          setState(() {
-                                                            _model.loginError =
-                                                                true;
-                                                          });
+                                                          _model.loginError =
+                                                              true;
+                                                          setState(() {});
                                                           if (_shouldSetState)
                                                             setState(() {});
                                                           return;
                                                         }
                                                       } else {
-                                                        setState(() {
-                                                          _model.signupPasswordWeak =
-                                                              true;
-                                                        });
+                                                        _model.signupPasswordWeak =
+                                                            true;
+                                                        setState(() {});
                                                         if (_shouldSetState)
                                                           setState(() {});
                                                         return;
                                                       }
                                                     } else {
-                                                      setState(() {
-                                                        _model.signupPasswordMismatch =
-                                                            true;
-                                                      });
+                                                      _model.signupPasswordMismatch =
+                                                          true;
+                                                      setState(() {});
                                                       if (_shouldSetState)
                                                         setState(() {});
                                                       return;

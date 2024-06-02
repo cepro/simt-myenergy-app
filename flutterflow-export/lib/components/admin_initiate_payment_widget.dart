@@ -328,11 +328,10 @@ class _AdminInitiatePaymentWidgetState
                           (_model.amountFieldTextController.text != null &&
                               _model.amountFieldTextController.text != '')) {
                         // Reset flags
-                        setState(() {
-                          _model.showErrorMessage = false;
-                          _model.paymentSuccess = false;
-                          _model.errorMessage = null;
-                        });
+                        _model.showErrorMessage = false;
+                        _model.paymentSuccess = false;
+                        _model.errorMessage = null;
+                        setState(() {});
                         _model.sendPaymentResult = await SendPaymentCall.call(
                           amount: double.tryParse(
                               _model.amountFieldTextController.text),
@@ -345,23 +344,20 @@ class _AdminInitiatePaymentWidgetState
                         _shouldSetState = true;
                         if ((_model.sendPaymentResult?.succeeded ?? true)) {
                           // Set success flag
-                          setState(() {
-                            _model.paymentSuccess = true;
-                          });
+                          _model.paymentSuccess = true;
+                          setState(() {});
                         } else {
                           // Set failure flag
-                          setState(() {
-                            _model.paymentSuccess = false;
-                            _model.showErrorMessage = true;
-                            _model.errorMessage =
-                                'Send payment call failed. See backend logs.';
-                          });
+                          _model.paymentSuccess = false;
+                          _model.showErrorMessage = true;
+                          _model.errorMessage =
+                              'Send payment call failed. See backend logs.';
+                          setState(() {});
                         }
                       } else {
-                        setState(() {
-                          _model.errorMessage = 'one or more fields are blank';
-                          _model.showErrorMessage = true;
-                        });
+                        _model.errorMessage = 'one or more fields are blank';
+                        _model.showErrorMessage = true;
+                        setState(() {});
                         if (_shouldSetState) setState(() {});
                         return;
                       }

@@ -105,8 +105,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                     child: custom_widgets.URIIconButtonWithTooltip(
                       width: 35.0,
                       height: 35.0,
-                      uri: 'tel:+44-117-205-4840',
-                      tooltipText: '+44 117 205 4840',
+                      uri: 'tel:+44-330-828-3096',
+                      tooltipText: '+44 330 828 3096',
                       icon: Icon(
                         Icons.phone,
                         color: FlutterFlowTheme.of(context).primary,

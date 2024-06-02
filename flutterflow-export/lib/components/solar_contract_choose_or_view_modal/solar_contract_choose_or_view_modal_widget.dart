@@ -151,10 +151,9 @@ class _SolarContractChooseOrViewModalWidgetState
                                       contractId: widget.contract?.id,
                                       termsSubtype: 'thirty_year',
                                     );
-                                    setState(() {
-                                      _model.docusealEmbedHTML =
-                                          _model.signEmbedHTMLThirtyYear;
-                                    });
+                                    _model.docusealEmbedHTML =
+                                        _model.signEmbedHTMLThirtyYear;
+                                    setState(() {});
 
                                     setState(() {});
                                   },
@@ -178,10 +177,9 @@ class _SolarContractChooseOrViewModalWidgetState
                                       contractId: widget.contract?.id,
                                       termsSubtype: 'short_term',
                                     );
-                                    setState(() {
-                                      _model.docusealEmbedHTML =
-                                          _model.signEmbedHTMLShortTerm;
-                                    });
+                                    _model.docusealEmbedHTML =
+                                        _model.signEmbedHTMLShortTerm;
+                                    setState(() {});
 
                                     setState(() {});
                                   },

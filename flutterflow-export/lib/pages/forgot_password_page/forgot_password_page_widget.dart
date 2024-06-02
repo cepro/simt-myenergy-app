@@ -268,23 +268,20 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          setState(() {
-                            _model.resetError = false;
-                            _model.resetSent = false;
-                          });
+                          _model.resetError = false;
+                          _model.resetSent = false;
+                          setState(() {});
                           _model.sendResetSuccess =
                               await actions.supabasePasswordReset(
                             _model.emailAddressTextController.text,
                             FFAppState().hostname,
                           );
                           if (_model.sendResetSuccess!) {
-                            setState(() {
-                              _model.resetSent = true;
-                            });
+                            _model.resetSent = true;
+                            setState(() {});
                           } else {
-                            setState(() {
-                              _model.resetError = true;
-                            });
+                            _model.resetError = true;
+                            setState(() {});
                           }
 
                           setState(() {});

@@ -54,28 +54,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       await Future.delayed(const Duration(milliseconds: 1000));
       if ((_model.homePageGetWallets?.succeeded ?? true) &&
           ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
-        setState(() {
-          _model.singleWalletBalance =
-              functions.formatCurrencyAmount(getJsonField(
-            (_model.homePageGetWallets?.jsonBody ?? ''),
-            r'''$[0].balance''',
-          ));
-          _model.isOwner = (FFAppState().properties.isNotEmpty) &&
-              (FFAppState().properties.first.owner == FFAppState().customerId);
-          _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
-        });
-        setState(() {
-          FFAppState().supplyContractSigned = functions
-                      .getContractByType(
-                          FFAppState().accounts.toList(), 'supply')
-                      ?.signedDate !=
-                  null &&
-              functions
-                      .getContractByType(
-                          FFAppState().accounts.toList(), 'supply')
-                      ?.signedDate !=
-                  '';
-        });
+        _model.singleWalletBalance =
+            functions.formatCurrencyAmount(getJsonField(
+          (_model.homePageGetWallets?.jsonBody ?? ''),
+          r'''$[0].balance''',
+        ));
+        _model.isOwner = (FFAppState().properties.isNotEmpty) &&
+            (FFAppState().properties.first.owner == FFAppState().customerId);
+        _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
+        setState(() {});
+        FFAppState().supplyContractSigned = functions
+                    .getContractByType(FFAppState().accounts.toList(), 'supply')
+                    ?.signedDate !=
+                null &&
+            functions
+                    .getContractByType(FFAppState().accounts.toList(), 'supply')
+                    ?.signedDate !=
+                '';
+        setState(() {});
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -552,7 +548,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            'Tariff',
+                                                            'Contract',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .headlineSmall

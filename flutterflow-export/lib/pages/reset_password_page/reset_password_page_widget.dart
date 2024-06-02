@@ -333,10 +333,9 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                               _model.confirmPasswordTextController.text) {
                             if (!functions.isPasswordWeak(
                                 _model.newPasswordTextController.text)) {
-                              setState(() {
-                                _model.passwordMismatch = false;
-                                _model.resetError = false;
-                              });
+                              _model.passwordMismatch = false;
+                              _model.resetError = false;
+                              setState(() {});
                               _model.passwordUpdateSuccess =
                                   await actions.supabasePasswordUpdate(
                                 _model.newPasswordTextController.text,
@@ -348,23 +347,20 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                                 if (_shouldSetState) setState(() {});
                                 return;
                               } else {
-                                setState(() {
-                                  _model.resetError = true;
-                                });
+                                _model.resetError = true;
+                                setState(() {});
                                 if (_shouldSetState) setState(() {});
                                 return;
                               }
                             } else {
-                              setState(() {
-                                _model.passwordWeak = true;
-                              });
+                              _model.passwordWeak = true;
+                              setState(() {});
                               if (_shouldSetState) setState(() {});
                               return;
                             }
                           } else {
-                            setState(() {
-                              _model.passwordMismatch = true;
-                            });
+                            _model.passwordMismatch = true;
+                            setState(() {});
                             if (_shouldSetState) setState(() {});
                             return;
                           }

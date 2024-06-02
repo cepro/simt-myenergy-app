@@ -137,9 +137,8 @@ class _SupplyContractSignOrViewModalWidgetState
                                 context,
                                 contractId: widget.contract?.id,
                               );
-                              setState(() {
-                                _model.docusealEmbedHTML = _model.signEmbedHTML;
-                              });
+                              _model.docusealEmbedHTML = _model.signEmbedHTML;
+                              setState(() {});
 
                               setState(() {});
                             },

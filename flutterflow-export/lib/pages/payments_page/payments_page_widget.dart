@@ -47,10 +47,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               site: FFAppState().site?.name,
             );
             if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
-              setState(() {
-                _model.paymentMethods =
-                    (_model.getPaymentMethodsOutput?.jsonBody ?? '');
-              });
+              _model.paymentMethods =
+                  (_model.getPaymentMethodsOutput?.jsonBody ?? '');
+              setState(() {});
             } else {
               await action_blocks.handleMyEnergyApiCallFailure(
                 context,
@@ -72,10 +71,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                   await actions.paymentsJSONToPaymentsDataType(
                 (_model.getPaymentsOutput?.jsonBody ?? ''),
               );
-              setState(() {
-                _model.payments =
-                    _model.paymentsTyped!.toList().cast<PaymentStruct>();
-              });
+              _model.payments =
+                  _model.paymentsTyped!.toList().cast<PaymentStruct>();
+              setState(() {});
             } else {
               await action_blocks.handleMyEnergyApiCallFailure(
                 context,
