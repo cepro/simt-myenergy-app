@@ -16,6 +16,7 @@ class ContractTermsStruct extends BaseStruct {
     int? docusealTemplateId,
     String? docusealTemplateSlug,
     String? createdAt,
+    String? shortDescription,
   })  : _id = id,
         _type = type,
         _subtype = subtype,
@@ -23,7 +24,8 @@ class ContractTermsStruct extends BaseStruct {
         _summaryText = summaryText,
         _docusealTemplateId = docusealTemplateId,
         _docusealTemplateSlug = docusealTemplateSlug,
-        _createdAt = createdAt;
+        _createdAt = createdAt,
+        _shortDescription = shortDescription;
 
   // "id" field.
   String? _id;
@@ -76,6 +78,12 @@ class ContractTermsStruct extends BaseStruct {
   set createdAt(String? val) => _createdAt = val;
   bool hasCreatedAt() => _createdAt != null;
 
+  // "shortDescription" field.
+  String? _shortDescription;
+  String get shortDescription => _shortDescription ?? '';
+  set shortDescription(String? val) => _shortDescription = val;
+  bool hasShortDescription() => _shortDescription != null;
+
   static ContractTermsStruct fromMap(Map<String, dynamic> data) =>
       ContractTermsStruct(
         id: data['id'] as String?,
@@ -86,6 +94,7 @@ class ContractTermsStruct extends BaseStruct {
         docusealTemplateId: castToType<int>(data['docusealTemplateId']),
         docusealTemplateSlug: data['docusealTemplateSlug'] as String?,
         createdAt: data['createdAt'] as String?,
+        shortDescription: data['shortDescription'] as String?,
       );
 
   static ContractTermsStruct? maybeFromMap(dynamic data) => data is Map
@@ -101,6 +110,7 @@ class ContractTermsStruct extends BaseStruct {
         'docusealTemplateId': _docusealTemplateId,
         'docusealTemplateSlug': _docusealTemplateSlug,
         'createdAt': _createdAt,
+        'shortDescription': _shortDescription,
       }.withoutNulls;
 
   @override
@@ -135,6 +145,10 @@ class ContractTermsStruct extends BaseStruct {
         ),
         'createdAt': serializeParam(
           _createdAt,
+          ParamType.String,
+        ),
+        'shortDescription': serializeParam(
+          _shortDescription,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -181,6 +195,11 @@ class ContractTermsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        shortDescription: deserializeParam(
+          data['shortDescription'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -196,7 +215,8 @@ class ContractTermsStruct extends BaseStruct {
         summaryText == other.summaryText &&
         docusealTemplateId == other.docusealTemplateId &&
         docusealTemplateSlug == other.docusealTemplateSlug &&
-        createdAt == other.createdAt;
+        createdAt == other.createdAt &&
+        shortDescription == other.shortDescription;
   }
 
   @override
@@ -208,7 +228,8 @@ class ContractTermsStruct extends BaseStruct {
         summaryText,
         docusealTemplateId,
         docusealTemplateSlug,
-        createdAt
+        createdAt,
+        shortDescription
       ]);
 }
 
@@ -221,6 +242,7 @@ ContractTermsStruct createContractTermsStruct({
   int? docusealTemplateId,
   String? docusealTemplateSlug,
   String? createdAt,
+  String? shortDescription,
 }) =>
     ContractTermsStruct(
       id: id,
@@ -231,4 +253,5 @@ ContractTermsStruct createContractTermsStruct({
       docusealTemplateId: docusealTemplateId,
       docusealTemplateSlug: docusealTemplateSlug,
       createdAt: createdAt,
+      shortDescription: shortDescription,
     );

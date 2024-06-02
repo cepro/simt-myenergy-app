@@ -16,10 +16,12 @@ class SupplyContractRowWidget extends StatefulWidget {
     super.key,
     required this.contract,
     required this.readOnly,
+    required this.contractTerms,
   });
 
   final ContractStruct? contract;
   final bool? readOnly;
+  final ContractTermsStruct? contractTerms;
 
   @override
   State<SupplyContractRowWidget> createState() =>
@@ -81,19 +83,17 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    valueOrDefault<String>(
-                      widget.contract?.description,
-                      '<description not set>',
+                  if (widget.readOnly ?? true)
+                    Text(
+                      widget.contractTerms!.shortDescription,
+                      style: FlutterFlowTheme.of(context).titleMedium.override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).titleMediumFamily),
+                          ),
                     ),
-                    style: FlutterFlowTheme.of(context).titleMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).titleMediumFamily,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).titleMediumFamily),
-                        ),
-                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: Text(

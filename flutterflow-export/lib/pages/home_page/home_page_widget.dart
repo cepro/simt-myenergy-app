@@ -311,8 +311,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 updateCallback: () => setState(() {}),
                                 child: ProductRoadmapBoxWidget(),
                               ),
-                              if ((FFAppState().customerStatus == 'live') ||
-                                  (FFAppState().customerStatus == 'onboarding'))
+                              if (false)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
@@ -601,6 +600,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           .accounts
                                                                           .toList(),
                                                                       'supply')!,
+                                                              contractTerms: FFAppState()
+                                                                  .contractTerms
+                                                                  .where((e) =>
+                                                                      e.type ==
+                                                                      'supply')
+                                                                  .toList()
+                                                                  .first,
                                                             ),
                                                           ),
                                                         ),
@@ -616,8 +622,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                                   ),
                                 ),
-                              if (FFAppState().customerStatus ==
-                                  'preonboarding')
+                              if ((FFAppState().customerStatus ==
+                                      'preonboarding') ||
+                                  (FFAppState().customerStatus ==
+                                      'onboarding') ||
+                                  (FFAppState().customerStatus == 'live'))
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
