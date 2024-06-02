@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/gestures.dart';
@@ -115,8 +116,17 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                               mouseCursor: SystemMouseCursors.click,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
-                                  await launchURL(
-                                      'https://drive.google.com/file/d/1xKHnGaLy94EFuS5L9YEL3yfP1-we1tKw/view');
+                                  await launchURL(() {
+                                    if (FFAppState().site ==
+                                        SiteCodeEnum.wlce) {
+                                      return 'https://drive.google.com/file/d/1xKHnGaLy94EFuS5L9YEL3yfP1-we1tKw/view';
+                                    } else if (FFAppState().site ==
+                                        SiteCodeEnum.hmce) {
+                                      return 'https://drive.google.com/file/d/1X1GTWb9_uS4w8O4TCfCZ7BPboC9_6MoB/view';
+                                    } else {
+                                      return 'https://cepro.energy';
+                                    }
+                                  }());
                                 },
                             ),
                             TextSpan(
