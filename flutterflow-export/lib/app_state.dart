@@ -141,180 +141,180 @@ class FFAppState extends ChangeNotifier {
 
   bool _supplyContractSigned = false;
   bool get supplyContractSigned => _supplyContractSigned;
-  set supplyContractSigned(bool _value) {
-    _supplyContractSigned = _value;
-    prefs.setBool('ff_supplyContractSigned', _value);
+  set supplyContractSigned(bool value) {
+    _supplyContractSigned = value;
+    prefs.setBool('ff_supplyContractSigned', value);
   }
 
   dynamic _meters;
   dynamic get meters => _meters;
-  set meters(dynamic _value) {
-    _meters = _value;
-    prefs.setString('ff_meters', jsonEncode(_value));
+  set meters(dynamic value) {
+    _meters = value;
+    prefs.setString('ff_meters', jsonEncode(value));
   }
 
   List<AccountStruct> _accounts = [];
   List<AccountStruct> get accounts => _accounts;
-  set accounts(List<AccountStruct> _value) {
-    _accounts = _value;
+  set accounts(List<AccountStruct> value) {
+    _accounts = value;
     prefs.setStringList(
-        'ff_accounts', _value.map((x) => x.serialize()).toList());
+        'ff_accounts', value.map((x) => x.serialize()).toList());
   }
 
-  void addToAccounts(AccountStruct _value) {
-    _accounts.add(_value);
-    prefs.setStringList(
-        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromAccounts(AccountStruct _value) {
-    _accounts.remove(_value);
+  void addToAccounts(AccountStruct value) {
+    accounts.add(value);
     prefs.setStringList(
         'ff_accounts', _accounts.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromAccounts(int _index) {
-    _accounts.removeAt(_index);
+  void removeFromAccounts(AccountStruct value) {
+    accounts.remove(value);
+    prefs.setStringList(
+        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAccounts(int index) {
+    accounts.removeAt(index);
     prefs.setStringList(
         'ff_accounts', _accounts.map((x) => x.serialize()).toList());
   }
 
   void updateAccountsAtIndex(
-    int _index,
+    int index,
     AccountStruct Function(AccountStruct) updateFn,
   ) {
-    _accounts[_index] = updateFn(_accounts[_index]);
+    accounts[index] = updateFn(_accounts[index]);
     prefs.setStringList(
         'ff_accounts', _accounts.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInAccounts(int _index, AccountStruct _value) {
-    _accounts.insert(_index, _value);
+  void insertAtIndexInAccounts(int index, AccountStruct value) {
+    accounts.insert(index, value);
     prefs.setStringList(
         'ff_accounts', _accounts.map((x) => x.serialize()).toList());
   }
 
   List<ContractTermsStruct> _contractTerms = [];
   List<ContractTermsStruct> get contractTerms => _contractTerms;
-  set contractTerms(List<ContractTermsStruct> _value) {
-    _contractTerms = _value;
+  set contractTerms(List<ContractTermsStruct> value) {
+    _contractTerms = value;
     prefs.setStringList(
-        'ff_contractTerms', _value.map((x) => x.serialize()).toList());
+        'ff_contractTerms', value.map((x) => x.serialize()).toList());
   }
 
-  void addToContractTerms(ContractTermsStruct _value) {
-    _contractTerms.add(_value);
-    prefs.setStringList(
-        'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromContractTerms(ContractTermsStruct _value) {
-    _contractTerms.remove(_value);
+  void addToContractTerms(ContractTermsStruct value) {
+    contractTerms.add(value);
     prefs.setStringList(
         'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromContractTerms(int _index) {
-    _contractTerms.removeAt(_index);
+  void removeFromContractTerms(ContractTermsStruct value) {
+    contractTerms.remove(value);
+    prefs.setStringList(
+        'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromContractTerms(int index) {
+    contractTerms.removeAt(index);
     prefs.setStringList(
         'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
   }
 
   void updateContractTermsAtIndex(
-    int _index,
+    int index,
     ContractTermsStruct Function(ContractTermsStruct) updateFn,
   ) {
-    _contractTerms[_index] = updateFn(_contractTerms[_index]);
+    contractTerms[index] = updateFn(_contractTerms[index]);
     prefs.setStringList(
         'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInContractTerms(int _index, ContractTermsStruct _value) {
-    _contractTerms.insert(_index, _value);
+  void insertAtIndexInContractTerms(int index, ContractTermsStruct value) {
+    contractTerms.insert(index, value);
     prefs.setStringList(
         'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
   }
 
   List<SiteStruct> _sites = [];
   List<SiteStruct> get sites => _sites;
-  set sites(List<SiteStruct> _value) {
-    _sites = _value;
-    prefs.setStringList('ff_sites', _value.map((x) => x.serialize()).toList());
+  set sites(List<SiteStruct> value) {
+    _sites = value;
+    prefs.setStringList('ff_sites', value.map((x) => x.serialize()).toList());
   }
 
-  void addToSites(SiteStruct _value) {
-    _sites.add(_value);
+  void addToSites(SiteStruct value) {
+    sites.add(value);
     prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
   }
 
-  void removeFromSites(SiteStruct _value) {
-    _sites.remove(_value);
+  void removeFromSites(SiteStruct value) {
+    sites.remove(value);
     prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromSites(int _index) {
-    _sites.removeAt(_index);
+  void removeAtIndexFromSites(int index) {
+    sites.removeAt(index);
     prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
   }
 
   void updateSitesAtIndex(
-    int _index,
+    int index,
     SiteStruct Function(SiteStruct) updateFn,
   ) {
-    _sites[_index] = updateFn(_sites[_index]);
+    sites[index] = updateFn(_sites[index]);
     prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInSites(int _index, SiteStruct _value) {
-    _sites.insert(_index, _value);
+  void insertAtIndexInSites(int index, SiteStruct value) {
+    sites.insert(index, value);
     prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
   }
 
   List<PropertyStruct> _properties = [];
   List<PropertyStruct> get properties => _properties;
-  set properties(List<PropertyStruct> _value) {
-    _properties = _value;
+  set properties(List<PropertyStruct> value) {
+    _properties = value;
     prefs.setStringList(
-        'ff_properties', _value.map((x) => x.serialize()).toList());
+        'ff_properties', value.map((x) => x.serialize()).toList());
   }
 
-  void addToProperties(PropertyStruct _value) {
-    _properties.add(_value);
-    prefs.setStringList(
-        'ff_properties', _properties.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromProperties(PropertyStruct _value) {
-    _properties.remove(_value);
+  void addToProperties(PropertyStruct value) {
+    properties.add(value);
     prefs.setStringList(
         'ff_properties', _properties.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromProperties(int _index) {
-    _properties.removeAt(_index);
+  void removeFromProperties(PropertyStruct value) {
+    properties.remove(value);
+    prefs.setStringList(
+        'ff_properties', _properties.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromProperties(int index) {
+    properties.removeAt(index);
     prefs.setStringList(
         'ff_properties', _properties.map((x) => x.serialize()).toList());
   }
 
   void updatePropertiesAtIndex(
-    int _index,
+    int index,
     PropertyStruct Function(PropertyStruct) updateFn,
   ) {
-    _properties[_index] = updateFn(_properties[_index]);
+    properties[index] = updateFn(_properties[index]);
     prefs.setStringList(
         'ff_properties', _properties.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInProperties(int _index, PropertyStruct _value) {
-    _properties.insert(_index, _value);
+  void insertAtIndexInProperties(int index, PropertyStruct value) {
+    properties.insert(index, value);
     prefs.setStringList(
         'ff_properties', _properties.map((x) => x.serialize()).toList());
   }
 
   PropertyStruct _property = PropertyStruct();
   PropertyStruct get property => _property;
-  set property(PropertyStruct _value) {
-    _property = _value;
+  set property(PropertyStruct value) {
+    _property = value;
   }
 
   void updatePropertyStruct(Function(PropertyStruct) updateFn) {
@@ -323,93 +323,93 @@ class FFAppState extends ChangeNotifier {
 
   String _customerId = '';
   String get customerId => _customerId;
-  set customerId(String _value) {
-    _customerId = _value;
-    prefs.setString('ff_customerId', _value);
+  set customerId(String value) {
+    _customerId = value;
+    prefs.setString('ff_customerId', value);
   }
 
   List<MonthlyUsageStruct> _monthlyUsage = [];
   List<MonthlyUsageStruct> get monthlyUsage => _monthlyUsage;
-  set monthlyUsage(List<MonthlyUsageStruct> _value) {
-    _monthlyUsage = _value;
+  set monthlyUsage(List<MonthlyUsageStruct> value) {
+    _monthlyUsage = value;
     prefs.setStringList(
-        'ff_monthlyUsage', _value.map((x) => x.serialize()).toList());
+        'ff_monthlyUsage', value.map((x) => x.serialize()).toList());
   }
 
-  void addToMonthlyUsage(MonthlyUsageStruct _value) {
-    _monthlyUsage.add(_value);
-    prefs.setStringList(
-        'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromMonthlyUsage(MonthlyUsageStruct _value) {
-    _monthlyUsage.remove(_value);
+  void addToMonthlyUsage(MonthlyUsageStruct value) {
+    monthlyUsage.add(value);
     prefs.setStringList(
         'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromMonthlyUsage(int _index) {
-    _monthlyUsage.removeAt(_index);
+  void removeFromMonthlyUsage(MonthlyUsageStruct value) {
+    monthlyUsage.remove(value);
+    prefs.setStringList(
+        'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromMonthlyUsage(int index) {
+    monthlyUsage.removeAt(index);
     prefs.setStringList(
         'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
   }
 
   void updateMonthlyUsageAtIndex(
-    int _index,
+    int index,
     MonthlyUsageStruct Function(MonthlyUsageStruct) updateFn,
   ) {
-    _monthlyUsage[_index] = updateFn(_monthlyUsage[_index]);
+    monthlyUsage[index] = updateFn(_monthlyUsage[index]);
     prefs.setStringList(
         'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInMonthlyUsage(int _index, MonthlyUsageStruct _value) {
-    _monthlyUsage.insert(_index, _value);
+  void insertAtIndexInMonthlyUsage(int index, MonthlyUsageStruct value) {
+    monthlyUsage.insert(index, value);
     prefs.setStringList(
         'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
   }
 
   dynamic _monthlyUsageJSON;
   dynamic get monthlyUsageJSON => _monthlyUsageJSON;
-  set monthlyUsageJSON(dynamic _value) {
-    _monthlyUsageJSON = _value;
+  set monthlyUsageJSON(dynamic value) {
+    _monthlyUsageJSON = value;
   }
 
   String _customerStatus = '';
   String get customerStatus => _customerStatus;
-  set customerStatus(String _value) {
-    _customerStatus = _value;
-    prefs.setString('ff_customerStatus', _value);
+  set customerStatus(String value) {
+    _customerStatus = value;
+    prefs.setString('ff_customerStatus', value);
   }
 
   String _hostname = '';
   String get hostname => _hostname;
-  set hostname(String _value) {
-    _hostname = _value;
-    prefs.setString('ff_hostname', _value);
+  set hostname(String value) {
+    _hostname = value;
+    prefs.setString('ff_hostname', value);
   }
 
   SiteCodeEnum? _site = SiteCodeEnum.unknown;
   SiteCodeEnum? get site => _site;
-  set site(SiteCodeEnum? _value) {
-    _site = _value;
-    _value != null
-        ? prefs.setString('ff_site', _value.serialize())
+  set site(SiteCodeEnum? value) {
+    _site = value;
+    value != null
+        ? prefs.setString('ff_site', value.serialize())
         : prefs.remove('ff_site');
   }
 
   bool _isCeproUser = false;
   bool get isCeproUser => _isCeproUser;
-  set isCeproUser(bool _value) {
-    _isCeproUser = _value;
-    prefs.setBool('ff_isCeproUser', _value);
+  set isCeproUser(bool value) {
+    _isCeproUser = value;
+    prefs.setBool('ff_isCeproUser', value);
   }
 
   String _siteName = '';
   String get siteName => _siteName;
-  set siteName(String _value) {
-    _siteName = _value;
-    prefs.setString('ff_siteName', _value);
+  set siteName(String value) {
+    _siteName = value;
+    prefs.setString('ff_siteName', value);
   }
 }
 

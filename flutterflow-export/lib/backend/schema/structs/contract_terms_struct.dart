@@ -31,57 +31,68 @@ class ContractTermsStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "type" field.
   String? _type;
   String get type => _type ?? '';
   set type(String? val) => _type = val;
+
   bool hasType() => _type != null;
 
   // "subtype" field.
   String? _subtype;
   String get subtype => _subtype ?? '';
   set subtype(String? val) => _subtype = val;
+
   bool hasSubtype() => _subtype != null;
 
   // "version" field.
   int? _version;
   int get version => _version ?? 0;
   set version(int? val) => _version = val;
-  void incrementVersion(int amount) => _version = version + amount;
+
+  void incrementVersion(int amount) => version = version + amount;
+
   bool hasVersion() => _version != null;
 
   // "summaryText" field.
   String? _summaryText;
   String get summaryText => _summaryText ?? '';
   set summaryText(String? val) => _summaryText = val;
+
   bool hasSummaryText() => _summaryText != null;
 
   // "docusealTemplateId" field.
   int? _docusealTemplateId;
   int get docusealTemplateId => _docusealTemplateId ?? 0;
   set docusealTemplateId(int? val) => _docusealTemplateId = val;
+
   void incrementDocusealTemplateId(int amount) =>
-      _docusealTemplateId = docusealTemplateId + amount;
+      docusealTemplateId = docusealTemplateId + amount;
+
   bool hasDocusealTemplateId() => _docusealTemplateId != null;
 
   // "docusealTemplateSlug" field.
   String? _docusealTemplateSlug;
   String get docusealTemplateSlug => _docusealTemplateSlug ?? '';
   set docusealTemplateSlug(String? val) => _docusealTemplateSlug = val;
+
   bool hasDocusealTemplateSlug() => _docusealTemplateSlug != null;
 
   // "createdAt" field.
   String? _createdAt;
   String get createdAt => _createdAt ?? '';
   set createdAt(String? val) => _createdAt = val;
+
   bool hasCreatedAt() => _createdAt != null;
 
   // "shortDescription" field.
   String? _shortDescription;
   String get shortDescription => _shortDescription ?? '';
   set shortDescription(String? val) => _shortDescription = val;
+
   bool hasShortDescription() => _shortDescription != null;
 
   static ContractTermsStruct fromMap(Map<String, dynamic> data) =>

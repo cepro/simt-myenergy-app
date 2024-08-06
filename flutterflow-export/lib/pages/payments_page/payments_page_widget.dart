@@ -46,6 +46,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               bearerToken: currentJwtToken,
               site: FFAppState().site?.name,
             );
+
             if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
               _model.paymentMethods =
                   (_model.getPaymentMethodsOutput?.jsonBody ?? '');
@@ -66,6 +67,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               site: FFAppState().site?.name,
               bearerToken: currentJwtToken,
             );
+
             if ((_model.getPaymentsOutput?.succeeded ?? true)) {
               _model.paymentsTyped =
                   await actions.paymentsJSONToPaymentsDataType(
@@ -447,6 +449,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     site:
                                                         FFAppState().site?.name,
                                                   );
+
                                                   if ((_model.deletePaymentMethodResult
                                                               ?.statusCode ??
                                                           200) ==
@@ -595,6 +598,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   site: FFAppState().site?.name,
                                                   bearerToken: currentJwtToken,
                                                 );
+
                                                 if (_model.checkoutPageURI !=
                                                     null) {
                                                   await actions

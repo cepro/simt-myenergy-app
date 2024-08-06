@@ -66,7 +66,8 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                 child: Builder(
                   builder: (context) {
                     final payments =
-                        widget.payments!.toList().take(24).toList();
+                        widget!.payments!.toList().take(24).toList();
+
                     return FlutterFlowDataTable<PaymentStruct>(
                       controller: _model.paginatedDataTableController,
                       data: payments,

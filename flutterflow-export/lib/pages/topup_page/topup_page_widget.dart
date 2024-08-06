@@ -36,6 +36,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
       _model.topupPreferencesGetOutput = await GetWalletsCall.call(
         bearerToken: currentJwtToken,
       );
+
       if ((_model.topupPreferencesGetOutput?.succeeded ?? true) == true) {
         if (!functions
             .isListEmpty((_model.topupPreferencesGetOutput?.jsonBody ?? ''))) {
@@ -47,6 +48,9 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               )?.toString()?.toString(),
               '30',
             );
+            _model.minimumBalanceTextController?.selection =
+                TextSelection.collapsed(
+                    offset: _model.minimumBalanceTextController!.text.length);
           });
           setState(() {
             _model.topUpAmountTextController?.text = valueOrDefault<String>(
@@ -56,6 +60,9 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               )?.toString()?.toString(),
               '50',
             );
+            _model.topUpAmountTextController?.selection =
+                TextSelection.collapsed(
+                    offset: _model.topUpAmountTextController!.text.length);
           });
           _model.haveWallet = true;
         } else {
@@ -610,6 +617,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                 r'''$[0].id''',
                                                               ).toString(),
                                                             );
+
                                                             if ((_model.updateTopupPreferenceOutput
                                                                         ?.succeeded ??
                                                                     true) ==

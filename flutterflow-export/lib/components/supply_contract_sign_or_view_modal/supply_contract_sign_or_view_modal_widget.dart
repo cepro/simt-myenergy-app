@@ -129,13 +129,13 @@ class _SupplyContractSignOrViewModalWidgetState
                           updateCallback: () => setState(() {}),
                           child: SupplyContractCardWidget(
                             title: 'Supply Contract',
-                            contract: widget.contract!,
-                            terms: widget.terms!,
+                            contract: widget!.contract!,
+                            terms: widget!.terms!,
                             setSignEmbedHTML: () async {
                               _model.signEmbedHTML =
                                   await action_blocks.contractSignEmbed(
                                 context,
-                                contractId: widget.contract?.id,
+                                contractId: widget!.contract?.id,
                               );
                               _model.docusealEmbedHTML = _model.signEmbedHTML;
                               setState(() {});

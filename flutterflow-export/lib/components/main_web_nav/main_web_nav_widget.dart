@@ -192,7 +192,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                           EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                       child: Icon(
                         Icons.home_rounded,
-                        color: widget.navOne,
+                        color: widget!.navOne,
                         size: 24.0,
                       ),
                     ),
@@ -204,7 +204,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: widget.navOne,
+                              color: widget!.navOne,
                               letterSpacing: 0.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
@@ -216,61 +216,58 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 ),
               ),
             ),
-            if (true || FFAppState().supplyContractSigned)
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.pushNamed(
-                      'MyEnergyPage',
-                      extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
-                          hasTransition: true,
-                          transitionType: PageTransitionType.fade,
-                          duration: Duration(milliseconds: 0),
-                        ),
-                      },
-                    );
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
-                        child: Icon(
-                          Icons.electrical_services,
-                          color: widget.navTwo,
-                          size: 24.0,
-                        ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  context.pushNamed(
+                    'MyEnergyPage',
+                    extra: <String, dynamic>{
+                      kTransitionInfoKey: TransitionInfo(
+                        hasTransition: true,
+                        transitionType: PageTransitionType.fade,
+                        duration: Duration(milliseconds: 0),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'My Energy',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                color: widget.navTwo,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
-                        ),
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                      child: Icon(
+                        Icons.electrical_services,
+                        color: widget!.navTwo,
+                        size: 24.0,
                       ),
-                    ],
-                  ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      child: Text(
+                        'My Energy',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: widget!.navTwo,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            if (true || FFAppState().supplyContractSigned)
+            ),
+            if (FFAppState().isCeproUser || FFAppState().supplyContractSigned)
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(
@@ -298,7 +295,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.credit_card_rounded,
-                          color: widget.navThree,
+                          color: widget!.navThree,
                           size: 24.0,
                         ),
                       ),
@@ -312,7 +309,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
-                                color: widget.navThree,
+                                color: widget!.navThree,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -352,7 +349,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.settings,
-                          color: widget.navFour,
+                          color: widget!.navFour,
                           size: 24.0,
                         ),
                       ),
@@ -366,7 +363,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
-                                color: widget.navFour,
+                                color: widget!.navFour,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
@@ -406,7 +403,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.monetization_on,
-                          color: widget.navFour,
+                          color: widget!.navFour,
                           size: 24.0,
                         ),
                       ),
@@ -420,7 +417,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
-                                color: widget.navFour,
+                                color: widget!.navFour,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)

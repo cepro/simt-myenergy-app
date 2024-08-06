@@ -103,7 +103,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        widget.title!,
+                        widget!.title!,
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyLargeFamily,
@@ -120,7 +120,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget.terms?.summaryText,
+                    widget!.terms?.summaryText,
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).labelMedium.override(

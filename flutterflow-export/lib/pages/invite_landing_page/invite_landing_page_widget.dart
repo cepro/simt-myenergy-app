@@ -36,8 +36,9 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.inviteLookupResult = await CustomerInviteLookupCall.call(
-        inviteToken: widget.inviteToken,
+        inviteToken: widget!.inviteToken,
       );
+
       if ((_model.inviteLookupResult?.succeeded ?? true)) {
         context.pushNamed(
           'loginPage',

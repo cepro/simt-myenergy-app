@@ -263,6 +263,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                     builder: (context) {
                                       final accounts =
                                           FFAppState().accounts.toList();
+
                                       return ListView.separated(
                                         padding: EdgeInsets.zero,
                                         shrinkWrap: true,

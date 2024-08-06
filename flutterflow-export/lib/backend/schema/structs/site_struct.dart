@@ -19,18 +19,21 @@ class SiteStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "name" field.
   String? _name;
   String get name => _name ?? '';
   set name(String? val) => _name = val;
+
   bool hasName() => _name != null;
 
   // "code" field.
   SiteCodeEnum? _code;
   SiteCodeEnum get code => _code ?? SiteCodeEnum.unknown;
   set code(SiteCodeEnum? val) => _code = val;
+
   bool hasCode() => _code != null;
 
   static SiteStruct fromMap(Map<String, dynamic> data) => SiteStruct(

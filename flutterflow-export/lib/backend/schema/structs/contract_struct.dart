@@ -31,56 +31,66 @@ class ContractStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "type" field.
   String? _type;
   String get type => _type ?? '';
   set type(String? val) => _type = val;
+
   bool hasType() => _type != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "docusealSubmissionId" field.
   int? _docusealSubmissionId;
   int get docusealSubmissionId => _docusealSubmissionId ?? 0;
   set docusealSubmissionId(int? val) => _docusealSubmissionId = val;
+
   void incrementDocusealSubmissionId(int amount) =>
-      _docusealSubmissionId = docusealSubmissionId + amount;
+      docusealSubmissionId = docusealSubmissionId + amount;
+
   bool hasDocusealSubmissionId() => _docusealSubmissionId != null;
 
   // "signedContractURL" field.
   String? _signedContractURL;
   String get signedContractURL => _signedContractURL ?? '';
   set signedContractURL(String? val) => _signedContractURL = val;
+
   bool hasSignedContractURL() => _signedContractURL != null;
 
   // "signedDate" field.
   String? _signedDate;
   String get signedDate => _signedDate ?? '';
   set signedDate(String? val) => _signedDate = val;
+
   bool hasSignedDate() => _signedDate != null;
 
   // "effectiveDate" field.
   String? _effectiveDate;
   String get effectiveDate => _effectiveDate ?? '';
   set effectiveDate(String? val) => _effectiveDate = val;
+
   bool hasEffectiveDate() => _effectiveDate != null;
 
   // "endDate" field.
   String? _endDate;
   String get endDate => _endDate ?? '';
   set endDate(String? val) => _endDate = val;
+
   bool hasEndDate() => _endDate != null;
 
   // "termsId" field.
   String? _termsId;
   String get termsId => _termsId ?? '';
   set termsId(String? val) => _termsId = val;
+
   bool hasTermsId() => _termsId != null;
 
   static ContractStruct fromMap(Map<String, dynamic> data) => ContractStruct(

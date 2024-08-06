@@ -54,6 +54,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   getAccountsResponse = await GetCustomersAccountsCall.call(
     bearerToken: currentJwtToken,
   );
+
   if ((getAccountsResponse?.succeeded ?? true)) {
     await Future.delayed(const Duration(milliseconds: 500));
     accounts = await actions.accountsJSONToAccountsDataType(
@@ -140,6 +141,7 @@ Future<String?> contractSignEmbed(
     id: contractId,
     termsSubtype: termsSubtype,
   );
+
   if ((contractSigningEmbedResponse?.succeeded ?? true)) {
     return (contractSigningEmbedResponse?.bodyText ?? '');
   }
@@ -165,6 +167,7 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
   getContractTermsResponse = await ContractTermsLatestCall.call(
     bearerToken: currentJwtToken,
   );
+
   if ((getContractTermsResponse?.succeeded ?? true)) {
     await Future.delayed(const Duration(milliseconds: 500));
     contractTermsDataType =

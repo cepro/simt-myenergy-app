@@ -87,7 +87,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    widget.cardBrand!,
+                    widget!.cardBrand!,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -122,7 +122,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '**** ${widget.last4Digits}',
+                    '**** ${widget!.last4Digits}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,
@@ -134,7 +134,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         ),
                   ),
                   Text(
-                    '${widget.expiryMonth?.toString()}/${widget.expiryYear?.toString()}',
+                    '${widget!.expiryMonth?.toString()}/${widget!.expiryYear?.toString()}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,

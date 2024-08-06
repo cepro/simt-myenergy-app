@@ -19,20 +19,25 @@ class MonthlyUsageStruct extends BaseStruct {
   double? _usageHeat;
   double get usageHeat => _usageHeat ?? 0.0;
   set usageHeat(double? val) => _usageHeat = val;
-  void incrementUsageHeat(double amount) => _usageHeat = usageHeat + amount;
+
+  void incrementUsageHeat(double amount) => usageHeat = usageHeat + amount;
+
   bool hasUsageHeat() => _usageHeat != null;
 
   // "usage_power" field.
   double? _usagePower;
   double get usagePower => _usagePower ?? 0.0;
   set usagePower(double? val) => _usagePower = val;
-  void incrementUsagePower(double amount) => _usagePower = usagePower + amount;
+
+  void incrementUsagePower(double amount) => usagePower = usagePower + amount;
+
   bool hasUsagePower() => _usagePower != null;
 
   // "month" field.
   String? _month;
   String get month => _month ?? '';
   set month(String? val) => _month = val;
+
   bool hasMonth() => _month != null;
 
   static MonthlyUsageStruct fromMap(Map<String, dynamic> data) =>

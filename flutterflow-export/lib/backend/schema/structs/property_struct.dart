@@ -27,44 +27,53 @@ class PropertyStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "plot" field.
   String? _plot;
   String get plot => _plot ?? '';
   set plot(String? val) => _plot = val;
+
   bool hasPlot() => _plot != null;
 
   // "description" field.
   String? _description;
   String get description => _description ?? '';
   set description(String? val) => _description = val;
+
   bool hasDescription() => _description != null;
 
   // "supplyMeterUUID" field.
   String? _supplyMeterUUID;
   String get supplyMeterUUID => _supplyMeterUUID ?? '';
   set supplyMeterUUID(String? val) => _supplyMeterUUID = val;
+
   bool hasSupplyMeterUUID() => _supplyMeterUUID != null;
 
   // "solarMeterUUID" field.
   String? _solarMeterUUID;
   String get solarMeterUUID => _solarMeterUUID ?? '';
   set solarMeterUUID(String? val) => _solarMeterUUID = val;
+
   bool hasSolarMeterUUID() => _solarMeterUUID != null;
 
   // "site" field.
   SiteStruct? _site;
   SiteStruct get site => _site ?? SiteStruct();
   set site(SiteStruct? val) => _site = val;
-  void updateSite(Function(SiteStruct) updateFn) =>
-      updateFn(_site ??= SiteStruct());
+
+  void updateSite(Function(SiteStruct) updateFn) {
+    updateFn(_site ??= SiteStruct());
+  }
+
   bool hasSite() => _site != null;
 
   // "owner" field.
   String? _owner;
   String get owner => _owner ?? '';
   set owner(String? val) => _owner = val;
+
   bool hasOwner() => _owner != null;
 
   static PropertyStruct fromMap(Map<String, dynamic> data) => PropertyStruct(

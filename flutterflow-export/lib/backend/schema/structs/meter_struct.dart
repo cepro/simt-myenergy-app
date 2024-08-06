@@ -21,25 +21,30 @@ class MeterStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "serial" field.
   String? _serial;
   String get serial => _serial ?? '';
   set serial(String? val) => _serial = val;
+
   bool hasSerial() => _serial != null;
 
   // "prepayEnabled" field.
   bool? _prepayEnabled;
   bool get prepayEnabled => _prepayEnabled ?? false;
   set prepayEnabled(bool? val) => _prepayEnabled = val;
+
   bool hasPrepayEnabled() => _prepayEnabled != null;
 
   // "balance" field.
   double? _balance;
   double get balance => _balance ?? 0.0;
   set balance(double? val) => _balance = val;
-  void incrementBalance(double amount) => _balance = balance + amount;
+
+  void incrementBalance(double amount) => balance = balance + amount;
+
   bool hasBalance() => _balance != null;
 
   static MeterStruct fromMap(Map<String, dynamic> data) => MeterStruct(

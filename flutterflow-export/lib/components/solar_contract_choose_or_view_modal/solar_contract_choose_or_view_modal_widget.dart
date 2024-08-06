@@ -87,7 +87,7 @@ class _SolarContractChooseOrViewModalWidgetState
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Text(
-                            widget.readOnly!
+                            widget!.readOnly!
                                 ? 'Solar Contract'
                                 : 'Choose Solar Contract',
                             style: FlutterFlowTheme.of(context)
@@ -133,22 +133,22 @@ class _SolarContractChooseOrViewModalWidgetState
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if ((widget.contract?.termsId == null ||
-                                    widget.contract?.termsId == '') ||
-                                (widget.contract?.termsId ==
-                                    widget.termsSolar30Year?.id))
+                            if ((widget!.contract?.termsId == null ||
+                                    widget!.contract?.termsId == '') ||
+                                (widget!.contract?.termsId ==
+                                    widget!.termsSolar30Year?.id))
                               wrapWithModel(
                                 model: _model.solar30YearContractCardModel,
                                 updateCallback: () => setState(() {}),
                                 child: SolarContractCardWidget(
                                   title: '30 Years',
-                                  contract: widget.contract!,
-                                  terms: widget.termsSolar30Year!,
+                                  contract: widget!.contract!,
+                                  terms: widget!.termsSolar30Year!,
                                   setSignEmbedHTML: () async {
                                     _model.signEmbedHTMLThirtyYear =
                                         await action_blocks.contractSignEmbed(
                                       context,
-                                      contractId: widget.contract?.id,
+                                      contractId: widget!.contract?.id,
                                       termsSubtype: 'thirty_year',
                                     );
                                     _model.docusealEmbedHTML =
@@ -159,22 +159,22 @@ class _SolarContractChooseOrViewModalWidgetState
                                   },
                                 ),
                               ),
-                            if ((widget.contract?.termsId == null ||
-                                    widget.contract?.termsId == '') ||
-                                (widget.contract?.termsId ==
-                                    widget.termsSolarShortTerm?.id))
+                            if ((widget!.contract?.termsId == null ||
+                                    widget!.contract?.termsId == '') ||
+                                (widget!.contract?.termsId ==
+                                    widget!.termsSolarShortTerm?.id))
                               wrapWithModel(
                                 model: _model.solarShortTermContractCardModel,
                                 updateCallback: () => setState(() {}),
                                 child: SolarContractCardWidget(
                                   title: 'Short Term',
-                                  contract: widget.contract!,
-                                  terms: widget.termsSolarShortTerm!,
+                                  contract: widget!.contract!,
+                                  terms: widget!.termsSolarShortTerm!,
                                   setSignEmbedHTML: () async {
                                     _model.signEmbedHTMLShortTerm =
                                         await action_blocks.contractSignEmbed(
                                       context,
-                                      contractId: widget.contract?.id,
+                                      contractId: widget!.contract?.id,
                                       termsSubtype: 'short_term',
                                     );
                                     _model.docusealEmbedHTML =

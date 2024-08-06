@@ -19,19 +19,23 @@ class PaymentStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "amount" field.
   int? _amount;
   int get amount => _amount ?? 0;
   set amount(int? val) => _amount = val;
-  void incrementAmount(int amount) => _amount = amount + amount;
+
+  void incrementAmount(int amount) => amount = amount + amount;
+
   bool hasAmount() => _amount != null;
 
   // "currency" field.
   String? _currency;
   String get currency => _currency ?? '';
   set currency(String? val) => _currency = val;
+
   bool hasCurrency() => _currency != null;
 
   static PaymentStruct fromMap(Map<String, dynamic> data) => PaymentStruct(

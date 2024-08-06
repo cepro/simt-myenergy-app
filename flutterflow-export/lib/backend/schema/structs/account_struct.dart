@@ -21,30 +21,39 @@ class AccountStruct extends BaseStruct {
   String? _id;
   String get id => _id ?? '';
   set id(String? val) => _id = val;
+
   bool hasId() => _id != null;
 
   // "accountNumber" field.
   int? _accountNumber;
   int get accountNumber => _accountNumber ?? 0;
   set accountNumber(int? val) => _accountNumber = val;
+
   void incrementAccountNumber(int amount) =>
-      _accountNumber = accountNumber + amount;
+      accountNumber = accountNumber + amount;
+
   bool hasAccountNumber() => _accountNumber != null;
 
   // "property" field.
   PropertyStruct? _property;
   PropertyStruct get property => _property ?? PropertyStruct();
   set property(PropertyStruct? val) => _property = val;
-  void updateProperty(Function(PropertyStruct) updateFn) =>
-      updateFn(_property ??= PropertyStruct());
+
+  void updateProperty(Function(PropertyStruct) updateFn) {
+    updateFn(_property ??= PropertyStruct());
+  }
+
   bool hasProperty() => _property != null;
 
   // "contract" field.
   ContractStruct? _contract;
   ContractStruct get contract => _contract ?? ContractStruct();
   set contract(ContractStruct? val) => _contract = val;
-  void updateContract(Function(ContractStruct) updateFn) =>
-      updateFn(_contract ??= ContractStruct());
+
+  void updateContract(Function(ContractStruct) updateFn) {
+    updateFn(_contract ??= ContractStruct());
+  }
+
   bool hasContract() => _contract != null;
 
   static AccountStruct fromMap(Map<String, dynamic> data) => AccountStruct(

@@ -101,7 +101,7 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Sort code: ${widget.sortCode}',
+                    'Sort code: ${widget!.sortCode}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,
@@ -121,7 +121,7 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Account: **** ${widget.last4Digits}',
+                    'Account: **** ${widget!.last4Digits}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Roboto Mono',
                           color: Colors.white,

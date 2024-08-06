@@ -57,7 +57,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       setState(() {});
 
       setState(() {});
-      if (widget.fromInvite) {
+      if (widget!.fromInvite) {
         // Focus Sign Up Tab
         setState(() {
           _model.tabBarController!.animateTo(
@@ -75,14 +75,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       initialIndex: 0,
     )..addListener(() => setState(() {}));
     _model.emailAddressTextController ??=
-        TextEditingController(text: widget.emailPrefill);
+        TextEditingController(text: widget!.emailPrefill);
     _model.emailAddressFocusNode ??= FocusNode();
 
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
     _model.emailAddressCreateTextController ??=
-        TextEditingController(text: widget.emailPrefill);
+        TextEditingController(text: widget!.emailPrefill);
     _model.emailAddressCreateFocusNode ??= FocusNode();
 
     _model.passwordCreateTextController ??= TextEditingController();
@@ -279,9 +279,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               ),
                                                     ),
                                                   ),
-                                                if (widget.errorMessage !=
+                                                if (widget!.errorMessage !=
                                                         null &&
-                                                    widget.errorMessage != '')
+                                                    widget!.errorMessage != '')
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
@@ -289,7 +289,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget.errorMessage,
+                                                        widget!.errorMessage,
                                                         'no error',
                                                       ),
                                                       style:
@@ -825,7 +825,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              if (widget.fromInvite == true)
+                                              if (widget!.fromInvite == true)
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(

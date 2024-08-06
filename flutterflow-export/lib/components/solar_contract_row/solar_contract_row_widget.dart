@@ -81,10 +81,10 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (widget.readOnly == true)
+                  if (widget!.readOnly == true)
                     Text(
                       valueOrDefault<String>(
-                        widget.contract?.description,
+                        widget!.contract?.description,
                         '<description not set>',
                       ),
                       style: FlutterFlowTheme.of(context).titleMedium.override(
@@ -95,7 +95,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                                 FlutterFlowTheme.of(context).titleMediumFamily),
                           ),
                     ),
-                  if (widget.readOnly == true)
+                  if (widget!.readOnly == true)
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
@@ -122,15 +122,16 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    if (widget.readOnly!) {
+                    if (widget!.readOnly!) {
                       await actions.openPDF(
-                        widget.contract!.signedContractURL,
+                        widget!.contract!.signedContractURL,
                       );
                     } else {
                       _model.contractTermsLatest =
                           await ContractTermsLatestCall.call(
                         bearerToken: currentJwtToken,
                       );
+
                       _model.termsSolarShortTerm =
                           await actions.getTermsByTypeAndSubtype(
                         FFAppState().contractTerms.toList(),
@@ -152,9 +153,9 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                           return Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: SolarContractChooseOrViewModalWidget(
-                              readOnly: widget.readOnly!,
+                              readOnly: widget!.readOnly!,
                               termsSolar30Year: _model.termsSolar30Year!,
-                              contract: widget.contract!,
+                              contract: widget!.contract!,
                               termsSolarShortTerm: _model.termsSolarShortTerm!,
                             ),
                           );
@@ -164,7 +165,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
 
                     setState(() {});
                   },
-                  text: widget.readOnly == true ? 'View' : 'Choose Contract',
+                  text: widget!.readOnly == true ? 'View' : 'Choose Contract',
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:

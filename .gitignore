@@ -1,2 +1,5 @@
 local-stage/
 !local-stage/.vscode/settings.json
+
+# FVM Version Cache
+.fvm/

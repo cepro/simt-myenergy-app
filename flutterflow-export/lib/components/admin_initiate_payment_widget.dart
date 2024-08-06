@@ -341,6 +341,7 @@ class _AdminInitiatePaymentWidgetState
                           bearerToken: currentJwtToken,
                           site: FFAppState().site?.name,
                         );
+
                         _shouldSetState = true;
                         if ((_model.sendPaymentResult?.succeeded ?? true)) {
                           // Set success flag

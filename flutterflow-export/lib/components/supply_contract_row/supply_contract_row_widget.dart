@@ -83,9 +83,9 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (widget.readOnly ?? true)
+                  if (widget!.readOnly ?? true)
                     Text(
-                      widget.contractTerms!.shortDescription,
+                      widget!.contractTerms!.shortDescription,
                       style: FlutterFlowTheme.of(context).titleMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).titleMediumFamily,
@@ -120,9 +120,9 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                 Builder(
                   builder: (context) => FFButtonWidget(
                     onPressed: () async {
-                      if (widget.readOnly!) {
+                      if (widget!.readOnly!) {
                         await actions.openPDF(
-                          widget.contract!.signedContractURL,
+                          widget!.contract!.signedContractURL,
                         );
                       } else {
                         _model.supplyContractTerms =
@@ -144,7 +144,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                                 height: double.infinity,
                                 width: double.infinity,
                                 child: SupplyContractSignOrViewModalWidget(
-                                  contract: widget.contract!,
+                                  contract: widget!.contract!,
                                   terms: _model.supplyContractTerms!,
                                 ),
                               ),
@@ -155,7 +155,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
 
                       setState(() {});
                     },
-                    text: widget.readOnly == true ? 'View' : 'Choose Contract',
+                    text: widget!.readOnly == true ? 'View' : 'Choose Contract',
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:
