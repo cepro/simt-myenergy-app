@@ -1,6 +1,7 @@
 {
   "files.exclude": {
-    "**/local-stage": true,
+    "**/local-stage": false,
+    "bin/flutterflow-export": false,
     "**/flutterflow-export/": true,
     "flutterflow-export/": true
   },
