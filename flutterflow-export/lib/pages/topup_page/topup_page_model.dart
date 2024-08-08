@@ -20,7 +20,6 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - API (Get Wallets)] action in TopupPage widget.
   ApiCallResponse? topupPreferencesGetOutput;
@@ -83,7 +82,6 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     mainWebNavModel.dispose();
     logoutButtonModel.dispose();
     minimumBalanceFocusNode?.dispose();

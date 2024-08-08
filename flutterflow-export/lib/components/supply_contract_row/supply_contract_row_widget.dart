@@ -150,7 +150,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                               ),
                             );
                           },
-                        ).then((value) => setState(() {}));
+                        );
                       }
 
                       setState(() {});

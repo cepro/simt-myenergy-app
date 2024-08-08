@@ -46,16 +46,26 @@ Future handleMyEnergyApiCallFailure(
 
 Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   ApiCallResponse? getAccountsResponse;
+  ApiCallResponse? getMonthlyUsageResponse;
   List<AccountStruct>? accounts;
   List<MonthlyUsageStruct>? monthlyUsages;
   String? getHostnameResponse;
 
-  // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
-  getAccountsResponse = await GetCustomersAccountsCall.call(
-    bearerToken: currentJwtToken,
-  );
-
-  if ((getAccountsResponse?.succeeded ?? true)) {
+  await Future.wait([
+    Future(() async {
+      // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
+      getAccountsResponse = await GetCustomersAccountsCall.call(
+        bearerToken: currentJwtToken,
+      );
+    }),
+    Future(() async {
+      getMonthlyUsageResponse = await GetMonthlyUsageCall.call(
+        bearerToken: currentJwtToken,
+      );
+    }),
+  ]);
+  if ((getAccountsResponse?.succeeded ?? true) &&
+      (getMonthlyUsageResponse?.succeeded ?? true)) {
     await Future.delayed(const Duration(milliseconds: 500));
     accounts = await actions.accountsJSONToAccountsDataType(
       getJsonField(
@@ -65,10 +75,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
       )!,
     );
     monthlyUsages = await actions.monthlyUsageJSONToDataType(
-      getJsonField(
-        (getAccountsResponse?.jsonBody ?? ''),
-        r'''$.monthlyUsage''',
-      ),
+      (getMonthlyUsageResponse?.jsonBody ?? ''),
     );
     // We get this on the login page but lets get it again to be sure it's set when all other app state is set.
     getHostnameResponse = await actions.getHostname();
