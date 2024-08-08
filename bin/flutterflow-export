@@ -4,7 +4,9 @@ set -e
 EXPORT_DIR=`dirname $0`/../flutterflow-export
 
 # clean export - ensures any files deleted from the app are removed from the repo too
-rm -rf $EXPORT_DIR/* $EXPORT_DIR/.[^.]*
+rm -rf $EXPORT_DIR/*
+rm -f $EXPORT_DIR/.gitignore
+rm -f $EXPORT_DIR/.metadata
 
 echo "\nExporting flutterflow code ...\n"
 
@@ -15,5 +17,7 @@ flutterflow export-code \
 
 # flutterflow creates a my_energy so move all files up to the export dir
 FF_EXPORT=$EXPORT_DIR/my_energy
-mv $FF_EXPORT/* $FF_EXPORT/.[^.]* $EXPORT_DIR
+mv $FF_EXPORT/* $EXPORT_DIR
+mv $FF_EXPORT/.gitignore $EXPORT_DIR
+mv $FF_EXPORT/.metadata $EXPORT_DIR
 rmdir $FF_EXPORT
