@@ -36,14 +36,6 @@ List<PropertyStruct> getPropertiesFromAccounts(List<AccountStruct> accounts) {
       .toList();
 }
 
-List<SiteStruct> getSitesFromProperties(List<PropertyStruct> properties) {
-  return properties
-      .map((p) => p.site)
-      // remove duplicates by converting to a Set
-      .toSet()
-      .toList();
-}
-
 bool isListEmpty(List<dynamic>? jsonList) {
   return jsonList == null || jsonList.length == 0;
 }
@@ -98,32 +90,6 @@ bool isPasswordWeak(String password) {
   // Keep rules in sync with the supabase auth password rules.
   // Currently only a password length check:
   return password.length < 8;
-}
-
-SiteCodeEnum hostnameToSiteCode(String? hostname) {
-  if (hostname == null) return SiteCodeEnum.unknown;
-
-  if (hostname.endsWith('.waterlilies.energy')) {
-    return SiteCodeEnum.wlce;
-  }
-
-  if (hostname.endsWith('.hazelmead.energy')) {
-    return SiteCodeEnum.hmce;
-  }
-
-  // local testing from bin/run-local default to wlce:
-  if (hostname == '0.0.0.0') {
-    return SiteCodeEnum.wlce;
-  }
-
-  return SiteCodeEnum.unknown;
-}
-
-bool siteInSitesList(
-  List<SiteStruct> sites,
-  SiteCodeEnum site,
-) {
-  return sites.any((s) => s.code == site);
 }
 
 bool escoInEscosList(

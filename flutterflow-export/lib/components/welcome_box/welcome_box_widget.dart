@@ -117,11 +117,11 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
                                   await launchURL(() {
-                                    if (FFAppState().site ==
-                                        SiteCodeEnum.wlce) {
+                                    if (FFAppState().esco ==
+                                        EscoCodeEnum.wlce) {
                                       return 'https://drive.google.com/file/d/1xKHnGaLy94EFuS5L9YEL3yfP1-we1tKw/view';
-                                    } else if (FFAppState().site ==
-                                        SiteCodeEnum.hmce) {
+                                    } else if (FFAppState().esco ==
+                                        EscoCodeEnum.hmce) {
                                       return 'https://drive.google.com/file/d/1X1GTWb9_uS4w8O4TCfCZ7BPboC9_6MoB/view';
                                     } else {
                                       return 'https://cepro.energy';

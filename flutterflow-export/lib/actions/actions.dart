@@ -94,11 +94,6 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         .getPropertiesFromAccounts(accounts!.toList())
         .toList()
         .cast<PropertyStruct>();
-    FFAppState().sites = functions
-        .getSitesFromProperties(
-            functions.getPropertiesFromAccounts(accounts!.toList()).toList())
-        .toList()
-        .cast<SiteStruct>();
     FFAppState().customerId = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.customer.customerId''',
@@ -110,20 +105,10 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
       r'''$.customer.status''',
     ).toString().toString();
     FFAppState().hostname = getHostnameResponse!;
-    FFAppState().site = functions.hostnameToSiteCode(getHostnameResponse);
     FFAppState().isCeproUser = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.customer.isCeproUser''',
     );
-    FFAppState().siteName = () {
-      if (FFAppState().site == SiteCodeEnum.wlce) {
-        return 'Water Lilies';
-      } else if (FFAppState().site == SiteCodeEnum.hmce) {
-        return 'Hazelmead';
-      } else {
-        return 'unknown';
-      }
-    }();
     FFAppState().esco = functions.hostnameToEscoCode(getHostnameResponse);
     FFAppState().escoName = () {
       if (FFAppState().esco == EscoCodeEnum.wlce) {
@@ -216,7 +201,6 @@ Future clearAppState(BuildContext context) async {
   FFAppState().meters = null;
   FFAppState().supplyContractSigned = false;
   FFAppState().accounts = [];
-  FFAppState().sites = [];
   FFAppState().properties = [];
   FFAppState().monthlyUsage = [];
   FFAppState().monthlyUsageJSON = null;

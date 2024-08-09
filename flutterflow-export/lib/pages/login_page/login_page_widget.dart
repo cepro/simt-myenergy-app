@@ -52,8 +52,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.getHostnameOutput = await actions.getHostname();
       FFAppState().hostname = _model.getHostnameOutput!;
-      FFAppState().site =
-          functions.hostnameToSiteCode(_model.getHostnameOutput);
       FFAppState().esco =
           functions.hostnameToEscoCode(_model.getHostnameOutput);
       setState(() {});

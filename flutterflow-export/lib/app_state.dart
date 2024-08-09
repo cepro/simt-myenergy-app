@@ -66,21 +66,6 @@ class FFAppState extends ChangeNotifier {
           _contractTerms;
     });
     _safeInit(() {
-      _sites = prefs
-              .getStringList('ff_sites')
-              ?.map((x) {
-                try {
-                  return SiteStruct.fromSerializableMap(jsonDecode(x));
-                } catch (e) {
-                  print("Can't decode persisted data type. Error: $e.");
-                  return null;
-                }
-              })
-              .withoutNulls
-              .toList() ??
-          _sites;
-    });
-    _safeInit(() {
       _properties = prefs
               .getStringList('ff_properties')
               ?.map((x) {
@@ -120,15 +105,7 @@ class FFAppState extends ChangeNotifier {
       _hostname = prefs.getString('ff_hostname') ?? _hostname;
     });
     _safeInit(() {
-      _site = prefs.containsKey('ff_site')
-          ? deserializeEnum<SiteCodeEnum>(prefs.getString('ff_site'))
-          : _site;
-    });
-    _safeInit(() {
       _isCeproUser = prefs.getBool('ff_isCeproUser') ?? _isCeproUser;
-    });
-    _safeInit(() {
-      _siteName = prefs.getString('ff_siteName') ?? _siteName;
     });
     _safeInit(() {
       _escos = prefs
@@ -258,41 +235,6 @@ class FFAppState extends ChangeNotifier {
         'ff_contractTerms', _contractTerms.map((x) => x.serialize()).toList());
   }
 
-  List<SiteStruct> _sites = [];
-  List<SiteStruct> get sites => _sites;
-  set sites(List<SiteStruct> value) {
-    _sites = value;
-    prefs.setStringList('ff_sites', value.map((x) => x.serialize()).toList());
-  }
-
-  void addToSites(SiteStruct value) {
-    sites.add(value);
-    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
-  }
-
-  void removeFromSites(SiteStruct value) {
-    sites.remove(value);
-    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
-  }
-
-  void removeAtIndexFromSites(int index) {
-    sites.removeAt(index);
-    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
-  }
-
-  void updateSitesAtIndex(
-    int index,
-    SiteStruct Function(SiteStruct) updateFn,
-  ) {
-    sites[index] = updateFn(_sites[index]);
-    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
-  }
-
-  void insertAtIndexInSites(int index, SiteStruct value) {
-    sites.insert(index, value);
-    prefs.setStringList('ff_sites', _sites.map((x) => x.serialize()).toList());
-  }
-
   List<PropertyStruct> _properties = [];
   List<PropertyStruct> get properties => _properties;
   set properties(List<PropertyStruct> value) {
@@ -412,27 +354,11 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_hostname', value);
   }
 
-  SiteCodeEnum? _site = SiteCodeEnum.unknown;
-  SiteCodeEnum? get site => _site;
-  set site(SiteCodeEnum? value) {
-    _site = value;
-    value != null
-        ? prefs.setString('ff_site', value.serialize())
-        : prefs.remove('ff_site');
-  }
-
   bool _isCeproUser = false;
   bool get isCeproUser => _isCeproUser;
   set isCeproUser(bool value) {
     _isCeproUser = value;
     prefs.setBool('ff_isCeproUser', value);
-  }
-
-  String _siteName = '';
-  String get siteName => _siteName;
-  set siteName(String value) {
-    _siteName = value;
-    prefs.setString('ff_siteName', value);
   }
 
   List<EscoStruct> _escos = [];

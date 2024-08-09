@@ -123,7 +123,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (FFAppState().site == SiteCodeEnum.wlce)
+            if (FFAppState().esco == EscoCodeEnum.wlce)
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -138,7 +138,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   ),
                 ],
               ),
-            if (FFAppState().site == SiteCodeEnum.hmce)
+            if (FFAppState().esco == EscoCodeEnum.hmce)
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [

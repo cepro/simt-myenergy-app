@@ -13,7 +13,6 @@ class PropertyStruct extends BaseStruct {
     String? description,
     String? supplyMeterUUID,
     String? solarMeterUUID,
-    SiteStruct? site,
     String? owner,
     EscoStruct? esco,
   })  : _id = id,
@@ -21,7 +20,6 @@ class PropertyStruct extends BaseStruct {
         _description = description,
         _supplyMeterUUID = supplyMeterUUID,
         _solarMeterUUID = solarMeterUUID,
-        _site = site,
         _owner = owner,
         _esco = esco;
 
@@ -60,17 +58,6 @@ class PropertyStruct extends BaseStruct {
 
   bool hasSolarMeterUUID() => _solarMeterUUID != null;
 
-  // "site" field.
-  SiteStruct? _site;
-  SiteStruct get site => _site ?? SiteStruct();
-  set site(SiteStruct? val) => _site = val;
-
-  void updateSite(Function(SiteStruct) updateFn) {
-    updateFn(_site ??= SiteStruct());
-  }
-
-  bool hasSite() => _site != null;
-
   // "owner" field.
   String? _owner;
   String get owner => _owner ?? '';
@@ -95,7 +82,6 @@ class PropertyStruct extends BaseStruct {
         description: data['description'] as String?,
         supplyMeterUUID: data['supplyMeterUUID'] as String?,
         solarMeterUUID: data['solarMeterUUID'] as String?,
-        site: SiteStruct.maybeFromMap(data['site']),
         owner: data['owner'] as String?,
         esco: EscoStruct.maybeFromMap(data['esco']),
       );
@@ -109,7 +95,6 @@ class PropertyStruct extends BaseStruct {
         'description': _description,
         'supplyMeterUUID': _supplyMeterUUID,
         'solarMeterUUID': _solarMeterUUID,
-        'site': _site?.toMap(),
         'owner': _owner,
         'esco': _esco?.toMap(),
       }.withoutNulls;
@@ -135,10 +120,6 @@ class PropertyStruct extends BaseStruct {
         'solarMeterUUID': serializeParam(
           _solarMeterUUID,
           ParamType.String,
-        ),
-        'site': serializeParam(
-          _site,
-          ParamType.DataStruct,
         ),
         'owner': serializeParam(
           _owner,
@@ -177,12 +158,6 @@ class PropertyStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        site: deserializeStructParam(
-          data['site'],
-          ParamType.DataStruct,
-          false,
-          structBuilder: SiteStruct.fromSerializableMap,
-        ),
         owner: deserializeParam(
           data['owner'],
           ParamType.String,
@@ -207,22 +182,13 @@ class PropertyStruct extends BaseStruct {
         description == other.description &&
         supplyMeterUUID == other.supplyMeterUUID &&
         solarMeterUUID == other.solarMeterUUID &&
-        site == other.site &&
         owner == other.owner &&
         esco == other.esco;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([
-        id,
-        plot,
-        description,
-        supplyMeterUUID,
-        solarMeterUUID,
-        site,
-        owner,
-        esco
-      ]);
+  int get hashCode => const ListEquality().hash(
+      [id, plot, description, supplyMeterUUID, solarMeterUUID, owner, esco]);
 }
 
 PropertyStruct createPropertyStruct({
@@ -231,7 +197,6 @@ PropertyStruct createPropertyStruct({
   String? description,
   String? supplyMeterUUID,
   String? solarMeterUUID,
-  SiteStruct? site,
   String? owner,
   EscoStruct? esco,
 }) =>
@@ -241,7 +206,6 @@ PropertyStruct createPropertyStruct({
       description: description,
       supplyMeterUUID: supplyMeterUUID,
       solarMeterUUID: solarMeterUUID,
-      site: site ?? SiteStruct(),
       owner: owner,
       esco: esco ?? EscoStruct(),
     );
