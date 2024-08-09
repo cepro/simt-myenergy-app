@@ -56,7 +56,7 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if ((FFAppState().site == SiteCodeEnum.wlce) &&
+            if ((FFAppState().esco == EscoCodeEnum.wlce) &&
                 responsiveVisibility(
                   context: context,
                   tabletLandscape: false,
@@ -74,7 +74,7 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   ),
                 ),
               ),
-            if ((FFAppState().site == SiteCodeEnum.hmce) &&
+            if ((FFAppState().esco == EscoCodeEnum.hmce) &&
                 responsiveVisibility(
                   context: context,
                   tabletLandscape: false,
@@ -123,8 +123,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                       width: 35.0,
                       height: 35.0,
                       uri:
-                          'mailto:${functions.supportEmail(FFAppState().site!)}',
-                      tooltipText: functions.supportEmail(FFAppState().site!),
+                          'mailto:${functions.supportEmail(FFAppState().esco!)}',
+                      tooltipText: functions.supportEmail(FFAppState().esco!),
                       icon: Icon(
                         Icons.mail,
                         color: FlutterFlowTheme.of(context).primary,

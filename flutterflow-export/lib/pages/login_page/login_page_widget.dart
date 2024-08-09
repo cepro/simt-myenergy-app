@@ -54,6 +54,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       FFAppState().hostname = _model.getHostnameOutput!;
       FFAppState().site =
           functions.hostnameToSiteCode(_model.getHostnameOutput);
+      FFAppState().esco =
+          functions.hostnameToEscoCode(_model.getHostnameOutput);
       setState(() {});
 
       setState(() {});
@@ -255,7 +257,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: Text(
-                                                      'Sign In failure, try again or contact support at ${functions.supportEmail(FFAppState().site!)}',
+                                                      'Sign In failure, try again or contact support at ${functions.supportEmail(FFAppState().esco!)}',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -699,12 +701,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     .getAccountsFromSigninResult! &&
                                                                 _model
                                                                     .getTermsFromSigninResult!) {
-                                                              if (functions.siteInSitesList(
+                                                              if (functions.escoInEscosList(
                                                                   FFAppState()
-                                                                      .sites
+                                                                      .escos
                                                                       .toList(),
                                                                   FFAppState()
-                                                                      .site!)) {
+                                                                      .esco!)) {
                                                                 context.pushNamedAuth(
                                                                     'HomePage',
                                                                     context
@@ -731,7 +733,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       {
                                                                     'errorMessage':
                                                                         serializeParam(
-                                                                      'Not authorised to log in to this site. If you think you should be, contact support at ${functions.supportEmail(FFAppState().site!)}',
+                                                                      'Not authorised to log in to this site. If you think you should be, contact support at ${functions.supportEmail(FFAppState().esco!)}',
                                                                       ParamType
                                                                           .String,
                                                                     ),

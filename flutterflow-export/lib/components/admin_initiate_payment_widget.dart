@@ -339,7 +339,7 @@ class _AdminInitiatePaymentWidgetState
                               _model.descriptionFieldTextController.text,
                           customerId: _model.customerIdFieldTextController.text,
                           bearerToken: currentJwtToken,
-                          site: FFAppState().site?.name,
+                          esco: FFAppState().esco?.name,
                         );
 
                         _shouldSetState = true;

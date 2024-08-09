@@ -130,6 +130,29 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _siteName = prefs.getString('ff_siteName') ?? _siteName;
     });
+    _safeInit(() {
+      _escos = prefs
+              .getStringList('ff_escos')
+              ?.map((x) {
+                try {
+                  return EscoStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _escos;
+    });
+    _safeInit(() {
+      _escoName = prefs.getString('ff_escoName') ?? _escoName;
+    });
+    _safeInit(() {
+      _esco = prefs.containsKey('ff_esco')
+          ? deserializeEnum<EscoCodeEnum>(prefs.getString('ff_esco'))
+          : _esco;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -410,6 +433,57 @@ class FFAppState extends ChangeNotifier {
   set siteName(String value) {
     _siteName = value;
     prefs.setString('ff_siteName', value);
+  }
+
+  List<EscoStruct> _escos = [];
+  List<EscoStruct> get escos => _escos;
+  set escos(List<EscoStruct> value) {
+    _escos = value;
+    prefs.setStringList('ff_escos', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToEscos(EscoStruct value) {
+    escos.add(value);
+    prefs.setStringList('ff_escos', _escos.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromEscos(EscoStruct value) {
+    escos.remove(value);
+    prefs.setStringList('ff_escos', _escos.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromEscos(int index) {
+    escos.removeAt(index);
+    prefs.setStringList('ff_escos', _escos.map((x) => x.serialize()).toList());
+  }
+
+  void updateEscosAtIndex(
+    int index,
+    EscoStruct Function(EscoStruct) updateFn,
+  ) {
+    escos[index] = updateFn(_escos[index]);
+    prefs.setStringList('ff_escos', _escos.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInEscos(int index, EscoStruct value) {
+    escos.insert(index, value);
+    prefs.setStringList('ff_escos', _escos.map((x) => x.serialize()).toList());
+  }
+
+  String _escoName = '';
+  String get escoName => _escoName;
+  set escoName(String value) {
+    _escoName = value;
+    prefs.setString('ff_escoName', value);
+  }
+
+  EscoCodeEnum? _esco = EscoCodeEnum.unknown;
+  EscoCodeEnum? get esco => _esco;
+  set esco(EscoCodeEnum? value) {
+    _esco = value;
+    value != null
+        ? prefs.setString('ff_esco', value.serialize())
+        : prefs.remove('ff_esco');
   }
 }
 

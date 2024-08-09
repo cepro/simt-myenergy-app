@@ -87,7 +87,7 @@ class _LogoContainerRowWidgetState extends State<LogoContainerRowWidget>
           Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (FFAppState().site == SiteCodeEnum.wlce)
+              if (FFAppState().esco == EscoCodeEnum.wlce)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -97,7 +97,7 @@ class _LogoContainerRowWidgetState extends State<LogoContainerRowWidget>
                     fit: BoxFit.cover,
                   ),
                 ),
-              if (FFAppState().site == SiteCodeEnum.hmce)
+              if (FFAppState().esco == EscoCodeEnum.hmce)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(

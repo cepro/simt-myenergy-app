@@ -6,6 +6,12 @@ enum SiteCodeEnum {
   unknown,
 }
 
+enum EscoCodeEnum {
+  wlce,
+  hmce,
+  unknown,
+}
+
 extension FFEnumExtensions<T extends Enum> on T {
   String serialize() => name;
 }
@@ -19,6 +25,8 @@ T? deserializeEnum<T>(String? value) {
   switch (T) {
     case (SiteCodeEnum):
       return SiteCodeEnum.values.deserialize(value) as T?;
+    case (EscoCodeEnum):
+      return EscoCodeEnum.values.deserialize(value) as T?;
     default:
       return null;
   }

@@ -79,7 +79,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                 children: [
                   Flexible(
                     child: Text(
-                      'The ${FFAppState().siteName} microgrid has been established to enable homes and electric vehicles to share solar energy across the ${FFAppState().siteName} estate; surplus solar is stored in the ${FFAppState().siteName} community battery for later use.',
+                      'The ${FFAppState().escoName} microgrid has been established to enable homes and electric vehicles to share solar energy across the ${FFAppState().escoName} estate; surplus solar is stored in the ${FFAppState().escoName} community battery for later use.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,

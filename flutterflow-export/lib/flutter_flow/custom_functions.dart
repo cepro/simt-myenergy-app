@@ -48,6 +48,14 @@ bool isListEmpty(List<dynamic>? jsonList) {
   return jsonList == null || jsonList.length == 0;
 }
 
+List<EscoStruct> getEscosFromProperties(List<PropertyStruct> properties) {
+  return properties
+      .map((p) => p.esco)
+      // remove duplicates by converting to a Set
+      .toSet()
+      .toList();
+}
+
 ContractStruct? getContractByType(
   List<AccountStruct> accounts,
   String type,
@@ -56,6 +64,25 @@ ContractStruct? getContractByType(
       (account) => account.contract.type == type,
       orElse: () => new AccountStruct());
   return account.contract;
+}
+
+EscoCodeEnum hostnameToEscoCode(String? hostname) {
+  if (hostname == null) return EscoCodeEnum.unknown;
+
+  if (hostname.endsWith('.waterlilies.energy')) {
+    return EscoCodeEnum.wlce;
+  }
+
+  if (hostname.endsWith('.hazelmead.energy')) {
+    return EscoCodeEnum.hmce;
+  }
+
+  // local testing from bin/run-local default to wlce:
+  if (hostname == '0.0.0.0') {
+    return EscoCodeEnum.wlce;
+  }
+
+  return EscoCodeEnum.unknown;
 }
 
 String formatCurrencyAmount(double amount) {
@@ -99,10 +126,17 @@ bool siteInSitesList(
   return sites.any((s) => s.code == site);
 }
 
-String supportEmail(SiteCodeEnum site) {
-  if (site == SiteCodeEnum.wlce) {
+bool escoInEscosList(
+  List<EscoStruct> escos,
+  EscoCodeEnum esco,
+) {
+  return escos.any((e) => e.code == esco);
+}
+
+String supportEmail(EscoCodeEnum esco) {
+  if (esco == EscoCodeEnum.wlce) {
     return 'hello@waterlilies.energy';
-  } else if (site == SiteCodeEnum.hmce) {
+  } else if (esco == EscoCodeEnum.hmce) {
     return 'hello@hazelmead.energy';
   } else {
     return 'hello@cepro.energy';

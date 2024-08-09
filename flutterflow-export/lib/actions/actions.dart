@@ -124,6 +124,21 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         return 'unknown';
       }
     }();
+    FFAppState().esco = functions.hostnameToEscoCode(getHostnameResponse);
+    FFAppState().escoName = () {
+      if (FFAppState().esco == EscoCodeEnum.wlce) {
+        return 'Water Lilies';
+      } else if (FFAppState().esco == EscoCodeEnum.hmce) {
+        return 'Hazelmead';
+      } else {
+        return 'unknown';
+      }
+    }();
+    FFAppState().escos = functions
+        .getEscosFromProperties(
+            functions.getPropertiesFromAccounts(accounts!.toList()).toList())
+        .toList()
+        .cast<EscoStruct>();
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
