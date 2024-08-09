@@ -150,7 +150,7 @@ class GetMonthlyUsageCall {
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Monthly Usage',
-      apiUrl: 'https://simt-j-accounts-qa.fly.dev/monthlyUsage',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/monthlyUsageDeprecated',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
