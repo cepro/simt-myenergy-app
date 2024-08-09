@@ -27,9 +27,9 @@
     static FlutterFlowTheme of(BuildContext context) {
       deviceSize = getDeviceSize(context);
 !     bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
-!     SiteCodeEnum? site = FFAppState().site;
+!     EscoCodeEnum? esco = FFAppState().esco;
 ! 
-!     if (site == SiteCodeEnum.hmce) {
+!     if (esco == EscoCodeEnum.hmce) {
 !       return isDarkMode ? HazelDarkModeTheme() : HazelLightModeTheme();
 !     }
 ! 
