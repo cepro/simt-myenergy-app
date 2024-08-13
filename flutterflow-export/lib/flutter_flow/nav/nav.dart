@@ -183,6 +183,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'MyEnergyPage')
               : MyEnergyPageWidget(),
+        ),
+        FFRoute(
+          name: 'MyEnergyPageV2Draft',
+          path: '/myenergyv2',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'MyEnergyPageV2Draft')
+              : MyEnergyPageV2DraftWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
