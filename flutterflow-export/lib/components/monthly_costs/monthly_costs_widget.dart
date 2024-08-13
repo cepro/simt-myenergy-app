@@ -150,6 +150,25 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             ),
                           ),
                         ),
+                        DataColumn2(
+                          label: DefaultTextStyle.merge(
+                            softWrap: true,
+                            child: Text(
+                              'Total (GBP)',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelLargeFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .labelLargeFamily),
+                                  ),
+                            ),
+                          ),
+                        ),
                       ],
                       dataRowBuilder: (monthlyCostsItem, monthlyCostsIndex,
                               selected, onSelectChanged) =>
@@ -177,7 +196,8 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 ),
                           ),
                           Text(
-                            monthlyCostsItem.costPower.toString(),
+                            (monthlyCostsItem.costPower / 100)
+                                .toStringAsFixed(2),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -190,7 +210,24 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 ),
                           ),
                           Text(
-                            monthlyCostsItem.costHeat.toString(),
+                            (monthlyCostsItem.costHeat / 100)
+                                .toStringAsFixed(2),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                          Text(
+                            ((monthlyCostsItem.costHeat +
+                                        monthlyCostsItem.costPower) /
+                                    100)
+                                .toStringAsFixed(2),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
