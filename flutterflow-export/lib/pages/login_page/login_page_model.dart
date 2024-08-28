@@ -29,6 +29,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - getHostname] action in loginPage widget.
   String? getHostnameOutput;
   // Model for LogoContainerRow component.

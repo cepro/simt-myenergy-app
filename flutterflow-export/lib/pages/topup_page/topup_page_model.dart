@@ -20,6 +20,7 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - API (Get Wallets)] action in TopupPage widget.
   ApiCallResponse? topupPreferencesGetOutput;

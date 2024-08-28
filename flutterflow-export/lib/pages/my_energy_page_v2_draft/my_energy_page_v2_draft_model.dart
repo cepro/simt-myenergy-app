@@ -40,6 +40,7 @@ class MyEnergyPageV2DraftModel
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (Get Monthly Cost)] action in MyEnergyPageV2Draft widget.
   ApiCallResponse? getMonthlyCostResponse;
   // Stores action output result for [Custom Action - monthlyCostJSONToDataType] action in MyEnergyPageV2Draft widget.

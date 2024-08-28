@@ -21,6 +21,7 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.

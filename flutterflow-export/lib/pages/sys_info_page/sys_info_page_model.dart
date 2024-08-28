@@ -15,6 +15,7 @@ class SysInfoPageModel extends FlutterFlowModel<SysInfoPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for LogoutButton component.
