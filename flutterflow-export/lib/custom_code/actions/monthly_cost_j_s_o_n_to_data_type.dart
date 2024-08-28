@@ -21,9 +21,25 @@ Future<List<MonthlyCostStruct>> monthlyCostJSONToDataType(
     DateFormat dateFormatter = DateFormat('MMMM y');
     String monthStr = dateFormatter.format(month);
     costs.add(MonthlyCostStruct(
-      costHeat: costRec['costHeat'],
-      costPower: costRec['costPower'],
       month: monthStr,
+
+      // actual costs (customer_tariffs)
+      heat: costRec['heat'],
+      power: costRec['power'],
+      standingCharge: costRec['standingCharge'],
+      total: costRec['total'],
+
+      // microgrid costs (microgrid_tariffs)
+      microgridHeat: costRec['microgridHeat'],
+      microgridPower: costRec['microgridPower'],
+      microgridStandingCharge: costRec['microgridStandingCharge'],
+      microgridTotal: costRec['microgridTotal'],
+
+      // benchmark costs (benchmark_tariffs)
+      benchmarkHeat: costRec['benchmarkHeat'],
+      benchmarkPower: costRec['benchmarkPower'],
+      benchmarkStandingCharge: costRec['benchmarkStandingCharge'],
+      benchmarkTotal: costRec['benchmarkTotal'],
     ));
   });
 

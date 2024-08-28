@@ -196,8 +196,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 ),
                           ),
                           Text(
-                            (monthlyCostsItem.costPower / 100)
-                                .toStringAsFixed(2),
+                            (monthlyCostsItem.power / 100).toStringAsFixed(2),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -210,8 +209,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 ),
                           ),
                           Text(
-                            (monthlyCostsItem.costHeat / 100)
-                                .toStringAsFixed(2),
+                            (monthlyCostsItem.heat / 100).toStringAsFixed(2),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -224,10 +222,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 ),
                           ),
                           Text(
-                            ((monthlyCostsItem.costHeat +
-                                        monthlyCostsItem.costPower) /
-                                    100)
-                                .toStringAsFixed(2),
+                            (monthlyCostsItem.total / 100).toStringAsFixed(2),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
