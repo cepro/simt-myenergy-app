@@ -78,7 +78,7 @@ EscoCodeEnum hostnameToEscoCode(String? hostname) {
 }
 
 String formatCurrencyAmount(double amount) {
-  var f = NumberFormat("###.00", "en_GB");
+  var f = NumberFormat("##0.00", "en_GB");
   return "£" + f.format(amount);
 }
 

@@ -2,6 +2,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -116,7 +118,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                           label: DefaultTextStyle.merge(
                             softWrap: true,
                             child: Text(
-                              'Power (GBP)',
+                              'Power',
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -135,7 +137,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                           label: DefaultTextStyle.merge(
                             softWrap: true,
                             child: Text(
-                              'Heat (GBP)',
+                              'Heat',
                               style: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
@@ -154,18 +156,42 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                           label: DefaultTextStyle.merge(
                             softWrap: true,
                             child: Text(
-                              'Total (GBP)',
+                              'Standing Charge',
                               style: FlutterFlowTheme.of(context)
-                                  .labelLarge
+                                  .bodyMedium
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .labelLargeFamily,
+                                        .bodyMediumFamily,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .labelLargeFamily),
+                                                .bodyMediumFamily),
                                   ),
+                            ),
+                          ),
+                        ),
+                        DataColumn2(
+                          label: DefaultTextStyle.merge(
+                            softWrap: true,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  'Total',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelLarge
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelLargeFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .labelLargeFamily),
+                                      ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -195,44 +221,187 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                           .bodyMediumFamily),
                                 ),
                           ),
-                          Text(
-                            (monthlyCostsItem.power / 100).toStringAsFixed(2),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
+                          AlignedTooltip(
+                            content: Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: Text(
+                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
+                                    ),
+                              ),
+                            ),
+                            offset: 4.0,
+                            preferredDirection: AxisDirection.down,
+                            borderRadius: BorderRadius.circular(8.0),
+                            backgroundColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 4.0,
+                            tailBaseWidth: 24.0,
+                            tailLength: 12.0,
+                            waitDuration: Duration(milliseconds: 100),
+                            showDuration: Duration(milliseconds: 1500),
+                            triggerMode: TooltipTriggerMode.tap,
+                            child: Text(
+                              '${functions.formatCurrencyAmount(monthlyCostsItem.power)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkPower)})',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
                           ),
-                          Text(
-                            (monthlyCostsItem.heat / 100).toStringAsFixed(2),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
-                                ),
+                          AlignedTooltip(
+                            content: Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: Text(
+                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
+                                    ),
+                              ),
+                            ),
+                            offset: 4.0,
+                            preferredDirection: AxisDirection.down,
+                            borderRadius: BorderRadius.circular(8.0),
+                            backgroundColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 4.0,
+                            tailBaseWidth: 24.0,
+                            tailLength: 12.0,
+                            waitDuration: Duration(milliseconds: 100),
+                            showDuration: Duration(milliseconds: 1500),
+                            triggerMode: TooltipTriggerMode.tap,
+                            child: Text(
+                              '${functions.formatCurrencyAmount(monthlyCostsItem.heat)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkHeat)})',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
                           ),
-                          Text(
-                            (monthlyCostsItem.total / 100).toStringAsFixed(2),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                          AlignedTooltip(
+                            content: Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: Text(
+                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyLarge
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily),
+                                    ),
+                              ),
+                            ),
+                            offset: 4.0,
+                            preferredDirection: AxisDirection.down,
+                            borderRadius: BorderRadius.circular(8.0),
+                            backgroundColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 4.0,
+                            tailBaseWidth: 24.0,
+                            tailLength: 12.0,
+                            waitDuration: Duration(milliseconds: 100),
+                            showDuration: Duration(milliseconds: 1500),
+                            triggerMode: TooltipTriggerMode.tap,
+                            child: Text(
+                              '${functions.formatCurrencyAmount(monthlyCostsItem.standingCharge)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkStandingCharge)})',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              AlignedTooltip(
+                                content: Padding(
+                                  padding: EdgeInsets.all(4.0),
+                                  child: Text(
+                                    'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyLargeFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLargeFamily),
+                                        ),
+                                  ),
                                 ),
+                                offset: 4.0,
+                                preferredDirection: AxisDirection.down,
+                                borderRadius: BorderRadius.circular(8.0),
+                                backgroundColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                elevation: 4.0,
+                                tailBaseWidth: 24.0,
+                                tailLength: 12.0,
+                                waitDuration: Duration(milliseconds: 100),
+                                showDuration: Duration(milliseconds: 1500),
+                                triggerMode: TooltipTriggerMode.tap,
+                                child: Text(
+                                  '${functions.formatCurrencyAmount(monthlyCostsItem.total)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkTotal)})',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily),
+                                      ),
+                                ),
+                              ),
+                            ],
                           ),
                         ].map((c) => DataCell(c)).toList(),
                       ),
