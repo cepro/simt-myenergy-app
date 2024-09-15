@@ -49,7 +49,7 @@ class _MyEnergyPageV2DraftWidgetState extends State<MyEnergyPageV2DraftWidget> {
         );
         _model.monthlyCosts =
             _model.monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
-        setState(() {});
+        safeSetState(() {});
       } else {
         await action_blocks.handleMyEnergyApiCallFailure(
           context,
@@ -61,7 +61,7 @@ class _MyEnergyPageV2DraftWidgetState extends State<MyEnergyPageV2DraftWidget> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -91,7 +91,7 @@ class _MyEnergyPageV2DraftWidgetState extends State<MyEnergyPageV2DraftWidget> {
             ))
               wrapWithModel(
                 model: _model.mainWebNavModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).secondaryText,
                   navTwo: FlutterFlowTheme.of(context).alternate,
@@ -125,7 +125,7 @@ class _MyEnergyPageV2DraftWidgetState extends State<MyEnergyPageV2DraftWidget> {
                             children: [
                               wrapWithModel(
                                 model: _model.topBarLoggedInModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
@@ -247,14 +247,14 @@ class _MyEnergyPageV2DraftWidgetState extends State<MyEnergyPageV2DraftWidget> {
                               ),
                               wrapWithModel(
                                 model: _model.monthlyCostsModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: MonthlyCostsWidget(
                                   monthlyCosts: _model.monthlyCosts,
                                 ),
                               ),
                               wrapWithModel(
                                 model: _model.monthlyConsumptionModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: MonthlyConsumptionWidget(),
                               ),
                             ],

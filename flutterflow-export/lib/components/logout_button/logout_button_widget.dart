@@ -30,7 +30,7 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
     super.initState();
     _model = createModel(context, () => LogoutButtonModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

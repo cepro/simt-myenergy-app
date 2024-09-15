@@ -50,7 +50,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
             if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
               _model.paymentMethods =
                   (_model.getPaymentMethodsOutput?.jsonBody ?? '');
-              setState(() {});
+              safeSetState(() {});
             } else {
               await action_blocks.handleMyEnergyApiCallFailure(
                 context,
@@ -75,7 +75,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               );
               _model.payments =
                   _model.paymentsTyped!.toList().cast<PaymentStruct>();
-              setState(() {});
+              safeSetState(() {});
             } else {
               await action_blocks.handleMyEnergyApiCallFailure(
                 context,
@@ -92,7 +92,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -122,7 +122,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
             ))
               wrapWithModel(
                 model: _model.mainWebNavModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).secondaryText,
                   navTwo: FlutterFlowTheme.of(context).secondaryText,
@@ -156,7 +156,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                             children: [
                               wrapWithModel(
                                 model: _model.topBarLoggedInModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
@@ -301,7 +301,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   model:
                                                       _model.paymentsListModel,
                                                   updateCallback: () =>
-                                                      setState(() {}),
+                                                      safeSetState(() {}),
                                                   child: PaymentsListWidget(
                                                     payments: _model.payments,
                                                   ),
@@ -370,7 +370,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                             wrapWithModel(
                                               model: _model.directDebitModel,
                                               updateCallback: () =>
-                                                  setState(() {}),
+                                                  safeSetState(() {}),
                                               child: DirectDebitWidget(
                                                 last4Digits: getJsonField(
                                                   (_model.getPaymentMethodsOutput
@@ -396,7 +396,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                             wrapWithModel(
                                               model: _model.creditCardModel,
                                               updateCallback: () =>
-                                                  setState(() {}),
+                                                  safeSetState(() {}),
                                               child: CreditCardWidget(
                                                 last4Digits: getJsonField(
                                                   (_model.getPaymentMethodsOutput
@@ -470,7 +470,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     );
                                                   }
 
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                                 text: 'Remove Payment Method',
                                                 options: FFButtonOptions(
@@ -624,7 +624,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   );
                                                 }
 
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               text: 'Setup Payment with Stripe',
                                               options: FFButtonOptions(

@@ -30,7 +30,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
     super.initState();
     _model = createModel(context, () => ProductRoadMapModalModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

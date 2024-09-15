@@ -40,7 +40,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
     super.initState();
     _model = createModel(context, () => SolarContractRowModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -163,7 +163,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                       ).then((value) => safeSetState(() {}));
                     }
 
-                    setState(() {});
+                    safeSetState(() {});
                   },
                   text: widget!.readOnly == true ? 'View' : 'Choose Contract',
                   options: FFButtonOptions(

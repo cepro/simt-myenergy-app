@@ -214,7 +214,11 @@ class _FlutterFlowDataTableState<T> extends State<FlutterFlowDataTable<T>> {
       initialNumRows: widget.numRows,
     );
     // ignore: cascade_invocations
-    controller.addListener(() => setState(() {}));
+    controller.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
   }
 
   @override

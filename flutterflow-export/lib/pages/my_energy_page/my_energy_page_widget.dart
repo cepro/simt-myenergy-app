@@ -28,7 +28,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
     super.initState();
     _model = createModel(context, () => MyEnergyPageModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -58,7 +58,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
             ))
               wrapWithModel(
                 model: _model.mainWebNavModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).secondaryText,
                   navTwo: FlutterFlowTheme.of(context).alternate,
@@ -92,7 +92,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                             children: [
                               wrapWithModel(
                                 model: _model.topBarLoggedInModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
@@ -214,7 +214,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                               ),
                               wrapWithModel(
                                 model: _model.monthlyConsumptionModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: MonthlyConsumptionWidget(),
                               ),
                             ],

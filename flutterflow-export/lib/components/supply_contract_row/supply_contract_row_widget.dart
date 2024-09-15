@@ -42,7 +42,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
     super.initState();
     _model = createModel(context, () => SupplyContractRowModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -153,7 +153,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                         );
                       }
 
-                      setState(() {});
+                      safeSetState(() {});
                     },
                     text: widget!.readOnly == true ? 'View' : 'Choose Contract',
                     options: FFButtonOptions(

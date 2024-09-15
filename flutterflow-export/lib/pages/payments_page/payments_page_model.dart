@@ -40,7 +40,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (Get Customers Payment Methods)] action in PaymentsPage widget.
   ApiCallResponse? getPaymentMethodsOutput;
   // Stores action output result for [Backend Call - API (Get Customers Payments)] action in PaymentsPage widget.

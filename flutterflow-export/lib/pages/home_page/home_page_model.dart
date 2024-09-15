@@ -29,7 +29,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - getMeterByType] action in HomePage widget.
   MeterStruct? solarMeter;
   // Stores action output result for [Custom Action - getMeterByType] action in HomePage widget.

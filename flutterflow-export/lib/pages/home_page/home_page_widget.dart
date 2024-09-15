@@ -63,7 +63,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         _model.isOwner = (FFAppState().properties.isNotEmpty) &&
             (FFAppState().properties.first.owner == FFAppState().customerId);
         _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
-        setState(() {});
+        safeSetState(() {});
         FFAppState().supplyContractSigned = functions
                     .getContractByType(FFAppState().accounts.toList(), 'supply')
                     ?.signedDate !=
@@ -72,7 +72,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     .getContractByType(FFAppState().accounts.toList(), 'supply')
                     ?.signedDate !=
                 '';
-        setState(() {});
+        safeSetState(() {});
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -89,7 +89,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -119,7 +119,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             ))
               wrapWithModel(
                 model: _model.mainWebNavModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).alternate,
                   navTwo: FlutterFlowTheme.of(context).secondaryText,
@@ -153,7 +153,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             children: [
                               wrapWithModel(
                                 model: _model.topBarLoggedInModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
@@ -302,12 +302,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               wrapWithModel(
                                 model: _model.welcomeBoxModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: WelcomeBoxWidget(),
                               ),
                               wrapWithModel(
                                 model: _model.productRoadmapBoxModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: ProductRoadmapBoxWidget(),
                               ),
                               Padding(
@@ -576,8 +576,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           child: wrapWithModel(
                                                             model: _model
                                                                 .supplyContractRowModel,
-                                                            updateCallback:
-                                                                () => setState(
+                                                            updateCallback: () =>
+                                                                safeSetState(
                                                                     () {}),
                                                             child:
                                                                 SupplyContractRowWidget(

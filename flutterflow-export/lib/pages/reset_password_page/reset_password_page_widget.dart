@@ -34,7 +34,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
     _model.confirmPasswordTextController ??= TextEditingController();
     _model.confirmPasswordFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -54,7 +54,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
         children: [
           wrapWithModel(
             model: _model.logoContainerRowModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: LogoContainerRowWidget(),
           ),
           Column(
@@ -207,7 +207,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           contentPadding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 24.0, 20.0, 24.0),
                           suffixIcon: InkWell(
-                            onTap: () => setState(
+                            onTap: () => safeSetState(
                               () => _model.newPasswordVisibility =
                                   !_model.newPasswordVisibility,
                             ),
@@ -297,7 +297,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           contentPadding: EdgeInsetsDirectional.fromSTEB(
                               20.0, 24.0, 20.0, 24.0),
                           suffixIcon: InkWell(
-                            onTap: () => setState(
+                            onTap: () => safeSetState(
                               () => _model.confirmPasswordVisibility =
                                   !_model.confirmPasswordVisibility,
                             ),
@@ -335,7 +335,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                                 _model.newPasswordTextController.text)) {
                               _model.passwordMismatch = false;
                               _model.resetError = false;
-                              setState(() {});
+                              safeSetState(() {});
                               _model.passwordUpdateSuccess =
                                   await actions.supabasePasswordUpdate(
                                 _model.newPasswordTextController.text,
@@ -344,28 +344,28 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                               if (_model.passwordUpdateSuccess!) {
                                 context.pushNamed('loginPage');
 
-                                if (_shouldSetState) setState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                                 return;
                               } else {
                                 _model.resetError = true;
-                                setState(() {});
-                                if (_shouldSetState) setState(() {});
+                                safeSetState(() {});
+                                if (_shouldSetState) safeSetState(() {});
                                 return;
                               }
                             } else {
                               _model.passwordWeak = true;
-                              setState(() {});
-                              if (_shouldSetState) setState(() {});
+                              safeSetState(() {});
+                              if (_shouldSetState) safeSetState(() {});
                               return;
                             }
                           } else {
                             _model.passwordMismatch = true;
-                            setState(() {});
-                            if (_shouldSetState) setState(() {});
+                            safeSetState(() {});
+                            if (_shouldSetState) safeSetState(() {});
                             return;
                           }
 
-                          if (_shouldSetState) setState(() {});
+                          if (_shouldSetState) safeSetState(() {});
                         },
                         text: 'Reset',
                         options: FFButtonOptions(

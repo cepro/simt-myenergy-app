@@ -30,7 +30,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
     super.initState();
     _model = createModel(context, () => MonthlyConsumptionModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

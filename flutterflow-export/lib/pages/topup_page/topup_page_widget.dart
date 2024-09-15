@@ -40,7 +40,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
       if ((_model.topupPreferencesGetOutput?.succeeded ?? true) == true) {
         if (!functions
             .isListEmpty((_model.topupPreferencesGetOutput?.jsonBody ?? ''))) {
-          setState(() {
+          safeSetState(() {
             _model.minimumBalanceTextController?.text = valueOrDefault<String>(
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
@@ -52,7 +52,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                 TextSelection.collapsed(
                     offset: _model.minimumBalanceTextController!.text.length);
           });
-          setState(() {
+          safeSetState(() {
             _model.topUpAmountTextController?.text = valueOrDefault<String>(
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
@@ -86,7 +86,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
     _model.topUpAmountTextController ??= TextEditingController(text: '50');
     _model.topUpAmountFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -113,7 +113,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
             ))
               wrapWithModel(
                 model: _model.mainWebNavModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).secondaryText,
                   navTwo: FlutterFlowTheme.of(context).secondaryText,
@@ -200,7 +200,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                           wrapWithModel(
                                             model: _model.logoutButtonModel,
                                             updateCallback: () =>
-                                                setState(() {}),
+                                                safeSetState(() {}),
                                             child: LogoutButtonWidget(),
                                           ),
                                         ],
@@ -658,7 +658,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                               );
                                                             }
 
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           },
                                                           text: 'Save',
                                                           options:

@@ -34,7 +34,7 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
     super.initState();
     _model = createModel(context, () => DirectDebitModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

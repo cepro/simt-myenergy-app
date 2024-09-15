@@ -31,7 +31,7 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
     super.initState();
     _model = createModel(context, () => TopBarLoggedInModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -139,7 +139,7 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                         EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                     child: wrapWithModel(
                       model: _model.logoutButtonModel,
-                      updateCallback: () => setState(() {}),
+                      updateCallback: () => safeSetState(() {}),
                       child: LogoutButtonWidget(),
                     ),
                   ),

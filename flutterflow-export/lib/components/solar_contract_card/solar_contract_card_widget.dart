@@ -42,7 +42,7 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
     super.initState();
     _model = createModel(context, () => SolarContractCardModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

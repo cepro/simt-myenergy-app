@@ -61,7 +61,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -94,7 +94,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                       child: wrapWithModel(
                         model: _model.logoContainerRowModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: LogoContainerRowWidget(),
                       ),
                     ),

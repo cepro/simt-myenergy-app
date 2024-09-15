@@ -31,7 +31,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -103,7 +103,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
           ),
           wrapWithModel(
             model: _model.logoContainerRowModel,
-            updateCallback: () => setState(() {}),
+            updateCallback: () => safeSetState(() {}),
             child: LogoContainerRowWidget(),
           ),
           Column(
@@ -270,7 +270,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                         onPressed: () async {
                           _model.resetError = false;
                           _model.resetSent = false;
-                          setState(() {});
+                          safeSetState(() {});
                           _model.sendResetSuccess =
                               await actions.supabasePasswordReset(
                             _model.emailAddressTextController.text,
@@ -278,13 +278,13 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           );
                           if (_model.sendResetSuccess!) {
                             _model.resetSent = true;
-                            setState(() {});
+                            safeSetState(() {});
                           } else {
                             _model.resetError = true;
-                            setState(() {});
+                            safeSetState(() {});
                           }
 
-                          setState(() {});
+                          safeSetState(() {});
                         },
                         text: 'Send Link',
                         options: FFButtonOptions(

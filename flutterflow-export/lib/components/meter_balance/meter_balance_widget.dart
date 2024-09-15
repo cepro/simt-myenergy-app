@@ -27,7 +27,7 @@ class _MeterBalanceWidgetState extends State<MeterBalanceWidget> {
     super.initState();
     _model = createModel(context, () => MeterBalanceModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

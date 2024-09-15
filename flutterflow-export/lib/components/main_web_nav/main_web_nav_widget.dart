@@ -87,7 +87,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
       this,
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -453,7 +453,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 if (animationsMap[
                                         'containerOnActionTriggerAnimation2'] !=
                                     null) {
-                                  setState(() => hasContainerTriggered2 = true);
+                                  safeSetState(
+                                      () => hasContainerTriggered2 = true);
                                   SchedulerBinding.instance.addPostFrameCallback(
                                       (_) async => await animationsMap[
                                               'containerOnActionTriggerAnimation2']!
@@ -552,7 +553,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 if (animationsMap[
                                         'containerOnActionTriggerAnimation1'] !=
                                     null) {
-                                  setState(() => hasContainerTriggered1 = true);
+                                  safeSetState(
+                                      () => hasContainerTriggered1 = true);
                                   SchedulerBinding.instance.addPostFrameCallback(
                                       (_) async => await animationsMap[
                                               'containerOnActionTriggerAnimation1']!

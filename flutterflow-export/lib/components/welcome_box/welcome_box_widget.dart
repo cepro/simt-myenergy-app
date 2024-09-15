@@ -29,7 +29,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
     super.initState();
     _model = createModel(context, () => WelcomeBoxModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

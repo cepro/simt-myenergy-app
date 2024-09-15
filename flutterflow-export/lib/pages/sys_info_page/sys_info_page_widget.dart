@@ -26,7 +26,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
     super.initState();
     _model = createModel(context, () => SysInfoPageModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -53,7 +53,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
             ))
               wrapWithModel(
                 model: _model.mainWebNavModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).secondaryText,
                   navTwo: FlutterFlowTheme.of(context).secondaryText,
@@ -146,7 +146,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                             wrapWithModel(
                                               model: _model.logoutButtonModel,
                                               updateCallback: () =>
-                                                  setState(() {}),
+                                                  safeSetState(() {}),
                                               child: LogoutButtonWidget(),
                                             ),
                                           ],

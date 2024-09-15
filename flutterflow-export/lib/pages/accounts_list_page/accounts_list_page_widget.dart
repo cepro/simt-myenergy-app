@@ -27,7 +27,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
     super.initState();
     _model = createModel(context, () => AccountsListPageModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -56,7 +56,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
             ))
               wrapWithModel(
                 model: _model.mainWebNavModel,
-                updateCallback: () => setState(() {}),
+                updateCallback: () => safeSetState(() {}),
                 child: MainWebNavWidget(
                   navOne: FlutterFlowTheme.of(context).alternate,
                   navTwo: FlutterFlowTheme.of(context).secondaryText,
@@ -139,7 +139,8 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                       children: [
                                         wrapWithModel(
                                           model: _model.logoutButtonModel,
-                                          updateCallback: () => setState(() {}),
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
                                           child: LogoutButtonWidget(),
                                         ),
                                       ],

@@ -37,7 +37,7 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
       context.pushNamed('HomePage');
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -69,7 +69,7 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
               ))
                 wrapWithModel(
                   model: _model.mainWebNavModel,
-                  updateCallback: () => setState(() {}),
+                  updateCallback: () => safeSetState(() {}),
                   child: MainWebNavWidget(
                     navOne: FlutterFlowTheme.of(context).alternate,
                     navTwo: FlutterFlowTheme.of(context).secondaryText,
@@ -103,7 +103,7 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
                               children: [
                                 wrapWithModel(
                                   model: _model.topBarLoggedInModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: TopBarLoggedInWidget(),
                                 ),
                                 if (responsiveVisibility(
@@ -162,7 +162,7 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.adminInitiatePaymentModel,
-                                    updateCallback: () => setState(() {}),
+                                    updateCallback: () => safeSetState(() {}),
                                     child: AdminInitiatePaymentWidget(),
                                   ),
                                 ),

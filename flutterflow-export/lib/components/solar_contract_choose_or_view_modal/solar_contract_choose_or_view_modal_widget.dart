@@ -46,7 +46,7 @@ class _SolarContractChooseOrViewModalWidgetState
     super.initState();
     _model = createModel(context, () => SolarContractChooseOrViewModalModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -139,7 +139,7 @@ class _SolarContractChooseOrViewModalWidgetState
                                     widget!.termsSolar30Year?.id))
                               wrapWithModel(
                                 model: _model.solar30YearContractCardModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: SolarContractCardWidget(
                                   title: '30 Years',
                                   contract: widget!.contract!,
@@ -153,9 +153,9 @@ class _SolarContractChooseOrViewModalWidgetState
                                     );
                                     _model.docusealEmbedHTML =
                                         _model.signEmbedHTMLThirtyYear;
-                                    setState(() {});
+                                    safeSetState(() {});
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),
@@ -165,7 +165,7 @@ class _SolarContractChooseOrViewModalWidgetState
                                     widget!.termsSolarShortTerm?.id))
                               wrapWithModel(
                                 model: _model.solarShortTermContractCardModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: SolarContractCardWidget(
                                   title: 'Short Term',
                                   contract: widget!.contract!,
@@ -179,9 +179,9 @@ class _SolarContractChooseOrViewModalWidgetState
                                     );
                                     _model.docusealEmbedHTML =
                                         _model.signEmbedHTMLShortTerm;
-                                    setState(() {});
+                                    safeSetState(() {});
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),

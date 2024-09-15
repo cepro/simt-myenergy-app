@@ -24,7 +24,7 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
     super.initState();
     _model = createModel(context, () => ExpandedMenuModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

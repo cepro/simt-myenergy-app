@@ -42,7 +42,7 @@ class _SupplyContractSignOrViewModalWidgetState
     super.initState();
     _model = createModel(context, () => SupplyContractSignOrViewModalModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -126,7 +126,7 @@ class _SupplyContractSignOrViewModalWidgetState
                           _model.docusealEmbedHTML == '')
                         wrapWithModel(
                           model: _model.supplyContractCardModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: SupplyContractCardWidget(
                             title: 'Supply Contract',
                             contract: widget!.contract!,
@@ -138,9 +138,9 @@ class _SupplyContractSignOrViewModalWidgetState
                                 contractId: widget!.contract?.id,
                               );
                               _model.docusealEmbedHTML = _model.signEmbedHTML;
-                              setState(() {});
+                              safeSetState(() {});
 
-                              setState(() {});
+                              safeSetState(() {});
                             },
                           ),
                         ),

@@ -41,7 +41,7 @@ class _AdminInitiatePaymentWidgetState
     _model.descriptionFieldTextController ??= TextEditingController();
     _model.descriptionFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -331,7 +331,7 @@ class _AdminInitiatePaymentWidgetState
                         _model.showErrorMessage = false;
                         _model.paymentSuccess = false;
                         _model.errorMessage = null;
-                        setState(() {});
+                        safeSetState(() {});
                         _model.sendPaymentResult = await SendPaymentCall.call(
                           amount: double.tryParse(
                               _model.amountFieldTextController.text),
@@ -346,24 +346,24 @@ class _AdminInitiatePaymentWidgetState
                         if ((_model.sendPaymentResult?.succeeded ?? true)) {
                           // Set success flag
                           _model.paymentSuccess = true;
-                          setState(() {});
+                          safeSetState(() {});
                         } else {
                           // Set failure flag
                           _model.paymentSuccess = false;
                           _model.showErrorMessage = true;
                           _model.errorMessage =
                               'Send payment call failed. See backend logs.';
-                          setState(() {});
+                          safeSetState(() {});
                         }
                       } else {
                         _model.errorMessage = 'one or more fields are blank';
                         _model.showErrorMessage = true;
-                        setState(() {});
-                        if (_shouldSetState) setState(() {});
+                        safeSetState(() {});
+                        if (_shouldSetState) safeSetState(() {});
                         return;
                       }
 
-                      if (_shouldSetState) setState(() {});
+                      if (_shouldSetState) safeSetState(() {});
                     },
                     text: 'Submit',
                     options: FFButtonOptions(

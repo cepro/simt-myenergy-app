@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 class InviteLandingPageModel extends FlutterFlowModel<InviteLandingPageWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (Customer Invite Lookup)] action in InviteLandingPage widget.
   ApiCallResponse? inviteLookupResult;
   // Model for LogoContainerRow component.

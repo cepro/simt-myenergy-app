@@ -54,12 +54,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       FFAppState().hostname = _model.getHostnameOutput!;
       FFAppState().esco =
           functions.hostnameToEscoCode(_model.getHostnameOutput);
-      setState(() {});
+      safeSetState(() {});
 
-      setState(() {});
+      safeSetState(() {});
       if (widget!.fromInvite) {
         // Focus Sign Up Tab
-        setState(() {
+        safeSetState(() {
           _model.tabBarController!.animateTo(
             _model.tabBarController!.length - 1,
             duration: Duration(milliseconds: 300),
@@ -73,7 +73,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       vsync: this,
       length: 2,
       initialIndex: 0,
-    )..addListener(() => setState(() {}));
+    )..addListener(() => safeSetState(() {}));
     _model.emailAddressTextController ??=
         TextEditingController(text: widget!.emailPrefill);
     _model.emailAddressFocusNode ??= FocusNode();
@@ -140,7 +140,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       this,
     );
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -174,7 +174,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                     children: [
                       wrapWithModel(
                         model: _model.logoContainerRowModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: LogoContainerRowWidget(),
                       ),
                       Align(
@@ -546,7 +546,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   20.0,
                                                                   24.0),
                                                       suffixIcon: InkWell(
-                                                        onTap: () => setState(
+                                                        onTap: () =>
+                                                            safeSetState(
                                                           () => _model
                                                                   .passwordVisibility =
                                                               !_model
@@ -652,7 +653,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               false;
                                                           _model.loginError =
                                                               false;
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           GoRouter.of(context)
                                                               .prepareAuthEvent();
 
@@ -742,24 +743,27 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               }
                                                             } else {
                                                               if (_shouldSetState)
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               return;
                                                             }
 
                                                             if (_shouldSetState)
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             return;
                                                           } else {
                                                             _model.loginError =
                                                                 true;
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                             if (_shouldSetState)
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             return;
                                                           }
 
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                         },
                                                         text: 'Sign In',
                                                         options:
@@ -1172,7 +1176,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 20.0,
                                                                 24.0),
                                                     suffixIcon: InkWell(
-                                                      onTap: () => setState(
+                                                      onTap: () => safeSetState(
                                                         () => _model
                                                                 .passwordCreateVisibility =
                                                             !_model
@@ -1325,7 +1329,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 20.0,
                                                                 24.0),
                                                     suffixIcon: InkWell(
-                                                      onTap: () => setState(
+                                                      onTap: () => safeSetState(
                                                         () => _model
                                                                 .confirmCreateVisibility =
                                                             !_model
@@ -1391,7 +1395,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             false;
                                                         _model.signupPasswordWeak =
                                                             false;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                         GoRouter.of(context)
                                                             .prepareAuthEvent();
                                                         if (_model
@@ -1460,40 +1464,42 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     .mounted);
 
                                                             if (_shouldSetState)
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             return;
                                                           } else {
                                                             if (_shouldSetState)
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             return;
                                                           }
                                                         } else {
                                                           _model.loginError =
                                                               true;
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           return;
                                                         }
                                                       } else {
                                                         _model.signupPasswordWeak =
                                                             true;
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                         if (_shouldSetState)
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         return;
                                                       }
                                                     } else {
                                                       _model.signupPasswordMismatch =
                                                           true;
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                       if (_shouldSetState)
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       return;
                                                     }
 
                                                     if (_shouldSetState)
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                   },
                                                   text: 'Create Account',
                                                   options: FFButtonOptions(

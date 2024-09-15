@@ -29,7 +29,7 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
     super.initState();
     _model = createModel(context, () => ProductRoadmapBoxModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
