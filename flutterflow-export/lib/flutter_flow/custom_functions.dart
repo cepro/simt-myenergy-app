@@ -108,3 +108,7 @@ String supportEmail(EscoCodeEnum esco) {
     return 'hello@cepro.energy';
   }
 }
+
+String newLineChar() {
+  return "\n";
+}

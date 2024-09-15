@@ -36,7 +36,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
     super.initState();
     _model = createModel(context, () => MonthlyCostsModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -225,7 +225,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}',
+                                'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -251,7 +251,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             showDuration: Duration(milliseconds: 1500),
                             triggerMode: TooltipTriggerMode.tap,
                             child: Text(
-                              '${functions.formatCurrencyAmount(monthlyCostsItem.power)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkPower)})',
+                              '${functions.formatCurrencyAmount(monthlyCostsItem.power)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkPower - monthlyCostsItem.power)})',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -269,7 +269,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}',
+                                'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -295,7 +295,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             showDuration: Duration(milliseconds: 1500),
                             triggerMode: TooltipTriggerMode.tap,
                             child: Text(
-                              '${functions.formatCurrencyAmount(monthlyCostsItem.heat)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkHeat)})',
+                              '${functions.formatCurrencyAmount(monthlyCostsItem.heat)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkHeat - monthlyCostsItem.heat)})',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -313,7 +313,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}',
+                                'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -339,7 +339,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             showDuration: Duration(milliseconds: 1500),
                             triggerMode: TooltipTriggerMode.tap,
                             child: Text(
-                              '${functions.formatCurrencyAmount(monthlyCostsItem.standingCharge)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkStandingCharge)})',
+                              '${functions.formatCurrencyAmount(monthlyCostsItem.standingCharge)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkStandingCharge - monthlyCostsItem.standingCharge)})',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -360,7 +360,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 content: Padding(
                                   padding: EdgeInsets.all(4.0),
                                   child: Text(
-                                    'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
+                                    'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
@@ -387,7 +387,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 showDuration: Duration(milliseconds: 1500),
                                 triggerMode: TooltipTriggerMode.tap,
                                 child: Text(
-                                  '${functions.formatCurrencyAmount(monthlyCostsItem.total)} (savings: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkTotal)})',
+                                  '${functions.formatCurrencyAmount(monthlyCostsItem.total)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkTotal - monthlyCostsItem.total)})',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
