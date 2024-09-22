@@ -1,65 +1,32 @@
-import '/auth/supabase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/monthly_consumption/monthly_consumption_widget.dart';
-import '/components/monthly_costs/monthly_costs_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'my_energy_page_v2_draft_model.dart';
-export 'my_energy_page_v2_draft_model.dart';
+import 'my_energy_page_old_model.dart';
+export 'my_energy_page_old_model.dart';
 
-class MyEnergyPageV2DraftWidget extends StatefulWidget {
-  const MyEnergyPageV2DraftWidget({super.key});
+class MyEnergyPageOldWidget extends StatefulWidget {
+  const MyEnergyPageOldWidget({super.key});
 
   @override
-  State<MyEnergyPageV2DraftWidget> createState() =>
-      _MyEnergyPageV2DraftWidgetState();
+  State<MyEnergyPageOldWidget> createState() => _MyEnergyPageOldWidgetState();
 }
 
-class _MyEnergyPageV2DraftWidgetState extends State<MyEnergyPageV2DraftWidget> {
-  late MyEnergyPageV2DraftModel _model;
+class _MyEnergyPageOldWidgetState extends State<MyEnergyPageOldWidget> {
+  late MyEnergyPageOldModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MyEnergyPageV2DraftModel());
-
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.getMonthlyCostResponse = await GetMonthlyCostCall.call(
-        bearerToken: currentJwtToken,
-      );
-
-      if ((_model.getMonthlyCostResponse?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 500));
-        _model.monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
-          (_model.getMonthlyCostResponse?.jsonBody ?? ''),
-        );
-        _model.monthlyCosts =
-            _model.monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
-        safeSetState(() {});
-      } else {
-        await action_blocks.handleMyEnergyApiCallFailure(
-          context,
-          wwwAuthenticateHeader:
-              (_model.getMonthlyCostResponse?.getHeader('www-authenticate') ??
-                  ''),
-          httpStatusCode: (_model.getMonthlyCostResponse?.statusCode ?? 200),
-        );
-      }
-    });
+    _model = createModel(context, () => MyEnergyPageOldModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -243,13 +210,6 @@ class _MyEnergyPageV2DraftWidgetState extends State<MyEnergyPageV2DraftWidget> {
                                       ),
                                     ),
                                   ],
-                                ),
-                              ),
-                              wrapWithModel(
-                                model: _model.monthlyCostsModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: MonthlyCostsWidget(
-                                  monthlyCosts: _model.monthlyCosts,
                                 ),
                               ),
                               wrapWithModel(

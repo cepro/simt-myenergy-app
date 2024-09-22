@@ -488,35 +488,36 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   ),
                                                             ),
                                                           ),
-                                                          if (_model.supplyMeter
-                                                                  ?.prepayEnabled ==
-                                                              true)
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          20.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                'Balance:  ${functions.formatCurrencyAmount(_model.supplyMeter!.balance)}',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                    ),
-                                                              ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        20.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              _model.supplyMeter
+                                                                          ?.prepayEnabled ==
+                                                                      true
+                                                                  ? 'Balance: ${functions.formatCurrencyAmount(_model.supplyMeter!.balance)}'
+                                                                  : 'Balance: 0.00',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                  ),
                                                             ),
+                                                          ),
                                                         ],
                                                       ),
                                                     ),

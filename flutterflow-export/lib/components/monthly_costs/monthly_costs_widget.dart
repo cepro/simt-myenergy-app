@@ -225,7 +225,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}',
+                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -269,7 +269,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}',
+                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -313,7 +313,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}',
+                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -360,7 +360,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 content: Padding(
                                   padding: EdgeInsets.all(4.0),
                                   child: Text(
-                                    'At microgrid price: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
+                                    'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(
@@ -409,8 +409,9 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                       selectable: false,
                       hidePaginator: false,
                       showFirstLastButtons: false,
+                      minWidth: 600.0,
                       headingRowHeight: 56.0,
-                      dataRowHeight: 48.0,
+                      dataRowHeight: 68.0,
                       columnSpacing: 20.0,
                       headingRowColor: FlutterFlowTheme.of(context).primary,
                       borderRadius: BorderRadius.circular(8.0),

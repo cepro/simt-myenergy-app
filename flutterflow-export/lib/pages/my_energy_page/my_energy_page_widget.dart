@@ -1,11 +1,18 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/monthly_consumption/monthly_consumption_widget.dart';
+import '/components/monthly_costs/monthly_costs_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_energy_page_model.dart';
@@ -27,6 +34,31 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MyEnergyPageModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.getMonthlyCostResponse = await GetMonthlyCostCall.call(
+        bearerToken: currentJwtToken,
+      );
+
+      if ((_model.getMonthlyCostResponse?.succeeded ?? true)) {
+        await Future.delayed(const Duration(milliseconds: 500));
+        _model.monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
+          (_model.getMonthlyCostResponse?.jsonBody ?? ''),
+        );
+        _model.monthlyCosts =
+            _model.monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
+        safeSetState(() {});
+      } else {
+        await action_blocks.handleMyEnergyApiCallFailure(
+          context,
+          wwwAuthenticateHeader:
+              (_model.getMonthlyCostResponse?.getHeader('www-authenticate') ??
+                  ''),
+          httpStatusCode: (_model.getMonthlyCostResponse?.statusCode ?? 200),
+        );
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -210,6 +242,13 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                       ),
                                     ),
                                   ],
+                                ),
+                              ),
+                              wrapWithModel(
+                                model: _model.monthlyCostsModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: MonthlyCostsWidget(
+                                  monthlyCosts: _model.monthlyCosts,
                                 ),
                               ),
                               wrapWithModel(

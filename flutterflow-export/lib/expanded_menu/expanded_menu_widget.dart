@@ -8,6 +8,8 @@ import 'expanded_menu_model.dart';
 export 'expanded_menu_model.dart';
 
 class ExpandedMenuWidget extends StatefulWidget {
+  /// Page to show more menu options on mobile devices - switch on with "show on
+  /// nav bar" below then customise the list of options in the main page.
   const ExpandedMenuWidget({super.key});
 
   @override
