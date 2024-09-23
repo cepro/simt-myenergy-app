@@ -37,12 +37,21 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
           int index, Function(MonthlyCostStruct) updateFn) =>
       monthlyCosts[index] = updateFn(monthlyCosts[index]);
 
+  TariffsStruct? tariffs;
+  void updateTariffsStruct(Function(TariffsStruct) updateFn) {
+    updateFn(tariffs ??= TariffsStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (Get Monthly Cost)] action in MyEnergyPage widget.
   ApiCallResponse? getMonthlyCostResponse;
+  // Stores action output result for [Backend Call - API (Get Tariffs)] action in MyEnergyPage widget.
+  ApiCallResponse? getTariffsResponse;
   // Stores action output result for [Custom Action - monthlyCostJSONToDataType] action in MyEnergyPage widget.
   List<MonthlyCostStruct>? monthlyCostsTyped;
+  // Stores action output result for [Custom Action - tariffsJSONToDataType] action in MyEnergyPage widget.
+  TariffsStruct? tariffsTyped;
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.

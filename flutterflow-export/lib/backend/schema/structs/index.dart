@@ -9,3 +9,5 @@ export 'monthly_cost_struct.dart';
 export 'monthly_usage_struct.dart';
 export 'payment_struct.dart';
 export 'property_struct.dart';
+export 'tariff_struct.dart';
+export 'tariffs_struct.dart';

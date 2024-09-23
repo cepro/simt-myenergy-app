@@ -37,17 +37,28 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.getMonthlyCostResponse = await GetMonthlyCostCall.call(
-        bearerToken: currentJwtToken,
-      );
-
-      if ((_model.getMonthlyCostResponse?.succeeded ?? true)) {
+      await Future.wait([
+        Future(() async {
+          _model.getMonthlyCostResponse = await GetMonthlyCostCall.call(
+            bearerToken: currentJwtToken,
+          );
+        }),
+        Future(() async {
+          _model.getTariffsResponse = await GetTariffsCall.call();
+        }),
+      ]);
+      if ((_model.getMonthlyCostResponse?.succeeded ?? true) &&
+          (_model.getTariffsResponse?.succeeded ?? true)) {
         await Future.delayed(const Duration(milliseconds: 500));
         _model.monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
           (_model.getMonthlyCostResponse?.jsonBody ?? ''),
         );
+        _model.tariffsTyped = await actions.tariffsJSONToDataType(
+          (_model.getTariffsResponse?.jsonBody ?? ''),
+        );
         _model.monthlyCosts =
             _model.monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
+        _model.tariffs = _model.tariffsTyped;
         safeSetState(() {});
       } else {
         await action_blocks.handleMyEnergyApiCallFailure(

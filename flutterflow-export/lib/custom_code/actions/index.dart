@@ -11,6 +11,7 @@ export 'get_terms_by_type_and_subtype.dart' show getTermsByTypeAndSubtype;
 export 'init_supabase_realtime_subscriptions.dart'
     show initSupabaseRealtimeSubscriptions;
 export 'monthly_cost_j_s_o_n_to_data_type.dart' show monthlyCostJSONToDataType;
+export 'tariffs_j_s_o_n_to_data_type.dart' show tariffsJSONToDataType;
 export 'accounts_j_s_o_n_to_accounts_data_type.dart'
     show accountsJSONToAccountsDataType;
 export 'app_state_notify_listeners.dart' show appStateNotifyListeners;

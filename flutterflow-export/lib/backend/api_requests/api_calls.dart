@@ -202,6 +202,35 @@ class GetMonthlyCostCall {
       ) as List?;
 }
 
+class GetTariffsCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Tariffs',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/tariffs',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? allRecords(dynamic response) => getJsonField(
+        response,
+        r'''$[*]''',
+        true,
+      ) as List?;
+}
+
 class CreateStripeCheckoutSessionCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

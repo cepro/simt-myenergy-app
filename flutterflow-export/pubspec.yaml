@@ -69,9 +69,9 @@ dependencies:
   supabase: 1.11.11
   supabase_flutter: 1.10.24
   timeago: 3.6.1
-  url_launcher: 6.1.11
-  url_launcher_android: 6.3.0
-  url_launcher_ios: 6.2.5
+  url_launcher: 6.2.5
+  url_launcher_android: 6.3.4
+  url_launcher_ios: 6.3.1
   url_launcher_platform_interface: 2.3.2
   webview_flutter: 4.7.0
   webview_flutter_android: 3.15.0
