@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 class MonthlyCostStruct extends BaseStruct {
   MonthlyCostStruct({
     String? month,
+    DateTime? monthTyped,
     double? power,
     double? heat,
     double? standingCharge,
@@ -22,6 +23,7 @@ class MonthlyCostStruct extends BaseStruct {
     double? benchmarkStandingCharge,
     double? benchmarkTotal,
   })  : _month = month,
+        _monthTyped = monthTyped,
         _power = power,
         _heat = heat,
         _standingCharge = standingCharge,
@@ -41,6 +43,13 @@ class MonthlyCostStruct extends BaseStruct {
   set month(String? val) => _month = val;
 
   bool hasMonth() => _month != null;
+
+  // "monthTyped" field.
+  DateTime? _monthTyped;
+  DateTime? get monthTyped => _monthTyped;
+  set monthTyped(DateTime? val) => _monthTyped = val;
+
+  bool hasMonthTyped() => _monthTyped != null;
 
   // "power" field.
   double? _power;
@@ -162,6 +171,7 @@ class MonthlyCostStruct extends BaseStruct {
   static MonthlyCostStruct fromMap(Map<String, dynamic> data) =>
       MonthlyCostStruct(
         month: data['month'] as String?,
+        monthTyped: data['monthTyped'] as DateTime?,
         power: castToType<double>(data['power']),
         heat: castToType<double>(data['heat']),
         standingCharge: castToType<double>(data['standing_charge']),
@@ -184,6 +194,7 @@ class MonthlyCostStruct extends BaseStruct {
 
   Map<String, dynamic> toMap() => {
         'month': _month,
+        'monthTyped': _monthTyped,
         'power': _power,
         'heat': _heat,
         'standing_charge': _standingCharge,
@@ -203,6 +214,10 @@ class MonthlyCostStruct extends BaseStruct {
         'month': serializeParam(
           _month,
           ParamType.String,
+        ),
+        'monthTyped': serializeParam(
+          _monthTyped,
+          ParamType.DateTime,
         ),
         'power': serializeParam(
           _power,
@@ -259,6 +274,11 @@ class MonthlyCostStruct extends BaseStruct {
         month: deserializeParam(
           data['month'],
           ParamType.String,
+          false,
+        ),
+        monthTyped: deserializeParam(
+          data['monthTyped'],
+          ParamType.DateTime,
           false,
         ),
         power: deserializeParam(
@@ -330,6 +350,7 @@ class MonthlyCostStruct extends BaseStruct {
   bool operator ==(Object other) {
     return other is MonthlyCostStruct &&
         month == other.month &&
+        monthTyped == other.monthTyped &&
         power == other.power &&
         heat == other.heat &&
         standingCharge == other.standingCharge &&
@@ -347,6 +368,7 @@ class MonthlyCostStruct extends BaseStruct {
   @override
   int get hashCode => const ListEquality().hash([
         month,
+        monthTyped,
         power,
         heat,
         standingCharge,
@@ -364,6 +386,7 @@ class MonthlyCostStruct extends BaseStruct {
 
 MonthlyCostStruct createMonthlyCostStruct({
   String? month,
+  DateTime? monthTyped,
   double? power,
   double? heat,
   double? standingCharge,
@@ -379,6 +402,7 @@ MonthlyCostStruct createMonthlyCostStruct({
 }) =>
     MonthlyCostStruct(
       month: month,
+      monthTyped: monthTyped,
       power: power,
       heat: heat,
       standingCharge: standingCharge,

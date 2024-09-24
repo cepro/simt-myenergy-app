@@ -44,7 +44,9 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
           );
         }),
         Future(() async {
-          _model.getTariffsResponse = await GetTariffsCall.call();
+          _model.getTariffsResponse = await GetTariffsCall.call(
+            bearerToken: currentJwtToken,
+          );
         }),
       ]);
       if ((_model.getMonthlyCostResponse?.succeeded ?? true) &&
@@ -260,6 +262,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                 updateCallback: () => safeSetState(() {}),
                                 child: MonthlyCostsWidget(
                                   monthlyCosts: _model.monthlyCosts,
+                                  tariffs: _model.tariffs!,
                                 ),
                               ),
                               wrapWithModel(

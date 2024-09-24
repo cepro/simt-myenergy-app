@@ -112,3 +112,21 @@ String supportEmail(EscoCodeEnum esco) {
 String newLineChar() {
   return "\n";
 }
+
+TariffStruct? tariffForDate(
+  List<TariffStruct> tariffList,
+  DateTime tariffDate,
+) {
+  // sort descending
+  tariffList.sort((a, b) => b.periodStart!.compareTo(a.periodStart!));
+
+  for (var tariff in tariffList) {
+    // looping in desending order so until:
+    if (tariffDate.isAfter(tariff.periodStart!) ||
+        tariffDate == tariff.periodStart) {
+      return tariff;
+    }
+  }
+
+  return null;
+}

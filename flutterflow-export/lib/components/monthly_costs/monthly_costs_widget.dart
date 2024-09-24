@@ -14,9 +14,11 @@ class MonthlyCostsWidget extends StatefulWidget {
   const MonthlyCostsWidget({
     super.key,
     required this.monthlyCosts,
+    required this.tariffs,
   });
 
   final List<MonthlyCostStruct>? monthlyCosts;
+  final TariffsStruct? tariffs;
 
   @override
   State<MonthlyCostsWidget> createState() => _MonthlyCostsWidgetState();
@@ -225,7 +227,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}',
+                                'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}${functions.newLineChar()}Microgrid price:${functions.formatCurrencyAmount(functions.tariffForDate(widget!.tariffs!.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -269,7 +271,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}',
+                                'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}${functions.newLineChar()}Microgrid price: ${functions.formatCurrencyAmount(functions.tariffForDate(widget!.tariffs!.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -313,7 +315,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}',
+                                'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}${functions.newLineChar()}Microgrid price:${functions.formatCurrencyAmount(functions.tariffForDate(widget!.tariffs!.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.standingCharge)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -360,7 +362,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                 content: Padding(
                                   padding: EdgeInsets.all(4.0),
                                   child: Text(
-                                    'At microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
+                                    'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyLarge
                                         .override(

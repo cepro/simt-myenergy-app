@@ -22,6 +22,7 @@ Future<List<MonthlyCostStruct>> monthlyCostJSONToDataType(
     String monthStr = dateFormatter.format(month);
     costs.add(MonthlyCostStruct(
       month: monthStr,
+      monthTyped: month,
 
       // actual costs (customer_tariffs)
       heat: costRec['heat'],
