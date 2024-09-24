@@ -53,7 +53,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
-        height: 675.0,
+        height: 870.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(
