@@ -227,7 +227,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}${functions.newLineChar()}Microgrid price:${functions.formatCurrencyAmount(functions.tariffForDate(widget!.tariffs!.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
+                                'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}${functions.newLineChar()}Microgrid price: ${functions.formatCurrencyAmount(functions.tariffForDate(widget!.tariffs!.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -315,7 +315,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Text(
-                                'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}${functions.newLineChar()}Microgrid price:${functions.formatCurrencyAmount(functions.tariffForDate(widget!.tariffs!.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.standingCharge)}',
+                                'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}${functions.newLineChar()}Microgrid price: ${functions.formatCurrencyAmount(functions.tariffForDate(widget!.tariffs!.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.standingCharge)}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
