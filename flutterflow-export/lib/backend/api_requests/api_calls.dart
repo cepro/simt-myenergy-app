@@ -346,6 +346,35 @@ class MarkContractSignedCall {
   }
 }
 
+class GenerateTokenForImpersonateCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? customerEmail = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "customerEmail": "${customerEmail}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Generate Token for Impersonate',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/admin/generateToken',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class GetWalletsCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

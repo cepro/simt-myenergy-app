@@ -710,6 +710,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     'HomePage',
                                                                     context
                                                                         .mounted);
+
+                                                                if (_shouldSetState)
+                                                                  safeSetState(
+                                                                      () {});
+                                                                return;
                                                               } else {
                                                                 await action_blocks
                                                                     .clearAppState(
@@ -740,6 +745,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   ignoreRedirect:
                                                                       true,
                                                                 );
+
+                                                                if (_shouldSetState)
+                                                                  safeSetState(
+                                                                      () {});
+                                                                return;
                                                               }
                                                             } else {
                                                               if (_shouldSetState)
@@ -747,11 +757,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     () {});
                                                               return;
                                                             }
-
-                                                            if (_shouldSetState)
-                                                              safeSetState(
-                                                                  () {});
-                                                            return;
                                                           } else {
                                                             _model.loginError =
                                                                 true;

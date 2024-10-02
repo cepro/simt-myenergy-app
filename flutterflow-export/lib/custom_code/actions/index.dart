@@ -18,3 +18,4 @@ export 'app_state_notify_listeners.dart' show appStateNotifyListeners;
 export 'supabase_password_reset.dart' show supabasePasswordReset;
 export 'get_hostname.dart' show getHostname;
 export 'supabase_password_update.dart' show supabasePasswordUpdate;
+export 'decode_supabase_jwt.dart' show decodeSupabaseJwt;

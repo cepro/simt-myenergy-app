@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -40,18 +41,24 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
       await Future.wait([
         Future(() async {
           _model.getMonthlyCostResponse = await GetMonthlyCostCall.call(
-            bearerToken: currentJwtToken,
+            bearerToken: FFAppState().impersonationToken != null &&
+                    FFAppState().impersonationToken != ''
+                ? FFAppState().impersonationToken
+                : currentJwtToken,
           );
         }),
         Future(() async {
           _model.getTariffsResponse = await GetTariffsCall.call(
-            bearerToken: currentJwtToken,
+            bearerToken: FFAppState().impersonationToken != null &&
+                    FFAppState().impersonationToken != ''
+                ? FFAppState().impersonationToken
+                : currentJwtToken,
           );
         }),
       ]);
       if ((_model.getMonthlyCostResponse?.succeeded ?? true) &&
           (_model.getTariffsResponse?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 500));
+        await Future.delayed(const Duration(milliseconds: 1000));
         _model.monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
           (_model.getMonthlyCostResponse?.jsonBody ?? ''),
         );
@@ -221,9 +228,10 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                             Duration(milliseconds: 1500),
                                         triggerMode: TooltipTriggerMode.tap,
                                         child: Visibility(
-                                          visible: FFAppState()
-                                              .properties
-                                              .isNotEmpty,
+                                          visible: valueOrDefault<bool>(
+                                            FFAppState().properties.isNotEmpty,
+                                            true,
+                                          ),
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -257,14 +265,24 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                   ],
                                 ),
                               ),
-                              wrapWithModel(
-                                model: _model.monthlyCostsModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: MonthlyCostsWidget(
-                                  monthlyCosts: _model.monthlyCosts,
-                                  tariffs: _model.tariffs!,
+                              if (_model.tariffs != null)
+                                wrapWithModel(
+                                  model: _model.monthlyCostsModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: MonthlyCostsWidget(
+                                    monthlyCosts: _model.monthlyCosts,
+                                    tariffs: _model.tariffs!,
+                                  ),
                                 ),
-                              ),
+                              if (_model.tariffs == null)
+                                Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: custom_widgets.LoadingSpinner(
+                                    width: 100.0,
+                                    height: 100.0,
+                                  ),
+                                ),
                               wrapWithModel(
                                 model: _model.monthlyConsumptionModel,
                                 updateCallback: () => safeSetState(() {}),

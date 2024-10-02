@@ -18,3 +18,5 @@ export '/pages/my_energy_page_old/my_energy_page_old_widget.dart'
     show MyEnergyPageOldWidget;
 export '/pages/my_energy_page/my_energy_page_widget.dart'
     show MyEnergyPageWidget;
+export '/pages/impersonate_user/impersonate_user_widget.dart'
+    show ImpersonateUserWidget;

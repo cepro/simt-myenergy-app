@@ -187,6 +187,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'MyEnergyPage')
               : MyEnergyPageWidget(),
+        ),
+        FFRoute(
+          name: 'ImpersonateUser',
+          path: '/impersonate',
+          requireAuth: true,
+          builder: (context, params) => ImpersonateUserWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

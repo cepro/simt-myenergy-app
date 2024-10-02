@@ -55,12 +55,18 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     Future(() async {
       // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
       getAccountsResponse = await GetCustomersAccountsCall.call(
-        bearerToken: currentJwtToken,
+        bearerToken: FFAppState().impersonationToken != null &&
+                FFAppState().impersonationToken != ''
+            ? FFAppState().impersonationToken
+            : currentJwtToken,
       );
     }),
     Future(() async {
       getMonthlyUsageResponse = await GetMonthlyUsageCall.call(
-        bearerToken: currentJwtToken,
+        bearerToken: FFAppState().impersonationToken != null &&
+                FFAppState().impersonationToken != ''
+            ? FFAppState().impersonationToken
+            : currentJwtToken,
       );
     }),
   ]);
@@ -172,7 +178,10 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
   List<ContractTermsStruct>? contractTermsDataType;
 
   getContractTermsResponse = await ContractTermsLatestCall.call(
-    bearerToken: currentJwtToken,
+    bearerToken: FFAppState().impersonationToken != null &&
+            FFAppState().impersonationToken != ''
+        ? FFAppState().impersonationToken
+        : currentJwtToken,
   );
 
   if ((getContractTermsResponse?.succeeded ?? true)) {
@@ -207,4 +216,12 @@ Future clearAppState(BuildContext context) async {
   FFAppState().customerStatus = '';
   FFAppState().isCeproUser = false;
   FFAppState().contractTerms = [];
+}
+
+Future ceproUserOnly(BuildContext context) async {
+  if (FFAppState().isCeproUser) {
+    return;
+  }
+
+  context.pushNamed('HomePage');
 }

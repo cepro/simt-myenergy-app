@@ -130,6 +130,14 @@ class FFAppState extends ChangeNotifier {
           ? deserializeEnum<EscoCodeEnum>(prefs.getString('ff_esco'))
           : _esco;
     });
+    _safeInit(() {
+      _impersonationToken =
+          prefs.getString('ff_impersonationToken') ?? _impersonationToken;
+    });
+    _safeInit(() {
+      _impersonationEmail =
+          prefs.getString('ff_impersonationEmail') ?? _impersonationEmail;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -410,6 +418,20 @@ class FFAppState extends ChangeNotifier {
     value != null
         ? prefs.setString('ff_esco', value.serialize())
         : prefs.remove('ff_esco');
+  }
+
+  String _impersonationToken = '';
+  String get impersonationToken => _impersonationToken;
+  set impersonationToken(String value) {
+    _impersonationToken = value;
+    prefs.setString('ff_impersonationToken', value);
+  }
+
+  String _impersonationEmail = '';
+  String get impersonationEmail => _impersonationEmail;
+  set impersonationEmail(String value) {
+    _impersonationEmail = value;
+    prefs.setString('ff_impersonationEmail', value);
   }
 }
 
