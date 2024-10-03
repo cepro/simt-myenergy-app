@@ -193,6 +193,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/impersonate',
           requireAuth: true,
           builder: (context, params) => ImpersonateUserWidget(),
+        ),
+        FFRoute(
+          name: 'UserProfilePage',
+          path: '/profile',
+          requireAuth: true,
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'UserProfilePage')
+              : UserProfilePageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

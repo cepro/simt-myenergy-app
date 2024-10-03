@@ -1,5 +1,6 @@
 import '/backend/schema/enums/enums.dart';
 import '/components/logout_button/logout_button_widget.dart';
+import '/components/user_profile_button/user_profile_button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -12,16 +13,21 @@ import 'package:provider/provider.dart';
 class TopBarLoggedInModel extends FlutterFlowModel<TopBarLoggedInWidget> {
   ///  State fields for stateful widgets in this component.
 
+  // Model for UserProfileButton component.
+  late UserProfileButtonModel userProfileButtonModel;
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;
 
   @override
   void initState(BuildContext context) {
+    userProfileButtonModel =
+        createModel(context, () => UserProfileButtonModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
   }
 
   @override
   void dispose() {
+    userProfileButtonModel.dispose();
     logoutButtonModel.dispose();
   }
 }

@@ -20,3 +20,5 @@ export '/pages/my_energy_page/my_energy_page_widget.dart'
     show MyEnergyPageWidget;
 export '/pages/impersonate_user/impersonate_user_widget.dart'
     show ImpersonateUserWidget;
+export '/pages/user_profile_page/user_profile_page_widget.dart'
+    show UserProfilePageWidget;

@@ -127,6 +127,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'HomePage': HomePageWidget(),
       'MyEnergyPage': MyEnergyPageWidget(),
       'PaymentsPage': PaymentsPageWidget(),
+      'UserProfilePage': UserProfilePageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -173,6 +174,14 @@ class _NavBarPageState extends State<NavBarPage> {
                 size: 24.0,
               ),
               label: 'Payments',
+              tooltip: '',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.electrical_services,
+                size: 24.0,
+              ),
+              label: 'My Energy',
               tooltip: '',
             )
           ],

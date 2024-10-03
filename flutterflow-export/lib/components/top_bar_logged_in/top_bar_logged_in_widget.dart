@@ -1,5 +1,6 @@
 import '/backend/schema/enums/enums.dart';
 import '/components/logout_button/logout_button_widget.dart';
+import '/components/user_profile_button/user_profile_button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -140,7 +141,7 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
                   child: Container(
                     width: 35.0,
                     height: 35.0,
@@ -156,6 +157,11 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                       ),
                     ),
                   ),
+                ),
+                wrapWithModel(
+                  model: _model.userProfileButtonModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: UserProfileButtonWidget(),
                 ),
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),
