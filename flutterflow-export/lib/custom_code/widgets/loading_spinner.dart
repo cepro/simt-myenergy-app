@@ -31,6 +31,7 @@ class LoadingSpinner extends StatefulWidget {
 class _LoadingSpinnerState extends State<LoadingSpinner> {
   @override
   Widget build(BuildContext context) {
-    return SpinKitCircle(color: Colors.white);
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    return SpinKitCircle(color: isDarkMode ? Colors.white : Colors.black);
   }
 }

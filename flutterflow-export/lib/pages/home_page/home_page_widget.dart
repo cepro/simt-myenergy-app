@@ -186,7 +186,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
-                                        'Welcome ${currentUserEmail}',
+                                        'Welcome ${FFAppState().impersonationEmail != null && FFAppState().impersonationEmail != '' ? FFAppState().impersonationEmail : currentUserEmail}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
