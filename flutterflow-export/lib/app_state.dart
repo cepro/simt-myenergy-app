@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
-import 'backend/api_requests/api_manager.dart';
+import '/backend/api_requests/api_manager.dart';
 import 'backend/supabase/supabase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -81,9 +81,6 @@ class FFAppState extends ChangeNotifier {
           _properties;
     });
     _safeInit(() {
-      _customerId = prefs.getString('ff_customerId') ?? _customerId;
-    });
-    _safeInit(() {
       _monthlyUsage = prefs
               .getStringList('ff_monthlyUsage')
               ?.map((x) {
@@ -97,9 +94,6 @@ class FFAppState extends ChangeNotifier {
               .withoutNulls
               .toList() ??
           _monthlyUsage;
-    });
-    _safeInit(() {
-      _customerStatus = prefs.getString('ff_customerStatus') ?? _customerStatus;
     });
     _safeInit(() {
       _hostname = prefs.getString('ff_hostname') ?? _hostname;
@@ -137,6 +131,17 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _impersonationEmail =
           prefs.getString('ff_impersonationEmail') ?? _impersonationEmail;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_customer')) {
+        try {
+          final serializedData = prefs.getString('ff_customer') ?? '{}';
+          _customer =
+              CustomerStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
     });
   }
 
@@ -294,13 +299,6 @@ class FFAppState extends ChangeNotifier {
     updateFn(_property);
   }
 
-  String _customerId = '';
-  String get customerId => _customerId;
-  set customerId(String value) {
-    _customerId = value;
-    prefs.setString('ff_customerId', value);
-  }
-
   List<MonthlyUsageStruct> _monthlyUsage = [];
   List<MonthlyUsageStruct> get monthlyUsage => _monthlyUsage;
   set monthlyUsage(List<MonthlyUsageStruct> value) {
@@ -346,13 +344,6 @@ class FFAppState extends ChangeNotifier {
   dynamic get monthlyUsageJSON => _monthlyUsageJSON;
   set monthlyUsageJSON(dynamic value) {
     _monthlyUsageJSON = value;
-  }
-
-  String _customerStatus = '';
-  String get customerStatus => _customerStatus;
-  set customerStatus(String value) {
-    _customerStatus = value;
-    prefs.setString('ff_customerStatus', value);
   }
 
   String _hostname = '';
@@ -432,6 +423,18 @@ class FFAppState extends ChangeNotifier {
   set impersonationEmail(String value) {
     _impersonationEmail = value;
     prefs.setString('ff_impersonationEmail', value);
+  }
+
+  CustomerStruct _customer = CustomerStruct();
+  CustomerStruct get customer => _customer;
+  set customer(CustomerStruct value) {
+    _customer = value;
+    prefs.setString('ff_customer', value.serialize());
+  }
+
+  void updateCustomerStruct(Function(CustomerStruct) updateFn) {
+    updateFn(_customer);
+    prefs.setString('ff_customer', _customer.serialize());
   }
 }
 

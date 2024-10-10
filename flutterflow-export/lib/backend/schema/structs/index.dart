@@ -3,6 +3,7 @@ export '/backend/schema/util/schema_util.dart';
 export 'account_struct.dart';
 export 'contract_struct.dart';
 export 'contract_terms_struct.dart';
+export 'customer_struct.dart';
 export 'esco_struct.dart';
 export 'meter_struct.dart';
 export 'monthly_cost_struct.dart';

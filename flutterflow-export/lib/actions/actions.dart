@@ -49,6 +49,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   ApiCallResponse? getMonthlyUsageResponse;
   List<AccountStruct>? accounts;
   List<MonthlyUsageStruct>? monthlyUsages;
+  CustomerStruct? customerToDataTypeResponse;
   String? getHostnameResponse;
 
   await Future.wait([
@@ -83,6 +84,12 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     monthlyUsages = await actions.monthlyUsageJSONToDataType(
       (getMonthlyUsageResponse?.jsonBody ?? ''),
     );
+    customerToDataTypeResponse = await actions.customerJSONToDataType(
+      getJsonField(
+        (getAccountsResponse?.jsonBody ?? ''),
+        r'''$.customer''',
+      ),
+    );
     // We get this on the login page but lets get it again to be sure it's set when all other app state is set.
     getHostnameResponse = await actions.getHostname();
     FFAppState().meters = getJsonField(
@@ -100,16 +107,8 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         .getPropertiesFromAccounts(accounts!.toList())
         .toList()
         .cast<PropertyStruct>();
-    FFAppState().customerId = getJsonField(
-      (getAccountsResponse?.jsonBody ?? ''),
-      r'''$.customer.customerId''',
-    ).toString().toString();
     FFAppState().monthlyUsage =
         monthlyUsages!.toList().cast<MonthlyUsageStruct>();
-    FFAppState().customerStatus = getJsonField(
-      (getAccountsResponse?.jsonBody ?? ''),
-      r'''$.customer.status''',
-    ).toString().toString();
     FFAppState().hostname = getHostnameResponse!;
     FFAppState().isCeproUser = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
@@ -130,6 +129,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
             functions.getPropertiesFromAccounts(accounts!.toList()).toList())
         .toList()
         .cast<EscoStruct>();
+    FFAppState().customer = customerToDataTypeResponse!;
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
@@ -213,9 +213,12 @@ Future clearAppState(BuildContext context) async {
   FFAppState().properties = [];
   FFAppState().monthlyUsage = [];
   FFAppState().monthlyUsageJSON = null;
-  FFAppState().customerStatus = '';
   FFAppState().isCeproUser = false;
   FFAppState().contractTerms = [];
+  FFAppState().customer = CustomerStruct();
+  FFAppState().impersonationEmail = '';
+  FFAppState().impersonationToken = '';
+  FFAppState().property = PropertyStruct();
 }
 
 Future ceproUserOnly(BuildContext context) async {

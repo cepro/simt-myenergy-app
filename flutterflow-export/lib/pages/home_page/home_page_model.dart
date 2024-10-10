@@ -2,6 +2,7 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
+import '/components/onboard_progress_box/onboard_progress_box_widget.dart';
 import '/components/product_roadmap_box/product_roadmap_box_widget.dart';
 import '/components/supply_contract_row/supply_contract_row_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
@@ -39,6 +40,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;
+  // Model for OnboardProgressBox component.
+  late OnboardProgressBoxModel onboardProgressBoxModel;
   // Model for WelcomeBox component.
   late WelcomeBoxModel welcomeBoxModel;
   // Model for ProductRoadmapBox component.
@@ -50,6 +53,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
+    onboardProgressBoxModel =
+        createModel(context, () => OnboardProgressBoxModel());
     welcomeBoxModel = createModel(context, () => WelcomeBoxModel());
     productRoadmapBoxModel =
         createModel(context, () => ProductRoadmapBoxModel());
@@ -61,6 +66,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void dispose() {
     mainWebNavModel.dispose();
     topBarLoggedInModel.dispose();
+    onboardProgressBoxModel.dispose();
     welcomeBoxModel.dispose();
     productRoadmapBoxModel.dispose();
     supplyContractRowModel.dispose();

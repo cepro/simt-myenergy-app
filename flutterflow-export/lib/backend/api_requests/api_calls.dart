@@ -286,6 +286,29 @@ class DeleteCustomersPaymentMethodCall {
   }
 }
 
+class CustomerDetailsConfirmedCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Customer details confirmed',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/customer/detailsConfirmed',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      bodyType: BodyType.NONE,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class UpdateTopupPreferencesCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

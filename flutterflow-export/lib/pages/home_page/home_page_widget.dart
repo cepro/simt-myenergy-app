@@ -2,6 +2,7 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
+import '/components/onboard_progress_box/onboard_progress_box_widget.dart';
 import '/components/product_roadmap_box/product_roadmap_box_widget.dart';
 import '/components/supply_contract_row/supply_contract_row_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
@@ -61,7 +62,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           r'''$[0].balance''',
         ));
         _model.isOwner = (FFAppState().properties.isNotEmpty) &&
-            (FFAppState().properties.first.owner == FFAppState().customerId);
+            (FFAppState().properties.first.owner == FFAppState().customer.id);
         _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
         safeSetState(() {});
         FFAppState().supplyContractSigned = functions
@@ -186,7 +187,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
-                                        'Welcome ${FFAppState().impersonationEmail != null && FFAppState().impersonationEmail != '' ? FFAppState().impersonationEmail : currentUserEmail}',
+                                        'Welcome ${FFAppState().customer.name}',
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
@@ -299,6 +300,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                   ],
                                 ),
+                              ),
+                              wrapWithModel(
+                                model: _model.onboardProgressBoxModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: OnboardProgressBoxWidget(),
                               ),
                               wrapWithModel(
                                 model: _model.welcomeBoxModel,
@@ -525,98 +531,96 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                               ),
                                             ),
-                                            if (false)
-                                              Expanded(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Contract',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .headlineSmall
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmallFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .headlineSmallFamily),
-                                                                ),
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          'Contract',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .headlineSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .headlineSmallFamily),
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      Expanded(
+                                                        child: wrapWithModel(
+                                                          model: _model
+                                                              .supplyContractRowModel,
+                                                          updateCallback: () =>
+                                                              safeSetState(
+                                                                  () {}),
+                                                          child:
+                                                              SupplyContractRowWidget(
+                                                            readOnly: functions
+                                                                        .getContractByType(
+                                                                            FFAppState()
+                                                                                .accounts
+                                                                                .toList(),
+                                                                            'supply')
+                                                                        ?.signedDate !=
+                                                                    null &&
+                                                                functions
+                                                                        .getContractByType(
+                                                                            FFAppState().accounts.toList(),
+                                                                            'supply')
+                                                                        ?.signedDate !=
+                                                                    '',
+                                                            contract: functions
+                                                                .getContractByType(
+                                                                    FFAppState()
+                                                                        .accounts
+                                                                        .toList(),
+                                                                    'supply')!,
+                                                            contractTerms:
+                                                                FFAppState()
+                                                                    .contractTerms
+                                                                    .where((e) =>
+                                                                        e.type ==
+                                                                        'supply')
+                                                                    .toList()
+                                                                    .first,
                                                           ),
                                                         ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Expanded(
-                                                          child: wrapWithModel(
-                                                            model: _model
-                                                                .supplyContractRowModel,
-                                                            updateCallback: () =>
-                                                                safeSetState(
-                                                                    () {}),
-                                                            child:
-                                                                SupplyContractRowWidget(
-                                                              readOnly: functions
-                                                                          .getContractByType(
-                                                                              FFAppState()
-                                                                                  .accounts
-                                                                                  .toList(),
-                                                                              'supply')
-                                                                          ?.signedDate !=
-                                                                      null &&
-                                                                  functions
-                                                                          .getContractByType(
-                                                                              FFAppState().accounts.toList(),
-                                                                              'supply')
-                                                                          ?.signedDate !=
-                                                                      '',
-                                                              contract: functions
-                                                                  .getContractByType(
-                                                                      FFAppState()
-                                                                          .accounts
-                                                                          .toList(),
-                                                                      'supply')!,
-                                                              contractTerms: FFAppState()
-                                                                  .contractTerms
-                                                                  .where((e) =>
-                                                                      e.type ==
-                                                                      'supply')
-                                                                  .toList()
-                                                                  .first,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
+                                            ),
                                           ],
                                         ),
                                       ],

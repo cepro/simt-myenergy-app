@@ -122,8 +122,10 @@ class _SupplyContractSignOrViewModalWidgetState
                   ),
                   Stack(
                     children: [
-                      if (_model.docusealEmbedHTML == null ||
-                          _model.docusealEmbedHTML == '')
+                      if ((_model.docusealEmbedHTML == null ||
+                              _model.docusealEmbedHTML == '') &&
+                          (widget!.contract?.id != null &&
+                              widget!.contract?.id != ''))
                         wrapWithModel(
                           model: _model.supplyContractCardModel,
                           updateCallback: () => safeSetState(() {}),
@@ -158,6 +160,21 @@ class _SupplyContractSignOrViewModalWidgetState
                               html: _model.docusealEmbedHTML!,
                             ),
                           ),
+                        ),
+                      if (widget!.contract?.id == null ||
+                          widget!.contract?.id == '')
+                        Text(
+                          'Contract has not yet been created. Please contact support to find out why.',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
                         ),
                     ],
                   ),

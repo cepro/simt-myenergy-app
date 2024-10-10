@@ -130,3 +130,7 @@ TariffStruct? tariffForDate(
 
   return null;
 }
+
+DateTime nowDateTime() {
+  return DateTime.now();
+}
