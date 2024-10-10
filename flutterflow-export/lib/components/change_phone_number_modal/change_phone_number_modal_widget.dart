@@ -134,21 +134,36 @@ class _ChangePhoneNumberModalWidgetState
                         ],
                       ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
-                      child: Text(
-                        'We\'ll text a verification code to your new number to confirm it.',
-                        style: FlutterFlowTheme.of(context).labelLarge.override(
+                    if (!_model.verified)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                        child: Text(
+                          'We\'ll text a verification code to your new number to confirm it.',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelLargeFamily),
+                              ),
+                        ),
+                      ),
+                    if (_model.verified)
+                      Text(
+                        'Phone verified',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
-                                  FlutterFlowTheme.of(context).labelLargeFamily,
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
-                                      .labelLargeFamily),
+                                      .bodyMediumFamily),
                             ),
                       ),
-                    ),
                     if (!_model.verifyCode)
                       Padding(
                         padding:
@@ -338,10 +353,16 @@ class _ChangePhoneNumberModalWidgetState
                                   _model.phoneNumberFieldTextController.text,
                                   _model.verifyCodeFieldTextController.text,
                                 );
+                                _model.verifyCode = false;
+                                _model.verified = true;
+                                safeSetState(() {});
                               } else {
                                 await actions.updateUserPhone(
                                   _model.phoneNumberFieldTextController.text,
                                 );
+                                _model.verifyCode = true;
+                                _model.verified = false;
+                                safeSetState(() {});
                               }
                             },
                             text:
