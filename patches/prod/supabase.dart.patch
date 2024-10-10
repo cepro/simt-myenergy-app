@@ -4,9 +4,9 @@
  
  export 'database/database.dart';
  
--const _kSupabaseUrl = 'https://rkzgrxssutcwrauaazjz.supabase.co';
-+const _kSupabaseUrl = 'https://pqlwxerasppsyleweruk.supabase.co';
- const _kSupabaseAnonKey =
+-String _kSupabaseUrl = 'https://rkzgrxssutcwrauaazjz.supabase.co';
++String _kSupabaseUrl = 'https://pqlwxerasppsyleweruk.supabase.co';
+ String _kSupabaseAnonKey =
 -    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJremdyeHNzdXRjd3JhdWFhemp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1MDgwNTgsImV4cCI6MTk5MjA4NDA1OH0.8DG3Bt2sfxVuB8j4diCCTtyiUJUBcYlbNTc5a7BUrTw';
 +    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxbHd4ZXJhc3Bwc3lsZXdlcnVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY3Mzk1NTgsImV4cCI6MjAyMjMxNTU1OH0.UL57w9o5aaRD8Muc8DpNyyW5oxfL_LmoWm-km8fcY-c';
  
