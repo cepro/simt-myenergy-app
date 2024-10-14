@@ -155,6 +155,32 @@ class FFAppState extends ChangeNotifier {
       _haveSolarContract =
           prefs.getBool('ff_haveSolarContract') ?? _haveSolarContract;
     });
+    _safeInit(() {
+      _monthlyCosts = prefs
+              .getStringList('ff_monthlyCosts')
+              ?.map((x) {
+                try {
+                  return MonthlyCostStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _monthlyCosts;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_tariffs')) {
+        try {
+          final serializedData = prefs.getString('ff_tariffs') ?? '{}';
+          _tariffs =
+              TariffsStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -468,6 +494,59 @@ class FFAppState extends ChangeNotifier {
   set haveSolarContract(bool value) {
     _haveSolarContract = value;
     prefs.setBool('ff_haveSolarContract', value);
+  }
+
+  List<MonthlyCostStruct> _monthlyCosts = [];
+  List<MonthlyCostStruct> get monthlyCosts => _monthlyCosts;
+  set monthlyCosts(List<MonthlyCostStruct> value) {
+    _monthlyCosts = value;
+    prefs.setStringList(
+        'ff_monthlyCosts', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToMonthlyCosts(MonthlyCostStruct value) {
+    monthlyCosts.add(value);
+    prefs.setStringList(
+        'ff_monthlyCosts', _monthlyCosts.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromMonthlyCosts(MonthlyCostStruct value) {
+    monthlyCosts.remove(value);
+    prefs.setStringList(
+        'ff_monthlyCosts', _monthlyCosts.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromMonthlyCosts(int index) {
+    monthlyCosts.removeAt(index);
+    prefs.setStringList(
+        'ff_monthlyCosts', _monthlyCosts.map((x) => x.serialize()).toList());
+  }
+
+  void updateMonthlyCostsAtIndex(
+    int index,
+    MonthlyCostStruct Function(MonthlyCostStruct) updateFn,
+  ) {
+    monthlyCosts[index] = updateFn(_monthlyCosts[index]);
+    prefs.setStringList(
+        'ff_monthlyCosts', _monthlyCosts.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInMonthlyCosts(int index, MonthlyCostStruct value) {
+    monthlyCosts.insert(index, value);
+    prefs.setStringList(
+        'ff_monthlyCosts', _monthlyCosts.map((x) => x.serialize()).toList());
+  }
+
+  TariffsStruct _tariffs = TariffsStruct();
+  TariffsStruct get tariffs => _tariffs;
+  set tariffs(TariffsStruct value) {
+    _tariffs = value;
+    prefs.setString('ff_tariffs', value.serialize());
+  }
+
+  void updateTariffsStruct(Function(TariffsStruct) updateFn) {
+    updateFn(_tariffs);
+    prefs.setString('ff_tariffs', _tariffs.serialize());
   }
 }
 

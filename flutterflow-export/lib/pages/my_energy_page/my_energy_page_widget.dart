@@ -49,9 +49,15 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
             bearerToken: _model.userToken,
           );
         }),
+        Future(() async {
+          _model.getMonthlyUsageResponse = await GetMonthlyUsageCall.call(
+            bearerToken: _model.userToken,
+          );
+        }),
       ]);
       if ((_model.getMonthlyCostResponse?.succeeded ?? true) &&
-          (_model.getTariffsResponse?.succeeded ?? true)) {
+          (_model.getTariffsResponse?.succeeded ?? true) &&
+          (_model.getMonthlyUsageResponse?.succeeded ?? true)) {
         await Future.delayed(const Duration(milliseconds: 500));
         _model.monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
           (_model.getMonthlyCostResponse?.jsonBody ?? ''),
@@ -59,10 +65,16 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
         _model.tariffsTyped = await actions.tariffsJSONToDataType(
           (_model.getTariffsResponse?.jsonBody ?? ''),
         );
-        _model.monthlyCosts =
+        _model.monthlyUsageTyped = await actions.monthlyUsageJSONToDataType(
+          (_model.getMonthlyUsageResponse?.jsonBody ?? ''),
+        );
+        FFAppState().tariffs = _model.tariffsTyped!;
+        FFAppState().monthlyCosts =
             _model.monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
-        _model.tariffs = _model.tariffsTyped;
+        FFAppState().monthlyUsage =
+            _model.monthlyUsageTyped!.toList().cast<MonthlyUsageStruct>();
         safeSetState(() {});
+        return;
       } else {
         await action_blocks.handleMyEnergyApiCallFailure(
           context,
@@ -71,6 +83,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                   ''),
           httpStatusCode: (_model.getMonthlyCostResponse?.statusCode ?? 200),
         );
+        return;
       }
     });
 
@@ -259,16 +272,16 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                   ],
                                 ),
                               ),
-                              if (_model.tariffs != null)
+                              if (FFAppState().monthlyCosts.isNotEmpty)
                                 wrapWithModel(
                                   model: _model.monthlyCostsModel,
                                   updateCallback: () => safeSetState(() {}),
                                   child: MonthlyCostsWidget(
-                                    monthlyCosts: _model.monthlyCosts,
-                                    tariffs: _model.tariffs!,
+                                    monthlyCosts: FFAppState().monthlyCosts,
+                                    tariffs: FFAppState().tariffs,
                                   ),
                                 ),
-                              if (_model.tariffs == null)
+                              if (!(FFAppState().monthlyCosts.isNotEmpty))
                                 Container(
                                   width: 100.0,
                                   height: 100.0,
@@ -277,11 +290,21 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                     height: 100.0,
                                   ),
                                 ),
-                              wrapWithModel(
-                                model: _model.monthlyConsumptionModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: MonthlyConsumptionWidget(),
-                              ),
+                              if (FFAppState().monthlyUsage.isNotEmpty)
+                                wrapWithModel(
+                                  model: _model.monthlyConsumptionModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: MonthlyConsumptionWidget(),
+                                ),
+                              if (!(FFAppState().monthlyUsage.isNotEmpty))
+                                Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: custom_widgets.LoadingSpinner(
+                                    width: 100.0,
+                                    height: 100.0,
+                                  ),
+                                ),
                             ],
                           ),
                         ),

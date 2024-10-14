@@ -123,7 +123,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                         title: 'Sign your solar contract',
                         linkLabel: 'Go to contract',
                         navigateAction: () async {
-                          await action_blocks.openSupplyContract(context);
+                          await action_blocks.openSolarContract(context);
                         },
                       ),
                     ),

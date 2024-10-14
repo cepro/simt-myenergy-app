@@ -49,28 +49,17 @@ Future handleMyEnergyApiCallFailure(
 Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   String? userToken;
   ApiCallResponse? getAccountsResponse;
-  ApiCallResponse? getMonthlyUsageResponse;
   List<AccountStruct>? accounts;
-  List<MonthlyUsageStruct>? monthlyUsages;
   CustomerStruct? customerToDataTypeResponse;
   String? getHostnameResponse;
 
   userToken = await actions.activeUserToken();
-  await Future.wait([
-    Future(() async {
-      // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
-      getAccountsResponse = await GetCustomersAccountsCall.call(
-        bearerToken: userToken,
-      );
-    }),
-    Future(() async {
-      getMonthlyUsageResponse = await GetMonthlyUsageCall.call(
-        bearerToken: userToken,
-      );
-    }),
-  ]);
-  if ((getAccountsResponse?.succeeded ?? true) &&
-      (getMonthlyUsageResponse?.succeeded ?? true)) {
+  // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
+  getAccountsResponse = await GetCustomersAccountsCall.call(
+    bearerToken: userToken,
+  );
+
+  if ((getAccountsResponse?.succeeded ?? true)) {
     await Future.delayed(const Duration(milliseconds: 500));
     accounts = await actions.accountsJSONToAccountsDataType(
       getJsonField(
@@ -78,9 +67,6 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         r'''$.accounts''',
         true,
       )!,
-    );
-    monthlyUsages = await actions.monthlyUsageJSONToDataType(
-      (getMonthlyUsageResponse?.jsonBody ?? ''),
     );
     customerToDataTypeResponse = await actions.customerJSONToDataType(
       getJsonField(
@@ -105,8 +91,6 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         .getPropertiesFromAccounts(accounts!.toList())
         .toList()
         .cast<PropertyStruct>();
-    FFAppState().monthlyUsage =
-        monthlyUsages!.toList().cast<MonthlyUsageStruct>();
     FFAppState().hostname = getHostnameResponse!;
     FFAppState().isCeproUser = getJsonField(
       (getAccountsResponse?.jsonBody ?? ''),
@@ -217,6 +201,11 @@ Future clearAppState(BuildContext context) async {
   FFAppState().impersonationEmail = '';
   FFAppState().impersonationToken = '';
   FFAppState().property = PropertyStruct();
+  FFAppState().monthlyCosts = [];
+  FFAppState().tariffs = TariffsStruct();
+  FFAppState().solarContractSigned = false;
+  FFAppState().haveSupplyContract = false;
+  FFAppState().haveSolarContract = false;
 }
 
 Future ceproUserOnly(BuildContext context) async {
@@ -225,6 +214,8 @@ Future ceproUserOnly(BuildContext context) async {
   }
 
   context.pushNamed('HomePage');
+
+  return;
 }
 
 Future checkAndBlockWriteableAPICall(BuildContext context) async {

@@ -26,22 +26,6 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
 
   bool? inPrepayMode;
 
-  List<MonthlyCostStruct> monthlyCosts = [];
-  void addToMonthlyCosts(MonthlyCostStruct item) => monthlyCosts.add(item);
-  void removeFromMonthlyCosts(MonthlyCostStruct item) =>
-      monthlyCosts.remove(item);
-  void removeAtIndexFromMonthlyCosts(int index) => monthlyCosts.removeAt(index);
-  void insertAtIndexInMonthlyCosts(int index, MonthlyCostStruct item) =>
-      monthlyCosts.insert(index, item);
-  void updateMonthlyCostsAtIndex(
-          int index, Function(MonthlyCostStruct) updateFn) =>
-      monthlyCosts[index] = updateFn(monthlyCosts[index]);
-
-  TariffsStruct? tariffs;
-  void updateTariffsStruct(Function(TariffsStruct) updateFn) {
-    updateFn(tariffs ??= TariffsStruct());
-  }
-
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - activeUserToken] action in MyEnergyPage widget.
@@ -50,10 +34,14 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
   ApiCallResponse? getMonthlyCostResponse;
   // Stores action output result for [Backend Call - API (Get Tariffs)] action in MyEnergyPage widget.
   ApiCallResponse? getTariffsResponse;
+  // Stores action output result for [Backend Call - API (Get Monthly Usage)] action in MyEnergyPage widget.
+  ApiCallResponse? getMonthlyUsageResponse;
   // Stores action output result for [Custom Action - monthlyCostJSONToDataType] action in MyEnergyPage widget.
   List<MonthlyCostStruct>? monthlyCostsTyped;
   // Stores action output result for [Custom Action - tariffsJSONToDataType] action in MyEnergyPage widget.
   TariffsStruct? tariffsTyped;
+  // Stores action output result for [Custom Action - monthlyUsageJSONToDataType] action in MyEnergyPage widget.
+  List<MonthlyUsageStruct>? monthlyUsageTyped;
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.

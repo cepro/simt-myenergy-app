@@ -518,9 +518,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   ),
                                                             ),
                                                           ),
-                                                          if (_model.supplyMeter
-                                                                  ?.prepayEnabled ??
-                                                              true)
+                                                          if ((_model.supplyMeter !=
+                                                                  null) &&
+                                                              _model
+                                                                  .supplyMeter!
+                                                                  .prepayEnabled)
                                                             Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional

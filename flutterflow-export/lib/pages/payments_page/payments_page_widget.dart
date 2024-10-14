@@ -38,55 +38,63 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await action_blocks.ceproUserOnly(context);
-      _model.userToken = await actions.activeUserToken();
-      await Future.wait([
-        Future(() async {
-          _model.getPaymentMethodsOutput =
-              await GetCustomersPaymentMethodsCall.call(
-            bearerToken: _model.userToken,
-            esco: FFAppState().esco?.name,
-          );
+      if (FFAppState().isCeproUser) {
+        _model.userToken = await actions.activeUserToken();
+        await Future.wait([
+          Future(() async {
+            _model.getPaymentMethodsOutput =
+                await GetCustomersPaymentMethodsCall.call(
+              bearerToken: _model.userToken,
+              esco: FFAppState().esco?.name,
+            );
 
-          if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
-            _model.paymentMethods =
-                (_model.getPaymentMethodsOutput?.jsonBody ?? '');
-            safeSetState(() {});
-          } else {
-            await action_blocks.handleMyEnergyApiCallFailure(
-              context,
-              wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
-                      ?.getHeader('www-authenticate') ??
-                  ''),
-              httpStatusCode:
-                  (_model.getPaymentMethodsOutput?.statusCode ?? 200),
+            if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
+              _model.paymentMethods =
+                  (_model.getPaymentMethodsOutput?.jsonBody ?? '');
+              safeSetState(() {});
+              return;
+            } else {
+              await action_blocks.handleMyEnergyApiCallFailure(
+                context,
+                wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
+                        ?.getHeader('www-authenticate') ??
+                    ''),
+                httpStatusCode:
+                    (_model.getPaymentMethodsOutput?.statusCode ?? 200),
+              );
+              return;
+            }
+          }),
+          Future(() async {
+            _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
+              esco: FFAppState().esco?.name,
+              bearerToken: _model.userToken,
             );
-          }
-        }),
-        Future(() async {
-          _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
-            esco: FFAppState().esco?.name,
-            bearerToken: _model.userToken,
-          );
 
-          if ((_model.getPaymentsOutput?.succeeded ?? true)) {
-            _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
-              (_model.getPaymentsOutput?.jsonBody ?? ''),
-            );
-            _model.payments =
-                _model.paymentsTyped!.toList().cast<PaymentStruct>();
-            safeSetState(() {});
-          } else {
-            await action_blocks.handleMyEnergyApiCallFailure(
-              context,
-              wwwAuthenticateHeader:
-                  (_model.getPaymentsOutput?.getHeader('www-authenticate') ??
-                      ''),
-              httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
-            );
-          }
-        }),
-      ]);
+            if ((_model.getPaymentsOutput?.succeeded ?? true)) {
+              _model.paymentsTyped =
+                  await actions.paymentsJSONToPaymentsDataType(
+                (_model.getPaymentsOutput?.jsonBody ?? ''),
+              );
+              _model.payments =
+                  _model.paymentsTyped!.toList().cast<PaymentStruct>();
+              safeSetState(() {});
+              return;
+            } else {
+              await action_blocks.handleMyEnergyApiCallFailure(
+                context,
+                wwwAuthenticateHeader:
+                    (_model.getPaymentsOutput?.getHeader('www-authenticate') ??
+                        ''),
+                httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
+              );
+              return;
+            }
+          }),
+        ]);
+      } else {
+        return;
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
