@@ -1,5 +1,7 @@
+import '/components/onboard_progress_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'onboard_progress_box_widget.dart' show OnboardProgressBoxWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,16 +11,37 @@ class OnboardProgressBoxModel
     extends FlutterFlowModel<OnboardProgressBoxWidget> {
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for InviteAcceptedCheckbox widget.
-  bool? inviteAcceptedCheckboxValue;
-  // State field(s) for SupplyContractSignedCheckbox widget.
-  bool? supplyContractSignedCheckboxValue;
-  // State field(s) for ProfileDetailsConfirmedCheckbox widget.
-  bool? profileDetailsConfirmedCheckboxValue;
+  // Model for OnboardProgressRow component.
+  late OnboardProgressRowModel onboardProgressRowModel1;
+  // Model for OnboardProgressRow component.
+  late OnboardProgressRowModel onboardProgressRowModel2;
+  // Model for OnboardProgressRow component.
+  late OnboardProgressRowModel onboardProgressRowModel3;
+  // Model for OnboardProgressRow component.
+  late OnboardProgressRowModel onboardProgressRowModel4;
+  // Model for OnboardProgressRow component.
+  late OnboardProgressRowModel onboardProgressRowModel5;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    onboardProgressRowModel1 =
+        createModel(context, () => OnboardProgressRowModel());
+    onboardProgressRowModel2 =
+        createModel(context, () => OnboardProgressRowModel());
+    onboardProgressRowModel3 =
+        createModel(context, () => OnboardProgressRowModel());
+    onboardProgressRowModel4 =
+        createModel(context, () => OnboardProgressRowModel());
+    onboardProgressRowModel5 =
+        createModel(context, () => OnboardProgressRowModel());
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    onboardProgressRowModel1.dispose();
+    onboardProgressRowModel2.dispose();
+    onboardProgressRowModel3.dispose();
+    onboardProgressRowModel4.dispose();
+    onboardProgressRowModel5.dispose();
+  }
 }

@@ -1,9 +1,8 @@
 import '/backend/schema/structs/index.dart';
-import '/components/supply_contract_sign_or_view_modal/supply_contract_sign_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,8 +53,6 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
       child: Row(
@@ -116,69 +113,32 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Builder(
-                  builder: (context) => FFButtonWidget(
-                    onPressed: () async {
-                      if (widget!.readOnly!) {
-                        await actions.openPDF(
-                          widget!.contract!.signedContractURL,
-                        );
-                      } else {
-                        _model.supplyContractTerms =
-                            await actions.getTermsByTypeAndSubtype(
-                          FFAppState().contractTerms.toList(),
-                          'supply',
-                          null,
-                        );
-                        await showDialog(
-                          context: context,
-                          builder: (dialogContext) {
-                            return Dialog(
-                              elevation: 0,
-                              insetPadding: EdgeInsets.zero,
-                              backgroundColor: Colors.transparent,
-                              alignment: AlignmentDirectional(0.0, 0.0)
-                                  .resolve(Directionality.of(context)),
-                              child: Container(
-                                height: double.infinity,
-                                width: double.infinity,
-                                child: SupplyContractSignOrViewModalWidget(
-                                  contract: widget!.contract!,
-                                  terms: _model.supplyContractTerms!,
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      }
-
-                      safeSetState(() {});
-                    },
-                    text: widget!.readOnly == true ? 'View' : 'Choose Contract',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .titleSmall
-                          .override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).titleSmallFamily,
-                            color: Colors.white,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).titleSmallFamily),
-                          ),
-                      elevation: 3.0,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
+                FFButtonWidget(
+                  onPressed: () async {
+                    await action_blocks.openSupplyContract(context);
+                  },
+                  text: widget!.readOnly == true ? 'View' : 'Choose Contract',
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).primary,
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleSmallFamily,
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).titleSmallFamily),
+                        ),
+                    elevation: 3.0,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
                     ),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
               ],

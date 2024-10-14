@@ -65,14 +65,38 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             (FFAppState().properties.first.owner == FFAppState().customer.id);
         _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
         safeSetState(() {});
-        FFAppState().supplyContractSigned = functions
-                    .getContractByType(FFAppState().accounts.toList(), 'supply')
-                    ?.signedDate !=
-                null &&
-            functions
-                    .getContractByType(FFAppState().accounts.toList(), 'supply')
-                    ?.signedDate !=
-                '';
+        FFAppState().supplyContractSigned = (functions.getContractByType(
+                    FFAppState().accounts.toList(), 'supply') !=
+                null) &&
+            (functions
+                        .getContractByType(
+                            FFAppState().accounts.toList(), 'supply')
+                        ?.signedDate !=
+                    null &&
+                functions
+                        .getContractByType(
+                            FFAppState().accounts.toList(), 'supply')
+                        ?.signedDate !=
+                    '');
+        FFAppState().haveSupplyContract = functions.getContractByType(
+                FFAppState().accounts.toList(), 'supply') !=
+            null;
+        FFAppState().haveSolarContract = functions.getContractByType(
+                FFAppState().accounts.toList(), 'solar') !=
+            null;
+        FFAppState().solarContractSigned = (functions.getContractByType(
+                    FFAppState().accounts.toList(), 'solar') !=
+                null) &&
+            (functions
+                        .getContractByType(
+                            FFAppState().accounts.toList(), 'solar')
+                        ?.signedDate !=
+                    null &&
+                functions
+                        .getContractByType(
+                            FFAppState().accounts.toList(), 'solar')
+                        ?.signedDate !=
+                    '');
         safeSetState(() {});
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -494,36 +518,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   ),
                                                             ),
                                                           ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        20.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              _model.supplyMeter
-                                                                          ?.prepayEnabled ==
-                                                                      true
-                                                                  ? 'Balance: ${functions.formatCurrencyAmount(_model.supplyMeter!.balance)}'
-                                                                  : 'Balance: 0.00',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                  ),
+                                                          if (_model.supplyMeter
+                                                                  ?.prepayEnabled ??
+                                                              true)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Balance: ${functions.formatCurrencyAmount(_model.supplyMeter!.balance)}',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
                                                             ),
-                                                          ),
                                                         ],
                                                       ),
                                                     ),
@@ -531,96 +554,99 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                               ),
                                             ),
-                                            Expanded(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          'Contract',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineSmall
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmallFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .headlineSmallFamily),
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    children: [
-                                                      Expanded(
-                                                        child: wrapWithModel(
-                                                          model: _model
-                                                              .supplyContractRowModel,
-                                                          updateCallback: () =>
-                                                              safeSetState(
-                                                                  () {}),
-                                                          child:
-                                                              SupplyContractRowWidget(
-                                                            readOnly: functions
-                                                                        .getContractByType(
-                                                                            FFAppState()
-                                                                                .accounts
-                                                                                .toList(),
-                                                                            'supply')
-                                                                        ?.signedDate !=
-                                                                    null &&
-                                                                functions
-                                                                        .getContractByType(
-                                                                            FFAppState().accounts.toList(),
-                                                                            'supply')
-                                                                        ?.signedDate !=
-                                                                    '',
-                                                            contract: functions
-                                                                .getContractByType(
-                                                                    FFAppState()
-                                                                        .accounts
-                                                                        .toList(),
-                                                                    'supply')!,
-                                                            contractTerms:
-                                                                FFAppState()
-                                                                    .contractTerms
-                                                                    .where((e) =>
-                                                                        e.type ==
-                                                                        'supply')
-                                                                    .toList()
-                                                                    .first,
+                                            if (FFAppState()
+                                                .supplyContractSigned)
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      10.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Contract',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmallFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily),
+                                                                ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Expanded(
+                                                          child: wrapWithModel(
+                                                            model: _model
+                                                                .supplyContractRowModel,
+                                                            updateCallback: () =>
+                                                                safeSetState(
+                                                                    () {}),
+                                                            child:
+                                                                SupplyContractRowWidget(
+                                                              readOnly: functions
+                                                                          .getContractByType(
+                                                                              FFAppState()
+                                                                                  .accounts
+                                                                                  .toList(),
+                                                                              'supply')
+                                                                          ?.signedDate !=
+                                                                      null &&
+                                                                  functions
+                                                                          .getContractByType(
+                                                                              FFAppState().accounts.toList(),
+                                                                              'supply')
+                                                                          ?.signedDate !=
+                                                                      '',
+                                                              contract: functions
+                                                                  .getContractByType(
+                                                                      FFAppState()
+                                                                          .accounts
+                                                                          .toList(),
+                                                                      'supply')!,
+                                                              contractTerms: FFAppState()
+                                                                  .contractTerms
+                                                                  .where((e) =>
+                                                                      e.type ==
+                                                                      'supply')
+                                                                  .toList()
+                                                                  .first,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                            ),
                                           ],
                                         ),
                                       ],

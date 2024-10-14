@@ -4,6 +4,8 @@ import '/backend/api_requests/api_manager.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
+import '/components/solar_contract_choose_or_view_modal/solar_contract_choose_or_view_modal_widget.dart';
+import '/components/supply_contract_sign_or_view_modal/supply_contract_sign_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
@@ -242,4 +244,98 @@ Future checkAndBlockWriteableAPICall(BuildContext context) async {
     ),
   );
   return;
+}
+
+Future openSupplyContract(BuildContext context) async {
+  ContractTermsStruct? supplyContractTerms;
+
+  if (FFAppState().supplyContractSigned) {
+    await actions.openPDF(
+      functions
+          .getContractByType(FFAppState().accounts.toList(), 'supply')!
+          .signedContractURL,
+    );
+  } else {
+    await showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return Dialog(
+          elevation: 0,
+          insetPadding: EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          alignment: AlignmentDirectional(0.0, 0.0)
+              .resolve(Directionality.of(context)),
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: SupplyContractSignOrViewModalWidget(
+              terms: FFAppState()
+                  .contractTerms
+                  .where((e) => e.type == 'supply')
+                  .toList()
+                  .first,
+              contract: functions.getContractByType(
+                  FFAppState().accounts.toList(), 'supply')!,
+            ),
+          ),
+        );
+      },
+    );
+
+    supplyContractTerms = await actions.getTermsByTypeAndSubtype(
+      FFAppState().contractTerms.toList(),
+      'supply',
+      null,
+    );
+  }
+}
+
+Future openSolarContract(BuildContext context) async {
+  ContractTermsStruct? solarContractTerms;
+
+  if (FFAppState().solarContractSigned) {
+    await actions.openPDF(
+      functions
+          .getContractByType(FFAppState().accounts.toList(), 'solar')!
+          .signedContractURL,
+    );
+  } else {
+    await showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return Dialog(
+          elevation: 0,
+          insetPadding: EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          alignment: AlignmentDirectional(0.0, 0.0)
+              .resolve(Directionality.of(context)),
+          child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            child: SolarContractChooseOrViewModalWidget(
+              contract: functions.getContractByType(
+                  FFAppState().accounts.toList(), 'solar')!,
+              readOnly: false,
+              termsSolar30Year: FFAppState()
+                  .contractTerms
+                  .where((e) => e.subtype == 'thirty_year')
+                  .toList()
+                  .first,
+              termsSolarShortTerm: FFAppState()
+                  .contractTerms
+                  .where((e) => e.subtype == 'short_term')
+                  .toList()
+                  .first,
+            ),
+          ),
+        );
+      },
+    );
+
+    solarContractTerms = await actions.getTermsByTypeAndSubtype(
+      FFAppState().contractTerms.toList(),
+      'solar',
+      null,
+    );
+  }
 }

@@ -1,5 +1,7 @@
+import '/components/onboard_progress_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -78,268 +80,63 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Theme(
-                          data: ThemeData(
-                            checkboxTheme: CheckboxThemeData(
-                              visualDensity: VisualDensity.compact,
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0),
-                              ),
-                            ),
-                            unselectedWidgetColor:
-                                FlutterFlowTheme.of(context).alternate,
-                          ),
-                          child: Checkbox(
-                            value: _model.inviteAcceptedCheckboxValue ??= true,
-                            onChanged: (newValue) async {
-                              safeSetState(() => _model
-                                  .inviteAcceptedCheckboxValue = newValue!);
-
-                              if (!newValue!) {
-                                safeSetState(() {
-                                  _model.inviteAcceptedCheckboxValue = true;
-                                });
-                              }
-                            },
-                            side: BorderSide(
-                              width: 2,
-                              color: FlutterFlowTheme.of(context).alternate,
-                            ),
-                            activeColor: FlutterFlowTheme.of(context).primary,
-                            checkColor:
-                                FlutterFlowTheme.of(context).primaryBtnText,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                'Invite Accepted',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleMediumFamily,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleMediumFamily),
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                  wrapWithModel(
+                    model: _model.onboardProgressRowModel1,
+                    updateCallback: () => safeSetState(() {}),
+                    child: OnboardProgressRowWidget(
+                      checked: true,
+                      title: 'Accept your invitation',
+                      navigateAction: () async {},
                     ),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Theme(
-                          data: ThemeData(
-                            checkboxTheme: CheckboxThemeData(
-                              visualDensity: VisualDensity.compact,
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0),
-                              ),
-                            ),
-                            unselectedWidgetColor:
-                                FlutterFlowTheme.of(context).alternate,
-                          ),
-                          child: Checkbox(
-                            value: _model.supplyContractSignedCheckboxValue ??=
-                                FFAppState().supplyContractSigned,
-                            onChanged: (newValue) async {
-                              safeSetState(() =>
-                                  _model.supplyContractSignedCheckboxValue =
-                                      newValue!);
-                              if (newValue!) {
-                                // ReadonlySupplyContractCheckNeutraliseToggleOn
-                                safeSetState(() {
-                                  _model.supplyContractSignedCheckboxValue =
-                                      !_model
-                                          .supplyContractSignedCheckboxValue!;
-                                });
-                              } else {
-                                // ReadonlySupplyContractCheckNeutraliseToggleOff
-                                safeSetState(() {
-                                  _model.supplyContractSignedCheckboxValue =
-                                      !_model
-                                          .supplyContractSignedCheckboxValue!;
-                                });
-                              }
-                            },
-                            side: BorderSide(
-                              width: 2,
-                              color: FlutterFlowTheme.of(context).alternate,
-                            ),
-                            activeColor: FlutterFlowTheme.of(context).primary,
-                            checkColor:
-                                FlutterFlowTheme.of(context).primaryBtnText,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Supply Contract Signed',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleMediumFamily,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleMediumFamily),
-                                    ),
-                              ),
-                              Text(
-                                'Go to contract',
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMediumFamily),
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                  wrapWithModel(
+                    model: _model.onboardProgressRowModel2,
+                    updateCallback: () => safeSetState(() {}),
+                    child: OnboardProgressRowWidget(
+                      checked: FFAppState().customer.confirmedDetailsAt != null,
+                      title: 'Confirm your contact details',
+                      linkLabel: 'Go to profile',
+                      navigateAction: () async {
+                        context.pushNamed('UserProfilePage');
+                      },
                     ),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Theme(
-                          data: ThemeData(
-                            checkboxTheme: CheckboxThemeData(
-                              visualDensity: VisualDensity.compact,
-                              materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4.0),
-                              ),
-                            ),
-                            unselectedWidgetColor:
-                                FlutterFlowTheme.of(context).alternate,
-                          ),
-                          child: Checkbox(
-                            value:
-                                _model.profileDetailsConfirmedCheckboxValue ??=
-                                    FFAppState().customer.confirmedDetailsAt !=
-                                        null,
-                            onChanged: (newValue) async {
-                              safeSetState(() =>
-                                  _model.profileDetailsConfirmedCheckboxValue =
-                                      newValue!);
-                              if (newValue!) {
-                                // ReadonlyProfileConfirmedCheckNeutraliseToggleOn
-                                safeSetState(() {
-                                  _model.profileDetailsConfirmedCheckboxValue =
-                                      !_model
-                                          .profileDetailsConfirmedCheckboxValue!;
-                                });
-                              } else {
-                                // ReadonlyProfileConfirmedCheckNeutraliseToggleOff
-                                safeSetState(() {
-                                  _model.profileDetailsConfirmedCheckboxValue =
-                                      !_model
-                                          .profileDetailsConfirmedCheckboxValue!;
-                                });
-                              }
-                            },
-                            side: BorderSide(
-                              width: 2,
-                              color: FlutterFlowTheme.of(context).alternate,
-                            ),
-                            activeColor: FlutterFlowTheme.of(context).primary,
-                            checkColor:
-                                FlutterFlowTheme.of(context).primaryBtnText,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 0.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Profile Details Confirmed',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .titleMediumFamily,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .titleMediumFamily),
-                                    ),
-                              ),
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed('UserProfilePage');
-                                },
-                                child: Text(
-                                  'Go to profile',
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyMediumFamily,
-                                        letterSpacing: 0.0,
-                                        decoration: TextDecoration.underline,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily),
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                  if (FFAppState().haveSupplyContract)
+                    wrapWithModel(
+                      model: _model.onboardProgressRowModel3,
+                      updateCallback: () => safeSetState(() {}),
+                      child: OnboardProgressRowWidget(
+                        checked: FFAppState().supplyContractSigned,
+                        title: 'Sign your supply contract',
+                        linkLabel: 'Go to contract',
+                        navigateAction: () async {
+                          await action_blocks.openSupplyContract(context);
+                        },
+                      ),
+                    ),
+                  if (FFAppState().haveSolarContract)
+                    wrapWithModel(
+                      model: _model.onboardProgressRowModel4,
+                      updateCallback: () => safeSetState(() {}),
+                      child: OnboardProgressRowWidget(
+                        checked: FFAppState().solarContractSigned,
+                        title: 'Sign your solar contract',
+                        linkLabel: 'Go to contract',
+                        navigateAction: () async {
+                          await action_blocks.openSupplyContract(context);
+                        },
+                      ),
+                    ),
+                  wrapWithModel(
+                    model: _model.onboardProgressRowModel5,
+                    updateCallback: () => safeSetState(() {}),
+                    child: OnboardProgressRowWidget(
+                      checked: false,
+                      title: 'Add your payment method',
+                      linkLabel: 'Go to payments',
+                      navigateAction: () async {
+                        context.pushNamed('PaymentsPage');
+                      },
                     ),
                   ),
                 ].divide(SizedBox(height: 10.0)),

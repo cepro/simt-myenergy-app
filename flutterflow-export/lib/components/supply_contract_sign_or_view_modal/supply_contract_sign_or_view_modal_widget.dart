@@ -54,6 +54,8 @@ class _SupplyContractSignOrViewModalWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -161,10 +163,25 @@ class _SupplyContractSignOrViewModalWidgetState
                             ),
                           ),
                         ),
-                      if (widget!.contract?.id == null ||
-                          widget!.contract?.id == '')
+                      if (FFAppState().isCeproUser &&
+                          (widget!.contract?.id == null ||
+                              widget!.contract?.id == ''))
                         Text(
                           'Contract has not yet been created. Please contact support to find out why.',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
+                      if (!FFAppState().isCeproUser)
+                        Text(
+                          'Coming soon ...',
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(

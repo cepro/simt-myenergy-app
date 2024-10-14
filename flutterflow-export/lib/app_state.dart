@@ -143,6 +143,18 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _solarContractSigned =
+          prefs.getBool('ff_solarContractSigned') ?? _solarContractSigned;
+    });
+    _safeInit(() {
+      _haveSupplyContract =
+          prefs.getBool('ff_haveSupplyContract') ?? _haveSupplyContract;
+    });
+    _safeInit(() {
+      _haveSolarContract =
+          prefs.getBool('ff_haveSolarContract') ?? _haveSolarContract;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -435,6 +447,27 @@ class FFAppState extends ChangeNotifier {
   void updateCustomerStruct(Function(CustomerStruct) updateFn) {
     updateFn(_customer);
     prefs.setString('ff_customer', _customer.serialize());
+  }
+
+  bool _solarContractSigned = false;
+  bool get solarContractSigned => _solarContractSigned;
+  set solarContractSigned(bool value) {
+    _solarContractSigned = value;
+    prefs.setBool('ff_solarContractSigned', value);
+  }
+
+  bool _haveSupplyContract = false;
+  bool get haveSupplyContract => _haveSupplyContract;
+  set haveSupplyContract(bool value) {
+    _haveSupplyContract = value;
+    prefs.setBool('ff_haveSupplyContract', value);
+  }
+
+  bool _haveSolarContract = false;
+  bool get haveSolarContract => _haveSolarContract;
+  set haveSolarContract(bool value) {
+    _haveSolarContract = value;
+    prefs.setBool('ff_haveSolarContract', value);
   }
 }
 

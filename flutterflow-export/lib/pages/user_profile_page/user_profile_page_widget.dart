@@ -4,6 +4,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/change_phone_number_modal/change_phone_number_modal_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
+import '/components/user_profile_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -181,256 +182,89 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      ListView(
-                                        padding: EdgeInsets.zero,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.vertical,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 20.0, 0.0, 20.0),
-                                            child: ListTile(
-                                              leading: Icon(
-                                                Icons.label,
-                                                size: 30.0,
-                                              ),
-                                              title: Text(
-                                                'Name',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMediumFamily),
-                                                        ),
-                                              ),
-                                              subtitle: Text(
-                                                FFAppState().customer.name,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily),
-                                                        ),
-                                              ),
-                                              trailing: Icon(
-                                                Icons.arrow_forward_ios_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                              tileColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              dense: false,
-                                              contentPadding:
-                                                  EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          12.0, 0.0, 12.0, 0.0),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 20.0),
+                                        child: wrapWithModel(
+                                          model: _model.userProfileRowModel1,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: UserProfileRowWidget(
+                                            label: 'Name',
+                                            value: FFAppState().customer.name,
+                                            linkLabel: 'Change name',
+                                            icon: Icon(
+                                              Icons.label,
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 0.0, 20.0),
-                                            child: ListTile(
-                                              leading: Icon(
-                                                Icons.email,
-                                                size: 30.0,
-                                              ),
-                                              title: Text(
-                                                'Change Email Address',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleMediumFamily),
-                                                        ),
-                                              ),
-                                              subtitle: Text(
-                                                FFAppState().impersonationToken !=
-                                                            null &&
-                                                        FFAppState()
-                                                                .impersonationToken !=
-                                                            ''
-                                                    ? FFAppState()
-                                                        .impersonationEmail
-                                                    : currentUserEmail,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily),
-                                                        ),
-                                              ),
-                                              trailing: Icon(
-                                                Icons.arrow_forward_ios_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                              tileColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              dense: false,
-                                              contentPadding:
-                                                  EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          12.0, 0.0, 12.0, 0.0),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                              ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 20.0),
+                                        child: wrapWithModel(
+                                          model: _model.userProfileRowModel2,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: UserProfileRowWidget(
+                                            label: 'Email Address',
+                                            value: FFAppState()
+                                                            .impersonationEmail !=
+                                                        null &&
+                                                    FFAppState()
+                                                            .impersonationEmail !=
+                                                        ''
+                                                ? FFAppState()
+                                                    .impersonationEmail
+                                                : currentUserEmail,
+                                            linkLabel: 'Change email address',
+                                            icon: Icon(
+                                              Icons.email,
                                             ),
                                           ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 0.0, 20.0),
-                                            child: InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  enableDrag: false,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return GestureDetector(
-                                                      onTap: () =>
-                                                          FocusScope.of(context)
-                                                              .unfocus(),
-                                                      child: Padding(
-                                                        padding: MediaQuery
-                                                            .viewInsetsOf(
-                                                                context),
-                                                        child:
-                                                            ChangePhoneNumberModalWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then((value) =>
-                                                    safeSetState(() {}));
-                                              },
-                                              child: ListTile(
-                                                leading: Icon(
-                                                  Icons.phone,
-                                                  size: 30.0,
+                                        ),
+                                      ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () =>
+                                                    FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      ChangePhoneNumberModalWidget(),
                                                 ),
-                                                title: Text(
-                                                  'Change Phone Number',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .titleMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleMediumFamily),
-                                                      ),
-                                                ),
-                                                subtitle: Text(
-                                                  currentPhoneNumber,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMediumFamily),
-                                                      ),
-                                                ),
-                                                trailing: Icon(
-                                                  Icons
-                                                      .arrow_forward_ios_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
-                                                ),
-                                                tileColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                dense: false,
-                                                contentPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(12.0, 0.0,
-                                                            12.0, 0.0),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                ),
-                                              ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        },
+                                        child: wrapWithModel(
+                                          model: _model.userProfileRowModel3,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: UserProfileRowWidget(
+                                            label: 'Phone Number',
+                                            value: currentPhoneNumber,
+                                            linkLabel: 'Change phone number',
+                                            icon: Icon(
+                                              Icons.phone,
                                             ),
                                           ),
-                                        ],
+                                        ),
                                       ),
                                       if (FFAppState()
                                               .customer
@@ -439,7 +273,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 0.0, 0.0, 20.0),
+                                                  20.0, 20.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: (FFAppState()
                                                             .impersonationToken !=
@@ -540,7 +374,9 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             ),
                                           ),
                                         ),
-                                    ],
+                                    ]
+                                        .addToStart(SizedBox(height: 25.0))
+                                        .addToEnd(SizedBox(height: 25.0)),
                                   ),
                                 ),
                               ),
