@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
@@ -49,11 +48,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         'supply',
         FFAppState().meters,
       );
+      _model.userToken = await actions.activeUserToken();
       _model.homePageGetWallets = await GetWalletsCall.call(
-        bearerToken: currentJwtToken,
+        bearerToken: _model.userToken,
       );
 
-      await Future.delayed(const Duration(milliseconds: 1000));
+      await Future.delayed(const Duration(milliseconds: 500));
       if ((_model.homePageGetWallets?.succeeded ?? true) &&
           ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
         _model.singleWalletBalance =

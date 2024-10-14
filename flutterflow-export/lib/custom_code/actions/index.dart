@@ -22,3 +22,4 @@ export 'supabase_password_update.dart' show supabasePasswordUpdate;
 export 'decode_supabase_jwt.dart' show decodeSupabaseJwt;
 export 'update_user_phone.dart' show updateUserPhone;
 export 'verify_user_phone.dart' show verifyUserPhone;
+export 'active_user_token.dart' show activeUserToken;

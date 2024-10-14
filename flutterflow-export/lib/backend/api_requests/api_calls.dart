@@ -342,33 +342,6 @@ class UpdateTopupPreferencesCall {
   }
 }
 
-class MarkContractSignedCall {
-  static Future<ApiCallResponse> call({
-    String? bearerToken = '',
-    String? contractId = '',
-  }) async {
-    final ffApiRequestBody = '''
-{}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Mark Contract Signed',
-      apiUrl: 'https://simt-j-accounts-qa.fly.dev/contract/${contractId}/sign',
-      callType: ApiCallType.PUT,
-      headers: {
-        'Authorization': 'Bearer ${bearerToken}',
-      },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
 class GenerateTokenForImpersonateCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

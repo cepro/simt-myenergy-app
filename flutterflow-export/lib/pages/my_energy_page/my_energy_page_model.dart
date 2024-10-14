@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
@@ -45,6 +44,8 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Custom Action - activeUserToken] action in MyEnergyPage widget.
+  String? userToken;
   // Stores action output result for [Backend Call - API (Get Monthly Cost)] action in MyEnergyPage widget.
   ApiCallResponse? getMonthlyCostResponse;
   // Stores action output result for [Backend Call - API (Get Tariffs)] action in MyEnergyPage widget.

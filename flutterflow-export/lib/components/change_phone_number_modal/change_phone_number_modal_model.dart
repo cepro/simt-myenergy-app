@@ -1,11 +1,14 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'change_phone_number_modal_widget.dart'
     show ChangePhoneNumberModalWidget;
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -15,8 +18,6 @@ class ChangePhoneNumberModalModel
   ///  Local state fields for this component.
 
   bool verifyCode = false;
-
-  bool verified = false;
 
   ///  State fields for stateful widgets in this component.
 
@@ -30,6 +31,22 @@ class ChangePhoneNumberModalModel
   TextEditingController? verifyCodeFieldTextController;
   String? Function(BuildContext, String?)?
       verifyCodeFieldTextControllerValidator;
+  // State field(s) for Timer widget.
+  final timerInitialTimeMs = 59000;
+  int timerMilliseconds = 59000;
+  String timerValue = StopWatchTimer.getDisplayTime(
+    59000,
+    hours: false,
+    minute: false,
+    milliSecond: false,
+  );
+  FlutterFlowTimerController timerController =
+      FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countDown));
+
+  // Stores action output result for [Custom Action - verifyUserPhone] action in Button widget.
+  CustomActionResultStruct? verifyUserPhoneResult;
+  // Stores action output result for [Custom Action - updateUserPhone] action in Button widget.
+  CustomActionResultStruct? updatePhoneNumberResult;
 
   @override
   void initState(BuildContext context) {}
@@ -41,5 +58,7 @@ class ChangePhoneNumberModalModel
 
     verifyCodeFieldFocusNode?.dispose();
     verifyCodeFieldTextController?.dispose();
+
+    timerController.dispose();
   }
 }

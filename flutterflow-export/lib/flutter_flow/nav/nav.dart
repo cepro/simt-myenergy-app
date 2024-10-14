@@ -175,12 +175,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => AdminPaymentWidget(),
         ),
         FFRoute(
-          name: 'MyEnergyPageOld',
-          path: '/myenergyold',
-          requireAuth: true,
-          builder: (context, params) => MyEnergyPageOldWidget(),
-        ),
-        FFRoute(
           name: 'MyEnergyPage',
           path: '/myenergy',
           requireAuth: true,

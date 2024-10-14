@@ -11,18 +11,9 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<CustomActionResultStruct> updateUserPhone(String phone) async {
-  final supabase = Supabase.instance.client;
-  final UserResponse res = await supabase.auth.updateUser(
-    UserAttributes(
-      phone: phone,
-    ),
-  );
-  final User? updatedUser = res.user;
-  print(updatedUser);
-  //if (updatedUser?.new_phone == phone) {
-  return CustomActionResultStruct(success: true, errorMessage: "");
-  //}
-  //return CustomActionResultStruct(
-  //    success: false, errorMessage: "TODO: determine error");
+Future<String> activeUserToken() async {
+  return FFAppState().impersonationToken != null &&
+          FFAppState().impersonationToken != ''
+      ? FFAppState().impersonationToken
+      : currentJwtToken;
 }

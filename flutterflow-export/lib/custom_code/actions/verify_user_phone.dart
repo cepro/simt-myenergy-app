@@ -11,12 +11,21 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future verifyUserPhone(final String phone, final String otp) async {
+Future<CustomActionResultStruct> verifyUserPhone(
+    final String phone, final String otp) async {
   final supabase = Supabase.instance.client;
-  final AuthResponse res = await supabase.auth.verifyOTP(
-    token: otp,
-    type: OtpType.phoneChange,
-    phone: phone,
-  );
-  print(res);
+  final AuthResponse res;
+  try {
+    res = await supabase.auth.verifyOTP(
+      token: otp,
+      type: OtpType.phoneChange,
+      phone: phone,
+    );
+    print(res);
+    return CustomActionResultStruct(success: true, errorMessage: "");
+  } on AuthException catch (e) {
+    print("ERROR: ");
+    print(e);
+    return CustomActionResultStruct(success: false, errorMessage: e.message);
+  }
 }

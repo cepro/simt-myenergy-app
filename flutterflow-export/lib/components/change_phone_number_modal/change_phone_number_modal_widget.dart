@@ -1,9 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +54,8 @@ class _ChangePhoneNumberModalWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -101,7 +106,9 @@ class _ChangePhoneNumberModalWidgetState
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Change your phone number',
+                                  _model.verifyCode
+                                      ? 'Verify OTP'
+                                      : 'Change your phone number',
                                   style: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
@@ -134,7 +141,7 @@ class _ChangePhoneNumberModalWidgetState
                         ],
                       ),
                     ),
-                    if (!_model.verified)
+                    if (!_model.verifyCode)
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
@@ -151,18 +158,6 @@ class _ChangePhoneNumberModalWidgetState
                                         .labelLargeFamily),
                               ),
                         ),
-                      ),
-                    if (_model.verified)
-                      Text(
-                        'Phone verified',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
                       ),
                     if (!_model.verifyCode)
                       Padding(
@@ -254,8 +249,8 @@ class _ChangePhoneNumberModalWidgetState
                       ),
                     if (_model.verifyCode)
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 20.0, 0.0, 20.0),
                         child: Container(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           child: TextFormField(
@@ -339,6 +334,73 @@ class _ChangePhoneNumberModalWidgetState
                           ),
                         ),
                       ),
+                    if (_model.verifyCode)
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 5.0, 0.0),
+                            child: Text(
+                              'Time remaining: ',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                          ),
+                          if (_model.verifyCode)
+                            FlutterFlowTimer(
+                              initialTime: _model.timerInitialTimeMs,
+                              getDisplayTime: (value) =>
+                                  StopWatchTimer.getDisplayTime(
+                                value,
+                                hours: false,
+                                minute: false,
+                                milliSecond: false,
+                              ),
+                              controller: _model.timerController,
+                              updateStateInterval: Duration(milliseconds: 1000),
+                              onChanged: (value, displayTime, shouldUpdate) {
+                                _model.timerMilliseconds = value;
+                                _model.timerValue = displayTime;
+                                if (shouldUpdate) safeSetState(() {});
+                              },
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                          Text(
+                            ' seconds',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily),
+                                ),
+                          ),
+                        ],
+                      ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 12.0),
@@ -347,26 +409,129 @@ class _ChangePhoneNumberModalWidgetState
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           FFButtonWidget(
-                            onPressed: () async {
-                              if (_model.verifyCode) {
-                                await actions.verifyUserPhone(
-                                  _model.phoneNumberFieldTextController.text,
-                                  _model.verifyCodeFieldTextController.text,
-                                );
-                                _model.verifyCode = false;
-                                _model.verified = true;
-                                safeSetState(() {});
-                              } else {
-                                await actions.updateUserPhone(
-                                  _model.phoneNumberFieldTextController.text,
-                                );
-                                _model.verifyCode = true;
-                                _model.verified = false;
-                                safeSetState(() {});
-                              }
-                            },
-                            text:
-                                _model.verifyCode ? 'Verify Code' : 'Send Code',
+                            onPressed: (FFAppState().impersonationToken !=
+                                        null &&
+                                    FFAppState().impersonationToken != '')
+                                ? null
+                                : () async {
+                                    var _shouldSetState = false;
+                                    if (_model.verifyCode) {
+                                      if (_model.verifyCodeFieldTextController
+                                                  .text !=
+                                              null &&
+                                          _model.verifyCodeFieldTextController
+                                                  .text !=
+                                              '') {
+                                        _model.verifyUserPhoneResult =
+                                            await actions.verifyUserPhone(
+                                          _model.phoneNumberFieldTextController
+                                              .text,
+                                          _model.verifyCodeFieldTextController
+                                              .text,
+                                        );
+                                        _shouldSetState = true;
+                                        if (_model.verifyUserPhoneResult
+                                                ?.success ==
+                                            true) {
+                                          // Timer Stop
+                                          _model.timerController.onStopTimer();
+                                          _model.verifyCode = false;
+                                          safeSetState(() {});
+                                          Navigator.pop(context);
+                                          if (_shouldSetState)
+                                            safeSetState(() {});
+                                          return;
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                _model.verifyUserPhoneResult!
+                                                    .errorMessage,
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                            ),
+                                          );
+                                          if (_shouldSetState)
+                                            safeSetState(() {});
+                                          return;
+                                        }
+                                      } else {
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
+                                        return;
+                                      }
+                                    } else {
+                                      if (_model.phoneNumberFieldTextController
+                                                  .text !=
+                                              null &&
+                                          _model.phoneNumberFieldTextController
+                                                  .text !=
+                                              '') {
+                                        _model.updatePhoneNumberResult =
+                                            await actions.updateUserPhone(
+                                          _model.phoneNumberFieldTextController
+                                              .text,
+                                        );
+                                        _shouldSetState = true;
+                                        if (_model.updatePhoneNumberResult
+                                                ?.success ==
+                                            true) {
+                                          // Timer Reset
+                                          _model.timerController.onResetTimer();
+
+                                          // Timer Start
+                                          _model.timerController.onStartTimer();
+                                          _model.verifyCode = true;
+                                          safeSetState(() {});
+                                          if (_shouldSetState)
+                                            safeSetState(() {});
+                                          return;
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                _model.updatePhoneNumberResult!
+                                                    .errorMessage,
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondary,
+                                            ),
+                                          );
+                                          if (_shouldSetState)
+                                            safeSetState(() {});
+                                          return;
+                                        }
+                                      } else {
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
+                                        return;
+                                      }
+                                    }
+
+                                    if (_shouldSetState) safeSetState(() {});
+                                  },
+                            text: _model.verifyCode
+                                ? 'Verify Code'
+                                : 'Update Phone Number',
                             options: FFButtonOptions(
                               padding: EdgeInsets.all(24.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(

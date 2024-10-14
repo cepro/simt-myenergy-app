@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
@@ -38,27 +37,22 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.userToken = await actions.activeUserToken();
       await Future.wait([
         Future(() async {
           _model.getMonthlyCostResponse = await GetMonthlyCostCall.call(
-            bearerToken: FFAppState().impersonationToken != null &&
-                    FFAppState().impersonationToken != ''
-                ? FFAppState().impersonationToken
-                : currentJwtToken,
+            bearerToken: _model.userToken,
           );
         }),
         Future(() async {
           _model.getTariffsResponse = await GetTariffsCall.call(
-            bearerToken: FFAppState().impersonationToken != null &&
-                    FFAppState().impersonationToken != ''
-                ? FFAppState().impersonationToken
-                : currentJwtToken,
+            bearerToken: _model.userToken,
           );
         }),
       ]);
       if ((_model.getMonthlyCostResponse?.succeeded ?? true) &&
           (_model.getTariffsResponse?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 1000));
+        await Future.delayed(const Duration(milliseconds: 500));
         _model.monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
           (_model.getMonthlyCostResponse?.jsonBody ?? ''),
         );

@@ -38,58 +38,55 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().isCeproUser == true) {
-        await Future.wait([
-          Future(() async {
-            _model.getPaymentMethodsOutput =
-                await GetCustomersPaymentMethodsCall.call(
-              bearerToken: currentJwtToken,
-              esco: FFAppState().esco?.name,
-            );
+      await action_blocks.ceproUserOnly(context);
+      _model.userToken = await actions.activeUserToken();
+      await Future.wait([
+        Future(() async {
+          _model.getPaymentMethodsOutput =
+              await GetCustomersPaymentMethodsCall.call(
+            bearerToken: _model.userToken,
+            esco: FFAppState().esco?.name,
+          );
 
-            if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
-              _model.paymentMethods =
-                  (_model.getPaymentMethodsOutput?.jsonBody ?? '');
-              safeSetState(() {});
-            } else {
-              await action_blocks.handleMyEnergyApiCallFailure(
-                context,
-                wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
-                        ?.getHeader('www-authenticate') ??
-                    ''),
-                httpStatusCode:
-                    (_model.getPaymentMethodsOutput?.statusCode ?? 200),
-              );
-            }
-          }),
-          Future(() async {
-            _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
-              esco: FFAppState().esco?.name,
-              bearerToken: currentJwtToken,
+          if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
+            _model.paymentMethods =
+                (_model.getPaymentMethodsOutput?.jsonBody ?? '');
+            safeSetState(() {});
+          } else {
+            await action_blocks.handleMyEnergyApiCallFailure(
+              context,
+              wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
+                      ?.getHeader('www-authenticate') ??
+                  ''),
+              httpStatusCode:
+                  (_model.getPaymentMethodsOutput?.statusCode ?? 200),
             );
+          }
+        }),
+        Future(() async {
+          _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
+            esco: FFAppState().esco?.name,
+            bearerToken: _model.userToken,
+          );
 
-            if ((_model.getPaymentsOutput?.succeeded ?? true)) {
-              _model.paymentsTyped =
-                  await actions.paymentsJSONToPaymentsDataType(
-                (_model.getPaymentsOutput?.jsonBody ?? ''),
-              );
-              _model.payments =
-                  _model.paymentsTyped!.toList().cast<PaymentStruct>();
-              safeSetState(() {});
-            } else {
-              await action_blocks.handleMyEnergyApiCallFailure(
-                context,
-                wwwAuthenticateHeader:
-                    (_model.getPaymentsOutput?.getHeader('www-authenticate') ??
-                        ''),
-                httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
-              );
-            }
-          }),
-        ]);
-      } else {
-        return;
-      }
+          if ((_model.getPaymentsOutput?.succeeded ?? true)) {
+            _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
+              (_model.getPaymentsOutput?.jsonBody ?? ''),
+            );
+            _model.payments =
+                _model.paymentsTyped!.toList().cast<PaymentStruct>();
+            safeSetState(() {});
+          } else {
+            await action_blocks.handleMyEnergyApiCallFailure(
+              context,
+              wwwAuthenticateHeader:
+                  (_model.getPaymentsOutput?.getHeader('www-authenticate') ??
+                      ''),
+              httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
+            );
+          }
+        }),
+      ]);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -432,46 +429,57 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   .fromSTEB(
                                                       0.0, 30.0, 0.0, 0.0),
                                               child: FFButtonWidget(
-                                                onPressed: () async {
-                                                  _model.deletePaymentMethodResult =
-                                                      await DeleteCustomersPaymentMethodCall
-                                                          .call(
-                                                    bearerToken:
-                                                        currentJwtToken,
-                                                    id: getJsonField(
-                                                      (_model.getPaymentMethodsOutput
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                      r'''$[0].id''',
-                                                    ).toString(),
-                                                    esco:
-                                                        FFAppState().esco?.name,
-                                                  );
+                                                onPressed: (FFAppState()
+                                                                .impersonationToken !=
+                                                            null &&
+                                                        FFAppState()
+                                                                .impersonationToken !=
+                                                            '')
+                                                    ? null
+                                                    : () async {
+                                                        await action_blocks
+                                                            .checkAndBlockWriteableAPICall(
+                                                                context);
+                                                        _model.deletePaymentMethodResult =
+                                                            await DeleteCustomersPaymentMethodCall
+                                                                .call(
+                                                          bearerToken:
+                                                              currentJwtToken,
+                                                          id: getJsonField(
+                                                            (_model.getPaymentMethodsOutput
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$[0].id''',
+                                                          ).toString(),
+                                                          esco: FFAppState()
+                                                              .esco
+                                                              ?.name,
+                                                        );
 
-                                                  if ((_model.deletePaymentMethodResult
-                                                              ?.statusCode ??
-                                                          200) ==
-                                                      200) {
-                                                    context.pushNamed(
-                                                        'PaymentsPage');
-                                                  } else {
-                                                    await action_blocks
-                                                        .handleMyEnergyApiCallFailure(
-                                                      context,
-                                                      wwwAuthenticateHeader: (_model
-                                                              .deletePaymentMethodResult
-                                                              ?.getHeader(
-                                                                  'www-authenticate') ??
-                                                          ''),
-                                                      httpStatusCode: (_model
-                                                              .checkoutPageURI
-                                                              ?.statusCode ??
-                                                          200),
-                                                    );
-                                                  }
+                                                        if ((_model.deletePaymentMethodResult
+                                                                    ?.statusCode ??
+                                                                200) ==
+                                                            200) {
+                                                          context.pushNamed(
+                                                              'PaymentsPage');
+                                                        } else {
+                                                          await action_blocks
+                                                              .handleMyEnergyApiCallFailure(
+                                                            context,
+                                                            wwwAuthenticateHeader: (_model
+                                                                    .deletePaymentMethodResult
+                                                                    ?.getHeader(
+                                                                        'www-authenticate') ??
+                                                                ''),
+                                                            httpStatusCode: (_model
+                                                                    .checkoutPageURI
+                                                                    ?.statusCode ??
+                                                                200),
+                                                          );
+                                                        }
 
-                                                  safeSetState(() {});
-                                                },
+                                                        safeSetState(() {});
+                                                      },
                                                 text: 'Remove Payment Method',
                                                 options: FFButtonOptions(
                                                   height: 30.0,
@@ -589,43 +597,57 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 20.0, 0.0, 0.0),
                                             child: FFButtonWidget(
-                                              onPressed: () async {
-                                                _model.checkoutPageURI =
-                                                    await CreateStripeCheckoutSessionCall
-                                                        .call(
-                                                  bearerToken: currentJwtToken,
-                                                  esco: FFAppState().esco?.name,
-                                                );
+                                              onPressed: (FFAppState()
+                                                              .impersonationToken !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .impersonationToken !=
+                                                          '')
+                                                  ? null
+                                                  : () async {
+                                                      await action_blocks
+                                                          .checkAndBlockWriteableAPICall(
+                                                              context);
+                                                      _model.checkoutPageURI =
+                                                          await CreateStripeCheckoutSessionCall
+                                                              .call(
+                                                        bearerToken:
+                                                            currentJwtToken,
+                                                        esco: FFAppState()
+                                                            .esco
+                                                            ?.name,
+                                                      );
 
-                                                if (_model.checkoutPageURI !=
-                                                    null) {
-                                                  await actions
-                                                      .navigateToExternalURI(
-                                                    CreateStripeCheckoutSessionCall
-                                                        .checkoutPageURI(
-                                                      (_model.checkoutPageURI
-                                                              ?.jsonBody ??
-                                                          ''),
-                                                    ).toString(),
-                                                  );
-                                                } else {
-                                                  await action_blocks
-                                                      .handleMyEnergyApiCallFailure(
-                                                    context,
-                                                    wwwAuthenticateHeader: (_model
-                                                            .checkoutPageURI
-                                                            ?.getHeader(
-                                                                'www-authenticate') ??
-                                                        ''),
-                                                    httpStatusCode: (_model
-                                                            .checkoutPageURI
-                                                            ?.statusCode ??
-                                                        200),
-                                                  );
-                                                }
+                                                      if (_model
+                                                              .checkoutPageURI !=
+                                                          null) {
+                                                        await actions
+                                                            .navigateToExternalURI(
+                                                          CreateStripeCheckoutSessionCall
+                                                              .checkoutPageURI(
+                                                            (_model.checkoutPageURI
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                          ).toString(),
+                                                        );
+                                                      } else {
+                                                        await action_blocks
+                                                            .handleMyEnergyApiCallFailure(
+                                                          context,
+                                                          wwwAuthenticateHeader: (_model
+                                                                  .checkoutPageURI
+                                                                  ?.getHeader(
+                                                                      'www-authenticate') ??
+                                                              ''),
+                                                          httpStatusCode: (_model
+                                                                  .checkoutPageURI
+                                                                  ?.statusCode ??
+                                                              200),
+                                                        );
+                                                      }
 
-                                                safeSetState(() {});
-                                              },
+                                                      safeSetState(() {});
+                                                    },
                                               text: 'Setup Payment with Stripe',
                                               options: FFButtonOptions(
                                                 height: 40.0,

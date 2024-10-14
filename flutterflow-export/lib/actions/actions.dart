@@ -45,6 +45,7 @@ Future handleMyEnergyApiCallFailure(
 }
 
 Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
+  String? userToken;
   ApiCallResponse? getAccountsResponse;
   ApiCallResponse? getMonthlyUsageResponse;
   List<AccountStruct>? accounts;
@@ -52,22 +53,17 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   CustomerStruct? customerToDataTypeResponse;
   String? getHostnameResponse;
 
+  userToken = await actions.activeUserToken();
   await Future.wait([
     Future(() async {
       // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
       getAccountsResponse = await GetCustomersAccountsCall.call(
-        bearerToken: FFAppState().impersonationToken != null &&
-                FFAppState().impersonationToken != ''
-            ? FFAppState().impersonationToken
-            : currentJwtToken,
+        bearerToken: userToken,
       );
     }),
     Future(() async {
       getMonthlyUsageResponse = await GetMonthlyUsageCall.call(
-        bearerToken: FFAppState().impersonationToken != null &&
-                FFAppState().impersonationToken != ''
-            ? FFAppState().impersonationToken
-            : currentJwtToken,
+        bearerToken: userToken,
       );
     }),
   ]);
@@ -227,4 +223,23 @@ Future ceproUserOnly(BuildContext context) async {
   }
 
   context.pushNamed('HomePage');
+}
+
+Future checkAndBlockWriteableAPICall(BuildContext context) async {
+  if (FFAppState().impersonationToken == null ||
+      FFAppState().impersonationToken == '') {
+    return;
+  }
+
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        'Blocked write API call in Impersonation mode.',
+        style: TextStyle(),
+      ),
+      duration: Duration(milliseconds: 4000),
+      backgroundColor: FlutterFlowTheme.of(context).secondary,
+    ),
+  );
+  return;
 }

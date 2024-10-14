@@ -14,8 +14,6 @@ export '/pages/reset_password_page/reset_password_page_widget.dart'
     show ResetPasswordPageWidget;
 export '/expanded_menu/expanded_menu_widget.dart' show ExpandedMenuWidget;
 export '/pages/admin_payment/admin_payment_widget.dart' show AdminPaymentWidget;
-export '/pages/my_energy_page_old/my_energy_page_old_widget.dart'
-    show MyEnergyPageOldWidget;
 export '/pages/my_energy_page/my_energy_page_widget.dart'
     show MyEnergyPageWidget;
 export '/pages/impersonate_user/impersonate_user_widget.dart'

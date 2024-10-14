@@ -67,6 +67,7 @@ dependencies:
   sign_in_with_apple_platform_interface: 1.0.0
   sign_in_with_apple_web: 1.0.1
   sqflite: 2.2.6
+  stop_watch_timer: 3.0.2
   storage_client: 1.5.4
   supabase: 1.11.11
   supabase_flutter: 1.10.24

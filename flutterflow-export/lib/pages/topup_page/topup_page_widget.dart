@@ -594,6 +594,9 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                     0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
+                                                            await action_blocks
+                                                                .checkAndBlockWriteableAPICall(
+                                                                    context);
                                                             _model.updateTopupPreferenceOutput =
                                                                 await UpdateTopupPreferencesCall
                                                                     .call(
