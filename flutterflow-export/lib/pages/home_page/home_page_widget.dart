@@ -9,6 +9,7 @@ import '/components/welcome_box/welcome_box_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
@@ -98,6 +99,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         ?.signedDate !=
                     '');
         safeSetState(() {});
+        // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
+        if (!(FFAppState().monthlyUsage.isNotEmpty) ||
+            !(FFAppState().monthlyCosts.isNotEmpty) ||
+            (FFAppState().tariffs == null)) {
+          // GetUsageInBackground
+          await action_blocks.getTariffsCostsUsage(context);
+          return;
+        } else {
+          return;
+        }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -111,6 +122,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             backgroundColor: FlutterFlowTheme.of(context).secondary,
           ),
         );
+        return;
       }
     });
 

@@ -330,3 +330,54 @@ Future openSolarContract(BuildContext context) async {
     );
   }
 }
+
+Future<bool> getTariffsCostsUsage(BuildContext context) async {
+  String? userToken;
+  ApiCallResponse? getMonthlyCostResponse;
+  ApiCallResponse? getTariffsResponse;
+  ApiCallResponse? getMonthlyUsageResponse;
+  List<MonthlyCostStruct>? monthlyCostsTyped;
+  TariffsStruct? tariffsTyped;
+  List<MonthlyUsageStruct>? monthlyUsageTyped;
+
+  userToken = await actions.activeUserToken();
+  await Future.wait([
+    Future(() async {
+      getMonthlyCostResponse = await GetMonthlyCostCall.call(
+        bearerToken: userToken,
+      );
+    }),
+    Future(() async {
+      getTariffsResponse = await GetTariffsCall.call(
+        bearerToken: userToken,
+      );
+    }),
+    Future(() async {
+      getMonthlyUsageResponse = await GetMonthlyUsageCall.call(
+        bearerToken: userToken,
+      );
+    }),
+  ]);
+  if ((getMonthlyCostResponse?.succeeded ?? true) &&
+      (getTariffsResponse?.succeeded ?? true) &&
+      (getMonthlyUsageResponse?.succeeded ?? true)) {
+    await Future.delayed(const Duration(milliseconds: 500));
+    monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
+      (getMonthlyCostResponse?.jsonBody ?? ''),
+    );
+    tariffsTyped = await actions.tariffsJSONToDataType(
+      (getTariffsResponse?.jsonBody ?? ''),
+    );
+    monthlyUsageTyped = await actions.monthlyUsageJSONToDataType(
+      (getMonthlyUsageResponse?.jsonBody ?? ''),
+    );
+    FFAppState().tariffs = tariffsTyped!;
+    FFAppState().monthlyCosts =
+        monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
+    FFAppState().monthlyUsage =
+        monthlyUsageTyped!.toList().cast<MonthlyUsageStruct>();
+    return true;
+  } else {
+    return false;
+  }
+}

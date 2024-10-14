@@ -2,13 +2,13 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'monthly_consumption_widget.dart' show MonthlyConsumptionWidget;
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'monthly_usage_widget.dart' show MonthlyUsageWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class MonthlyConsumptionModel
-    extends FlutterFlowModel<MonthlyConsumptionWidget> {
+class MonthlyUsageModel extends FlutterFlowModel<MonthlyUsageWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for PaginatedDataTable widget.

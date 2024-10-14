@@ -1,15 +1,11 @@
-import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
-import '/components/monthly_consumption/monthly_consumption_widget.dart';
 import '/components/monthly_costs/monthly_costs_widget.dart';
+import '/components/monthly_usage/monthly_usage_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -37,54 +33,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userToken = await actions.activeUserToken();
-      await Future.wait([
-        Future(() async {
-          _model.getMonthlyCostResponse = await GetMonthlyCostCall.call(
-            bearerToken: _model.userToken,
-          );
-        }),
-        Future(() async {
-          _model.getTariffsResponse = await GetTariffsCall.call(
-            bearerToken: _model.userToken,
-          );
-        }),
-        Future(() async {
-          _model.getMonthlyUsageResponse = await GetMonthlyUsageCall.call(
-            bearerToken: _model.userToken,
-          );
-        }),
-      ]);
-      if ((_model.getMonthlyCostResponse?.succeeded ?? true) &&
-          (_model.getTariffsResponse?.succeeded ?? true) &&
-          (_model.getMonthlyUsageResponse?.succeeded ?? true)) {
-        await Future.delayed(const Duration(milliseconds: 500));
-        _model.monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
-          (_model.getMonthlyCostResponse?.jsonBody ?? ''),
-        );
-        _model.tariffsTyped = await actions.tariffsJSONToDataType(
-          (_model.getTariffsResponse?.jsonBody ?? ''),
-        );
-        _model.monthlyUsageTyped = await actions.monthlyUsageJSONToDataType(
-          (_model.getMonthlyUsageResponse?.jsonBody ?? ''),
-        );
-        FFAppState().tariffs = _model.tariffsTyped!;
-        FFAppState().monthlyCosts =
-            _model.monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
-        FFAppState().monthlyUsage =
-            _model.monthlyUsageTyped!.toList().cast<MonthlyUsageStruct>();
-        safeSetState(() {});
-        return;
-      } else {
-        await action_blocks.handleMyEnergyApiCallFailure(
-          context,
-          wwwAuthenticateHeader:
-              (_model.getMonthlyCostResponse?.getHeader('www-authenticate') ??
-                  ''),
-          httpStatusCode: (_model.getMonthlyCostResponse?.statusCode ?? 200),
-        );
-        return;
-      }
+      await action_blocks.getTariffsCostsUsage(context);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -272,39 +221,16 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                   ],
                                 ),
                               ),
-                              if (FFAppState().monthlyCosts.isNotEmpty)
-                                wrapWithModel(
-                                  model: _model.monthlyCostsModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: MonthlyCostsWidget(
-                                    monthlyCosts: FFAppState().monthlyCosts,
-                                    tariffs: FFAppState().tariffs,
-                                  ),
-                                ),
-                              if (!(FFAppState().monthlyCosts.isNotEmpty))
-                                Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  child: custom_widgets.LoadingSpinner(
-                                    width: 100.0,
-                                    height: 100.0,
-                                  ),
-                                ),
-                              if (FFAppState().monthlyUsage.isNotEmpty)
-                                wrapWithModel(
-                                  model: _model.monthlyConsumptionModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: MonthlyConsumptionWidget(),
-                                ),
-                              if (!(FFAppState().monthlyUsage.isNotEmpty))
-                                Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  child: custom_widgets.LoadingSpinner(
-                                    width: 100.0,
-                                    height: 100.0,
-                                  ),
-                                ),
+                              wrapWithModel(
+                                model: _model.monthlyCostsModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: MonthlyCostsWidget(),
+                              ),
+                              wrapWithModel(
+                                model: _model.monthlyUsageModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: MonthlyUsageWidget(),
+                              ),
                             ],
                           ),
                         ),

@@ -2,22 +2,22 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'monthly_consumption_model.dart';
-export 'monthly_consumption_model.dart';
+import 'monthly_usage_model.dart';
+export 'monthly_usage_model.dart';
 
-class MonthlyConsumptionWidget extends StatefulWidget {
-  const MonthlyConsumptionWidget({super.key});
+class MonthlyUsageWidget extends StatefulWidget {
+  const MonthlyUsageWidget({super.key});
 
   @override
-  State<MonthlyConsumptionWidget> createState() =>
-      _MonthlyConsumptionWidgetState();
+  State<MonthlyUsageWidget> createState() => _MonthlyUsageWidgetState();
 }
 
-class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
-  late MonthlyConsumptionModel _model;
+class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
+  late MonthlyUsageModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -28,7 +28,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => MonthlyConsumptionModel());
+    _model = createModel(context, () => MonthlyUsageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -44,46 +44,53 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Visibility(
-      visible: (FFAppState().monthlyUsage.isNotEmpty) == true,
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-        child: Container(
-          height: 675.0,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15.0),
-            border: Border.all(
-              color: FlutterFlowTheme.of(context).primary,
-              width: 1.0,
-            ),
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+      child: Container(
+        height: 675.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          border: Border.all(
+            color: FlutterFlowTheme.of(context).primary,
+            width: 1.0,
           ),
-          child: Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
-                      child: Text(
-                        'Usage',
-                        style: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: FlutterFlowTheme.of(context)
-                                  .headlineMediumFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .headlineMediumFamily),
-                            ),
-                      ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                    child: Text(
+                      'Usage',
+                      style:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .headlineMediumFamily),
+                              ),
                     ),
-                  ],
+                  ),
+                ],
+              ),
+              if (!(FFAppState().monthlyUsage.isNotEmpty))
+                Container(
+                  width: 100.0,
+                  height: 100.0,
+                  child: custom_widgets.LoadingSpinner(
+                    width: 100.0,
+                    height: 100.0,
+                  ),
                 ),
+              if (FFAppState().monthlyUsage.isNotEmpty)
                 Expanded(
                   child: Builder(
                     builder: (context) {
@@ -233,8 +240,7 @@ class _MonthlyConsumptionWidgetState extends State<MonthlyConsumptionWidget> {
                     },
                   ),
                 ),
-              ],
-            ),
+            ],
           ),
         ),
       ),
