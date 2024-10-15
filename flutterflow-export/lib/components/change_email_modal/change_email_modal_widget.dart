@@ -1,8 +1,10 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -221,13 +223,56 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           FFButtonWidget(
-                            onPressed:
-                                (FFAppState().impersonationToken != null &&
-                                        FFAppState().impersonationToken != '')
-                                    ? null
-                                    : () {
-                                        print('Button pressed ...');
-                                      },
+                            onPressed: (FFAppState().impersonationToken !=
+                                        null &&
+                                    FFAppState().impersonationToken != '')
+                                ? null
+                                : () async {
+                                    var _shouldSetState = false;
+                                    if (_model.emailFieldTextController.text !=
+                                            null &&
+                                        _model.emailFieldTextController.text !=
+                                            '') {
+                                      _model.updateEmailResult =
+                                          await actions.updateUserEmail(
+                                        _model.emailFieldTextController.text,
+                                      );
+                                      _shouldSetState = true;
+                                      if (_model.updateEmailResult?.success ==
+                                          true) {
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
+                                        return;
+                                      }
+
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            _model.updateEmailResult!
+                                                .errorMessage,
+                                            style: TextStyle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondary,
+                                        ),
+                                      );
+                                      if (_shouldSetState) safeSetState(() {});
+                                      return;
+                                    } else {
+                                      if (_shouldSetState) safeSetState(() {});
+                                      return;
+                                    }
+
+                                    if (_shouldSetState) safeSetState(() {});
+                                  },
                             text: 'Change Email',
                             options: FFButtonOptions(
                               padding: EdgeInsets.all(24.0),

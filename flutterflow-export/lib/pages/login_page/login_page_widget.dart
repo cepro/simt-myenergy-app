@@ -605,7 +605,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       context.pushNamed(
-                                                          'forgotPasswordPage');
+                                                          'ForgotPasswordPage');
                                                     },
                                                     child: Text(
                                                       'Forgot Password?',

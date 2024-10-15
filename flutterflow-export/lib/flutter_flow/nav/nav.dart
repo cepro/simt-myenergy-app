@@ -117,7 +117,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : PaymentsPageWidget(),
         ),
         FFRoute(
-          name: 'forgotPasswordPage',
+          name: 'ForgotPasswordPage',
           path: '/forgotPassword',
           builder: (context, params) => ForgotPasswordPageWidget(),
         ),
@@ -157,7 +157,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SysInfoPageWidget(),
         ),
         FFRoute(
-          name: 'resetPasswordPage',
+          name: 'ResetPasswordPage',
           path: '/resetPassword',
           requireAuth: true,
           builder: (context, params) => ResetPasswordPageWidget(),
