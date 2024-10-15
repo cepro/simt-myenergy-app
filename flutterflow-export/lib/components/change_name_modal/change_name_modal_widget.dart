@@ -133,6 +133,19 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                         ],
                       ),
                     ),
+                    if (_model.showError)
+                      Text(
+                        'Change name failed. Please contact support to resolve this.',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).error,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
@@ -232,6 +245,8 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                                     var _shouldSetState = false;
                                     await action_blocks
                                         .checkAndBlockWriteableAPICall(context);
+                                    _model.showError = false;
+                                    safeSetState(() {});
                                     _model.updateCustomerFullnameResponse =
                                         await UpdateCustomerFullnameCopyCall
                                             .call(
@@ -254,24 +269,8 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                                       if (_shouldSetState) safeSetState(() {});
                                       return;
                                     } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Failed!',
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
+                                      _model.showError = true;
+                                      safeSetState(() {});
                                       if (_shouldSetState) safeSetState(() {});
                                       return;
                                     }

@@ -76,10 +76,7 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                       ),
                 ),
                 Text(
-                  valueOrDefault<String>(
-                    widget!.value,
-                    'unknown',
-                  ),
+                  widget!.value!,
                   style: FlutterFlowTheme.of(context).bodyLarge.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyLargeFamily,

@@ -159,6 +159,32 @@ class _ChangePhoneNumberModalWidgetState
                               ),
                         ),
                       ),
+                    if (_model.showUpdateError)
+                      Text(
+                        'Update number failed: ${_model.updatePhoneNumberResult?.errorMessage}',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).error,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                    if (_model.showVerifyError)
+                      Text(
+                        'Verify OTP failed: ${_model.verifyUserPhoneResult?.errorMessage}',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).error,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
                     if (!_model.verifyCode)
                       Padding(
                         padding:
@@ -415,6 +441,9 @@ class _ChangePhoneNumberModalWidgetState
                                 ? null
                                 : () async {
                                     var _shouldSetState = false;
+                                    _model.showUpdateError = false;
+                                    _model.showVerifyError = false;
+                                    safeSetState(() {});
                                     if (_model.verifyCode) {
                                       if (_model.verifyCodeFieldTextController
                                                   .text !=
@@ -442,25 +471,8 @@ class _ChangePhoneNumberModalWidgetState
                                             safeSetState(() {});
                                           return;
                                         } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                _model.verifyUserPhoneResult!
-                                                    .errorMessage,
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
+                                          _model.showVerifyError = true;
+                                          safeSetState(() {});
                                           if (_shouldSetState)
                                             safeSetState(() {});
                                           return;
@@ -497,25 +509,8 @@ class _ChangePhoneNumberModalWidgetState
                                             safeSetState(() {});
                                           return;
                                         } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                _model.updatePhoneNumberResult!
-                                                    .errorMessage,
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
+                                          _model.showUpdateError = true;
+                                          safeSetState(() {});
                                           if (_shouldSetState)
                                             safeSetState(() {});
                                           return;

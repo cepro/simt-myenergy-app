@@ -12,6 +12,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ChangeNameModalModel extends FlutterFlowModel<ChangeNameModalWidget> {
+  ///  Local state fields for this component.
+
+  bool showError = false;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for NameField widget.

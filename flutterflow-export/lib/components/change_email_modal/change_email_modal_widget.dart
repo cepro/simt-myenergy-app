@@ -133,6 +133,19 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                         ],
                       ),
                     ),
+                    if (_model.showError)
+                      Text(
+                        'Change email failed: ${_model.updateEmailResult?.errorMessage}',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context).error,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
@@ -234,6 +247,8 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                             null &&
                                         _model.emailFieldTextController.text !=
                                             '') {
+                                      _model.showError = false;
+                                      safeSetState(() {});
                                       _model.updateEmailResult =
                                           await actions.updateUserEmail(
                                         _model.emailFieldTextController.text
@@ -262,25 +277,8 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                           safeSetState(() {});
                                         return;
                                       } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              _model.updateEmailResult!
-                                                  .errorMessage,
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
+                                        _model.showError = true;
+                                        safeSetState(() {});
                                         if (_shouldSetState)
                                           safeSetState(() {});
                                         return;

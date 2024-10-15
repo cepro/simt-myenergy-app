@@ -19,6 +19,10 @@ class ChangePhoneNumberModalModel
 
   bool verifyCode = false;
 
+  bool showUpdateError = false;
+
+  bool showVerifyError = false;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for PhoneNumberField widget.
