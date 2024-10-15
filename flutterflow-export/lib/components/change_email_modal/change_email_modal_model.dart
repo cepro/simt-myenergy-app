@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/email_change_sent_modal/email_change_sent_modal_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';

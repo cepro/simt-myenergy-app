@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/email_change_sent_modal/email_change_sent_modal_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -235,37 +236,55 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                             '') {
                                       _model.updateEmailResult =
                                           await actions.updateUserEmail(
-                                        _model.emailFieldTextController.text,
+                                        _model.emailFieldTextController.text
+                                            .trim(),
                                       );
                                       _shouldSetState = true;
                                       if (_model.updateEmailResult?.success ==
                                           true) {
+                                        Navigator.pop(context);
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor: Colors.transparent,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child:
+                                                  EmailChangeSentModalWidget(),
+                                            );
+                                          },
+                                        ).then((value) => safeSetState(() {}));
+
+                                        if (_shouldSetState)
+                                          safeSetState(() {});
+                                        return;
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              _model.updateEmailResult!
+                                                  .errorMessage,
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                          ),
+                                        );
                                         if (_shouldSetState)
                                           safeSetState(() {});
                                         return;
                                       }
-
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            _model.updateEmailResult!
-                                                .errorMessage,
-                                            style: TextStyle(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                            ),
-                                          ),
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondary,
-                                        ),
-                                      );
-                                      if (_shouldSetState) safeSetState(() {});
-                                      return;
                                     } else {
                                       if (_shouldSetState) safeSetState(() {});
                                       return;
