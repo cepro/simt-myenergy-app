@@ -1,0 +1,27 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'change_email_modal_widget.dart' show ChangeEmailModalWidget;
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+class ChangeEmailModalModel extends FlutterFlowModel<ChangeEmailModalWidget> {
+  ///  State fields for stateful widgets in this component.
+
+  // State field(s) for EmailField widget.
+  FocusNode? emailFieldFocusNode;
+  TextEditingController? emailFieldTextController;
+  String? Function(BuildContext, String?)? emailFieldTextControllerValidator;
+
+  @override
+  void initState(BuildContext context) {}
+
+  @override
+  void dispose() {
+    emailFieldFocusNode?.dispose();
+    emailFieldTextController?.dispose();
+  }
+}

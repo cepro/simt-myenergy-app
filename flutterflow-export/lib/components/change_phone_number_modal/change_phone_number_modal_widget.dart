@@ -108,7 +108,7 @@ class _ChangePhoneNumberModalWidgetState
                                 Text(
                                   _model.verifyCode
                                       ? 'Verify OTP'
-                                      : 'Change your phone number',
+                                      : 'Change your mobile number',
                                   style: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
@@ -172,7 +172,7 @@ class _ChangePhoneNumberModalWidgetState
                             obscureText: false,
                             decoration: InputDecoration(
                               isDense: true,
-                              labelText: 'New phone number',
+                              labelText: 'New mobile number',
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(
@@ -531,7 +531,7 @@ class _ChangePhoneNumberModalWidgetState
                                   },
                             text: _model.verifyCode
                                 ? 'Verify Code'
-                                : 'Update Phone Number',
+                                : 'Update Mobile Number',
                             options: FFButtonOptions(
                               padding: EdgeInsets.all(24.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(

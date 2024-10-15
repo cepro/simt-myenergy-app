@@ -1,6 +1,8 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/change_email_modal/change_email_modal_widget.dart';
+import '/components/change_name_modal/change_name_modal_widget.dart';
 import '/components/change_phone_number_modal/change_phone_number_modal_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
@@ -185,16 +187,46 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 20.0),
-                                        child: wrapWithModel(
-                                          model: _model.userProfileRowModel1,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: UserProfileRowWidget(
-                                            label: 'Name',
-                                            value: FFAppState().customer.name,
-                                            linkLabel: 'Change name',
-                                            icon: Icon(
-                                              Icons.label,
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () =>
+                                                      FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        ChangeNameModalWidget(),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                          child: wrapWithModel(
+                                            model: _model.userProfileRowModel1,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: UserProfileRowWidget(
+                                              label: 'Name',
+                                              value: FFAppState().customer.name,
+                                              linkLabel: 'Change name',
+                                              icon: Icon(
+                                                Icons.label,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -202,24 +234,54 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 20.0),
-                                        child: wrapWithModel(
-                                          model: _model.userProfileRowModel2,
-                                          updateCallback: () =>
-                                              safeSetState(() {}),
-                                          child: UserProfileRowWidget(
-                                            label: 'Email Address',
-                                            value: FFAppState()
-                                                            .impersonationEmail !=
-                                                        null &&
-                                                    FFAppState()
-                                                            .impersonationEmail !=
-                                                        ''
-                                                ? FFAppState()
-                                                    .impersonationEmail
-                                                : currentUserEmail,
-                                            linkLabel: 'Change email address',
-                                            icon: Icon(
-                                              Icons.email,
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () =>
+                                                      FocusScope.of(context)
+                                                          .unfocus(),
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        ChangeEmailModalWidget(),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          },
+                                          child: wrapWithModel(
+                                            model: _model.userProfileRowModel2,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: UserProfileRowWidget(
+                                              label: 'Email Address',
+                                              value: FFAppState()
+                                                              .impersonationEmail !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .impersonationEmail !=
+                                                          ''
+                                                  ? FFAppState()
+                                                      .impersonationEmail
+                                                  : currentUserEmail,
+                                              linkLabel: 'Change email address',
+                                              icon: Icon(
+                                                Icons.email,
+                                              ),
                                             ),
                                           ),
                                         ),

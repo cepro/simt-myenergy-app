@@ -309,6 +309,64 @@ class CustomerDetailsConfirmedCall {
   }
 }
 
+class UpdateCustomerEmailCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? email = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "newEmail": "${email}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update Customer Email',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/customer/email',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateCustomerFullnameCopyCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? fullname = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "fullname": "${fullname}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update Customer Fullname Copy',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/customer/fullname',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class UpdateTopupPreferencesCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
