@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'user_profile_page_widget.dart' show UserProfilePageWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -22,27 +23,7 @@ import 'package:provider/provider.dart';
 class UserProfilePageModel extends FlutterFlowModel<UserProfilePageWidget> {
   ///  Local state fields for this page.
 
-  String singleWalletBalance = 'unknown';
-
-  bool isOwner = false;
-
-  bool? inPrepayMode;
-
-  List<MonthlyCostStruct> monthlyCosts = [];
-  void addToMonthlyCosts(MonthlyCostStruct item) => monthlyCosts.add(item);
-  void removeFromMonthlyCosts(MonthlyCostStruct item) =>
-      monthlyCosts.remove(item);
-  void removeAtIndexFromMonthlyCosts(int index) => monthlyCosts.removeAt(index);
-  void insertAtIndexInMonthlyCosts(int index, MonthlyCostStruct item) =>
-      monthlyCosts.insert(index, item);
-  void updateMonthlyCostsAtIndex(
-          int index, Function(MonthlyCostStruct) updateFn) =>
-      monthlyCosts[index] = updateFn(monthlyCosts[index]);
-
-  TariffsStruct? tariffs;
-  void updateTariffsStruct(Function(TariffsStruct) updateFn) {
-    updateFn(tariffs ??= TariffsStruct());
-  }
+  bool detailsJustConfirmed = false;
 
   ///  State fields for stateful widgets in this page.
 

@@ -4,11 +4,17 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'onboard_progress_box_widget.dart' show OnboardProgressBoxWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class OnboardProgressBoxModel
     extends FlutterFlowModel<OnboardProgressBoxWidget> {
+  ///  Local state fields for this component.
+
+  int actionsDone = 0;
+
   ///  State fields for stateful widgets in this component.
 
   // Model for OnboardProgressRow component.

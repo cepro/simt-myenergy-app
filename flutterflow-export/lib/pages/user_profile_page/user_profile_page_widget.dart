@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -184,104 +185,94 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 20.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              enableDrag: false,
-                                              context: context,
-                                              builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () =>
-                                                      FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        ChangeNameModalWidget(),
-                                                  ),
-                                                );
-                                              },
-                                            ).then(
-                                                (value) => safeSetState(() {}));
-                                          },
-                                          child: wrapWithModel(
-                                            model: _model.userProfileRowModel1,
-                                            updateCallback: () =>
-                                                safeSetState(() {}),
-                                            child: UserProfileRowWidget(
-                                              label: 'Name',
-                                              value: FFAppState().customer.name,
-                                              linkLabel: 'Change name',
-                                              icon: Icon(
-                                                Icons.label,
-                                              ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () =>
+                                                    FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      ChangeNameModalWidget(),
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        },
+                                        child: wrapWithModel(
+                                          model: _model.userProfileRowModel1,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: UserProfileRowWidget(
+                                            label: 'Name',
+                                            value: FFAppState().customer.name,
+                                            linkLabel: 'Change name',
+                                            icon: Icon(
+                                              Icons.label,
                                             ),
                                           ),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 20.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              enableDrag: false,
-                                              context: context,
-                                              builder: (context) {
-                                                return GestureDetector(
-                                                  onTap: () =>
-                                                      FocusScope.of(context)
-                                                          .unfocus(),
-                                                  child: Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        ChangeEmailModalWidget(),
-                                                  ),
-                                                );
-                                              },
-                                            ).then(
-                                                (value) => safeSetState(() {}));
-                                          },
-                                          child: wrapWithModel(
-                                            model: _model.userProfileRowModel2,
-                                            updateCallback: () =>
-                                                safeSetState(() {}),
-                                            child: UserProfileRowWidget(
-                                              label: 'Email Address',
-                                              value: FFAppState()
-                                                              .impersonationEmail !=
-                                                          null &&
-                                                      FFAppState()
-                                                              .impersonationEmail !=
-                                                          ''
-                                                  ? FFAppState()
-                                                      .impersonationEmail
-                                                  : currentUserEmail,
-                                              linkLabel: 'Change email address',
-                                              icon: Icon(
-                                                Icons.email,
-                                              ),
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () =>
+                                                    FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      ChangeEmailModalWidget(),
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        },
+                                        child: wrapWithModel(
+                                          model: _model.userProfileRowModel2,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: UserProfileRowWidget(
+                                            label: 'Email Address',
+                                            value: FFAppState()
+                                                            .impersonationEmail !=
+                                                        null &&
+                                                    FFAppState()
+                                                            .impersonationEmail !=
+                                                        ''
+                                                ? FFAppState()
+                                                    .impersonationEmail
+                                                : currentUserEmail,
+                                            linkLabel: 'Change email address',
+                                            icon: Icon(
+                                              Icons.email,
                                             ),
                                           ),
                                         ),
@@ -328,115 +319,209 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                           ),
                                         ),
                                       ),
+                                      if (_model.detailsJustConfirmed)
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  70.0, 5.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Details confirmed. Thank you!',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleMediumFamily,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMediumFamily),
+                                                ),
+                                          ),
+                                        ),
                                       if (FFAppState()
                                               .customer
                                               .confirmedDetailsAt ==
                                           null)
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20.0, 20.0, 0.0, 0.0),
-                                          child: FFButtonWidget(
-                                            onPressed: (FFAppState()
-                                                            .impersonationToken !=
-                                                        null &&
-                                                    FFAppState()
-                                                            .impersonationToken !=
-                                                        '')
-                                                ? null
-                                                : () async {
-                                                    var _shouldSetState = false;
-                                                    await action_blocks
-                                                        .checkAndBlockWriteableAPICall(
-                                                            context);
-                                                    _model.customerDetailsConfirmedResponse =
-                                                        await CustomerDetailsConfirmedCall
-                                                            .call(
-                                                      bearerToken:
-                                                          currentJwtToken,
-                                                    );
-
-                                                    _shouldSetState = true;
-                                                    if ((_model
-                                                            .customerDetailsConfirmedResponse
-                                                            ?.succeeded ??
-                                                        true)) {
-                                                      FFAppState()
-                                                          .updateCustomerStruct(
-                                                        (e) => e
-                                                          ..confirmedDetailsAt =
-                                                              functions
-                                                                  .nowDateTime(),
-                                                      );
-                                                      safeSetState(() {});
-                                                      if (_shouldSetState)
-                                                        safeSetState(() {});
-                                                      return;
-                                                    } else {
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Failed to confirm details.  Please try again or report to support.',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                            ),
-                                                          ),
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondary,
-                                                        ),
-                                                      );
-                                                      if (_shouldSetState)
-                                                        safeSetState(() {});
-                                                      return;
-                                                    }
-
-                                                    if (_shouldSetState)
-                                                      safeSetState(() {});
-                                                  },
-                                            text: 'Confirm Details',
-                                            options: FFButtonOptions(
-                                              height: 40.0,
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      16.0, 0.0, 16.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                                      70.0, 0.0, 0.0, 0.0),
+                                              child: FFButtonWidget(
+                                                onPressed: (FFAppState()
+                                                                .impersonationToken !=
+                                                            null &&
+                                                        FFAppState()
+                                                                .impersonationToken !=
+                                                            '')
+                                                    ? null
+                                                    : () async {
+                                                        var _shouldSetState =
+                                                            false;
+                                                        await action_blocks
+                                                            .checkAndBlockWriteableAPICall(
+                                                                context);
+                                                        _model.customerDetailsConfirmedResponse =
+                                                            await CustomerDetailsConfirmedCall
+                                                                .call(
+                                                          bearerToken:
+                                                              currentJwtToken,
+                                                        );
+
+                                                        _shouldSetState = true;
+                                                        if ((_model
+                                                                .customerDetailsConfirmedResponse
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          FFAppState()
+                                                              .updateCustomerStruct(
+                                                            (e) => e
+                                                              ..confirmedDetailsAt =
+                                                                  functions
+                                                                      .nowDateTime(),
+                                                          );
+                                                          safeSetState(() {});
+                                                          _model.detailsJustConfirmed =
+                                                              true;
+                                                          safeSetState(() {});
+                                                          if (_shouldSetState)
+                                                            safeSetState(() {});
+                                                          return;
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Failed to confirm details.  Please try again or report to support.',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondary,
+                                                            ),
+                                                          );
+                                                          if (_shouldSetState)
+                                                            safeSetState(() {});
+                                                          return;
+                                                        }
+
+                                                        if (_shouldSetState)
+                                                          safeSetState(() {});
+                                                      },
+                                                text: 'Confirm Details',
+                                                options: FFButtonOptions(
+                                                  height: 40.0,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 0.0, 16.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .primary,
-                                              textStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily,
+                                                            color: Colors.white,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmallFamily),
+                                                          ),
+                                                  elevation: 0.0,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                              ),
+                                            ),
+                                            AlignedTooltip(
+                                              content: Padding(
+                                                padding: EdgeInsets.all(4.0),
+                                                child: Text(
+                                                  'Confirm your contract details above are correct. This is a one time action to ensure your initial details are correct.',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
                                                       .override(
                                                         fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleSmallFamily,
-                                                        color: Colors.white,
+                                                                .bodyLargeFamily,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .titleSmallFamily),
+                                                                    .bodyLargeFamily),
                                                       ),
-                                              elevation: 0.0,
+                                                ),
+                                              ),
+                                              offset: 4.0,
+                                              preferredDirection:
+                                                  AxisDirection.down,
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              elevation: 4.0,
+                                              tailBaseWidth: 24.0,
+                                              tailLength: 12.0,
+                                              waitDuration:
+                                                  Duration(milliseconds: 100),
+                                              showDuration:
+                                                  Duration(milliseconds: 1500),
+                                              triggerMode:
+                                                  TooltipTriggerMode.tap,
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        10.0, 0.0, 0.0, 0.0),
+                                                child: Icon(
+                                                  Icons.info_outline,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 30.0,
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                          ],
                                         ),
                                     ]
+                                        .divide(SizedBox(height: 35.0))
                                         .addToStart(SizedBox(height: 25.0))
                                         .addToEnd(SizedBox(height: 25.0)),
                                   ),
