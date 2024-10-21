@@ -146,12 +146,13 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                   Align(
                     alignment: AlignmentDirectional(1.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed:
-                          (FFAppState().customer.status == 'preonboarding')
-                              ? null
-                              : () async {
-                                  await widget.setSignEmbedHTML?.call();
-                                },
+                      onPressed: ((FFAppState().impersonationToken != null &&
+                                  FFAppState().impersonationToken != '') ||
+                              (FFAppState().customer.status == 'preonboarding'))
+                          ? null
+                          : () async {
+                              await widget.setSignEmbedHTML?.call();
+                            },
                       text: 'Sign',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
@@ -185,6 +186,8 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                         ),
                         borderRadius: BorderRadius.circular(12.0),
                         disabledColor: FlutterFlowTheme.of(context).lineColor,
+                        disabledTextColor:
+                            FlutterFlowTheme.of(context).primaryText,
                       ),
                     ),
                   ),

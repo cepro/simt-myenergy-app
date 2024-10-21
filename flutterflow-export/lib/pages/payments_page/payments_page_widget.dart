@@ -39,6 +39,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.loadHistoryFailure = false;
+      _model.loadingHistory = true;
       safeSetState(() {});
       _model.userToken = await actions.activeUserToken();
       await Future.wait([
@@ -72,6 +73,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
             bearerToken: _model.userToken,
           );
 
+          _model.loadingHistory = false;
+          safeSetState(() {});
           if ((_model.getPaymentsOutput?.succeeded ?? true)) {
             _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
               (_model.getPaymentsOutput?.jsonBody ?? ''),
@@ -193,21 +196,25 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        'Payments',
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMediumFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(FlutterFlowTheme
-                                                          .of(context)
-                                                      .headlineMediumFamily),
-                                            ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 30.0),
+                                        child: Text(
+                                          'Payments',
+                                          style: FlutterFlowTheme.of(context)
+                                              .headlineMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMediumFamily,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(FlutterFlowTheme
+                                                            .of(context)
+                                                        .headlineMediumFamily),
+                                              ),
+                                        ),
                                       ),
                                       Align(
                                         alignment:
@@ -219,94 +226,109 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 1.0,
+                                            ),
                                           ),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 20.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Payment History',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmallFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmallFamily),
-                                                        ),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(15.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 20.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Payment History',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .headlineSmall
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .headlineSmallFamily),
+                                                              ),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 15.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    () {
-                                                      if (_model
-                                                          .loadHistoryFailure) {
-                                                        return 'Failure occurred loading history ...';
-                                                      } else if (!(_model
-                                                          .payments
-                                                          .isNotEmpty)) {
-                                                        return 'Loading ...';
-                                                      } else if (_model.payments
-                                                              .length ==
-                                                          0) {
-                                                        return 'No payments';
-                                                      } else {
-                                                        return _model
-                                                            .payments.length
-                                                            .toString();
-                                                      }
-                                                    }(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          -1.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 15.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      () {
+                                                        if (_model
+                                                            .loadHistoryFailure) {
+                                                          return 'Failure occurred loading history ...';
+                                                        } else if (_model
+                                                            .loadingHistory) {
+                                                          return 'Loading ...';
+                                                        } else if (_model
+                                                                .payments
+                                                                .length ==
+                                                            0) {
+                                                          return 'No payments';
+                                                        } else {
+                                                          return _model
+                                                              .payments.length
+                                                              .toString();
+                                                        }
+                                                      }(),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              if (_model.payments.isNotEmpty)
-                                                wrapWithModel(
-                                                  model:
-                                                      _model.paymentsListModel,
-                                                  updateCallback: () =>
-                                                      safeSetState(() {}),
-                                                  child: PaymentsListWidget(
-                                                    payments: _model.payments,
+                                                if (_model.payments.isNotEmpty)
+                                                  wrapWithModel(
+                                                    model: _model
+                                                        .paymentsListModel,
+                                                    updateCallback: () =>
+                                                        safeSetState(() {}),
+                                                    child: PaymentsListWidget(
+                                                      payments: _model.payments,
+                                                    ),
                                                   ),
-                                                ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -320,16 +342,23 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
                                     constraints: BoxConstraints(
                                       maxWidth: 333.0,
                                     ),
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 3.0),
+                                      padding: EdgeInsets.all(15.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -541,62 +570,75 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
-                                          child: Text(
-                                            'Add a new payment method',
-                                            style: FlutterFlowTheme.of(context)
-                                                .headlineSmall
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineSmallFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(FlutterFlowTheme
-                                                              .of(context)
-                                                          .headlineSmallFamily),
-                                                ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(15.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(-1.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 20.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Add a new payment method',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineSmallFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmallFamily),
+                                                        ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 15.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until you contract for energy supply. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply in April. You will be notified by email 24 hours before any payments are taken.\n',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMediumFamily,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMediumFamily),
-                                                ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
-                                          child: Padding(
+                                          Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 20.0, 0.0, 0.0),
+                                                    0.0, 15.0, 0.0, 0.0),
+                                            child: Text(
+                                              'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until you contract for energy supply. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply in April. You will be notified by email 24 hours before any payments are taken.\n',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: ((FFAppState()
                                                                   .impersonationToken !=
@@ -693,11 +735,14 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 disabledColor:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,
+                                                disabledTextColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

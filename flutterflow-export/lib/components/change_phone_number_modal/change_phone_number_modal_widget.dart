@@ -36,7 +36,8 @@ class _ChangePhoneNumberModalWidgetState
     super.initState();
     _model = createModel(context, () => ChangePhoneNumberModalModel());
 
-    _model.phoneNumberFieldTextController ??= TextEditingController();
+    _model.phoneNumberFieldTextController ??=
+        TextEditingController(text: currentPhoneNumber);
     _model.phoneNumberFieldFocusNode ??= FocusNode();
 
     _model.verifyCodeFieldTextController ??= TextEditingController();
@@ -200,27 +201,27 @@ class _ChangePhoneNumberModalWidgetState
                               isDense: true,
                               labelText: 'New mobile number',
                               labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .labelLarge
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
+                                        .labelLargeFamily,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
+                                                .labelLargeFamily),
                                   ),
                               hintText: currentPhoneNumber,
                               hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .labelLarge
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
+                                        .labelLargeFamily,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
+                                                .labelLargeFamily),
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -255,15 +256,14 @@ class _ChangePhoneNumberModalWidgetState
                                   .primaryBackground,
                             ),
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .labelLarge
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  fontSize: 18.0,
+                                      .labelLargeFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                                          .labelLargeFamily),
                                 ),
                             cursorColor:
                                 FlutterFlowTheme.of(context).primaryText,
@@ -288,26 +288,26 @@ class _ChangePhoneNumberModalWidgetState
                               isDense: true,
                               labelText: 'OTP Code',
                               labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .labelLarge
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
+                                        .labelLargeFamily,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
+                                                .labelLargeFamily),
                                   ),
                               hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .labelLarge
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
+                                        .labelLargeFamily,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: GoogleFonts.asMap()
                                         .containsKey(
                                             FlutterFlowTheme.of(context)
-                                                .labelMediumFamily),
+                                                .labelLargeFamily),
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -342,15 +342,14 @@ class _ChangePhoneNumberModalWidgetState
                                   .primaryBackground,
                             ),
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .labelLarge
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  fontSize: 18.0,
+                                      .labelLargeFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily),
+                                          .labelLargeFamily),
                                 ),
                             cursorColor:
                                 FlutterFlowTheme.of(context).primaryText,

@@ -34,6 +34,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
 
   bool loadHistoryFailure = false;
 
+  bool loadingHistory = false;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - activeUserToken] action in PaymentsPage widget.
