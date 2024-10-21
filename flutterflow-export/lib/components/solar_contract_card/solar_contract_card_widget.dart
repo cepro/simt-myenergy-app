@@ -54,6 +54,8 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
       child: Container(
@@ -147,9 +149,12 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                   Align(
                     alignment: AlignmentDirectional(1.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () async {
-                        await widget.setSignEmbedHTML?.call();
-                      },
+                      onPressed:
+                          (FFAppState().customer.status == 'preonboarding')
+                              ? null
+                              : () async {
+                                  await widget.setSignEmbedHTML?.call();
+                                },
                       text: 'Sign',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
@@ -157,7 +162,7 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                       ),
                       options: FFButtonOptions(
                         width: 130.0,
-                        height: 36.0,
+                        height: 40.0,
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
@@ -176,12 +181,15 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                                   FlutterFlowTheme.of(context)
                                       .titleSmallFamily),
                             ),
-                        elevation: 0.0,
+                        elevation: 3.0,
                         borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primary,
-                          width: 2.0,
+                          color: Colors.transparent,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(12.0),
+                        borderRadius: BorderRadius.circular(8.0),
+                        disabledColor: FlutterFlowTheme.of(context).lineColor,
+                        disabledTextColor:
+                            FlutterFlowTheme.of(context).primaryText,
                       ),
                     ),
                   ),

@@ -56,7 +56,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [

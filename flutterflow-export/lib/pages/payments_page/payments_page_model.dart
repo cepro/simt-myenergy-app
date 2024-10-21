@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'payments_page_widget.dart' show PaymentsPageWidget;
 import 'package:flutter/material.dart';
@@ -35,6 +36,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   bool loadHistoryFailure = false;
 
   bool loadingHistory = false;
+
+  bool loadingMethod = false;
 
   ///  State fields for stateful widgets in this page.
 

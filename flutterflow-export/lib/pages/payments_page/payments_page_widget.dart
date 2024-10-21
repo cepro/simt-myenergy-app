@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -40,6 +41,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.loadHistoryFailure = false;
       _model.loadingHistory = true;
+      _model.loadingMethod = true;
       safeSetState(() {});
       _model.userToken = await actions.activeUserToken();
       await Future.wait([
@@ -50,6 +52,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
             esco: FFAppState().esco?.name,
           );
 
+          _model.loadingMethod = false;
+          safeSetState(() {});
           if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
             _model.paymentMethods =
                 (_model.getPaymentMethodsOutput?.jsonBody ?? '');
@@ -194,113 +198,119 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 30.0),
-                                        child: Text(
-                                          'Payments',
-                                          style: FlutterFlowTheme.of(context)
-                                              .headlineMedium
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMediumFamily,
-                                                letterSpacing: 0.0,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(FlutterFlowTheme
-                                                            .of(context)
-                                                        .headlineMediumFamily),
-                                              ),
-                                        ),
-                                      ),
                                       Align(
                                         alignment:
                                             AlignmentDirectional(-1.0, 0.0),
-                                        child: Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(15.0),
-                                            border: Border.all(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 30.0),
+                                          child: Text(
+                                            'Payments',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMediumFamily,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineMediumFamily),
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      if (_model.payments.isNotEmpty)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.0, 0.0),
+                                          child: Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              width: 1.0,
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
                                             ),
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(15.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          -1.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 20.0,
-                                                                0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(20.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, 0.0),
                                                     child: Text(
                                                       'Payment History',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .headlineSmall
+                                                              .headlineMedium
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .headlineSmallFamily,
+                                                                    .headlineMediumFamily,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .headlineSmallFamily),
+                                                                            .headlineMediumFamily),
                                                               ),
                                                     ),
                                                   ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          -1.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 15.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      () {
-                                                        if (_model
-                                                            .loadHistoryFailure) {
-                                                          return 'Failure occurred loading history ...';
-                                                        } else if (_model
-                                                            .loadingHistory) {
-                                                          return 'Loading ...';
-                                                        } else if (_model
-                                                                .payments
-                                                                .length ==
-                                                            0) {
-                                                          return 'No payments';
-                                                        } else {
-                                                          return _model
-                                                              .payments.length
-                                                              .toString();
-                                                        }
-                                                      }(),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
+                                                  if (false)
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    15.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          () {
+                                                            if (_model
+                                                                .loadHistoryFailure) {
+                                                              return 'Failure occurred loading history ...';
+                                                            } else if (_model
+                                                                .loadingHistory) {
+                                                              return 'Loading ...';
+                                                            } else if (_model
+                                                                    .payments
+                                                                    .length ==
+                                                                0) {
+                                                              return 'No payments';
+                                                            } else {
+                                                              return _model
+                                                                  .payments
+                                                                  .length
+                                                                  .toString();
+                                                            }
+                                                          }(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily: FlutterFlowTheme.of(
@@ -314,31 +324,43 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyMediumFamily),
                                                               ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ),
-                                                if (_model.payments.isNotEmpty)
-                                                  wrapWithModel(
-                                                    model: _model
-                                                        .paymentsListModel,
-                                                    updateCallback: () =>
-                                                        safeSetState(() {}),
-                                                    child: PaymentsListWidget(
-                                                      payments: _model.payments,
+                                                  if (_model
+                                                      .payments.isNotEmpty)
+                                                    wrapWithModel(
+                                                      model: _model
+                                                          .paymentsListModel,
+                                                      updateCallback: () =>
+                                                          safeSetState(() {}),
+                                                      child: PaymentsListWidget(
+                                                        payments:
+                                                            _model.payments,
+                                                      ),
                                                     ),
-                                                  ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
+                                      if (_model.loadingHistory)
+                                        Container(
+                                          width: 100.0,
+                                          height: 100.0,
+                                          child: custom_widgets.LoadingSpinner(
+                                            width: 100.0,
+                                            height: 100.0,
+                                          ),
+                                        ),
                                     ],
                                   ),
                                 ),
                               ),
-                              if (functions.arrayLengthOrNegativeOneIfNotArray(
-                                      _model.paymentMethods) >
-                                  0)
+                              if ((functions.arrayLengthOrNegativeOneIfNotArray(
+                                          _model.paymentMethods) >
+                                      0) &&
+                                  !_model.loadingMethod)
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
@@ -358,7 +380,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(15.0),
+                                      padding: EdgeInsets.all(20.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -367,24 +389,24 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 20.0, 0.0, 30.0),
+                                                    0.0, 0.0, 0.0, 15.0),
                                             child: Text(
                                               'Payment method',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .headlineSmall
+                                                      .headlineMedium
                                                       .override(
                                                         fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .headlineSmallFamily,
+                                                                .headlineMediumFamily,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .headlineSmallFamily),
+                                                                    .headlineMediumFamily),
                                                       ),
                                             ),
                                           ),
@@ -513,7 +535,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                       },
                                                 text: 'Remove Payment Method',
                                                 options: FFButtonOptions(
-                                                  height: 30.0,
+                                                  height: 40.0,
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
@@ -559,9 +581,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     ),
                                   ),
                                 ),
-                              if (functions.arrayLengthOrNegativeOneIfNotArray(
-                                      _model.paymentMethods) ==
-                                  0)
+                              if ((functions.arrayLengthOrNegativeOneIfNotArray(
+                                          _model.paymentMethods) ==
+                                      0) &&
+                                  !_model.loadingMethod)
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
@@ -578,36 +601,31 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(15.0),
+                                      padding: EdgeInsets.all(20.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Align(
                                             alignment:
                                                 AlignmentDirectional(-1.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 20.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Add a new payment method',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmallFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineSmallFamily),
-                                                        ),
-                                              ),
+                                            child: Text(
+                                              'Add a new payment method',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMediumFamily),
+                                                      ),
                                             ),
                                           ),
                                           Padding(
@@ -744,6 +762,15 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         ],
                                       ),
                                     ),
+                                  ),
+                                ),
+                              if (_model.loadingMethod)
+                                Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: custom_widgets.LoadingSpinner(
+                                    width: 100.0,
+                                    height: 100.0,
                                   ),
                                 ),
                             ],

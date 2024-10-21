@@ -124,10 +124,8 @@ class _SupplyContractSignOrViewModalWidgetState
                   ),
                   Stack(
                     children: [
-                      if ((_model.docusealEmbedHTML == null ||
-                              _model.docusealEmbedHTML == '') &&
-                          (widget!.contract?.id != null &&
-                              widget!.contract?.id != ''))
+                      if (_model.docusealEmbedHTML == null ||
+                          _model.docusealEmbedHTML == '')
                         wrapWithModel(
                           model: _model.supplyContractCardModel,
                           updateCallback: () => safeSetState(() {}),

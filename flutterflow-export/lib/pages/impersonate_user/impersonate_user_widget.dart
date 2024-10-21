@@ -195,6 +195,31 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                               Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
+                                                  if (_model.errorMessage !=
+                                                          null &&
+                                                      _model.errorMessage != '')
+                                                    Text(
+                                                      _model.errorMessage!,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily),
+                                                              ),
+                                                    ),
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
@@ -341,6 +366,8 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                     .text !=
                                                                 '') {
                                                           _model.loading = true;
+                                                          _model.errorMessage =
+                                                              null;
                                                           safeSetState(() {});
                                                           _model.generateTokenResponse =
                                                               await GenerateTokenForImpersonateCall
@@ -408,30 +435,10 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                             } else {
                                                               _model.loading =
                                                                   false;
+                                                              _model.errorMessage =
+                                                                  '';
                                                               safeSetState(
                                                                   () {});
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    'Failed to fetch data for impersonated user',
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                                  ),
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondary,
-                                                                ),
-                                                              );
                                                               if (_shouldSetState)
                                                                 safeSetState(
                                                                     () {});
@@ -440,29 +447,14 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                           } else {
                                                             _model.loading =
                                                                 false;
+                                                            _model.errorMessage =
+                                                                getJsonField(
+                                                              (_model.generateTokenResponse
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                              r'''$.error''',
+                                                            ).toString();
                                                             safeSetState(() {});
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  'Failed to generate token for impersonation',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                  ),
-                                                                ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        4000),
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondary,
-                                                              ),
-                                                            );
                                                             if (_shouldSetState)
                                                               safeSetState(
                                                                   () {});

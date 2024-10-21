@@ -20,6 +20,8 @@ class ImpersonateUserModel extends FlutterFlowModel<ImpersonateUserWidget> {
 
   bool loading = false;
 
+  String? errorMessage;
+
   ///  State fields for stateful widgets in this page.
 
   // Model for mainWebNav component.
