@@ -75,7 +75,7 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
           await authManager.signOut();
           GoRouter.of(context).clearRedirectLocation();
 
-          context.goNamedAuth('loginPage', context.mounted);
+          context.goNamedAuth('LoginPage', context.mounted);
         },
       ),
     );

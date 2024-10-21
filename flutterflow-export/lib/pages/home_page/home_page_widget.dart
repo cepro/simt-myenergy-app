@@ -337,11 +337,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ],
                                 ),
                               ),
-                              wrapWithModel(
-                                model: _model.onboardProgressBoxModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: OnboardProgressBoxWidget(),
-                              ),
+                              if (FFAppState().customer.status == 'onboarding')
+                                wrapWithModel(
+                                  model: _model.onboardProgressBoxModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: OnboardProgressBoxWidget(),
+                                ),
                               wrapWithModel(
                                 model: _model.welcomeBoxModel,
                                 updateCallback: () => safeSetState(() {}),

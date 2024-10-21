@@ -179,20 +179,6 @@ class _SupplyContractSignOrViewModalWidgetState
                                         .bodyMediumFamily),
                               ),
                         ),
-                      if (!FFAppState().isCeproUser)
-                        Text(
-                          'Coming soon ...',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
-                        ),
                     ],
                   ),
                 ],

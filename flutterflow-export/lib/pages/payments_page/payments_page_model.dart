@@ -23,12 +23,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
 
   dynamic paymentMethods;
 
-  bool sendPaymentFailure = false;
-
-  bool paymentSuccess = false;
-
-  String errorMessage = 'Send payment failed - see logs';
-
   List<PaymentStruct> payments = [];
   void addToPayments(PaymentStruct item) => payments.add(item);
   void removeFromPayments(PaymentStruct item) => payments.remove(item);
@@ -37,6 +31,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
       payments.insert(index, item);
   void updatePaymentsAtIndex(int index, Function(PaymentStruct) updateFn) =>
       payments[index] = updateFn(payments[index]);
+
+  bool loadHistoryFailure = false;
 
   ///  State fields for stateful widgets in this page.
 

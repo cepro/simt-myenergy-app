@@ -31,7 +31,7 @@ Future handleMyEnergyApiCallFailure(
   );
   if ((httpStatusCode == 401) &&
       functions.isJwtExpired(wwwAuthenticateHeader!)) {
-    context.goNamed('loginPage');
+    context.goNamed('LoginPage');
   } else {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

@@ -33,7 +33,8 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
     super.initState();
     _model = createModel(context, () => ChangeNameModalModel());
 
-    _model.nameFieldTextController ??= TextEditingController();
+    _model.nameFieldTextController ??=
+        TextEditingController(text: FFAppState().customer.name);
     _model.nameFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -160,25 +161,25 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                             isDense: true,
                             labelText: 'Name',
                             labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
+                                .labelLarge
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                      .labelLargeFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
+                                          .labelLargeFamily),
                                 ),
                             hintText: FFAppState().customer.name,
                             hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
+                                .labelLarge
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                      .labelLargeFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
+                                          .labelLargeFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -213,15 +214,14 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           style: FlutterFlowTheme.of(context)
-                              .bodyMedium
+                              .labelLarge
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                fontSize: 18.0,
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
+                                        .labelLargeFamily),
                               ),
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           validator: _model.nameFieldTextControllerValidator

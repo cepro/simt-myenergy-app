@@ -214,18 +214,18 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                         labelStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .labelMedium
+                                                                .labelLarge
                                                                 .override(
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMediumFamily,
+                                                                      .labelLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
                                                                   useGoogleFonts: GoogleFonts
                                                                           .asMap()
                                                                       .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
+                                                                              .labelLargeFamily),
                                                                 ),
                                                         hintStyle:
                                                             FlutterFlowTheme.of(

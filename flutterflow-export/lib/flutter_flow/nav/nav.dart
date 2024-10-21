@@ -91,7 +91,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
         ),
         FFRoute(
-          name: 'loginPage',
+          name: 'LoginPage',
           path: '/login',
           builder: (context, params) => LoginPageWidget(
             emailPrefill: params.getParam(

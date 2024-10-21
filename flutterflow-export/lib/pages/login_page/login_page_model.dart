@@ -29,7 +29,7 @@ class LoginPageModel extends FlutterFlowModel<LoginPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Custom Action - getHostname] action in loginPage widget.
+  // Stores action output result for [Custom Action - getHostname] action in LoginPage widget.
   String? getHostnameOutput;
   // Model for LogoContainerRow component.
   late LogoContainerRowModel logoContainerRowModel;

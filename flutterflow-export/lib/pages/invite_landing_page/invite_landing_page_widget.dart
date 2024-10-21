@@ -41,7 +41,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
 
       if ((_model.inviteLookupResult?.succeeded ?? true)) {
         context.pushNamed(
-          'loginPage',
+          'LoginPage',
           queryParameters: {
             'emailPrefill': serializeParam(
               getJsonField(

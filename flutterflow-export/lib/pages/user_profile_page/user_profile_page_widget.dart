@@ -174,8 +174,8 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                         .secondaryBackground,
                                     borderRadius: BorderRadius.circular(8.0),
                                     border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .lineColor,
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       width: 0.0,
                                     ),
                                   ),

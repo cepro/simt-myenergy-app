@@ -730,7 +730,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
                                                                 context
                                                                     .goNamedAuth(
-                                                                  'loginPage',
+                                                                  'LoginPage',
                                                                   context
                                                                       .mounted,
                                                                   queryParameters:

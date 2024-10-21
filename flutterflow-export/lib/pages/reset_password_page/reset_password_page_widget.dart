@@ -342,7 +342,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                               );
                               _shouldSetState = true;
                               if (_model.passwordUpdateSuccess!) {
-                                context.pushNamed('loginPage');
+                                context.pushNamed('LoginPage');
 
                                 if (_shouldSetState) safeSetState(() {});
                                 return;

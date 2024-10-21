@@ -54,6 +54,8 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
       child: Container(
@@ -144,9 +146,12 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                   Align(
                     alignment: AlignmentDirectional(1.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: () async {
-                        await widget.setSignEmbedHTML?.call();
-                      },
+                      onPressed:
+                          (FFAppState().customer.status == 'preonboarding')
+                              ? null
+                              : () async {
+                                  await widget.setSignEmbedHTML?.call();
+                                },
                       text: 'Sign',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
@@ -179,6 +184,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                           width: 2.0,
                         ),
                         borderRadius: BorderRadius.circular(12.0),
+                        disabledColor: FlutterFlowTheme.of(context).lineColor,
                       ),
                     ),
                   ),

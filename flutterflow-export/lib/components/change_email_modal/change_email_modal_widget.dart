@@ -33,7 +33,8 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
     super.initState();
     _model = createModel(context, () => ChangeEmailModalModel());
 
-    _model.emailFieldTextController ??= TextEditingController();
+    _model.emailFieldTextController ??=
+        TextEditingController(text: currentUserEmail);
     _model.emailFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -160,25 +161,25 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                             isDense: true,
                             labelText: 'Email',
                             labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
+                                .labelLarge
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                      .labelLargeFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
+                                          .labelLargeFamily),
                                 ),
                             hintText: currentUserEmail,
                             hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
+                                .labelLarge
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .labelMediumFamily,
+                                      .labelLargeFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .labelMediumFamily),
+                                          .labelLargeFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -213,15 +214,14 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           style: FlutterFlowTheme.of(context)
-                              .bodyMedium
+                              .labelLarge
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                fontSize: 18.0,
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
+                                        .labelLargeFamily),
                               ),
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           validator: _model.emailFieldTextControllerValidator

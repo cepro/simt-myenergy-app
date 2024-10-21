@@ -246,7 +246,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                             BorderRadius.circular(8.0),
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
-                                              .lineColor,
+                                              .primary,
                                           width: 0.0,
                                         ),
                                       ),
