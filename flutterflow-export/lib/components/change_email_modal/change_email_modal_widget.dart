@@ -135,21 +135,27 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                       ),
                     ),
                     if (_model.showError)
-                      Text(
-                        'Change email failed: ${_model.updateEmailResult?.errorMessage}',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: FlutterFlowTheme.of(context).error,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Change email failed: ${_model.errorMessage}',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                color: FlutterFlowTheme.of(context).error,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 30.0),
                       child: Container(
                         width: MediaQuery.sizeOf(context).width * 1.0,
                         child: TextFormField(
@@ -161,25 +167,25 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                             isDense: true,
                             labelText: 'Email',
                             labelStyle: FlutterFlowTheme.of(context)
-                                .labelLarge
+                                .titleMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .labelLargeFamily,
+                                      .titleMediumFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .labelLargeFamily),
+                                          .titleMediumFamily),
                                 ),
                             hintText: currentUserEmail,
                             hintStyle: FlutterFlowTheme.of(context)
-                                .labelLarge
+                                .titleMedium
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
-                                      .labelLargeFamily,
+                                      .titleMediumFamily,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
-                                          .labelLargeFamily),
+                                          .titleMediumFamily),
                                 ),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -214,15 +220,16 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                 FlutterFlowTheme.of(context).primaryBackground,
                           ),
                           style: FlutterFlowTheme.of(context)
-                              .labelLarge
+                              .titleMedium
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
-                                    .labelLargeFamily,
+                                    .titleMediumFamily,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
-                                        .labelLargeFamily),
+                                        .titleMediumFamily),
                               ),
+                          keyboardType: TextInputType.emailAddress,
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           validator: _model.emailFieldTextControllerValidator
                               .asValidator(context),
@@ -231,7 +238,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 12.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -278,6 +285,8 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                         return;
                                       } else {
                                         _model.showError = true;
+                                        _model.errorMessage = _model
+                                            .updateEmailResult?.errorMessage;
                                         safeSetState(() {});
                                         if (_shouldSetState)
                                           safeSetState(() {});

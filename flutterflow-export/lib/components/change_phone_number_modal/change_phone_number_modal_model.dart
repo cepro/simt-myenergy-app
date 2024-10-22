@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -11,6 +10,7 @@ import 'change_phone_number_modal_widget.dart'
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 class ChangePhoneNumberModalModel
@@ -28,6 +28,7 @@ class ChangePhoneNumberModalModel
   // State field(s) for PhoneNumberField widget.
   FocusNode? phoneNumberFieldFocusNode;
   TextEditingController? phoneNumberFieldTextController;
+  final phoneNumberFieldMask = MaskTextInputFormatter(mask: '###-###-####');
   String? Function(BuildContext, String?)?
       phoneNumberFieldTextControllerValidator;
   // State field(s) for VerifyCodeField widget.

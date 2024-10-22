@@ -13,16 +13,20 @@ import 'package:flutter/material.dart';
 
 Future<CustomActionResultStruct> updateUserPhone(String phone) async {
   final supabase = Supabase.instance.client;
-  final UserResponse res = await supabase.auth.updateUser(
-    UserAttributes(
-      phone: phone,
-    ),
-  );
-  final User? updatedUser = res.user;
-  print(updatedUser);
-  //if (updatedUser?.new_phone == phone) {
-  return CustomActionResultStruct(success: true, errorMessage: "");
-  //}
-  //return CustomActionResultStruct(
-  //    success: false, errorMessage: "TODO: determine error");
+  final UserResponse res;
+  try {
+    res = await supabase.auth.updateUser(
+      UserAttributes(
+        phone: phone,
+      ),
+    );
+    final User? updatedUser = res.user;
+    print(updatedUser);
+    //if (updatedUser?.new_phone == phone) {
+    return CustomActionResultStruct(success: true, errorMessage: "");
+  } on AuthException catch (e) {
+    print("ERROR: ");
+    print(e);
+    return CustomActionResultStruct(success: false, errorMessage: e.message);
+  }
 }

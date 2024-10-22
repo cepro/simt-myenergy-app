@@ -16,6 +16,8 @@ class ChangeEmailModalModel extends FlutterFlowModel<ChangeEmailModalWidget> {
 
   bool showError = false;
 
+  String? errorMessage;
+
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for EmailField widget.
