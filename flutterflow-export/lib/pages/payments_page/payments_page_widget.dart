@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/coming_soon_for_preonboarding_widget.dart';
 import '/components/credit_card/credit_card_widget.dart';
 import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
@@ -226,7 +227,11 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           ),
                                         ),
                                       ),
-                                      if (_model.payments.isNotEmpty)
+                                      if ((FFAppState().customer.status !=
+                                              'preonboarding') &&
+                                          (FFAppState().customer.status !=
+                                              'onboarding') &&
+                                          (_model.payments.isNotEmpty))
                                         Align(
                                           alignment:
                                               AlignmentDirectional(-1.0, 0.0),
@@ -633,7 +638,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 15.0, 0.0, 0.0),
                                             child: Text(
-                                              'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until you contract for energy supply. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply in April. You will be notified by email 24 hours before any payments are taken.\n',
+                                              'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until your energy supply contract has been signed. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply. You will be notified by email 24 hours before any payments are taken.\n',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -654,80 +659,85 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                       ),
                                             ),
                                           ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
-                                            child: FFButtonWidget(
-                                              onPressed: ((FFAppState()
-                                                                  .impersonationToken !=
-                                                              null &&
-                                                          FFAppState()
-                                                                  .impersonationToken !=
-                                                              '') ||
-                                                      (FFAppState()
-                                                              .customer
-                                                              .status ==
-                                                          'preonboarding'))
-                                                  ? null
-                                                  : () async {
-                                                      await action_blocks
-                                                          .checkAndBlockWriteableAPICall(
-                                                              context);
-                                                      _model.checkoutPageURI =
-                                                          await CreateStripeCheckoutSessionCall
-                                                              .call(
-                                                        bearerToken:
-                                                            currentJwtToken,
-                                                        esco: FFAppState()
-                                                            .esco
-                                                            ?.name,
-                                                      );
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: ((FFAppState()
+                                                                      .impersonationToken !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .impersonationToken !=
+                                                                  '') ||
+                                                          (FFAppState()
+                                                                  .customer
+                                                                  .status ==
+                                                              'preonboarding'))
+                                                      ? null
+                                                      : () async {
+                                                          await action_blocks
+                                                              .checkAndBlockWriteableAPICall(
+                                                                  context);
+                                                          _model.checkoutPageURI =
+                                                              await CreateStripeCheckoutSessionCall
+                                                                  .call(
+                                                            bearerToken:
+                                                                currentJwtToken,
+                                                            esco: FFAppState()
+                                                                .esco
+                                                                ?.name,
+                                                          );
 
-                                                      if (_model
-                                                              .checkoutPageURI !=
-                                                          null) {
-                                                        await actions
-                                                            .navigateToExternalURI(
-                                                          CreateStripeCheckoutSessionCall
-                                                              .checkoutPageURI(
-                                                            (_model.checkoutPageURI
-                                                                    ?.jsonBody ??
-                                                                ''),
-                                                          ).toString(),
-                                                        );
-                                                      } else {
-                                                        await action_blocks
-                                                            .handleMyEnergyApiCallFailure(
-                                                          context,
-                                                          wwwAuthenticateHeader: (_model
-                                                                  .checkoutPageURI
-                                                                  ?.getHeader(
-                                                                      'www-authenticate') ??
-                                                              ''),
-                                                          httpStatusCode: (_model
-                                                                  .checkoutPageURI
-                                                                  ?.statusCode ??
-                                                              200),
-                                                        );
-                                                      }
+                                                          if (_model
+                                                                  .checkoutPageURI !=
+                                                              null) {
+                                                            await actions
+                                                                .navigateToExternalURI(
+                                                              CreateStripeCheckoutSessionCall
+                                                                  .checkoutPageURI(
+                                                                (_model.checkoutPageURI
+                                                                        ?.jsonBody ??
+                                                                    ''),
+                                                              ).toString(),
+                                                            );
+                                                          } else {
+                                                            await action_blocks
+                                                                .handleMyEnergyApiCallFailure(
+                                                              context,
+                                                              wwwAuthenticateHeader: (_model
+                                                                      .checkoutPageURI
+                                                                      ?.getHeader(
+                                                                          'www-authenticate') ??
+                                                                  ''),
+                                                              httpStatusCode: (_model
+                                                                      .checkoutPageURI
+                                                                      ?.statusCode ??
+                                                                  200),
+                                                            );
+                                                          }
 
-                                                      safeSetState(() {});
-                                                    },
-                                              text: 'Setup Payment with Stripe',
-                                              options: FFButtonOptions(
-                                                height: 40.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        24.0, 0.0, 24.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                                          safeSetState(() {});
+                                                        },
+                                                  text:
+                                                      'Setup Payment with Stripe',
+                                                  options: FFButtonOptions(
+                                                    height: 40.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(24.0, 0.0,
+                                                                24.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
                                                         .titleSmall
                                                         .override(
                                                           fontFamily:
@@ -743,21 +753,43 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                           context)
                                                                       .titleSmallFamily),
                                                         ),
-                                                elevation: 3.0,
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1.0,
+                                                    elevation: 3.0,
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    disabledColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .lineColor,
+                                                    disabledTextColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primaryText,
+                                                  ),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                disabledColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .lineColor,
-                                                disabledTextColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
                                               ),
-                                            ),
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          20.0, 0.0, 0.0, 0.0),
+                                                  child: wrapWithModel(
+                                                    model: _model
+                                                        .comingSoonForPreonboardingModel,
+                                                    updateCallback: () =>
+                                                        safeSetState(() {}),
+                                                    child:
+                                                        ComingSoonForPreonboardingWidget(),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),

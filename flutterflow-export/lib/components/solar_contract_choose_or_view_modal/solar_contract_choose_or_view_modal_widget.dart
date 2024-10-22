@@ -185,7 +185,7 @@ class _SolarContractChooseOrViewModalWidgetState
                                   },
                                 ),
                               ),
-                          ],
+                          ].divide(SizedBox(height: 30.0)),
                         ),
                       if (_model.docusealEmbedHTML != null &&
                           _model.docusealEmbedHTML != '')

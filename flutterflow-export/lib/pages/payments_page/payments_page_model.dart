@@ -1,6 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/coming_soon_for_preonboarding_widget.dart';
 import '/components/credit_card/credit_card_widget.dart';
 import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
@@ -63,6 +64,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   ApiCallResponse? deletePaymentMethodResult;
   // Stores action output result for [Backend Call - API (Create Stripe Checkout Session)] action in Button widget.
   ApiCallResponse? checkoutPageURI;
+  // Model for ComingSoonForPreonboarding component.
+  late ComingSoonForPreonboardingModel comingSoonForPreonboardingModel;
 
   @override
   void initState(BuildContext context) {
@@ -71,6 +74,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     paymentsListModel = createModel(context, () => PaymentsListModel());
     directDebitModel = createModel(context, () => DirectDebitModel());
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
+    comingSoonForPreonboardingModel =
+        createModel(context, () => ComingSoonForPreonboardingModel());
   }
 
   @override
@@ -80,5 +85,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     paymentsListModel.dispose();
     directDebitModel.dispose();
     creditCardModel.dispose();
+    comingSoonForPreonboardingModel.dispose();
   }
 }

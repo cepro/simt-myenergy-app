@@ -1,4 +1,5 @@
 import '/backend/schema/structs/index.dart';
+import '/components/coming_soon_for_preonboarding_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -141,7 +142,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Align(
                     alignment: AlignmentDirectional(1.0, 0.0),
@@ -189,6 +190,15 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                         disabledTextColor:
                             FlutterFlowTheme.of(context).primaryText,
                       ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                    child: wrapWithModel(
+                      model: _model.comingSoonForPreonboardingModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: ComingSoonForPreonboardingWidget(),
                     ),
                   ),
                 ],
