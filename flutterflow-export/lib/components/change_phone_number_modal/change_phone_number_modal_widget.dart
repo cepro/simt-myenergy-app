@@ -159,6 +159,24 @@ class _ChangePhoneNumberModalWidgetState
                               ),
                         ),
                       ),
+                    if (_model.verifyCode)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                        child: Text(
+                          'A verification code has been sent to your new number. Enter the code below.',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelLargeFamily),
+                              ),
+                        ),
+                      ),
                     if (_model.showUpdateError)
                       Padding(
                         padding:
@@ -197,27 +215,28 @@ class _ChangePhoneNumberModalWidgetState
                               ),
                         ),
                       ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 30.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            '+44',
-                            style: FlutterFlowTheme.of(context)
-                                .titleMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleMediumFamily,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .titleMediumFamily),
-                                ),
-                          ),
-                          if (!_model.verifyCode)
+                    if (!_model.verifyCode)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 25.0, 0.0, 30.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '+44',
+                              style: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleMediumFamily,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .titleMediumFamily),
+                                  ),
+                            ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
@@ -244,6 +263,7 @@ class _ChangePhoneNumberModalWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .labelLargeFamily),
                                         ),
+                                    hintText: '712-345-6789',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
@@ -314,9 +334,9 @@ class _ChangePhoneNumberModalWidgetState
                                 ),
                               ),
                             ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
                     if (_model.verifyCode)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -502,8 +522,9 @@ class _ChangePhoneNumberModalWidgetState
                                               '') {
                                         _model.verifyUserPhoneResult =
                                             await actions.verifyUserPhone(
-                                          _model.phoneNumberFieldTextController
-                                              .text,
+                                          '+44${(String phone) {
+                                            return phone.replaceAll("-", "");
+                                          }(_model.phoneNumberFieldTextController.text)}',
                                           _model.verifyCodeFieldTextController
                                               .text,
                                         );
@@ -540,8 +561,9 @@ class _ChangePhoneNumberModalWidgetState
                                               '') {
                                         _model.updatePhoneNumberResult =
                                             await actions.updateUserPhone(
-                                          _model.phoneNumberFieldTextController
-                                              .text,
+                                          '+44${(String phone) {
+                                            return phone.replaceAll("-", "");
+                                          }(_model.phoneNumberFieldTextController.text)}',
                                         );
                                         _shouldSetState = true;
                                         if (_model.updatePhoneNumberResult

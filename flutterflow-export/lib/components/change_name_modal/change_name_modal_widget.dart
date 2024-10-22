@@ -149,7 +149,7 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                       ),
                     Form(
                       key: _model.formKey,
-                      autovalidateMode: AutovalidateMode.always,
+                      autovalidateMode: AutovalidateMode.disabled,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 30.0, 0.0, 30.0),

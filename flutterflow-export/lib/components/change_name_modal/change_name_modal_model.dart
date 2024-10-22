@@ -23,24 +23,11 @@ class ChangeNameModalModel extends FlutterFlowModel<ChangeNameModalWidget> {
   FocusNode? nameFieldFocusNode;
   TextEditingController? nameFieldTextController;
   String? Function(BuildContext, String?)? nameFieldTextControllerValidator;
-  String? _nameFieldTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Field is required';
-    }
-
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Has to be a valid email address.';
-    }
-    return null;
-  }
-
   // Stores action output result for [Backend Call - API (Update Customer Fullname Copy)] action in Button widget.
   ApiCallResponse? updateCustomerFullnameResponse;
 
   @override
-  void initState(BuildContext context) {
-    nameFieldTextControllerValidator = _nameFieldTextControllerValidator;
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {

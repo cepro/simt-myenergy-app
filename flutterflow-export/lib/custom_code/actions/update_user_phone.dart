@@ -25,8 +25,7 @@ Future<CustomActionResultStruct> updateUserPhone(String phone) async {
     //if (updatedUser?.new_phone == phone) {
     return CustomActionResultStruct(success: true, errorMessage: "");
   } on AuthException catch (e) {
-    print("ERROR: ");
-    print(e);
+    print("ERROR: " + e.toString());
     return CustomActionResultStruct(success: false, errorMessage: e.message);
   }
 }

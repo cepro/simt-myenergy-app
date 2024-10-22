@@ -311,10 +311,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                               safeSetState(() {}),
                                           child: UserProfileRowWidget(
                                             label: 'Phone Number',
-                                            value: valueOrDefault<String>(
-                                              currentPhoneNumber,
-                                              '[not set]',
-                                            ),
+                                            value: '+${currentPhoneNumber}',
                                             linkLabel: 'Change phone number',
                                             icon: Icon(
                                               Icons.phone,

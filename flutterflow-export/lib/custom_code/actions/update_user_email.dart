@@ -24,8 +24,7 @@ Future<CustomActionResultStruct> updateUserEmail(String email) async {
     print(updatedUser);
     return CustomActionResultStruct(success: true, errorMessage: "");
   } on AuthException catch (e) {
-    print("ERROR: ");
-    print(e);
+    print("ERROR: " + e.toString());
     return CustomActionResultStruct(success: false, errorMessage: e.message);
   }
 }
