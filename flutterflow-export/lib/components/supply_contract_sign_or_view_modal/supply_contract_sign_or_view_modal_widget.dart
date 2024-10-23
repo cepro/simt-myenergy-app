@@ -54,8 +54,6 @@ class _SupplyContractSignOrViewModalWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -124,8 +122,10 @@ class _SupplyContractSignOrViewModalWidgetState
                   ),
                   Stack(
                     children: [
-                      if (_model.docusealEmbedHTML == null ||
-                          _model.docusealEmbedHTML == '')
+                      if ((_model.docusealEmbedHTML == null ||
+                              _model.docusealEmbedHTML == '') &&
+                          (widget!.contract?.id != null &&
+                              widget!.contract?.id != ''))
                         wrapWithModel(
                           model: _model.supplyContractCardModel,
                           updateCallback: () => safeSetState(() {}),
@@ -161,9 +161,8 @@ class _SupplyContractSignOrViewModalWidgetState
                             ),
                           ),
                         ),
-                      if (FFAppState().isCeproUser &&
-                          (widget!.contract?.id == null ||
-                              widget!.contract?.id == ''))
+                      if (widget!.contract?.id == null ||
+                          widget!.contract?.id == '')
                         Text(
                           'Contract has not yet been created. Please contact support to find out why.',
                           style: FlutterFlowTheme.of(context)
