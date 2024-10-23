@@ -5,8 +5,5 @@ PATCHES=$1
 
 echo "\n\n=====     Apply patches for github pages     ====="
 
-echo "\nPatch 1: add leading '/'s ...\n"
-patch -R -p0 < $PATCHES/github-pages/index.html.patch || exit 1
-
-echo "\nPatch 2: apply SPA 404 redirect hack ...\n"
+echo "\nPatch 1: apply SPA 404 redirect hack ...\n"
 patch    -p0 < $PATCHES/github-pages/gh-pages-hack-snippet.html.patch || exit 1
