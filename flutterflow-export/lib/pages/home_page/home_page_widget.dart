@@ -57,8 +57,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       await Future.delayed(const Duration(milliseconds: 500));
       if ((_model.homePageGetWallets?.succeeded ?? true) &&
           ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
-        _model.singleWalletBalance =
-            functions.formatCurrencyAmount(getJsonField(
+        _model.singleWalletBalance = functions.formatGBPAmount(getJsonField(
           (_model.homePageGetWallets?.jsonBody ?? ''),
           r'''$[0].balance''',
         ));
@@ -548,7 +547,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'Balance: ${functions.formatCurrencyAmount(_model.supplyMeter!.balance)}',
+                                                                'Balance: ${functions.formatGBPAmount(_model.supplyMeter!.balance)}',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -922,7 +921,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                                   child: Text(
-                                                                    functions.formatCurrencyAmount(_model
+                                                                    functions.formatGBPAmount(_model
                                                                         .supplyMeter!
                                                                         .balance),
                                                                     style: FlutterFlowTheme.of(

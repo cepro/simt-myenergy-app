@@ -77,9 +77,9 @@ EscoCodeEnum hostnameToEscoCode(String? hostname) {
   return EscoCodeEnum.unknown;
 }
 
-String formatCurrencyAmount(double amount) {
+String formatGBPAmount(double amountGBP) {
   var f = NumberFormat("##0.00", "en_GB");
-  return "£" + f.format(amount);
+  return "£" + f.format(amountGBP);
 }
 
 bool isPrepayMode(MeterStruct? meter) {
@@ -133,4 +133,9 @@ TariffStruct? tariffForDate(
 
 DateTime nowDateTime() {
   return DateTime.now();
+}
+
+String formatGBPPenceAmount(double amountGBP) {
+  var f = NumberFormat("##0.0", "en_GB");
+  return f.format(amountGBP * 100) + "p";
 }

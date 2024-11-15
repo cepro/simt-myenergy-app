@@ -237,7 +237,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               content: Padding(
                                 padding: EdgeInsets.all(4.0),
                                 child: Text(
-                                  'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridPower)}${functions.newLineChar()}Microgrid price: ${functions.formatCurrencyAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
+                                  'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.microgridPower)}${functions.newLineChar()}Microgrid price: ${functions.formatGBPPenceAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -263,7 +263,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               showDuration: Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
                               child: Text(
-                                '${functions.formatCurrencyAmount(monthlyCostsItem.power)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkPower - monthlyCostsItem.power)})',
+                                '${functions.formatGBPAmount(monthlyCostsItem.power)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkPower - monthlyCostsItem.power)})',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -281,7 +281,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               content: Padding(
                                 padding: EdgeInsets.all(4.0),
                                 child: Text(
-                                  'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.heat)}${functions.newLineChar()}Microgrid price: ${functions.formatCurrencyAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
+                                  'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.heat)}${functions.newLineChar()}Microgrid price: ${functions.formatGBPAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -307,7 +307,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               showDuration: Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
                               child: Text(
-                                '${functions.formatCurrencyAmount(monthlyCostsItem.heat)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkHeat - monthlyCostsItem.heat)})',
+                                '${functions.formatGBPAmount(monthlyCostsItem.heat)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkHeat - monthlyCostsItem.heat)})',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -325,7 +325,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               content: Padding(
                                 padding: EdgeInsets.all(4.0),
                                 child: Text(
-                                  'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridStandingCharge)}${functions.newLineChar()}Microgrid price: ${functions.formatCurrencyAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.standingCharge)}',
+                                  'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.microgridStandingCharge)}${functions.newLineChar()}Microgrid price: ${functions.formatGBPAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.standingCharge)}',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -351,7 +351,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               showDuration: Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
                               child: Text(
-                                '${functions.formatCurrencyAmount(monthlyCostsItem.standingCharge)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkStandingCharge - monthlyCostsItem.standingCharge)})',
+                                '${functions.formatGBPAmount(monthlyCostsItem.standingCharge)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkStandingCharge - monthlyCostsItem.standingCharge)})',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -372,7 +372,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                   content: Padding(
                                     padding: EdgeInsets.all(4.0),
                                     child: Text(
-                                      'Microgrid cost: ${functions.formatCurrencyAmount(monthlyCostsItem.microgridTotal)}',
+                                      'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.microgridTotal)}',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
@@ -399,7 +399,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                   showDuration: Duration(milliseconds: 1500),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Text(
-                                    '${functions.formatCurrencyAmount(monthlyCostsItem.total)}${functions.newLineChar()}(Saved: ${functions.formatCurrencyAmount(monthlyCostsItem.benchmarkTotal - monthlyCostsItem.total)})',
+                                    '${functions.formatGBPAmount(monthlyCostsItem.total)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkTotal - monthlyCostsItem.total)})',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
