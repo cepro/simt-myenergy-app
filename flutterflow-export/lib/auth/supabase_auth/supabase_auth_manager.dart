@@ -96,7 +96,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
         () => emailCreateAccountFunc(email, password),
       );
 
-  /// Tries to sign in or create an account using Firebase Auth.
+  /// Tries to sign in or create an account using Supabase Auth.
   /// Returns the User object if sign in was successful.
   Future<BaseAuthUser?> _signInOrCreateAccount(
     BuildContext context,
@@ -116,7 +116,7 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
       }
       return authUser;
     } on AuthException catch (e) {
-      final errorMsg = e.message.contains('User already registered') ?? false
+      final errorMsg = e.message.contains('User already registered')
           ? 'Error: The email is already in use by a different account'
           : 'Error: ${e.message!}';
       ScaffoldMessenger.of(context).hideCurrentSnackBar();

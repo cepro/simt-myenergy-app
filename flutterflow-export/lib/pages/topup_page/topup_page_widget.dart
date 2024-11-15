@@ -48,9 +48,13 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               )?.toString()?.toString(),
               '30',
             );
-            _model.minimumBalanceTextController?.selection =
-                TextSelection.collapsed(
-                    offset: _model.minimumBalanceTextController!.text.length);
+            _model.minimumBalanceFocusNode?.requestFocus();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _model.minimumBalanceTextController?.selection =
+                  TextSelection.collapsed(
+                offset: _model.minimumBalanceTextController!.text.length,
+              );
+            });
           });
           safeSetState(() {
             _model.topUpAmountTextController?.text = valueOrDefault<String>(
@@ -60,9 +64,13 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               )?.toString()?.toString(),
               '50',
             );
-            _model.topUpAmountTextController?.selection =
-                TextSelection.collapsed(
-                    offset: _model.topUpAmountTextController!.text.length);
+            _model.topUpAmountFocusNode?.requestFocus();
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              _model.topUpAmountTextController?.selection =
+                  TextSelection.collapsed(
+                offset: _model.topUpAmountTextController!.text.length,
+              );
+            });
           });
           _model.haveWallet = true;
         } else {

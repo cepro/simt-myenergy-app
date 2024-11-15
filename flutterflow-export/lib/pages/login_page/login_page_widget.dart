@@ -219,7 +219,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                             .primaryText,
                                         unselectedLabelColor:
                                             FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                                .secondaryText,
                                         borderWidth: 0.0,
                                         borderRadius: 0.0,
                                         elevation: 0.0,

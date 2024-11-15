@@ -24,7 +24,7 @@ abstract class SupabaseTable<T extends SupabaseDataRow> {
   }) =>
       queryFn(_select<PostgrestMap>())
           .limit(1)
-          .select<PostgrestMap?>()
+          .select<PostgrestMap>()
           .maybeSingle()
           .catchError((e) => print('Error querying row: $e'))
           .then((r) => [if (r != null) createRow(r)]);
