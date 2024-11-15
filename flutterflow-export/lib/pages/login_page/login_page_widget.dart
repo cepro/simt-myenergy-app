@@ -320,6 +320,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         .emailTextController1,
                                                     focusNode:
                                                         _model.emailFocusNode1,
+                                                    autofocus: true,
+                                                    autofillHints: [
+                                                      AutofillHints.email
+                                                    ],
                                                     obscureText: false,
                                                     decoration: InputDecoration(
                                                       labelText:
@@ -448,6 +452,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         .passwordTextController1,
                                                     focusNode: _model
                                                         .passwordFocusNode1,
+                                                    autofillHints: [
+                                                      AutofillHints.password
+                                                    ],
                                                     obscureText: !_model
                                                         .passwordVisibility1,
                                                     decoration: InputDecoration(
@@ -950,6 +957,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .emailTextController2,
                                                   focusNode:
                                                       _model.emailFocusNode2,
+                                                  autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'Email Address',

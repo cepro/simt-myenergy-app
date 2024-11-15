@@ -167,40 +167,93 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                     ),
                   ),
                 ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 20.0, 0.0),
-                      child: CircularPercentIndicator(
-                        percent: _model.actionsDone / 5,
-                        radius: 60.0,
-                        lineWidth: 12.0,
-                        animation: true,
-                        animateFromLastPercent: true,
-                        progressColor: FlutterFlowTheme.of(context).primary,
-                        backgroundColor: FlutterFlowTheme.of(context).accent4,
-                        center: Text(
-                          '${formatNumber(
-                            _model.actionsDone / 5,
-                            formatType: FormatType.percent,
-                          )}',
-                          style: FlutterFlowTheme.of(context)
-                              .headlineSmall
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .headlineSmallFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .headlineSmallFamily),
-                              ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      if (() {
+                        if (MediaQuery.sizeOf(context).width <
+                            kBreakpointSmall) {
+                          return false;
+                        } else if (MediaQuery.sizeOf(context).width <
+                            kBreakpointMedium) {
+                          return false;
+                        } else if (MediaQuery.sizeOf(context).width <
+                            kBreakpointLarge) {
+                          return true;
+                        } else {
+                          return true;
+                        }
+                      }())
+                        CircularPercentIndicator(
+                          percent: _model.actionsDone / 5,
+                          radius: 60.0,
+                          lineWidth: 12.0,
+                          animation: true,
+                          animateFromLastPercent: true,
+                          progressColor: FlutterFlowTheme.of(context).primary,
+                          backgroundColor: FlutterFlowTheme.of(context).accent4,
+                          center: Text(
+                            '${formatNumber(
+                              _model.actionsDone / 5,
+                              formatType: FormatType.percent,
+                            )}',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ],
+                      if (() {
+                        if (MediaQuery.sizeOf(context).width <
+                            kBreakpointSmall) {
+                          return true;
+                        } else if (MediaQuery.sizeOf(context).width <
+                            kBreakpointMedium) {
+                          return true;
+                        } else if (MediaQuery.sizeOf(context).width <
+                            kBreakpointLarge) {
+                          return false;
+                        } else {
+                          return false;
+                        }
+                      }())
+                        CircularPercentIndicator(
+                          percent: _model.actionsDone / 5,
+                          radius: 40.0,
+                          lineWidth: 8.0,
+                          animation: true,
+                          animateFromLastPercent: true,
+                          progressColor: FlutterFlowTheme.of(context).primary,
+                          backgroundColor: FlutterFlowTheme.of(context).accent4,
+                          center: Text(
+                            '${formatNumber(
+                              _model.actionsDone / 5,
+                              formatType: FormatType.percent,
+                            )}',
+                            style: FlutterFlowTheme.of(context)
+                                .headlineSmall
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily,
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .headlineSmallFamily),
+                                ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ],
             ),

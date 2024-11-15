@@ -149,6 +149,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                       child: TextFormField(
                         controller: _model.newPasswordTextController,
                         focusNode: _model.newPasswordFocusNode,
+                        autofocus: true,
                         obscureText: !_model.newPasswordVisibility,
                         decoration: InputDecoration(
                           labelText: 'New password',
