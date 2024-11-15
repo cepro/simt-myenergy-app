@@ -128,8 +128,10 @@ class _SolarContractChooseOrViewModalWidgetState
                   ),
                   Stack(
                     children: [
-                      if (_model.docusealEmbedHTML == null ||
-                          _model.docusealEmbedHTML == '')
+                      if ((widget!.contract?.id != null &&
+                              widget!.contract?.id != '') &&
+                          (_model.docusealEmbedHTML == null ||
+                              _model.docusealEmbedHTML == ''))
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -197,6 +199,21 @@ class _SolarContractChooseOrViewModalWidgetState
                             height: MediaQuery.sizeOf(context).height * 0.85,
                             html: _model.docusealEmbedHTML!,
                           ),
+                        ),
+                      if (widget!.contract?.id == null ||
+                          widget!.contract?.id == '')
+                        Text(
+                          'Contract has not yet been created. Please contact support to find out why.',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
                         ),
                     ],
                   ),

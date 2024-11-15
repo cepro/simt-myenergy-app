@@ -28,7 +28,7 @@ class ChangePhoneNumberModalModel
   // State field(s) for PhoneNumberField widget.
   FocusNode? phoneNumberFieldFocusNode;
   TextEditingController? phoneNumberFieldTextController;
-  final phoneNumberFieldMask = MaskTextInputFormatter(mask: '###-###-####');
+  final phoneNumberFieldMask = MaskTextInputFormatter(mask: '####-######');
   String? Function(BuildContext, String?)?
       phoneNumberFieldTextControllerValidator;
   // State field(s) for VerifyCodeField widget.

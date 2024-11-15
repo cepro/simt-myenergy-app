@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'change_name_modal_model.dart';
@@ -149,7 +150,7 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                       ),
                     Form(
                       key: _model.formKey,
-                      autovalidateMode: AutovalidateMode.disabled,
+                      autovalidateMode: AutovalidateMode.always,
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 30.0, 0.0, 30.0),
@@ -228,6 +229,8 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .titleMediumFamily),
                                 ),
+                            maxLength: 75,
+                            maxLengthEnforcement: MaxLengthEnforcement.enforced,
                             cursorColor:
                                 FlutterFlowTheme.of(context).primaryText,
                             validator: _model.nameFieldTextControllerValidator
