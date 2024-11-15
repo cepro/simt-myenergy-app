@@ -237,7 +237,11 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               content: Padding(
                                 padding: EdgeInsets.all(4.0),
                                 child: Text(
-                                  'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.microgridPower)}${functions.newLineChar()}Microgrid price: ${functions.formatGBPPenceAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
+                                  functions.monthlyCostsTooltipPricingText(
+                                      monthlyCostsItem,
+                                      FFAppState().tariffs,
+                                      true,
+                                      true),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -281,7 +285,11 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               content: Padding(
                                 padding: EdgeInsets.all(4.0),
                                 child: Text(
-                                  'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.heat)}${functions.newLineChar()}Microgrid price: ${functions.formatGBPAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.unitRate)}',
+                                  functions.monthlyCostsTooltipPricingText(
+                                      monthlyCostsItem,
+                                      FFAppState().tariffs,
+                                      true,
+                                      false),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -325,7 +333,11 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               content: Padding(
                                 padding: EdgeInsets.all(4.0),
                                 child: Text(
-                                  'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.microgridStandingCharge)}${functions.newLineChar()}Microgrid price: ${functions.formatGBPAmount(functions.tariffForDate(FFAppState().tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!)!.standingCharge)}',
+                                  functions.monthlyCostsTooltipPricingText(
+                                      monthlyCostsItem,
+                                      FFAppState().tariffs,
+                                      false,
+                                      false),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(

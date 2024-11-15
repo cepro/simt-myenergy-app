@@ -139,3 +139,57 @@ String formatGBPPenceAmount(double amountGBP) {
   var f = NumberFormat("##0.0", "en_GB");
   return f.format(amountGBP * 100) + "p";
 }
+
+String monthlyCostsTooltipPricingText(
+  MonthlyCostStruct monthlyCostsItem,
+  TariffsStruct tariffs,
+  bool showRate,
+  bool showPower,
+) {
+  /******        Microgrid Rate      *********/
+
+  TariffStruct? microgridTariff = tariffForDate(
+      tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!);
+  if (microgridTariff == null) {
+    throw 'microgrid tariff not found for this month';
+  }
+
+  double microgridRate;
+  if (showRate) {
+    microgridRate = microgridTariff.unitRate;
+  } else {
+    microgridRate = microgridTariff.standingCharge;
+  }
+
+  /******        Benchmark Rate      *********/
+
+  TariffStruct? benchmarkTariff = tariffForDate(
+      tariffs.benchmarkTariffs.toList(), monthlyCostsItem.monthTyped!);
+  if (benchmarkTariff == null) {
+    throw 'benchmark tariff not found for this month';
+  }
+
+  double benchmarkRate;
+  if (showRate) {
+    benchmarkRate = benchmarkTariff.unitRate;
+  } else {
+    benchmarkRate = benchmarkTariff.standingCharge;
+  }
+
+  /******        Microgrid Cost      *********/
+
+  double microgridCost;
+  if (showRate) {
+    microgridCost = showPower
+        ? monthlyCostsItem.microgridPower
+        : monthlyCostsItem.microgridHeat;
+  } else {
+    microgridCost = monthlyCostsItem.microgridStandingCharge;
+  }
+
+  return 'Benchmark price: ${formatGBPPenceAmount(benchmarkRate)}'
+      '${newLineChar()}'
+      'Microgrid price: ${formatGBPPenceAmount(microgridRate)}'
+      '${newLineChar()}'
+      'Microgrid cost: ${formatGBPAmount(microgridCost)}';
+}
