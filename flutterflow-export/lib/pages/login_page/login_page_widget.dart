@@ -1088,6 +1088,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .passwordTextController2,
                                                   focusNode:
                                                       _model.passwordFocusNode2,
+                                                  autofillHints: [
+                                                    AutofillHints.newPassword
+                                                  ],
                                                   obscureText: !_model
                                                       .passwordVisibility2,
                                                   decoration: InputDecoration(
@@ -1241,6 +1244,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .confirmCreateTextController,
                                                   focusNode: _model
                                                       .confirmCreateFocusNode,
+                                                  autofillHints: [
+                                                    AutofillHints.newPassword
+                                                  ],
                                                   obscureText: !_model
                                                       .confirmCreateVisibility,
                                                   decoration: InputDecoration(
