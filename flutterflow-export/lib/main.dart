@@ -13,6 +13,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
@@ -130,15 +131,22 @@ class _NavBarPageState extends State<NavBarPage> {
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
+    final MediaQueryData queryData = MediaQuery.of(context);
+
     return Scaffold(
-      body: _currentPage ?? tabs[_currentPageName],
+      body: MediaQuery(
+          data: queryData
+              .removeViewInsets(removeBottom: true)
+              .removeViewPadding(removeBottom: true),
+          child: _currentPage ?? tabs[_currentPageName]!),
+      extendBody: true,
       bottomNavigationBar: Visibility(
         visible: responsiveVisibility(
           context: context,
           tabletLandscape: false,
           desktop: false,
         ),
-        child: BottomNavigationBar(
+        child: FloatingNavbar(
           currentIndex: currentIndex,
           onTap: (i) => safeSetState(() {
             _currentPage = null;
@@ -147,33 +155,85 @@ class _NavBarPageState extends State<NavBarPage> {
           backgroundColor: Colors.white,
           selectedItemColor: FlutterFlowTheme.of(context).alternate,
           unselectedItemColor: FlutterFlowTheme.of(context).secondaryText,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-                size: 24.0,
+          selectedBackgroundColor: Color(0x00000000),
+          borderRadius: 8.0,
+          itemBorderRadius: 8.0,
+          margin: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+          width: double.infinity,
+          elevation: 0.0,
+          items: [
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.home_outlined,
+                    color: currentIndex == 0
+                        ? FlutterFlowTheme.of(context).alternate
+                        : FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
+                  Text(
+                    'Home',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: currentIndex == 0
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 11.0,
+                    ),
+                  ),
+                ],
               ),
-              label: 'Home',
-              tooltip: '',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.electrical_services,
-                size: 24.0,
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.electrical_services,
+                    color: currentIndex == 1
+                        ? FlutterFlowTheme.of(context).alternate
+                        : FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
+                  Text(
+                    'My Energy',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: currentIndex == 1
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 11.0,
+                    ),
+                  ),
+                ],
               ),
-              label: 'My Energy',
-              tooltip: '',
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.credit_card_rounded,
-                size: 24.0,
+            FloatingNavbarItem(
+              customWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.credit_card_rounded,
+                    color: currentIndex == 2
+                        ? FlutterFlowTheme.of(context).alternate
+                        : FlutterFlowTheme.of(context).secondaryText,
+                    size: 24.0,
+                  ),
+                  Text(
+                    'Payments',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: currentIndex == 2
+                          ? FlutterFlowTheme.of(context).alternate
+                          : FlutterFlowTheme.of(context).secondaryText,
+                      fontSize: 11.0,
+                    ),
+                  ),
+                ],
               ),
-              label: 'Payments',
-              tooltip: '',
             )
           ],
         ),

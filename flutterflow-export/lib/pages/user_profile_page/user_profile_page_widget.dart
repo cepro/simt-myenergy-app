@@ -7,6 +7,7 @@ import '/components/change_phone_number_modal/change_phone_number_modal_widget.d
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/components/user_profile_row_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -143,22 +144,51 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 20.0),
-                                      child: Text(
-                                        'User Profile',
-                                        style: FlutterFlowTheme.of(context)
-                                            .headlineMedium
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMediumFamily,
-                                              letterSpacing: 0.0,
-                                              useGoogleFonts: GoogleFonts
-                                                      .asMap()
-                                                  .containsKey(FlutterFlowTheme
-                                                          .of(context)
-                                                      .headlineMediumFamily),
+                                          0.0, 0.0, 0.0, 10.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor: Colors.transparent,
+                                              borderRadius: 30.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 50.0,
+                                              icon: Icon(
+                                                Icons.arrow_back_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 30.0,
+                                              ),
+                                              onPressed: () async {
+                                                context.safePop();
+                                              },
                                             ),
+                                          ),
+                                          Text(
+                                            'User Profile',
+                                            style: FlutterFlowTheme.of(context)
+                                                .headlineMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMediumFamily,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(FlutterFlowTheme
+                                                              .of(context)
+                                                          .headlineMediumFamily),
+                                                ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ],

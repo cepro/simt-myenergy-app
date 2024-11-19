@@ -192,7 +192,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'UserProfilePage',
           path: '/profile',
           requireAuth: true,
-          builder: (context, params) => UserProfilePageWidget(),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: UserProfilePageWidget(),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

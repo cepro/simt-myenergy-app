@@ -62,7 +62,11 @@ class _UserProfileButtonWidgetState extends State<UserProfileButtonWidget> {
         borderColor: FlutterFlowTheme.of(context).lineColor,
         borderRadius: 12.0,
         borderWidth: 1.0,
-        fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+        fillColor: (String currentPagePath) {
+          return currentPagePath.endsWith('/profile');
+        }('myenergy://myenergy.com${GoRouterState.of(context).uri.toString()}')
+            ? FlutterFlowTheme.of(context).primaryBackground
+            : FlutterFlowTheme.of(context).secondaryBackground,
         icon: Icon(
           Icons.account_circle,
           color: FlutterFlowTheme.of(context).secondaryText,
