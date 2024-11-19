@@ -54,10 +54,17 @@ patches/
 
 ## Run Locally
 
+Add the following to /etc/hosts:
+```
+127.0.0.1 local.waterlilies.energy
+127.0.0.1 local.hazelmead.energy
+```
+
+Run:
 ```sh
 bin/flutterflow-export
 bin/build-local
-bin/run-local
+bin/run-local [hmce]
 ```
 
 ## Build for github pages deployment
