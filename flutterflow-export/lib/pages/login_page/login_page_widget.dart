@@ -1244,7 +1244,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   obscureText: !_model
                                                       .confirmCreateVisibility,
                                                   decoration: InputDecoration(
-                                                    labelText: 'Confirm',
+                                                    labelText:
+                                                        'Confirm password',
                                                     labelStyle: FlutterFlowTheme
                                                             .of(context)
                                                         .bodySmall
