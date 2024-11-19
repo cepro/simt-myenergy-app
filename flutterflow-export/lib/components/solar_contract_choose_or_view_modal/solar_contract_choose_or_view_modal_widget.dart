@@ -1,3 +1,4 @@
+import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_card/solar_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -58,6 +59,8 @@ class _SolarContractChooseOrViewModalWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -131,7 +134,10 @@ class _SolarContractChooseOrViewModalWidgetState
                       if ((widget!.contract?.id != null &&
                               widget!.contract?.id != '') &&
                           (_model.docusealEmbedHTML == null ||
-                              _model.docusealEmbedHTML == ''))
+                              _model.docusealEmbedHTML == '') &&
+                          !((widget!.contract?.termsId == null ||
+                                  widget!.contract?.termsId == '') &&
+                              (FFAppState().esco == EscoCodeEnum.hmce)))
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -200,8 +206,11 @@ class _SolarContractChooseOrViewModalWidgetState
                             html: _model.docusealEmbedHTML!,
                           ),
                         ),
-                      if (widget!.contract?.id == null ||
-                          widget!.contract?.id == '')
+                      if ((widget!.contract?.id == null ||
+                              widget!.contract?.id == '') ||
+                          ((widget!.contract?.termsId == null ||
+                                  widget!.contract?.termsId == '') &&
+                              (FFAppState().esco == EscoCodeEnum.hmce)))
                         Text(
                           'Contract has not yet been created. Please contact support to find out why.',
                           style: FlutterFlowTheme.of(context)
