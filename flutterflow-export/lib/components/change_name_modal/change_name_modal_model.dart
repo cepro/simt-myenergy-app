@@ -35,7 +35,7 @@ class ChangeNameModalModel extends FlutterFlowModel<ChangeNameModalWidget> {
     return null;
   }
 
-  // Stores action output result for [Backend Call - API (Update Customer Fullname Copy)] action in Button widget.
+  // Stores action output result for [Backend Call - API (Update Customer Fullname)] action in Button widget.
   ApiCallResponse? updateCustomerFullnameResponse;
 
   @override

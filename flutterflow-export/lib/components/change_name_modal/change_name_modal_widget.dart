@@ -258,8 +258,7 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                                     _model.showError = false;
                                     safeSetState(() {});
                                     _model.updateCustomerFullnameResponse =
-                                        await UpdateCustomerFullnameCopyCall
-                                            .call(
+                                        await UpdateCustomerFullnameCall.call(
                                       fullname:
                                           _model.nameFieldTextController.text,
                                       bearerToken: currentJwtToken,

@@ -338,7 +338,7 @@ class UpdateCustomerEmailCall {
   }
 }
 
-class UpdateCustomerFullnameCopyCall {
+class UpdateCustomerFullnameCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
     String? fullname = '',
@@ -348,7 +348,7 @@ class UpdateCustomerFullnameCopyCall {
   "fullname": "${fullname}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Update Customer Fullname Copy',
+      callName: 'Update Customer Fullname',
       apiUrl: 'https://simt-j-accounts-qa.fly.dev/customer/fullname',
       callType: ApiCallType.PUT,
       headers: {
