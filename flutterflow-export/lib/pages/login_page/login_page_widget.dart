@@ -870,7 +870,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .fromSTEB(
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'Sign Up failure, try again or contact support at hello@waterlilies.energy.',
+                                                    'Sign Up failure, try again or contact support at hello@waterlilies.energy.\n\nNOTE: if you received an invite by email you must use that email on signup.',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
