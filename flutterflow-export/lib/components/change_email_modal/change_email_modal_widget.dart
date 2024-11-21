@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,8 +34,11 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
     super.initState();
     _model = createModel(context, () => ChangeEmailModalModel());
 
-    _model.emailFieldTextController ??=
-        TextEditingController(text: currentUserEmail);
+    _model.emailFieldTextController ??= TextEditingController(
+        text: FFAppState().impersonationEmail != null &&
+                FFAppState().impersonationEmail != ''
+            ? FFAppState().impersonationEmail
+            : currentUserEmail);
     _model.emailFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -263,6 +267,9 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                             '') {
                                       _model.showError = false;
                                       safeSetState(() {});
+                                      await action_blocks
+                                          .checkAndBlockWriteableAPICall(
+                                              context);
                                       _model.updateEmailResult =
                                           await actions.updateUserEmail(
                                         _model.emailFieldTextController.text

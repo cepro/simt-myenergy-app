@@ -181,6 +181,10 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _impersonationPhone =
+          prefs.getString('ff_impersonationPhone') ?? _impersonationPhone;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -547,6 +551,13 @@ class FFAppState extends ChangeNotifier {
   void updateTariffsStruct(Function(TariffsStruct) updateFn) {
     updateFn(_tariffs);
     prefs.setString('ff_tariffs', _tariffs.serialize());
+  }
+
+  String _impersonationPhone = '';
+  String get impersonationPhone => _impersonationPhone;
+  set impersonationPhone(String value) {
+    _impersonationPhone = value;
+    prefs.setString('ff_impersonationPhone', value);
   }
 }
 

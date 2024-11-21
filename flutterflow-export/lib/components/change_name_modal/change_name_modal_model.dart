@@ -29,9 +29,10 @@ class ChangeNameModalModel extends FlutterFlowModel<ChangeNameModalWidget> {
       return 'Field is required';
     }
 
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Has to be a valid email address.';
+    if (val.length > 100) {
+      return 'Maximum 100 characters allowed, currently ${val.length}.';
     }
+
     return null;
   }
 

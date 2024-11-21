@@ -341,10 +341,29 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                               safeSetState(() {}),
                                           child: UserProfileRowWidget(
                                             label: 'Phone Number',
-                                            value: currentPhoneNumber != null &&
-                                                    currentPhoneNumber != ''
-                                                ? '+${currentPhoneNumber}'
-                                                : '[not set]',
+                                            value: () {
+                                              if (FFAppState()
+                                                          .impersonationPhone !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .impersonationPhone !=
+                                                      '') {
+                                                return '+${FFAppState().impersonationPhone}';
+                                              } else if ((currentPhoneNumber !=
+                                                          null &&
+                                                      currentPhoneNumber !=
+                                                          '') &&
+                                                  (FFAppState()
+                                                              .impersonationToken ==
+                                                          null ||
+                                                      FFAppState()
+                                                              .impersonationToken ==
+                                                          '')) {
+                                                return '+${currentPhoneNumber}';
+                                              } else {
+                                                return '[not set]';
+                                              }
+                                            }(),
                                             linkLabel: 'Change phone number',
                                             icon: Icon(
                                               Icons.phone,

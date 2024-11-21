@@ -11,9 +11,11 @@ class SupabaseUserStruct extends BaseStruct {
     String? authUserId,
     String? email,
     bool? isCeproUser,
+    String? phone,
   })  : _authUserId = authUserId,
         _email = email,
-        _isCeproUser = isCeproUser;
+        _isCeproUser = isCeproUser,
+        _phone = phone;
 
   // "authUserId" field.
   String? _authUserId;
@@ -36,11 +38,19 @@ class SupabaseUserStruct extends BaseStruct {
 
   bool hasIsCeproUser() => _isCeproUser != null;
 
+  // "phone" field.
+  String? _phone;
+  String get phone => _phone ?? '';
+  set phone(String? val) => _phone = val;
+
+  bool hasPhone() => _phone != null;
+
   static SupabaseUserStruct fromMap(Map<String, dynamic> data) =>
       SupabaseUserStruct(
         authUserId: data['authUserId'] as String?,
         email: data['email'] as String?,
         isCeproUser: data['isCeproUser'] as bool?,
+        phone: data['phone'] as String?,
       );
 
   static SupabaseUserStruct? maybeFromMap(dynamic data) => data is Map
@@ -51,6 +61,7 @@ class SupabaseUserStruct extends BaseStruct {
         'authUserId': _authUserId,
         'email': _email,
         'isCeproUser': _isCeproUser,
+        'phone': _phone,
       }.withoutNulls;
 
   @override
@@ -66,6 +77,10 @@ class SupabaseUserStruct extends BaseStruct {
         'isCeproUser': serializeParam(
           _isCeproUser,
           ParamType.bool,
+        ),
+        'phone': serializeParam(
+          _phone,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -86,6 +101,11 @@ class SupabaseUserStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
+        phone: deserializeParam(
+          data['phone'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -96,21 +116,24 @@ class SupabaseUserStruct extends BaseStruct {
     return other is SupabaseUserStruct &&
         authUserId == other.authUserId &&
         email == other.email &&
-        isCeproUser == other.isCeproUser;
+        isCeproUser == other.isCeproUser &&
+        phone == other.phone;
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([authUserId, email, isCeproUser]);
+      const ListEquality().hash([authUserId, email, isCeproUser, phone]);
 }
 
 SupabaseUserStruct createSupabaseUserStruct({
   String? authUserId,
   String? email,
   bool? isCeproUser,
+  String? phone,
 }) =>
     SupabaseUserStruct(
       authUserId: authUserId,
       email: email,
       isCeproUser: isCeproUser,
+      phone: phone,
     );

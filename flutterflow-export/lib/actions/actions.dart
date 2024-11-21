@@ -206,6 +206,7 @@ Future clearAppState(BuildContext context) async {
   FFAppState().solarContractSigned = false;
   FFAppState().haveSupplyContract = false;
   FFAppState().haveSolarContract = false;
+  FFAppState().impersonationPhone = '';
 }
 
 Future ceproUserOnly(BuildContext context) async {

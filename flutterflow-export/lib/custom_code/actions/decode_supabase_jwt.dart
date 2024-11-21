@@ -18,5 +18,6 @@ Future<SupabaseUserStruct> decodeSupabaseJwt(String jwt) async {
   return SupabaseUserStruct(
       authUserId: jwtMap["sub"],
       email: jwtMap["email"],
+      phone: jwtMap["phone"],
       isCeproUser: jwtMap["app_metadata"]["cepro_user"] ?? false);
 }

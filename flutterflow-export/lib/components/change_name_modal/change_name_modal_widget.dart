@@ -229,7 +229,7 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                                       .containsKey(FlutterFlowTheme.of(context)
                                           .titleMediumFamily),
                                 ),
-                            maxLength: 75,
+                            maxLength: 100,
                             maxLengthEnforcement: MaxLengthEnforcement.enforced,
                             cursorColor:
                                 FlutterFlowTheme.of(context).primaryText,

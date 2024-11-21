@@ -418,6 +418,11 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                   _model
                                                                       .decodeTokenResponse!
                                                                       .email;
+                                                              FFAppState()
+                                                                      .impersonationPhone =
+                                                                  _model
+                                                                      .decodeTokenResponse!
+                                                                      .phone;
                                                               safeSetState(
                                                                   () {});
                                                               _model.loading =
@@ -586,6 +591,8 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                           .impersonationToken = '';
                                                       FFAppState()
                                                           .impersonationEmail = '';
+                                                      FFAppState()
+                                                          .impersonationPhone = '';
                                                       safeSetState(() {});
                                                       _model.unimpersonateGetCustomerDetailsResponse =
                                                           await action_blocks

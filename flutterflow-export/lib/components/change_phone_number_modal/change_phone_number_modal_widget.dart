@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
@@ -263,7 +264,7 @@ class _ChangePhoneNumberModalWidgetState
                                                   FlutterFlowTheme.of(context)
                                                       .labelLargeFamily),
                                         ),
-                                    hintText: '712-345-6789',
+                                    hintText: '7123-456789',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
@@ -510,6 +511,8 @@ class _ChangePhoneNumberModalWidgetState
                                 ? null
                                 : () async {
                                     var _shouldSetState = false;
+                                    await action_blocks
+                                        .checkAndBlockWriteableAPICall(context);
                                     _model.showUpdateError = false;
                                     _model.showVerifyError = false;
                                     safeSetState(() {});

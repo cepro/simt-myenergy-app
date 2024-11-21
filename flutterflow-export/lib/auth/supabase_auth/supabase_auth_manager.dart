@@ -56,6 +56,29 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
   }
 
   @override
+  Future updatePassword({
+    required String newPassword,
+    required BuildContext context,
+  }) async {
+    try {
+      if (!loggedIn) {
+        print('Error: update password attempted with no logged in user!');
+        return;
+      }
+      await currentUser?.updatePassword(newPassword);
+    } on AuthException catch (e) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: ${e.message!}')),
+      );
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Password updated successfully')),
+    );
+  }
+
+  @override
   Future resetPassword({
     required String email,
     required BuildContext context,

@@ -31,6 +31,16 @@ class MyEnergySupabaseUser extends BaseAuthUser {
   }
 
   @override
+  Future? updatePassword(String newPassword) async {
+    final response = await SupaFlow.client.auth.updateUser(
+      UserAttributes(password: newPassword),
+    );
+    if (response.user != null) {
+      user = response.user;
+    }
+  }
+
+  @override
   Future? sendEmailVerification() => throw UnsupportedError(
       'The send email verification operation is not yet supported.');
 
