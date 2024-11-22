@@ -236,6 +236,7 @@ Future checkAndBlockWriteableAPICall(BuildContext context) async {
       backgroundColor: FlutterFlowTheme.of(context).secondary,
     ),
   );
+  await actions.breakActionChain();
   return;
 }
 
