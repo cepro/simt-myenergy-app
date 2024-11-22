@@ -147,13 +147,12 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                   Align(
                     alignment: AlignmentDirectional(1.0, 0.0),
                     child: FFButtonWidget(
-                      onPressed: ((FFAppState().impersonationToken != null &&
-                                  FFAppState().impersonationToken != '') ||
-                              (FFAppState().customer.status == 'preonboarding'))
-                          ? null
-                          : () async {
-                              await widget.setSignEmbedHTML?.call();
-                            },
+                      onPressed:
+                          (FFAppState().customer.status == 'preonboarding')
+                              ? null
+                              : () async {
+                                  await widget.setSignEmbedHTML?.call();
+                                },
                       text: 'Sign',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,

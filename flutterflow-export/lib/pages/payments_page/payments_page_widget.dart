@@ -666,16 +666,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: FFButtonWidget(
-                                                  onPressed: ((FFAppState()
-                                                                      .impersonationToken !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .impersonationToken !=
-                                                                  '') ||
-                                                          (FFAppState()
-                                                                  .customer
-                                                                  .status ==
-                                                              'preonboarding'))
+                                                  onPressed: (FFAppState()
+                                                              .customer
+                                                              .status ==
+                                                          'preonboarding')
                                                       ? null
                                                       : () async {
                                                           await action_blocks

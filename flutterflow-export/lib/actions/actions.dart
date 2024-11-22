@@ -131,6 +131,7 @@ Future<String?> contractSignEmbed(
 }) async {
   ApiCallResponse? contractSigningEmbedResponse;
 
+  await action_blocks.checkAndBlockWriteableAPICall(context);
   contractSigningEmbedResponse = await ContractSigningEmbedCall.call(
     bearerToken: currentJwtToken,
     id: contractId,

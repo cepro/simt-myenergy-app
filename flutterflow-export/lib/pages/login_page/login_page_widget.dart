@@ -658,6 +658,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         onPressed: () async {
                                                           var _shouldSetState =
                                                               false;
+                                                          // Clear before login to remove any previous login and state. This can cause issues.
+                                                          await action_blocks
+                                                              .clearAppState(
+                                                                  context);
                                                           _model.loginError =
                                                               false;
                                                           safeSetState(() {});
