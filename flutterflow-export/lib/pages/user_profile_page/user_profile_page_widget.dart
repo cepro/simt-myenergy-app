@@ -1,9 +1,9 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/change_email_modal/change_email_modal_widget.dart';
 import '/components/change_name_modal/change_name_modal_widget.dart';
 import '/components/change_phone_number_modal/change_phone_number_modal_widget.dart';
+import '/components/confirm_details_confirmation_modal/confirm_details_confirmation_modal_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/components/user_profile_row_widget.dart';
@@ -11,9 +11,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -395,6 +393,33 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                 ),
                                           ),
                                         ),
+                                      if (_model.detailsConfirmedFailure)
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  70.0, 5.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Details confirmation failed. Please try again or contact support.',
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleMediumFamily,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMediumFamily),
+                                                ),
+                                          ),
+                                        ),
                                       if (FFAppState()
                                               .customer
                                               .confirmedDetailsAt ==
@@ -419,58 +444,60 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                     : () async {
                                                         var _shouldSetState =
                                                             false;
-                                                        await action_blocks
-                                                            .checkAndBlockWriteableAPICall(
-                                                                context);
-                                                        _model.customerDetailsConfirmedResponse =
-                                                            await CustomerDetailsConfirmedCall
-                                                                .call(
-                                                          bearerToken:
-                                                              currentJwtToken,
-                                                        );
+                                                        _model.detailsConfirmedFailure =
+                                                            false;
+                                                        safeSetState(() {});
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return GestureDetector(
+                                                              onTap: () =>
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus(),
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    ConfirmDetailsConfirmationModalWidget(),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(() =>
+                                                                _model.confirmDetailsModalResponse =
+                                                                    value));
 
                                                         _shouldSetState = true;
-                                                        if ((_model
-                                                                .customerDetailsConfirmedResponse
-                                                                ?.succeeded ??
-                                                            true)) {
-                                                          FFAppState()
-                                                              .updateCustomerStruct(
-                                                            (e) => e
-                                                              ..confirmedDetailsAt =
-                                                                  functions
-                                                                      .nowDateTime(),
-                                                          );
-                                                          safeSetState(() {});
-                                                          _model.detailsJustConfirmed =
-                                                              true;
-                                                          safeSetState(() {});
-                                                          if (_shouldSetState)
+                                                        if (_model
+                                                                .confirmDetailsModalResponse !=
+                                                            null) {
+                                                          if (_model
+                                                              .confirmDetailsModalResponse!) {
+                                                            _model.detailsJustConfirmed =
+                                                                true;
                                                             safeSetState(() {});
-                                                          return;
+                                                            if (_shouldSetState)
+                                                              safeSetState(
+                                                                  () {});
+                                                            return;
+                                                          } else {
+                                                            _model.detailsConfirmedFailure =
+                                                                true;
+                                                            safeSetState(() {});
+                                                            if (_shouldSetState)
+                                                              safeSetState(
+                                                                  () {});
+                                                            return;
+                                                          }
                                                         } else {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Failed to confirm details.  Please try again or report to support.',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                                ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondary,
-                                                            ),
-                                                          );
                                                           if (_shouldSetState)
                                                             safeSetState(() {});
                                                           return;
