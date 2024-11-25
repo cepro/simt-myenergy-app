@@ -285,61 +285,6 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                     color: Colors.transparent,
                                                     child: ListTile(
                                                       title: Text(
-                                                        'Supabase Project',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleLarge
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLargeFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .titleLargeFamily),
-                                                                ),
-                                                      ),
-                                                      subtitle: Text(
-                                                        'replace_me_supabase_project',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMediumFamily,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .labelMediumFamily),
-                                                                ),
-                                                      ),
-                                                      trailing: Icon(
-                                                        Icons.arrow_forward_ios,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        size: 20.0,
-                                                      ),
-                                                      tileColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      dense: false,
-                                                    ),
-                                                  ),
-                                                  Material(
-                                                    color: Colors.transparent,
-                                                    child: ListTile(
-                                                      title: Text(
                                                         'App Version',
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -478,6 +423,61 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                       ),
                                                       subtitle: Text(
                                                         'replace_me_app_git_commit',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily),
+                                                                ),
+                                                      ),
+                                                      trailing: Icon(
+                                                        Icons.arrow_forward_ios,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 20.0,
+                                                      ),
+                                                      tileColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      dense: false,
+                                                    ),
+                                                  ),
+                                                  Material(
+                                                    color: Colors.transparent,
+                                                    child: ListTile(
+                                                      title: Text(
+                                                        'Supabase Project',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleLarge
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLargeFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleLargeFamily),
+                                                                ),
+                                                      ),
+                                                      subtitle: Text(
+                                                        'replace_me_supabase_project',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
