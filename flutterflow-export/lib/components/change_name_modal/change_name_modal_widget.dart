@@ -316,7 +316,7 @@ class _ChangeNameModalWidgetState extends State<ChangeNameModalWidget> {
                             onPressed: () async {
                               Navigator.pop(context);
                             },
-                            text: 'Close',
+                            text: 'Cancel',
                             options: FFButtonOptions(
                               padding: EdgeInsets.all(24.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
