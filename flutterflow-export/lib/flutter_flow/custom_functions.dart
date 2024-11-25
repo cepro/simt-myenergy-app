@@ -187,9 +187,9 @@ String monthlyCostsTooltipPricingText(
     microgridCharge = monthlyCostsItem.microgridStandingCharge;
   }
 
-  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)}'
+  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per kWh'
       '${newLineChar()}'
-      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)}'
+      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per kWh'
       '${newLineChar()}'
       'Microgrid charge: ${formatGBPAmount(microgridCharge)}';
 }

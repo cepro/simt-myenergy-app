@@ -153,7 +153,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                               : () async {
                                   await widget.setSignEmbedHTML?.call();
                                 },
-                      text: 'Sign',
+                      text: 'View',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
                         size: 15.0,

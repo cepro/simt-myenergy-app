@@ -188,7 +188,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                                   ),
                             ),
                             Text(
-                              monthlyUsageItem.usagePower.toString(),
+                              formatNumber(
+                                monthlyUsageItem.usagePower,
+                                formatType: FormatType.custom,
+                                format: '###.0',
+                                locale: '',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -202,7 +207,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                                   ),
                             ),
                             Text(
-                              monthlyUsageItem.usageHeat.toString(),
+                              formatNumber(
+                                monthlyUsageItem.usageHeat,
+                                formatType: FormatType.custom,
+                                format: '###.0',
+                                locale: '',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

@@ -137,7 +137,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Are you sure et.cetc.',
+                          'Please check the details. Are you sure your name is correct?',
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(

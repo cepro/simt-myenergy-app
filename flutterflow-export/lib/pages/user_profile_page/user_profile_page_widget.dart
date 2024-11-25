@@ -366,6 +366,8 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             icon: Icon(
                                               Icons.phone,
                                             ),
+                                            infoTooltipText:
+                                                'Adding your mobile phone number will allow you to receive notifications in the case of scheduled power outages.',
                                           ),
                                         ),
                                       ),
@@ -599,47 +601,6 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             ),
                                           ],
                                         ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            70.0, 0.0, 0.0, 0.0),
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            await actions.clearWebCache();
-                                          },
-                                          text: 'Reload Page',
-                                          options: FFButtonOptions(
-                                            height: 40.0,
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 16.0, 0.0),
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            textStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .override(
-                                                      fontFamily:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmallFamily,
-                                                      color: Colors.white,
-                                                      letterSpacing: 0.0,
-                                                      useGoogleFonts: GoogleFonts
-                                                              .asMap()
-                                                          .containsKey(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily),
-                                                    ),
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                        ),
-                                      ),
                                     ]
                                         .divide(SizedBox(height: 35.0))
                                         .addToStart(SizedBox(height: 25.0))

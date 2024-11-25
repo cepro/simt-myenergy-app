@@ -156,7 +156,7 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                               : () async {
                                   await widget.setSignEmbedHTML?.call();
                                 },
-                      text: 'Sign',
+                      text: 'View',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
                         size: 15.0,
