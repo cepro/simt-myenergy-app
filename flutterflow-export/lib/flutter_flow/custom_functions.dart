@@ -176,20 +176,20 @@ String monthlyCostsTooltipPricingText(
     benchmarkRate = benchmarkTariff.standingCharge;
   }
 
-  /******        Microgrid Cost      *********/
+  /******        Microgrid Charge      *********/
 
-  double microgridCost;
+  double microgridCharge;
   if (showRate) {
-    microgridCost = showPower
+    microgridCharge = showPower
         ? monthlyCostsItem.microgridPower
         : monthlyCostsItem.microgridHeat;
   } else {
-    microgridCost = monthlyCostsItem.microgridStandingCharge;
+    microgridCharge = monthlyCostsItem.microgridStandingCharge;
   }
 
-  return 'Benchmark price: ${formatGBPPenceAmount(benchmarkRate)}'
+  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)}'
       '${newLineChar()}'
-      'Microgrid price: ${formatGBPPenceAmount(microgridRate)}'
+      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)}'
       '${newLineChar()}'
-      'Microgrid cost: ${formatGBPAmount(microgridCost)}';
+      'Microgrid charge: ${formatGBPAmount(microgridCharge)}';
 }

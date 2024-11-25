@@ -271,7 +271,10 @@ class _ChangePhoneNumberModalWidgetState
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
                                                   .titleMediumFamily,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
                                           letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w300,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
@@ -424,7 +427,7 @@ class _ChangePhoneNumberModalWidgetState
                           ),
                         ),
                       ),
-                    if (_model.verifyCode)
+                    if (_model.verifyCode && false)
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),

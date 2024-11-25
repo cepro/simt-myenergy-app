@@ -2,8 +2,12 @@
 set -e
 
 PATCHES=$1
+BUILD_NUMBER=8888
 
 echo "\n\n=====     Apply patches for github pages     ====="
 
 echo "\nPatch 1: apply SPA 404 redirect hack ...\n"
 patch    -p0 < $PATCHES/github-pages/gh-pages-hack-snippet.html.patch || exit 1
+
+echo "\nPatch 2: inject build number to flutter_bootstrap.js href ...\n"
+sed -i -e 's/v=123/v='${BUILD_NUMBER}/ index.html || exit 1

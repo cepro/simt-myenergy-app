@@ -14,4 +14,7 @@ patch -p0 < $PATCHES/sentry/sentry-init.patch
 echo "\nPatch 3: site themes ...\n"
 patch -p0 < $PATCHES/theme/site_theme.patch
 cat $PATCHES/theme/*_site_theme.dart.snippet >> lib/flutter_flow/flutter_flow_theme.dart
-echo "\n"
+
+echo "\nPatch 4: flutter-bootstrap-js ...\n"
+patch -p0 < $PATCHES/web/flutter-bootstrap-js.patch
+

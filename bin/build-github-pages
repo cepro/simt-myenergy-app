@@ -33,7 +33,7 @@ fi
 
 echo "Building for web ...\n"
 # --source-maps added for sentry
-flutter build web --source-maps || exit 1
+flutter build web --source-maps --pwa-strategy none || exit 1
 
 cd build/web
 
