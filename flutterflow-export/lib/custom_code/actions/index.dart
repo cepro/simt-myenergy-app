@@ -26,3 +26,4 @@ export 'update_user_phone.dart' show updateUserPhone;
 export 'active_user_token.dart' show activeUserToken;
 export 'break_action_chain.dart' show breakActionChain;
 export 'get_package_info.dart' show getPackageInfo;
+export 'clear_web_cache.dart' show clearWebCache;
