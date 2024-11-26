@@ -339,7 +339,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               if ((FFAppState().customer.status ==
                                       'preonboarding') ||
                                   (FFAppState().customer.status ==
-                                      'onboarding'))
+                                      'onboarding') ||
+                                  (FFAppState().customer.status == 'pending'))
                                 wrapWithModel(
                                   model: _model.onboardProgressBoxModel,
                                   updateCallback: () => safeSetState(() {}),

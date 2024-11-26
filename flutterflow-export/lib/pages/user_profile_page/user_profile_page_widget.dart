@@ -252,6 +252,8 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             icon: Icon(
                                               Icons.label,
                                             ),
+                                            infoTooltipText:
+                                                'For example \"Jack Smith\" or \"Jack and Jill Smith\". This name is used for contracting.',
                                           ),
                                         ),
                                       ),
@@ -436,78 +438,66 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                   .fromSTEB(
                                                       70.0, 0.0, 0.0, 0.0),
                                               child: FFButtonWidget(
-                                                onPressed: (FFAppState()
-                                                                .impersonationToken !=
-                                                            null &&
-                                                        FFAppState()
-                                                                .impersonationToken !=
-                                                            '')
-                                                    ? null
-                                                    : () async {
-                                                        var _shouldSetState =
-                                                            false;
-                                                        _model.detailsConfirmedFailure =
-                                                            false;
+                                                onPressed: () async {
+                                                  var _shouldSetState = false;
+                                                  _model.detailsConfirmedFailure =
+                                                      false;
+                                                  safeSetState(() {});
+                                                  await showModalBottomSheet(
+                                                    isScrollControlled: true,
+                                                    backgroundColor:
+                                                        Colors.transparent,
+                                                    enableDrag: false,
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return GestureDetector(
+                                                        onTap: () =>
+                                                            FocusScope.of(
+                                                                    context)
+                                                                .unfocus(),
+                                                        child: Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child:
+                                                              ConfirmDetailsConfirmationModalWidget(),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ).then((value) =>
+                                                      safeSetState(() => _model
+                                                              .confirmDetailsModalResponse =
+                                                          value));
+
+                                                  _shouldSetState = true;
+                                                  if (_model
+                                                          .confirmDetailsModalResponse !=
+                                                      null) {
+                                                    if (_model
+                                                        .confirmDetailsModalResponse!) {
+                                                      _model.detailsJustConfirmed =
+                                                          true;
+                                                      safeSetState(() {});
+                                                      if (_shouldSetState)
                                                         safeSetState(() {});
-                                                        await showModalBottomSheet(
-                                                          isScrollControlled:
-                                                              true,
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
-                                                          enableDrag: false,
-                                                          context: context,
-                                                          builder: (context) {
-                                                            return GestureDetector(
-                                                              onTap: () =>
-                                                                  FocusScope.of(
-                                                                          context)
-                                                                      .unfocus(),
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    ConfirmDetailsConfirmationModalWidget(),
-                                                              ),
-                                                            );
-                                                          },
-                                                        ).then((value) =>
-                                                            safeSetState(() =>
-                                                                _model.confirmDetailsModalResponse =
-                                                                    value));
+                                                      return;
+                                                    } else {
+                                                      _model.detailsConfirmedFailure =
+                                                          true;
+                                                      safeSetState(() {});
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+                                                  } else {
+                                                    if (_shouldSetState)
+                                                      safeSetState(() {});
+                                                    return;
+                                                  }
 
-                                                        _shouldSetState = true;
-                                                        if (_model
-                                                                .confirmDetailsModalResponse !=
-                                                            null) {
-                                                          if (_model
-                                                              .confirmDetailsModalResponse!) {
-                                                            _model.detailsJustConfirmed =
-                                                                true;
-                                                            safeSetState(() {});
-                                                            if (_shouldSetState)
-                                                              safeSetState(
-                                                                  () {});
-                                                            return;
-                                                          } else {
-                                                            _model.detailsConfirmedFailure =
-                                                                true;
-                                                            safeSetState(() {});
-                                                            if (_shouldSetState)
-                                                              safeSetState(
-                                                                  () {});
-                                                            return;
-                                                          }
-                                                        } else {
-                                                          if (_shouldSetState)
-                                                            safeSetState(() {});
-                                                          return;
-                                                        }
-
-                                                        if (_shouldSetState)
-                                                          safeSetState(() {});
-                                                      },
+                                                  if (_shouldSetState)
+                                                    safeSetState(() {});
+                                                },
                                                 text: 'Confirm Details',
                                                 options: FFButtonOptions(
                                                   height: 40.0,

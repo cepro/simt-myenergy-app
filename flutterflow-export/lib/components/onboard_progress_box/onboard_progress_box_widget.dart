@@ -88,7 +88,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Onboarding Progress',
+                              'Setup Progress',
                               style: FlutterFlowTheme.of(context)
                                   .headlineMedium
                                   .override(

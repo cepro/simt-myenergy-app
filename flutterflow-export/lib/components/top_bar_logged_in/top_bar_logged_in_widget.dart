@@ -1,5 +1,6 @@
 import '/backend/schema/enums/enums.dart';
 import '/components/logout_button/logout_button_widget.dart';
+import '/components/sys_info_button/sys_info_button_widget.dart';
 import '/components/user_profile_button/user_profile_button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -158,10 +159,19 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                     ),
                   ),
                 ),
-                wrapWithModel(
-                  model: _model.userProfileButtonModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: UserProfileButtonWidget(),
+                if (FFAppState().isCeproUser)
+                  wrapWithModel(
+                    model: _model.sysInfoButtonModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: SysInfoButtonWidget(),
+                  ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                  child: wrapWithModel(
+                    model: _model.userProfileButtonModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: UserProfileButtonWidget(),
+                  ),
                 ),
                 Align(
                   alignment: AlignmentDirectional(0.0, 0.0),

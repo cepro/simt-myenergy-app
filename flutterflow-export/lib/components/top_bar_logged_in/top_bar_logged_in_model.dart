@@ -1,5 +1,6 @@
 import '/backend/schema/enums/enums.dart';
 import '/components/logout_button/logout_button_widget.dart';
+import '/components/sys_info_button/sys_info_button_widget.dart';
 import '/components/user_profile_button/user_profile_button_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,6 +14,8 @@ import 'package:provider/provider.dart';
 class TopBarLoggedInModel extends FlutterFlowModel<TopBarLoggedInWidget> {
   ///  State fields for stateful widgets in this component.
 
+  // Model for SysInfoButton component.
+  late SysInfoButtonModel sysInfoButtonModel;
   // Model for UserProfileButton component.
   late UserProfileButtonModel userProfileButtonModel;
   // Model for LogoutButton component.
@@ -20,6 +23,7 @@ class TopBarLoggedInModel extends FlutterFlowModel<TopBarLoggedInWidget> {
 
   @override
   void initState(BuildContext context) {
+    sysInfoButtonModel = createModel(context, () => SysInfoButtonModel());
     userProfileButtonModel =
         createModel(context, () => UserProfileButtonModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
@@ -27,6 +31,7 @@ class TopBarLoggedInModel extends FlutterFlowModel<TopBarLoggedInWidget> {
 
   @override
   void dispose() {
+    sysInfoButtonModel.dispose();
     userProfileButtonModel.dispose();
     logoutButtonModel.dispose();
   }

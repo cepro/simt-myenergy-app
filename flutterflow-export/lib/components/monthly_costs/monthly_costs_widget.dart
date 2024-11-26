@@ -384,7 +384,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                   content: Padding(
                                     padding: EdgeInsets.all(4.0),
                                     child: Text(
-                                      'Microgrid cost: ${functions.formatGBPAmount(monthlyCostsItem.microgridTotal)}',
+                                      'Microgrid charge: ${functions.formatGBPAmount(monthlyCostsItem.microgridTotal)}',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .override(
