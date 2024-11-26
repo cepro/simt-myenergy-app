@@ -2,7 +2,9 @@
 set -e
 
 PATCHES=$1
-BUILD_NUMBER=8888
+
+. `dirname $0`/library.sh
+BUILD_NUMBER=`getBuildNumber`
 
 echo "\n\n=====     Apply patches for github pages     ====="
 
