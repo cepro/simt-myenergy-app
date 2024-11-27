@@ -60,6 +60,8 @@ Future initSupabaseRealtimeSubscriptions() async {
       );
       FFAppState().addToAccounts(accountForContract);
 
+      FFAppState().solarContractSigned = newMap['signed_date'] != null;
+
       print("patched contract by replacing account record");
     },
   ).subscribe();

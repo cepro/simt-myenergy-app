@@ -112,6 +112,12 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         .toList()
         .cast<EscoStruct>();
     FFAppState().customer = customerToDataTypeResponse!;
+    FFAppState().solarContractSigned = functions
+                .getContractByType(accounts!.toList(), 'solar')
+                ?.signedDate !=
+            null &&
+        functions.getContractByType(accounts!.toList(), 'solar')?.signedDate !=
+            '';
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
