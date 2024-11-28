@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -37,7 +38,22 @@ class _ChangePhoneNumberModalWidgetState
     super.initState();
     _model = createModel(context, () => ChangePhoneNumberModalModel());
 
-    _model.phoneNumberFieldTextController ??= TextEditingController();
+    _model.phoneNumberFieldTextController ??= TextEditingController(text: () {
+      if (FFAppState().impersonationPhone != null &&
+          FFAppState().impersonationPhone != '') {
+        return ((String phone) {
+          return phone.replaceFirst("44", "");
+        }(FFAppState().impersonationPhone));
+      } else if ((currentPhoneNumber != null && currentPhoneNumber != '') &&
+          (FFAppState().impersonationToken == null ||
+              FFAppState().impersonationToken == '')) {
+        return ((String phone) {
+          return phone.replaceFirst("44", "");
+        }(currentPhoneNumber));
+      } else {
+        return '';
+      }
+    }());
     _model.phoneNumberFieldFocusNode ??= FocusNode();
 
     _model.verifyCodeFieldTextController ??= TextEditingController();

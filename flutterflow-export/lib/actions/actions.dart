@@ -287,6 +287,14 @@ Future openSupplyContract(BuildContext context) async {
       'supply',
       null,
     );
+    // This action triggers a page rebuild so that the progress task count is recomputed. Without this and after a contract is signed the oboard progress does not update.
+    //
+    // Seems there must be a more elegant way to do this but for now this works.
+    //
+    // App state update doesn't change anything as it just sets the supplyContractSigned value to the value it already is.
+    // Trigger Page Rebuild for Onboard Progress
+    FFAppState().supplyContractSigned = FFAppState().supplyContractSigned;
+    FFAppState().update(() {});
   }
 }
 
@@ -337,6 +345,14 @@ Future openSolarContract(BuildContext context) async {
       'solar',
       null,
     );
+    // This action triggers a page rebuild so that the progress task count is recomputed. Without this and after a contract is signed the oboard progress does not update.
+    //
+    // Seems there must be a more elegant way to do this but for now this works.
+    //
+    // App state update doesn't change anything as it just sets the solarContractSigned value to the value it already is.
+    // Trigger Page Rebuild for Onboard Progress
+    FFAppState().solarContractSigned = FFAppState().solarContractSigned;
+    FFAppState().update(() {});
   }
 }
 

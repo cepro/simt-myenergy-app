@@ -191,7 +191,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                               formatNumber(
                                 monthlyUsageItem.usagePower,
                                 formatType: FormatType.custom,
-                                format: '###.0',
+                                format: '##0.0',
                                 locale: '',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -210,7 +210,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                               formatNumber(
                                 monthlyUsageItem.usageHeat,
                                 formatType: FormatType.custom,
-                                format: '###.0',
+                                format: '##0.0',
                                 locale: '',
                               ),
                               style: FlutterFlowTheme.of(context)
