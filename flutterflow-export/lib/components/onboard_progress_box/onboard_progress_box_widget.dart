@@ -155,7 +155,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                           model: _model.onboardProgressRowModel5,
                           updateCallback: () => safeSetState(() {}),
                           child: OnboardProgressRowWidget(
-                            checked: false,
+                            checked: FFAppState().customer.hasPaymentMethod,
                             title: 'Add your payment method',
                             linkLabel: 'Go to payments',
                             navigateAction: () async {
