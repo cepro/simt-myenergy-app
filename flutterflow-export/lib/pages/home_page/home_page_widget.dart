@@ -62,7 +62,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           r'''$[0].balance''',
         ));
         _model.isOwner = (FFAppState().properties.isNotEmpty) &&
-            (FFAppState().properties.first.owner == FFAppState().customer.id);
+            (FFAppState().properties.firstOrNull?.owner ==
+                FFAppState().customer.id);
         _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
         safeSetState(() {});
         FFAppState().supplyContractSigned = (functions.getContractByType(
@@ -140,7 +141,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -263,7 +267,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             child: Text(
                                               FFAppState()
                                                   .properties
-                                                  .first
+                                                  .firstOrNull!
                                                   .plot,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -310,7 +314,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               child: Text(
                                                 FFAppState()
                                                     .properties
-                                                    .first
+                                                    .firstOrNull!
                                                     .description,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -487,7 +491,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   ? 'Mode:  loading ...'
                                                                   : (_model
                                                                           .inPrepayMode!
-                                                                      ? 'Mode:  Prepay'
+                                                                      ? 'Mode:  Prepayment'
                                                                       : 'Mode:  Credit'),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
@@ -656,7 +660,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       e.type ==
                                                                       'supply')
                                                                   .toList()
-                                                                  .first,
+                                                                  .firstOrNull!,
                                                             ),
                                                           ),
                                                         ),
@@ -807,7 +811,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             null
                                                                         ? 'Mode:  loading ...'
                                                                         : (_model.inPrepayMode!
-                                                                            ? 'Mode: Prepay'
+                                                                            ? 'Mode: Prepayment'
                                                                             : 'Mode: Credit'),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)

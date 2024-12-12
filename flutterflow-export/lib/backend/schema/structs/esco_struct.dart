@@ -39,7 +39,9 @@ class EscoStruct extends BaseStruct {
   static EscoStruct fromMap(Map<String, dynamic> data) => EscoStruct(
         id: data['id'] as String?,
         name: data['name'] as String?,
-        code: deserializeEnum<EscoCodeEnum>(data['code']),
+        code: data['code'] is EscoCodeEnum
+            ? data['code']
+            : deserializeEnum<EscoCodeEnum>(data['code']),
       );
 
   static EscoStruct? maybeFromMap(dynamic data) =>

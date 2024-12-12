@@ -273,7 +273,7 @@ Future openSupplyContract(BuildContext context) async {
                   .contractTerms
                   .where((e) => e.type == 'supply')
                   .toList()
-                  .first,
+                  .firstOrNull!,
               contract: functions.getContractByType(
                   FFAppState().accounts.toList(), 'supply')!,
             ),
@@ -328,12 +328,12 @@ Future openSolarContract(BuildContext context) async {
                   .contractTerms
                   .where((e) => e.subtype == 'thirty_year')
                   .toList()
-                  .first,
+                  .firstOrNull!,
               termsSolarShortTerm: FFAppState()
                   .contractTerms
                   .where((e) => e.subtype == 'short_term')
                   .toList()
-                  .first,
+                  .firstOrNull!,
             ),
           ),
         );

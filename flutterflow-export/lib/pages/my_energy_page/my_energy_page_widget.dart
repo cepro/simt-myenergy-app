@@ -51,7 +51,10 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -150,7 +153,10 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                         content: Padding(
                                           padding: EdgeInsets.all(4.0),
                                           child: Text(
-                                            FFAppState().properties.first.plot,
+                                            FFAppState()
+                                                .properties
+                                                .firstOrNull!
+                                                .plot,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyLarge
                                                 .override(
@@ -195,7 +201,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                             child: Text(
                                               FFAppState()
                                                   .properties
-                                                  .first
+                                                  .firstOrNull!
                                                   .description,
                                               style:
                                                   FlutterFlowTheme.of(context)

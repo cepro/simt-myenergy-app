@@ -82,9 +82,11 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
   Future resetPassword({
     required String email,
     required BuildContext context,
+    String? redirectTo,
   }) async {
     try {
-      await SupaFlow.client.auth.resetPasswordForEmail(email);
+      await SupaFlow.client.auth
+          .resetPasswordForEmail(email, redirectTo: redirectTo);
     } on AuthException catch (e) {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(

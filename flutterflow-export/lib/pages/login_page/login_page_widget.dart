@@ -155,7 +155,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -231,7 +234,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                             text: 'Sign In',
                                           ),
                                           Tab(
-                                            text: 'Sign Up',
+                                            text: 'Register',
                                           ),
                                         ],
                                         controller: _model.tabBarController,
@@ -874,7 +877,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .fromSTEB(
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: Text(
-                                                    'Sign Up failure, try again or contact support at hello@waterlilies.energy.\n\nNOTE: if you received an invite by email you must use that email on signup.',
+                                                    'Registration failure, try again or contact support at hello@waterlilies.energy.\n\nNOTE: if you received an invite by email you must use that email on register.',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -1525,7 +1528,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     if (_shouldSetState)
                                                       safeSetState(() {});
                                                   },
-                                                  text: 'Create Account',
+                                                  text: 'Register',
                                                   options: FFButtonOptions(
                                                     width: 190.0,
                                                     height: 50.0,

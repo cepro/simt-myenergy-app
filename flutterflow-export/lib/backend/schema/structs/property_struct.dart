@@ -83,7 +83,9 @@ class PropertyStruct extends BaseStruct {
         supplyMeterUUID: data['supplyMeterUUID'] as String?,
         solarMeterUUID: data['solarMeterUUID'] as String?,
         owner: data['owner'] as String?,
-        esco: EscoStruct.maybeFromMap(data['esco']),
+        esco: data['esco'] is EscoStruct
+            ? data['esco']
+            : EscoStruct.maybeFromMap(data['esco']),
       );
 
   static PropertyStruct? maybeFromMap(dynamic data) =>

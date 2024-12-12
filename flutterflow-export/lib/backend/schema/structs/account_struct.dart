@@ -59,8 +59,12 @@ class AccountStruct extends BaseStruct {
   static AccountStruct fromMap(Map<String, dynamic> data) => AccountStruct(
         id: data['id'] as String?,
         accountNumber: castToType<int>(data['accountNumber']),
-        property: PropertyStruct.maybeFromMap(data['property']),
-        contract: ContractStruct.maybeFromMap(data['contract']),
+        property: data['property'] is PropertyStruct
+            ? data['property']
+            : PropertyStruct.maybeFromMap(data['property']),
+        contract: data['contract'] is ContractStruct
+            ? data['contract']
+            : ContractStruct.maybeFromMap(data['contract']),
       );
 
   static AccountStruct? maybeFromMap(dynamic data) =>
