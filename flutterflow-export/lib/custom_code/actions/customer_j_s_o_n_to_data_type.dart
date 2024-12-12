@@ -19,5 +19,8 @@ Future<CustomerStruct> customerJSONToDataType(dynamic customerJSON) async {
       id: customerJSON['id'],
       name: customerJSON['name'],
       status: customerJSON['status'],
+      hasPaymentMethod: customerJSON['hasPaymentMethod'],
+      allowOnboardTransition: customerJSON['allowOnboardTransition'],
+      exiting: customerJSON['exiting'],
       confirmedDetailsAt: confirmAtDateTime);
 }

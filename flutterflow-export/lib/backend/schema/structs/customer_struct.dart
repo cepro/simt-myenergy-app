@@ -12,10 +12,16 @@ class CustomerStruct extends BaseStruct {
     DateTime? confirmedDetailsAt,
     String? name,
     String? status,
+    bool? hasPaymentMethod,
+    bool? exiting,
+    bool? allowOnboardTransition,
   })  : _id = id,
         _confirmedDetailsAt = confirmedDetailsAt,
         _name = name,
-        _status = status;
+        _status = status,
+        _hasPaymentMethod = hasPaymentMethod,
+        _exiting = exiting,
+        _allowOnboardTransition = allowOnboardTransition;
 
   // "id" field.
   String? _id;
@@ -45,11 +51,35 @@ class CustomerStruct extends BaseStruct {
 
   bool hasStatus() => _status != null;
 
+  // "hasPaymentMethod" field.
+  bool? _hasPaymentMethod;
+  bool get hasPaymentMethod => _hasPaymentMethod ?? false;
+  set hasPaymentMethod(bool? val) => _hasPaymentMethod = val;
+
+  bool hasHasPaymentMethod() => _hasPaymentMethod != null;
+
+  // "exiting" field.
+  bool? _exiting;
+  bool get exiting => _exiting ?? false;
+  set exiting(bool? val) => _exiting = val;
+
+  bool hasExiting() => _exiting != null;
+
+  // "allowOnboardTransition" field.
+  bool? _allowOnboardTransition;
+  bool get allowOnboardTransition => _allowOnboardTransition ?? false;
+  set allowOnboardTransition(bool? val) => _allowOnboardTransition = val;
+
+  bool hasAllowOnboardTransition() => _allowOnboardTransition != null;
+
   static CustomerStruct fromMap(Map<String, dynamic> data) => CustomerStruct(
         id: data['id'] as String?,
         confirmedDetailsAt: data['confirmedDetailsAt'] as DateTime?,
         name: data['name'] as String?,
         status: data['status'] as String?,
+        hasPaymentMethod: data['hasPaymentMethod'] as bool?,
+        exiting: data['exiting'] as bool?,
+        allowOnboardTransition: data['allowOnboardTransition'] as bool?,
       );
 
   static CustomerStruct? maybeFromMap(dynamic data) =>
@@ -60,6 +90,9 @@ class CustomerStruct extends BaseStruct {
         'confirmedDetailsAt': _confirmedDetailsAt,
         'name': _name,
         'status': _status,
+        'hasPaymentMethod': _hasPaymentMethod,
+        'exiting': _exiting,
+        'allowOnboardTransition': _allowOnboardTransition,
       }.withoutNulls;
 
   @override
@@ -79,6 +112,18 @@ class CustomerStruct extends BaseStruct {
         'status': serializeParam(
           _status,
           ParamType.String,
+        ),
+        'hasPaymentMethod': serializeParam(
+          _hasPaymentMethod,
+          ParamType.bool,
+        ),
+        'exiting': serializeParam(
+          _exiting,
+          ParamType.bool,
+        ),
+        'allowOnboardTransition': serializeParam(
+          _allowOnboardTransition,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -104,6 +149,21 @@ class CustomerStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        hasPaymentMethod: deserializeParam(
+          data['hasPaymentMethod'],
+          ParamType.bool,
+          false,
+        ),
+        exiting: deserializeParam(
+          data['exiting'],
+          ParamType.bool,
+          false,
+        ),
+        allowOnboardTransition: deserializeParam(
+          data['allowOnboardTransition'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -115,12 +175,22 @@ class CustomerStruct extends BaseStruct {
         id == other.id &&
         confirmedDetailsAt == other.confirmedDetailsAt &&
         name == other.name &&
-        status == other.status;
+        status == other.status &&
+        hasPaymentMethod == other.hasPaymentMethod &&
+        exiting == other.exiting &&
+        allowOnboardTransition == other.allowOnboardTransition;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, confirmedDetailsAt, name, status]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        confirmedDetailsAt,
+        name,
+        status,
+        hasPaymentMethod,
+        exiting,
+        allowOnboardTransition
+      ]);
 }
 
 CustomerStruct createCustomerStruct({
@@ -128,10 +198,16 @@ CustomerStruct createCustomerStruct({
   DateTime? confirmedDetailsAt,
   String? name,
   String? status,
+  bool? hasPaymentMethod,
+  bool? exiting,
+  bool? allowOnboardTransition,
 }) =>
     CustomerStruct(
       id: id,
       confirmedDetailsAt: confirmedDetailsAt,
       name: name,
       status: status,
+      hasPaymentMethod: hasPaymentMethod,
+      exiting: exiting,
+      allowOnboardTransition: allowOnboardTransition,
     );
