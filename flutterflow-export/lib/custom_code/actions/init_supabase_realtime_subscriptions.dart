@@ -14,60 +14,58 @@ import 'package:flutter/material.dart';
 Future initSupabaseRealtimeSubscriptions() async {
   await SupaFlow.client.removeAllChannels();
 
-  SupaFlow.client.channel('public:contracts').on(
-    RealtimeListenTypes.postgresChanges,
-    ChannelFilter(event: 'UPDATE', schema: 'public', table: 'contracts'),
-    (payload, [ref]) {
-      print('public:contracts UPDATE received: ${payload.toString()}');
+  SupaFlow.client
+      .channel('public:contracts')
+      .onPostgresChanges(
+        event: PostgresChangeEvent.update,
+        schema: 'public',
+        table: 'contracts',
+        callback: (payload) {
+          print('public:contracts UPDATE received: ${payload.toString()}');
 
-      Map<String, dynamic> updateMap = payload;
-      if (!updateMap.containsKey('new')) {
-        print('no new in payload');
-        return;
-      }
+          Map<String, dynamic> newRec = payload.newRecord;
+          if (!newRec.containsKey('id')) {
+            print('no id in new record');
+            return;
+          }
 
-      Map<String, dynamic> newMap = updateMap['new'];
-      if (!newMap.containsKey('id')) {
-        print('no id in new');
-        return;
-      }
+          String id = newRec['id'];
+          AccountStruct accountForContract;
+          try {
+            accountForContract = FFAppState()
+                .accounts
+                .firstWhere((element) => element.contract.id == id);
+          } catch (e) {
+            print("exception finding match");
+            return;
+          }
+          print("found account for contract: ${accountForContract}");
 
-      String id = newMap['id'];
-      AccountStruct accountForContract;
-      try {
-        accountForContract = FFAppState()
-            .accounts
-            .firstWhere((element) => element.contract.id == id);
-      } catch (e) {
-        print("exception finding match");
-        return;
-      }
-      print("found account for contract: ${accountForContract}");
+          FFAppState().removeFromAccounts(accountForContract);
 
-      FFAppState().removeFromAccounts(accountForContract);
+          // replace the contract in appstate with the updated one:
+          accountForContract.contract = ContractStruct(
+            id: newRec['id'],
+            type: newRec['type'],
+            description: newRec['description'],
+            termsId: newRec['terms'],
+            docusealSubmissionId: newRec['docuseal_submission_id'],
+            signedContractURL: newRec['signed_contract_url'],
+            signedDate: newRec['signed_date'],
+            effectiveDate: newRec['effective_date'],
+            endDate: newRec['end_date'],
+          );
+          FFAppState().addToAccounts(accountForContract);
 
-      // replace the contract in appstate with the updated one:
-      accountForContract.contract = ContractStruct(
-        id: newMap['id'],
-        type: newMap['type'],
-        description: newMap['description'],
-        termsId: newMap['terms'],
-        docusealSubmissionId: newMap['docuseal_submission_id'],
-        signedContractURL: newMap['signed_contract_url'],
-        signedDate: newMap['signed_date'],
-        effectiveDate: newMap['effective_date'],
-        endDate: newMap['end_date'],
-      );
-      FFAppState().addToAccounts(accountForContract);
+          bool contractSigned = newRec['signed_date'] != null;
+          if (newRec['type'] == 'solar') {
+            FFAppState().solarContractSigned = contractSigned;
+          } else if (newRec['type'] == 'supply') {
+            FFAppState().supplyContractSigned = contractSigned;
+          }
 
-      bool contractSigned = newMap['signed_date'] != null;
-      if (newMap['type'] == 'solar') {
-        FFAppState().solarContractSigned = contractSigned;
-      } else if (newMap['type'] == 'supply') {
-        FFAppState().supplyContractSigned = contractSigned;
-      }
-
-      print("patched contract by replacing account record");
-    },
-  ).subscribe();
+          print("patched contract by replacing account record");
+        },
+      )
+      .subscribe();
 }
