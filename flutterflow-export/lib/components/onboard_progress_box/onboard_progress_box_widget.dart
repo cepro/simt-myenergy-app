@@ -34,14 +34,17 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.actionsDone =
-          (bool solarSigned, bool supplySigned, bool confirmedDetails) {
-        return [solarSigned, supplySigned, confirmedDetails]
+      _model.actionsDone = (bool solarSigned, bool supplySigned,
+              bool confirmedDetails, bool hasPaymentMethod) {
+        return [solarSigned, supplySigned, confirmedDetails, hasPaymentMethod]
                 .where((value) => value)
                 .length +
             1;
-      }(FFAppState().solarContractSigned, FFAppState().supplyContractSigned,
-              (FFAppState().customer.confirmedDetailsAt != null));
+      }(
+          FFAppState().solarContractSigned,
+          FFAppState().supplyContractSigned,
+          (FFAppState().customer.confirmedDetailsAt != null),
+          FFAppState().customer.hasPaymentMethod);
       safeSetState(() {});
     });
 

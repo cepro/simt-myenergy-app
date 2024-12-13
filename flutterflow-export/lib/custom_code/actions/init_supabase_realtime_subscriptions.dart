@@ -68,4 +68,27 @@ Future initSupabaseRealtimeSubscriptions() async {
         },
       )
       .subscribe();
+
+  SupaFlow.client
+      .channel('public:customers')
+      .onPostgresChanges(
+        event: PostgresChangeEvent.update,
+        schema: 'public',
+        table: 'customers',
+        callback: (payload) {
+          print('public:customers UPDATE received: ${payload.toString()}');
+
+          Map<String, dynamic> newRec = payload.newRecord;
+          CustomerStruct customer = FFAppState().customer;
+          print("app state customer current: ${customer}");
+
+          FFAppState().updateCustomerStruct((c) {
+            c.hasPaymentMethod = newRec['has_payment_method'];
+            c.allowOnboardTransition = newRec['allow_onboard_transition'];
+          });
+
+          print("app state customer updated: ${FFAppState().customer}");
+        },
+      )
+      .subscribe();
 }
