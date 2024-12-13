@@ -83,6 +83,7 @@ Future initSupabaseRealtimeSubscriptions() async {
           print("app state customer current: ${customer}");
 
           FFAppState().updateCustomerStruct((c) {
+            c.status = newRec['status'];
             c.hasPaymentMethod = newRec['has_payment_method'];
             c.allowOnboardTransition = newRec['allow_onboard_transition'];
           });
