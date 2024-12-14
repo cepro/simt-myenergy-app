@@ -230,141 +230,136 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           ),
                                         ),
                                       ),
-                                      if ((FFAppState().customer.status !=
-                                              'preonboarding') &&
-                                          (FFAppState().customer.status !=
-                                              'onboarding') &&
-                                          (_model.payments.isNotEmpty))
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1.0, 0.0),
-                                          child: Container(
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                1.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              border: Border.all(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsets.all(20.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, 0.0),
-                                                    child: Text(
-                                                      'Payment History',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .headlineMediumFamily),
-                                                              ),
-                                                    ),
-                                                  ),
-                                                  if (false)
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              -1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    15.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Text(
-                                                          () {
-                                                            if (_model
-                                                                .loadHistoryFailure) {
-                                                              return 'Failure occurred loading history ...';
-                                                            } else if (_model
-                                                                .loadingHistory) {
-                                                              return 'Loading ...';
-                                                            } else if (_model
-                                                                    .payments
-                                                                    .length ==
-                                                                0) {
-                                                              return 'No payments';
-                                                            } else {
-                                                              return _model
-                                                                  .payments
-                                                                  .length
-                                                                  .toString();
-                                                            }
-                                                          }(),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyMediumFamily),
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  if (_model
-                                                      .payments.isNotEmpty)
-                                                    wrapWithModel(
-                                                      model: _model
-                                                          .paymentsListModel,
-                                                      updateCallback: () =>
-                                                          safeSetState(() {}),
-                                                      child: PaymentsListWidget(
-                                                        payments:
-                                                            _model.payments,
-                                                      ),
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      if (_model.loadingHistory)
-                                        Container(
-                                          width: 100.0,
-                                          height: 100.0,
-                                          child: custom_widgets.LoadingSpinner(
-                                            width: 100.0,
-                                            height: 100.0,
-                                          ),
-                                        ),
                                     ],
                                   ),
                                 ),
                               ),
+                              if (_model.loadingHistory)
+                                Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: custom_widgets.LoadingSpinner(
+                                    width: 100.0,
+                                    height: 100.0,
+                                  ),
+                                ),
+                              if ((FFAppState().customer.status !=
+                                      'preonboarding') &&
+                                  (FFAppState().customer.status !=
+                                      'onboarding') &&
+                                  (_model.payments.isNotEmpty))
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 30.0),
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(20.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 15.0),
+                                                child: Text(
+                                                  'Payment History',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .headlineMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMediumFamily),
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            if (false)
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 15.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    () {
+                                                      if (_model
+                                                          .loadHistoryFailure) {
+                                                        return 'Failure occurred loading history ...';
+                                                      } else if (_model
+                                                          .loadingHistory) {
+                                                        return 'Loading ...';
+                                                      } else if (_model.payments
+                                                              .length ==
+                                                          0) {
+                                                        return 'No payments';
+                                                      } else {
+                                                        return _model
+                                                            .payments.length
+                                                            .toString();
+                                                      }
+                                                    }(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            if (_model.payments.isNotEmpty)
+                                              wrapWithModel(
+                                                model: _model.paymentsListModel,
+                                                updateCallback: () =>
+                                                    safeSetState(() {}),
+                                                child: PaymentsListWidget(
+                                                  payments: _model.payments,
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               if ((functions.arrayLengthOrNegativeOneIfNotArray(
                                           _model.paymentMethods) >
                                       0) &&

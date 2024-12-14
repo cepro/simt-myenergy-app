@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +48,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 675.0,
+      height: 250.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
       ),
@@ -103,7 +104,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
-                          'Currency',
+                          'Description',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -139,7 +140,8 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                             ),
                       ),
                       Text(
-                        paymentsItem.amount.toString(),
+                        functions.formatGBPAmount(
+                            paymentsItem.amount.toDouble() / 100),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -150,7 +152,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                             ),
                       ),
                       Text(
-                        paymentsItem.currency,
+                        paymentsItem.description,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,

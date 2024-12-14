@@ -10,10 +10,10 @@ class PaymentStruct extends BaseStruct {
   PaymentStruct({
     String? id,
     int? amount,
-    String? currency,
+    String? description,
   })  : _id = id,
         _amount = amount,
-        _currency = currency;
+        _description = description;
 
   // "id" field.
   String? _id;
@@ -31,17 +31,17 @@ class PaymentStruct extends BaseStruct {
 
   bool hasAmount() => _amount != null;
 
-  // "currency" field.
-  String? _currency;
-  String get currency => _currency ?? '';
-  set currency(String? val) => _currency = val;
+  // "description" field.
+  String? _description;
+  String get description => _description ?? '';
+  set description(String? val) => _description = val;
 
-  bool hasCurrency() => _currency != null;
+  bool hasDescription() => _description != null;
 
   static PaymentStruct fromMap(Map<String, dynamic> data) => PaymentStruct(
         id: data['id'] as String?,
         amount: castToType<int>(data['amount']),
-        currency: data['currency'] as String?,
+        description: data['description'] as String?,
       );
 
   static PaymentStruct? maybeFromMap(dynamic data) =>
@@ -50,7 +50,7 @@ class PaymentStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'amount': _amount,
-        'currency': _currency,
+        'description': _description,
       }.withoutNulls;
 
   @override
@@ -63,8 +63,8 @@ class PaymentStruct extends BaseStruct {
           _amount,
           ParamType.int,
         ),
-        'currency': serializeParam(
-          _currency,
+        'description': serializeParam(
+          _description,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -81,8 +81,8 @@ class PaymentStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
-        currency: deserializeParam(
-          data['currency'],
+        description: deserializeParam(
+          data['description'],
           ParamType.String,
           false,
         ),
@@ -96,20 +96,20 @@ class PaymentStruct extends BaseStruct {
     return other is PaymentStruct &&
         id == other.id &&
         amount == other.amount &&
-        currency == other.currency;
+        description == other.description;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, amount, currency]);
+  int get hashCode => const ListEquality().hash([id, amount, description]);
 }
 
 PaymentStruct createPaymentStruct({
   String? id,
   int? amount,
-  String? currency,
+  String? description,
 }) =>
     PaymentStruct(
       id: id,
       amount: amount,
-      currency: currency,
+      description: description,
     );

@@ -355,7 +355,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child: UserProfileRowWidget(
-                                            label: 'Phone Number',
+                                            label: 'Mobile Number',
                                             value: () {
                                               if (FFAppState()
                                                           .impersonationPhone !=
@@ -379,7 +379,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                 return '[not set]';
                                               }
                                             }(),
-                                            linkLabel: 'Change phone number',
+                                            linkLabel: 'Change mobile number',
                                             icon: Icon(
                                               Icons.phone,
                                             ),
