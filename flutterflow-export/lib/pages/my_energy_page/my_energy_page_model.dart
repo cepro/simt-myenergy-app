@@ -5,6 +5,7 @@ import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import 'my_energy_page_widget.dart' show MyEnergyPageWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';

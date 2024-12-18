@@ -10,6 +10,7 @@ import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -68,6 +69,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                 (e) => e..hasPaymentMethod = true,
               );
               safeSetState(() {});
+              // Here we just want to update the customer status but use the action block that refetches everything. This is fine. Not advantage to only updated customer status on it's own as we still need to fetch the accounts data from the backend and the update part is super fast.
+              // RefreshCustomerStatus
+              await action_blocks.getCustomerDetailsAndInitAppState(context);
             } else {
               return;
             }

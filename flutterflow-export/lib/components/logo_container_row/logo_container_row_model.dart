@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:math';
+import 'dart:ui';
 import 'logo_container_row_widget.dart' show LogoContainerRowWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

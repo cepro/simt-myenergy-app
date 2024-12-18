@@ -5,6 +5,7 @@ import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -48,13 +49,6 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               )?.toString()?.toString(),
               '30',
             );
-            _model.minimumBalanceFocusNode?.requestFocus();
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              _model.minimumBalanceTextController?.selection =
-                  TextSelection.collapsed(
-                offset: _model.minimumBalanceTextController!.text.length,
-              );
-            });
           });
           safeSetState(() {
             _model.topUpAmountTextController?.text = valueOrDefault<String>(
@@ -64,13 +58,6 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               )?.toString()?.toString(),
               '50',
             );
-            _model.topUpAmountFocusNode?.requestFocus();
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              _model.topUpAmountTextController?.selection =
-                  TextSelection.collapsed(
-                offset: _model.topUpAmountTextController!.text.length,
-              );
-            });
           });
           _model.haveWallet = true;
         } else {

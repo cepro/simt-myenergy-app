@@ -1,6 +1,7 @@
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'welcome_box_widget.dart' show WelcomeBoxWidget;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

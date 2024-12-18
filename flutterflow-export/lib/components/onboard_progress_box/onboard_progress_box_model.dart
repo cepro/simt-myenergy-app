@@ -1,6 +1,7 @@
 import '/components/onboard_progress_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import 'onboard_progress_box_widget.dart' show OnboardProgressBoxWidget;
 import 'package:flutter/material.dart';
