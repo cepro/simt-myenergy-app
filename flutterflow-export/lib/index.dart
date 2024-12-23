@@ -20,3 +20,4 @@ export '/pages/impersonate_user/impersonate_user_widget.dart'
     show ImpersonateUserWidget;
 export '/pages/user_profile_page/user_profile_page_widget.dart'
     show UserProfilePageWidget;
+export '/pages/topups_page/topups_page_widget.dart' show TopupsPageWidget;

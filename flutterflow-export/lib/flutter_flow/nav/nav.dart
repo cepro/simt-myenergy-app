@@ -199,6 +199,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             initialPage: '',
             page: UserProfilePageWidget(),
           ),
+        ),
+        FFRoute(
+          name: 'TopupsPage',
+          path: '/topups',
+          requireAuth: true,
+          builder: (context, params) => TopupsPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

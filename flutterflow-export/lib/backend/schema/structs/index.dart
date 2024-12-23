@@ -15,3 +15,4 @@ export 'property_struct.dart';
 export 'supabase_user_struct.dart';
 export 'tariff_struct.dart';
 export 'tariffs_struct.dart';
+export 'topup_struct.dart';
