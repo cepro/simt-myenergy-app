@@ -15,10 +15,11 @@ Future<List<MonthlyCostStruct>> monthlyCostJSONToDataType(
     dynamic costJSON) async {
   List<MonthlyCostStruct> costs = [];
 
+  DateFormat dateFormatter = DateFormat('MMMM y');
+
   Map<String, dynamic> costMap = costJSON as Map<String, dynamic>;
   costMap.forEach((key, costRec) {
     DateTime month = DateTime.parse(key);
-    DateFormat dateFormatter = DateFormat('MMMM y');
     String monthStr = dateFormatter.format(month);
     costs.add(MonthlyCostStruct(
       month: monthStr,

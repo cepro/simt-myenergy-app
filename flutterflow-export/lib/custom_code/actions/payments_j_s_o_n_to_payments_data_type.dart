@@ -16,7 +16,12 @@ Future<List<PaymentStruct>> paymentsJSONToPaymentsDataType(
   List<PaymentStruct> payments = [];
 
   for (var payment in paymentsJSON) {
-    payments.add(PaymentStruct.fromMap(payment));
+    payments.add(PaymentStruct(
+      id: payment['id'],
+      createdAt: DateTime.parse(payment['createdAt']),
+      amount: payment['amount'],
+      description: payment['description'],
+    ));
   }
 
   return payments;

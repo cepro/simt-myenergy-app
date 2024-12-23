@@ -15,10 +15,11 @@ Future<List<MonthlyUsageStruct>> monthlyUsageJSONToDataType(
     dynamic usageJSON) async {
   List<MonthlyUsageStruct> usages = [];
 
+  DateFormat dateFormatter = DateFormat('MMMM y');
+
   Map<String, dynamic> usageMap = usageJSON as Map<String, dynamic>;
   usageMap.forEach((key, usageRec) {
     DateTime month = DateTime.parse(key);
-    DateFormat dateFormatter = DateFormat('MMMM y');
     String monthStr = dateFormatter.format(month);
     usages.add(MonthlyUsageStruct(
       usageHeat: usageRec['usageHeat'],

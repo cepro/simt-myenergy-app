@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -49,7 +50,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250.0,
+      height: 500.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
       ),
@@ -69,7 +70,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
-                          'Id',
+                          'Created At',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -129,16 +130,48 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                           : FlutterFlowTheme.of(context).primaryBackground,
                     ),
                     cells: [
-                      Text(
-                        paymentsItem.id,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
+                      AlignedTooltip(
+                        content: Padding(
+                          padding: EdgeInsets.all(4.0),
+                          child: Text(
+                            paymentsItem.id,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyLargeFamily),
+                                ),
+                          ),
+                        ),
+                        offset: 4.0,
+                        preferredDirection: AxisDirection.down,
+                        borderRadius: BorderRadius.circular(8.0),
+                        backgroundColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 4.0,
+                        tailBaseWidth: 24.0,
+                        tailLength: 12.0,
+                        waitDuration: Duration(milliseconds: 100),
+                        showDuration: Duration(milliseconds: 1500),
+                        triggerMode: TooltipTriggerMode.tap,
+                        child: Text(
+                          dateTimeFormat(
+                              "dd/MM/yyyy HH:mm:ss", paymentsItem.createdAt!),
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                       ),
                       Text(
                         functions.formatGBPAmount(

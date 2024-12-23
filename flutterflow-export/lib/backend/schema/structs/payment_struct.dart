@@ -11,9 +11,11 @@ class PaymentStruct extends BaseStruct {
     String? id,
     int? amount,
     String? description,
+    DateTime? createdAt,
   })  : _id = id,
         _amount = amount,
-        _description = description;
+        _description = description,
+        _createdAt = createdAt;
 
   // "id" field.
   String? _id;
@@ -38,10 +40,18 @@ class PaymentStruct extends BaseStruct {
 
   bool hasDescription() => _description != null;
 
+  // "createdAt" field.
+  DateTime? _createdAt;
+  DateTime? get createdAt => _createdAt;
+  set createdAt(DateTime? val) => _createdAt = val;
+
+  bool hasCreatedAt() => _createdAt != null;
+
   static PaymentStruct fromMap(Map<String, dynamic> data) => PaymentStruct(
         id: data['id'] as String?,
         amount: castToType<int>(data['amount']),
         description: data['description'] as String?,
+        createdAt: data['createdAt'] as DateTime?,
       );
 
   static PaymentStruct? maybeFromMap(dynamic data) =>
@@ -51,6 +61,7 @@ class PaymentStruct extends BaseStruct {
         'id': _id,
         'amount': _amount,
         'description': _description,
+        'createdAt': _createdAt,
       }.withoutNulls;
 
   @override
@@ -66,6 +77,10 @@ class PaymentStruct extends BaseStruct {
         'description': serializeParam(
           _description,
           ParamType.String,
+        ),
+        'createdAt': serializeParam(
+          _createdAt,
+          ParamType.DateTime,
         ),
       }.withoutNulls;
 
@@ -86,6 +101,11 @@ class PaymentStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        createdAt: deserializeParam(
+          data['createdAt'],
+          ParamType.DateTime,
+          false,
+        ),
       );
 
   @override
@@ -96,20 +116,24 @@ class PaymentStruct extends BaseStruct {
     return other is PaymentStruct &&
         id == other.id &&
         amount == other.amount &&
-        description == other.description;
+        description == other.description &&
+        createdAt == other.createdAt;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([id, amount, description]);
+  int get hashCode =>
+      const ListEquality().hash([id, amount, description, createdAt]);
 }
 
 PaymentStruct createPaymentStruct({
   String? id,
   int? amount,
   String? description,
+  DateTime? createdAt,
 }) =>
     PaymentStruct(
       id: id,
       amount: amount,
       description: description,
+      createdAt: createdAt,
     );
