@@ -8,27 +8,18 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class TopupStruct extends BaseStruct {
   TopupStruct({
-    String? id,
     int? amountPence,
     DateTime? aquiredAt,
     DateTime? usedAt,
     String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
-  })  : _id = id,
-        _amountPence = amountPence,
+  })  : _amountPence = amountPence,
         _aquiredAt = aquiredAt,
         _usedAt = usedAt,
         _status = status,
         _createdAt = createdAt,
         _updatedAt = updatedAt;
-
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  set id(String? val) => _id = val;
-
-  bool hasId() => _id != null;
 
   // "amountPence" field.
   int? _amountPence;
@@ -75,7 +66,6 @@ class TopupStruct extends BaseStruct {
   bool hasUpdatedAt() => _updatedAt != null;
 
   static TopupStruct fromMap(Map<String, dynamic> data) => TopupStruct(
-        id: data['id'] as String?,
         amountPence: castToType<int>(data['amountPence']),
         aquiredAt: data['aquiredAt'] as DateTime?,
         usedAt: data['usedAt'] as DateTime?,
@@ -88,7 +78,6 @@ class TopupStruct extends BaseStruct {
       data is Map ? TopupStruct.fromMap(data.cast<String, dynamic>()) : null;
 
   Map<String, dynamic> toMap() => {
-        'id': _id,
         'amountPence': _amountPence,
         'aquiredAt': _aquiredAt,
         'usedAt': _usedAt,
@@ -99,10 +88,6 @@ class TopupStruct extends BaseStruct {
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'id': serializeParam(
-          _id,
-          ParamType.String,
-        ),
         'amountPence': serializeParam(
           _amountPence,
           ParamType.int,
@@ -131,11 +116,6 @@ class TopupStruct extends BaseStruct {
 
   static TopupStruct fromSerializableMap(Map<String, dynamic> data) =>
       TopupStruct(
-        id: deserializeParam(
-          data['id'],
-          ParamType.String,
-          false,
-        ),
         amountPence: deserializeParam(
           data['amountPence'],
           ParamType.int,
@@ -174,7 +154,6 @@ class TopupStruct extends BaseStruct {
   @override
   bool operator ==(Object other) {
     return other is TopupStruct &&
-        id == other.id &&
         amountPence == other.amountPence &&
         aquiredAt == other.aquiredAt &&
         usedAt == other.usedAt &&
@@ -185,11 +164,10 @@ class TopupStruct extends BaseStruct {
 
   @override
   int get hashCode => const ListEquality()
-      .hash([id, amountPence, aquiredAt, usedAt, status, createdAt, updatedAt]);
+      .hash([amountPence, aquiredAt, usedAt, status, createdAt, updatedAt]);
 }
 
 TopupStruct createTopupStruct({
-  String? id,
   int? amountPence,
   DateTime? aquiredAt,
   DateTime? usedAt,
@@ -198,7 +176,6 @@ TopupStruct createTopupStruct({
   DateTime? updatedAt,
 }) =>
     TopupStruct(
-      id: id,
       amountPence: amountPence,
       aquiredAt: aquiredAt,
       usedAt: usedAt,

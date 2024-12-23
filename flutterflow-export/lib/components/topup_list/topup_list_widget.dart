@@ -69,7 +69,7 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
-                          'Id',
+                          'Status',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -130,7 +130,7 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                     ),
                     cells: [
                       Text(
-                        topupsItem.id,
+                        topupsItem.status,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,

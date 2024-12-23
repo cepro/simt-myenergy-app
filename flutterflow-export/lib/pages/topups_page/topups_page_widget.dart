@@ -40,7 +40,9 @@ class _TopupsPageWidgetState extends State<TopupsPageWidget> {
       _model.loadingHistory = true;
       safeSetState(() {});
       _model.userToken = await actions.activeUserToken();
-      _model.getTopupsOutput = await GetTopupsCall.call();
+      _model.getTopupsOutput = await GetTopupsCall.call(
+        bearerToken: _model.userToken,
+      );
 
       _model.loadingHistory = false;
       safeSetState(() {});
@@ -76,8 +78,6 @@ class _TopupsPageWidgetState extends State<TopupsPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -203,122 +203,71 @@ class _TopupsPageWidgetState extends State<TopupsPageWidget> {
                                     height: 100.0,
                                   ),
                                 ),
-                              if ((FFAppState().customer.status !=
-                                      'preonboarding') &&
-                                  (FFAppState().customer.status !=
-                                      'onboarding') &&
-                                  (_model.topups.isNotEmpty))
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 30.0),
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
-                                      decoration: BoxDecoration(
+                              Align(
+                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 30.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      border: Border.all(
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(15.0),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 1.0,
-                                        ),
+                                            .primary,
+                                        width: 1.0,
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsets.all(20.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  -1.0, 0.0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 0.0, 15.0),
-                                                child: Text(
-                                                  'Topup History',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineMediumFamily),
-                                                      ),
-                                                ),
-                                              ),
-                                            ),
-                                            if (false)
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 15.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    () {
-                                                      if (_model
-                                                          .loadHistoryFailure) {
-                                                        return 'Failure occurred loading history ...';
-                                                      } else if (_model
-                                                          .loadingHistory) {
-                                                        return 'Loading ...';
-                                                      } else if (_model
-                                                              .topups.length ==
-                                                          0) {
-                                                        return 'No topups';
-                                                      } else {
-                                                        return _model
-                                                            .topups.length
-                                                            .toString();
-                                                      }
-                                                    }(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(20.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(-1.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 0.0, 15.0),
+                                              child: Text(
+                                                'Topup History',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
                                                         .override(
                                                           fontFamily:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMediumFamily,
+                                                                  .headlineMediumFamily,
                                                           letterSpacing: 0.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyMediumFamily),
+                                                                      .headlineMediumFamily),
                                                         ),
-                                                  ),
-                                                ),
-                                              ),
-                                            wrapWithModel(
-                                              model: _model.topupListModel,
-                                              updateCallback: () =>
-                                                  safeSetState(() {}),
-                                              child: TopupListWidget(
-                                                topups: _model.topups,
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                          wrapWithModel(
+                                            model: _model.topupListModel,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child: TopupListWidget(
+                                              topups: _model.topups,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
                                 ),
+                              ),
                             ],
                           ),
                         ),

@@ -16,7 +16,11 @@ Future<List<TopupStruct>> topupsJSONToTopupsDataType(
   List<TopupStruct> topups = [];
 
   for (var topup in topupsJSON) {
-    topups.add(TopupStruct.fromMap(topup));
+    topups.add(TopupStruct(
+        amountPence: topup['amountPence'],
+        status: topup['status'],
+        createdAt: DateTime.parse(topup['createdAt']),
+        updatedAt: DateTime.parse(topup['updatedAt'])));
   }
 
   return topups;
