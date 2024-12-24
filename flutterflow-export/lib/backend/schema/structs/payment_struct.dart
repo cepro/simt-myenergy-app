@@ -14,12 +14,14 @@ class PaymentStruct extends BaseStruct {
     DateTime? createdAt,
     String? receiptUrl,
     String? status,
+    String? paymentIntent,
   })  : _id = id,
         _amount = amount,
         _description = description,
         _createdAt = createdAt,
         _receiptUrl = receiptUrl,
-        _status = status;
+        _status = status,
+        _paymentIntent = paymentIntent;
 
   // "id" field.
   String? _id;
@@ -65,6 +67,13 @@ class PaymentStruct extends BaseStruct {
 
   bool hasStatus() => _status != null;
 
+  // "paymentIntent" field.
+  String? _paymentIntent;
+  String get paymentIntent => _paymentIntent ?? '';
+  set paymentIntent(String? val) => _paymentIntent = val;
+
+  bool hasPaymentIntent() => _paymentIntent != null;
+
   static PaymentStruct fromMap(Map<String, dynamic> data) => PaymentStruct(
         id: data['id'] as String?,
         amount: castToType<int>(data['amount']),
@@ -72,6 +81,7 @@ class PaymentStruct extends BaseStruct {
         createdAt: data['createdAt'] as DateTime?,
         receiptUrl: data['receiptUrl'] as String?,
         status: data['status'] as String?,
+        paymentIntent: data['paymentIntent'] as String?,
       );
 
   static PaymentStruct? maybeFromMap(dynamic data) =>
@@ -84,6 +94,7 @@ class PaymentStruct extends BaseStruct {
         'createdAt': _createdAt,
         'receiptUrl': _receiptUrl,
         'status': _status,
+        'paymentIntent': _paymentIntent,
       }.withoutNulls;
 
   @override
@@ -110,6 +121,10 @@ class PaymentStruct extends BaseStruct {
         ),
         'status': serializeParam(
           _status,
+          ParamType.String,
+        ),
+        'paymentIntent': serializeParam(
+          _paymentIntent,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -146,6 +161,11 @@ class PaymentStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        paymentIntent: deserializeParam(
+          data['paymentIntent'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -159,12 +179,13 @@ class PaymentStruct extends BaseStruct {
         description == other.description &&
         createdAt == other.createdAt &&
         receiptUrl == other.receiptUrl &&
-        status == other.status;
+        status == other.status &&
+        paymentIntent == other.paymentIntent;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([id, amount, description, createdAt, receiptUrl, status]);
+  int get hashCode => const ListEquality().hash(
+      [id, amount, description, createdAt, receiptUrl, status, paymentIntent]);
 }
 
 PaymentStruct createPaymentStruct({
@@ -174,6 +195,7 @@ PaymentStruct createPaymentStruct({
   DateTime? createdAt,
   String? receiptUrl,
   String? status,
+  String? paymentIntent,
 }) =>
     PaymentStruct(
       id: id,
@@ -182,4 +204,5 @@ PaymentStruct createPaymentStruct({
       createdAt: createdAt,
       receiptUrl: receiptUrl,
       status: status,
+      paymentIntent: paymentIntent,
     );

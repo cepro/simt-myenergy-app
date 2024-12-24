@@ -25,6 +25,7 @@ Future<List<PaymentStruct>> paymentsJSONToPaymentsDataType(
         createdAt: createdAt,
         amount: payment['amountPence'],
         description: payment['description'],
+        paymentIntent: payment['paymentIntent'],
         receiptUrl: payment['receiptUrl'],
         status: payment['status']));
   });

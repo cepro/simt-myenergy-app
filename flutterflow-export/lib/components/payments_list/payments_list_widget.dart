@@ -126,6 +126,24 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
+                          'Status',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelLargeFamily),
+                              ),
+                        ),
+                      ),
+                    ),
+                    DataColumn2(
+                      label: DefaultTextStyle.merge(
+                        softWrap: true,
+                        child: Text(
                           'Receipt',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
@@ -154,7 +172,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                         content: Padding(
                           padding: EdgeInsets.all(4.0),
                           child: Text(
-                            paymentsItem.id,
+                            paymentsItem.paymentIntent,
                             style: FlutterFlowTheme.of(context)
                                 .bodyLarge
                                 .override(
@@ -207,6 +225,17 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                       Text(
                         functions.formatGBPAmount(
                             paymentsItem.amount.toDouble() / 100),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                      Text(
+                        paymentsItem.status,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
