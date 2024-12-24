@@ -20,6 +20,7 @@ export 'supabase_password_reset.dart' show supabasePasswordReset;
 export 'get_hostname.dart' show getHostname;
 export 'supabase_password_update.dart' show supabasePasswordUpdate;
 export 'decode_supabase_jwt.dart' show decodeSupabaseJwt;
+export 'open_u_r_l.dart' show openURL;
 export 'update_user_email.dart' show updateUserEmail;
 export 'verify_user_phone.dart' show verifyUserPhone;
 export 'update_user_phone.dart' show updateUserPhone;

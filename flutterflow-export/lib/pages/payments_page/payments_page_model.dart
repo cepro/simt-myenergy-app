@@ -47,7 +47,7 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   String? userToken;
   // Stores action output result for [Backend Call - API (Get Customers Payment Methods)] action in PaymentsPage widget.
   ApiCallResponse? getPaymentMethodsOutput;
-  // Stores action output result for [Backend Call - API (Get Customers Payments)] action in PaymentsPage widget.
+  // Stores action output result for [Backend Call - API (Get Payments)] action in PaymentsPage widget.
   ApiCallResponse? getPaymentsOutput;
   // Stores action output result for [Custom Action - paymentsJSONToPaymentsDataType] action in PaymentsPage widget.
   List<PaymentStruct>? paymentsTyped;

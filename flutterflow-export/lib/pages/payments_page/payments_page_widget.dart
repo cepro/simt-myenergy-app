@@ -90,8 +90,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
           }
         }),
         Future(() async {
-          _model.getPaymentsOutput = await GetCustomersPaymentsCall.call(
-            esco: FFAppState().esco?.name,
+          _model.getPaymentsOutput = await GetPaymentsCall.call(
             bearerToken: _model.userToken,
           );
 

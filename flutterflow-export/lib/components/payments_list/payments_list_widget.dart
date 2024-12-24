@@ -2,7 +2,9 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +52,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500.0,
+      height: widget!.payments!.length <= 5 ? 400.0 : 600.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
       ),
@@ -88,6 +90,24 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
+                          'Description',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelLargeFamily),
+                              ),
+                        ),
+                      ),
+                    ),
+                    DataColumn2(
+                      label: DefaultTextStyle.merge(
+                        softWrap: true,
+                        child: Text(
                           'Amount',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
@@ -106,7 +126,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
-                          'Description',
+                          'Receipt',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -174,6 +194,17 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                         ),
                       ),
                       Text(
+                        paymentsItem.description,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                      Text(
                         functions.formatGBPAmount(
                             paymentsItem.amount.toDouble() / 100),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -185,16 +216,43 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                                       .bodyMediumFamily),
                             ),
                       ),
-                      Text(
-                        paymentsItem.description,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (paymentsItem.receiptUrl != null &&
+                              paymentsItem.receiptUrl != '')
+                            FFButtonWidget(
+                              onPressed: () async {
+                                await actions.openURL(
+                                  paymentsItem.receiptUrl,
+                                );
+                              },
+                              text: 'View',
+                              options: FFButtonOptions(
+                                height: 35.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 16.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: Colors.white,
+                                      letterSpacing: 0.0,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
+                                    ),
+                                elevation: 0.0,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
                             ),
+                        ],
                       ),
                     ].map((c) => DataCell(c)).toList(),
                   ),

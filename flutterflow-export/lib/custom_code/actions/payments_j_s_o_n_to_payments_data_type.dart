@@ -12,17 +12,22 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 Future<List<PaymentStruct>> paymentsJSONToPaymentsDataType(
-    List<dynamic> paymentsJSON) async {
+    dynamic paymentsJSON) async {
   List<PaymentStruct> payments = [];
 
-  for (var payment in paymentsJSON) {
+  DateFormat dateFormatter = DateFormat('dd/MM/yyyy HH:mm:ss');
+
+  Map<String, dynamic> paymentsMap = paymentsJSON as Map<String, dynamic>;
+  paymentsMap.forEach((key, payment) {
+    DateTime createdAt = DateTime.parse(key);
     payments.add(PaymentStruct(
-      id: payment['id'],
-      createdAt: DateTime.parse(payment['createdAt']),
-      amount: payment['amount'],
-      description: payment['description'],
-    ));
-  }
+        id: payment[' paymentIntent'],
+        createdAt: createdAt,
+        amount: payment['amountPence'],
+        description: payment['description'],
+        receiptUrl: payment['receiptUrl'],
+        status: payment['status']));
+  });
 
   return payments;
 }

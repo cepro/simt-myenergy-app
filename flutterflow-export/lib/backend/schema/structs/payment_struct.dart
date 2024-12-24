@@ -12,10 +12,14 @@ class PaymentStruct extends BaseStruct {
     int? amount,
     String? description,
     DateTime? createdAt,
+    String? receiptUrl,
+    String? status,
   })  : _id = id,
         _amount = amount,
         _description = description,
-        _createdAt = createdAt;
+        _createdAt = createdAt,
+        _receiptUrl = receiptUrl,
+        _status = status;
 
   // "id" field.
   String? _id;
@@ -47,11 +51,27 @@ class PaymentStruct extends BaseStruct {
 
   bool hasCreatedAt() => _createdAt != null;
 
+  // "receiptUrl" field.
+  String? _receiptUrl;
+  String get receiptUrl => _receiptUrl ?? '';
+  set receiptUrl(String? val) => _receiptUrl = val;
+
+  bool hasReceiptUrl() => _receiptUrl != null;
+
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  set status(String? val) => _status = val;
+
+  bool hasStatus() => _status != null;
+
   static PaymentStruct fromMap(Map<String, dynamic> data) => PaymentStruct(
         id: data['id'] as String?,
         amount: castToType<int>(data['amount']),
         description: data['description'] as String?,
         createdAt: data['createdAt'] as DateTime?,
+        receiptUrl: data['receiptUrl'] as String?,
+        status: data['status'] as String?,
       );
 
   static PaymentStruct? maybeFromMap(dynamic data) =>
@@ -62,6 +82,8 @@ class PaymentStruct extends BaseStruct {
         'amount': _amount,
         'description': _description,
         'createdAt': _createdAt,
+        'receiptUrl': _receiptUrl,
+        'status': _status,
       }.withoutNulls;
 
   @override
@@ -81,6 +103,14 @@ class PaymentStruct extends BaseStruct {
         'createdAt': serializeParam(
           _createdAt,
           ParamType.DateTime,
+        ),
+        'receiptUrl': serializeParam(
+          _receiptUrl,
+          ParamType.String,
+        ),
+        'status': serializeParam(
+          _status,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -106,6 +136,16 @@ class PaymentStruct extends BaseStruct {
           ParamType.DateTime,
           false,
         ),
+        receiptUrl: deserializeParam(
+          data['receiptUrl'],
+          ParamType.String,
+          false,
+        ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -117,12 +157,14 @@ class PaymentStruct extends BaseStruct {
         id == other.id &&
         amount == other.amount &&
         description == other.description &&
-        createdAt == other.createdAt;
+        createdAt == other.createdAt &&
+        receiptUrl == other.receiptUrl &&
+        status == other.status;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, amount, description, createdAt]);
+  int get hashCode => const ListEquality()
+      .hash([id, amount, description, createdAt, receiptUrl, status]);
 }
 
 PaymentStruct createPaymentStruct({
@@ -130,10 +172,14 @@ PaymentStruct createPaymentStruct({
   int? amount,
   String? description,
   DateTime? createdAt,
+  String? receiptUrl,
+  String? status,
 }) =>
     PaymentStruct(
       id: id,
       amount: amount,
       description: description,
       createdAt: createdAt,
+      receiptUrl: receiptUrl,
+      status: status,
     );
