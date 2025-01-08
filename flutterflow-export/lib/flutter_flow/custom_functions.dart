@@ -145,8 +145,24 @@ String monthlyCostsTooltipPricingText(
   TariffsStruct tariffs,
   bool showRate,
   bool showPower,
+  MonthlyUsageStruct? monthlyUsageItem,
 ) {
-  /******        Microgrid Rate      *********/
+  /*
+   * For heat an power should produce a string like this:
+   *
+   * Benchmark rate: 23.4p per kWh (£99.99)
+   * Microgrid rate: 17.5p per kWh (£88.88)
+   * Your rate: 0p per kWh (£0)
+   *
+   * For standing charge should produce a string like this:
+   *
+   * Benchmark rate: 51.1p per day (£60.00)
+   * Microgrid rate: 45.5p per day (£55.50)
+   * Your rate: 22.7p per day (£27.75)
+   *
+   */
+
+  /******        Microgrid      *********/
 
   TariffStruct? microgridTariff = tariffForDate(
       tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!);
@@ -155,13 +171,18 @@ String monthlyCostsTooltipPricingText(
   }
 
   double microgridRate;
+  double microgridCharge;
   if (showRate) {
     microgridRate = microgridTariff.unitRate;
+    microgridCharge = showPower
+        ? monthlyCostsItem.microgridPower
+        : monthlyCostsItem.microgridHeat;
   } else {
     microgridRate = microgridTariff.standingCharge;
+    microgridCharge = monthlyCostsItem.microgridStandingCharge;
   }
 
-  /******        Benchmark Rate      *********/
+  /******        Benchmark      *********/
 
   TariffStruct? benchmarkTariff = tariffForDate(
       tariffs.benchmarkTariffs.toList(), monthlyCostsItem.monthTyped!);
@@ -170,28 +191,42 @@ String monthlyCostsTooltipPricingText(
   }
 
   double benchmarkRate;
+  double benchmarkCharge;
   if (showRate) {
     benchmarkRate = benchmarkTariff.unitRate;
+    benchmarkCharge = showPower
+        ? monthlyCostsItem.benchmarkPower
+        : monthlyCostsItem.benchmarkHeat;
   } else {
     benchmarkRate = benchmarkTariff.standingCharge;
+    benchmarkCharge = monthlyCostsItem.benchmarkStandingCharge;
   }
 
-  /******        Microgrid Charge      *********/
+  /******        Customer Charge      *********/
 
-  double microgridCharge;
+  TariffStruct? customerTariff = tariffForDate(
+      tariffs.customerTariffs.toList(), monthlyCostsItem.monthTyped!);
+  if (customerTariff == null) {
+    throw 'customer tariff not found for this month';
+  }
+
+  double customerRate;
+  double customerCharge;
   if (showRate) {
-    microgridCharge = showPower
-        ? monthlyCostsItem.microgridPower
-        : monthlyCostsItem.microgridHeat;
+    customerRate = customerTariff.unitRate;
+    customerCharge = showPower ? monthlyCostsItem.power : monthlyCostsItem.heat;
   } else {
-    microgridCharge = monthlyCostsItem.microgridStandingCharge;
+    customerRate = customerTariff.standingCharge;
+    customerCharge = monthlyCostsItem.standingCharge;
   }
 
   String unitStr = showRate ? 'kWh' : 'day';
 
-  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per ${unitStr}'
+  print(monthlyUsageItem);
+
+  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per ${unitStr} (${formatGBPAmount(benchmarkCharge)})'
       '${newLineChar()}'
-      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per ${unitStr}'
+      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per ${unitStr} (${formatGBPAmount(microgridCharge)})'
       '${newLineChar()}'
-      'Microgrid charge: ${formatGBPAmount(microgridCharge)}';
+      'Your rate: ${formatGBPPenceAmount(customerRate)} per ${unitStr} (${formatGBPAmount(customerCharge)})';
 }

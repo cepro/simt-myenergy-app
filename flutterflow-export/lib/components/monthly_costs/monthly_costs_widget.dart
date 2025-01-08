@@ -242,7 +242,13 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                       monthlyCostsItem,
                                       FFAppState().tariffs,
                                       true,
-                                      true),
+                                      true,
+                                      FFAppState()
+                                          .monthlyUsage
+                                          .where((e) =>
+                                              e.month == monthlyCostsItem.month)
+                                          .toList()
+                                          .firstOrNull),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -290,7 +296,13 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                       monthlyCostsItem,
                                       FFAppState().tariffs,
                                       true,
-                                      false),
+                                      false,
+                                      FFAppState()
+                                          .monthlyUsage
+                                          .where((e) =>
+                                              e.month == monthlyCostsItem.month)
+                                          .toList()
+                                          .firstOrNull),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
@@ -338,7 +350,8 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                       monthlyCostsItem,
                                       FFAppState().tariffs,
                                       false,
-                                      false),
+                                      false,
+                                      null),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
                                       .override(
