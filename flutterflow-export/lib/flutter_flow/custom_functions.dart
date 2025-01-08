@@ -187,9 +187,11 @@ String monthlyCostsTooltipPricingText(
     microgridCharge = monthlyCostsItem.microgridStandingCharge;
   }
 
-  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per kWh'
+  String unitStr = showRate ? 'kWh' : 'day';
+
+  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per ${unitStr}'
       '${newLineChar()}'
-      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per kWh'
+      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per ${unitStr}'
       '${newLineChar()}'
       'Microgrid charge: ${formatGBPAmount(microgridCharge)}';
 }
