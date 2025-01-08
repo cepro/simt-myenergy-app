@@ -222,8 +222,6 @@ String monthlyCostsTooltipPricingText(
 
   String unitStr = showRate ? 'kWh' : 'day';
 
-  print(monthlyUsageItem);
-
   return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per ${unitStr} (${formatGBPAmount(benchmarkCharge)})'
       '${newLineChar()}'
       'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per ${unitStr} (${formatGBPAmount(microgridCharge)})'

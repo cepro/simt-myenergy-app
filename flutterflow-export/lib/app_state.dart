@@ -382,12 +382,6 @@ class FFAppState extends ChangeNotifier {
         'ff_monthlyUsage', _monthlyUsage.map((x) => x.serialize()).toList());
   }
 
-  dynamic _monthlyUsageJSON;
-  dynamic get monthlyUsageJSON => _monthlyUsageJSON;
-  set monthlyUsageJSON(dynamic value) {
-    _monthlyUsageJSON = value;
-  }
-
   String _hostname = '';
   String get hostname => _hostname;
   set hostname(String value) {

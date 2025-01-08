@@ -201,7 +201,6 @@ Future clearAppState(BuildContext context) async {
   FFAppState().accounts = [];
   FFAppState().properties = [];
   FFAppState().monthlyUsage = [];
-  FFAppState().monthlyUsageJSON = null;
   FFAppState().isCeproUser = false;
   FFAppState().contractTerms = [];
   FFAppState().customer = CustomerStruct();
@@ -401,6 +400,7 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
         monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
     FFAppState().monthlyUsage =
         monthlyUsageTyped!.toList().cast<MonthlyUsageStruct>();
+    FFAppState().update(() {});
     return true;
   } else {
     return false;
