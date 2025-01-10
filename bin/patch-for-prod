@@ -10,7 +10,6 @@ echo "\n\n=====     Apply patches for prod     ====="
 
 echo "\nPatch 1: api call change '-qa' addresses to '-prod' ..."
 sed -i -e 's/simt-j-accounts-qa.fly.dev/simt-j-accounts-prod.fly.dev/' lib/backend/api_requests/api_calls.dart
-sed -i -e 's/simt-j-billing-stripe-qa.fly.dev/simt-j-billing-stripe-prod.fly.dev/' lib/backend/api_requests/api_calls.dart
 
 echo "\nPatch 2: change supabase address and key to supabase prod instance ...\n"
 patch -p0 < $PATCHES/prod/supabase.dart.patch
@@ -20,5 +19,4 @@ setSysInfoEnvironment prod
 setSysInfoSupabaseProject pqlwxerasppsyleweruk
 setSysInfoGitCommit $GIT_COMMIT
 setSysInfoFlutterVersion
-setSysInfoBillingBaseURI simt-j-billing-stripe-prod.fly.dev
 setSysInfoAccountsBaseURI simt-j-accounts-prod.fly.dev

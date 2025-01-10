@@ -19,7 +19,7 @@ class GetCustomersPaymentMethodsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Customers Payment Methods',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods/${esco}',
+          'https://simt-j-accounts-qa.fly.dev/stripe/customers/paymentMethods/${esco}',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ class GetStripeCustomersPaymentsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Stripe Customers Payments',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/payment/${esco}',
+          'https://simt-j-accounts-qa.fly.dev/stripe/customers/payment/${esco}',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ class SendPaymentCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Send Payment',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/payment/${esco}',
+          'https://simt-j-accounts-qa.fly.dev/stripe/customers/payment/${esco}',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
@@ -297,7 +297,7 @@ class CreateStripeCheckoutSessionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Create Stripe Checkout Session',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/checkoutSession/${esco}',
+          'https://simt-j-accounts-qa.fly.dev/stripe/customers/checkoutSession/${esco}',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',
@@ -328,7 +328,7 @@ class DeleteCustomersPaymentMethodCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Customers Payment Method',
       apiUrl:
-          'https://simt-j-billing-stripe-qa.fly.dev/customers/paymentMethods/${esco}/${id}',
+          'https://simt-j-accounts-qa.fly.dev/stripe/customers/paymentMethods/${esco}/${id}',
       callType: ApiCallType.DELETE,
       headers: {
         'Authorization': 'Bearer ${bearerToken}',

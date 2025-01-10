@@ -12,5 +12,4 @@ setSysInfoEnvironment qa
 setSysInfoSupabaseProject rkzgrxssutcwrauaazjz
 setSysInfoGitCommit $GIT_COMMIT
 setSysInfoFlutterVersion
-setSysInfoBillingBaseURI "simt-j-billing-stripe-qa.fly.dev"
 setSysInfoAccountsBaseURI "simt-j-accounts-qa.fly.dev"

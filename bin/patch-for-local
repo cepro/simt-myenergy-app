@@ -9,7 +9,6 @@ echo "\n\n=====     Apply patches for local     ====="
 
 echo "\nPatch 1: api call addresses to localhost ...\n\nreplacing remote addresses with local addresses in api_calls.dart"
 sed -i -e 's/https:\/\/simt-j-accounts-qa.fly.dev/http:\/\/localhost:8080/' lib/backend/api_requests/api_calls.dart
-sed -i -e 's/https:\/\/simt-j-billing-stripe-qa.fly.dev/http:\/\/localhost:8090/' lib/backend/api_requests/api_calls.dart
 
 echo "\nPatch 2: supabase address and key to localhost ...\n"
 patch -p0 < $PATCHES/local/supabase.dart.patch
@@ -19,5 +18,4 @@ setSysInfoEnvironment local
 setSysInfoSupabaseProject local
 setSysInfoGitCommit `getGitCommit`
 setSysInfoFlutterVersion
-setSysInfoBillingBaseURI "localhost:8080"
-setSysInfoAccountsBaseURI "localhost:8090"
+setSysInfoAccountsBaseURI "localhost:8080"
