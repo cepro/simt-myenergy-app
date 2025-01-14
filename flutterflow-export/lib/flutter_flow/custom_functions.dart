@@ -228,3 +228,10 @@ String monthlyCostsTooltipPricingText(
       '${newLineChar()}'
       'Your rate: ${formatGBPPenceAmount(customerRate)} per ${unitStr} (${formatGBPAmount(customerCharge)})';
 }
+
+String? tomorrowIso8601() {
+  final tomorrow = DateTime.now().toUtc().add(Duration(days: 1));
+  final midnightTomorrow =
+      DateTime.utc(tomorrow.year, tomorrow.month, tomorrow.day);
+  return midnightTomorrow.toIso8601String();
+}

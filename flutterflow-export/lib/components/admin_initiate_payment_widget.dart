@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -33,14 +34,18 @@ class _AdminInitiatePaymentWidgetState
     super.initState();
     _model = createModel(context, () => AdminInitiatePaymentModel());
 
-    _model.customerIdFieldTextController ??= TextEditingController();
-    _model.customerIdFieldFocusNode ??= FocusNode();
+    _model.customerEmailFieldTextController ??= TextEditingController();
+    _model.customerEmailFieldFocusNode ??= FocusNode();
 
     _model.amountFieldTextController ??= TextEditingController(text: '1.50');
     _model.amountFieldFocusNode ??= FocusNode();
 
     _model.descriptionFieldTextController ??= TextEditingController();
     _model.descriptionFieldFocusNode ??= FocusNode();
+
+    _model.submitAtFieldTextController ??=
+        TextEditingController(text: functions.tomorrowIso8601());
+    _model.submitAtFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -111,12 +116,12 @@ class _AdminInitiatePaymentWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 20.0, 8.0, 0.0),
                   child: TextFormField(
-                    controller: _model.customerIdFieldTextController,
-                    focusNode: _model.customerIdFieldFocusNode,
+                    controller: _model.customerEmailFieldTextController,
+                    focusNode: _model.customerEmailFieldFocusNode,
                     autofocus: true,
                     obscureText: false,
                     decoration: InputDecoration(
-                      labelText: 'Stripe Customer ID',
+                      labelText: 'Customer Email',
                       labelStyle: FlutterFlowTheme.of(context)
                           .labelMedium
                           .override(
@@ -173,7 +178,7 @@ class _AdminInitiatePaymentWidgetState
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
-                    validator: _model.customerIdFieldTextControllerValidator
+                    validator: _model.customerEmailFieldTextControllerValidator
                         .asValidator(context),
                   ),
                 ),
@@ -316,12 +321,83 @@ class _AdminInitiatePaymentWidgetState
                   ),
                 ),
                 Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
+                  child: TextFormField(
+                    controller: _model.submitAtFieldTextController,
+                    focusNode: _model.submitAtFieldFocusNode,
+                    autofocus: true,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Submit Time',
+                      labelStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
+                      hintStyle: FlutterFlowTheme.of(context)
+                          .labelMedium
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).labelMediumFamily,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).labelMediumFamily),
+                          ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).lineColor,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0x00000000),
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      filled: true,
+                      fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
+                    keyboardType: TextInputType.datetime,
+                    validator: _model.submitAtFieldTextControllerValidator
+                        .asValidator(context),
+                  ),
+                ),
+                Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 30.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       var _shouldSetState = false;
-                      if ((_model.customerIdFieldTextController.text != null &&
-                              _model.customerIdFieldTextController.text !=
+                      if ((_model.customerEmailFieldTextController.text !=
+                                  null &&
+                              _model.customerEmailFieldTextController.text !=
                                   '') &&
                           (_model.descriptionFieldTextController.text != null &&
                               _model.descriptionFieldTextController.text !=
@@ -333,14 +409,16 @@ class _AdminInitiatePaymentWidgetState
                         _model.paymentSuccess = false;
                         _model.errorMessage = null;
                         safeSetState(() {});
-                        _model.sendPaymentResult = await SendPaymentCall.call(
+                        _model.sendPaymentResult =
+                            await SendPaymentAdminCall.call(
+                          bearerToken: currentJwtToken,
                           amount: double.tryParse(
                               _model.amountFieldTextController.text),
                           description:
                               _model.descriptionFieldTextController.text,
-                          customerId: _model.customerIdFieldTextController.text,
-                          bearerToken: currentJwtToken,
-                          esco: FFAppState().esco?.name,
+                          customerEmail:
+                              _model.customerEmailFieldTextController.text,
+                          submitAt: _model.submitAtFieldTextController.text,
                         );
 
                         _shouldSetState = true;

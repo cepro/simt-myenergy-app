@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'admin_initiate_payment_widget.dart' show AdminInitiatePaymentWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,11 +22,11 @@ class AdminInitiatePaymentModel
 
   ///  State fields for stateful widgets in this component.
 
-  // State field(s) for customerIdField widget.
-  FocusNode? customerIdFieldFocusNode;
-  TextEditingController? customerIdFieldTextController;
+  // State field(s) for customerEmailField widget.
+  FocusNode? customerEmailFieldFocusNode;
+  TextEditingController? customerEmailFieldTextController;
   String? Function(BuildContext, String?)?
-      customerIdFieldTextControllerValidator;
+      customerEmailFieldTextControllerValidator;
   // State field(s) for amountField widget.
   FocusNode? amountFieldFocusNode;
   TextEditingController? amountFieldTextController;
@@ -35,7 +36,11 @@ class AdminInitiatePaymentModel
   TextEditingController? descriptionFieldTextController;
   String? Function(BuildContext, String?)?
       descriptionFieldTextControllerValidator;
-  // Stores action output result for [Backend Call - API (Send Payment)] action in Button widget.
+  // State field(s) for submitAtField widget.
+  FocusNode? submitAtFieldFocusNode;
+  TextEditingController? submitAtFieldTextController;
+  String? Function(BuildContext, String?)? submitAtFieldTextControllerValidator;
+  // Stores action output result for [Backend Call - API (Send Payment Admin)] action in Button widget.
   ApiCallResponse? sendPaymentResult;
 
   @override
@@ -43,13 +48,16 @@ class AdminInitiatePaymentModel
 
   @override
   void dispose() {
-    customerIdFieldFocusNode?.dispose();
-    customerIdFieldTextController?.dispose();
+    customerEmailFieldFocusNode?.dispose();
+    customerEmailFieldTextController?.dispose();
 
     amountFieldFocusNode?.dispose();
     amountFieldTextController?.dispose();
 
     descriptionFieldFocusNode?.dispose();
     descriptionFieldTextController?.dispose();
+
+    submitAtFieldFocusNode?.dispose();
+    submitAtFieldTextController?.dispose();
   }
 }

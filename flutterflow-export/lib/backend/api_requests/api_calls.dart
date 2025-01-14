@@ -73,7 +73,7 @@ class GetStripeCustomersPaymentsCall {
       ) as List?;
 }
 
-class SendPaymentCall {
+class SendPaymentREPLACEDCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
     double? amount,
@@ -88,9 +88,51 @@ class SendPaymentCall {
   "description": "${description}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Send Payment',
+      callName: 'Send Payment REPLACED',
       apiUrl:
           'https://simt-j-accounts-qa.fly.dev/stripe/customers/payment/${esco}',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? allRecords(dynamic response) => getJsonField(
+        response,
+        r'''$[*]''',
+        true,
+      ) as List?;
+}
+
+class SendPaymentAdminCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    double? amount,
+    String? description = '',
+    String? customerEmail = '',
+    String? submitAt = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "amount": "${amount}",
+  "customerEmail": "${customerEmail}",
+  "description": "${description}",
+  "submitAt": "${submitAt}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Send Payment Admin',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/admin/payment',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',
