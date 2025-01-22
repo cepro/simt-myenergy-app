@@ -247,6 +247,8 @@ class _AdminInitiatePaymentWidgetState
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                     validator: _model.amountFieldTextControllerValidator
                         .asValidator(context),
                   ),
@@ -402,8 +404,8 @@ class _AdminInitiatePaymentWidgetState
                           (_model.descriptionFieldTextController.text != null &&
                               _model.descriptionFieldTextController.text !=
                                   '') &&
-                          (_model.amountFieldTextController.text != null &&
-                              _model.amountFieldTextController.text != '')) {
+                          functions.isPositiveDouble(
+                              _model.amountFieldTextController.text)) {
                         // Reset flags
                         _model.showErrorMessage = false;
                         _model.paymentSuccess = false;
@@ -435,7 +437,8 @@ class _AdminInitiatePaymentWidgetState
                           safeSetState(() {});
                         }
                       } else {
-                        _model.errorMessage = 'one or more fields are blank';
+                        _model.errorMessage =
+                            'one or more fields are blank or invalid';
                         _model.showErrorMessage = true;
                         safeSetState(() {});
                         if (_shouldSetState) safeSetState(() {});

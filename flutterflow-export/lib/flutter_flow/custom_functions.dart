@@ -235,3 +235,8 @@ String? tomorrowIso8601() {
       DateTime.utc(tomorrow.year, tomorrow.month, tomorrow.day);
   return midnightTomorrow.toIso8601String();
 }
+
+bool isPositiveDouble(String doubleStr) {
+  double? number = double.tryParse(doubleStr);
+  return number != null && number > 0;
+}
