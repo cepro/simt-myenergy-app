@@ -130,7 +130,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: Text(
-                        'This initial version (v1) of MyEnergy can be used to:\n    1. Check your smart meter serial number, mode and credit balance.\n    2. Review monthly energy consumption (power & lights, electric heat)\n    3. Signing your electricity supply agreement\n    4. Signing your solar installation usage agreement\n    5. Manage your contact details   \n\nThe next app release will support:\n    1. Add a payment method\n    2. Making payments for electricity consumption\n    3. Receiving credits for use of your solar installation',
+                        'This initial version (v1) of MyEnergy can be used to:\n    1. Check your smart meter serial number, mode and credit balance.\n    2. Review monthly energy consumption (power & lights, electric heat)\n    3. Signing your electricity supply agreement\n    4. Signing your solar installation usage agreement\n    5. Manage your contact details\n    6. Add a payment method\n    7. Making payments for electricity consumption\n\nThe next app release will support:\n    1. Receiving credits for use of your solar installation',
                         style: FlutterFlowTheme.of(context).labelLarge.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).labelLargeFamily,
