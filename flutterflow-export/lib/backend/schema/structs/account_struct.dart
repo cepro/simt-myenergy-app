@@ -12,10 +12,18 @@ class AccountStruct extends BaseStruct {
     int? accountNumber,
     PropertyStruct? property,
     ContractStruct? contract,
+    String? status,
+    String? type,
+    String? name,
+    String? endDate,
   })  : _id = id,
         _accountNumber = accountNumber,
         _property = property,
-        _contract = contract;
+        _contract = contract,
+        _status = status,
+        _type = type,
+        _name = name,
+        _endDate = endDate;
 
   // "id" field.
   String? _id;
@@ -56,6 +64,34 @@ class AccountStruct extends BaseStruct {
 
   bool hasContract() => _contract != null;
 
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  set status(String? val) => _status = val;
+
+  bool hasStatus() => _status != null;
+
+  // "type" field.
+  String? _type;
+  String get type => _type ?? '';
+  set type(String? val) => _type = val;
+
+  bool hasType() => _type != null;
+
+  // "name" field.
+  String? _name;
+  String get name => _name ?? '';
+  set name(String? val) => _name = val;
+
+  bool hasName() => _name != null;
+
+  // "endDate" field.
+  String? _endDate;
+  String get endDate => _endDate ?? '';
+  set endDate(String? val) => _endDate = val;
+
+  bool hasEndDate() => _endDate != null;
+
   static AccountStruct fromMap(Map<String, dynamic> data) => AccountStruct(
         id: data['id'] as String?,
         accountNumber: castToType<int>(data['accountNumber']),
@@ -65,6 +101,10 @@ class AccountStruct extends BaseStruct {
         contract: data['contract'] is ContractStruct
             ? data['contract']
             : ContractStruct.maybeFromMap(data['contract']),
+        status: data['status'] as String?,
+        type: data['type'] as String?,
+        name: data['name'] as String?,
+        endDate: data['endDate'] as String?,
       );
 
   static AccountStruct? maybeFromMap(dynamic data) =>
@@ -75,6 +115,10 @@ class AccountStruct extends BaseStruct {
         'accountNumber': _accountNumber,
         'property': _property?.toMap(),
         'contract': _contract?.toMap(),
+        'status': _status,
+        'type': _type,
+        'name': _name,
+        'endDate': _endDate,
       }.withoutNulls;
 
   @override
@@ -94,6 +138,22 @@ class AccountStruct extends BaseStruct {
         'contract': serializeParam(
           _contract,
           ParamType.DataStruct,
+        ),
+        'status': serializeParam(
+          _status,
+          ParamType.String,
+        ),
+        'type': serializeParam(
+          _type,
+          ParamType.String,
+        ),
+        'name': serializeParam(
+          _name,
+          ParamType.String,
+        ),
+        'endDate': serializeParam(
+          _endDate,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -121,6 +181,26 @@ class AccountStruct extends BaseStruct {
           false,
           structBuilder: ContractStruct.fromSerializableMap,
         ),
+        status: deserializeParam(
+          data['status'],
+          ParamType.String,
+          false,
+        ),
+        type: deserializeParam(
+          data['type'],
+          ParamType.String,
+          false,
+        ),
+        name: deserializeParam(
+          data['name'],
+          ParamType.String,
+          false,
+        ),
+        endDate: deserializeParam(
+          data['endDate'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -132,12 +212,16 @@ class AccountStruct extends BaseStruct {
         id == other.id &&
         accountNumber == other.accountNumber &&
         property == other.property &&
-        contract == other.contract;
+        contract == other.contract &&
+        status == other.status &&
+        type == other.type &&
+        name == other.name &&
+        endDate == other.endDate;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, accountNumber, property, contract]);
+  int get hashCode => const ListEquality().hash(
+      [id, accountNumber, property, contract, status, type, name, endDate]);
 }
 
 AccountStruct createAccountStruct({
@@ -145,10 +229,18 @@ AccountStruct createAccountStruct({
   int? accountNumber,
   PropertyStruct? property,
   ContractStruct? contract,
+  String? status,
+  String? type,
+  String? name,
+  String? endDate,
 }) =>
     AccountStruct(
       id: id,
       accountNumber: accountNumber,
       property: property ?? PropertyStruct(),
       contract: contract ?? ContractStruct(),
+      status: status,
+      type: type,
+      name: name,
+      endDate: endDate,
     );
