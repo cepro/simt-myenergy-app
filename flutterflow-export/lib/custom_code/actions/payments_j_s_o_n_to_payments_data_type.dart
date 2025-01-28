@@ -15,8 +15,6 @@ Future<List<PaymentStruct>> paymentsJSONToPaymentsDataType(
     dynamic paymentsJSON) async {
   List<PaymentStruct> payments = [];
 
-  DateFormat dateFormatter = DateFormat('dd/MM/yyyy HH:mm:ss');
-
   Map<String, dynamic> paymentsMap = paymentsJSON as Map<String, dynamic>;
   paymentsMap.forEach((key, payment) {
     DateTime createdAt = DateTime.parse(key);

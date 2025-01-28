@@ -118,6 +118,10 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
             null &&
         functions.getContractByType(accounts!.toList(), 'solar')?.signedDate !=
             '';
+    FFAppState().solarInstallations = getJsonField(
+      (getAccountsResponse?.jsonBody ?? ''),
+      r'''$.solarInstallations''',
+    );
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
@@ -213,6 +217,7 @@ Future clearAppState(BuildContext context) async {
   FFAppState().haveSupplyContract = false;
   FFAppState().haveSolarContract = false;
   FFAppState().impersonationPhone = '';
+  FFAppState().solarInstallations = null;
 }
 
 Future ceproUserOnly(BuildContext context) async {

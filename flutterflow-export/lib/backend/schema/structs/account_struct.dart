@@ -16,6 +16,7 @@ class AccountStruct extends BaseStruct {
     String? type,
     String? name,
     String? endDate,
+    CustomerAccountStruct? customerAccount,
   })  : _id = id,
         _accountNumber = accountNumber,
         _property = property,
@@ -23,7 +24,8 @@ class AccountStruct extends BaseStruct {
         _status = status,
         _type = type,
         _name = name,
-        _endDate = endDate;
+        _endDate = endDate,
+        _customerAccount = customerAccount;
 
   // "id" field.
   String? _id;
@@ -92,6 +94,18 @@ class AccountStruct extends BaseStruct {
 
   bool hasEndDate() => _endDate != null;
 
+  // "customerAccount" field.
+  CustomerAccountStruct? _customerAccount;
+  CustomerAccountStruct get customerAccount =>
+      _customerAccount ?? CustomerAccountStruct();
+  set customerAccount(CustomerAccountStruct? val) => _customerAccount = val;
+
+  void updateCustomerAccount(Function(CustomerAccountStruct) updateFn) {
+    updateFn(_customerAccount ??= CustomerAccountStruct());
+  }
+
+  bool hasCustomerAccount() => _customerAccount != null;
+
   static AccountStruct fromMap(Map<String, dynamic> data) => AccountStruct(
         id: data['id'] as String?,
         accountNumber: castToType<int>(data['accountNumber']),
@@ -105,6 +119,9 @@ class AccountStruct extends BaseStruct {
         type: data['type'] as String?,
         name: data['name'] as String?,
         endDate: data['endDate'] as String?,
+        customerAccount: data['customerAccount'] is CustomerAccountStruct
+            ? data['customerAccount']
+            : CustomerAccountStruct.maybeFromMap(data['customerAccount']),
       );
 
   static AccountStruct? maybeFromMap(dynamic data) =>
@@ -119,6 +136,7 @@ class AccountStruct extends BaseStruct {
         'type': _type,
         'name': _name,
         'endDate': _endDate,
+        'customerAccount': _customerAccount?.toMap(),
       }.withoutNulls;
 
   @override
@@ -154,6 +172,10 @@ class AccountStruct extends BaseStruct {
         'endDate': serializeParam(
           _endDate,
           ParamType.String,
+        ),
+        'customerAccount': serializeParam(
+          _customerAccount,
+          ParamType.DataStruct,
         ),
       }.withoutNulls;
 
@@ -201,6 +223,12 @@ class AccountStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        customerAccount: deserializeStructParam(
+          data['customerAccount'],
+          ParamType.DataStruct,
+          false,
+          structBuilder: CustomerAccountStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -216,12 +244,22 @@ class AccountStruct extends BaseStruct {
         status == other.status &&
         type == other.type &&
         name == other.name &&
-        endDate == other.endDate;
+        endDate == other.endDate &&
+        customerAccount == other.customerAccount;
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [id, accountNumber, property, contract, status, type, name, endDate]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        accountNumber,
+        property,
+        contract,
+        status,
+        type,
+        name,
+        endDate,
+        customerAccount
+      ]);
 }
 
 AccountStruct createAccountStruct({
@@ -233,6 +271,7 @@ AccountStruct createAccountStruct({
   String? type,
   String? name,
   String? endDate,
+  CustomerAccountStruct? customerAccount,
 }) =>
     AccountStruct(
       id: id,
@@ -243,4 +282,5 @@ AccountStruct createAccountStruct({
       type: type,
       name: name,
       endDate: endDate,
+      customerAccount: customerAccount ?? CustomerAccountStruct(),
     );

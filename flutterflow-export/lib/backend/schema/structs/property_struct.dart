@@ -15,13 +15,15 @@ class PropertyStruct extends BaseStruct {
     String? solarMeterUUID,
     String? owner,
     EscoStruct? esco,
+    String? ownerName,
   })  : _id = id,
         _plot = plot,
         _description = description,
         _supplyMeterUUID = supplyMeterUUID,
         _solarMeterUUID = solarMeterUUID,
         _owner = owner,
-        _esco = esco;
+        _esco = esco,
+        _ownerName = ownerName;
 
   // "id" field.
   String? _id;
@@ -76,6 +78,13 @@ class PropertyStruct extends BaseStruct {
 
   bool hasEsco() => _esco != null;
 
+  // "ownerName" field.
+  String? _ownerName;
+  String get ownerName => _ownerName ?? '';
+  set ownerName(String? val) => _ownerName = val;
+
+  bool hasOwnerName() => _ownerName != null;
+
   static PropertyStruct fromMap(Map<String, dynamic> data) => PropertyStruct(
         id: data['id'] as String?,
         plot: data['plot'] as String?,
@@ -86,6 +95,7 @@ class PropertyStruct extends BaseStruct {
         esco: data['esco'] is EscoStruct
             ? data['esco']
             : EscoStruct.maybeFromMap(data['esco']),
+        ownerName: data['ownerName'] as String?,
       );
 
   static PropertyStruct? maybeFromMap(dynamic data) =>
@@ -99,6 +109,7 @@ class PropertyStruct extends BaseStruct {
         'solarMeterUUID': _solarMeterUUID,
         'owner': _owner,
         'esco': _esco?.toMap(),
+        'ownerName': _ownerName,
       }.withoutNulls;
 
   @override
@@ -130,6 +141,10 @@ class PropertyStruct extends BaseStruct {
         'esco': serializeParam(
           _esco,
           ParamType.DataStruct,
+        ),
+        'ownerName': serializeParam(
+          _ownerName,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -171,6 +186,11 @@ class PropertyStruct extends BaseStruct {
           false,
           structBuilder: EscoStruct.fromSerializableMap,
         ),
+        ownerName: deserializeParam(
+          data['ownerName'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -185,12 +205,21 @@ class PropertyStruct extends BaseStruct {
         supplyMeterUUID == other.supplyMeterUUID &&
         solarMeterUUID == other.solarMeterUUID &&
         owner == other.owner &&
-        esco == other.esco;
+        esco == other.esco &&
+        ownerName == other.ownerName;
   }
 
   @override
-  int get hashCode => const ListEquality().hash(
-      [id, plot, description, supplyMeterUUID, solarMeterUUID, owner, esco]);
+  int get hashCode => const ListEquality().hash([
+        id,
+        plot,
+        description,
+        supplyMeterUUID,
+        solarMeterUUID,
+        owner,
+        esco,
+        ownerName
+      ]);
 }
 
 PropertyStruct createPropertyStruct({
@@ -201,6 +230,7 @@ PropertyStruct createPropertyStruct({
   String? solarMeterUUID,
   String? owner,
   EscoStruct? esco,
+  String? ownerName,
 }) =>
     PropertyStruct(
       id: id,
@@ -210,4 +240,5 @@ PropertyStruct createPropertyStruct({
       solarMeterUUID: solarMeterUUID,
       owner: owner,
       esco: esco ?? EscoStruct(),
+      ownerName: ownerName,
     );

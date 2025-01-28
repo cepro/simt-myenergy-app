@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/onboard_progress_box/onboard_progress_box_widget.dart';
 import '/components/product_roadmap_box/product_roadmap_box_widget.dart';
+import '/components/solar_contract_row/solar_contract_row_widget.dart';
 import '/components/supply_contract_row/supply_contract_row_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/components/welcome_box/welcome_box_widget.dart';
@@ -49,6 +50,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FFAppState().accounts.toList(),
         'supply',
         FFAppState().meters,
+      );
+      _model.getSolarInstallationOutput =
+          await actions.getSolarInstallationById(
+        FFAppState().solarInstallations,
+        _model.solarMeter?.id,
       );
       _model.userToken = await actions.activeUserToken();
       _model.homePageGetWallets = await GetWalletsCall.call(
@@ -304,19 +310,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           showDuration:
                                               Duration(milliseconds: 1500),
                                           triggerMode: TooltipTriggerMode.tap,
-                                          child: Visibility(
-                                            visible: FFAppState()
-                                                .properties
-                                                .isNotEmpty,
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 10.0, 0.0, 0.0),
+                                          child: AlignedTooltip(
+                                            content: Padding(
+                                              padding: EdgeInsets.all(4.0),
                                               child: Text(
-                                                FFAppState()
-                                                    .properties
-                                                    .firstOrNull!
-                                                    .description,
+                                                'Owner: ${FFAppState().properties.firstOrNull?.ownerName}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge
@@ -333,6 +331,54 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           context)
                                                                       .bodyLargeFamily),
                                                         ),
+                                              ),
+                                            ),
+                                            offset: 4.0,
+                                            preferredDirection:
+                                                AxisDirection.down,
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            elevation: 4.0,
+                                            tailBaseWidth: 24.0,
+                                            tailLength: 12.0,
+                                            waitDuration:
+                                                Duration(milliseconds: 100),
+                                            showDuration:
+                                                Duration(milliseconds: 1500),
+                                            triggerMode: TooltipTriggerMode.tap,
+                                            child: Visibility(
+                                              visible: FFAppState()
+                                                  .properties
+                                                  .isNotEmpty,
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 10.0, 0.0, 0.0),
+                                                child: Text(
+                                                  FFAppState()
+                                                      .properties
+                                                      .firstOrNull!
+                                                      .description,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLargeFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeFamily),
+                                                      ),
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -381,24 +427,65 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Text(
-                                              'Electricity Supply',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .headlineMedium
+                                            AlignedTooltip(
+                                              content: Padding(
+                                                padding: EdgeInsets.all(4.0),
+                                                child: Text(
+                                                  'Role: get from supply account',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyLarge
                                                       .override(
                                                         fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .headlineMediumFamily,
+                                                                .bodyLargeFamily,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
                                                                 FlutterFlowTheme.of(
                                                                         context)
-                                                                    .headlineMediumFamily),
+                                                                    .bodyLargeFamily),
                                                       ),
+                                                ),
+                                              ),
+                                              offset: 4.0,
+                                              preferredDirection:
+                                                  AxisDirection.down,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              elevation: 4.0,
+                                              tailBaseWidth: 24.0,
+                                              tailLength: 12.0,
+                                              waitDuration:
+                                                  Duration(milliseconds: 100),
+                                              showDuration:
+                                                  Duration(milliseconds: 1500),
+                                              triggerMode:
+                                                  TooltipTriggerMode.tap,
+                                              child: Text(
+                                                'Electricity Supply',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineMediumFamily),
+                                                        ),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -483,7 +570,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
-                                                                        20.0,
+                                                                        15.0,
                                                                         0.0,
                                                                         0.0),
                                                             child: Text(
@@ -515,7 +602,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
-                                                                        20.0,
+                                                                        15.0,
                                                                         0.0,
                                                                         0.0),
                                                             child: Text(
@@ -549,7 +636,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
-                                                                          20.0,
+                                                                          15.0,
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
@@ -662,6 +749,339 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       'supply')
                                                                   .toList()
                                                                   .firstOrNull!,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 30.0, 0.0, 0.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(15.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              'Solar Installation',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMediumFamily),
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Flexible(
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1.0, 0.0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Details',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  5.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        15.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              'Serial:  ${_model.solarMeter?.serial}',
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          if (_model
+                                                                  .getSolarInstallationOutput !=
+                                                              null)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'MCS: ${_model.getSolarInstallationOutput?.mcs}',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          if (_model
+                                                                  .getSolarInstallationOutput !=
+                                                              null)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Net capacity: ${_model.getSolarInstallationOutput?.declaredNetCapacity?.toString()} kW',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          if (_model
+                                                                  .getSolarInstallationOutput !=
+                                                              null)
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                'Commissioning Date: ${dateTimeFormat("dd/MM/yyyy", _model.getSolarInstallationOutput?.commissioningDate)}',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            if (FFAppState()
+                                                .solarContractSigned)
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      10.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Contract',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .headlineSmall
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmallFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        Expanded(
+                                                          child: wrapWithModel(
+                                                            model: _model
+                                                                .solarContractRowModel,
+                                                            updateCallback: () =>
+                                                                safeSetState(
+                                                                    () {}),
+                                                            child:
+                                                                SolarContractRowWidget(
+                                                              readOnly: functions
+                                                                          .getContractByType(
+                                                                              FFAppState()
+                                                                                  .accounts
+                                                                                  .toList(),
+                                                                              'solar')
+                                                                          ?.signedDate !=
+                                                                      null &&
+                                                                  functions
+                                                                          .getContractByType(
+                                                                              FFAppState().accounts.toList(),
+                                                                              'solar')
+                                                                          ?.signedDate !=
+                                                                      '',
+                                                              contract: functions
+                                                                  .getContractByType(
+                                                                      FFAppState()
+                                                                          .accounts
+                                                                          .toList(),
+                                                                      'solar')!,
                                                             ),
                                                           ),
                                                         ),
@@ -950,82 +1370,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       ],
                                                     ),
                                                   ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              if (false)
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 30.0, 0.0, 0.0),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      border: Border.all(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 1.0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(15.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Text(
-                                                'Electricity Supply',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .headlineMediumFamily),
-                                                        ),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 10.0, 0.0, 0.0),
-                                                child: Text(
-                                                  'TODO: Owner view of the supply account - contract status and is functioning status',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMediumFamily),
-                                                      ),
                                                 ),
                                               ),
                                             ],

@@ -185,6 +185,16 @@ class FFAppState extends ChangeNotifier {
       _impersonationPhone =
           prefs.getString('ff_impersonationPhone') ?? _impersonationPhone;
     });
+    _safeInit(() {
+      if (prefs.containsKey('ff_solarInstallations')) {
+        try {
+          _solarInstallations =
+              jsonDecode(prefs.getString('ff_solarInstallations') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -552,6 +562,13 @@ class FFAppState extends ChangeNotifier {
   set impersonationPhone(String value) {
     _impersonationPhone = value;
     prefs.setString('ff_impersonationPhone', value);
+  }
+
+  dynamic _solarInstallations;
+  dynamic get solarInstallations => _solarInstallations;
+  set solarInstallations(dynamic value) {
+    _solarInstallations = value;
+    prefs.setString('ff_solarInstallations', jsonEncode(value));
   }
 }
 
