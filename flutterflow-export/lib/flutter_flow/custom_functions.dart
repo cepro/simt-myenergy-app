@@ -48,6 +48,16 @@ List<EscoStruct> getEscosFromProperties(List<PropertyStruct> properties) {
       .toList();
 }
 
+AccountStruct? getAccountByType(
+  List<AccountStruct> accounts,
+  String type,
+) {
+  AccountStruct? account = accounts.firstWhere(
+      (account) => account.type == type,
+      orElse: () => new AccountStruct());
+  return account;
+}
+
 ContractStruct? getContractByType(
   List<AccountStruct> accounts,
   String type,
