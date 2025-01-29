@@ -15,12 +15,12 @@ class SupplyContractRowWidget extends StatefulWidget {
   const SupplyContractRowWidget({
     super.key,
     required this.contract,
-    required this.readOnly,
+    required this.isSigned,
     required this.contractTerms,
   });
 
   final ContractStruct? contract;
-  final bool? readOnly;
+  final bool? isSigned;
   final ContractTermsStruct? contractTerms;
 
   @override
@@ -118,7 +118,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                   onPressed: () async {
                     await action_blocks.openSupplyContract(context);
                   },
-                  text: widget!.readOnly == true ? 'View' : 'Choose Contract',
+                  text: 'View',
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:

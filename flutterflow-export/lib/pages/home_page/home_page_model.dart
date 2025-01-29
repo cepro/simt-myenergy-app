@@ -26,8 +26,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   String singleWalletBalance = 'unknown';
 
-  bool isOwner = false;
-
   bool? inPrepayMode;
 
   SolarInstallationStruct? solarInstallation;

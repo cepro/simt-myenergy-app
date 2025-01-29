@@ -17,11 +17,11 @@ class SolarContractRowWidget extends StatefulWidget {
   const SolarContractRowWidget({
     super.key,
     required this.contract,
-    required this.readOnly,
+    required this.isSigned,
   });
 
   final ContractStruct? contract;
-  final bool? readOnly;
+  final bool? isSigned;
 
   @override
   State<SolarContractRowWidget> createState() => _SolarContractRowWidgetState();
@@ -82,21 +82,20 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (widget!.readOnly == true)
-                    Text(
-                      valueOrDefault<String>(
-                        widget!.contract?.description,
-                        '<description not set>',
-                      ),
-                      style: FlutterFlowTheme.of(context).titleMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).titleMediumFamily,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).titleMediumFamily),
-                          ),
+                  Text(
+                    valueOrDefault<String>(
+                      widget!.contract?.description,
+                      '<description not set>',
                     ),
-                  if (widget!.readOnly == true)
+                    style: FlutterFlowTheme.of(context).titleMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).titleMediumFamily),
+                        ),
+                  ),
+                  if (widget!.isSigned == true)
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
@@ -123,7 +122,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    if (widget!.readOnly!) {
+                    if (widget!.isSigned!) {
                       await actions.openPDF(
                         widget!.contract!.signedContractURL,
                       );
@@ -154,7 +153,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                           return Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: SolarContractChooseOrViewModalWidget(
-                              readOnly: widget!.readOnly!,
+                              readOnly: widget!.isSigned!,
                               termsSolar30Year: _model.termsSolar30Year!,
                               contract: widget!.contract!,
                               termsSolarShortTerm: _model.termsSolarShortTerm!,
@@ -166,7 +165,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
 
                     safeSetState(() {});
                   },
-                  text: widget!.readOnly == true ? 'View' : 'Choose Contract',
+                  text: 'View',
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
