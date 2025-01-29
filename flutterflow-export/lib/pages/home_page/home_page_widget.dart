@@ -74,39 +74,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         _model.solarAccount =
             functions.getAccountByType(FFAppState().accounts.toList(), 'solar');
         safeSetState(() {});
-        FFAppState().supplyContractSigned = (functions.getContractByType(
-                    FFAppState().accounts.toList(), 'supply') !=
-                null) &&
-            (functions
-                        .getContractByType(
-                            FFAppState().accounts.toList(), 'supply')
-                        ?.signedDate !=
-                    null &&
-                functions
-                        .getContractByType(
-                            FFAppState().accounts.toList(), 'supply')
-                        ?.signedDate !=
-                    '');
-        FFAppState().haveSupplyContract = functions.getContractByType(
-                FFAppState().accounts.toList(), 'supply') !=
-            null;
-        FFAppState().haveSolarContract = functions.getContractByType(
-                FFAppState().accounts.toList(), 'solar') !=
-            null;
-        FFAppState().solarContractSigned = (functions.getContractByType(
-                    FFAppState().accounts.toList(), 'solar') !=
-                null) &&
-            (functions
-                        .getContractByType(
-                            FFAppState().accounts.toList(), 'solar')
-                        ?.signedDate !=
-                    null &&
-                functions
-                        .getContractByType(
-                            FFAppState().accounts.toList(), 'solar')
-                        ?.signedDate !=
-                    '');
-        safeSetState(() {});
+        await action_blocks.setContractStatusFlags(context);
         // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
         if (!(FFAppState().monthlyUsage.isNotEmpty) ||
             !(FFAppState().monthlyCosts.isNotEmpty) ||

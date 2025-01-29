@@ -411,3 +411,44 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
     return false;
   }
 }
+
+Future setContractStatusFlags(BuildContext context) async {
+  FFAppState().supplyContractSigned = (functions.getContractByType(
+              FFAppState().accounts.toList(), 'supply') !=
+          null) &&
+      (functions
+                  .getContractByType(FFAppState().accounts.toList(), 'supply')
+                  ?.signedDate !=
+              null &&
+          functions
+                  .getContractByType(FFAppState().accounts.toList(), 'supply')
+                  ?.signedDate !=
+              '');
+  FFAppState().haveSupplyContract = functions
+              .getContractByType(FFAppState().accounts.toList(), 'supply')
+              ?.id !=
+          null &&
+      functions
+              .getContractByType(FFAppState().accounts.toList(), 'supply')
+              ?.id !=
+          '';
+  FFAppState().haveSolarContract = functions
+              .getContractByType(FFAppState().accounts.toList(), 'solar')
+              ?.id !=
+          null &&
+      functions
+              .getContractByType(FFAppState().accounts.toList(), 'solar')
+              ?.id !=
+          '';
+  FFAppState().solarContractSigned = (functions.getContractByType(
+              FFAppState().accounts.toList(), 'solar') !=
+          null) &&
+      (functions
+                  .getContractByType(FFAppState().accounts.toList(), 'solar')
+                  ?.signedDate !=
+              null &&
+          functions
+                  .getContractByType(FFAppState().accounts.toList(), 'solar')
+                  ?.signedDate !=
+              '');
+}

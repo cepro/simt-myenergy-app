@@ -437,6 +437,9 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                   false;
                                                               safeSetState(
                                                                   () {});
+                                                              await action_blocks
+                                                                  .setContractStatusFlags(
+                                                                      context);
 
                                                               context.pushNamed(
                                                                   'HomePage');
@@ -605,6 +608,18 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                           .monthlyCosts = [];
                                                       FFAppState()
                                                           .monthlyUsage = [];
+                                                      FFAppState()
+                                                              .haveSolarContract =
+                                                          false;
+                                                      FFAppState()
+                                                              .haveSupplyContract =
+                                                          false;
+                                                      FFAppState()
+                                                              .solarContractSigned =
+                                                          false;
+                                                      FFAppState()
+                                                              .supplyContractSigned =
+                                                          false;
                                                       safeSetState(() {});
                                                       _model.unimpersonateGetCustomerDetailsResponse =
                                                           await action_blocks
