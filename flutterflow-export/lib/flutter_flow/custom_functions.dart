@@ -250,3 +250,25 @@ bool isPositiveDouble(String doubleStr) {
   double? number = double.tryParse(doubleStr);
   return number != null && number > 0;
 }
+
+double? onboardingActionsDonePercent(
+  bool solarSigned,
+  bool supplySigned,
+  bool haveSolarContract,
+  bool haveSupplyContract,
+  bool hasPaymentMethod,
+  bool confirmedDetails,
+) {
+  int totalActions =
+      [haveSolarContract, haveSupplyContract].where((value) => value).length +
+          3;
+  int actionsDone = [
+        solarSigned,
+        supplySigned,
+        confirmedDetails,
+        hasPaymentMethod
+      ].where((value) => value).length +
+      1;
+
+  return actionsDone / totalActions;
+}

@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,17 +36,13 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.actionsDone = (bool solarSigned, bool supplySigned,
-              bool confirmedDetails, bool hasPaymentMethod) {
-        return [solarSigned, supplySigned, confirmedDetails, hasPaymentMethod]
-                .where((value) => value)
-                .length +
-            1;
-      }(
+      _model.actionsDonePercent = functions.onboardingActionsDonePercent(
           FFAppState().solarContractSigned,
           FFAppState().supplyContractSigned,
-          (FFAppState().customer.confirmedDetailsAt != null),
-          FFAppState().customer.hasPaymentMethod);
+          FFAppState().haveSolarContract,
+          FFAppState().haveSupplyContract,
+          FFAppState().customer.hasPaymentMethod,
+          FFAppState().customer.confirmedDetailsAt != null)!;
       safeSetState(() {});
     });
 
@@ -192,7 +189,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                         }
                       }())
                         CircularPercentIndicator(
-                          percent: _model.actionsDone / 5,
+                          percent: _model.actionsDonePercent,
                           radius: 60.0,
                           lineWidth: 12.0,
                           animation: true,
@@ -200,10 +197,10 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                           progressColor: FlutterFlowTheme.of(context).primary,
                           backgroundColor: FlutterFlowTheme.of(context).accent4,
                           center: Text(
-                            '${formatNumber(
-                              _model.actionsDone / 5,
+                            formatNumber(
+                              _model.actionsDonePercent,
                               formatType: FormatType.percent,
-                            )}',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
@@ -231,7 +228,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                         }
                       }())
                         CircularPercentIndicator(
-                          percent: _model.actionsDone / 5,
+                          percent: _model.actionsDonePercent,
                           radius: 40.0,
                           lineWidth: 8.0,
                           animation: true,
@@ -239,10 +236,10 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                           progressColor: FlutterFlowTheme.of(context).primary,
                           backgroundColor: FlutterFlowTheme.of(context).accent4,
                           center: Text(
-                            '${formatNumber(
-                              _model.actionsDone / 5,
+                            formatNumber(
+                              _model.actionsDonePercent,
                               formatType: FormatType.percent,
-                            )}',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
