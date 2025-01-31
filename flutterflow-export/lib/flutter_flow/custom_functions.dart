@@ -17,10 +17,10 @@ bool isJwtExpired(String wwwAuthenticateHeader) {
   return wwwAuthenticateHeader.contains('Jwt expired');
 }
 
-int arrayLengthOrNegativeOneIfNotArray(dynamic responseJSON) {
+int jsonArrayLengthOrNegativeOne(dynamic jsonObj) {
   // Given an argument of type JSON compute the length of the JSON if it is an array
-  if (responseJSON is List) {
-    return responseJSON.length;
+  if (jsonObj is List) {
+    return jsonObj.length;
   } else {
     // using -1 to indicate argument passed was either null or not a List.
     // -1 is a precise value that we can set up a definite comparison against in the UI.
@@ -121,6 +121,28 @@ String supportEmail(EscoCodeEnum esco) {
 
 String newLineChar() {
   return "\n";
+}
+
+int monthlyCostsLengthOrNegativeOne(List<MonthlyCostStruct>? list) {
+  // Given an argument of type List compute the length
+  if (list != null) {
+    return list.length;
+  } else {
+    // using -1 to indicate argument passed was null
+    // -1 is a precise value that we can set up a definite comparison against in the UI.
+    return -1;
+  }
+}
+
+int monthlyUsageLengthOrNegativeOne(List<MonthlyUsageStruct>? list) {
+  // Given an argument of type List compute the length
+  if (list != null) {
+    return list.length;
+  } else {
+    // using -1 to indicate argument passed was null
+    // -1 is a precise value that we can set up a definite comparison against in the UI.
+    return -1;
+  }
 }
 
 TariffStruct? tariffForDate(

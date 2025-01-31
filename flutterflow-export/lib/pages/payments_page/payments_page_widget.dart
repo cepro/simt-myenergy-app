@@ -61,7 +61,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                 (_model.getPaymentMethodsOutput?.jsonBody ?? '');
             safeSetState(() {});
             // This is a hack to workaround the fact that we don't receive realtime update immediately after redirect from stripe back to the app (after adding a payment method).  Ideally we can fix that but until then this check will look for app state being out of date with the fact we just got payment methods.
-            if ((functions.arrayLengthOrNegativeOneIfNotArray(
+            if ((functions.jsonArrayLengthOrNegativeOne(
                         (_model.getPaymentMethodsOutput?.jsonBody ?? '')) >
                     0) &&
                 (FFAppState().customer.hasPaymentMethod == false)) {
@@ -376,7 +376,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     ),
                                   ),
                                 ),
-                              if ((functions.arrayLengthOrNegativeOneIfNotArray(
+                              if ((functions.jsonArrayLengthOrNegativeOne(
                                           _model.paymentMethods) >
                                       0) &&
                                   !_model.loadingMethod)
@@ -600,7 +600,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     ),
                                   ),
                                 ),
-                              if ((functions.arrayLengthOrNegativeOneIfNotArray(
+                              if ((functions.jsonArrayLengthOrNegativeOne(
                                           _model.paymentMethods) ==
                                       0) &&
                                   !_model.loadingMethod)

@@ -84,7 +84,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                   ),
                 ],
               ),
-              if (!(FFAppState().monthlyCosts.isNotEmpty))
+              if (FFAppState().monthlyCostsLoadedOnce == false)
                 Container(
                   width: 100.0,
                   height: 100.0,
@@ -466,6 +466,23 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                         verticalDividerThickness: 1.0,
                       );
                     },
+                  ),
+                ),
+              if ((functions.monthlyCostsLengthOrNegativeOne(
+                          FFAppState().monthlyCosts.toList()) ==
+                      0) &&
+                  FFAppState().monthlyCostsLoadedOnce)
+                Align(
+                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  child: Text(
+                    'No costs',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
                   ),
                 ),
             ],

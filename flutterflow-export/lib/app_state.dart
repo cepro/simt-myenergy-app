@@ -195,6 +195,14 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _monthlyCostsLoadedOnce =
+          prefs.getBool('ff_monthlyCostsLoadedOnce') ?? _monthlyCostsLoadedOnce;
+    });
+    _safeInit(() {
+      _monthlyUsageLoadedOnce =
+          prefs.getBool('ff_monthlyUsageLoadedOnce') ?? _monthlyUsageLoadedOnce;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -569,6 +577,20 @@ class FFAppState extends ChangeNotifier {
   set solarInstallations(dynamic value) {
     _solarInstallations = value;
     prefs.setString('ff_solarInstallations', jsonEncode(value));
+  }
+
+  bool _monthlyCostsLoadedOnce = false;
+  bool get monthlyCostsLoadedOnce => _monthlyCostsLoadedOnce;
+  set monthlyCostsLoadedOnce(bool value) {
+    _monthlyCostsLoadedOnce = value;
+    prefs.setBool('ff_monthlyCostsLoadedOnce', value);
+  }
+
+  bool _monthlyUsageLoadedOnce = false;
+  bool get monthlyUsageLoadedOnce => _monthlyUsageLoadedOnce;
+  set monthlyUsageLoadedOnce(bool value) {
+    _monthlyUsageLoadedOnce = value;
+    prefs.setBool('ff_monthlyUsageLoadedOnce', value);
   }
 }
 

@@ -218,6 +218,8 @@ Future clearAppState(BuildContext context) async {
   FFAppState().haveSolarContract = false;
   FFAppState().impersonationPhone = '';
   FFAppState().solarInstallations = null;
+  FFAppState().monthlyCostsLoadedOnce = false;
+  FFAppState().monthlyUsageLoadedOnce = false;
 }
 
 Future ceproUserOnly(BuildContext context) async {
@@ -405,6 +407,8 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
         monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
     FFAppState().monthlyUsage =
         monthlyUsageTyped!.toList().cast<MonthlyUsageStruct>();
+    FFAppState().monthlyCostsLoadedOnce = true;
+    FFAppState().monthlyUsageLoadedOnce = true;
     FFAppState().update(() {});
     return true;
   } else {

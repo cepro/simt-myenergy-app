@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -82,7 +83,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                   ),
                 ],
               ),
-              if (!(FFAppState().monthlyUsage.isNotEmpty))
+              if (FFAppState().monthlyUsageLoadedOnce == false)
                 Container(
                   width: 100.0,
                   height: 100.0,
@@ -91,7 +92,9 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                     height: 100.0,
                   ),
                 ),
-              if (FFAppState().monthlyUsage.isNotEmpty)
+              if (functions.monthlyUsageLengthOrNegativeOne(
+                      FFAppState().monthlyUsage.toList()) >
+                  0)
                 Expanded(
                   child: Builder(
                     builder: (context) {
@@ -249,6 +252,23 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                         verticalDividerThickness: 1.0,
                       );
                     },
+                  ),
+                ),
+              if ((functions.monthlyUsageLengthOrNegativeOne(
+                          FFAppState().monthlyUsage.toList()) ==
+                      0) &&
+                  FFAppState().monthlyUsageLoadedOnce)
+                Align(
+                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  child: Text(
+                    'No usage',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
                   ),
                 ),
             ],
