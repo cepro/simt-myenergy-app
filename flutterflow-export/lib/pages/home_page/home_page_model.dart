@@ -68,6 +68,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late ProductRoadmapBoxModel productRoadmapBoxModel;
   // Model for SupplyContractRow component.
   late SupplyContractRowModel supplyContractRowModel;
+  // Stores action output result for [Custom Action - supabaseGetStorageURL] action in Text widget.
+  String? certificateURL;
   // Model for SolarContractRow component.
   late SolarContractRowModel solarContractRowModel;
 

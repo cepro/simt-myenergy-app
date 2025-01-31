@@ -721,6 +721,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       .toList(),
                                                                   FFAppState()
                                                                       .esco!)) {
+                                                                await action_blocks
+                                                                    .setContractStatusFlags(
+                                                                        context);
+
                                                                 context.pushNamedAuth(
                                                                     'HomePage',
                                                                     context

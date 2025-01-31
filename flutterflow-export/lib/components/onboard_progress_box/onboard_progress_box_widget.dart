@@ -13,7 +13,18 @@ import 'onboard_progress_box_model.dart';
 export 'onboard_progress_box_model.dart';
 
 class OnboardProgressBoxWidget extends StatefulWidget {
-  const OnboardProgressBoxWidget({super.key});
+  const OnboardProgressBoxWidget({
+    super.key,
+    required this.haveSupplyContract,
+    required this.haveSolarContract,
+    required this.confirmedDetails,
+    required this.hasPaymentMethod,
+  });
+
+  final bool? haveSupplyContract;
+  final bool? haveSolarContract;
+  final bool? confirmedDetails;
+  final bool? hasPaymentMethod;
 
   @override
   State<OnboardProgressBoxWidget> createState() =>
@@ -39,10 +50,10 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
       _model.actionsDonePercent = functions.onboardingActionsDonePercent(
           FFAppState().solarContractSigned,
           FFAppState().supplyContractSigned,
-          FFAppState().haveSolarContract,
-          FFAppState().haveSupplyContract,
-          FFAppState().customer.hasPaymentMethod,
-          FFAppState().customer.confirmedDetailsAt != null)!;
+          widget!.haveSolarContract!,
+          widget!.haveSupplyContract!,
+          widget!.hasPaymentMethod!,
+          widget!.confirmedDetails!)!;
       safeSetState(() {});
     });
 
@@ -126,7 +137,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             },
                           ),
                         ),
-                        if (FFAppState().haveSupplyContract)
+                        if (widget!.haveSupplyContract ?? true)
                           wrapWithModel(
                             model: _model.onboardProgressRowModel3,
                             updateCallback: () => safeSetState(() {}),
@@ -139,7 +150,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               },
                             ),
                           ),
-                        if (FFAppState().haveSolarContract)
+                        if (widget!.haveSolarContract ?? true)
                           wrapWithModel(
                             model: _model.onboardProgressRowModel4,
                             updateCallback: () => safeSetState(() {}),

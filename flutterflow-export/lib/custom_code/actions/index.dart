@@ -31,3 +31,4 @@ export 'get_package_info.dart' show getPackageInfo;
 export 'clear_web_cache.dart' show clearWebCache;
 export 'topups_j_s_o_n_to_topups_data_type.dart'
     show topupsJSONToTopupsDataType;
+export 'supabase_get_storage_u_r_l.dart' show supabaseGetStorageURL;

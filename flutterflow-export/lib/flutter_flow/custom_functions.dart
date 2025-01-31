@@ -294,3 +294,21 @@ double? onboardingActionsDonePercent(
 
   return actionsDone / totalActions;
 }
+
+String mcsFileName(
+  String mcsId,
+  String streetNumber,
+) {
+  return streetNumber + "-MCS_Certificate_" + mcsId + "_v1.pdf";
+}
+
+String? streetNumberFromPropertyDescription(String description) {
+  RegExp regExp = RegExp(r'(\d+)(?!.*\d)');
+
+  Match? match = regExp.firstMatch(description);
+  if (match == null) {
+    return null;
+  }
+
+  return match.group(1)!;
+}

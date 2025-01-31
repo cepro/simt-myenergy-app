@@ -416,7 +416,7 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
   }
 }
 
-Future setContractStatusFlags(BuildContext context) async {
+Future<bool?> setContractStatusFlags(BuildContext context) async {
   FFAppState().supplyContractSigned = (functions.getContractByType(
               FFAppState().accounts.toList(), 'supply') !=
           null) &&
@@ -455,4 +455,6 @@ Future setContractStatusFlags(BuildContext context) async {
                   .getContractByType(FFAppState().accounts.toList(), 'solar')
                   ?.signedDate !=
               '');
+  FFAppState().update(() {});
+  return true;
 }
