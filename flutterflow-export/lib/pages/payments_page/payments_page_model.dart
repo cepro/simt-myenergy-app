@@ -7,6 +7,7 @@ import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/payments_list/payments_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
+import '/components/topup_list/topup_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -35,11 +36,24 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   void updatePaymentsAtIndex(int index, Function(PaymentStruct) updateFn) =>
       payments[index] = updateFn(payments[index]);
 
-  bool loadHistoryFailure = false;
+  bool loadPaymentHistoryFailure = false;
 
-  bool loadingHistory = false;
+  bool loadingPaymentHistory = false;
 
   bool loadingMethod = false;
+
+  List<TopupStruct> topups = [];
+  void addToTopups(TopupStruct item) => topups.add(item);
+  void removeFromTopups(TopupStruct item) => topups.remove(item);
+  void removeAtIndexFromTopups(int index) => topups.removeAt(index);
+  void insertAtIndexInTopups(int index, TopupStruct item) =>
+      topups.insert(index, item);
+  void updateTopupsAtIndex(int index, Function(TopupStruct) updateFn) =>
+      topups[index] = updateFn(topups[index]);
+
+  bool loadTopupHistoryFailure = false;
+
+  bool loadingTopupHistory = false;
 
   ///  State fields for stateful widgets in this page.
 
@@ -51,12 +65,18 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   ApiCallResponse? getPaymentsOutput;
   // Stores action output result for [Custom Action - paymentsJSONToPaymentsDataType] action in PaymentsPage widget.
   List<PaymentStruct>? paymentsTyped;
+  // Stores action output result for [Backend Call - API (Get Topups)] action in PaymentsPage widget.
+  ApiCallResponse? getTopupsOutput;
+  // Stores action output result for [Custom Action - topupsJSONToTopupsDataType] action in PaymentsPage widget.
+  List<TopupStruct>? topupsTyped;
   // Model for mainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;
   // Model for PaymentsList component.
   late PaymentsListModel paymentsListModel;
+  // Model for TopupList component.
+  late TopupListModel topupListModel;
   // Model for DirectDebit component.
   late DirectDebitModel directDebitModel;
   // Model for CreditCard component.
@@ -73,6 +93,7 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     paymentsListModel = createModel(context, () => PaymentsListModel());
+    topupListModel = createModel(context, () => TopupListModel());
     directDebitModel = createModel(context, () => DirectDebitModel());
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
     comingSoonForPreonboardingModel =
@@ -84,6 +105,7 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     mainWebNavModel.dispose();
     topBarLoggedInModel.dispose();
     paymentsListModel.dispose();
+    topupListModel.dispose();
     directDebitModel.dispose();
     creditCardModel.dispose();
     comingSoonForPreonboardingModel.dispose();

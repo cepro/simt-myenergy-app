@@ -14,12 +14,16 @@ class TopupStruct extends BaseStruct {
     String? status,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? source,
+    String? notes,
   })  : _amountPence = amountPence,
         _aquiredAt = aquiredAt,
         _usedAt = usedAt,
         _status = status,
         _createdAt = createdAt,
-        _updatedAt = updatedAt;
+        _updatedAt = updatedAt,
+        _source = source,
+        _notes = notes;
 
   // "amountPence" field.
   int? _amountPence;
@@ -65,6 +69,20 @@ class TopupStruct extends BaseStruct {
 
   bool hasUpdatedAt() => _updatedAt != null;
 
+  // "source" field.
+  String? _source;
+  String get source => _source ?? '';
+  set source(String? val) => _source = val;
+
+  bool hasSource() => _source != null;
+
+  // "notes" field.
+  String? _notes;
+  String get notes => _notes ?? '';
+  set notes(String? val) => _notes = val;
+
+  bool hasNotes() => _notes != null;
+
   static TopupStruct fromMap(Map<String, dynamic> data) => TopupStruct(
         amountPence: castToType<int>(data['amountPence']),
         aquiredAt: data['aquiredAt'] as DateTime?,
@@ -72,6 +90,8 @@ class TopupStruct extends BaseStruct {
         status: data['status'] as String?,
         createdAt: data['createdAt'] as DateTime?,
         updatedAt: data['updatedAt'] as DateTime?,
+        source: data['source'] as String?,
+        notes: data['notes'] as String?,
       );
 
   static TopupStruct? maybeFromMap(dynamic data) =>
@@ -84,6 +104,8 @@ class TopupStruct extends BaseStruct {
         'status': _status,
         'createdAt': _createdAt,
         'updatedAt': _updatedAt,
+        'source': _source,
+        'notes': _notes,
       }.withoutNulls;
 
   @override
@@ -111,6 +133,14 @@ class TopupStruct extends BaseStruct {
         'updatedAt': serializeParam(
           _updatedAt,
           ParamType.DateTime,
+        ),
+        'source': serializeParam(
+          _source,
+          ParamType.String,
+        ),
+        'notes': serializeParam(
+          _notes,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -146,6 +176,16 @@ class TopupStruct extends BaseStruct {
           ParamType.DateTime,
           false,
         ),
+        source: deserializeParam(
+          data['source'],
+          ParamType.String,
+          false,
+        ),
+        notes: deserializeParam(
+          data['notes'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -159,12 +199,22 @@ class TopupStruct extends BaseStruct {
         usedAt == other.usedAt &&
         status == other.status &&
         createdAt == other.createdAt &&
-        updatedAt == other.updatedAt;
+        updatedAt == other.updatedAt &&
+        source == other.source &&
+        notes == other.notes;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([amountPence, aquiredAt, usedAt, status, createdAt, updatedAt]);
+  int get hashCode => const ListEquality().hash([
+        amountPence,
+        aquiredAt,
+        usedAt,
+        status,
+        createdAt,
+        updatedAt,
+        source,
+        notes
+      ]);
 }
 
 TopupStruct createTopupStruct({
@@ -174,6 +224,8 @@ TopupStruct createTopupStruct({
   String? status,
   DateTime? createdAt,
   DateTime? updatedAt,
+  String? source,
+  String? notes,
 }) =>
     TopupStruct(
       amountPence: amountPence,
@@ -182,4 +234,6 @@ TopupStruct createTopupStruct({
       status: status,
       createdAt: createdAt,
       updatedAt: updatedAt,
+      source: source,
+      notes: notes,
     );

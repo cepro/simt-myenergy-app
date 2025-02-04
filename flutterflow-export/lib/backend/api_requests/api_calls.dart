@@ -536,7 +536,10 @@ class ContractSigningEmbedCall {
     String? bearerToken = '',
     String? id = '',
     String? termsSubtype = '',
+    bool? impersonating,
   }) async {
+    impersonating ??= false;
+
     return ApiManager.instance.makeApiCall(
       callName: 'Contract Signing Embed',
       apiUrl:

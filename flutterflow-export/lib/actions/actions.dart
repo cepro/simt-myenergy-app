@@ -141,11 +141,12 @@ Future<String?> contractSignEmbed(
 }) async {
   ApiCallResponse? contractSigningEmbedResponse;
 
-  await action_blocks.checkAndBlockWriteableAPICall(context);
   contractSigningEmbedResponse = await ContractSigningEmbedCall.call(
     bearerToken: currentJwtToken,
     id: contractId,
     termsSubtype: termsSubtype,
+    impersonating: FFAppState().impersonationToken != null &&
+        FFAppState().impersonationToken != '',
   );
 
   if ((contractSigningEmbedResponse?.succeeded ?? true)) {

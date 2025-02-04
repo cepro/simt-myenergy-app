@@ -7,6 +7,7 @@ import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/payments_list/payments_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
+import '/components/topup_list/topup_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -41,9 +42,11 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.loadHistoryFailure = false;
-      _model.loadingHistory = true;
+      _model.loadPaymentHistoryFailure = false;
+      _model.loadingPaymentHistory = true;
       _model.loadingMethod = true;
+      _model.loadingTopupHistory = true;
+      _model.loadTopupHistoryFailure = false;
       safeSetState(() {});
       _model.userToken = await actions.activeUserToken();
       await Future.wait([
@@ -94,7 +97,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
             bearerToken: _model.userToken,
           );
 
-          _model.loadingHistory = false;
+          _model.loadingPaymentHistory = false;
           safeSetState(() {});
           if ((_model.getPaymentsOutput?.succeeded ?? true)) {
             _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
@@ -112,7 +115,33 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                       ''),
               httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
             );
-            _model.loadHistoryFailure = true;
+            _model.loadPaymentHistoryFailure = true;
+            safeSetState(() {});
+            return;
+          }
+        }),
+        Future(() async {
+          _model.getTopupsOutput = await GetTopupsCall.call(
+            bearerToken: _model.userToken,
+          );
+
+          _model.loadingTopupHistory = false;
+          safeSetState(() {});
+          if ((_model.getTopupsOutput?.succeeded ?? true)) {
+            _model.topupsTyped = await actions.topupsJSONToTopupsDataType(
+              (_model.getTopupsOutput?.jsonBody ?? ''),
+            );
+            _model.topups = _model.topupsTyped!.toList().cast<TopupStruct>();
+            safeSetState(() {});
+            return;
+          } else {
+            await action_blocks.handleMyEnergyApiCallFailure(
+              context,
+              wwwAuthenticateHeader:
+                  (_model.getTopupsOutput?.getHeader('www-authenticate') ?? ''),
+              httpStatusCode: (_model.getTopupsOutput?.statusCode ?? 200),
+            );
+            _model.loadTopupHistoryFailure = true;
             safeSetState(() {});
             return;
           }
@@ -250,7 +279,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   ),
                                 ),
                               ),
-                              if (_model.loadingHistory)
+                              if (_model.loadingPaymentHistory)
                                 Container(
                                   width: 100.0,
                                   height: 100.0,
@@ -327,10 +356,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   child: Text(
                                                     () {
                                                       if (_model
-                                                          .loadHistoryFailure) {
+                                                          .loadPaymentHistoryFailure) {
                                                         return 'Failure occurred loading history ...';
                                                       } else if (_model
-                                                          .loadingHistory) {
+                                                          .loadingPaymentHistory) {
                                                         return 'Loading ...';
                                                       } else if (_model.payments
                                                               .length ==
@@ -368,6 +397,132 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     safeSetState(() {}),
                                                 child: PaymentsListWidget(
                                                   payments: _model.payments,
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              if (_model.loadingTopupHistory)
+                                Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: custom_widgets.LoadingSpinner(
+                                    width: 100.0,
+                                    height: 100.0,
+                                  ),
+                                ),
+                              if ((FFAppState().customer.status !=
+                                      'preonboarding') &&
+                                  (FFAppState().customer.status !=
+                                      'onboarding') &&
+                                  (_model.topups.isNotEmpty))
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 30.0),
+                                    child: Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(20.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 15.0),
+                                                child: Text(
+                                                  'Meter Topup History',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .headlineMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .headlineMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineMediumFamily),
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                            if (false)
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 15.0, 0.0, 0.0),
+                                                  child: Text(
+                                                    () {
+                                                      if (_model
+                                                          .loadPaymentHistoryFailure) {
+                                                        return 'Failure occurred loading history ...';
+                                                      } else if (_model
+                                                          .loadingPaymentHistory) {
+                                                        return 'Loading ...';
+                                                      } else if (_model.payments
+                                                              .length ==
+                                                          0) {
+                                                        return 'No payments';
+                                                      } else {
+                                                        return _model
+                                                            .payments.length
+                                                            .toString();
+                                                      }
+                                                    }(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily),
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            if (_model.topups.isNotEmpty)
+                                              wrapWithModel(
+                                                model: _model.topupListModel,
+                                                updateCallback: () =>
+                                                    safeSetState(() {}),
+                                                child: TopupListWidget(
+                                                  topups: _model.topups,
                                                 ),
                                               ),
                                           ],
@@ -600,6 +755,15 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     ),
                                   ),
                                 ),
+                              if (_model.loadingMethod)
+                                Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  child: custom_widgets.LoadingSpinner(
+                                    width: 100.0,
+                                    height: 100.0,
+                                  ),
+                                ),
                               if ((functions.jsonArrayLengthOrNegativeOne(
                                           _model.paymentMethods) ==
                                       0) &&
@@ -802,15 +966,6 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         ],
                                       ),
                                     ),
-                                  ),
-                                ),
-                              if (_model.loadingMethod)
-                                Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  child: custom_widgets.LoadingSpinner(
-                                    width: 100.0,
-                                    height: 100.0,
                                   ),
                                 ),
                             ],
