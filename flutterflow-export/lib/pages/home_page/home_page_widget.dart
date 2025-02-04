@@ -285,7 +285,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             content: Padding(
                                               padding: EdgeInsets.all(4.0),
                                               child: Text(
-                                                'Owner: ${FFAppState().properties.firstOrNull?.ownerName}',
+                                                '${FFAppState().properties.firstOrNull?.plot}  Owner: ${FFAppState().properties.firstOrNull?.ownerName}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge
