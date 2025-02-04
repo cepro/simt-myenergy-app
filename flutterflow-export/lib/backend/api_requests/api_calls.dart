@@ -550,6 +550,7 @@ class ContractSigningEmbedCall {
       },
       params: {
         'termsSubtype': termsSubtype,
+        'impersonating': impersonating,
       },
       returnBody: true,
       encodeBodyUtf8: false,

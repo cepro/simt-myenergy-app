@@ -139,10 +139,12 @@ Future<String?> contractSignEmbed(
   required String? contractId,
   String? termsSubtype,
 }) async {
+  String? userToken;
   ApiCallResponse? contractSigningEmbedResponse;
 
+  userToken = await actions.activeUserToken();
   contractSigningEmbedResponse = await ContractSigningEmbedCall.call(
-    bearerToken: currentJwtToken,
+    bearerToken: userToken,
     id: contractId,
     termsSubtype: termsSubtype,
     impersonating: FFAppState().impersonationToken != null &&
