@@ -218,8 +218,9 @@ Future clearAppState(BuildContext context) async {
   FFAppState().haveSolarContract = false;
   FFAppState().impersonationPhone = '';
   FFAppState().solarInstallations = null;
-  FFAppState().monthlyCostsLoadedOnce = false;
-  FFAppState().monthlyUsageLoadedOnce = false;
+  FFAppState().monthlyCostsLoading = false;
+  FFAppState().monthlyUsageLoading = false;
+  FFAppState().lastMonthlyCostAndUsageLoad = functions.twoThousandDateTime();
 }
 
 Future ceproUserOnly(BuildContext context) async {
@@ -372,6 +373,8 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
   List<MonthlyUsageStruct>? monthlyUsageTyped;
 
   userToken = await actions.activeUserToken();
+  FFAppState().monthlyCostsLoading = true;
+  FFAppState().monthlyUsageLoading = true;
   await Future.wait([
     Future(() async {
       getMonthlyCostResponse = await GetMonthlyCostCall.call(
@@ -407,11 +410,14 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
         monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
     FFAppState().monthlyUsage =
         monthlyUsageTyped!.toList().cast<MonthlyUsageStruct>();
-    FFAppState().monthlyCostsLoadedOnce = true;
-    FFAppState().monthlyUsageLoadedOnce = true;
+    FFAppState().monthlyCostsLoading = false;
+    FFAppState().monthlyUsageLoading = false;
+    FFAppState().lastMonthlyCostAndUsageLoad = getCurrentTimestamp;
     FFAppState().update(() {});
     return true;
   } else {
+    FFAppState().monthlyCostsLoading = false;
+    FFAppState().monthlyUsageLoading = false;
     return false;
   }
 }

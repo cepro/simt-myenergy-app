@@ -312,3 +312,11 @@ String? streetNumberFromPropertyDescription(String description) {
 
   return match.group(1)!;
 }
+
+int diffNowInMinutes(DateTime compare) {
+  return DateTime.now().difference(compare).inMinutes;
+}
+
+DateTime twoThousandDateTime() {
+  return DateTime(2000, 1, 1, 0, 0);
+}

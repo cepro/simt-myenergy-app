@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -34,7 +35,19 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await action_blocks.getTariffsCostsUsage(context);
+      // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
+      if ((!FFAppState().monthlyCostsLoading &&
+              !FFAppState().monthlyUsageLoading) &&
+          ((FFAppState().tariffs == null) ||
+              (functions.diffNowInMinutes(
+                      FFAppState().lastMonthlyCostAndUsageLoad!) >=
+                  10))) {
+        // RefreshTariffsCostsUsage
+        await action_blocks.getTariffsCostsUsage(context);
+        return;
+      } else {
+        return;
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));

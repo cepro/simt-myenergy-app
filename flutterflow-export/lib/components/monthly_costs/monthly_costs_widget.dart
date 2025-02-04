@@ -84,7 +84,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                   ),
                 ],
               ),
-              if (FFAppState().monthlyCostsLoadedOnce == false)
+              if (FFAppState().monthlyCostsLoading)
                 Container(
                   width: 100.0,
                   height: 100.0,
@@ -468,10 +468,10 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                     },
                   ),
                 ),
-              if ((functions.monthlyCostsLengthOrNegativeOne(
+              if (!FFAppState().monthlyCostsLoading &&
+                  (functions.monthlyCostsLengthOrNegativeOne(
                           FFAppState().monthlyCosts.toList()) ==
-                      0) &&
-                  FFAppState().monthlyCostsLoadedOnce)
+                      0))
                 Align(
                   alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Text(

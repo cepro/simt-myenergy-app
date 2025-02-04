@@ -196,12 +196,11 @@ class FFAppState extends ChangeNotifier {
       }
     });
     _safeInit(() {
-      _monthlyCostsLoadedOnce =
-          prefs.getBool('ff_monthlyCostsLoadedOnce') ?? _monthlyCostsLoadedOnce;
-    });
-    _safeInit(() {
-      _monthlyUsageLoadedOnce =
-          prefs.getBool('ff_monthlyUsageLoadedOnce') ?? _monthlyUsageLoadedOnce;
+      _lastMonthlyCostAndUsageLoad =
+          prefs.containsKey('ff_lastMonthlyCostAndUsageLoad')
+              ? DateTime.fromMillisecondsSinceEpoch(
+                  prefs.getInt('ff_lastMonthlyCostAndUsageLoad')!)
+              : _lastMonthlyCostAndUsageLoad;
     });
   }
 
@@ -579,18 +578,27 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_solarInstallations', jsonEncode(value));
   }
 
-  bool _monthlyCostsLoadedOnce = false;
-  bool get monthlyCostsLoadedOnce => _monthlyCostsLoadedOnce;
-  set monthlyCostsLoadedOnce(bool value) {
-    _monthlyCostsLoadedOnce = value;
-    prefs.setBool('ff_monthlyCostsLoadedOnce', value);
+  bool _monthlyCostsLoading = false;
+  bool get monthlyCostsLoading => _monthlyCostsLoading;
+  set monthlyCostsLoading(bool value) {
+    _monthlyCostsLoading = value;
   }
 
-  bool _monthlyUsageLoadedOnce = false;
-  bool get monthlyUsageLoadedOnce => _monthlyUsageLoadedOnce;
-  set monthlyUsageLoadedOnce(bool value) {
-    _monthlyUsageLoadedOnce = value;
-    prefs.setBool('ff_monthlyUsageLoadedOnce', value);
+  bool _monthlyUsageLoading = false;
+  bool get monthlyUsageLoading => _monthlyUsageLoading;
+  set monthlyUsageLoading(bool value) {
+    _monthlyUsageLoading = value;
+  }
+
+  DateTime? _lastMonthlyCostAndUsageLoad =
+      DateTime.fromMillisecondsSinceEpoch(946648800000);
+  DateTime? get lastMonthlyCostAndUsageLoad => _lastMonthlyCostAndUsageLoad;
+  set lastMonthlyCostAndUsageLoad(DateTime? value) {
+    _lastMonthlyCostAndUsageLoad = value;
+    value != null
+        ? prefs.setInt(
+            'ff_lastMonthlyCostAndUsageLoad', value.millisecondsSinceEpoch)
+        : prefs.remove('ff_lastMonthlyCostAndUsageLoad');
   }
 }
 

@@ -77,9 +77,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             functions.getAccountByType(FFAppState().accounts.toList(), 'solar');
         safeSetState(() {});
         // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
-        if (!FFAppState().monthlyCostsLoadedOnce ||
-            !FFAppState().monthlyUsageLoadedOnce ||
-            (FFAppState().tariffs == null)) {
+        if ((FFAppState().tariffs == null) ||
+            (functions.diffNowInMinutes(
+                    FFAppState().lastMonthlyCostAndUsageLoad!) >=
+                10)) {
           // GetUsageInBackground
           await action_blocks.getTariffsCostsUsage(context);
           return;
@@ -934,147 +935,129 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     ),
                                                               ),
                                                             ),
-                                                            if ((_model.getSolarInstallationOutput !=
-                                                                    null) &&
-                                                                !FFAppState()
-                                                                    .isCeproUser)
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            15.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  'MCS: ${_model.getSolarInstallationOutput?.mcs}',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            if ((_model.getSolarInstallationOutput !=
-                                                                    null) &&
-                                                                FFAppState()
-                                                                    .isCeproUser)
-                                                              Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            15.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      'MCS: ${_model.getSolarInstallationOutput?.mcs}  ',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).bodyMediumFamily,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            15.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        var _shouldSetState =
-                                                                            false;
-                                                                        _model.certificateURL =
-                                                                            await actions.supabaseGetStorageURL(
-                                                                          'mcs-certificates-${FFAppState().esco?.name}',
-                                                                          functions.mcsFileName(
-                                                                              _model.getSolarInstallationOutput!.mcs,
-                                                                              functions.streetNumberFromPropertyDescription(FFAppState().properties.firstOrNull!.description)!),
-                                                                        );
-                                                                        _shouldSetState =
-                                                                            true;
-                                                                        if (_model.certificateURL !=
-                                                                                null &&
-                                                                            _model.certificateURL !=
-                                                                                '') {
-                                                                          await actions
-                                                                              .openPDF(
-                                                                            _model.certificateURL!,
-                                                                          );
-                                                                          if (_shouldSetState)
-                                                                            safeSetState(() {});
-                                                                          return;
-                                                                        } else {
-                                                                          ScaffoldMessenger.of(context)
-                                                                              .showSnackBar(
-                                                                            SnackBar(
-                                                                              content: Text(
-                                                                                'MCS Certificate path failed to build',
-                                                                                style: TextStyle(
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                ),
-                                                                              ),
-                                                                              duration: Duration(milliseconds: 4000),
-                                                                              backgroundColor: FlutterFlowTheme.of(context).secondary,
-                                                                            ),
-                                                                          );
-                                                                          if (_shouldSetState)
-                                                                            safeSetState(() {});
-                                                                          return;
-                                                                        }
-
-                                                                        if (_shouldSetState)
-                                                                          safeSetState(
-                                                                              () {});
-                                                                      },
+                                                            if (_model
+                                                                    .getSolarInstallationOutput !=
+                                                                null)
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .end,
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          15.0,
+                                                                          0.0,
+                                                                          0.0),
                                                                       child:
                                                                           Text(
-                                                                        'view certificate',
+                                                                        'MCS: ${_model.getSolarInstallationOutput?.mcs}',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
                                                                               fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                               letterSpacing: 0.0,
-                                                                              decoration: TextDecoration.underline,
                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
                                                                             ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              0.0,
+                                                                              1.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            FFButtonWidget(
+                                                                          onPressed:
+                                                                              () async {
+                                                                            var _shouldSetState =
+                                                                                false;
+                                                                            _model.certificateURL =
+                                                                                await actions.supabaseGetStorageURL(
+                                                                              'mcs-certificates-${FFAppState().esco?.name}',
+                                                                              functions.mcsFileName(_model.getSolarInstallationOutput!.mcs, functions.streetNumberFromPropertyDescription(FFAppState().properties.firstOrNull!.description)!),
+                                                                            );
+                                                                            _shouldSetState =
+                                                                                true;
+                                                                            if (_model.certificateURL != null &&
+                                                                                _model.certificateURL != '') {
+                                                                              await actions.openPDF(
+                                                                                _model.certificateURL!,
+                                                                              );
+                                                                              if (_shouldSetState)
+                                                                                safeSetState(() {});
+                                                                              return;
+                                                                            } else {
+                                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                                SnackBar(
+                                                                                  content: Text(
+                                                                                    'MCS Certificate path failed to build',
+                                                                                    style: TextStyle(
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                    ),
+                                                                                  ),
+                                                                                  duration: Duration(milliseconds: 4000),
+                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                ),
+                                                                              );
+                                                                              if (_shouldSetState)
+                                                                                safeSetState(() {});
+                                                                              return;
+                                                                            }
+
+                                                                            if (_shouldSetState)
+                                                                              safeSetState(() {});
+                                                                          },
+                                                                          text:
+                                                                              'View',
+                                                                          options:
+                                                                              FFButtonOptions(
+                                                                            height:
+                                                                                25.0,
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                16.0,
+                                                                                0.0,
+                                                                                16.0,
+                                                                                0.0),
+                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primary,
+                                                                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                                                                                  color: Colors.white,
+                                                                                  fontSize: 12.0,
+                                                                                  letterSpacing: 0.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).titleSmallFamily),
+                                                                                ),
+                                                                            elevation:
+                                                                                0.0,
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(8.0),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             if (_model
                                                                     .getSolarInstallationOutput !=

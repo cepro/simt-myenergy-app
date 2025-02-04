@@ -83,7 +83,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                   ),
                 ],
               ),
-              if (FFAppState().monthlyUsageLoadedOnce == false)
+              if (FFAppState().monthlyUsageLoading)
                 Container(
                   width: 100.0,
                   height: 100.0,
@@ -254,10 +254,10 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                     },
                   ),
                 ),
-              if ((functions.monthlyUsageLengthOrNegativeOne(
+              if (!FFAppState().monthlyUsageLoading &&
+                  (functions.monthlyUsageLengthOrNegativeOne(
                           FFAppState().monthlyUsage.toList()) ==
-                      0) &&
-                  FFAppState().monthlyUsageLoadedOnce)
+                      0))
                 Align(
                   alignment: AlignmentDirectional(-1.0, 0.0),
                   child: Text(
