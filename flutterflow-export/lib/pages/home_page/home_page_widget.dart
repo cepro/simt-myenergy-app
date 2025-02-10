@@ -959,7 +959,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0),
                                                                       child:
                                                                           Text(
-                                                                        'MCS: ${_model.getSolarInstallationOutput?.mcs}',
+                                                                        'Certificate: ${_model.getSolarInstallationOutput?.mcs}',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
