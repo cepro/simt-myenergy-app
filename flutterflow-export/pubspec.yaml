@@ -55,7 +55,7 @@ dependencies:
   jwt_decode: 0.3.1
   mask_text_input_formatter: 2.9.0
   mime_type: 1.0.0
-  package_info_plus: 8.1.1
+  package_info_plus: 8.2.1
   page_transition: 2.1.0
   path_provider: 2.1.4
   path_provider_android: 2.2.10
