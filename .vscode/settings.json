@@ -6,5 +6,5 @@
     "flutterflow-export/": true
   },
   "dart.analysisExcludedFolders": [],
-  "dart.flutterSdkPath": ".fvm/versions/3.24.2"
+  "dart.flutterSdkPath": ".fvm/versions/3.27.3"
 }
