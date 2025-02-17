@@ -202,6 +202,28 @@ class FFAppState extends ChangeNotifier {
                   prefs.getInt('ff_lastMonthlyCostAndUsageLoad')!)
               : _lastMonthlyCostAndUsageLoad;
     });
+    _safeInit(() {
+      if (prefs.containsKey('ff_supplyAccount')) {
+        try {
+          final serializedData = prefs.getString('ff_supplyAccount') ?? '{}';
+          _supplyAccount =
+              AccountStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_solarAccount')) {
+        try {
+          final serializedData = prefs.getString('ff_solarAccount') ?? '{}';
+          _solarAccount =
+              AccountStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -599,6 +621,30 @@ class FFAppState extends ChangeNotifier {
         ? prefs.setInt(
             'ff_lastMonthlyCostAndUsageLoad', value.millisecondsSinceEpoch)
         : prefs.remove('ff_lastMonthlyCostAndUsageLoad');
+  }
+
+  AccountStruct _supplyAccount = AccountStruct();
+  AccountStruct get supplyAccount => _supplyAccount;
+  set supplyAccount(AccountStruct value) {
+    _supplyAccount = value;
+    prefs.setString('ff_supplyAccount', value.serialize());
+  }
+
+  void updateSupplyAccountStruct(Function(AccountStruct) updateFn) {
+    updateFn(_supplyAccount);
+    prefs.setString('ff_supplyAccount', _supplyAccount.serialize());
+  }
+
+  AccountStruct _solarAccount = AccountStruct();
+  AccountStruct get solarAccount => _solarAccount;
+  set solarAccount(AccountStruct value) {
+    _solarAccount = value;
+    prefs.setString('ff_solarAccount', value.serialize());
+  }
+
+  void updateSolarAccountStruct(Function(AccountStruct) updateFn) {
+    updateFn(_solarAccount);
+    prefs.setString('ff_solarAccount', _solarAccount.serialize());
   }
 }
 

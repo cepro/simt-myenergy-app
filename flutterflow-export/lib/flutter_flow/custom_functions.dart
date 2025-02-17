@@ -280,15 +280,21 @@ double? onboardingActionsDonePercent(
   bool haveSupplyContract,
   bool hasPaymentMethod,
   bool confirmedDetails,
+  bool isOccupier,
+  bool isOwner,
 ) {
+  bool signSolar = haveSolarContract && isOwner;
+  bool signSupply = haveSupplyContract && isOccupier;
+  bool addPaymentMethod = isOccupier;
+
   int totalActions =
-      [haveSolarContract, haveSupplyContract].where((value) => value).length +
-          3;
+      [signSolar, signSupply, addPaymentMethod].where((value) => value).length +
+          2;
   int actionsDone = [
-        solarSigned,
-        supplySigned,
-        confirmedDetails,
-        hasPaymentMethod
+        signSolar && solarSigned,
+        signSupply && supplySigned,
+        addPaymentMethod && hasPaymentMethod,
+        confirmedDetails
       ].where((value) => value).length +
       1;
 

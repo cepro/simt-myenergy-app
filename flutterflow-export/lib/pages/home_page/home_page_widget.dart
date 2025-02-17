@@ -71,10 +71,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           r'''$[0].balance''',
         ));
         _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
-        _model.supplyAccount = functions.getAccountByType(
-            FFAppState().accounts.toList(), 'supply');
-        _model.solarAccount =
-            functions.getAccountByType(FFAppState().accounts.toList(), 'solar');
         safeSetState(() {});
         // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
         if ((FFAppState().tariffs == null) ||
@@ -378,6 +374,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         null,
                                     hasPaymentMethod:
                                         FFAppState().customer.hasPaymentMethod,
+                                    isOccupier: FFAppState()
+                                            .supplyAccount
+                                            .customerAccount
+                                            .role ==
+                                        'occupier',
+                                    isOwner: FFAppState()
+                                            .solarAccount
+                                            .customerAccount
+                                            .role ==
+                                        'owner',
                                   ),
                                 ),
                               wrapWithModel(
@@ -414,7 +420,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               content: Padding(
                                                 padding: EdgeInsets.all(4.0),
                                                 child: Text(
-                                                  'Role: ${_model.supplyAccount?.customerAccount?.role}',
+                                                  'Role: ${FFAppState().supplyAccount.customerAccount.role}',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyLarge
@@ -772,7 +778,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 content: Padding(
                                                   padding: EdgeInsets.all(4.0),
                                                   child: Text(
-                                                    'Role: ${_model.solarAccount?.customerAccount?.role}',
+                                                    'Role: ${FFAppState().solarAccount.customerAccount.role}',
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyLarge

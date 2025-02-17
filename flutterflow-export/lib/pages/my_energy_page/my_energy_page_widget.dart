@@ -1,5 +1,6 @@
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/monthly_costs/monthly_costs_widget.dart';
+import '/components/monthly_generation/monthly_generation_widget.dart';
 import '/components/monthly_usage/monthly_usage_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -229,16 +230,36 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                   ],
                                 ),
                               ),
-                              wrapWithModel(
-                                model: _model.monthlyCostsModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: MonthlyCostsWidget(),
-                              ),
-                              wrapWithModel(
-                                model: _model.monthlyUsageModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: MonthlyUsageWidget(),
-                              ),
+                              if (FFAppState()
+                                      .supplyAccount
+                                      .customerAccount
+                                      .role ==
+                                  'occupier')
+                                wrapWithModel(
+                                  model: _model.monthlyCostsModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: MonthlyCostsWidget(),
+                                ),
+                              if (FFAppState()
+                                      .supplyAccount
+                                      .customerAccount
+                                      .role ==
+                                  'occupier')
+                                wrapWithModel(
+                                  model: _model.monthlyUsageModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: MonthlyUsageWidget(),
+                                ),
+                              if (FFAppState()
+                                      .solarAccount
+                                      .customerAccount
+                                      .role ==
+                                  'owner')
+                                wrapWithModel(
+                                  model: _model.monthlyGenerationModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: MonthlyGenerationWidget(),
+                                ),
                             ],
                           ),
                         ),

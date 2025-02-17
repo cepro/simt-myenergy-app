@@ -1,5 +1,6 @@
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/monthly_costs/monthly_costs_widget.dart';
+import '/components/monthly_generation/monthly_generation_widget.dart';
 import '/components/monthly_usage/monthly_usage_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -34,6 +35,8 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
   late MonthlyCostsModel monthlyCostsModel;
   // Model for MonthlyUsage component.
   late MonthlyUsageModel monthlyUsageModel;
+  // Model for MonthlyGeneration component.
+  late MonthlyGenerationModel monthlyGenerationModel;
 
   @override
   void initState(BuildContext context) {
@@ -41,6 +44,8 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     monthlyCostsModel = createModel(context, () => MonthlyCostsModel());
     monthlyUsageModel = createModel(context, () => MonthlyUsageModel());
+    monthlyGenerationModel =
+        createModel(context, () => MonthlyGenerationModel());
   }
 
   @override
@@ -49,5 +54,6 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
     topBarLoggedInModel.dispose();
     monthlyCostsModel.dispose();
     monthlyUsageModel.dispose();
+    monthlyGenerationModel.dispose();
   }
 }

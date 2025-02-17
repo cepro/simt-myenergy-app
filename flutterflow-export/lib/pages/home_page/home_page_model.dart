@@ -34,16 +34,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     updateFn(solarInstallation ??= SolarInstallationStruct());
   }
 
-  AccountStruct? supplyAccount;
-  void updateSupplyAccountStruct(Function(AccountStruct) updateFn) {
-    updateFn(supplyAccount ??= AccountStruct());
-  }
-
-  AccountStruct? solarAccount;
-  void updateSolarAccountStruct(Function(AccountStruct) updateFn) {
-    updateFn(solarAccount ??= AccountStruct());
-  }
-
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getMeterByType] action in HomePage widget.

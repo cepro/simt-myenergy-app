@@ -122,6 +122,10 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.solarInstallations''',
     );
+    FFAppState().supplyAccount =
+        functions.getAccountByType(FFAppState().accounts.toList(), 'supply')!;
+    FFAppState().solarAccount =
+        functions.getAccountByType(FFAppState().accounts.toList(), 'solar')!;
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(

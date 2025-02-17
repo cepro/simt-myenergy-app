@@ -19,12 +19,17 @@ class OnboardProgressBoxWidget extends StatefulWidget {
     required this.haveSolarContract,
     required this.confirmedDetails,
     required this.hasPaymentMethod,
-  });
+    bool? isOccupier,
+    bool? isOwner,
+  })  : this.isOccupier = isOccupier ?? false,
+        this.isOwner = isOwner ?? false;
 
   final bool? haveSupplyContract;
   final bool? haveSolarContract;
   final bool? confirmedDetails;
   final bool? hasPaymentMethod;
+  final bool isOccupier;
+  final bool isOwner;
 
   @override
   State<OnboardProgressBoxWidget> createState() =>
@@ -53,7 +58,9 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
           widget!.haveSolarContract!,
           widget!.haveSupplyContract!,
           widget!.hasPaymentMethod!,
-          widget!.confirmedDetails!)!;
+          widget!.confirmedDetails!,
+          widget!.isOccupier,
+          widget!.isOwner)!;
       safeSetState(() {});
     });
 
@@ -137,7 +144,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             },
                           ),
                         ),
-                        if (widget!.haveSupplyContract ?? true)
+                        if (widget!.haveSupplyContract! && widget!.isOccupier)
                           wrapWithModel(
                             model: _model.onboardProgressRowModel3,
                             updateCallback: () => safeSetState(() {}),
@@ -150,7 +157,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               },
                             ),
                           ),
-                        if (widget!.haveSolarContract ?? true)
+                        if (widget!.haveSolarContract! && widget!.isOwner)
                           wrapWithModel(
                             model: _model.onboardProgressRowModel4,
                             updateCallback: () => safeSetState(() {}),
@@ -163,18 +170,19 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               },
                             ),
                           ),
-                        wrapWithModel(
-                          model: _model.onboardProgressRowModel5,
-                          updateCallback: () => safeSetState(() {}),
-                          child: OnboardProgressRowWidget(
-                            checked: FFAppState().customer.hasPaymentMethod,
-                            title: 'Add your payment method',
-                            linkLabel: 'Go to payments',
-                            navigateAction: () async {
-                              context.pushNamed('PaymentsPage');
-                            },
+                        if (widget!.isOccupier)
+                          wrapWithModel(
+                            model: _model.onboardProgressRowModel5,
+                            updateCallback: () => safeSetState(() {}),
+                            child: OnboardProgressRowWidget(
+                              checked: FFAppState().customer.hasPaymentMethod,
+                              title: 'Add your payment method',
+                              linkLabel: 'Go to payments',
+                              navigateAction: () async {
+                                context.pushNamed('PaymentsPage');
+                              },
+                            ),
                           ),
-                        ),
                       ].divide(SizedBox(height: 10.0)),
                     ),
                   ),

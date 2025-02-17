@@ -291,8 +291,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               if ((FFAppState().customer.status !=
                                       'preonboarding') &&
                                   (FFAppState().customer.status !=
-                                      'onboarding') &&
-                                  (_model.payments.isNotEmpty))
+                                      'onboarding'))
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
@@ -417,8 +416,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               if ((FFAppState().customer.status !=
                                       'preonboarding') &&
                                   (FFAppState().customer.status !=
-                                      'onboarding') &&
-                                  (_model.topups.isNotEmpty))
+                                      'onboarding'))
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
@@ -534,7 +532,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               if ((functions.jsonArrayLengthOrNegativeOne(
                                           _model.paymentMethods) >
                                       0) &&
-                                  !_model.loadingMethod)
+                                  !_model.loadingMethod &&
+                                  (FFAppState()
+                                          .supplyAccount
+                                          .customerAccount
+                                          .role ==
+                                      'occupier'))
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
