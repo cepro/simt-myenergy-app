@@ -56,7 +56,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       _model.getSolarInstallationOutput =
           await actions.getSolarInstallationById(
         FFAppState().solarInstallations,
-        _model.solarMeter?.id,
+        FFAppState().properties.firstOrNull?.id,
       );
       _model.userToken = await actions.activeUserToken();
       _model.homePageGetWallets = await GetWalletsCall.call(

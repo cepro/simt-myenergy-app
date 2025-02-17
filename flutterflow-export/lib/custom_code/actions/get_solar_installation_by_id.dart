@@ -20,7 +20,7 @@ Future<SolarInstallationStruct?> getSolarInstallationById(
     Map<String, dynamic> solarMap = solarResult as Map<String, dynamic>;
     DateTime commissioningDate = DateTime.parse(solarMap["commissioningDate"]);
     solar = SolarInstallationStruct(
-        id: solarMap["id"],
+        property: solarMap["property"],
         mcs: solarMap["mcs"],
         declaredNetCapacity: solarMap["declaredNetCapacity"],
         commissioningDate: commissioningDate);

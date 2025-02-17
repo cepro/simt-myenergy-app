@@ -8,21 +8,21 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class SolarInstallationStruct extends BaseStruct {
   SolarInstallationStruct({
-    String? id,
+    String? property,
     String? mcs,
     double? declaredNetCapacity,
     DateTime? commissioningDate,
-  })  : _id = id,
+  })  : _property = property,
         _mcs = mcs,
         _declaredNetCapacity = declaredNetCapacity,
         _commissioningDate = commissioningDate;
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  set id(String? val) => _id = val;
+  // "property" field.
+  String? _property;
+  String get property => _property ?? '';
+  set property(String? val) => _property = val;
 
-  bool hasId() => _id != null;
+  bool hasProperty() => _property != null;
 
   // "mcs" field.
   String? _mcs;
@@ -50,7 +50,7 @@ class SolarInstallationStruct extends BaseStruct {
 
   static SolarInstallationStruct fromMap(Map<String, dynamic> data) =>
       SolarInstallationStruct(
-        id: data['id'] as String?,
+        property: data['property'] as String?,
         mcs: data['mcs'] as String?,
         declaredNetCapacity: castToType<double>(data['declaredNetCapacity']),
         commissioningDate: data['commissioningDate'] as DateTime?,
@@ -61,7 +61,7 @@ class SolarInstallationStruct extends BaseStruct {
       : null;
 
   Map<String, dynamic> toMap() => {
-        'id': _id,
+        'property': _property,
         'mcs': _mcs,
         'declaredNetCapacity': _declaredNetCapacity,
         'commissioningDate': _commissioningDate,
@@ -69,8 +69,8 @@ class SolarInstallationStruct extends BaseStruct {
 
   @override
   Map<String, dynamic> toSerializableMap() => {
-        'id': serializeParam(
-          _id,
+        'property': serializeParam(
+          _property,
           ParamType.String,
         ),
         'mcs': serializeParam(
@@ -90,8 +90,8 @@ class SolarInstallationStruct extends BaseStruct {
   static SolarInstallationStruct fromSerializableMap(
           Map<String, dynamic> data) =>
       SolarInstallationStruct(
-        id: deserializeParam(
-          data['id'],
+        property: deserializeParam(
+          data['property'],
           ParamType.String,
           false,
         ),
@@ -118,7 +118,7 @@ class SolarInstallationStruct extends BaseStruct {
   @override
   bool operator ==(Object other) {
     return other is SolarInstallationStruct &&
-        id == other.id &&
+        property == other.property &&
         mcs == other.mcs &&
         declaredNetCapacity == other.declaredNetCapacity &&
         commissioningDate == other.commissioningDate;
@@ -126,17 +126,17 @@ class SolarInstallationStruct extends BaseStruct {
 
   @override
   int get hashCode => const ListEquality()
-      .hash([id, mcs, declaredNetCapacity, commissioningDate]);
+      .hash([property, mcs, declaredNetCapacity, commissioningDate]);
 }
 
 SolarInstallationStruct createSolarInstallationStruct({
-  String? id,
+  String? property,
   String? mcs,
   double? declaredNetCapacity,
   DateTime? commissioningDate,
 }) =>
     SolarInstallationStruct(
-      id: id,
+      property: property,
       mcs: mcs,
       declaredNetCapacity: declaredNetCapacity,
       commissioningDate: commissioningDate,
