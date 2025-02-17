@@ -228,6 +228,8 @@ Future clearAppState(BuildContext context) async {
   FFAppState().monthlyCostsLoading = false;
   FFAppState().monthlyUsageLoading = false;
   FFAppState().lastMonthlyCostAndUsageLoad = functions.twoThousandDateTime();
+  FFAppState().supplyAccount = AccountStruct();
+  FFAppState().solarAccount = AccountStruct();
 }
 
 Future ceproUserOnly(BuildContext context) async {

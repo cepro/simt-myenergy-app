@@ -279,7 +279,11 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   ),
                                 ),
                               ),
-                              if (_model.loadingPaymentHistory)
+                              if ((FFAppState().customer.status !=
+                                      'preonboarding') &&
+                                  (FFAppState().customer.status !=
+                                      'onboarding') &&
+                                  _model.loadingPaymentHistory)
                                 Container(
                                   width: 100.0,
                                   height: 100.0,
@@ -291,7 +295,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               if ((FFAppState().customer.status !=
                                       'preonboarding') &&
                                   (FFAppState().customer.status !=
-                                      'onboarding'))
+                                      'onboarding') &&
+                                  !_model.loadingPaymentHistory)
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
@@ -344,51 +349,6 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 ),
                                               ),
                                             ),
-                                            if (false)
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 15.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    () {
-                                                      if (_model
-                                                          .loadPaymentHistoryFailure) {
-                                                        return 'Failure occurred loading history ...';
-                                                      } else if (_model
-                                                          .loadingPaymentHistory) {
-                                                        return 'Loading ...';
-                                                      } else if (_model.payments
-                                                              .length ==
-                                                          0) {
-                                                        return 'No payments';
-                                                      } else {
-                                                        return _model
-                                                            .payments.length
-                                                            .toString();
-                                                      }
-                                                    }(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
                                             if (_model.payments.isNotEmpty)
                                               wrapWithModel(
                                                 model: _model.paymentsListModel,
@@ -398,13 +358,41 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   payments: _model.payments,
                                                 ),
                                               ),
+                                            if (_model.payments.length == 0)
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Text(
+                                                  'No payments',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                              ),
                                           ],
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              if (_model.loadingTopupHistory)
+                              if ((FFAppState().customer.status !=
+                                      'preonboarding') &&
+                                  (FFAppState().customer.status !=
+                                      'onboarding') &&
+                                  _model.loadingTopupHistory)
                                 Container(
                                   width: 100.0,
                                   height: 100.0,
@@ -416,7 +404,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               if ((FFAppState().customer.status !=
                                       'preonboarding') &&
                                   (FFAppState().customer.status !=
-                                      'onboarding'))
+                                      'onboarding') &&
+                                  !_model.loadingTopupHistory)
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
@@ -469,51 +458,6 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 ),
                                               ),
                                             ),
-                                            if (false)
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 15.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    () {
-                                                      if (_model
-                                                          .loadPaymentHistoryFailure) {
-                                                        return 'Failure occurred loading history ...';
-                                                      } else if (_model
-                                                          .loadingPaymentHistory) {
-                                                        return 'Loading ...';
-                                                      } else if (_model.payments
-                                                              .length ==
-                                                          0) {
-                                                        return 'No payments';
-                                                      } else {
-                                                        return _model
-                                                            .payments.length
-                                                            .toString();
-                                                      }
-                                                    }(),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                ),
-                                              ),
                                             if (_model.topups.isNotEmpty)
                                               wrapWithModel(
                                                 model: _model.topupListModel,
@@ -521,6 +465,30 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     safeSetState(() {}),
                                                 child: TopupListWidget(
                                                   topups: _model.topups,
+                                                ),
+                                              ),
+                                            if (_model.topups.length == 0)
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
+                                                child: Text(
+                                                  'No topups',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
                                                 ),
                                               ),
                                           ],
@@ -758,7 +726,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     ),
                                   ),
                                 ),
-                              if (_model.loadingMethod)
+                              if (_model.loadingMethod &&
+                                  (FFAppState()
+                                          .supplyAccount
+                                          .customerAccount
+                                          .role ==
+                                      'occupier'))
                                 Container(
                                   width: 100.0,
                                   height: 100.0,
@@ -770,7 +743,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               if ((functions.jsonArrayLengthOrNegativeOne(
                                           _model.paymentMethods) ==
                                       0) &&
-                                  !_model.loadingMethod)
+                                  !_model.loadingMethod &&
+                                  (FFAppState()
+                                          .supplyAccount
+                                          .customerAccount
+                                          .role ==
+                                      'occupier'))
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
@@ -969,6 +947,19 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         ],
                                       ),
                                     ),
+                                  ),
+                                ),
+                              if (FFAppState()
+                                      .supplyAccount
+                                      .customerAccount
+                                      .role ==
+                                  'owner')
+                                Align(
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  child: wrapWithModel(
+                                    model: _model.comingSoonForLandlordsModel,
+                                    updateCallback: () => safeSetState(() {}),
+                                    child: ComingSoonForPreonboardingWidget(),
                                   ),
                                 ),
                             ],

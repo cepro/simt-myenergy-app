@@ -87,6 +87,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   ApiCallResponse? checkoutPageURI;
   // Model for ComingSoonForPreonboarding component.
   late ComingSoonForPreonboardingModel comingSoonForPreonboardingModel;
+  // Model for ComingSoonForLandlords.
+  late ComingSoonForPreonboardingModel comingSoonForLandlordsModel;
 
   @override
   void initState(BuildContext context) {
@@ -97,6 +99,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     directDebitModel = createModel(context, () => DirectDebitModel());
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
     comingSoonForPreonboardingModel =
+        createModel(context, () => ComingSoonForPreonboardingModel());
+    comingSoonForLandlordsModel =
         createModel(context, () => ComingSoonForPreonboardingModel());
   }
 
@@ -109,5 +113,6 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     directDebitModel.dispose();
     creditCardModel.dispose();
     comingSoonForPreonboardingModel.dispose();
+    comingSoonForLandlordsModel.dispose();
   }
 }
