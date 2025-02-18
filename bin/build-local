@@ -31,4 +31,4 @@ if [ ! -f ".fvm" ]; then
       exit 1
     fi
 fi
-fvm use `cat $THIS_PROJECT/.flutter-version`
+fvm use --force `cat $THIS_PROJECT/.flutter-version`
