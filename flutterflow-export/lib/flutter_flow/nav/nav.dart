@@ -205,6 +205,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/topups',
           requireAuth: true,
           builder: (context, params) => TopupsPageWidget(),
+        ),
+        FFRoute(
+          name: 'PropertySelectionPage',
+          path: '/properties',
+          requireAuth: true,
+          builder: (context, params) => PropertySelectionPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

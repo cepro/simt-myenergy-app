@@ -11,22 +11,12 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<MeterStruct?> getMeterByType(
-  PropertyStruct property,
-  String meterType,
-  dynamic metersJSON,
+Future<PropertyStruct?> getPropertyById(
+  List<PropertyStruct> properties,
+  String propertyId,
 ) async {
-  String? meterId =
-      meterType == 'solar' ? property.solarMeterUUID : property.supplyMeterUUID;
-  if (meterId == null) {
-    return null;
-  }
-
-  var meter = null;
-  var meterResult = getJsonField(metersJSON, "\$['$meterId']", false);
-  if (meterResult != null) {
-    meter = MeterStruct.fromMap(meterResult);
-  }
-
-  return meter;
+  PropertyStruct? property = properties.firstWhere((p) => p.id == propertyId,
+      orElse: () => new PropertyStruct());
+  return property.hasId() ? property : null;
+  // Add your function code here!
 }

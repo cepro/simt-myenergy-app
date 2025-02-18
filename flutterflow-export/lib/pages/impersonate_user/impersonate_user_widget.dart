@@ -442,17 +442,31 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                   false;
                                                               safeSetState(
                                                                   () {});
-                                                              await action_blocks
-                                                                  .setContractStatusFlags(
-                                                                      context);
+                                                              if (FFAppState()
+                                                                      .properties
+                                                                      .length >
+                                                                  1) {
+                                                                context.pushNamed(
+                                                                    'PropertySelectionPage');
 
-                                                              context.pushNamed(
-                                                                  'HomePage');
-
-                                                              if (_shouldSetState)
-                                                                safeSetState(
-                                                                    () {});
-                                                              return;
+                                                                if (_shouldSetState)
+                                                                  safeSetState(
+                                                                      () {});
+                                                                return;
+                                                              } else {
+                                                                await action_blocks
+                                                                    .changeProperty(
+                                                                  context,
+                                                                  propertyId: FFAppState()
+                                                                      .properties
+                                                                      .firstOrNull
+                                                                      ?.id,
+                                                                );
+                                                                if (_shouldSetState)
+                                                                  safeSetState(
+                                                                      () {});
+                                                                return;
+                                                              }
                                                             } else {
                                                               _model.loading =
                                                                   false;

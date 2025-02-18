@@ -44,19 +44,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       await action_blocks.setContractStatusFlags(context);
       safeSetState(() {});
       _model.solarMeter = await actions.getMeterByType(
-        FFAppState().accounts.toList(),
+        FFAppState().property,
         'solar',
         FFAppState().meters,
       );
       _model.supplyMeter = await actions.getMeterByType(
-        FFAppState().accounts.toList(),
+        FFAppState().property,
         'supply',
         FFAppState().meters,
       );
       _model.getSolarInstallationOutput =
           await actions.getSolarInstallationById(
         FFAppState().solarInstallations,
-        FFAppState().properties.firstOrNull?.id,
+        FFAppState().property.id,
       );
       _model.userToken = await actions.activeUserToken();
       _model.homePageGetWallets = await GetWalletsCall.call(
@@ -326,8 +326,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         0.0, 10.0, 0.0, 0.0),
                                                 child: Text(
                                                   FFAppState()
-                                                      .properties
-                                                      .firstOrNull!
+                                                      .property
                                                       .description,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -714,21 +713,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               isSigned: functions
                                                                           .getContractByType(
                                                                               FFAppState()
-                                                                                  .accounts
+                                                                                  .accountsAll
                                                                                   .toList(),
                                                                               'supply')
                                                                           ?.signedDate !=
                                                                       null &&
                                                                   functions
                                                                           .getContractByType(
-                                                                              FFAppState().accounts.toList(),
+                                                                              FFAppState().accountsAll.toList(),
                                                                               'supply')
                                                                           ?.signedDate !=
                                                                       '',
                                                               contract: functions
                                                                   .getContractByType(
                                                                       FFAppState()
-                                                                          .accounts
+                                                                          .accountsAll
                                                                           .toList(),
                                                                       'supply')!,
                                                               contractTerms: FFAppState()
@@ -1186,19 +1185,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 isSigned: functions
                                                                             .getContractByType(
                                                                                 FFAppState()
-                                                                                    .accounts
+                                                                                    .accountsAll
                                                                                     .toList(),
                                                                                 'solar')
                                                                             ?.signedDate !=
                                                                         null &&
                                                                     functions
-                                                                            .getContractByType(FFAppState().accounts.toList(),
+                                                                            .getContractByType(FFAppState().accountsAll.toList(),
                                                                                 'solar')
                                                                             ?.signedDate !=
                                                                         '',
                                                                 contract: functions.getContractByType(
                                                                     FFAppState()
-                                                                        .accounts
+                                                                        .accountsAll
                                                                         .toList(),
                                                                     'solar')!,
                                                               ),

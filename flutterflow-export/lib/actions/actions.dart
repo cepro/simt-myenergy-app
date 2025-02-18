@@ -86,7 +86,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
             null &&
         functions.getContractByType(accounts!.toList(), 'supply')?.signedDate !=
             '';
-    FFAppState().accounts = accounts!.toList().cast<AccountStruct>();
+    FFAppState().accountsAll = accounts!.toList().cast<AccountStruct>();
     FFAppState().properties = functions
         .getPropertiesFromAccounts(accounts!.toList())
         .toList()
@@ -122,10 +122,10 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
       (getAccountsResponse?.jsonBody ?? ''),
       r'''$.solarInstallations''',
     );
-    FFAppState().supplyAccount =
-        functions.getAccountByType(FFAppState().accounts.toList(), 'supply')!;
+    FFAppState().supplyAccount = functions.getAccountByType(
+        FFAppState().accountsAll.toList(), 'supply')!;
     FFAppState().solarAccount =
-        functions.getAccountByType(FFAppState().accounts.toList(), 'solar')!;
+        functions.getAccountByType(FFAppState().accountsAll.toList(), 'solar')!;
     return true;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
@@ -209,7 +209,7 @@ Future clearAppState(BuildContext context) async {
   // Clear All App State
   FFAppState().meters = null;
   FFAppState().supplyContractSigned = false;
-  FFAppState().accounts = [];
+  FFAppState().accountsAll = [];
   FFAppState().properties = [];
   FFAppState().monthlyUsage = [];
   FFAppState().isCeproUser = false;
@@ -268,7 +268,7 @@ Future openSupplyContract(BuildContext context) async {
   if (FFAppState().supplyContractSigned) {
     await actions.openPDF(
       functions
-          .getContractByType(FFAppState().accounts.toList(), 'supply')!
+          .getContractByType(FFAppState().accountsAll.toList(), 'supply')!
           .signedContractURL,
     );
   } else {
@@ -291,7 +291,7 @@ Future openSupplyContract(BuildContext context) async {
                   .toList()
                   .firstOrNull!,
               contract: functions.getContractByType(
-                  FFAppState().accounts.toList(), 'supply')!,
+                  FFAppState().accountsAll.toList(), 'supply')!,
             ),
           ),
         );
@@ -320,7 +320,7 @@ Future openSolarContract(BuildContext context) async {
   if (FFAppState().solarContractSigned) {
     await actions.openPDF(
       functions
-          .getContractByType(FFAppState().accounts.toList(), 'solar')!
+          .getContractByType(FFAppState().accountsAll.toList(), 'solar')!
           .signedContractURL,
     );
   } else {
@@ -338,7 +338,7 @@ Future openSolarContract(BuildContext context) async {
             width: double.infinity,
             child: SolarContractChooseOrViewModalWidget(
               contract: functions.getContractByType(
-                  FFAppState().accounts.toList(), 'solar')!,
+                  FFAppState().accountsAll.toList(), 'solar')!,
               readOnly: false,
               termsSolar30Year: FFAppState()
                   .contractTerms
@@ -433,43 +433,73 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
 
 Future<bool?> setContractStatusFlags(BuildContext context) async {
   FFAppState().supplyContractSigned = (functions.getContractByType(
-              FFAppState().accounts.toList(), 'supply') !=
+              FFAppState().accountsForCurrentProperty.toList(), 'supply') !=
           null) &&
       (functions
-                  .getContractByType(FFAppState().accounts.toList(), 'supply')
+                  .getContractByType(
+                      FFAppState().accountsForCurrentProperty.toList(),
+                      'supply')
                   ?.signedDate !=
               null &&
           functions
-                  .getContractByType(FFAppState().accounts.toList(), 'supply')
+                  .getContractByType(
+                      FFAppState().accountsForCurrentProperty.toList(),
+                      'supply')
                   ?.signedDate !=
               '');
   FFAppState().haveSupplyContract = functions
-              .getContractByType(FFAppState().accounts.toList(), 'supply')
+              .getContractByType(
+                  FFAppState().accountsForCurrentProperty.toList(), 'supply')
               ?.id !=
           null &&
       functions
-              .getContractByType(FFAppState().accounts.toList(), 'supply')
+              .getContractByType(
+                  FFAppState().accountsForCurrentProperty.toList(), 'supply')
               ?.id !=
           '';
   FFAppState().haveSolarContract = functions
-              .getContractByType(FFAppState().accounts.toList(), 'solar')
+              .getContractByType(
+                  FFAppState().accountsForCurrentProperty.toList(), 'solar')
               ?.id !=
           null &&
       functions
-              .getContractByType(FFAppState().accounts.toList(), 'solar')
+              .getContractByType(
+                  FFAppState().accountsForCurrentProperty.toList(), 'solar')
               ?.id !=
           '';
   FFAppState().solarContractSigned = (functions.getContractByType(
-              FFAppState().accounts.toList(), 'solar') !=
+              FFAppState().accountsForCurrentProperty.toList(), 'solar') !=
           null) &&
       (functions
-                  .getContractByType(FFAppState().accounts.toList(), 'solar')
+                  .getContractByType(
+                      FFAppState().accountsForCurrentProperty.toList(), 'solar')
                   ?.signedDate !=
               null &&
           functions
-                  .getContractByType(FFAppState().accounts.toList(), 'solar')
+                  .getContractByType(
+                      FFAppState().accountsForCurrentProperty.toList(), 'solar')
                   ?.signedDate !=
               '');
   FFAppState().update(() {});
   return true;
+}
+
+Future changeProperty(
+  BuildContext context, {
+  required String? propertyId,
+}) async {
+  PropertyStruct? newProperty;
+
+  newProperty = await actions.getPropertyById(
+    FFAppState().properties.toList(),
+    propertyId!,
+  );
+  FFAppState().property = newProperty!;
+  FFAppState().accountsForCurrentProperty = functions
+      .getAccountsByPropertyId(FFAppState().accountsAll.toList(), propertyId!)
+      .toList()
+      .cast<AccountStruct>();
+  FFAppState().update(() {});
+
+  context.pushNamed('HomePage');
 }

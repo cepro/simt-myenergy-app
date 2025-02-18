@@ -36,8 +36,8 @@ class FFAppState extends ChangeNotifier {
       }
     });
     _safeInit(() {
-      _accounts = prefs
-              .getStringList('ff_accounts')
+      _accountsAll = prefs
+              .getStringList('ff_accountsAll')
               ?.map((x) {
                 try {
                   return AccountStruct.fromSerializableMap(jsonDecode(x));
@@ -48,7 +48,7 @@ class FFAppState extends ChangeNotifier {
               })
               .withoutNulls
               .toList() ??
-          _accounts;
+          _accountsAll;
     });
     _safeInit(() {
       _contractTerms = prefs
@@ -79,6 +79,17 @@ class FFAppState extends ChangeNotifier {
               .withoutNulls
               .toList() ??
           _properties;
+    });
+    _safeInit(() {
+      if (prefs.containsKey('ff_property')) {
+        try {
+          final serializedData = prefs.getString('ff_property') ?? '{}';
+          _property =
+              PropertyStruct.fromSerializableMap(jsonDecode(serializedData));
+        } catch (e) {
+          print("Can't decode persisted data type. Error: $e.");
+        }
+      }
     });
     _safeInit(() {
       _monthlyUsage = prefs
@@ -224,6 +235,21 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    _safeInit(() {
+      _accountsForCurrentProperty = prefs
+              .getStringList('ff_accountsForCurrentProperty')
+              ?.map((x) {
+                try {
+                  return AccountStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _accountsForCurrentProperty;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -247,45 +273,45 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_meters', jsonEncode(value));
   }
 
-  List<AccountStruct> _accounts = [];
-  List<AccountStruct> get accounts => _accounts;
-  set accounts(List<AccountStruct> value) {
-    _accounts = value;
+  List<AccountStruct> _accountsAll = [];
+  List<AccountStruct> get accountsAll => _accountsAll;
+  set accountsAll(List<AccountStruct> value) {
+    _accountsAll = value;
     prefs.setStringList(
-        'ff_accounts', value.map((x) => x.serialize()).toList());
+        'ff_accountsAll', value.map((x) => x.serialize()).toList());
   }
 
-  void addToAccounts(AccountStruct value) {
-    accounts.add(value);
+  void addToAccountsAll(AccountStruct value) {
+    accountsAll.add(value);
     prefs.setStringList(
-        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+        'ff_accountsAll', _accountsAll.map((x) => x.serialize()).toList());
   }
 
-  void removeFromAccounts(AccountStruct value) {
-    accounts.remove(value);
+  void removeFromAccountsAll(AccountStruct value) {
+    accountsAll.remove(value);
     prefs.setStringList(
-        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+        'ff_accountsAll', _accountsAll.map((x) => x.serialize()).toList());
   }
 
-  void removeAtIndexFromAccounts(int index) {
-    accounts.removeAt(index);
+  void removeAtIndexFromAccountsAll(int index) {
+    accountsAll.removeAt(index);
     prefs.setStringList(
-        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+        'ff_accountsAll', _accountsAll.map((x) => x.serialize()).toList());
   }
 
-  void updateAccountsAtIndex(
+  void updateAccountsAllAtIndex(
     int index,
     AccountStruct Function(AccountStruct) updateFn,
   ) {
-    accounts[index] = updateFn(_accounts[index]);
+    accountsAll[index] = updateFn(_accountsAll[index]);
     prefs.setStringList(
-        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+        'ff_accountsAll', _accountsAll.map((x) => x.serialize()).toList());
   }
 
-  void insertAtIndexInAccounts(int index, AccountStruct value) {
-    accounts.insert(index, value);
+  void insertAtIndexInAccountsAll(int index, AccountStruct value) {
+    accountsAll.insert(index, value);
     prefs.setStringList(
-        'ff_accounts', _accounts.map((x) => x.serialize()).toList());
+        'ff_accountsAll', _accountsAll.map((x) => x.serialize()).toList());
   }
 
   List<ContractTermsStruct> _contractTerms = [];
@@ -374,10 +400,12 @@ class FFAppState extends ChangeNotifier {
   PropertyStruct get property => _property;
   set property(PropertyStruct value) {
     _property = value;
+    prefs.setString('ff_property', value.serialize());
   }
 
   void updatePropertyStruct(Function(PropertyStruct) updateFn) {
     updateFn(_property);
+    prefs.setString('ff_property', _property.serialize());
   }
 
   List<MonthlyUsageStruct> _monthlyUsage = [];
@@ -645,6 +673,51 @@ class FFAppState extends ChangeNotifier {
   void updateSolarAccountStruct(Function(AccountStruct) updateFn) {
     updateFn(_solarAccount);
     prefs.setString('ff_solarAccount', _solarAccount.serialize());
+  }
+
+  /// accounts for a single property
+  List<AccountStruct> _accountsForCurrentProperty = [];
+  List<AccountStruct> get accountsForCurrentProperty =>
+      _accountsForCurrentProperty;
+  set accountsForCurrentProperty(List<AccountStruct> value) {
+    _accountsForCurrentProperty = value;
+    prefs.setStringList('ff_accountsForCurrentProperty',
+        value.map((x) => x.serialize()).toList());
+  }
+
+  void addToAccountsForCurrentProperty(AccountStruct value) {
+    accountsForCurrentProperty.add(value);
+    prefs.setStringList('ff_accountsForCurrentProperty',
+        _accountsForCurrentProperty.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromAccountsForCurrentProperty(AccountStruct value) {
+    accountsForCurrentProperty.remove(value);
+    prefs.setStringList('ff_accountsForCurrentProperty',
+        _accountsForCurrentProperty.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromAccountsForCurrentProperty(int index) {
+    accountsForCurrentProperty.removeAt(index);
+    prefs.setStringList('ff_accountsForCurrentProperty',
+        _accountsForCurrentProperty.map((x) => x.serialize()).toList());
+  }
+
+  void updateAccountsForCurrentPropertyAtIndex(
+    int index,
+    AccountStruct Function(AccountStruct) updateFn,
+  ) {
+    accountsForCurrentProperty[index] =
+        updateFn(_accountsForCurrentProperty[index]);
+    prefs.setStringList('ff_accountsForCurrentProperty',
+        _accountsForCurrentProperty.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInAccountsForCurrentProperty(
+      int index, AccountStruct value) {
+    accountsForCurrentProperty.insert(index, value);
+    prefs.setStringList('ff_accountsForCurrentProperty',
+        _accountsForCurrentProperty.map((x) => x.serialize()).toList());
   }
 }
 

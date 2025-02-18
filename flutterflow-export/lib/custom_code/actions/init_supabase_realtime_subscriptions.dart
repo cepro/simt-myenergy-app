@@ -11,6 +11,45 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+void updateAccountListWithNewContract(
+    List<AccountStruct> accounts, Map<String, dynamic> newRec) {
+  AccountStruct? accountForContract;
+  try {
+    accountForContract =
+        accounts.firstWhere((element) => element.contract.id == newRec['id']);
+
+    // Create new contract struct
+    final updatedContract = ContractStruct(
+      id: newRec['id'],
+      type: newRec['type'],
+      description: newRec['description'],
+      termsId: newRec['terms'],
+      docusealSubmissionId: newRec['docuseal_submission_id'],
+      signedContractURL: newRec['signed_contract_url'],
+      signedDate: newRec['signed_date'],
+      effectiveDate: newRec['effective_date'],
+      endDate: newRec['end_date'],
+    );
+
+    // Create new account struct with updated contract
+    final updatedAccount = AccountStruct(
+      id: accountForContract.id,
+      contract: updatedContract,
+      // Copy all other fields from the original account
+      name: accountForContract.name,
+      // Add any other fields that AccountStruct has
+    );
+
+    // Remove old account and add updated one
+    final index = accounts.indexOf(accountForContract);
+    if (index != -1) {
+      accounts[index] = updatedAccount;
+    }
+  } catch (e) {
+    print("exception finding match in account list: $e");
+  }
+}
+
 Future initSupabaseRealtimeSubscriptions() async {
   await SupaFlow.client.removeAllChannels();
 
@@ -29,33 +68,10 @@ Future initSupabaseRealtimeSubscriptions() async {
             return;
           }
 
-          String id = newRec['id'];
-          AccountStruct accountForContract;
-          try {
-            accountForContract = FFAppState()
-                .accounts
-                .firstWhere((element) => element.contract.id == id);
-          } catch (e) {
-            print("exception finding match");
-            return;
-          }
-          print("found account for contract: ${accountForContract}");
-
-          FFAppState().removeFromAccounts(accountForContract);
-
-          // replace the contract in appstate with the updated one:
-          accountForContract.contract = ContractStruct(
-            id: newRec['id'],
-            type: newRec['type'],
-            description: newRec['description'],
-            termsId: newRec['terms'],
-            docusealSubmissionId: newRec['docuseal_submission_id'],
-            signedContractURL: newRec['signed_contract_url'],
-            signedDate: newRec['signed_date'],
-            effectiveDate: newRec['effective_date'],
-            endDate: newRec['end_date'],
-          );
-          FFAppState().addToAccounts(accountForContract);
+          // Update both account lists
+          updateAccountListWithNewContract(FFAppState().accountsAll, newRec);
+          updateAccountListWithNewContract(
+              FFAppState().accountsForCurrentProperty, newRec);
 
           bool contractSigned = newRec['signed_date'] != null;
           if (newRec['type'] == 'solar') {
@@ -64,7 +80,7 @@ Future initSupabaseRealtimeSubscriptions() async {
             FFAppState().supplyContractSigned = contractSigned;
           }
 
-          print("patched contract by replacing account record");
+          print("patched contract by replacing account records in both lists");
         },
       )
       .subscribe();

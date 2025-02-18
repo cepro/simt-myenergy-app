@@ -721,19 +721,33 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       .toList(),
                                                                   FFAppState()
                                                                       .esco!)) {
-                                                                await action_blocks
-                                                                    .setContractStatusFlags(
-                                                                        context);
+                                                                if (FFAppState()
+                                                                        .properties
+                                                                        .length >
+                                                                    1) {
+                                                                  context.pushNamedAuth(
+                                                                      'PropertySelectionPage',
+                                                                      context
+                                                                          .mounted);
 
-                                                                context.pushNamedAuth(
-                                                                    'HomePage',
-                                                                    context
-                                                                        .mounted);
-
-                                                                if (_shouldSetState)
-                                                                  safeSetState(
-                                                                      () {});
-                                                                return;
+                                                                  if (_shouldSetState)
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  return;
+                                                                } else {
+                                                                  await action_blocks
+                                                                      .changeProperty(
+                                                                    context,
+                                                                    propertyId: FFAppState()
+                                                                        .properties
+                                                                        .firstOrNull
+                                                                        ?.id,
+                                                                  );
+                                                                  if (_shouldSetState)
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  return;
+                                                                }
                                                               } else {
                                                                 await action_blocks
                                                                     .clearAppState(

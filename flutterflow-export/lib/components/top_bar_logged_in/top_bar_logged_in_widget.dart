@@ -2,9 +2,12 @@ import '/backend/schema/enums/enums.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/sys_info_button/sys_info_button_widget.dart';
 import '/components/user_profile_button/user_profile_button_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -94,6 +97,58 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                     fit: BoxFit.cover,
                   ),
                 ),
+              ),
+            if (FFAppState().properties.length > 1)
+              Text(
+                'Property: ',
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).bodyMediumFamily),
+                    ),
+              ),
+            if (FFAppState().properties.length > 1)
+              FlutterFlowDropDown<String>(
+                controller: _model.dropDownValueController ??=
+                    FormFieldController<String>(
+                  _model.dropDownValue ??= FFAppState().property.id,
+                ),
+                options: List<String>.from(
+                    FFAppState().properties.map((e) => e.id).toList()),
+                optionLabels:
+                    FFAppState().properties.map((e) => e.description).toList(),
+                onChanged: (val) async {
+                  safeSetState(() => _model.dropDownValue = val);
+                  await action_blocks.changeProperty(
+                    context,
+                    propertyId: _model.dropDownValue,
+                  );
+                },
+                width: 200.0,
+                height: 40.0,
+                textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      letterSpacing: 0.0,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).bodyMediumFamily),
+                    ),
+                hintText: 'Select Property...',
+                icon: Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 24.0,
+                ),
+                fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                elevation: 2.0,
+                borderColor: Colors.transparent,
+                borderWidth: 0.0,
+                borderRadius: 8.0,
+                margin: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                hidesUnderline: true,
+                isOverButton: false,
+                isSearchable: false,
+                isMultiSelect: false,
               ),
             Spacer(),
             if (FFAppState().impersonationToken != null &&

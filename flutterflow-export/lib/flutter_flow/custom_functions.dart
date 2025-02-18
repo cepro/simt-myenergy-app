@@ -87,6 +87,13 @@ EscoCodeEnum hostnameToEscoCode(String? hostname) {
   return EscoCodeEnum.unknown;
 }
 
+List<AccountStruct> getAccountsByPropertyId(
+  List<AccountStruct> accounts,
+  String propertyId,
+) {
+  return accounts.where((a) => a.property.id == propertyId).toList();
+}
+
 String formatGBPAmount(double amountGBP) {
   var f = NumberFormat("##0.00", "en_GB");
   return "£" + f.format(amountGBP);
