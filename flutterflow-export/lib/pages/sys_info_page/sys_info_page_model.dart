@@ -21,7 +21,7 @@ class SysInfoPageModel extends FlutterFlowModel<SysInfoPageWidget> {
 
   // Stores action output result for [Custom Action - getPackageInfo] action in SysInfoPage widget.
   PackageInfoStruct? packageInfo;
-  // Model for mainWebNav component.
+  // Model for MainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;

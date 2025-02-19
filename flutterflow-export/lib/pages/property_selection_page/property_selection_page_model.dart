@@ -1,13 +1,17 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/main_web_nav/main_web_nav_widget.dart';
+import '/components/logout_button/logout_button_widget.dart';
 import '/components/property_list/property_list_widget.dart';
-import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
+import '/components/sidebar_no_menu/sidebar_no_menu_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'property_selection_page_widget.dart' show PropertySelectionPageWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -30,24 +34,30 @@ class PropertySelectionPageModel
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for mainWebNav component.
-  late MainWebNavModel mainWebNavModel;
-  // Model for TopBarLoggedIn component.
-  late TopBarLoggedInModel topBarLoggedInModel;
+  // Stores action output result for [Custom Action - activeUserToken] action in PropertySelectionPage widget.
+  String? userToken;
+  // Stores action output result for [Backend Call - API (Get Topups)] action in PropertySelectionPage widget.
+  ApiCallResponse? getTopupsOutput;
+  // Stores action output result for [Custom Action - topupsJSONToTopupsDataType] action in PropertySelectionPage widget.
+  List<TopupStruct>? topupsTyped;
+  // Model for SidebarNoMenu component.
+  late SidebarNoMenuModel sidebarNoMenuModel;
+  // Model for LogoutButton component.
+  late LogoutButtonModel logoutButtonModel;
   // Model for PropertyList component.
   late PropertyListModel propertyListModel;
 
   @override
   void initState(BuildContext context) {
-    mainWebNavModel = createModel(context, () => MainWebNavModel());
-    topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
+    sidebarNoMenuModel = createModel(context, () => SidebarNoMenuModel());
+    logoutButtonModel = createModel(context, () => LogoutButtonModel());
     propertyListModel = createModel(context, () => PropertyListModel());
   }
 
   @override
   void dispose() {
-    mainWebNavModel.dispose();
-    topBarLoggedInModel.dispose();
+    sidebarNoMenuModel.dispose();
+    logoutButtonModel.dispose();
     propertyListModel.dispose();
   }
 }

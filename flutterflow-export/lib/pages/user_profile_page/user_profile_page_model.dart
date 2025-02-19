@@ -31,7 +31,7 @@ class UserProfilePageModel extends FlutterFlowModel<UserProfilePageWidget> {
 
   // Stores action output result for [Custom Action - decodeSupabaseJwt] action in UserProfilePage widget.
   SupabaseUserStruct? decodeTokenForProfileResponse;
-  // Model for mainWebNav component.
+  // Model for MainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;

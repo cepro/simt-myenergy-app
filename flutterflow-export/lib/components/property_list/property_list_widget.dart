@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -67,31 +66,9 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
                 itemCount: properties.length,
                 itemBuilder: (context, propertiesIndex) {
                   final propertiesItem = properties[propertiesIndex];
-                  return AlignedTooltip(
-                    content: Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text(
-                        propertiesItem.plot,
-                        style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyLargeFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyLargeFamily),
-                            ),
-                      ),
-                    ),
-                    offset: 4.0,
-                    preferredDirection: AxisDirection.down,
-                    borderRadius: BorderRadius.circular(8.0),
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    elevation: 4.0,
-                    tailBaseWidth: 24.0,
-                    tailLength: 12.0,
-                    waitDuration: Duration(milliseconds: 100),
-                    showDuration: Duration(milliseconds: 1500),
-                    triggerMode: TooltipTriggerMode.tap,
+                  return Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(5.0, 10.0, 0.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -105,15 +82,16 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
                       },
                       child: Text(
                         propertiesItem.description,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              letterSpacing: 0.0,
-                              decoration: TextDecoration.underline,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
+                                  letterSpacing: 0.0,
+                                  decoration: TextDecoration.underline,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .titleMediumFamily),
+                                ),
                       ),
                     ),
                   );

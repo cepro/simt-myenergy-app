@@ -26,7 +26,7 @@ class ImpersonateUserModel extends FlutterFlowModel<ImpersonateUserWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for mainWebNav component.
+  // Model for MainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;

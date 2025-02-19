@@ -46,7 +46,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   String? userToken;
   // Stores action output result for [Backend Call - API (Get Wallets)] action in HomePage widget.
   ApiCallResponse? homePageGetWallets;
-  // Model for mainWebNav component.
+  // Model for MainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;

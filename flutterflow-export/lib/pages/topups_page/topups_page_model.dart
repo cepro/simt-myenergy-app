@@ -40,7 +40,7 @@ class TopupsPageModel extends FlutterFlowModel<TopupsPageWidget> {
   ApiCallResponse? getTopupsOutput;
   // Stores action output result for [Custom Action - topupsJSONToTopupsDataType] action in TopupsPage widget.
   List<TopupStruct>? topupsTyped;
-  // Model for mainWebNav component.
+  // Model for MainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;

@@ -17,7 +17,7 @@ class AccountsListPageModel extends FlutterFlowModel<AccountsListPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for mainWebNav component.
+  // Model for MainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;

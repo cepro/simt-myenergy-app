@@ -232,56 +232,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         .headlineMediumFamily),
                                           ),
                                     ),
-                                    if (FFAppState().properties.isNotEmpty)
-                                      Padding(
-                                        padding: EdgeInsets.all(5.0),
-                                        child: AlignedTooltip(
-                                          content: Padding(
-                                            padding: EdgeInsets.all(4.0),
-                                            child: Text(
-                                              FFAppState()
-                                                  .properties
-                                                  .firstOrNull!
-                                                  .plot,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
-                                            ),
-                                          ),
-                                          offset: 4.0,
-                                          preferredDirection:
-                                              AxisDirection.down,
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          elevation: 4.0,
-                                          tailBaseWidth: 24.0,
-                                          tailLength: 12.0,
-                                          waitDuration:
-                                              Duration(milliseconds: 100),
-                                          showDuration:
-                                              Duration(milliseconds: 1500),
-                                          triggerMode: TooltipTriggerMode.tap,
-                                          child: AlignedTooltip(
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          AlignedTooltip(
                                             content: Padding(
                                               padding: EdgeInsets.all(4.0),
                                               child: Text(
-                                                '${FFAppState().properties.firstOrNull?.plot}  Owner: ${FFAppState().properties.firstOrNull?.ownerName}',
+                                                '${FFAppState().property.plot}  Owner: ${FFAppState().property.ownerName}',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyLarge
@@ -320,36 +281,89 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               visible: FFAppState()
                                                   .properties
                                                   .isNotEmpty,
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 10.0, 0.0, 0.0),
-                                                child: Text(
-                                                  FFAppState()
-                                                      .property
-                                                      .description,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyLargeFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyLargeFamily),
-                                                      ),
-                                                ),
+                                              child: Text(
+                                                FFAppState()
+                                                    .property
+                                                    .description,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyLargeFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLargeFamily),
+                                                        ),
                                               ),
                                             ),
                                           ),
-                                        ),
+                                          if (responsiveVisibility(
+                                            context: context,
+                                            tabletLandscape: false,
+                                            desktop: false,
+                                          ))
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 1.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 0.0, 0.0, 0.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    context.pushNamed(
+                                                        'PropertySelectionPage');
+                                                  },
+                                                  text: 'Change',
+                                                  options: FFButtonOptions(
+                                                    height: 25.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 0.0,
+                                                                10.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .titleSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
+                                                          color: Colors.white,
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily),
+                                                        ),
+                                                    elevation: 0.0,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                        ],
                                       ),
+                                    ),
                                   ],
                                 ),
                               ),

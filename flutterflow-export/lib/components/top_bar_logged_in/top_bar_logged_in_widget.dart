@@ -98,7 +98,12 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   ),
                 ),
               ),
-            if (FFAppState().properties.length > 1)
+            if ((FFAppState().properties.length > 1) &&
+                responsiveVisibility(
+                  context: context,
+                  phone: false,
+                  tablet: false,
+                ))
               Text(
                 'Property: ',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -108,7 +113,12 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                           FlutterFlowTheme.of(context).bodyMediumFamily),
                     ),
               ),
-            if (FFAppState().properties.length > 1)
+            if ((FFAppState().properties.length > 1) &&
+                responsiveVisibility(
+                  context: context,
+                  phone: false,
+                  tablet: false,
+                ))
               FlutterFlowDropDown<String>(
                 controller: _model.dropDownValueController ??=
                     FormFieldController<String>(

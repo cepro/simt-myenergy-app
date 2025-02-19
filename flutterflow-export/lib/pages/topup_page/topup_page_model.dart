@@ -24,7 +24,7 @@ class TopupPageModel extends FlutterFlowModel<TopupPageWidget> {
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - API (Get Wallets)] action in TopupPage widget.
   ApiCallResponse? topupPreferencesGetOutput;
-  // Model for mainWebNav component.
+  // Model for MainWebNav component.
   late MainWebNavModel mainWebNavModel;
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;
