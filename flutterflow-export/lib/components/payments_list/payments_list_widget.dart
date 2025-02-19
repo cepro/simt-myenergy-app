@@ -72,7 +72,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
-                          'Created At',
+                          'Date',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(

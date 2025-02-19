@@ -1,9 +1,9 @@
 import '/backend/schema/structs/index.dart';
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -56,136 +56,70 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Expanded(
-            child: Builder(
-              builder: (context) {
-                final properties =
-                    widget!.properties!.toList().take(24).toList();
+          Builder(
+            builder: (context) {
+              final properties = widget!.properties!.toList();
 
-                return FlutterFlowDataTable<PropertyStruct>(
-                  controller: _model.paginatedDataTableController,
-                  data: properties,
-                  columnsBuilder: (onSortChanged) => [
-                    DataColumn2(
-                      label: DefaultTextStyle.merge(
-                        softWrap: true,
-                        child: Text(
-                          'Address',
-                          style: FlutterFlowTheme.of(context)
-                              .labelLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .labelLargeFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .labelLargeFamily),
-                              ),
-                        ),
+              return ListView.builder(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: properties.length,
+                itemBuilder: (context, propertiesIndex) {
+                  final propertiesItem = properties[propertiesIndex];
+                  return AlignedTooltip(
+                    content: Padding(
+                      padding: EdgeInsets.all(4.0),
+                      child: Text(
+                        propertiesItem.plot,
+                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyLargeFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyLargeFamily),
+                            ),
                       ),
                     ),
-                    DataColumn2(
-                      label: DefaultTextStyle.merge(
-                        softWrap: true,
-                        child: Text(
-                          'Plot',
-                          style: FlutterFlowTheme.of(context)
-                              .labelLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .labelLargeFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .labelLargeFamily),
-                              ),
-                        ),
+                    offset: 4.0,
+                    preferredDirection: AxisDirection.down,
+                    borderRadius: BorderRadius.circular(8.0),
+                    backgroundColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 4.0,
+                    tailBaseWidth: 24.0,
+                    tailLength: 12.0,
+                    waitDuration: Duration(milliseconds: 100),
+                    showDuration: Duration(milliseconds: 1500),
+                    triggerMode: TooltipTriggerMode.tap,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        await action_blocks.changeProperty(
+                          context,
+                          propertyId: propertiesItem.id,
+                        );
+                      },
+                      child: Text(
+                        propertiesItem.description,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              decoration: TextDecoration.underline,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
                       ),
                     ),
-                  ],
-                  dataRowBuilder: (propertiesItem, propertiesIndex, selected,
-                          onSelectChanged) =>
-                      DataRow(
-                    color: MaterialStateProperty.all(
-                      propertiesIndex % 2 == 0
-                          ? FlutterFlowTheme.of(context).secondaryBackground
-                          : FlutterFlowTheme.of(context).primaryBackground,
-                    ),
-                    cells: [
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          await action_blocks.changeProperty(
-                            context,
-                            propertyId: propertiesItem.id,
-                          );
-                        },
-                        child: Text(
-                          propertiesItem.description,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
-                        ),
-                      ),
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          await action_blocks.changeProperty(
-                            context,
-                            propertyId: propertiesItem.id,
-                          );
-                        },
-                        child: Text(
-                          propertiesItem.plot,
-                          style: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
-                              ),
-                        ),
-                      ),
-                    ].map((c) => DataCell(c)).toList(),
-                  ),
-                  paginated: true,
-                  selectable: false,
-                  hidePaginator: false,
-                  showFirstLastButtons: false,
-                  headingRowHeight: 56.0,
-                  dataRowHeight: 48.0,
-                  columnSpacing: 20.0,
-                  headingRowColor: FlutterFlowTheme.of(context).primary,
-                  borderRadius: BorderRadius.circular(8.0),
-                  addHorizontalDivider: true,
-                  addTopAndBottomDivider: false,
-                  hideDefaultHorizontalDivider: true,
-                  horizontalDividerColor:
-                      FlutterFlowTheme.of(context).secondaryBackground,
-                  horizontalDividerThickness: 1.0,
-                  addVerticalDivider: true,
-                  verticalDividerColor:
-                      FlutterFlowTheme.of(context).secondaryBackground,
-                  verticalDividerThickness: 1.0,
-                );
-              },
-            ),
+                  );
+                },
+              );
+            },
           ),
         ],
       ),

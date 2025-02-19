@@ -161,7 +161,7 @@ class _PropertySelectionPageWidgetState
                                         alignment:
                                             AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
-                                          'Choose a property to view the properties page.',
+                                          'Choose a property to view:',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

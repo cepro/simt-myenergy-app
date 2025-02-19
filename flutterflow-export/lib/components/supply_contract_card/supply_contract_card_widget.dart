@@ -157,6 +157,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                       text: 'View',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(

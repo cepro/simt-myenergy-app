@@ -69,25 +69,7 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
-                          'Status',
-                          style: FlutterFlowTheme.of(context)
-                              .labelLarge
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .labelLargeFamily,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .labelLargeFamily),
-                              ),
-                        ),
-                      ),
-                    ),
-                    DataColumn2(
-                      label: DefaultTextStyle.merge(
-                        softWrap: true,
-                        child: Text(
-                          'Amount',
+                          'Date',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -123,7 +105,25 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                       label: DefaultTextStyle.merge(
                         softWrap: true,
                         child: Text(
-                          'Created At',
+                          'Amount',
+                          style: FlutterFlowTheme.of(context)
+                              .labelLarge
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .labelLargeFamily),
+                              ),
+                        ),
+                      ),
+                    ),
+                    DataColumn2(
+                      label: DefaultTextStyle.merge(
+                        softWrap: true,
+                        child: Text(
+                          'Status',
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
@@ -148,7 +148,19 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                     ),
                     cells: [
                       Text(
-                        topupsItem.status,
+                        dateTimeFormat(
+                            "dd/MM/yyyy HH:mm:ss", topupsItem.createdAt!),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily),
+                            ),
+                      ),
+                      Text(
+                        topupsItem.source,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -171,19 +183,7 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                             ),
                       ),
                       Text(
-                        topupsItem.source,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
-                      ),
-                      Text(
-                        dateTimeFormat(
-                            "dd/MM/yyyy HH:mm:ss", topupsItem.createdAt!),
+                        topupsItem.status,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,

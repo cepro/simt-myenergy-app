@@ -160,6 +160,7 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                       text: 'View',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
+                        color: FlutterFlowTheme.of(context).primaryBtnText,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
