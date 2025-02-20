@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,9 @@ export 'reset_password_page_model.dart';
 
 class ResetPasswordPageWidget extends StatefulWidget {
   const ResetPasswordPageWidget({super.key});
+
+  static String routeName = 'ResetPasswordPage';
+  static String routePath = '/resetPassword';
 
   @override
   State<ResetPasswordPageWidget> createState() =>
@@ -344,7 +348,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                               );
                               _shouldSetState = true;
                               if (_model.passwordUpdateSuccess!) {
-                                context.pushNamed('LoginPage');
+                                context.pushNamed(LoginPageWidget.routeName);
 
                                 if (_shouldSetState) safeSetState(() {});
                                 return;

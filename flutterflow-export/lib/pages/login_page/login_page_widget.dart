@@ -12,6 +12,7 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -31,6 +32,9 @@ class LoginPageWidget extends StatefulWidget {
   final String? emailPrefill;
   final bool fromInvite;
   final String? errorMessage;
+
+  static String routeName = 'LoginPage';
+  static String routePath = '/login';
 
   @override
   State<LoginPageWidget> createState() => _LoginPageWidgetState();
@@ -616,7 +620,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         Colors.transparent,
                                                     onTap: () async {
                                                       context.pushNamed(
-                                                          'ForgotPasswordPage');
+                                                          ForgotPasswordPageWidget
+                                                              .routeName);
                                                     },
                                                     child: Text(
                                                       'Forgot Password?',
@@ -726,7 +731,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         .length >
                                                                     1) {
                                                                   context.pushNamedAuth(
-                                                                      'PropertySelectionPage',
+                                                                      PropertySelectionPageWidget
+                                                                          .routeName,
                                                                       context
                                                                           .mounted);
 
@@ -763,7 +769,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
 
                                                                 context
                                                                     .goNamedAuth(
-                                                                  'LoginPage',
+                                                                  LoginPageWidget
+                                                                      .routeName,
                                                                   context
                                                                       .mounted,
                                                                   queryParameters:
@@ -1505,7 +1512,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               _model
                                                                   .getTermsFromSignupResult!) {
                                                             context.pushNamedAuth(
-                                                                'HomePage',
+                                                                HomePageWidget
+                                                                    .routeName,
                                                                 context
                                                                     .mounted);
 

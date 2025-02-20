@@ -10,7 +10,6 @@ class ContractStruct extends BaseStruct {
   ContractStruct({
     String? id,
     String? type,
-    String? description,
     int? docusealSubmissionId,
     String? signedContractURL,
     String? signedDate,
@@ -19,7 +18,6 @@ class ContractStruct extends BaseStruct {
     String? termsId,
   })  : _id = id,
         _type = type,
-        _description = description,
         _docusealSubmissionId = docusealSubmissionId,
         _signedContractURL = signedContractURL,
         _signedDate = signedDate,
@@ -40,13 +38,6 @@ class ContractStruct extends BaseStruct {
   set type(String? val) => _type = val;
 
   bool hasType() => _type != null;
-
-  // "description" field.
-  String? _description;
-  String get description => _description ?? '';
-  set description(String? val) => _description = val;
-
-  bool hasDescription() => _description != null;
 
   // "docusealSubmissionId" field.
   int? _docusealSubmissionId;
@@ -96,7 +87,6 @@ class ContractStruct extends BaseStruct {
   static ContractStruct fromMap(Map<String, dynamic> data) => ContractStruct(
         id: data['id'] as String?,
         type: data['type'] as String?,
-        description: data['description'] as String?,
         docusealSubmissionId: castToType<int>(data['docusealSubmissionId']),
         signedContractURL: data['signedContractURL'] as String?,
         signedDate: data['signedDate'] as String?,
@@ -111,7 +101,6 @@ class ContractStruct extends BaseStruct {
   Map<String, dynamic> toMap() => {
         'id': _id,
         'type': _type,
-        'description': _description,
         'docusealSubmissionId': _docusealSubmissionId,
         'signedContractURL': _signedContractURL,
         'signedDate': _signedDate,
@@ -128,10 +117,6 @@ class ContractStruct extends BaseStruct {
         ),
         'type': serializeParam(
           _type,
-          ParamType.String,
-        ),
-        'description': serializeParam(
-          _description,
           ParamType.String,
         ),
         'docusealSubmissionId': serializeParam(
@@ -169,11 +154,6 @@ class ContractStruct extends BaseStruct {
         ),
         type: deserializeParam(
           data['type'],
-          ParamType.String,
-          false,
-        ),
-        description: deserializeParam(
-          data['description'],
           ParamType.String,
           false,
         ),
@@ -217,7 +197,6 @@ class ContractStruct extends BaseStruct {
     return other is ContractStruct &&
         id == other.id &&
         type == other.type &&
-        description == other.description &&
         docusealSubmissionId == other.docusealSubmissionId &&
         signedContractURL == other.signedContractURL &&
         signedDate == other.signedDate &&
@@ -230,7 +209,6 @@ class ContractStruct extends BaseStruct {
   int get hashCode => const ListEquality().hash([
         id,
         type,
-        description,
         docusealSubmissionId,
         signedContractURL,
         signedDate,
@@ -243,7 +221,6 @@ class ContractStruct extends BaseStruct {
 ContractStruct createContractStruct({
   String? id,
   String? type,
-  String? description,
   int? docusealSubmissionId,
   String? signedContractURL,
   String? signedDate,
@@ -254,7 +231,6 @@ ContractStruct createContractStruct({
     ContractStruct(
       id: id,
       type: type,
-      description: description,
       docusealSubmissionId: docusealSubmissionId,
       signedContractURL: signedContractURL,
       signedDate: signedDate,

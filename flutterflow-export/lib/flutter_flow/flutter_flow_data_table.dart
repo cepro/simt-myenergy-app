@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'flutter_flow_util.dart';
 
 export 'package:data_table_2/data_table_2.dart' show DataColumn2;
 
@@ -245,24 +246,24 @@ class _FlutterFlowDataTableState<T> extends State<FlutterFlowDataTable<T>> {
     );
 
     final checkboxThemeData = CheckboxThemeData(
-      checkColor: MaterialStateProperty.all(
+      checkColor: WidgetStateProperty.all(
         widget.checkboxCheckColor ?? Colors.black54,
       ),
-      fillColor: MaterialStateProperty.resolveWith(
-        (states) => states.contains(MaterialState.selected)
-            ? widget.checkboxSelectedFillColor ?? Colors.white.withOpacity(0.01)
+      fillColor: WidgetStateProperty.resolveWith(
+        (states) => states.contains(WidgetState.selected)
+            ? widget.checkboxSelectedFillColor ?? Colors.white.applyAlpha(0.01)
             : widget.checkboxUnselectedFillColor ??
-                Colors.white.withOpacity(0.01),
+                Colors.white.applyAlpha(0.01),
       ),
-      side: MaterialStateBorderSide.resolveWith(
+      side: WidgetStateBorderSide.resolveWith(
         (states) => BorderSide(
           width: 2.0,
-          color: states.contains(MaterialState.selected)
+          color: states.contains(WidgetState.selected)
               ? widget.checkboxSelectedBorderColor ?? Colors.black54
               : widget.checkboxUnselectedBorderColor ?? Colors.black54,
         ),
       ),
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
     );
 
     final horizontalBorder = widget.addHorizontalDivider
@@ -324,7 +325,7 @@ class _FlutterFlowDataTableState<T> extends State<FlutterFlowDataTable<T>> {
                   : BorderSide.none,
             ),
             dividerThickness: widget.hideDefaultHorizontalDivider ? 0.0 : null,
-            headingRowColor: MaterialStateProperty.all(widget.headingRowColor),
+            headingRowColor: WidgetStateProperty.all(widget.headingRowColor),
             headingRowHeight: widget.headingRowHeight,
             dataRowHeight: widget.dataRowHeight,
             showFirstLastButtons: widget.showFirstLastButtons,

@@ -83,12 +83,12 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                 children: [
                   Text(
                     widget!.contractTerms!.shortDescription,
-                    style: FlutterFlowTheme.of(context).titleMedium.override(
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
-                              FlutterFlowTheme.of(context).titleMediumFamily,
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
                           letterSpacing: 0.0,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).titleMediumFamily),
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
                   ),
                   Padding(

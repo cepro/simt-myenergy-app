@@ -11,6 +11,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +21,9 @@ export 'impersonate_user_model.dart';
 
 class ImpersonateUserWidget extends StatefulWidget {
   const ImpersonateUserWidget({super.key});
+
+  static String routeName = 'ImpersonateUser';
+  static String routePath = '/impersonate';
 
   @override
   State<ImpersonateUserWidget> createState() => _ImpersonateUserWidgetState();
@@ -43,7 +47,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
         return;
       }
 
-      context.pushNamed('HomePage');
+      context.pushNamed(HomePageWidget.routeName);
 
       return;
     });
@@ -447,7 +451,8 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                       .length >
                                                                   1) {
                                                                 context.pushNamed(
-                                                                    'PropertySelectionPage');
+                                                                    PropertySelectionPageWidget
+                                                                        .routeName);
 
                                                                 if (_shouldSetState)
                                                                   safeSetState(
@@ -666,7 +671,8 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                         safeSetState(() {});
 
                                                         context.pushNamed(
-                                                            'HomePage');
+                                                            HomePageWidget
+                                                                .routeName);
                                                       } else {
                                                         ScaffoldMessenger.of(
                                                                 context)

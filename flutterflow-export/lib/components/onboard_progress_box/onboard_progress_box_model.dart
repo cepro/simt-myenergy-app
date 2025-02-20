@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'onboard_progress_box_widget.dart' show OnboardProgressBoxWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

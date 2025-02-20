@@ -14,6 +14,7 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -24,6 +25,9 @@ export 'home_page_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});
+
+  static String routeName = 'HomePage';
+  static String routePath = '/home';
 
   @override
   State<HomePageWidget> createState() => _HomePageWidgetState();
@@ -319,7 +323,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     context.pushNamed(
-                                                        'PropertySelectionPage');
+                                                        PropertySelectionPageWidget
+                                                            .routeName);
                                                   },
                                                   text: 'Change',
                                                   options: FFButtonOptions(
@@ -727,21 +732,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               isSigned: functions
                                                                           .getContractByType(
                                                                               FFAppState()
-                                                                                  .accountsAll
+                                                                                  .accountsForCurrentProperty
                                                                                   .toList(),
                                                                               'supply')
                                                                           ?.signedDate !=
                                                                       null &&
                                                                   functions
                                                                           .getContractByType(
-                                                                              FFAppState().accountsAll.toList(),
+                                                                              FFAppState().accountsForCurrentProperty.toList(),
                                                                               'supply')
                                                                           ?.signedDate !=
                                                                       '',
                                                               contract: functions
                                                                   .getContractByType(
                                                                       FFAppState()
-                                                                          .accountsAll
+                                                                          .accountsForCurrentProperty
                                                                           .toList(),
                                                                       'supply')!,
                                                               contractTerms: FFAppState()
@@ -1199,21 +1204,29 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 isSigned: functions
                                                                             .getContractByType(
                                                                                 FFAppState()
-                                                                                    .accountsAll
+                                                                                    .accountsForCurrentProperty
                                                                                     .toList(),
                                                                                 'solar')
                                                                             ?.signedDate !=
                                                                         null &&
                                                                     functions
-                                                                            .getContractByType(FFAppState().accountsAll.toList(),
+                                                                            .getContractByType(FFAppState().accountsForCurrentProperty.toList(),
                                                                                 'solar')
                                                                             ?.signedDate !=
                                                                         '',
                                                                 contract: functions.getContractByType(
                                                                     FFAppState()
-                                                                        .accountsAll
+                                                                        .accountsForCurrentProperty
                                                                         .toList(),
                                                                     'solar')!,
+                                                                description: functions
+                                                                    .getTermsById(
+                                                                        functions
+                                                                            .getContractByType(FFAppState().accountsForCurrentProperty.toList(),
+                                                                                'solar')!
+                                                                            .termsId,
+                                                                        FFAppState().contractTerms.toList())!
+                                                                    .shortDescription,
                                                               ),
                                                             ),
                                                           ),

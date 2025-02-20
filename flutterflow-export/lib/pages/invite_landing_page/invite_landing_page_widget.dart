@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,9 @@ class InviteLandingPageWidget extends StatefulWidget {
   });
 
   final String? inviteToken;
+
+  static String routeName = 'InviteLandingPage';
+  static String routePath = '/invite/:inviteToken';
 
   @override
   State<InviteLandingPageWidget> createState() =>
@@ -42,7 +46,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
 
       if ((_model.inviteLookupResult?.succeeded ?? true)) {
         context.pushNamed(
-          'LoginPage',
+          LoginPageWidget.routeName,
           queryParameters: {
             'emailPrefill': serializeParam(
               getJsonField(

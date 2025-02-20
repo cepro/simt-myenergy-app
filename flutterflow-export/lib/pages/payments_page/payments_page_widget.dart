@@ -16,6 +16,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,6 +26,9 @@ export 'payments_page_model.dart';
 
 class PaymentsPageWidget extends StatefulWidget {
   const PaymentsPageWidget({super.key});
+
+  static String routeName = 'PaymentsPage';
+  static String routePath = '/payments';
 
   @override
   State<PaymentsPageWidget> createState() => _PaymentsPageWidgetState();
@@ -322,7 +326,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               context.pushNamed(
-                                                  'PropertySelectionPage');
+                                                  PropertySelectionPageWidget
+                                                      .routeName);
                                             },
                                             text: 'Change',
                                             options: FFButtonOptions(
@@ -743,7 +748,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                 200) ==
                                                             200) {
                                                           context.pushNamed(
-                                                              'PaymentsPage');
+                                                              PaymentsPageWidget
+                                                                  .routeName);
                                                         } else {
                                                           await action_blocks
                                                               .handleMyEnergyApiCallFailure(

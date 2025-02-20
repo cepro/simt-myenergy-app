@@ -68,6 +68,18 @@ ContractStruct? getContractByType(
   return account.contract;
 }
 
+ContractTermsStruct? getTermsById(
+  String termsId,
+  List<ContractTermsStruct> termsList,
+) {
+  ContractTermsStruct? terms = termsList.firstWhere(
+    (t) => t != null && t.id != null && t.id == termsId,
+    orElse: () => ContractTermsStruct(),
+  );
+
+  return terms;
+}
+
 EscoCodeEnum hostnameToEscoCode(String? hostname) {
   if (hostname == null) return EscoCodeEnum.unknown;
 

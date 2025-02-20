@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,9 @@ export 'expanded_menu_model.dart';
 /// nav bar" below then customise the list of options in the main page.
 class ExpandedMenuWidget extends StatefulWidget {
   const ExpandedMenuWidget({super.key});
+
+  static String routeName = 'ExpandedMenu';
+  static String routePath = '/expandedMenu';
 
   @override
   State<ExpandedMenuWidget> createState() => _ExpandedMenuWidgetState();
@@ -62,7 +66,7 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed('AdminPayment');
+                    context.pushNamed(AdminPaymentWidget.routeName);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,

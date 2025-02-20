@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -140,7 +141,8 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             title: 'Confirm your contact details',
                             linkLabel: 'Go to profile',
                             navigateAction: () async {
-                              context.pushNamed('UserProfilePage');
+                              context
+                                  .pushNamed(UserProfilePageWidget.routeName);
                             },
                           ),
                         ),
@@ -179,7 +181,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               title: 'Add your payment method',
                               linkLabel: 'Go to payments',
                               navigateAction: () async {
-                                context.pushNamed('PaymentsPage');
+                                context.pushNamed(PaymentsPageWidget.routeName);
                               },
                             ),
                           ),

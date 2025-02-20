@@ -9,6 +9,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -19,6 +20,9 @@ export 'my_energy_page_model.dart';
 
 class MyEnergyPageWidget extends StatefulWidget {
   const MyEnergyPageWidget({super.key});
+
+  static String routeName = 'MyEnergyPage';
+  static String routePath = '/myenergy';
 
   @override
   State<MyEnergyPageWidget> createState() => _MyEnergyPageWidgetState();
@@ -250,7 +254,8 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     context.pushNamed(
-                                                        'PropertySelectionPage');
+                                                        PropertySelectionPageWidget
+                                                            .routeName);
                                                   },
                                                   text: 'Change',
                                                   options: FFButtonOptions(

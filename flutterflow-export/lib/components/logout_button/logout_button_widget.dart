@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -75,7 +76,7 @@ class _LogoutButtonWidgetState extends State<LogoutButtonWidget> {
           await authManager.signOut();
           GoRouter.of(context).clearRedirectLocation();
 
-          context.goNamedAuth('LoginPage', context.mounted);
+          context.goNamedAuth(LoginPageWidget.routeName, context.mounted);
         },
       ),
     );

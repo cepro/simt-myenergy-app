@@ -16,6 +16,9 @@ export 'admin_payment_model.dart';
 class AdminPaymentWidget extends StatefulWidget {
   const AdminPaymentWidget({super.key});
 
+  static String routeName = 'AdminPayment';
+  static String routePath = '/adminPayment';
+
   @override
   State<AdminPaymentWidget> createState() => _AdminPaymentWidgetState();
 }

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:math';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -175,7 +176,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 highlightColor: Colors.transparent,
                 onTap: () async {
                   context.pushNamed(
-                    'HomePage',
+                    HomePageWidget.routeName,
                     extra: <String, dynamic>{
                       kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,
@@ -226,7 +227,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 highlightColor: Colors.transparent,
                 onTap: () async {
                   context.pushNamed(
-                    'MyEnergyPage',
+                    MyEnergyPageWidget.routeName,
                     extra: <String, dynamic>{
                       kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,
@@ -277,7 +278,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 highlightColor: Colors.transparent,
                 onTap: () async {
                   context.pushNamed(
-                    'PaymentsPage',
+                    PaymentsPageWidget.routeName,
                     extra: <String, dynamic>{
                       kTransitionInfoKey: TransitionInfo(
                         hasTransition: true,
@@ -329,7 +330,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     context.pushNamed(
-                      'TopupPage',
+                      TopupPageWidget.routeName,
                       extra: <String, dynamic>{
                         kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
@@ -383,7 +384,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     context.pushNamed(
-                      'AdminPayment',
+                      AdminPaymentWidget.routeName,
                       extra: <String, dynamic>{
                         kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,
@@ -437,7 +438,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   highlightColor: Colors.transparent,
                   onTap: () async {
                     context.pushNamed(
-                      'ImpersonateUser',
+                      ImpersonateUserWidget.routeName,
                       extra: <String, dynamic>{
                         kTransitionInfoKey: TransitionInfo(
                           hasTransition: true,

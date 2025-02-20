@@ -18,10 +18,12 @@ class SolarContractRowWidget extends StatefulWidget {
     super.key,
     required this.contract,
     required this.isSigned,
+    required this.description,
   });
 
   final ContractStruct? contract;
   final bool? isSigned;
+  final String? description;
 
   @override
   State<SolarContractRowWidget> createState() => _SolarContractRowWidgetState();
@@ -83,16 +85,13 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    valueOrDefault<String>(
-                      widget!.contract?.description,
-                      '<description not set>',
-                    ),
-                    style: FlutterFlowTheme.of(context).titleMedium.override(
+                    widget!.description!,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
-                              FlutterFlowTheme.of(context).titleMediumFamily,
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
                           letterSpacing: 0.0,
                           useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).titleMediumFamily),
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
                   ),
                   if (widget!.isSigned == true)

@@ -11,13 +11,14 @@ import '/backend/supabase/supabase.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/lat_lng.dart';
 import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -94,8 +95,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
         ),
         FFRoute(
-          name: 'LoginPage',
-          path: '/login',
+          name: LoginPageWidget.routeName,
+          path: LoginPageWidget.routePath,
           builder: (context, params) => LoginPageWidget(
             emailPrefill: params.getParam(
               'emailPrefill',
@@ -112,33 +113,33 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'PaymentsPage',
-          path: '/payments',
+          name: PaymentsPageWidget.routeName,
+          path: PaymentsPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'PaymentsPage')
               : PaymentsPageWidget(),
         ),
         FFRoute(
-          name: 'ForgotPasswordPage',
-          path: '/forgotPassword',
+          name: ForgotPasswordPageWidget.routeName,
+          path: ForgotPasswordPageWidget.routePath,
           builder: (context, params) => ForgotPasswordPageWidget(),
         ),
         FFRoute(
-          name: 'AccountsListPage',
-          path: '/accounts',
+          name: AccountsListPageWidget.routeName,
+          path: AccountsListPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => AccountsListPageWidget(),
         ),
         FFRoute(
-          name: 'TopupPage',
-          path: '/topup',
+          name: TopupPageWidget.routeName,
+          path: TopupPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => TopupPageWidget(),
         ),
         FFRoute(
-          name: 'InviteLandingPage',
-          path: '/invite/:inviteToken',
+          name: InviteLandingPageWidget.routeName,
+          path: InviteLandingPageWidget.routePath,
           builder: (context, params) => InviteLandingPageWidget(
             inviteToken: params.getParam(
               'inviteToken',
@@ -147,53 +148,53 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'HomePage',
-          path: '/home',
+          name: HomePageWidget.routeName,
+          path: HomePageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'HomePage')
               : HomePageWidget(),
         ),
         FFRoute(
-          name: 'SysInfoPage',
-          path: '/sysinfo',
+          name: SysInfoPageWidget.routeName,
+          path: SysInfoPageWidget.routePath,
           builder: (context, params) => SysInfoPageWidget(),
         ),
         FFRoute(
-          name: 'ResetPasswordPage',
-          path: '/resetPassword',
+          name: ResetPasswordPageWidget.routeName,
+          path: ResetPasswordPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => ResetPasswordPageWidget(),
         ),
         FFRoute(
-          name: 'ExpandedMenu',
-          path: '/expandedMenu',
+          name: ExpandedMenuWidget.routeName,
+          path: ExpandedMenuWidget.routePath,
           requireAuth: true,
           builder: (context, params) => ExpandedMenuWidget(),
         ),
         FFRoute(
-          name: 'AdminPayment',
-          path: '/adminPayment',
+          name: AdminPaymentWidget.routeName,
+          path: AdminPaymentWidget.routePath,
           requireAuth: true,
           builder: (context, params) => AdminPaymentWidget(),
         ),
         FFRoute(
-          name: 'MyEnergyPage',
-          path: '/myenergy',
+          name: MyEnergyPageWidget.routeName,
+          path: MyEnergyPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'MyEnergyPage')
               : MyEnergyPageWidget(),
         ),
         FFRoute(
-          name: 'ImpersonateUser',
-          path: '/impersonate',
+          name: ImpersonateUserWidget.routeName,
+          path: ImpersonateUserWidget.routePath,
           requireAuth: true,
           builder: (context, params) => ImpersonateUserWidget(),
         ),
         FFRoute(
-          name: 'UserProfilePage',
-          path: '/profile',
+          name: UserProfilePageWidget.routeName,
+          path: UserProfilePageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => NavBarPage(
             initialPage: '',
@@ -201,14 +202,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'TopupsPage',
-          path: '/topups',
+          name: TopupsPageWidget.routeName,
+          path: TopupsPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => TopupsPageWidget(),
         ),
         FFRoute(
-          name: 'PropertySelectionPage',
-          path: '/properties',
+          name: PropertySelectionPageWidget.routeName,
+          path: PropertySelectionPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PropertySelectionPageWidget(),
         )

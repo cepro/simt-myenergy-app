@@ -22,7 +22,6 @@ void updateAccountListWithNewContract(
     final updatedContract = ContractStruct(
       id: newRec['id'],
       type: newRec['type'],
-      description: newRec['description'],
       termsId: newRec['terms'],
       docusealSubmissionId: newRec['docuseal_submission_id'],
       signedContractURL: newRec['signed_contract_url'],

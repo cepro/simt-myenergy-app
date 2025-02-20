@@ -24,6 +24,9 @@ export 'user_profile_page_model.dart';
 class UserProfilePageWidget extends StatefulWidget {
   const UserProfilePageWidget({super.key});
 
+  static String routeName = 'UserProfilePage';
+  static String routePath = '/profile';
+
   @override
   State<UserProfilePageWidget> createState() => _UserProfilePageWidgetState();
 }

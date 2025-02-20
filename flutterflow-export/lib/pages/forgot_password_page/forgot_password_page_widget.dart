@@ -14,6 +14,9 @@ export 'forgot_password_page_model.dart';
 class ForgotPasswordPageWidget extends StatefulWidget {
   const ForgotPasswordPageWidget({super.key});
 
+  static String routeName = 'ForgotPasswordPage';
+  static String routePath = '/forgotPassword';
+
   @override
   State<ForgotPasswordPageWidget> createState() =>
       _ForgotPasswordPageWidgetState();

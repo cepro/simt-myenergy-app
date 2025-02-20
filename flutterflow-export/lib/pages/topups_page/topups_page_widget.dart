@@ -20,6 +20,9 @@ export 'topups_page_model.dart';
 class TopupsPageWidget extends StatefulWidget {
   const TopupsPageWidget({super.key});
 
+  static String routeName = 'TopupsPage';
+  static String routePath = '/topups';
+
   @override
   State<TopupsPageWidget> createState() => _TopupsPageWidgetState();
 }

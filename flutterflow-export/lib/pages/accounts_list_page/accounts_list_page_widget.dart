@@ -14,6 +14,9 @@ export 'accounts_list_page_model.dart';
 class AccountsListPageWidget extends StatefulWidget {
   const AccountsListPageWidget({super.key});
 
+  static String routeName = 'AccountsListPage';
+  static String routePath = '/accounts';
+
   @override
   State<AccountsListPageWidget> createState() => _AccountsListPageWidgetState();
 }

@@ -19,6 +19,9 @@ export 'property_selection_page_model.dart';
 class PropertySelectionPageWidget extends StatefulWidget {
   const PropertySelectionPageWidget({super.key});
 
+  static String routeName = 'PropertySelectionPage';
+  static String routePath = '/properties';
+
   @override
   State<PropertySelectionPageWidget> createState() =>
       _PropertySelectionPageWidgetState();

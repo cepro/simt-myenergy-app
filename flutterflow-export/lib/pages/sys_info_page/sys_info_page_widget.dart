@@ -16,6 +16,9 @@ export 'sys_info_page_model.dart';
 class SysInfoPageWidget extends StatefulWidget {
   const SysInfoPageWidget({super.key});
 
+  static String routeName = 'SysInfoPage';
+  static String routePath = '/sysinfo';
+
   @override
   State<SysInfoPageWidget> createState() => _SysInfoPageWidgetState();
 }
