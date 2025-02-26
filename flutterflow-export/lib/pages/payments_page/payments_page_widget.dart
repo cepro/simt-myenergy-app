@@ -6,6 +6,7 @@ import '/components/credit_card/credit_card_widget.dart';
 import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/payments_list/payments_list_widget.dart';
+import '/components/property_name_with_tooltip_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/components/topup_list/topup_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -283,34 +284,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    if (FFAppState().property != null)
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 5.0, 0.0, 10.0),
-                                          child: Text(
-                                            FFAppState().property.description,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge
-                                                .override(
-                                                  fontFamily:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyLargeFamily,
-                                                  letterSpacing: 0.0,
-                                                  useGoogleFonts: GoogleFonts
-                                                          .asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLargeFamily),
-                                                ),
-                                          ),
-                                        ),
-                                      ),
+                                    wrapWithModel(
+                                      model:
+                                          _model.propertyNameWithTooltipModel,
+                                      updateCallback: () => safeSetState(() {}),
+                                      child: PropertyNameWithTooltipWidget(),
+                                    ),
                                     if (responsiveVisibility(
                                       context: context,
                                       tabletLandscape: false,

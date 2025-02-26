@@ -620,6 +620,8 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                   ),
                                                   FFButtonWidget(
                                                     onPressed: () async {
+                                                      var _shouldSetState =
+                                                          false;
                                                       _model.loading = true;
                                                       safeSetState(() {});
                                                       FFAppState()
@@ -653,6 +655,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                           await action_blocks
                                                               .getCustomerDetailsAndInitAppState(
                                                                   context);
+                                                      _shouldSetState = true;
                                                       if (_model
                                                           .unimpersonateGetCustomerDetailsResponse!) {
                                                         _model.decodeLoggedInUserTokenResponse =
@@ -660,6 +663,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                 .decodeSupabaseJwt(
                                                           currentJwtToken!,
                                                         );
+                                                        _shouldSetState = true;
                                                         FFAppState()
                                                                 .isCeproUser =
                                                             _model
@@ -669,10 +673,31 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                             .update(() {});
                                                         _model.loading = false;
                                                         safeSetState(() {});
+                                                        if (FFAppState()
+                                                                .properties
+                                                                .length >
+                                                            1) {
+                                                          context.pushNamed(
+                                                              PropertySelectionPageWidget
+                                                                  .routeName);
 
-                                                        context.pushNamed(
-                                                            HomePageWidget
-                                                                .routeName);
+                                                          if (_shouldSetState)
+                                                            safeSetState(() {});
+                                                          return;
+                                                        } else {
+                                                          await action_blocks
+                                                              .changeProperty(
+                                                            context,
+                                                            propertyId:
+                                                                FFAppState()
+                                                                    .properties
+                                                                    .firstOrNull
+                                                                    ?.id,
+                                                          );
+                                                          if (_shouldSetState)
+                                                            safeSetState(() {});
+                                                          return;
+                                                        }
                                                       } else {
                                                         ScaffoldMessenger.of(
                                                                 context)
@@ -697,9 +722,13 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                         );
                                                         _model.loading = false;
                                                         safeSetState(() {});
+                                                        if (_shouldSetState)
+                                                          safeSetState(() {});
+                                                        return;
                                                       }
 
-                                                      safeSetState(() {});
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
                                                     },
                                                     text: 'Stop Impersonating',
                                                     options: FFButtonOptions(

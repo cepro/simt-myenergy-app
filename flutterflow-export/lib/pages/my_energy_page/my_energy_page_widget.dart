@@ -2,6 +2,7 @@ import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/monthly_costs/monthly_costs_widget.dart';
 import '/components/monthly_generation/monthly_generation_widget.dart';
 import '/components/monthly_usage/monthly_usage_widget.dart';
+import '/components/property_name_with_tooltip_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -10,7 +11,6 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -172,72 +172,13 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          AlignedTooltip(
-                                            content: Padding(
-                                              padding: EdgeInsets.all(4.0),
-                                              child: Text(
-                                                '${FFAppState().properties.firstOrNull?.plot}  Owner: ${FFAppState().properties.firstOrNull?.ownerName}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
-                                                        ),
-                                              ),
-                                            ),
-                                            offset: 4.0,
-                                            preferredDirection:
-                                                AxisDirection.down,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            elevation: 4.0,
-                                            tailBaseWidth: 24.0,
-                                            tailLength: 12.0,
-                                            waitDuration:
-                                                Duration(milliseconds: 100),
-                                            showDuration:
-                                                Duration(milliseconds: 1500),
-                                            triggerMode: TooltipTriggerMode.tap,
-                                            child: Visibility(
-                                              visible: FFAppState()
-                                                  .properties
-                                                  .isNotEmpty,
-                                              child: Text(
-                                                FFAppState()
-                                                    .properties
-                                                    .firstOrNull!
-                                                    .description,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
-                                                        ),
-                                              ),
-                                            ),
+                                          wrapWithModel(
+                                            model: _model
+                                                .propertyNameWithTooltipModel,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child:
+                                                PropertyNameWithTooltipWidget(),
                                           ),
                                           if (responsiveVisibility(
                                             context: context,

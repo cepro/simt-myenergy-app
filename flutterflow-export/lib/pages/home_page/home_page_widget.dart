@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/onboard_progress_box/onboard_progress_box_widget.dart';
 import '/components/product_roadmap_box/product_roadmap_box_widget.dart';
+import '/components/property_name_with_tooltip_widget.dart';
 import '/components/solar_contract_row/solar_contract_row_widget.dart';
 import '/components/supply_contract_row/supply_contract_row_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
@@ -242,71 +243,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          AlignedTooltip(
-                                            content: Padding(
-                                              padding: EdgeInsets.all(4.0),
-                                              child: Text(
-                                                '${FFAppState().property.plot}  Owner: ${FFAppState().property.ownerName}',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
-                                                        ),
-                                              ),
-                                            ),
-                                            offset: 4.0,
-                                            preferredDirection:
-                                                AxisDirection.down,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            elevation: 4.0,
-                                            tailBaseWidth: 24.0,
-                                            tailLength: 12.0,
-                                            waitDuration:
-                                                Duration(milliseconds: 100),
-                                            showDuration:
-                                                Duration(milliseconds: 1500),
-                                            triggerMode: TooltipTriggerMode.tap,
-                                            child: Visibility(
-                                              visible: FFAppState()
-                                                  .properties
-                                                  .isNotEmpty,
-                                              child: Text(
-                                                FFAppState()
-                                                    .property
-                                                    .description,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyLarge
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyLargeFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyLargeFamily),
-                                                        ),
-                                              ),
-                                            ),
+                                          wrapWithModel(
+                                            model: _model
+                                                .propertyNameWithTooltipModel,
+                                            updateCallback: () =>
+                                                safeSetState(() {}),
+                                            child:
+                                                PropertyNameWithTooltipWidget(),
                                           ),
                                           if (responsiveVisibility(
                                             context: context,

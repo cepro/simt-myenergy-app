@@ -6,6 +6,7 @@ import '/components/credit_card/credit_card_widget.dart';
 import '/components/direct_debit/direct_debit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/payments_list/payments_list_widget.dart';
+import '/components/property_name_with_tooltip_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/components/topup_list/topup_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -74,6 +75,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;
+  // Model for PropertyNameWithTooltip component.
+  late PropertyNameWithTooltipModel propertyNameWithTooltipModel;
   // Model for PaymentsList component.
   late PaymentsListModel paymentsListModel;
   // Model for TopupList component.
@@ -95,6 +98,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
+    propertyNameWithTooltipModel =
+        createModel(context, () => PropertyNameWithTooltipModel());
     paymentsListModel = createModel(context, () => PaymentsListModel());
     topupListModel = createModel(context, () => TopupListModel());
     directDebitModel = createModel(context, () => DirectDebitModel());
@@ -109,6 +114,7 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   void dispose() {
     mainWebNavModel.dispose();
     topBarLoggedInModel.dispose();
+    propertyNameWithTooltipModel.dispose();
     paymentsListModel.dispose();
     topupListModel.dispose();
     directDebitModel.dispose();

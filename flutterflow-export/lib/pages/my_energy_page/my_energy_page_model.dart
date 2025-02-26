@@ -2,6 +2,7 @@ import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/monthly_costs/monthly_costs_widget.dart';
 import '/components/monthly_generation/monthly_generation_widget.dart';
 import '/components/monthly_usage/monthly_usage_widget.dart';
+import '/components/property_name_with_tooltip_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,7 +12,6 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'my_energy_page_widget.dart' show MyEnergyPageWidget;
-import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,6 +32,8 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
   late MainWebNavModel mainWebNavModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;
+  // Model for PropertyNameWithTooltip component.
+  late PropertyNameWithTooltipModel propertyNameWithTooltipModel;
   // Model for MonthlyCosts component.
   late MonthlyCostsModel monthlyCostsModel;
   // Model for MonthlyUsage component.
@@ -43,6 +45,8 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
+    propertyNameWithTooltipModel =
+        createModel(context, () => PropertyNameWithTooltipModel());
     monthlyCostsModel = createModel(context, () => MonthlyCostsModel());
     monthlyUsageModel = createModel(context, () => MonthlyUsageModel());
     monthlyGenerationModel =
@@ -53,6 +57,7 @@ class MyEnergyPageModel extends FlutterFlowModel<MyEnergyPageWidget> {
   void dispose() {
     mainWebNavModel.dispose();
     topBarLoggedInModel.dispose();
+    propertyNameWithTooltipModel.dispose();
     monthlyCostsModel.dispose();
     monthlyUsageModel.dispose();
     monthlyGenerationModel.dispose();
