@@ -381,11 +381,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     height: 100.0,
                                   ),
                                 ),
-                              if ((FFAppState().customer.status !=
-                                      'preonboarding') &&
-                                  (FFAppState().customer.status !=
-                                      'onboarding') &&
-                                  !_model.loadingPaymentHistory)
+                              if (!_model.loadingPaymentHistory &&
+                                  (FFAppState()
+                                          .supplyAccount
+                                          .customerAccount
+                                          .role ==
+                                      'occupier'))
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
@@ -490,11 +491,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     height: 100.0,
                                   ),
                                 ),
-                              if ((FFAppState().customer.status !=
-                                      'preonboarding') &&
-                                  (FFAppState().customer.status !=
-                                      'onboarding') &&
-                                  !_model.loadingTopupHistory)
+                              if (!_model.loadingTopupHistory &&
+                                  (FFAppState()
+                                          .supplyAccount
+                                          .customerAccount
+                                          .role ==
+                                      'occupier'))
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
