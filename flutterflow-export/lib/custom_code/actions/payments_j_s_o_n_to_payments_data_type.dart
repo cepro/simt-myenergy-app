@@ -18,9 +18,19 @@ Future<List<PaymentStruct>> paymentsJSONToPaymentsDataType(
   Map<String, dynamic> paymentsMap = paymentsJSON as Map<String, dynamic>;
   paymentsMap.forEach((key, payment) {
     DateTime createdAt = DateTime.parse(key);
+
+    DateTime? submitAt = payment['submitAt'] != null
+        ? DateTime.parse(payment['submitAt'])
+        : null;
+    DateTime? submittedAt = payment['submittedAt'] != null
+        ? DateTime.parse(payment['submittedAt'])
+        : null;
+
     payments.add(PaymentStruct(
         id: payment[' paymentIntent'],
         createdAt: createdAt,
+        submitAt: submitAt,
+        submittedAt: submittedAt,
         amount: payment['amountPence'],
         description: payment['description'],
         paymentIntent: payment['paymentIntent'],

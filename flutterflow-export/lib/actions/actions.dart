@@ -504,3 +504,34 @@ Future changeProperty(
 
   context.pushNamed(HomePageWidget.routeName);
 }
+
+Future pendingPayments(BuildContext context) async {
+  String? userToken;
+  ApiCallResponse? getPaymentsOutput;
+  List<PaymentStruct>? paymentsTyped;
+
+  userToken = await actions.activeUserToken();
+  getPaymentsOutput = await GetPaymentsCall.call(
+    bearerToken: userToken,
+  );
+
+  if ((getPaymentsOutput?.succeeded ?? true)) {
+    paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
+      (getPaymentsOutput?.jsonBody ?? ''),
+    );
+    FFAppState().pendingPayments = paymentsTyped!
+        .where((e) => e.status == 'pending')
+        .toList()
+        .toList()
+        .cast<PaymentStruct>();
+    return;
+  } else {
+    await action_blocks.handleMyEnergyApiCallFailure(
+      context,
+      wwwAuthenticateHeader:
+          (getPaymentsOutput?.getHeader('www-authenticate') ?? ''),
+      httpStatusCode: (getPaymentsOutput?.statusCode ?? 200),
+    );
+    return;
+  }
+}

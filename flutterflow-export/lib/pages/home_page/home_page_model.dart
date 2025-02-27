@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/home_notification_box/home_notification_box_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/onboard_progress_box/onboard_progress_box_widget.dart';
 import '/components/product_roadmap_box/product_roadmap_box_widget.dart';
@@ -54,6 +55,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late TopBarLoggedInModel topBarLoggedInModel;
   // Model for PropertyNameWithTooltip component.
   late PropertyNameWithTooltipModel propertyNameWithTooltipModel;
+  // Model for HomeNotificationBox component.
+  late HomeNotificationBoxModel homeNotificationBoxModel;
   // Model for OnboardProgressBox component.
   late OnboardProgressBoxModel onboardProgressBoxModel;
   // Model for WelcomeBox component.
@@ -73,6 +76,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     propertyNameWithTooltipModel =
         createModel(context, () => PropertyNameWithTooltipModel());
+    homeNotificationBoxModel =
+        createModel(context, () => HomeNotificationBoxModel());
     onboardProgressBoxModel =
         createModel(context, () => OnboardProgressBoxModel());
     welcomeBoxModel = createModel(context, () => WelcomeBoxModel());
@@ -88,6 +93,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     mainWebNavModel.dispose();
     topBarLoggedInModel.dispose();
     propertyNameWithTooltipModel.dispose();
+    homeNotificationBoxModel.dispose();
     onboardProgressBoxModel.dispose();
     welcomeBoxModel.dispose();
     productRoadmapBoxModel.dispose();

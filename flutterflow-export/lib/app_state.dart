@@ -250,6 +250,27 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _accountsForCurrentProperty;
     });
+    _safeInit(() {
+      _pendingPayments = prefs
+              .getStringList('ff_pendingPayments')
+              ?.map((x) {
+                try {
+                  return PaymentStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _pendingPayments;
+    });
+    _safeInit(() {
+      _lastPendingPaymentsLoad = prefs.containsKey('ff_lastPendingPaymentsLoad')
+          ? DateTime.fromMillisecondsSinceEpoch(
+              prefs.getInt('ff_lastPendingPaymentsLoad')!)
+          : _lastPendingPaymentsLoad;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -718,6 +739,59 @@ class FFAppState extends ChangeNotifier {
     accountsForCurrentProperty.insert(index, value);
     prefs.setStringList('ff_accountsForCurrentProperty',
         _accountsForCurrentProperty.map((x) => x.serialize()).toList());
+  }
+
+  /// For notification on the home screen
+  List<PaymentStruct> _pendingPayments = [];
+  List<PaymentStruct> get pendingPayments => _pendingPayments;
+  set pendingPayments(List<PaymentStruct> value) {
+    _pendingPayments = value;
+    prefs.setStringList(
+        'ff_pendingPayments', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToPendingPayments(PaymentStruct value) {
+    pendingPayments.add(value);
+    prefs.setStringList('ff_pendingPayments',
+        _pendingPayments.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromPendingPayments(PaymentStruct value) {
+    pendingPayments.remove(value);
+    prefs.setStringList('ff_pendingPayments',
+        _pendingPayments.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromPendingPayments(int index) {
+    pendingPayments.removeAt(index);
+    prefs.setStringList('ff_pendingPayments',
+        _pendingPayments.map((x) => x.serialize()).toList());
+  }
+
+  void updatePendingPaymentsAtIndex(
+    int index,
+    PaymentStruct Function(PaymentStruct) updateFn,
+  ) {
+    pendingPayments[index] = updateFn(_pendingPayments[index]);
+    prefs.setStringList('ff_pendingPayments',
+        _pendingPayments.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInPendingPayments(int index, PaymentStruct value) {
+    pendingPayments.insert(index, value);
+    prefs.setStringList('ff_pendingPayments',
+        _pendingPayments.map((x) => x.serialize()).toList());
+  }
+
+  DateTime? _lastPendingPaymentsLoad =
+      DateTime.fromMillisecondsSinceEpoch(946648800000);
+  DateTime? get lastPendingPaymentsLoad => _lastPendingPaymentsLoad;
+  set lastPendingPaymentsLoad(DateTime? value) {
+    _lastPendingPaymentsLoad = value;
+    value != null
+        ? prefs.setInt(
+            'ff_lastPendingPaymentsLoad', value.millisecondsSinceEpoch)
+        : prefs.remove('ff_lastPendingPaymentsLoad');
   }
 }
 

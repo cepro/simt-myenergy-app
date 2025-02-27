@@ -1,5 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
+import '/components/home_notification_box/home_notification_box_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/onboard_progress_box/onboard_progress_box_widget.dart';
 import '/components/product_roadmap_box/product_roadmap_box_widget.dart';
@@ -77,17 +78,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         ));
         _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
         safeSetState(() {});
-        // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
-        if ((FFAppState().tariffs == null) ||
-            (functions.diffNowInMinutes(
-                    FFAppState().lastMonthlyCostAndUsageLoad!) >=
-                10)) {
-          // GetUsageInBackground
-          await action_blocks.getTariffsCostsUsage(context);
-          return;
-        } else {
-          return;
-        }
+        await Future.wait([
+          Future(() async {
+            // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
+            if ((FFAppState().tariffs == null) ||
+                (functions.diffNowInMinutes(
+                        FFAppState().lastMonthlyCostAndUsageLoad!) >=
+                    10)) {
+              // GetUsageInBackground
+              await action_blocks.getTariffsCostsUsage(context);
+              return;
+            } else {
+              return;
+            }
+          }),
+          Future(() async {
+            if (functions
+                    .diffNowInMinutes(FFAppState().lastPendingPaymentsLoad!) >=
+                10) {
+              await action_blocks.pendingPayments(context);
+              return;
+            } else {
+              return;
+            }
+          }),
+        ]);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -315,6 +330,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ],
                                 ),
                               ),
+                              if (FFAppState().pendingPayments.isNotEmpty)
+                                wrapWithModel(
+                                  model: _model.homeNotificationBoxModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: HomeNotificationBoxWidget(),
+                                ),
                               if ((FFAppState().customer.status ==
                                       'preonboarding') ||
                                   (FFAppState().customer.status ==
