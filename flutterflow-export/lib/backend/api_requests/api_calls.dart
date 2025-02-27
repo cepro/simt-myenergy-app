@@ -144,6 +144,36 @@ class GetCustomersAccountsCall {
       ) as List?;
 }
 
+class GetPropertiesCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? escoCode = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Properties',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/properties/${escoCode}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${bearerToken}',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static List? allRecords(dynamic response) => getJsonField(
+        response,
+        r'''$[*]''',
+        true,
+      ) as List?;
+}
+
 class GetMonthlyUsageCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

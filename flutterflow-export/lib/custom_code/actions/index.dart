@@ -1,4 +1,6 @@
 export 'navigate_to_external_u_r_i.dart' show navigateToExternalURI;
+export 'properties_j_s_o_n_to_properties_data_type.dart'
+    show propertiesJSONToPropertiesDataType;
 export 'payments_j_s_o_n_to_payments_data_type.dart'
     show paymentsJSONToPaymentsDataType;
 export 'monthly_usage_j_s_o_n_to_data_type.dart'

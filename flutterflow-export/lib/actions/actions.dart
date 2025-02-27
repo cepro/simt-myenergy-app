@@ -53,6 +53,8 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   List<AccountStruct>? accounts;
   CustomerStruct? customerToDataTypeResponse;
   String? getHostnameResponse;
+  ApiCallResponse? propertiesOutput;
+  List<PropertyStruct>? propertiesTyped;
 
   userToken = await actions.activeUserToken();
   // Get a fresh copy of the customers accounts on every login here.  Put it in the app state with a caching timestamp.
@@ -127,7 +129,35 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         FFAppState().accountsAll.toList(), 'supply')!;
     FFAppState().solarAccount =
         functions.getAccountByType(FFAppState().accountsAll.toList(), 'solar')!;
-    return true;
+    if (FFAppState().isCeproUser == true) {
+      propertiesOutput = await GetPropertiesCall.call(
+        bearerToken: userToken,
+        escoCode: FFAppState().esco?.name,
+      );
+
+      if ((propertiesOutput?.succeeded ?? true)) {
+        propertiesTyped = await actions.propertiesJSONToPropertiesDataType(
+          (propertiesOutput?.jsonBody ?? ''),
+        );
+        FFAppState().properties =
+            propertiesTyped!.toList().cast<PropertyStruct>();
+        FFAppState().escos = functions
+            .getEscosFromProperties(FFAppState().properties.toList())
+            .toList()
+            .cast<EscoStruct>();
+        return true;
+      } else {
+        await action_blocks.handleMyEnergyApiCallFailure(
+          context,
+          wwwAuthenticateHeader:
+              (propertiesOutput?.getHeader('www-authenticate') ?? ''),
+          httpStatusCode: (propertiesOutput?.statusCode ?? 200),
+        );
+        return false;
+      }
+    } else {
+      return true;
+    }
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
       context,
