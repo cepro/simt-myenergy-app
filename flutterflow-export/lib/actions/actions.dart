@@ -231,6 +231,9 @@ Future clearAppState(BuildContext context) async {
   FFAppState().lastMonthlyCostAndUsageLoad = functions.twoThousandDateTime();
   FFAppState().supplyAccount = AccountStruct();
   FFAppState().solarAccount = AccountStruct();
+  FFAppState().pendingPayments = [];
+  FFAppState().accountsForCurrentProperty = [];
+  FFAppState().lastPendingPaymentsLoad = functions.twoThousandDateTime();
 }
 
 Future ceproUserOnly(BuildContext context) async {
