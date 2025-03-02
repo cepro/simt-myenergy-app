@@ -29,11 +29,18 @@ int jsonArrayLengthOrNegativeOne(dynamic jsonObj) {
 }
 
 List<PropertyStruct> getPropertiesFromAccounts(List<AccountStruct> accounts) {
-  return accounts
-      .map((a) => a.property)
-      // remove duplicates by converting to a Set
-      .toSet()
-      .toList();
+  List<PropertyStruct> properties = accounts.map((a) => a.property).toList();
+
+  // remove duplicates
+  final Map<String, PropertyStruct> uniquePropertiesByIdMap = {
+    for (var prop in accounts.map((a) => a.property)) prop.id!: prop
+  };
+  properties = uniquePropertiesByIdMap.values.toList();
+
+  // sort by address (description) ascending
+  properties.sort((a, b) => a.description!.compareTo(b.description!));
+
+  return properties;
 }
 
 bool isListEmpty(List<dynamic>? jsonList) {

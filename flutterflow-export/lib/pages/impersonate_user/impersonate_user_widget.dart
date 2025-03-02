@@ -1,7 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/main_web_nav/main_web_nav_widget.dart';
+import '/components/sidebar_no_menu/sidebar_no_menu_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -83,23 +83,11 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (responsiveVisibility(
-                context: context,
-                phone: false,
-                tablet: false,
-              ))
-                wrapWithModel(
-                  model: _model.mainWebNavModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: MainWebNavWidget(
-                    navOne: FlutterFlowTheme.of(context).alternate,
-                    navTwo: FlutterFlowTheme.of(context).secondaryText,
-                    navThree: FlutterFlowTheme.of(context).secondaryText,
-                    navFour: FlutterFlowTheme.of(context).secondaryText,
-                    navFive: FlutterFlowTheme.of(context).secondaryText,
-                    navSix: FlutterFlowTheme.of(context).secondaryText,
-                  ),
-                ),
+              wrapWithModel(
+                model: _model.sidebarNoMenuModel,
+                updateCallback: () => safeSetState(() {}),
+                child: SidebarNoMenuWidget(),
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(

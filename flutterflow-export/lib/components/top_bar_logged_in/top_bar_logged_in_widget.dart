@@ -1,5 +1,6 @@
 import '/backend/schema/enums/enums.dart';
 import '/components/logout_button/logout_button_widget.dart';
+import '/components/stop_impersonating_link_widget.dart';
 import '/components/sys_info_button/sys_info_button_widget.dart';
 import '/components/user_profile_button/user_profile_button_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -10,7 +11,6 @@ import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -162,31 +162,11 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                 isMultiSelect: false,
               ),
             Spacer(),
-            if (FFAppState().impersonationToken != null &&
-                FFAppState().impersonationToken != '')
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.pushNamed(ImpersonateUserWidget.routeName);
-                  },
-                  child: Text(
-                    'Impersonating ${FFAppState().impersonationEmail}',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
-                          color: FlutterFlowTheme.of(context).error,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                        ),
-                  ),
-                ),
-              ),
+            wrapWithModel(
+              model: _model.stopImpersonatingLinkModel,
+              updateCallback: () => safeSetState(() {}),
+              child: StopImpersonatingLinkWidget(),
+            ),
             Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,

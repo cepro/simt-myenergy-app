@@ -19,5 +19,8 @@ Future<List<PropertyStruct>> propertiesJSONToPropertiesDataType(
     properties.add(PropertyStruct.fromMap(property));
   }
 
+  // sort by address (description) ascending
+  properties.sort((a, b) => a.description!.compareTo(b.description!));
+
   return properties;
 }

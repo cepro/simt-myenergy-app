@@ -284,11 +284,16 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    wrapWithModel(
-                                      model:
-                                          _model.propertyNameWithTooltipModel,
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: PropertyNameWithTooltipWidget(),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 30.0),
+                                      child: wrapWithModel(
+                                        model:
+                                            _model.propertyNameWithTooltipModel,
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: PropertyNameWithTooltipWidget(),
+                                      ),
                                     ),
                                     if (responsiveVisibility(
                                       context: context,

@@ -568,3 +568,51 @@ Future pendingPayments(BuildContext context) async {
     return;
   }
 }
+
+Future<bool?> impersonateCustomer(
+  BuildContext context, {
+  /// email of customer to impersonate
+  required String? email,
+}) async {
+  ApiCallResponse? generateTokenResponse;
+  bool? impersonateCustomerDetailsResponse;
+  SupabaseUserStruct? decodeTokenResponse;
+
+  generateTokenResponse = await GenerateTokenForImpersonateCall.call(
+    customerEmail: email,
+    bearerToken: currentJwtToken,
+  );
+
+  if ((generateTokenResponse?.succeeded ?? true) == true) {
+    FFAppState().impersonationToken = (generateTokenResponse?.bodyText ?? '');
+    impersonateCustomerDetailsResponse =
+        await action_blocks.getCustomerDetailsAndInitAppState(context);
+    if (impersonateCustomerDetailsResponse == true) {
+      decodeTokenResponse = await actions.decodeSupabaseJwt(
+        FFAppState().impersonationToken,
+      );
+      FFAppState().isCeproUser = decodeTokenResponse!.isCeproUser;
+      FFAppState().impersonationEmail = decodeTokenResponse!.email;
+      FFAppState().impersonationPhone = decodeTokenResponse!.phone;
+      FFAppState().monthlyCosts = [];
+      FFAppState().monthlyUsage = [];
+      FFAppState().lastMonthlyCostAndUsageLoad =
+          functions.twoThousandDateTime();
+      if (FFAppState().properties.length > 1) {
+        context.pushNamed(PropertySelectionPageWidget.routeName);
+
+        return true;
+      } else {
+        await action_blocks.changeProperty(
+          context,
+          propertyId: FFAppState().properties.firstOrNull?.id,
+        );
+        return true;
+      }
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}

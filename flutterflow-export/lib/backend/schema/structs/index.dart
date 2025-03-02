@@ -6,6 +6,7 @@ export 'contract_terms_struct.dart';
 export 'custom_action_result_struct.dart';
 export 'customer_struct.dart';
 export 'customer_account_struct.dart';
+export 'customer_role_struct.dart';
 export 'esco_struct.dart';
 export 'meter_struct.dart';
 export 'monthly_cost_struct.dart';

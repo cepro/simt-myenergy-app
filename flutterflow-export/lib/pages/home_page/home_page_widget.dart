@@ -103,6 +103,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             }
           }),
         ]);
+        return;
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

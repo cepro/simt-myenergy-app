@@ -16,6 +16,7 @@ class PropertyStruct extends BaseStruct {
     String? owner,
     EscoStruct? esco,
     String? ownerName,
+    List<CustomerRoleStruct>? customerRoles,
   })  : _id = id,
         _plot = plot,
         _description = description,
@@ -23,7 +24,8 @@ class PropertyStruct extends BaseStruct {
         _solarMeterUUID = solarMeterUUID,
         _owner = owner,
         _esco = esco,
-        _ownerName = ownerName;
+        _ownerName = ownerName,
+        _customerRoles = customerRoles;
 
   // "id" field.
   String? _id;
@@ -85,6 +87,17 @@ class PropertyStruct extends BaseStruct {
 
   bool hasOwnerName() => _ownerName != null;
 
+  // "customerRoles" field.
+  List<CustomerRoleStruct>? _customerRoles;
+  List<CustomerRoleStruct> get customerRoles => _customerRoles ?? const [];
+  set customerRoles(List<CustomerRoleStruct>? val) => _customerRoles = val;
+
+  void updateCustomerRoles(Function(List<CustomerRoleStruct>) updateFn) {
+    updateFn(_customerRoles ??= []);
+  }
+
+  bool hasCustomerRoles() => _customerRoles != null;
+
   static PropertyStruct fromMap(Map<String, dynamic> data) => PropertyStruct(
         id: data['id'] as String?,
         plot: data['plot'] as String?,
@@ -96,6 +109,10 @@ class PropertyStruct extends BaseStruct {
             ? data['esco']
             : EscoStruct.maybeFromMap(data['esco']),
         ownerName: data['ownerName'] as String?,
+        customerRoles: getStructList(
+          data['customerRoles'],
+          CustomerRoleStruct.fromMap,
+        ),
       );
 
   static PropertyStruct? maybeFromMap(dynamic data) =>
@@ -110,6 +127,7 @@ class PropertyStruct extends BaseStruct {
         'owner': _owner,
         'esco': _esco?.toMap(),
         'ownerName': _ownerName,
+        'customerRoles': _customerRoles?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -145,6 +163,11 @@ class PropertyStruct extends BaseStruct {
         'ownerName': serializeParam(
           _ownerName,
           ParamType.String,
+        ),
+        'customerRoles': serializeParam(
+          _customerRoles,
+          ParamType.DataStruct,
+          isList: true,
         ),
       }.withoutNulls;
 
@@ -191,6 +214,12 @@ class PropertyStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        customerRoles: deserializeStructParam<CustomerRoleStruct>(
+          data['customerRoles'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: CustomerRoleStruct.fromSerializableMap,
+        ),
       );
 
   @override
@@ -198,6 +227,7 @@ class PropertyStruct extends BaseStruct {
 
   @override
   bool operator ==(Object other) {
+    const listEquality = ListEquality();
     return other is PropertyStruct &&
         id == other.id &&
         plot == other.plot &&
@@ -206,7 +236,8 @@ class PropertyStruct extends BaseStruct {
         solarMeterUUID == other.solarMeterUUID &&
         owner == other.owner &&
         esco == other.esco &&
-        ownerName == other.ownerName;
+        ownerName == other.ownerName &&
+        listEquality.equals(customerRoles, other.customerRoles);
   }
 
   @override
@@ -218,7 +249,8 @@ class PropertyStruct extends BaseStruct {
         solarMeterUUID,
         owner,
         esco,
-        ownerName
+        ownerName,
+        customerRoles
       ]);
 }
 

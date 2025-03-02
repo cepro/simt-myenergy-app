@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/property_list/property_list_widget.dart';
 import '/components/sidebar_no_menu/sidebar_no_menu_widget.dart';
+import '/components/stop_impersonating_link_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -141,10 +142,10 @@ class _PropertySelectionPageWidgetState
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
-                                        child: Column(
+                                        child: Row(
                                           mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               'Properties',
@@ -164,6 +165,14 @@ class _PropertySelectionPageWidgetState
                                                                         context)
                                                                     .displaySmallFamily),
                                                       ),
+                                            ),
+                                            wrapWithModel(
+                                              model:
+                                                  _model.impersonatingLinkModel,
+                                              updateCallback: () =>
+                                                  safeSetState(() {}),
+                                              child:
+                                                  StopImpersonatingLinkWidget(),
                                             ),
                                           ],
                                         ),

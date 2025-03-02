@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/property_list/property_list_widget.dart';
 import '/components/sidebar_no_menu/sidebar_no_menu_widget.dart';
+import '/components/stop_impersonating_link_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -42,6 +43,8 @@ class PropertySelectionPageModel
   List<TopupStruct>? topupsTyped;
   // Model for SidebarNoMenu component.
   late SidebarNoMenuModel sidebarNoMenuModel;
+  // Model for ImpersonatingLink.
+  late StopImpersonatingLinkModel impersonatingLinkModel;
   // Model for LogoutButton component.
   late LogoutButtonModel logoutButtonModel;
   // Model for PropertyList component.
@@ -50,6 +53,8 @@ class PropertySelectionPageModel
   @override
   void initState(BuildContext context) {
     sidebarNoMenuModel = createModel(context, () => SidebarNoMenuModel());
+    impersonatingLinkModel =
+        createModel(context, () => StopImpersonatingLinkModel());
     logoutButtonModel = createModel(context, () => LogoutButtonModel());
     propertyListModel = createModel(context, () => PropertyListModel());
   }
@@ -57,6 +62,7 @@ class PropertySelectionPageModel
   @override
   void dispose() {
     sidebarNoMenuModel.dispose();
+    impersonatingLinkModel.dispose();
     logoutButtonModel.dispose();
     propertyListModel.dispose();
   }
