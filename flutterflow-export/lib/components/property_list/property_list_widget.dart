@@ -194,7 +194,11 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
                             ),
                           ),
                         if ((propertiesItem.customerRoles.length > 1) &&
-                            FFAppState().isCeproUser)
+                            FFAppState().isCeproUser &&
+                            (propertiesItem.customerRoles.firstOrNull?.email !=
+                                propertiesItem.customerRoles
+                                    .elementAtOrNull(1)
+                                    ?.email))
                           AlignedTooltip(
                             content: Padding(
                               padding: EdgeInsets.all(4.0),
