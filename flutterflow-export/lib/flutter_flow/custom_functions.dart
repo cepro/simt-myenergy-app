@@ -49,7 +49,7 @@ bool isListEmpty(List<dynamic>? jsonList) {
 
 List<EscoStruct> getEscosFromProperties(List<PropertyStruct> properties) {
   return properties
-      .map((p) => p.esco)
+      .map((p) => p.escoDTO)
       // remove duplicates by converting to a Set
       .toSet()
       .toList();

@@ -20,7 +20,7 @@ Future<List<PropertyStruct>> propertiesJSONToPropertiesDataType(
   }
 
   // sort by address (description) ascending
-  properties.sort((a, b) => a.description!.compareTo(b.description!));
+  properties.sort((a, b) => a.plot!.compareTo(b.plot!));
 
   return properties;
 }

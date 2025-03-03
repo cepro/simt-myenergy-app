@@ -78,7 +78,7 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 5.0, 10.0, 0.0, 0.0),
                             child: Text(
-                              propertiesItem.description,
+                              '${propertiesItem.plot} (${propertiesItem.description})',
                               style: FlutterFlowTheme.of(context)
                                   .titleMedium
                                   .override(
