@@ -1,3 +1,4 @@
+import '';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
@@ -203,10 +204,10 @@ class _ConfirmDetailsConfirmationModalWidgetState
                                             ),
                                           ),
                                           duration:
-                                              Duration(milliseconds: 4000),
+                                              Duration(milliseconds: 10000),
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
-                                                  .secondary,
+                                                  .secondaryBackground,
                                         ),
                                       );
                                       Navigator.pop(context, false);

@@ -1,3 +1,4 @@
+import '';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/monthly_costs/monthly_costs_widget.dart';
 import '/components/monthly_generation/monthly_generation_widget.dart';

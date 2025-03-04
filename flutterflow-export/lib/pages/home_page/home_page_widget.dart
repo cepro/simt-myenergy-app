@@ -1,3 +1,4 @@
+import '';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/home_notification_box/home_notification_box_widget.dart';
@@ -113,8 +114,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondary,
+            duration: Duration(milliseconds: 10000),
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           ),
         );
         return;
@@ -612,7 +613,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'Balance: ${functions.formatGBPAmount(_model.supplyMeter!.balance)}',
+                                                                'Balance: ${functions.formatGBPAmount(_model.supplyMeter?.balance)}',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
@@ -1000,8 +1001,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                                       color: FlutterFlowTheme.of(context).primaryText,
                                                                                     ),
                                                                                   ),
-                                                                                  duration: Duration(milliseconds: 4000),
-                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                                                                  duration: Duration(milliseconds: 10000),
+                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                 ),
                                                                               );
                                                                               if (_shouldSetState)

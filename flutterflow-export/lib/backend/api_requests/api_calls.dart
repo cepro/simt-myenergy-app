@@ -595,10 +595,11 @@ class ContractSigningEmbedCall {
 class ContractTermsLatestCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
+    String? esco = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Contract Terms latest',
-      apiUrl: 'https://simt-j-accounts-qa.fly.dev/contractTerms',
+      apiUrl: 'https://simt-j-accounts-qa.fly.dev/contractTerms/${esco}',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/json',

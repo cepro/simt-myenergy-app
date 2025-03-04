@@ -1,3 +1,4 @@
+import '';
 import '/components/onboard_progress_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -62,7 +63,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
           widget!.confirmedDetails!,
           widget!.isOccupier,
           widget!.isOwner)!;
-      safeSetState(() {});
+      _model.updatePage(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));

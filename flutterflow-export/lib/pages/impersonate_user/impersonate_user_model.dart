@@ -1,3 +1,4 @@
+import '';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
@@ -41,10 +42,6 @@ class ImpersonateUserModel extends FlutterFlowModel<ImpersonateUserWidget> {
   bool? impersonateCustomerDetailsResponse;
   // Stores action output result for [Custom Action - decodeSupabaseJwt] action in Button widget.
   SupabaseUserStruct? decodeTokenResponse;
-  // Stores action output result for [Action Block - GetCustomerDetailsAndInitAppState] action in Button widget.
-  bool? unimpersonateGetCustomerDetailsResponse;
-  // Stores action output result for [Custom Action - decodeSupabaseJwt] action in Button widget.
-  SupabaseUserStruct? decodeLoggedInUserTokenResponse;
 
   @override
   void initState(BuildContext context) {

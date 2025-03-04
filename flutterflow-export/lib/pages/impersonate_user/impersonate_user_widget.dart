@@ -1,3 +1,4 @@
+import '';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
@@ -504,11 +505,11 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                               ),
                                                               duration: Duration(
                                                                   milliseconds:
-                                                                      4000),
+                                                                      10000),
                                                               backgroundColor:
                                                                   FlutterFlowTheme.of(
                                                                           context)
-                                                                      .secondary,
+                                                                      .secondaryBackground,
                                                             ),
                                                           );
                                                           if (_shouldSetState)
@@ -608,115 +609,13 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                   ),
                                                   FFButtonWidget(
                                                     onPressed: () async {
-                                                      var _shouldSetState =
-                                                          false;
                                                       _model.loading = true;
                                                       safeSetState(() {});
-                                                      FFAppState()
-                                                          .impersonationToken = '';
-                                                      FFAppState()
-                                                          .impersonationEmail = '';
-                                                      FFAppState()
-                                                          .impersonationPhone = '';
-                                                      FFAppState()
-                                                          .monthlyCosts = [];
-                                                      FFAppState()
-                                                          .monthlyUsage = [];
-                                                      FFAppState()
-                                                              .haveSolarContract =
-                                                          false;
-                                                      FFAppState()
-                                                              .haveSupplyContract =
-                                                          false;
-                                                      FFAppState()
-                                                              .solarContractSigned =
-                                                          false;
-                                                      FFAppState()
-                                                              .supplyContractSigned =
-                                                          false;
-                                                      FFAppState()
-                                                              .lastMonthlyCostAndUsageLoad =
-                                                          functions
-                                                              .twoThousandDateTime();
+                                                      await action_blocks
+                                                          .stopImpersonation(
+                                                              context);
+                                                      _model.loading = false;
                                                       safeSetState(() {});
-                                                      _model.unimpersonateGetCustomerDetailsResponse =
-                                                          await action_blocks
-                                                              .getCustomerDetailsAndInitAppState(
-                                                                  context);
-                                                      _shouldSetState = true;
-                                                      if (_model
-                                                          .unimpersonateGetCustomerDetailsResponse!) {
-                                                        _model.decodeLoggedInUserTokenResponse =
-                                                            await actions
-                                                                .decodeSupabaseJwt(
-                                                          currentJwtToken!,
-                                                        );
-                                                        _shouldSetState = true;
-                                                        FFAppState()
-                                                                .isCeproUser =
-                                                            _model
-                                                                .decodeLoggedInUserTokenResponse!
-                                                                .isCeproUser;
-                                                        FFAppState()
-                                                            .update(() {});
-                                                        _model.loading = false;
-                                                        safeSetState(() {});
-                                                        if (FFAppState()
-                                                                .properties
-                                                                .length >
-                                                            1) {
-                                                          context.pushNamed(
-                                                              PropertySelectionPageWidget
-                                                                  .routeName);
-
-                                                          if (_shouldSetState)
-                                                            safeSetState(() {});
-                                                          return;
-                                                        } else {
-                                                          await action_blocks
-                                                              .changeProperty(
-                                                            context,
-                                                            propertyId:
-                                                                FFAppState()
-                                                                    .properties
-                                                                    .firstOrNull
-                                                                    ?.id,
-                                                          );
-                                                          if (_shouldSetState)
-                                                            safeSetState(() {});
-                                                          return;
-                                                        }
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Failed to fetch information of main user after unimpersonating',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
-                                                            ),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                        _model.loading = false;
-                                                        safeSetState(() {});
-                                                        if (_shouldSetState)
-                                                          safeSetState(() {});
-                                                        return;
-                                                      }
-
-                                                      if (_shouldSetState)
-                                                        safeSetState(() {});
                                                     },
                                                     text: 'Stop Impersonating',
                                                     options: FFButtonOptions(

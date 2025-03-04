@@ -1,3 +1,4 @@
+import '';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
@@ -138,7 +139,7 @@ class _PropertySelectionPageWidgetState
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
-                                      flex: 7,
+                                      flex: 9,
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
@@ -179,7 +180,7 @@ class _PropertySelectionPageWidgetState
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 3,
+                                      flex: 1,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:

@@ -1,3 +1,4 @@
+import '';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_card/solar_contract_card_widget.dart';
@@ -135,17 +136,15 @@ class _SolarContractChooseOrViewModalWidgetState
                       if ((widget!.contract?.id != null &&
                               widget!.contract?.id != '') &&
                           (_model.docusealEmbedHTML == null ||
-                              _model.docusealEmbedHTML == '') &&
-                          !((widget!.contract?.termsId == null ||
-                                  widget!.contract?.termsId == '') &&
-                              (FFAppState().esco == EscoCodeEnum.hmce)))
+                              _model.docusealEmbedHTML == ''))
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if ((widget!.contract?.termsId == null ||
-                                    widget!.contract?.termsId == '') ||
-                                (widget!.contract?.termsId ==
-                                    widget!.termsSolar30Year?.id))
+                            if (false &&
+                                ((widget!.contract?.termsId == null ||
+                                        widget!.contract?.termsId == '') ||
+                                    (widget!.contract?.termsId ==
+                                        widget!.termsSolar30Year?.id)))
                               wrapWithModel(
                                 model: _model.solar30YearContractCardModel,
                                 updateCallback: () => safeSetState(() {}),

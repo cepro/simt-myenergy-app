@@ -113,7 +113,11 @@ List<AccountStruct> getAccountsByPropertyId(
   return accounts.where((a) => a.property.id == propertyId).toList();
 }
 
-String formatGBPAmount(double amountGBP) {
+String formatGBPAmount(double? amountGBP) {
+  if (amountGBP == null) {
+    return "";
+  }
+
   var f = NumberFormat("##0.00", "en_GB");
   return "£" + f.format(amountGBP);
 }

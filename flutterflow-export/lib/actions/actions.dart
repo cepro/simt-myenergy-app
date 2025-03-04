@@ -24,24 +24,29 @@ Future handleMyEnergyApiCallFailure(
     SnackBar(
       content: Text(
         'HandleFailure action block triggered',
-        style: TextStyle(),
+        style: TextStyle(
+          color: FlutterFlowTheme.of(context).primaryText,
+        ),
       ),
-      duration: Duration(milliseconds: 4000),
-      backgroundColor: FlutterFlowTheme.of(context).secondary,
+      duration: Duration(milliseconds: 10000),
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
     ),
   );
   if ((httpStatusCode == 401) &&
       functions.isJwtExpired(wwwAuthenticateHeader!)) {
     context.goNamed(LoginPageWidget.routeName);
   } else {
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
           'Unknown and unhandled api call error encountered',
-          style: TextStyle(),
+          style: TextStyle(
+            color: FlutterFlowTheme.of(context).primaryText,
+          ),
         ),
-        duration: Duration(milliseconds: 4000),
-        backgroundColor: FlutterFlowTheme.of(context).secondary,
+        duration: Duration(milliseconds: 10000),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       ),
     );
   }
@@ -145,6 +150,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
             .getEscosFromProperties(FFAppState().properties.toList())
             .toList()
             .cast<EscoStruct>();
+        FFAppState().update(() {});
         return true;
       } else {
         await action_blocks.handleMyEnergyApiCallFailure(
@@ -194,10 +200,12 @@ Future<String?> contractSignEmbed(
     SnackBar(
       content: Text(
         'Failed:${(contractSigningEmbedResponse?.bodyText ?? '')}',
-        style: TextStyle(),
+        style: TextStyle(
+          color: FlutterFlowTheme.of(context).primaryText,
+        ),
       ),
-      duration: Duration(milliseconds: 4000),
-      backgroundColor: FlutterFlowTheme.of(context).secondary,
+      duration: Duration(milliseconds: 10000),
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
     ),
   );
 
@@ -213,6 +221,7 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
             FFAppState().impersonationToken != ''
         ? FFAppState().impersonationToken
         : currentJwtToken,
+    esco: FFAppState().esco?.name,
   );
 
   if ((getContractTermsResponse?.succeeded ?? true)) {
@@ -286,10 +295,12 @@ Future checkAndBlockWriteableAPICall(BuildContext context) async {
     SnackBar(
       content: Text(
         'Blocked write API call in Impersonation mode.',
-        style: TextStyle(),
+        style: TextStyle(
+          color: FlutterFlowTheme.of(context).primaryText,
+        ),
       ),
-      duration: Duration(milliseconds: 4000),
-      backgroundColor: FlutterFlowTheme.of(context).secondary,
+      duration: Duration(milliseconds: 10000),
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
     ),
   );
   await actions.breakActionChain();
@@ -349,8 +360,6 @@ Future openSupplyContract(BuildContext context) async {
 }
 
 Future openSolarContract(BuildContext context) async {
-  ContractTermsStruct? solarContractTerms;
-
   if (FFAppState().solarContractSigned) {
     await actions.openPDF(
       functions
@@ -372,7 +381,7 @@ Future openSolarContract(BuildContext context) async {
             width: double.infinity,
             child: SolarContractChooseOrViewModalWidget(
               contract: functions.getContractByType(
-                  FFAppState().accountsAll.toList(), 'solar')!,
+                  FFAppState().accountsForCurrentProperty.toList(), 'solar')!,
               readOnly: false,
               termsSolar30Year: FFAppState()
                   .contractTerms
@@ -390,11 +399,6 @@ Future openSolarContract(BuildContext context) async {
       },
     );
 
-    solarContractTerms = await actions.getTermsByTypeAndSubtype(
-      FFAppState().contractTerms.toList(),
-      'solar',
-      null,
-    );
     // This action triggers a page rebuild so that the progress task count is recomputed. Without this and after a contract is signed the oboard progress does not update.
     //
     // Seems there must be a more elegant way to do this but for now this works.
@@ -614,5 +618,55 @@ Future<bool?> impersonateCustomer(
     }
   } else {
     return false;
+  }
+}
+
+Future stopImpersonation(BuildContext context) async {
+  bool? stopImpersonateGetCustomerDetailsResponse;
+  SupabaseUserStruct? decodeLoggedInUserTokenResponse;
+
+  FFAppState().impersonationToken = '';
+  FFAppState().impersonationEmail = '';
+  FFAppState().impersonationPhone = '';
+  FFAppState().monthlyCosts = [];
+  FFAppState().monthlyUsage = [];
+  FFAppState().haveSolarContract = false;
+  FFAppState().haveSupplyContract = false;
+  FFAppState().solarContractSigned = false;
+  FFAppState().supplyContractSigned = false;
+  FFAppState().lastMonthlyCostAndUsageLoad = functions.twoThousandDateTime();
+  stopImpersonateGetCustomerDetailsResponse =
+      await action_blocks.getCustomerDetailsAndInitAppState(context);
+  if (stopImpersonateGetCustomerDetailsResponse!) {
+    decodeLoggedInUserTokenResponse = await actions.decodeSupabaseJwt(
+      currentJwtToken!,
+    );
+    FFAppState().isCeproUser = decodeLoggedInUserTokenResponse!.isCeproUser;
+    FFAppState().update(() {});
+    if (FFAppState().properties.length > 1) {
+      context.pushNamed(PropertySelectionPageWidget.routeName);
+
+      return;
+    } else {
+      await action_blocks.changeProperty(
+        context,
+        propertyId: FFAppState().properties.firstOrNull?.id,
+      );
+      return;
+    }
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Failed to fetch information of main user after unimpersonating',
+          style: TextStyle(
+            color: FlutterFlowTheme.of(context).primaryText,
+          ),
+        ),
+        duration: Duration(milliseconds: 10000),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      ),
+    );
+    return;
   }
 }
