@@ -19,8 +19,6 @@ class SolarContractRowModel extends FlutterFlowModel<SolarContractRowWidget> {
   ApiCallResponse? contractTermsLatest;
   // Stores action output result for [Custom Action - getTermsByTypeAndSubtype] action in Button widget.
   ContractTermsStruct? termsSolarShortTerm;
-  // Stores action output result for [Custom Action - getTermsByTypeAndSubtype] action in Button widget.
-  ContractTermsStruct? termsSolar30Year;
 
   @override
   void initState(BuildContext context) {}

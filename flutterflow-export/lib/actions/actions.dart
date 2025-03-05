@@ -383,11 +383,6 @@ Future openSolarContract(BuildContext context) async {
               contract: functions.getContractByType(
                   FFAppState().accountsForCurrentProperty.toList(), 'solar')!,
               readOnly: false,
-              termsSolar30Year: FFAppState()
-                  .contractTerms
-                  .where((e) => e.subtype == 'thirty_year')
-                  .toList()
-                  .firstOrNull!,
               termsSolarShortTerm: FFAppState()
                   .contractTerms
                   .where((e) => e.subtype == 'short_term')

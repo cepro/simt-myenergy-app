@@ -20,13 +20,11 @@ class SolarContractChooseOrViewModalWidget extends StatefulWidget {
     super.key,
     required this.contract,
     required this.readOnly,
-    required this.termsSolar30Year,
     required this.termsSolarShortTerm,
   });
 
   final ContractStruct? contract;
   final bool? readOnly;
-  final ContractTermsStruct? termsSolar30Year;
   final ContractTermsStruct? termsSolarShortTerm;
 
   @override
@@ -140,33 +138,6 @@ class _SolarContractChooseOrViewModalWidgetState
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (false &&
-                                ((widget!.contract?.termsId == null ||
-                                        widget!.contract?.termsId == '') ||
-                                    (widget!.contract?.termsId ==
-                                        widget!.termsSolar30Year?.id)))
-                              wrapWithModel(
-                                model: _model.solar30YearContractCardModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: SolarContractCardWidget(
-                                  title: '30 Years',
-                                  contract: widget!.contract!,
-                                  terms: widget!.termsSolar30Year!,
-                                  setSignEmbedHTML: () async {
-                                    _model.signEmbedHTMLThirtyYear =
-                                        await action_blocks.contractSignEmbed(
-                                      context,
-                                      contractId: widget!.contract?.id,
-                                      termsSubtype: 'thirty_year',
-                                    );
-                                    _model.docusealEmbedHTML =
-                                        _model.signEmbedHTMLThirtyYear;
-                                    safeSetState(() {});
-
-                                    safeSetState(() {});
-                                  },
-                                ),
-                              ),
                             if ((widget!.contract?.termsId == null ||
                                     widget!.contract?.termsId == '') ||
                                 (widget!.contract?.termsId ==

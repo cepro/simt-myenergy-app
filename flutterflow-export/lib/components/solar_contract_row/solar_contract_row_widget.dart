@@ -137,12 +137,6 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                         'solar',
                         'short_term',
                       );
-                      _model.termsSolar30Year =
-                          await actions.getTermsByTypeAndSubtype(
-                        FFAppState().contractTerms.toList(),
-                        'solar',
-                        'thirty_year',
-                      );
                       await showModalBottomSheet(
                         isScrollControlled: true,
                         backgroundColor: Colors.transparent,
@@ -153,7 +147,6 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                             padding: MediaQuery.viewInsetsOf(context),
                             child: SolarContractChooseOrViewModalWidget(
                               readOnly: widget!.isSigned!,
-                              termsSolar30Year: _model.termsSolar30Year!,
                               contract: widget!.contract!,
                               termsSolarShortTerm: _model.termsSolarShortTerm!,
                             ),

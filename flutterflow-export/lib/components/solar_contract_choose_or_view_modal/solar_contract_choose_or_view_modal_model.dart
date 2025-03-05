@@ -23,10 +23,6 @@ class SolarContractChooseOrViewModalModel
 
   ///  State fields for stateful widgets in this component.
 
-  // Model for Solar30YearContractCard.
-  late SolarContractCardModel solar30YearContractCardModel;
-  // Stores action output result for [Action Block - ContractSignEmbed] action in Solar30YearContractCard widget.
-  String? signEmbedHTMLThirtyYear;
   // Model for SolarShortTermContractCard.
   late SolarContractCardModel solarShortTermContractCardModel;
   // Stores action output result for [Action Block - ContractSignEmbed] action in SolarShortTermContractCard widget.
@@ -34,15 +30,12 @@ class SolarContractChooseOrViewModalModel
 
   @override
   void initState(BuildContext context) {
-    solar30YearContractCardModel =
-        createModel(context, () => SolarContractCardModel());
     solarShortTermContractCardModel =
         createModel(context, () => SolarContractCardModel());
   }
 
   @override
   void dispose() {
-    solar30YearContractCardModel.dispose();
     solarShortTermContractCardModel.dispose();
   }
 }
