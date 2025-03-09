@@ -100,188 +100,186 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                 ),
               ),
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          15.0, 0.0, 15.0, 100.0),
-                      child: Container(
-                        constraints: BoxConstraints(
-                          maxWidth: 1024.0,
-                        ),
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 10.0, 0.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              wrapWithModel(
-                                model: _model.topBarLoggedInModel,
-                                updateCallback: () => safeSetState(() {}),
-                                child: TopBarLoggedInWidget(),
+              child: ListView(
+                padding: EdgeInsets.zero,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 100.0),
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxWidth: 1024.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            10.0, 0.0, 10.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            wrapWithModel(
+                              model: _model.topBarLoggedInModel,
+                              updateCallback: () => safeSetState(() {}),
+                              child: TopBarLoggedInWidget(),
+                            ),
+                            if (responsiveVisibility(
+                              context: context,
+                              phone: false,
+                              tablet: false,
+                            ))
+                              Divider(
+                                height: 44.0,
+                                thickness: 1.0,
+                                color: FlutterFlowTheme.of(context).lineColor,
                               ),
-                              if (responsiveVisibility(
-                                context: context,
-                                phone: false,
-                                tablet: false,
-                              ))
-                                Divider(
-                                  height: 44.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                ),
-                              if (responsiveVisibility(
-                                context: context,
-                                tabletLandscape: false,
-                                desktop: false,
-                              ))
-                                Divider(
-                                  height: 24.0,
-                                  thickness: 1.0,
-                                  color: FlutterFlowTheme.of(context).lineColor,
-                                ),
-                              Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'My Energy',
-                                      style: FlutterFlowTheme.of(context)
-                                          .headlineMedium
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineMediumFamily,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineMediumFamily),
-                                          ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          wrapWithModel(
-                                            model: _model
-                                                .propertyNameWithTooltipModel,
-                                            updateCallback: () =>
-                                                safeSetState(() {}),
-                                            child:
-                                                PropertyNameWithTooltipWidget(),
-                                          ),
-                                          if (responsiveVisibility(
-                                            context: context,
-                                            tabletLandscape: false,
-                                            desktop: false,
-                                          ))
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 1.0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        5.0, 0.0, 0.0, 0.0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    context.pushNamed(
-                                                        PropertySelectionPageWidget
-                                                            .routeName);
-                                                  },
-                                                  text: 'Change',
-                                                  options: FFButtonOptions(
-                                                    height: 25.0,
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(10.0, 0.0,
-                                                                10.0, 0.0),
-                                                    iconPadding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          color: Colors.white,
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                    elevation: 0.0,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
+                            if (responsiveVisibility(
+                              context: context,
+                              tabletLandscape: false,
+                              desktop: false,
+                            ))
+                              Divider(
+                                height: 24.0,
+                                thickness: 1.0,
+                                color: FlutterFlowTheme.of(context).lineColor,
+                              ),
+                            Align(
+                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'My Energy',
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineMedium
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .headlineMediumFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .headlineMediumFamily),
+                                        ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 10.0, 0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        wrapWithModel(
+                                          model: _model
+                                              .propertyNameWithTooltipModel,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child:
+                                              PropertyNameWithTooltipWidget(),
+                                        ),
+                                        if (responsiveVisibility(
+                                          context: context,
+                                          tabletLandscape: false,
+                                          desktop: false,
+                                        ))
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 1.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 0.0, 0.0),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  context.pushNamed(
+                                                      PropertySelectionPageWidget
+                                                          .routeName);
+                                                },
+                                                text: 'Change',
+                                                options: FFButtonOptions(
+                                                  height: 25.0,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 10.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  textStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmallFamily,
+                                                            color: Colors.white,
+                                                            fontSize: 12.0,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts: GoogleFonts
+                                                                    .asMap()
+                                                                .containsKey(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmallFamily),
+                                                          ),
+                                                  elevation: 0.0,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                 ),
                                               ),
                                             ),
-                                        ],
-                                      ),
+                                          ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              if (FFAppState()
-                                      .supplyAccount
-                                      .customerAccount
-                                      .role ==
-                                  'occupier')
-                                wrapWithModel(
-                                  model: _model.monthlyCostsModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: MonthlyCostsWidget(),
-                                ),
-                              if (FFAppState()
-                                      .supplyAccount
-                                      .customerAccount
-                                      .role ==
-                                  'occupier')
-                                wrapWithModel(
-                                  model: _model.monthlyUsageModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: MonthlyUsageWidget(),
-                                ),
-                              if (FFAppState()
-                                      .solarAccount
-                                      .customerAccount
-                                      .role ==
-                                  'owner')
-                                wrapWithModel(
-                                  model: _model.monthlyGenerationModel,
-                                  updateCallback: () => safeSetState(() {}),
-                                  child: MonthlyGenerationWidget(),
-                                ),
-                            ],
-                          ),
+                            ),
+                            if (FFAppState()
+                                    .supplyAccount
+                                    .customerAccount
+                                    .role ==
+                                'occupier')
+                              wrapWithModel(
+                                model: _model.monthlyCostsModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: MonthlyCostsWidget(),
+                              ),
+                            if (FFAppState()
+                                    .supplyAccount
+                                    .customerAccount
+                                    .role ==
+                                'occupier')
+                              wrapWithModel(
+                                model: _model.monthlyUsageModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: MonthlyUsageWidget(),
+                              ),
+                            if (FFAppState()
+                                    .solarAccount
+                                    .customerAccount
+                                    .role ==
+                                'owner')
+                              wrapWithModel(
+                                model: _model.monthlyGenerationModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: MonthlyGenerationWidget(),
+                              ),
+                          ],
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],

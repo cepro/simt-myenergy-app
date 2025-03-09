@@ -2,7 +2,7 @@ import '';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/sidebar_no_menu/sidebar_no_menu_widget.dart';
+import '/components/sidebar_property_list/sidebar_property_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -85,9 +85,9 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               wrapWithModel(
-                model: _model.sidebarNoMenuModel,
+                model: _model.sidebarPropertyListModel,
                 updateCallback: () => safeSetState(() {}),
-                child: SidebarNoMenuWidget(),
+                child: SidebarPropertyListWidget(),
               ),
               Expanded(
                 child: SingleChildScrollView(

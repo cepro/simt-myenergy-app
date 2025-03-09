@@ -1,0 +1,356 @@
+import '';
+import '/backend/schema/structs/index.dart';
+import '/flutter_flow/flutter_flow_data_table.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'property_table_model.dart';
+export 'property_table_model.dart';
+
+class PropertyTableWidget extends StatefulWidget {
+  const PropertyTableWidget({
+    super.key,
+    required this.properties,
+  });
+
+  final List<PropertyStruct>? properties;
+
+  @override
+  State<PropertyTableWidget> createState() => _PropertyTableWidgetState();
+}
+
+class _PropertyTableWidgetState extends State<PropertyTableWidget> {
+  late PropertyTableModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => PropertyTableModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 650.0,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(0.0),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (!_model.loadingImpersonation)
+            Expanded(
+              child: Builder(
+                builder: (context) {
+                  final properties = widget!.properties!.toList();
+
+                  return FlutterFlowDataTable<PropertyStruct>(
+                    controller: _model.paginatedDataTableController,
+                    data: properties,
+                    columnsBuilder: (onSortChanged) => [
+                      DataColumn2(
+                        label: DefaultTextStyle.merge(
+                          softWrap: true,
+                          child: Text(
+                            'Plot',
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .labelLargeFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .labelLargeFamily),
+                                ),
+                          ),
+                        ),
+                        fixedWidth: 100.0,
+                      ),
+                      DataColumn2(
+                        label: DefaultTextStyle.merge(
+                          softWrap: true,
+                          child: Text(
+                            'Address',
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .labelLargeFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .labelLargeFamily),
+                                ),
+                          ),
+                        ),
+                      ),
+                      DataColumn2(
+                        label: DefaultTextStyle.merge(
+                          softWrap: true,
+                          child: Text(
+                            'Owner',
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .labelLargeFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .labelLargeFamily),
+                                ),
+                          ),
+                        ),
+                      ),
+                      DataColumn2(
+                        label: DefaultTextStyle.merge(
+                          softWrap: true,
+                          child: Text(
+                            'Occupier',
+                            style: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .labelLargeFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .labelLargeFamily),
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
+                    dataRowBuilder: (propertiesItem, propertiesIndex, selected,
+                            onSelectChanged) =>
+                        DataRow(
+                      color: MaterialStateProperty.all(
+                        propertiesIndex % 2 == 0
+                            ? FlutterFlowTheme.of(context).secondaryBackground
+                            : FlutterFlowTheme.of(context).primaryBackground,
+                      ),
+                      cells: [
+                        Text(
+                          propertiesItem.plot,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
+                        Text(
+                          propertiesItem.description,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
+                        Visibility(
+                          visible: (propertiesItem.customerRoles.length > 0) &&
+                              (propertiesItem.customerRoles.firstOrNull?.role ==
+                                  'owner'),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              var _shouldSetState = false;
+                              _model.loadingImpersonation = true;
+                              safeSetState(() {});
+                              _model.impersonateResult =
+                                  await action_blocks.impersonateCustomer(
+                                context,
+                                email: valueOrDefault<String>(
+                                  propertiesItem
+                                      .customerRoles.firstOrNull?.email,
+                                  'unknown',
+                                ),
+                              );
+                              _shouldSetState = true;
+                              if ((_model.impersonateResult != null) &&
+                                  (_model.impersonateResult == true)) {
+                                if (_shouldSetState) safeSetState(() {});
+                                return;
+                              }
+
+                              _model.loadingImpersonation = false;
+                              safeSetState(() {});
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Impersonation failed - check logs',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                              if (_shouldSetState) safeSetState(() {});
+                              return;
+                              if (_shouldSetState) safeSetState(() {});
+                            },
+                            child: Text(
+                              valueOrDefault<String>(
+                                propertiesItem.customerRoles.firstOrNull?.email,
+                                'unknown',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    decoration: TextDecoration.underline,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: (propertiesItem.customerRoles.length > 1) &&
+                              (propertiesItem.customerRoles
+                                      .elementAtOrNull(1)
+                                      ?.role ==
+                                  'occupier') &&
+                              (propertiesItem
+                                      .customerRoles.firstOrNull?.email !=
+                                  propertiesItem.customerRoles
+                                      .elementAtOrNull(1)
+                                      ?.email),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              _model.loadingImpersonation = true;
+                              safeSetState(() {});
+                              await action_blocks.impersonateCustomer(
+                                context,
+                                email: valueOrDefault<String>(
+                                  propertiesItem.customerRoles
+                                      .elementAtOrNull(1)
+                                      ?.email,
+                                  'unknown',
+                                ),
+                              );
+                              if (_model.impersonateResult!) {
+                                return;
+                              }
+
+                              _model.loadingImpersonation = false;
+                              safeSetState(() {});
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Impersonation failed - check logs',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: Duration(milliseconds: 4000),
+                                  backgroundColor:
+                                      FlutterFlowTheme.of(context).secondary,
+                                ),
+                              );
+                              return;
+                            },
+                            child: Text(
+                              valueOrDefault<String>(
+                                propertiesItem.customerRoles
+                                    .elementAtOrNull(1)
+                                    ?.email,
+                                'unknown',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
+                                    letterSpacing: 0.0,
+                                    decoration: TextDecoration.underline,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMediumFamily),
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ].map((c) => DataCell(c)).toList(),
+                    ),
+                    paginated: true,
+                    selectable: false,
+                    hidePaginator: false,
+                    showFirstLastButtons: false,
+                    headingRowHeight: 56.0,
+                    dataRowHeight: 48.0,
+                    columnSpacing: 20.0,
+                    headingRowColor: FlutterFlowTheme.of(context).primary,
+                    borderRadius: BorderRadius.circular(8.0),
+                    addHorizontalDivider: true,
+                    addTopAndBottomDivider: false,
+                    hideDefaultHorizontalDivider: true,
+                    horizontalDividerColor:
+                        FlutterFlowTheme.of(context).secondaryBackground,
+                    horizontalDividerThickness: 1.0,
+                    addVerticalDivider: false,
+                  );
+                },
+              ),
+            ),
+          if (_model.loadingImpersonation)
+            Container(
+              width: 100.0,
+              height: 100.0,
+              child: custom_widgets.LoadingSpinner(
+                width: 100.0,
+                height: 100.0,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}

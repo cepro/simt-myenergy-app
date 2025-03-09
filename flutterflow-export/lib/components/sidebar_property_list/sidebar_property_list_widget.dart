@@ -10,11 +10,11 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'sidebar_no_menu_model.dart';
-export 'sidebar_no_menu_model.dart';
+import 'sidebar_property_list_model.dart';
+export 'sidebar_property_list_model.dart';
 
-class SidebarNoMenuWidget extends StatefulWidget {
-  const SidebarNoMenuWidget({
+class SidebarPropertyListWidget extends StatefulWidget {
+  const SidebarPropertyListWidget({
     super.key,
     this.navOne,
     this.navTwo,
@@ -32,12 +32,13 @@ class SidebarNoMenuWidget extends StatefulWidget {
   final Color? navSix;
 
   @override
-  State<SidebarNoMenuWidget> createState() => _SidebarNoMenuWidgetState();
+  State<SidebarPropertyListWidget> createState() =>
+      _SidebarPropertyListWidgetState();
 }
 
-class _SidebarNoMenuWidgetState extends State<SidebarNoMenuWidget>
+class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
     with TickerProviderStateMixin {
-  late SidebarNoMenuModel _model;
+  late SidebarPropertyListModel _model;
 
   var hasContainerTriggered1 = false;
   var hasContainerTriggered2 = false;
@@ -52,7 +53,7 @@ class _SidebarNoMenuWidgetState extends State<SidebarNoMenuWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SidebarNoMenuModel());
+    _model = createModel(context, () => SidebarPropertyListModel());
 
     animationsMap.addAll({
       'containerOnActionTriggerAnimation1': AnimationInfo(
@@ -225,7 +226,7 @@ class _SidebarNoMenuWidgetState extends State<SidebarNoMenuWidget>
                         if (FFAppState().isCeproUser)
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 8.0),
+                                0.0, 8.0, 0.0, 8.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -267,6 +268,63 @@ class _SidebarNoMenuWidgetState extends State<SidebarNoMenuWidget>
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
                                             color: widget!.navSix,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: GoogleFonts.asMap()
+                                                .containsKey(
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily),
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        if (FFAppState().isCeproUser)
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 8.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed(
+                                  AdminPaymentWidget.routeName,
+                                  extra: <String, dynamic>{
+                                    kTransitionInfoKey: TransitionInfo(
+                                      hasTransition: true,
+                                      transitionType: PageTransitionType.fade,
+                                      duration: Duration(milliseconds: 0),
+                                    ),
+                                  },
+                                );
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 8.0, 0.0, 8.0),
+                                    child: Icon(
+                                      Icons.monetization_on,
+                                      color: widget!.navFive,
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Admin Payment',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMediumFamily,
+                                            color: widget!.navFive,
                                             letterSpacing: 0.0,
                                             useGoogleFonts: GoogleFonts.asMap()
                                                 .containsKey(

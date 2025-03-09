@@ -99,7 +99,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   ),
                 ),
               ),
-            if ((FFAppState().properties.length > 1) &&
+            if (((FFAppState().properties.length > 1) &&
+                    !FFAppState().isCeproUser) &&
                 responsiveVisibility(
                   context: context,
                   phone: false,
@@ -114,7 +115,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                           FlutterFlowTheme.of(context).bodyMediumFamily),
                     ),
               ),
-            if ((FFAppState().properties.length > 1) &&
+            if (((FFAppState().properties.length > 1) &&
+                    !FFAppState().isCeproUser) &&
                 responsiveVisibility(
                   context: context,
                   phone: false,

@@ -682,51 +682,84 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ),
                                                       ],
                                                     ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Expanded(
-                                                          child: wrapWithModel(
-                                                            model: _model
-                                                                .supplyContractRowModel,
-                                                            updateCallback: () =>
-                                                                safeSetState(
-                                                                    () {}),
+                                                    if (FFAppState()
+                                                            .supplyAccount
+                                                            .customerAccount
+                                                            .role ==
+                                                        'occupier')
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          Expanded(
                                                             child:
-                                                                SupplyContractRowWidget(
-                                                              isSigned: functions
-                                                                          .getContractByType(
-                                                                              FFAppState()
-                                                                                  .accountsForCurrentProperty
-                                                                                  .toList(),
-                                                                              'supply')
-                                                                          ?.signedDate !=
-                                                                      null &&
-                                                                  functions
-                                                                          .getContractByType(
-                                                                              FFAppState().accountsForCurrentProperty.toList(),
-                                                                              'supply')
-                                                                          ?.signedDate !=
-                                                                      '',
-                                                              contract: functions
-                                                                  .getContractByType(
-                                                                      FFAppState()
-                                                                          .accountsForCurrentProperty
-                                                                          .toList(),
-                                                                      'supply')!,
-                                                              contractTerms: FFAppState()
-                                                                  .contractTerms
-                                                                  .where((e) =>
-                                                                      e.type ==
-                                                                      'supply')
-                                                                  .toList()
-                                                                  .firstOrNull!,
+                                                                wrapWithModel(
+                                                              model: _model
+                                                                  .supplyContractRowModel,
+                                                              updateCallback: () =>
+                                                                  safeSetState(
+                                                                      () {}),
+                                                              child:
+                                                                  SupplyContractRowWidget(
+                                                                isSigned: functions
+                                                                            .getContractByType(
+                                                                                FFAppState()
+                                                                                    .accountsForCurrentProperty
+                                                                                    .toList(),
+                                                                                'supply')
+                                                                            ?.signedDate !=
+                                                                        null &&
+                                                                    functions
+                                                                            .getContractByType(FFAppState().accountsForCurrentProperty.toList(),
+                                                                                'supply')
+                                                                            ?.signedDate !=
+                                                                        '',
+                                                                contract: functions.getContractByType(
+                                                                    FFAppState()
+                                                                        .accountsForCurrentProperty
+                                                                        .toList(),
+                                                                    'supply')!,
+                                                                contractTerms: FFAppState()
+                                                                    .contractTerms
+                                                                    .where((e) =>
+                                                                        e.type ==
+                                                                        'supply')
+                                                                    .toList()
+                                                                    .firstOrNull!,
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                        ],
+                                                      ),
+                                                    if (FFAppState()
+                                                            .supplyAccount
+                                                            .customerAccount
+                                                            .role ==
+                                                        'owner')
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Text(
+                                                            'ADD ME ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                   ],
                                                 ),
                                               ),

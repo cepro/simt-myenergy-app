@@ -2,7 +2,7 @@ import '';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
-import '/components/sidebar_no_menu/sidebar_no_menu_widget.dart';
+import '/components/sidebar_property_list/sidebar_property_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -28,8 +28,8 @@ class ImpersonateUserModel extends FlutterFlowModel<ImpersonateUserWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for SidebarNoMenu component.
-  late SidebarNoMenuModel sidebarNoMenuModel;
+  // Model for SidebarPropertyList component.
+  late SidebarPropertyListModel sidebarPropertyListModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;
   // State field(s) for emailField widget.
@@ -45,13 +45,14 @@ class ImpersonateUserModel extends FlutterFlowModel<ImpersonateUserWidget> {
 
   @override
   void initState(BuildContext context) {
-    sidebarNoMenuModel = createModel(context, () => SidebarNoMenuModel());
+    sidebarPropertyListModel =
+        createModel(context, () => SidebarPropertyListModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
   }
 
   @override
   void dispose() {
-    sidebarNoMenuModel.dispose();
+    sidebarPropertyListModel.dispose();
     topBarLoggedInModel.dispose();
     emailFieldFocusNode?.dispose();
     emailFieldTextController?.dispose();
