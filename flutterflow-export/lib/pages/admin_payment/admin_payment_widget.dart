@@ -1,6 +1,6 @@
 import '';
 import '/components/admin_initiate_payment_widget.dart';
-import '/components/main_web_nav/main_web_nav_widget.dart';
+import '/components/sidebar_property_list/sidebar_property_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -65,23 +65,11 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (responsiveVisibility(
-                context: context,
-                phone: false,
-                tablet: false,
-              ))
-                wrapWithModel(
-                  model: _model.mainWebNavModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: MainWebNavWidget(
-                    navOne: FlutterFlowTheme.of(context).alternate,
-                    navTwo: FlutterFlowTheme.of(context).secondaryText,
-                    navThree: FlutterFlowTheme.of(context).secondaryText,
-                    navFour: FlutterFlowTheme.of(context).secondaryText,
-                    navFive: FlutterFlowTheme.of(context).secondaryText,
-                    navSix: FlutterFlowTheme.of(context).secondaryText,
-                  ),
-                ),
+              wrapWithModel(
+                model: _model.sidebarPropertyListModel,
+                updateCallback: () => safeSetState(() {}),
+                child: SidebarPropertyListWidget(),
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(

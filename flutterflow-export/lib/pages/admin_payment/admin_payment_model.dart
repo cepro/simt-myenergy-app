@@ -1,6 +1,6 @@
 import '';
 import '/components/admin_initiate_payment_widget.dart';
-import '/components/main_web_nav/main_web_nav_widget.dart';
+import '/components/sidebar_property_list/sidebar_property_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -24,8 +24,8 @@ class AdminPaymentModel extends FlutterFlowModel<AdminPaymentWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Model for MainWebNav component.
-  late MainWebNavModel mainWebNavModel;
+  // Model for SidebarPropertyList component.
+  late SidebarPropertyListModel sidebarPropertyListModel;
   // Model for TopBarLoggedIn component.
   late TopBarLoggedInModel topBarLoggedInModel;
   // Model for AdminInitiatePayment component.
@@ -33,7 +33,8 @@ class AdminPaymentModel extends FlutterFlowModel<AdminPaymentWidget> {
 
   @override
   void initState(BuildContext context) {
-    mainWebNavModel = createModel(context, () => MainWebNavModel());
+    sidebarPropertyListModel =
+        createModel(context, () => SidebarPropertyListModel());
     topBarLoggedInModel = createModel(context, () => TopBarLoggedInModel());
     adminInitiatePaymentModel =
         createModel(context, () => AdminInitiatePaymentModel());
@@ -41,7 +42,7 @@ class AdminPaymentModel extends FlutterFlowModel<AdminPaymentWidget> {
 
   @override
   void dispose() {
-    mainWebNavModel.dispose();
+    sidebarPropertyListModel.dispose();
     topBarLoggedInModel.dispose();
     adminInitiatePaymentModel.dispose();
   }

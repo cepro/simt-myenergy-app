@@ -731,11 +731,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           ),
                                                         ],
                                                       ),
-                                                    if (FFAppState()
-                                                            .supplyAccount
-                                                            .customerAccount
-                                                            .role ==
-                                                        'owner')
+                                                    if (false &&
+                                                        (FFAppState()
+                                                                .supplyAccount
+                                                                .customerAccount
+                                                                .role ==
+                                                            'owner'))
                                                       Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -1013,7 +1014,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             _model.certificateURL =
                                                                                 await actions.supabaseGetStorageURL(
                                                                               'mcs-certificates-${FFAppState().esco?.name}',
-                                                                              functions.mcsFileName(_model.getSolarInstallationOutput!.mcs, functions.streetNumberFromPropertyDescription(FFAppState().properties.firstOrNull!.description)!),
+                                                                              functions.mcsFileName(_model.getSolarInstallationOutput!.mcs, functions.streetNumberFromPropertyDescription(FFAppState().property.description)!),
                                                                             );
                                                                             _shouldSetState =
                                                                                 true;
@@ -1200,19 +1201,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       () {}),
                                                               child:
                                                                   SolarContractRowWidget(
-                                                                isSigned: functions
-                                                                            .getContractByType(
-                                                                                FFAppState()
-                                                                                    .accountsForCurrentProperty
-                                                                                    .toList(),
-                                                                                'solar')
-                                                                            ?.signedDate !=
-                                                                        null &&
-                                                                    functions
-                                                                            .getContractByType(FFAppState().accountsForCurrentProperty.toList(),
-                                                                                'solar')
-                                                                            ?.signedDate !=
-                                                                        '',
+                                                                isSigned:
+                                                                    FFAppState()
+                                                                        .solarContractSigned,
                                                                 contract: functions.getContractByType(
                                                                     FFAppState()
                                                                         .accountsForCurrentProperty
