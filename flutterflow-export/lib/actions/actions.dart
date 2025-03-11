@@ -523,9 +523,8 @@ Future changeProperty(
       .getAccountsByPropertyId(FFAppState().accountsAll.toList(), propertyId!)
       .toList()
       .cast<AccountStruct>();
-  FFAppState().update(() {});
 
-  context.pushNamed(HomePageWidget.routeName);
+  context.goNamed(HomePageWidget.routeName);
 }
 
 Future pendingPayments(BuildContext context) async {
@@ -588,17 +587,7 @@ Future<bool?> impersonateCustomer(
       FFAppState().monthlyUsage = [];
       FFAppState().lastMonthlyCostAndUsageLoad =
           functions.twoThousandDateTime();
-      if (FFAppState().properties.length > 1) {
-        context.pushNamed(PropertySelectionPageWidget.routeName);
-
-        return true;
-      } else {
-        await action_blocks.changeProperty(
-          context,
-          propertyId: FFAppState().properties.firstOrNull?.id,
-        );
-        return true;
-      }
+      return true;
     } else {
       return false;
     }

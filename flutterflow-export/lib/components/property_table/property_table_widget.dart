@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,8 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Container(
       height: 650.0,
       decoration: BoxDecoration(
@@ -200,30 +203,22 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                                 ),
                               );
                               _shouldSetState = true;
-                              if ((_model.impersonateResult != null) &&
-                                  (_model.impersonateResult == true)) {
+                              if (FFAppState().properties.length > 1) {
+                                context.pushNamed(
+                                    PropertySelectionPageWidget.routeName);
+
+                                if (_shouldSetState) safeSetState(() {});
+                                return;
+                              } else {
+                                await action_blocks.changeProperty(
+                                  context,
+                                  propertyId:
+                                      FFAppState().properties.firstOrNull?.id,
+                                );
                                 if (_shouldSetState) safeSetState(() {});
                                 return;
                               }
 
-                              _model.loadingImpersonation = false;
-                              safeSetState(() {});
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Impersonation failed - check logs',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
-                              if (_shouldSetState) safeSetState(() {});
-                              return;
                               if (_shouldSetState) safeSetState(() {});
                             },
                             child: Text(
