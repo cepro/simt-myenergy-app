@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
 import 'property_table_widget.dart' show PropertyTableWidget;
 import 'package:flutter/material.dart';

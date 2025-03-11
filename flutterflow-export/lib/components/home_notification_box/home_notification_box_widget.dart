@@ -82,7 +82,7 @@ class _HomeNotificationBoxWidgetState extends State<HomeNotificationBoxWidget> {
                 children: [
                   Flexible(
                     child: Text(
-                      'A payment for ${functions.formatGBPAmount(FFAppState().pendingPayments.firstOrNull!.amount.toDouble() / 100.0)} is scheduled for ${dateTimeFormat("dd/MM/yyyy HH:mm:ss", FFAppState().pendingPayments.firstOrNull?.submitAt)}.',
+                      'A payment for ${functions.formatGBPAmount(FFAppState().pendingPayments.firstOrNull!.amount.toDouble() / 100.0)} is scheduled for ${dateTimeFormat("dd/MM/yyyy HH:mm:ss", FFAppState().pendingPayments.firstOrNull?.scheduledAt)}.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyMediumFamily,

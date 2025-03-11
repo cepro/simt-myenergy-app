@@ -15,7 +15,7 @@ class PaymentStruct extends BaseStruct {
     String? receiptUrl,
     String? status,
     String? paymentIntent,
-    DateTime? submitAt,
+    DateTime? scheduledAt,
     DateTime? submittedAt,
   })  : _id = id,
         _amount = amount,
@@ -24,7 +24,7 @@ class PaymentStruct extends BaseStruct {
         _receiptUrl = receiptUrl,
         _status = status,
         _paymentIntent = paymentIntent,
-        _submitAt = submitAt,
+        _scheduledAt = scheduledAt,
         _submittedAt = submittedAt;
 
   // "id" field.
@@ -78,12 +78,12 @@ class PaymentStruct extends BaseStruct {
 
   bool hasPaymentIntent() => _paymentIntent != null;
 
-  // "submitAt" field.
-  DateTime? _submitAt;
-  DateTime? get submitAt => _submitAt;
-  set submitAt(DateTime? val) => _submitAt = val;
+  // "scheduledAt" field.
+  DateTime? _scheduledAt;
+  DateTime? get scheduledAt => _scheduledAt;
+  set scheduledAt(DateTime? val) => _scheduledAt = val;
 
-  bool hasSubmitAt() => _submitAt != null;
+  bool hasScheduledAt() => _scheduledAt != null;
 
   // "submittedAt" field.
   DateTime? _submittedAt;
@@ -100,7 +100,7 @@ class PaymentStruct extends BaseStruct {
         receiptUrl: data['receiptUrl'] as String?,
         status: data['status'] as String?,
         paymentIntent: data['paymentIntent'] as String?,
-        submitAt: data['submitAt'] as DateTime?,
+        scheduledAt: data['scheduledAt'] as DateTime?,
         submittedAt: data['submittedAt'] as DateTime?,
       );
 
@@ -115,7 +115,7 @@ class PaymentStruct extends BaseStruct {
         'receiptUrl': _receiptUrl,
         'status': _status,
         'paymentIntent': _paymentIntent,
-        'submitAt': _submitAt,
+        'scheduledAt': _scheduledAt,
         'submittedAt': _submittedAt,
       }.withoutNulls;
 
@@ -149,8 +149,8 @@ class PaymentStruct extends BaseStruct {
           _paymentIntent,
           ParamType.String,
         ),
-        'submitAt': serializeParam(
-          _submitAt,
+        'scheduledAt': serializeParam(
+          _scheduledAt,
           ParamType.DateTime,
         ),
         'submittedAt': serializeParam(
@@ -196,8 +196,8 @@ class PaymentStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        submitAt: deserializeParam(
-          data['submitAt'],
+        scheduledAt: deserializeParam(
+          data['scheduledAt'],
           ParamType.DateTime,
           false,
         ),
@@ -221,7 +221,7 @@ class PaymentStruct extends BaseStruct {
         receiptUrl == other.receiptUrl &&
         status == other.status &&
         paymentIntent == other.paymentIntent &&
-        submitAt == other.submitAt &&
+        scheduledAt == other.scheduledAt &&
         submittedAt == other.submittedAt;
   }
 
@@ -234,7 +234,7 @@ class PaymentStruct extends BaseStruct {
         receiptUrl,
         status,
         paymentIntent,
-        submitAt,
+        scheduledAt,
         submittedAt
       ]);
 }
@@ -247,7 +247,7 @@ PaymentStruct createPaymentStruct({
   String? receiptUrl,
   String? status,
   String? paymentIntent,
-  DateTime? submitAt,
+  DateTime? scheduledAt,
   DateTime? submittedAt,
 }) =>
     PaymentStruct(
@@ -258,6 +258,6 @@ PaymentStruct createPaymentStruct({
       receiptUrl: receiptUrl,
       status: status,
       paymentIntent: paymentIntent,
-      submitAt: submitAt,
+      scheduledAt: scheduledAt,
       submittedAt: submittedAt,
     );

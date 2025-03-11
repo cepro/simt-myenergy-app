@@ -79,14 +79,14 @@ class SendPaymentAdminCall {
     double? amount,
     String? description = '',
     String? customerEmail = '',
-    String? submitAt = '',
+    String? scheduledAt = '',
   }) async {
     final ffApiRequestBody = '''
 {
   "amount": "${amount}",
   "customerEmail": "${customerEmail}",
   "description": "${description}",
-  "submitAt": "${submitAt}"
+  "scheduledAt": "${scheduledAt}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Send Payment Admin',

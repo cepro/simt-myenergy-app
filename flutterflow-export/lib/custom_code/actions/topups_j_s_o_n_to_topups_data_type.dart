@@ -21,6 +21,9 @@ Future<List<TopupStruct>> topupsJSONToTopupsDataType(
         status: topup['status'],
         source: topup['source'],
         notes: topup['notes'],
+        referenceStr: topup['reference'],
+        acquiredAt: DateTime.parse(topup['acquiredAt']),
+        usedAt: DateTime.parse(topup['usedAt']),
         createdAt: DateTime.parse(topup['createdAt']),
         updatedAt: DateTime.parse(topup['updatedAt'])));
   }

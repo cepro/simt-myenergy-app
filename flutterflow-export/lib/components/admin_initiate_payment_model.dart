@@ -37,10 +37,11 @@ class AdminInitiatePaymentModel
   TextEditingController? descriptionFieldTextController;
   String? Function(BuildContext, String?)?
       descriptionFieldTextControllerValidator;
-  // State field(s) for submitAtField widget.
-  FocusNode? submitAtFieldFocusNode;
-  TextEditingController? submitAtFieldTextController;
-  String? Function(BuildContext, String?)? submitAtFieldTextControllerValidator;
+  // State field(s) for scheduledAtField widget.
+  FocusNode? scheduledAtFieldFocusNode;
+  TextEditingController? scheduledAtFieldTextController;
+  String? Function(BuildContext, String?)?
+      scheduledAtFieldTextControllerValidator;
   // Stores action output result for [Backend Call - API (Send Payment Admin)] action in Button widget.
   ApiCallResponse? sendPaymentResult;
 
@@ -58,7 +59,7 @@ class AdminInitiatePaymentModel
     descriptionFieldFocusNode?.dispose();
     descriptionFieldTextController?.dispose();
 
-    submitAtFieldFocusNode?.dispose();
-    submitAtFieldTextController?.dispose();
+    scheduledAtFieldFocusNode?.dispose();
+    scheduledAtFieldTextController?.dispose();
   }
 }

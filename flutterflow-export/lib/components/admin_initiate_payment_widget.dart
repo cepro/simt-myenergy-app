@@ -44,9 +44,9 @@ class _AdminInitiatePaymentWidgetState
     _model.descriptionFieldTextController ??= TextEditingController();
     _model.descriptionFieldFocusNode ??= FocusNode();
 
-    _model.submitAtFieldTextController ??=
+    _model.scheduledAtFieldTextController ??=
         TextEditingController(text: functions.tomorrowIso8601());
-    _model.submitAtFieldFocusNode ??= FocusNode();
+    _model.scheduledAtFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -326,12 +326,12 @@ class _AdminInitiatePaymentWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 12.0, 8.0, 0.0),
                   child: TextFormField(
-                    controller: _model.submitAtFieldTextController,
-                    focusNode: _model.submitAtFieldFocusNode,
+                    controller: _model.scheduledAtFieldTextController,
+                    focusNode: _model.scheduledAtFieldFocusNode,
                     autofocus: true,
                     obscureText: false,
                     decoration: InputDecoration(
-                      labelText: 'Submit Time',
+                      labelText: 'Scheduled Submission Time',
                       labelStyle: FlutterFlowTheme.of(context)
                           .labelMedium
                           .override(
@@ -389,7 +389,7 @@ class _AdminInitiatePaymentWidgetState
                               FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
                     keyboardType: TextInputType.datetime,
-                    validator: _model.submitAtFieldTextControllerValidator
+                    validator: _model.scheduledAtFieldTextControllerValidator
                         .asValidator(context),
                   ),
                 ),
@@ -421,7 +421,8 @@ class _AdminInitiatePaymentWidgetState
                               _model.descriptionFieldTextController.text,
                           customerEmail:
                               _model.customerEmailFieldTextController.text,
-                          submitAt: _model.submitAtFieldTextController.text,
+                          scheduledAt:
+                              _model.scheduledAtFieldTextController.text,
                         );
 
                         _shouldSetState = true;
@@ -448,7 +449,7 @@ class _AdminInitiatePaymentWidgetState
 
                       if (_shouldSetState) safeSetState(() {});
                     },
-                    text: 'Submit',
+                    text: 'Schedule',
                     options: FFButtonOptions(
                       height: 40.0,
                       padding:

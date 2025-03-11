@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -191,8 +190,6 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               var _shouldSetState = false;
-                              _model.loadingImpersonation = true;
-                              safeSetState(() {});
                               _model.impersonateResult =
                                   await action_blocks.impersonateCustomer(
                                 context,
@@ -258,8 +255,6 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              _model.loadingImpersonation = true;
-                              safeSetState(() {});
                               await action_blocks.impersonateCustomer(
                                 context,
                                 email: valueOrDefault<String>(
@@ -269,27 +264,19 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                                   'unknown',
                                 ),
                               );
-                              if (_model.impersonateResult!) {
+                              if (FFAppState().properties.length > 1) {
+                                context.pushNamed(
+                                    PropertySelectionPageWidget.routeName);
+
+                                return;
+                              } else {
+                                await action_blocks.changeProperty(
+                                  context,
+                                  propertyId:
+                                      FFAppState().properties.firstOrNull?.id,
+                                );
                                 return;
                               }
-
-                              _model.loadingImpersonation = false;
-                              safeSetState(() {});
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Impersonation failed - check logs',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
-                              return;
                             },
                             child: Text(
                               valueOrDefault<String>(
@@ -333,15 +320,6 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                     addVerticalDivider: false,
                   );
                 },
-              ),
-            ),
-          if (_model.loadingImpersonation)
-            Container(
-              width: 100.0,
-              height: 100.0,
-              child: custom_widgets.LoadingSpinner(
-                width: 100.0,
-                height: 100.0,
               ),
             ),
         ],
