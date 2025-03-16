@@ -14,7 +14,7 @@ class PropertyStruct extends BaseStruct {
     String? supplyMeterUUID,
     String? solarMeterUUID,
     String? owner,
-    String? ownerName,
+    String? ownerEmail,
     List<CustomerRoleStruct>? customerRoles,
     String? escoId,
     EscoStruct? escoDTO,
@@ -24,7 +24,7 @@ class PropertyStruct extends BaseStruct {
         _supplyMeterUUID = supplyMeterUUID,
         _solarMeterUUID = solarMeterUUID,
         _owner = owner,
-        _ownerName = ownerName,
+        _ownerEmail = ownerEmail,
         _customerRoles = customerRoles,
         _escoId = escoId,
         _escoDTO = escoDTO;
@@ -71,12 +71,12 @@ class PropertyStruct extends BaseStruct {
 
   bool hasOwner() => _owner != null;
 
-  // "ownerName" field.
-  String? _ownerName;
-  String get ownerName => _ownerName ?? '';
-  set ownerName(String? val) => _ownerName = val;
+  // "ownerEmail" field.
+  String? _ownerEmail;
+  String get ownerEmail => _ownerEmail ?? '';
+  set ownerEmail(String? val) => _ownerEmail = val;
 
-  bool hasOwnerName() => _ownerName != null;
+  bool hasOwnerEmail() => _ownerEmail != null;
 
   // "customerRoles" field.
   List<CustomerRoleStruct>? _customerRoles;
@@ -114,7 +114,7 @@ class PropertyStruct extends BaseStruct {
         supplyMeterUUID: data['supplyMeterUUID'] as String?,
         solarMeterUUID: data['solarMeterUUID'] as String?,
         owner: data['owner'] as String?,
-        ownerName: data['ownerName'] as String?,
+        ownerEmail: data['ownerEmail'] as String?,
         customerRoles: getStructList(
           data['customerRoles'],
           CustomerRoleStruct.fromMap,
@@ -135,7 +135,7 @@ class PropertyStruct extends BaseStruct {
         'supplyMeterUUID': _supplyMeterUUID,
         'solarMeterUUID': _solarMeterUUID,
         'owner': _owner,
-        'ownerName': _ownerName,
+        'ownerEmail': _ownerEmail,
         'customerRoles': _customerRoles?.map((e) => e.toMap()).toList(),
         'escoId': _escoId,
         'escoDTO': _escoDTO?.toMap(),
@@ -167,8 +167,8 @@ class PropertyStruct extends BaseStruct {
           _owner,
           ParamType.String,
         ),
-        'ownerName': serializeParam(
-          _ownerName,
+        'ownerEmail': serializeParam(
+          _ownerEmail,
           ParamType.String,
         ),
         'customerRoles': serializeParam(
@@ -218,8 +218,8 @@ class PropertyStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        ownerName: deserializeParam(
-          data['ownerName'],
+        ownerEmail: deserializeParam(
+          data['ownerEmail'],
           ParamType.String,
           false,
         ),
@@ -255,7 +255,7 @@ class PropertyStruct extends BaseStruct {
         supplyMeterUUID == other.supplyMeterUUID &&
         solarMeterUUID == other.solarMeterUUID &&
         owner == other.owner &&
-        ownerName == other.ownerName &&
+        ownerEmail == other.ownerEmail &&
         listEquality.equals(customerRoles, other.customerRoles) &&
         escoId == other.escoId &&
         escoDTO == other.escoDTO;
@@ -269,7 +269,7 @@ class PropertyStruct extends BaseStruct {
         supplyMeterUUID,
         solarMeterUUID,
         owner,
-        ownerName,
+        ownerEmail,
         customerRoles,
         escoId,
         escoDTO
@@ -283,7 +283,7 @@ PropertyStruct createPropertyStruct({
   String? supplyMeterUUID,
   String? solarMeterUUID,
   String? owner,
-  String? ownerName,
+  String? ownerEmail,
   String? escoId,
   EscoStruct? escoDTO,
 }) =>
@@ -294,7 +294,7 @@ PropertyStruct createPropertyStruct({
       supplyMeterUUID: supplyMeterUUID,
       solarMeterUUID: solarMeterUUID,
       owner: owner,
-      ownerName: ownerName,
+      ownerEmail: ownerEmail,
       escoId: escoId,
       escoDTO: escoDTO ?? EscoStruct(),
     );

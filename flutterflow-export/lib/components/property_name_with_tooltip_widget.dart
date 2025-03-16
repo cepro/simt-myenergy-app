@@ -48,7 +48,7 @@ class _PropertyNameWithTooltipWidgetState
       content: Padding(
         padding: EdgeInsets.all(4.0),
         child: Text(
-          '${FFAppState().property.plot}  Owner: ${FFAppState().property.ownerName}',
+          '${FFAppState().property.plot}  Owner: ${FFAppState().property.ownerEmail}',
           style: FlutterFlowTheme.of(context).bodyLarge.override(
                 fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                 letterSpacing: 0.0,

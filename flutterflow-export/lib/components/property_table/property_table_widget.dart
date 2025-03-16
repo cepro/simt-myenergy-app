@@ -180,9 +180,8 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                               ),
                         ),
                         Visibility(
-                          visible: (propertiesItem.customerRoles.length > 0) &&
-                              (propertiesItem.customerRoles.firstOrNull?.role ==
-                                  'owner'),
+                          visible: propertiesItem.ownerEmail != null &&
+                              propertiesItem.ownerEmail != '',
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -193,11 +192,7 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                               _model.impersonateResult =
                                   await action_blocks.impersonateCustomer(
                                 context,
-                                email: valueOrDefault<String>(
-                                  propertiesItem
-                                      .customerRoles.firstOrNull?.email,
-                                  'unknown',
-                                ),
+                                email: propertiesItem.ownerEmail,
                               );
                               _shouldSetState = true;
                               if (FFAppState().properties.length > 1) {
@@ -219,10 +214,7 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                               if (_shouldSetState) safeSetState(() {});
                             },
                             child: Text(
-                              valueOrDefault<String>(
-                                propertiesItem.customerRoles.firstOrNull?.email,
-                                'unknown',
-                              ),
+                              propertiesItem.ownerEmail,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

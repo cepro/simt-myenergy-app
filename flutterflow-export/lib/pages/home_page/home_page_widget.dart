@@ -48,76 +48,81 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await action_blocks.setContractStatusFlags(context);
-      safeSetState(() {});
-      _model.solarMeter = await actions.getMeterByType(
-        FFAppState().property,
-        'solar',
-        FFAppState().meters,
-      );
-      _model.supplyMeter = await actions.getMeterByType(
-        FFAppState().property,
-        'supply',
-        FFAppState().meters,
-      );
-      _model.getSolarInstallationOutput =
-          await actions.getSolarInstallationById(
-        FFAppState().solarInstallations,
-        FFAppState().property.id,
-      );
-      _model.userToken = await actions.activeUserToken();
-      _model.homePageGetWallets = await GetWalletsCall.call(
-        bearerToken: _model.userToken,
-      );
-
-      await Future.delayed(const Duration(milliseconds: 500));
-      if ((_model.homePageGetWallets?.succeeded ?? true) &&
-          ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
-        _model.singleWalletBalance = functions.formatGBPAmount(getJsonField(
-          (_model.homePageGetWallets?.jsonBody ?? ''),
-          r'''$[0].balance''',
-        ));
-        _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
+      if (!FFAppState().isCeproUser) {
+        await action_blocks.setContractStatusFlags(context);
         safeSetState(() {});
-        await Future.wait([
-          Future(() async {
-            // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
-            if ((FFAppState().tariffs == null) ||
-                (functions.diffNowInMinutes(
-                        FFAppState().lastMonthlyCostAndUsageLoad!) >=
-                    10)) {
-              // GetUsageInBackground
-              await action_blocks.getTariffsCostsUsage(context);
-              return;
-            } else {
-              return;
-            }
-          }),
-          Future(() async {
-            if (functions
-                    .diffNowInMinutes(FFAppState().lastPendingPaymentsLoad!) >=
-                10) {
-              await action_blocks.pendingPayments(context);
-              return;
-            } else {
-              return;
-            }
-          }),
-        ]);
-        return;
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Failure getting wallet balance',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 10000),
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          ),
+        _model.solarMeter = await actions.getMeterByType(
+          FFAppState().property,
+          'solar',
+          FFAppState().meters,
         );
+        _model.supplyMeter = await actions.getMeterByType(
+          FFAppState().property,
+          'supply',
+          FFAppState().meters,
+        );
+        _model.getSolarInstallationOutput =
+            await actions.getSolarInstallationById(
+          FFAppState().solarInstallations,
+          FFAppState().property.id,
+        );
+        _model.userToken = await actions.activeUserToken();
+        _model.homePageGetWallets = await GetWalletsCall.call(
+          bearerToken: _model.userToken,
+        );
+
+        await Future.delayed(const Duration(milliseconds: 500));
+        if ((_model.homePageGetWallets?.succeeded ?? true) &&
+            ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
+          _model.singleWalletBalance = functions.formatGBPAmount(getJsonField(
+            (_model.homePageGetWallets?.jsonBody ?? ''),
+            r'''$[0].balance''',
+          ));
+          _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
+          safeSetState(() {});
+          await Future.wait([
+            Future(() async {
+              // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
+              if ((FFAppState().tariffs == null) ||
+                  (functions.diffNowInMinutes(
+                          FFAppState().lastMonthlyCostAndUsageLoad!) >=
+                      10)) {
+                // GetUsageInBackground
+                await action_blocks.getTariffsCostsUsage(context);
+                return;
+              } else {
+                return;
+              }
+            }),
+            Future(() async {
+              if (functions.diffNowInMinutes(
+                      FFAppState().lastPendingPaymentsLoad!) >=
+                  10) {
+                await action_blocks.pendingPayments(context);
+                return;
+              } else {
+                return;
+              }
+            }),
+          ]);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Failure getting wallet balance',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
+              ),
+              duration: Duration(milliseconds: 10000),
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+          );
+          return;
+        }
+      } else {
+        context.pushNamed(PropertySelectionPageWidget.routeName);
+
         return;
       }
     });
