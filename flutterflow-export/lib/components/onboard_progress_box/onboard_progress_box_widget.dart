@@ -63,7 +63,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
           widget!.confirmedDetails!,
           widget!.isOccupier,
           widget!.isOwner)!;
-      _model.updatePage(() {});
+      safeSetState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));

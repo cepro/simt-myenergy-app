@@ -48,6 +48,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (RootPageContext.isInactiveRootPage(context)) {
+        return;
+      }
       if (!FFAppState().isCeproUser) {
         await action_blocks.setContractStatusFlags(context);
         safeSetState(() {});
@@ -89,6 +92,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       10)) {
                 // GetUsageInBackground
                 await action_blocks.getTariffsCostsUsage(context);
+                if (Navigator.of(context).canPop()) {
+                  context.pop();
+                }
+                context.pushNamed(HomePageWidget.routeName);
+
                 return;
               } else {
                 return;
@@ -351,7 +359,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 wrapWithModel(
                                   model: _model.onboardProgressBoxModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  updateOnChange: true,
                                   child: OnboardProgressBoxWidget(
                                     haveSupplyContract:
                                         FFAppState().haveSupplyContract,

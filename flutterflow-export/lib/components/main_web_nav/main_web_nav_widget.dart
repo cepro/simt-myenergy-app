@@ -39,8 +39,6 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
     with TickerProviderStateMixin {
   late MainWebNavModel _model;
 
-  var hasContainerTriggered1 = false;
-  var hasContainerTriggered2 = false;
   final animationsMap = <String, AnimationInfo>{};
 
   @override
@@ -57,7 +55,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
     animationsMap.addAll({
       'containerOnActionTriggerAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: false,
+        applyInitialState: true,
         effectsBuilder: () => [
           MoveEffect(
             curve: Curves.easeInOut,
@@ -70,7 +68,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
       ),
       'containerOnActionTriggerAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: false,
+        applyInitialState: true,
         effectsBuilder: () => [
           MoveEffect(
             curve: Curves.easeInOut,
@@ -506,13 +504,10 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 if (animationsMap[
                                         'containerOnActionTriggerAnimation2'] !=
                                     null) {
-                                  safeSetState(
-                                      () => hasContainerTriggered2 = true);
-                                  SchedulerBinding.instance.addPostFrameCallback(
-                                      (_) async => await animationsMap[
-                                              'containerOnActionTriggerAnimation2']!
-                                          .controller
-                                          .forward(from: 0.0));
+                                  await animationsMap[
+                                          'containerOnActionTriggerAnimation2']!
+                                      .controller
+                                      .forward(from: 0.0);
                                 }
                               },
                               child: Container(
@@ -582,10 +577,9 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                                   shape: BoxShape.rectangle,
                                                 ),
                                               ).animateOnActionTrigger(
-                                                  animationsMap[
-                                                      'containerOnActionTriggerAnimation1']!,
-                                                  hasBeenTriggered:
-                                                      hasContainerTriggered1),
+                                                animationsMap[
+                                                    'containerOnActionTriggerAnimation1']!,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -606,13 +600,10 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 if (animationsMap[
                                         'containerOnActionTriggerAnimation1'] !=
                                     null) {
-                                  safeSetState(
-                                      () => hasContainerTriggered1 = true);
-                                  SchedulerBinding.instance.addPostFrameCallback(
-                                      (_) async => await animationsMap[
-                                              'containerOnActionTriggerAnimation1']!
-                                          .controller
-                                          .forward(from: 0.0));
+                                  await animationsMap[
+                                          'containerOnActionTriggerAnimation1']!
+                                      .controller
+                                      .forward(from: 0.0);
                                 }
                               },
                               child: Container(
@@ -682,10 +673,9 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                                   shape: BoxShape.rectangle,
                                                 ),
                                               ).animateOnActionTrigger(
-                                                  animationsMap[
-                                                      'containerOnActionTriggerAnimation2']!,
-                                                  hasBeenTriggered:
-                                                      hasContainerTriggered2),
+                                                animationsMap[
+                                                    'containerOnActionTriggerAnimation2']!,
+                                              ),
                                             ),
                                           ],
                                         ),

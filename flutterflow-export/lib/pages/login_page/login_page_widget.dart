@@ -750,6 +750,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                         .firstOrNull
                                                                         ?.id,
                                                                   );
+                                                                  safeSetState(
+                                                                      () {});
                                                                   if (_shouldSetState)
                                                                     safeSetState(
                                                                         () {});

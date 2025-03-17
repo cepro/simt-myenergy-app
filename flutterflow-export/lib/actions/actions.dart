@@ -508,7 +508,7 @@ Future<bool?> setContractStatusFlags(BuildContext context) async {
   return true;
 }
 
-Future changeProperty(
+Future<bool?> changeProperty(
   BuildContext context, {
   required String? propertyId,
 }) async {
@@ -523,8 +523,12 @@ Future changeProperty(
       .getAccountsByPropertyId(FFAppState().accountsAll.toList(), propertyId!)
       .toList()
       .cast<AccountStruct>();
+  if (Navigator.of(context).canPop()) {
+    context.pop();
+  }
+  context.pushNamed(HomePageWidget.routeName);
 
-  context.goNamed(HomePageWidget.routeName);
+  return true;
 }
 
 Future pendingPayments(BuildContext context) async {
