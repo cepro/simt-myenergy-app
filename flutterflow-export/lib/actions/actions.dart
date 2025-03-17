@@ -336,7 +336,7 @@ Future openSupplyContract(BuildContext context) async {
                   .toList()
                   .firstOrNull!,
               contract: functions.getContractByType(
-                  FFAppState().accountsAll.toList(), 'supply')!,
+                  FFAppState().accountsForCurrentProperty.toList(), 'supply')!,
             ),
           ),
         );

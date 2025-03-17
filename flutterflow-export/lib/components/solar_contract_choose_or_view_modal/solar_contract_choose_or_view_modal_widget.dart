@@ -1,5 +1,4 @@
 import '';
-import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_card/solar_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -59,8 +58,6 @@ class _SolarContractChooseOrViewModalWidgetState
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -138,10 +135,8 @@ class _SolarContractChooseOrViewModalWidgetState
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if ((widget!.contract?.termsId == null ||
-                                    widget!.contract?.termsId == '') ||
-                                (widget!.contract?.termsId ==
-                                    widget!.termsSolarShortTerm?.id))
+                            if (widget!.contract?.termsId != null &&
+                                widget!.contract?.termsId != '')
                               wrapWithModel(
                                 model: _model.solarShortTermContractCardModel,
                                 updateCallback: () => safeSetState(() {}),
@@ -179,9 +174,8 @@ class _SolarContractChooseOrViewModalWidgetState
                         ),
                       if ((widget!.contract?.id == null ||
                               widget!.contract?.id == '') ||
-                          ((widget!.contract?.termsId == null ||
-                                  widget!.contract?.termsId == '') &&
-                              (FFAppState().esco == EscoCodeEnum.hmce)))
+                          (widget!.contract?.termsId == null ||
+                              widget!.contract?.termsId == ''))
                         Text(
                           'Contract has not yet been created. Please contact support to find out why.',
                           style: FlutterFlowTheme.of(context)
