@@ -1,4 +1,3 @@
-import '';
 import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_card/solar_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';

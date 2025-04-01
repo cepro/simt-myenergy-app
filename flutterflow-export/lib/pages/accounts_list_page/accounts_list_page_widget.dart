@@ -1,4 +1,3 @@
-import '';
 import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';

@@ -1,4 +1,3 @@
-import '';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/home_notification_box/home_notification_box_widget.dart';
@@ -92,11 +91,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       10)) {
                 // GetUsageInBackground
                 await action_blocks.getTariffsCostsUsage(context);
-                if (Navigator.of(context).canPop()) {
-                  context.pop();
-                }
-                context.pushNamed(HomePageWidget.routeName);
-
                 return;
               } else {
                 return;

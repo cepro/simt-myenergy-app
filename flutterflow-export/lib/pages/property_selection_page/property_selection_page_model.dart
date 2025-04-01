@@ -1,4 +1,3 @@
-import '';
 import '/components/property_list/property_list_widget.dart';
 import '/components/property_table/property_table_widget.dart';
 import '/components/sidebar_property_list/sidebar_property_list_widget.dart';
