@@ -356,3 +356,10 @@ int diffNowInMinutes(DateTime compare) {
 DateTime twoThousandDateTime() {
   return DateTime(2000, 1, 1, 0, 0);
 }
+
+TariffStruct? supplyTariffCurrent(TariffsStruct tariffs) {
+  // use List.of to clone and avoid modifying the List in place
+  List<TariffStruct> customerTariffs = List.of(tariffs.customerTariffs);
+  customerTariffs.sort((a, b) => b.periodStart!.compareTo(a.periodStart!));
+  return customerTariffs.length > 0 ? customerTariffs[0] : null;
+}

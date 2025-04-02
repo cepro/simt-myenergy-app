@@ -37,6 +37,11 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     updateFn(solarInstallation ??= SolarInstallationStruct());
   }
 
+  TariffStruct? supplyTariffCurrent;
+  void updateSupplyTariffCurrentStruct(Function(TariffStruct) updateFn) {
+    updateFn(supplyTariffCurrent ??= TariffStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Custom Action - getMeterByType] action in HomePage widget.
