@@ -83,6 +83,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           _model.inPrepayMode = functions.isPrepayMode(_model.supplyMeter);
           _model.supplyTariffCurrent =
               functions.supplyTariffCurrent(FFAppState().tariffs);
+          _model.solarCreditTariffCurrent =
+              functions.solarTariffCurrent(FFAppState().tariffs);
           safeSetState(() {});
           await Future.wait([
             Future(() async {
@@ -95,6 +97,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 await action_blocks.getTariffsCostsUsage(context);
                 _model.supplyTariffCurrent =
                     functions.supplyTariffCurrent(FFAppState().tariffs);
+                _model.solarCreditTariffCurrent =
+                    functions.solarTariffCurrent(FFAppState().tariffs);
                 safeSetState(() {});
                 return;
               } else {
@@ -859,7 +863,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'Unit Rate (per kWh):  ${_model.supplyTariffCurrent?.unitRate?.toString()}',
+                                                                'Unit Rate: ${functions.formatGBPPenceAmount(_model.supplyTariffCurrent!.unitRate)} per kWh',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .start,
@@ -888,7 +892,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           0.0,
                                                                           0.0),
                                                               child: Text(
-                                                                'Standing Charge (per day):  ${_model.supplyTariffCurrent?.standingCharge?.toString()}',
+                                                                'Standing Charge: ${functions.formatGBPPenceAmount(_model.supplyTariffCurrent!.standingCharge)} per day',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .start,
@@ -1273,6 +1277,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0),
                                                                 child: Text(
                                                                   'Commissioning Date: ${dateTimeFormat("dd/MM/yyyy", _model.getSolarInstallationOutput?.commissioningDate)}',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            if (_model
+                                                                    .solarCreditTariffCurrent !=
+                                                                null)
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            15.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: Text(
+                                                                  'Tariff: ${functions.formatGBPAmount(_model.solarCreditTariffCurrent!.creditPencePerYear / 100)} per kWp per year',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .start,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium

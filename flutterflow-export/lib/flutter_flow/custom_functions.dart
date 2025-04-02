@@ -175,8 +175,8 @@ int monthlyUsageLengthOrNegativeOne(List<MonthlyUsageStruct>? list) {
   }
 }
 
-TariffStruct? tariffForDate(
-  List<TariffStruct> tariffList,
+SupplyTariffStruct? tariffForDate(
+  List<SupplyTariffStruct> tariffList,
   DateTime tariffDate,
 ) {
   // sort descending
@@ -226,7 +226,7 @@ String monthlyCostsTooltipPricingText(
 
   /******        Microgrid      *********/
 
-  TariffStruct? microgridTariff = tariffForDate(
+  SupplyTariffStruct? microgridTariff = tariffForDate(
       tariffs.microgridTariffs.toList(), monthlyCostsItem.monthTyped!);
   if (microgridTariff == null) {
     throw 'microgrid tariff not found for this month';
@@ -246,7 +246,7 @@ String monthlyCostsTooltipPricingText(
 
   /******        Benchmark      *********/
 
-  TariffStruct? benchmarkTariff = tariffForDate(
+  SupplyTariffStruct? benchmarkTariff = tariffForDate(
       tariffs.benchmarkTariffs.toList(), monthlyCostsItem.monthTyped!);
   if (benchmarkTariff == null) {
     throw 'benchmark tariff not found for this month';
@@ -266,7 +266,7 @@ String monthlyCostsTooltipPricingText(
 
   /******        Customer Charge      *********/
 
-  TariffStruct? customerTariff = tariffForDate(
+  SupplyTariffStruct? customerTariff = tariffForDate(
       tariffs.customerTariffs.toList(), monthlyCostsItem.monthTyped!);
   if (customerTariff == null) {
     throw 'customer tariff not found for this month';
@@ -338,6 +338,14 @@ String mcsFileName(
   return streetNumber + "-MCS_Certificate_" + mcsId + "_v1.pdf";
 }
 
+SolarCreditTariffStruct? solarTariffCurrent(TariffsStruct tariffs) {
+  // use List.of to clone and avoid modifying the List in place
+  List<SolarCreditTariffStruct> solarTariffs =
+      List.of(tariffs.solarCreditTariffs);
+  solarTariffs.sort((a, b) => b.periodStart!.compareTo(a.periodStart!));
+  return solarTariffs.length > 0 ? solarTariffs[0] : null;
+}
+
 String? streetNumberFromPropertyDescription(String description) {
   RegExp regExp = RegExp(r'(\d+)(?!.*\d)');
 
@@ -357,9 +365,9 @@ DateTime twoThousandDateTime() {
   return DateTime(2000, 1, 1, 0, 0);
 }
 
-TariffStruct? supplyTariffCurrent(TariffsStruct tariffs) {
+SupplyTariffStruct? supplyTariffCurrent(TariffsStruct tariffs) {
   // use List.of to clone and avoid modifying the List in place
-  List<TariffStruct> customerTariffs = List.of(tariffs.customerTariffs);
+  List<SupplyTariffStruct> customerTariffs = List.of(tariffs.customerTariffs);
   customerTariffs.sort((a, b) => b.periodStart!.compareTo(a.periodStart!));
   return customerTariffs.length > 0 ? customerTariffs[0] : null;
 }

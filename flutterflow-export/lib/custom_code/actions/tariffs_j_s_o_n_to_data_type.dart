@@ -14,30 +14,38 @@ import 'package:flutter/material.dart';
 Future<TariffsStruct> tariffsJSONToDataType(dynamic tariffsJSON) async {
   Map<String, dynamic> tariffsMap = tariffsJSON as Map<String, dynamic>;
 
-  List<TariffStruct> benchmarkTariffs = [];
+  List<SupplyTariffStruct> benchmarkTariffs = [];
 
   tariffsMap["benchmarkTariffs"].forEach((tariffRec) {
-    benchmarkTariffs.add(TariffStruct(
+    benchmarkTariffs.add(SupplyTariffStruct(
       unitRate: tariffRec['unitRate'],
       standingCharge: tariffRec['standingCharge'],
       periodStart: DateTime.parse(tariffRec["periodStart"]),
     ));
   });
 
-  List<TariffStruct> microgridTariffs = [];
+  List<SupplyTariffStruct> microgridTariffs = [];
   tariffsMap["microgridTariffs"].forEach((tariffRec) {
-    microgridTariffs.add(TariffStruct(
+    microgridTariffs.add(SupplyTariffStruct(
       unitRate: tariffRec['unitRate'],
       standingCharge: tariffRec['standingCharge'],
       periodStart: DateTime.parse(tariffRec["periodStart"]),
     ));
   });
 
-  List<TariffStruct> customerTariffs = [];
+  List<SupplyTariffStruct> customerTariffs = [];
   tariffsMap["customerTariffs"].forEach((tariffRec) {
-    customerTariffs.add(TariffStruct(
+    customerTariffs.add(SupplyTariffStruct(
       unitRate: tariffRec['unitRate'],
       standingCharge: tariffRec['standingCharge'],
+      periodStart: DateTime.parse(tariffRec["periodStart"]),
+    ));
+  });
+
+  List<SolarCreditTariffStruct> solarCreditTariffs = [];
+  tariffsMap["solarCreditTariffs"].forEach((tariffRec) {
+    solarCreditTariffs.add(SolarCreditTariffStruct(
+      creditPencePerYear: tariffRec['creditPencePerYear'],
       periodStart: DateTime.parse(tariffRec["periodStart"]),
     ));
   });
@@ -45,5 +53,6 @@ Future<TariffsStruct> tariffsJSONToDataType(dynamic tariffsJSON) async {
   return TariffsStruct(
       benchmarkTariffs: benchmarkTariffs,
       microgridTariffs: microgridTariffs,
-      customerTariffs: customerTariffs);
+      customerTariffs: customerTariffs,
+      solarCreditTariffs: solarCreditTariffs);
 }

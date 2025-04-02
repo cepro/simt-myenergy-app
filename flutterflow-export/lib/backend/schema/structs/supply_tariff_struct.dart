@@ -6,8 +6,8 @@ import '/backend/schema/enums/enums.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class TariffStruct extends BaseStruct {
-  TariffStruct({
+class SupplyTariffStruct extends BaseStruct {
+  SupplyTariffStruct({
     DateTime? periodStart,
     double? unitRate,
     double? standingCharge,
@@ -41,14 +41,16 @@ class TariffStruct extends BaseStruct {
 
   bool hasStandingCharge() => _standingCharge != null;
 
-  static TariffStruct fromMap(Map<String, dynamic> data) => TariffStruct(
+  static SupplyTariffStruct fromMap(Map<String, dynamic> data) =>
+      SupplyTariffStruct(
         periodStart: data['periodStart'] as DateTime?,
         unitRate: castToType<double>(data['unitRate']),
         standingCharge: castToType<double>(data['standingCharge']),
       );
 
-  static TariffStruct? maybeFromMap(dynamic data) =>
-      data is Map ? TariffStruct.fromMap(data.cast<String, dynamic>()) : null;
+  static SupplyTariffStruct? maybeFromMap(dynamic data) => data is Map
+      ? SupplyTariffStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'periodStart': _periodStart,
@@ -72,8 +74,8 @@ class TariffStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static TariffStruct fromSerializableMap(Map<String, dynamic> data) =>
-      TariffStruct(
+  static SupplyTariffStruct fromSerializableMap(Map<String, dynamic> data) =>
+      SupplyTariffStruct(
         periodStart: deserializeParam(
           data['periodStart'],
           ParamType.DateTime,
@@ -92,11 +94,11 @@ class TariffStruct extends BaseStruct {
       );
 
   @override
-  String toString() => 'TariffStruct(${toMap()})';
+  String toString() => 'SupplyTariffStruct(${toMap()})';
 
   @override
   bool operator ==(Object other) {
-    return other is TariffStruct &&
+    return other is SupplyTariffStruct &&
         periodStart == other.periodStart &&
         unitRate == other.unitRate &&
         standingCharge == other.standingCharge;
@@ -107,12 +109,12 @@ class TariffStruct extends BaseStruct {
       const ListEquality().hash([periodStart, unitRate, standingCharge]);
 }
 
-TariffStruct createTariffStruct({
+SupplyTariffStruct createSupplyTariffStruct({
   DateTime? periodStart,
   double? unitRate,
   double? standingCharge,
 }) =>
-    TariffStruct(
+    SupplyTariffStruct(
       periodStart: periodStart,
       unitRate: unitRate,
       standingCharge: standingCharge,

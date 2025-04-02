@@ -8,58 +8,82 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class TariffsStruct extends BaseStruct {
   TariffsStruct({
-    List<TariffStruct>? benchmarkTariffs,
-    List<TariffStruct>? microgridTariffs,
-    List<TariffStruct>? customerTariffs,
+    List<SupplyTariffStruct>? benchmarkTariffs,
+    List<SupplyTariffStruct>? microgridTariffs,
+    List<SupplyTariffStruct>? customerTariffs,
+    List<SolarCreditTariffStruct>? solarCreditTariffs,
   })  : _benchmarkTariffs = benchmarkTariffs,
         _microgridTariffs = microgridTariffs,
-        _customerTariffs = customerTariffs;
+        _customerTariffs = customerTariffs,
+        _solarCreditTariffs = solarCreditTariffs;
 
   // "benchmarkTariffs" field.
-  List<TariffStruct>? _benchmarkTariffs;
-  List<TariffStruct> get benchmarkTariffs => _benchmarkTariffs ?? const [];
-  set benchmarkTariffs(List<TariffStruct>? val) => _benchmarkTariffs = val;
+  List<SupplyTariffStruct>? _benchmarkTariffs;
+  List<SupplyTariffStruct> get benchmarkTariffs =>
+      _benchmarkTariffs ?? const [];
+  set benchmarkTariffs(List<SupplyTariffStruct>? val) =>
+      _benchmarkTariffs = val;
 
-  void updateBenchmarkTariffs(Function(List<TariffStruct>) updateFn) {
+  void updateBenchmarkTariffs(Function(List<SupplyTariffStruct>) updateFn) {
     updateFn(_benchmarkTariffs ??= []);
   }
 
   bool hasBenchmarkTariffs() => _benchmarkTariffs != null;
 
   // "microgridTariffs" field.
-  List<TariffStruct>? _microgridTariffs;
-  List<TariffStruct> get microgridTariffs => _microgridTariffs ?? const [];
-  set microgridTariffs(List<TariffStruct>? val) => _microgridTariffs = val;
+  List<SupplyTariffStruct>? _microgridTariffs;
+  List<SupplyTariffStruct> get microgridTariffs =>
+      _microgridTariffs ?? const [];
+  set microgridTariffs(List<SupplyTariffStruct>? val) =>
+      _microgridTariffs = val;
 
-  void updateMicrogridTariffs(Function(List<TariffStruct>) updateFn) {
+  void updateMicrogridTariffs(Function(List<SupplyTariffStruct>) updateFn) {
     updateFn(_microgridTariffs ??= []);
   }
 
   bool hasMicrogridTariffs() => _microgridTariffs != null;
 
   // "customerTariffs" field.
-  List<TariffStruct>? _customerTariffs;
-  List<TariffStruct> get customerTariffs => _customerTariffs ?? const [];
-  set customerTariffs(List<TariffStruct>? val) => _customerTariffs = val;
+  List<SupplyTariffStruct>? _customerTariffs;
+  List<SupplyTariffStruct> get customerTariffs => _customerTariffs ?? const [];
+  set customerTariffs(List<SupplyTariffStruct>? val) => _customerTariffs = val;
 
-  void updateCustomerTariffs(Function(List<TariffStruct>) updateFn) {
+  void updateCustomerTariffs(Function(List<SupplyTariffStruct>) updateFn) {
     updateFn(_customerTariffs ??= []);
   }
 
   bool hasCustomerTariffs() => _customerTariffs != null;
 
+  // "solarCreditTariffs" field.
+  List<SolarCreditTariffStruct>? _solarCreditTariffs;
+  List<SolarCreditTariffStruct> get solarCreditTariffs =>
+      _solarCreditTariffs ?? const [];
+  set solarCreditTariffs(List<SolarCreditTariffStruct>? val) =>
+      _solarCreditTariffs = val;
+
+  void updateSolarCreditTariffs(
+      Function(List<SolarCreditTariffStruct>) updateFn) {
+    updateFn(_solarCreditTariffs ??= []);
+  }
+
+  bool hasSolarCreditTariffs() => _solarCreditTariffs != null;
+
   static TariffsStruct fromMap(Map<String, dynamic> data) => TariffsStruct(
         benchmarkTariffs: getStructList(
           data['benchmarkTariffs'],
-          TariffStruct.fromMap,
+          SupplyTariffStruct.fromMap,
         ),
         microgridTariffs: getStructList(
           data['microgridTariffs'],
-          TariffStruct.fromMap,
+          SupplyTariffStruct.fromMap,
         ),
         customerTariffs: getStructList(
           data['customerTariffs'],
-          TariffStruct.fromMap,
+          SupplyTariffStruct.fromMap,
+        ),
+        solarCreditTariffs: getStructList(
+          data['solarCreditTariffs'],
+          SolarCreditTariffStruct.fromMap,
         ),
       );
 
@@ -70,6 +94,8 @@ class TariffsStruct extends BaseStruct {
         'benchmarkTariffs': _benchmarkTariffs?.map((e) => e.toMap()).toList(),
         'microgridTariffs': _microgridTariffs?.map((e) => e.toMap()).toList(),
         'customerTariffs': _customerTariffs?.map((e) => e.toMap()).toList(),
+        'solarCreditTariffs':
+            _solarCreditTariffs?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -89,27 +115,38 @@ class TariffsStruct extends BaseStruct {
           ParamType.DataStruct,
           isList: true,
         ),
+        'solarCreditTariffs': serializeParam(
+          _solarCreditTariffs,
+          ParamType.DataStruct,
+          isList: true,
+        ),
       }.withoutNulls;
 
   static TariffsStruct fromSerializableMap(Map<String, dynamic> data) =>
       TariffsStruct(
-        benchmarkTariffs: deserializeStructParam<TariffStruct>(
+        benchmarkTariffs: deserializeStructParam<SupplyTariffStruct>(
           data['benchmarkTariffs'],
           ParamType.DataStruct,
           true,
-          structBuilder: TariffStruct.fromSerializableMap,
+          structBuilder: SupplyTariffStruct.fromSerializableMap,
         ),
-        microgridTariffs: deserializeStructParam<TariffStruct>(
+        microgridTariffs: deserializeStructParam<SupplyTariffStruct>(
           data['microgridTariffs'],
           ParamType.DataStruct,
           true,
-          structBuilder: TariffStruct.fromSerializableMap,
+          structBuilder: SupplyTariffStruct.fromSerializableMap,
         ),
-        customerTariffs: deserializeStructParam<TariffStruct>(
+        customerTariffs: deserializeStructParam<SupplyTariffStruct>(
           data['customerTariffs'],
           ParamType.DataStruct,
           true,
-          structBuilder: TariffStruct.fromSerializableMap,
+          structBuilder: SupplyTariffStruct.fromSerializableMap,
+        ),
+        solarCreditTariffs: deserializeStructParam<SolarCreditTariffStruct>(
+          data['solarCreditTariffs'],
+          ParamType.DataStruct,
+          true,
+          structBuilder: SolarCreditTariffStruct.fromSerializableMap,
         ),
       );
 
@@ -122,12 +159,17 @@ class TariffsStruct extends BaseStruct {
     return other is TariffsStruct &&
         listEquality.equals(benchmarkTariffs, other.benchmarkTariffs) &&
         listEquality.equals(microgridTariffs, other.microgridTariffs) &&
-        listEquality.equals(customerTariffs, other.customerTariffs);
+        listEquality.equals(customerTariffs, other.customerTariffs) &&
+        listEquality.equals(solarCreditTariffs, other.solarCreditTariffs);
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([benchmarkTariffs, microgridTariffs, customerTariffs]);
+  int get hashCode => const ListEquality().hash([
+        benchmarkTariffs,
+        microgridTariffs,
+        customerTariffs,
+        solarCreditTariffs
+      ]);
 }
 
 TariffsStruct createTariffsStruct() => TariffsStruct();

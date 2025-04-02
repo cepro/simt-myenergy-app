@@ -37,9 +37,15 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     updateFn(solarInstallation ??= SolarInstallationStruct());
   }
 
-  TariffStruct? supplyTariffCurrent;
-  void updateSupplyTariffCurrentStruct(Function(TariffStruct) updateFn) {
-    updateFn(supplyTariffCurrent ??= TariffStruct());
+  SupplyTariffStruct? supplyTariffCurrent;
+  void updateSupplyTariffCurrentStruct(Function(SupplyTariffStruct) updateFn) {
+    updateFn(supplyTariffCurrent ??= SupplyTariffStruct());
+  }
+
+  SolarCreditTariffStruct? solarCreditTariffCurrent;
+  void updateSolarCreditTariffCurrentStruct(
+      Function(SolarCreditTariffStruct) updateFn) {
+    updateFn(solarCreditTariffCurrent ??= SolarCreditTariffStruct());
   }
 
   ///  State fields for stateful widgets in this page.
