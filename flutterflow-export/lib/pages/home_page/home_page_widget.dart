@@ -1302,7 +1302,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0,
                                                                             0.0),
                                                                 child: Text(
-                                                                  'Tariff: ${functions.formatGBPAmount(_model.solarCreditTariffCurrent!.creditPencePerYear / 100)} per kWp per year',
+                                                                  'Tariff: ${functions.formatGBPAmount(_model.solarCreditTariffCurrent!.creditPencePerYear / 100)} per kW installed',
                                                                   textAlign:
                                                                       TextAlign
                                                                           .start,
