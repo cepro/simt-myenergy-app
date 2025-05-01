@@ -629,6 +629,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           ),
                                                         ),
                                                         Container(
+                                                          constraints:
+                                                              BoxConstraints(
+                                                            minWidth: 200.0,
+                                                          ),
                                                           decoration:
                                                               BoxDecoration(
                                                             color: FlutterFlowTheme
