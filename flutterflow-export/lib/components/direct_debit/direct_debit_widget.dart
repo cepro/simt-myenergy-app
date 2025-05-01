@@ -104,13 +104,18 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                   Text(
                     'Sort code: ${widget!.sortCode}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Roboto Mono',
+                          font: GoogleFonts.robotoMono(
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           fontSize: 14.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
-                          useGoogleFonts:
-                              GoogleFonts.asMap().containsKey('Roboto Mono'),
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                   ),
                 ],
@@ -124,13 +129,18 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                   Text(
                     'Account: **** ${widget!.last4Digits}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Roboto Mono',
+                          font: GoogleFonts.robotoMono(
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           fontSize: 14.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
-                          useGoogleFonts:
-                              GoogleFonts.asMap().containsKey('Roboto Mono'),
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                   ),
                 ],

@@ -1,6 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/home_notification_box/home_notification_box_widget.dart';
+import '/components/info_tooltip_widget.dart';
+import '/components/labeled_value_widget.dart';
+import '/components/labeled_value_with_unit_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/components/onboard_progress_box/onboard_progress_box_widget.dart';
 import '/components/product_roadmap_box/product_roadmap_box_widget.dart';
@@ -74,8 +77,30 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late WelcomeBoxModel welcomeBoxModel;
   // Model for ProductRoadmapBox component.
   late ProductRoadmapBoxModel productRoadmapBoxModel;
+  // Model for LabeledValue component.
+  late LabeledValueModel labeledValueModel1;
+  // Model for LabeledValue component.
+  late LabeledValueModel labeledValueModel2;
+  // Model for InfoTooltip component.
+  late InfoTooltipModel infoTooltipModel1;
+  // Model for LabeledValueWithUnit component.
+  late LabeledValueWithUnitModel labeledValueWithUnitModel1;
+  // Model for LabeledValueWithUnit component.
+  late LabeledValueWithUnitModel labeledValueWithUnitModel2;
   // Model for SupplyContractRow component.
   late SupplyContractRowModel supplyContractRowModel;
+  // Model for LabeledValue component.
+  late LabeledValueModel labeledValueModel3;
+  // Model for LabeledValue component.
+  late LabeledValueModel labeledValueModel4;
+  // Model for LabeledValue component.
+  late LabeledValueModel labeledValueModel5;
+  // Model for LabeledValue component.
+  late LabeledValueModel labeledValueModel6;
+  // Model for InfoTooltip component.
+  late InfoTooltipModel infoTooltipModel2;
+  // Model for LabeledValueWithUnit component.
+  late LabeledValueWithUnitModel labeledValueWithUnitModel3;
   // Stores action output result for [Custom Action - supabaseGetStorageURL] action in Button widget.
   String? certificateURL;
   // Model for SolarContractRow component.
@@ -94,8 +119,22 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     welcomeBoxModel = createModel(context, () => WelcomeBoxModel());
     productRoadmapBoxModel =
         createModel(context, () => ProductRoadmapBoxModel());
+    labeledValueModel1 = createModel(context, () => LabeledValueModel());
+    labeledValueModel2 = createModel(context, () => LabeledValueModel());
+    infoTooltipModel1 = createModel(context, () => InfoTooltipModel());
+    labeledValueWithUnitModel1 =
+        createModel(context, () => LabeledValueWithUnitModel());
+    labeledValueWithUnitModel2 =
+        createModel(context, () => LabeledValueWithUnitModel());
     supplyContractRowModel =
         createModel(context, () => SupplyContractRowModel());
+    labeledValueModel3 = createModel(context, () => LabeledValueModel());
+    labeledValueModel4 = createModel(context, () => LabeledValueModel());
+    labeledValueModel5 = createModel(context, () => LabeledValueModel());
+    labeledValueModel6 = createModel(context, () => LabeledValueModel());
+    infoTooltipModel2 = createModel(context, () => InfoTooltipModel());
+    labeledValueWithUnitModel3 =
+        createModel(context, () => LabeledValueWithUnitModel());
     solarContractRowModel = createModel(context, () => SolarContractRowModel());
   }
 
@@ -108,7 +147,18 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     onboardProgressBoxModel.dispose();
     welcomeBoxModel.dispose();
     productRoadmapBoxModel.dispose();
+    labeledValueModel1.dispose();
+    labeledValueModel2.dispose();
+    infoTooltipModel1.dispose();
+    labeledValueWithUnitModel1.dispose();
+    labeledValueWithUnitModel2.dispose();
     supplyContractRowModel.dispose();
+    labeledValueModel3.dispose();
+    labeledValueModel4.dispose();
+    labeledValueModel5.dispose();
+    labeledValueModel6.dispose();
+    infoTooltipModel2.dispose();
+    labeledValueWithUnitModel3.dispose();
     solarContractRowModel.dispose();
   }
 }

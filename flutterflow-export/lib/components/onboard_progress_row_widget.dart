@@ -81,11 +81,8 @@ class _OnboardProgressRowWidgetState extends State<OnboardProgressRowWidget> {
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).titleMediumFamily,
+                        font: FlutterFlowTheme.of(context).titleMedium,
                         letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).titleMediumFamily),
                       ),
                 ),
                 if (widget!.linkLabel != null && widget!.linkLabel != '')
@@ -104,12 +101,9 @@ class _OnboardProgressRowWidgetState extends State<OnboardProgressRowWidget> {
                       ),
                       textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            font: FlutterFlowTheme.of(context).bodyMedium,
                             letterSpacing: 0.0,
                             decoration: TextDecoration.underline,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),

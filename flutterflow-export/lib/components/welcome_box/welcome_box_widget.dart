@@ -65,12 +65,8 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                   Text(
                     'Welcome',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).headlineMediumFamily,
+                          font: FlutterFlowTheme.of(context).headlineMedium,
                           letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context)
-                                  .headlineMediumFamily),
                         ),
                   ),
                 ],
@@ -82,13 +78,10 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                     child: Text(
                       'The ${FFAppState().escoName} microgrid has been established to enable homes and electric vehicles to share solar energy across the ${FFAppState().escoName} estate; surplus solar is stored in the ${FFAppState().escoName} community battery for later use.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            font: FlutterFlowTheme.of(context).bodyMedium,
                             color: FlutterFlowTheme.of(context).primaryText,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),
@@ -138,14 +131,10 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyMediumFamily,
+                                font: FlutterFlowTheme.of(context).bodyMedium,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily),
                               ),
                         ),
                       ),

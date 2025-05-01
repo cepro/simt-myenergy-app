@@ -68,12 +68,9 @@ class _StopImpersonatingLinkWidgetState
                 child: Text(
                   'Impersonating ${FFAppState().impersonationEmail}',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyMediumFamily,
+                        font: FlutterFlowTheme.of(context).bodyMedium,
                         color: FlutterFlowTheme.of(context).error,
                         letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyMediumFamily),
                       ),
                 ),
               ),
@@ -89,12 +86,10 @@ class _StopImpersonatingLinkWidgetState
                 iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                      font: FlutterFlowTheme.of(context).titleSmall,
                       color: Colors.white,
                       fontSize: 14.0,
                       letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).titleSmallFamily),
                     ),
                 elevation: 0.0,
                 borderRadius: BorderRadius.circular(8.0),

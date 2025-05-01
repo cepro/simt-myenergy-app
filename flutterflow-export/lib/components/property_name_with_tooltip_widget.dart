@@ -50,10 +50,8 @@ class _PropertyNameWithTooltipWidgetState
         child: Text(
           '${FFAppState().property.plot}  Owner: ${FFAppState().property.ownerEmail}',
           style: FlutterFlowTheme.of(context).bodyLarge.override(
-                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                font: FlutterFlowTheme.of(context).bodyLarge,
                 letterSpacing: 0.0,
-                useGoogleFonts: GoogleFonts.asMap()
-                    .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
               ),
         ),
       ),
@@ -72,10 +70,8 @@ class _PropertyNameWithTooltipWidgetState
         child: Text(
           FFAppState().property.description,
           style: FlutterFlowTheme.of(context).bodyLarge.override(
-                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                font: FlutterFlowTheme.of(context).bodyLarge,
                 letterSpacing: 0.0,
-                useGoogleFonts: GoogleFonts.asMap()
-                    .containsKey(FlutterFlowTheme.of(context).bodyLargeFamily),
               ),
         ),
       ),

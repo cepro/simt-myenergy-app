@@ -91,13 +91,9 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                     child: Text(
                       'Back',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).displaySmallFamily,
+                            font: FlutterFlowTheme.of(context).displaySmall,
                             fontSize: 16.0,
                             letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context)
-                                    .displaySmallFamily),
                           ),
                     ),
                   ),
@@ -120,12 +116,9 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                 child: Text(
                   'Forgot Password',
                   style: FlutterFlowTheme.of(context).displaySmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).displaySmallFamily,
+                        font: FlutterFlowTheme.of(context).displaySmall,
                         fontSize: 32.0,
                         letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).displaySmallFamily),
                       ),
                 ),
               ),
@@ -147,12 +140,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
+                                font: FlutterFlowTheme.of(context).bodySmall,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
                               ),
                         ),
                       ),
@@ -164,12 +153,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
+                                font: FlutterFlowTheme.of(context).bodySmall,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
                               ),
                         ),
                       ),
@@ -181,13 +166,9 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
+                                font: FlutterFlowTheme.of(context).bodySmall,
                                 color: FlutterFlowTheme.of(context).error,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
                               ),
                         ),
                       ),
@@ -203,23 +184,15 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           labelStyle: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
+                                font: FlutterFlowTheme.of(context).bodySmall,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
                               ),
                           hintText: 'Enter your email...',
                           hintStyle: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodySmallFamily,
+                                font: FlutterFlowTheme.of(context).bodySmall,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodySmallFamily),
                               ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -256,12 +229,8 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                               20.0, 24.0, 20.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              font: FlutterFlowTheme.of(context).bodyMedium,
                               letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
                             ),
                         validator: _model.emailAddressTextControllerValidator
                             .asValidator(context),
@@ -302,14 +271,10 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .titleSmallFamily,
+                                font: FlutterFlowTheme.of(context).titleSmall,
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .titleSmallFamily),
                               ),
                           elevation: 3.0,
                           borderSide: BorderSide(

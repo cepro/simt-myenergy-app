@@ -75,11 +75,8 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                         'unknown',
                       ),
                       style: FlutterFlowTheme.of(context).bodySmall.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodySmallFamily,
+                            font: FlutterFlowTheme.of(context).bodySmall,
                             letterSpacing: 0.0,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodySmallFamily),
                           ),
                     ),
                     if (widget!.infoTooltipText != null &&
@@ -95,13 +92,9 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyLargeFamily,
+                                    font:
+                                        FlutterFlowTheme.of(context).bodyLarge,
                                     letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .bodyLargeFamily),
                                   ),
                             ),
                           ),
@@ -128,11 +121,8 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                 Text(
                   widget!.value!,
                   style: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodyLargeFamily,
+                        font: FlutterFlowTheme.of(context).bodyLarge,
                         letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodyLargeFamily),
                       ),
                 ),
                 Text(
@@ -141,12 +131,9 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).bodySmall.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).bodySmallFamily,
+                        font: FlutterFlowTheme.of(context).bodySmall,
                         letterSpacing: 0.0,
                         decoration: TextDecoration.underline,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).bodySmallFamily),
                       ),
                 ),
               ].divide(SizedBox(height: 5.0)),

@@ -63,12 +63,8 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                   Text(
                     'Product Roadmap',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).headlineMediumFamily,
+                          font: FlutterFlowTheme.of(context).headlineMedium,
                           letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context)
-                                  .headlineMediumFamily),
                         ),
                   ),
                 ],
@@ -80,12 +76,9 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                     child: Text(
                       'The Cepro team is working hard to enable microgrid customers to manage all aspects of their energy use through this “MyEnergy” app. New features are being rolled out regularly.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            font: FlutterFlowTheme.of(context).bodyMedium,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),
@@ -117,14 +110,10 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                       child: Text(
                         'Click to show Product Roadmap',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
+                              font: FlutterFlowTheme.of(context).bodyMedium,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                               decoration: TextDecoration.underline,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
                             ),
                       ),
                     ),

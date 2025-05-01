@@ -112,11 +112,8 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                           'Title Not Set',
                         ),
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyLargeFamily,
+                              font: FlutterFlowTheme.of(context).bodyLarge,
                               letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).bodyLargeFamily),
                             ),
                       ),
                     ),
@@ -131,11 +128,8 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily:
-                            FlutterFlowTheme.of(context).labelMediumFamily,
+                        font: FlutterFlowTheme.of(context).labelMedium,
                         letterSpacing: 0.0,
-                        useGoogleFonts: GoogleFonts.asMap().containsKey(
-                            FlutterFlowTheme.of(context).labelMediumFamily),
                       ),
                 ),
               ),
@@ -174,15 +168,11 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).titleSmallFamily,
+                              font: FlutterFlowTheme.of(context).titleSmall,
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
                               fontSize: 14.0,
                               letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .titleSmallFamily),
                             ),
                         elevation: 3.0,
                         borderSide: BorderSide(

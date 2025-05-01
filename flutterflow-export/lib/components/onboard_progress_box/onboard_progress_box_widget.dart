@@ -112,13 +112,9 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .headlineMedium
                                   .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .headlineMediumFamily,
+                                    font: FlutterFlowTheme.of(context)
+                                        .headlineMedium,
                                     letterSpacing: 0.0,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .headlineMediumFamily),
                                   ),
                             ),
                           ],
@@ -225,12 +221,9 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .headlineSmallFamily,
+                                  font: FlutterFlowTheme.of(context)
+                                      .headlineSmall,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .headlineSmallFamily),
                                 ),
                           ),
                         ),
@@ -264,13 +257,10 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .headlineSmallFamily,
+                                  font: FlutterFlowTheme.of(context)
+                                      .headlineSmall,
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .headlineSmallFamily),
                                 ),
                           ),
                         ),

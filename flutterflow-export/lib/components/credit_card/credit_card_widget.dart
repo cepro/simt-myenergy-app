@@ -90,13 +90,10 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                   Text(
                     widget!.cardBrand!,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          font: FlutterFlowTheme.of(context).bodyMedium,
                           color: Colors.white,
                           fontSize: 20.0,
                           letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyMediumFamily),
                         ),
                   ),
                 ],
@@ -125,25 +122,35 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                   Text(
                     '**** ${widget!.last4Digits}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Roboto Mono',
+                          font: GoogleFonts.robotoMono(
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           fontSize: 14.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
-                          useGoogleFonts:
-                              GoogleFonts.asMap().containsKey('Roboto Mono'),
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                   ),
                   Text(
                     '${widget!.expiryMonth?.toString()}/${widget!.expiryYear?.toString()}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Roboto Mono',
+                          font: GoogleFonts.robotoMono(
+                            fontWeight: FontWeight.normal,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .fontStyle,
+                          ),
                           color: Colors.white,
                           fontSize: 14.0,
                           letterSpacing: 0.0,
                           fontWeight: FontWeight.normal,
-                          useGoogleFonts:
-                              GoogleFonts.asMap().containsKey('Roboto Mono'),
+                          fontStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                   ),
                 ],

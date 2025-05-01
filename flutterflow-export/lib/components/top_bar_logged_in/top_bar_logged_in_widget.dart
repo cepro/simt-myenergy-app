@@ -109,10 +109,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
               Text(
                 'Property: ',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      font: FlutterFlowTheme.of(context).bodyMedium,
                       letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).bodyMediumFamily),
                     ),
               ),
             if (((FFAppState().properties.length > 1) &&
@@ -141,10 +139,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                 width: 200.0,
                 height: 40.0,
                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                      font: FlutterFlowTheme.of(context).bodyMedium,
                       letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).bodyMediumFamily),
                     ),
                 hintText: 'Select Property...',
                 icon: Icon(

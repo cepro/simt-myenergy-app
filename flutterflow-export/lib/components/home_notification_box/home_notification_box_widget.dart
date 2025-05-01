@@ -66,13 +66,9 @@ class _HomeNotificationBoxWidgetState extends State<HomeNotificationBoxWidget> {
                   Text(
                     'Notice - Upcoming payment',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).headlineMediumFamily,
+                          font: FlutterFlowTheme.of(context).headlineMedium,
                           color: FlutterFlowTheme.of(context).black600,
                           letterSpacing: 0.0,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context)
-                                  .headlineMediumFamily),
                         ),
                   ),
                 ],
@@ -84,13 +80,10 @@ class _HomeNotificationBoxWidgetState extends State<HomeNotificationBoxWidget> {
                     child: Text(
                       'A payment for ${functions.formatGBPAmount(FFAppState().pendingPayments.firstOrNull!.amount.toDouble() / 100.0)} is scheduled for ${dateTimeFormat("dd/MM/yyyy HH:mm:ss", FFAppState().pendingPayments.firstOrNull?.scheduledAt)}.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).bodyMediumFamily,
+                            font: FlutterFlowTheme.of(context).bodyMedium,
                             color: FlutterFlowTheme.of(context).gray600,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).bodyMediumFamily),
                           ),
                     ),
                   ),
