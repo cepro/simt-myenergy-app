@@ -101,8 +101,6 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late InfoTooltipModel infoTooltipModel2;
   // Model for LabeledValueWithUnit component.
   late LabeledValueWithUnitModel labeledValueWithUnitModel3;
-  // Stores action output result for [Custom Action - supabaseGetStorageURL] action in Button widget.
-  String? certificateURL;
   // Model for SolarContractRow component.
   late SolarContractRowModel solarContractRowModel;
 
