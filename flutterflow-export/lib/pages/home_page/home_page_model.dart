@@ -93,6 +93,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   late LabeledValueModel labeledValueModel3;
   // Model for LabeledValue component.
   late LabeledValueModel labeledValueModel4;
+  // Stores action output result for [Custom Action - supabaseGetStorageURL] action in LabeledValue widget.
+  String? certificateURL;
   // Model for LabeledValue component.
   late LabeledValueModel labeledValueModel5;
   // Model for LabeledValue component.
