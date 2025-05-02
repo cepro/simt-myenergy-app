@@ -996,386 +996,136 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 30.0, 0.0, 0.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    border: Border.all(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      width: 1.0,
+                              if (FFAppState().haveSolarContract)
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 30.0, 0.0, 0.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
                                     ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(15.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                          child: Padding(
-                                            padding: EdgeInsets.all(12.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 12.0, 0.0),
-                                                  child: Icon(
-                                                    Icons.solar_power_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    size: 32.0,
-                                                  ),
-                                                ),
-                                                AlignedTooltip(
-                                                  content: Padding(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(15.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(12.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
                                                     padding:
-                                                        EdgeInsets.all(4.0),
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                12.0, 0.0),
+                                                    child: Icon(
+                                                      Icons
+                                                          .solar_power_outlined,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      size: 32.0,
+                                                    ),
+                                                  ),
+                                                  AlignedTooltip(
+                                                    content: Padding(
+                                                      padding:
+                                                          EdgeInsets.all(4.0),
+                                                      child: Text(
+                                                        'Role: ${FFAppState().supplyAccount.customerAccount.role}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyLarge
+                                                                .override(
+                                                                  font: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyLarge,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                    offset: 4.0,
+                                                    preferredDirection:
+                                                        AxisDirection.down,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryBackground,
+                                                    elevation: 4.0,
+                                                    tailBaseWidth: 24.0,
+                                                    tailLength: 12.0,
+                                                    waitDuration: Duration(
+                                                        milliseconds: 100),
+                                                    showDuration: Duration(
+                                                        milliseconds: 1500),
+                                                    triggerMode:
+                                                        TooltipTriggerMode.tap,
                                                     child: Text(
-                                                      'Role: ${FFAppState().supplyAccount.customerAccount.role}',
+                                                      'Solar Installation',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyLarge
+                                                              .headlineMedium
                                                               .override(
                                                                 font: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyLarge,
+                                                                    .headlineMedium,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
                                                                 letterSpacing:
                                                                     0.0,
                                                               ),
                                                     ),
                                                   ),
-                                                  offset: 4.0,
-                                                  preferredDirection:
-                                                      AxisDirection.down,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  elevation: 4.0,
-                                                  tailBaseWidth: 24.0,
-                                                  tailLength: 12.0,
-                                                  waitDuration: Duration(
-                                                      milliseconds: 100),
-                                                  showDuration: Duration(
-                                                      milliseconds: 1500),
-                                                  triggerMode:
-                                                      TooltipTriggerMode.tap,
-                                                  child: Text(
-                                                    'Solar Installation',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineMedium
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineMedium,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                  ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 12.0, 0.0, 0.0),
-                                            child: Wrap(
-                                              spacing: 10.0,
-                                              runSpacing: 0.0,
-                                              alignment: WrapAlignment.center,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children: [
-                                                Container(
-                                                  constraints: BoxConstraints(
-                                                    minWidth: 300.0,
-                                                  ),
-                                                  decoration: BoxDecoration(),
-                                                  child: Card(
-                                                    clipBehavior: Clip
-                                                        .antiAliasWithSaveLayer,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    elevation: 3.0,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 0.0),
+                                              child: Wrap(
+                                                spacing: 10.0,
+                                                runSpacing: 0.0,
+                                                alignment: WrapAlignment.center,
+                                                crossAxisAlignment:
+                                                    WrapCrossAlignment.start,
+                                                direction: Axis.horizontal,
+                                                runAlignment:
+                                                    WrapAlignment.start,
+                                                verticalDirection:
+                                                    VerticalDirection.down,
+                                                clipBehavior: Clip.none,
+                                                children: [
+                                                  Container(
+                                                    constraints: BoxConstraints(
+                                                      minWidth: 300.0,
                                                     ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(16.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                            ),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .electric_bolt,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 24.0,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    'Meter Details',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineSmall
-                                                                        .override(
-                                                                          font:
-                                                                              FlutterFlowTheme.of(context).headlineSmall,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        12.0),
-                                                            child:
-                                                                wrapWithModel(
-                                                              model: _model
-                                                                  .labeledValueModel3,
-                                                              updateCallback: () =>
-                                                                  safeSetState(
-                                                                      () {}),
-                                                              child:
-                                                                  LabeledValueWidget(
-                                                                label: 'Serial',
-                                                                value: _model
-                                                                    .solarMeter
-                                                                    ?.serial,
-                                                                buttonAction:
-                                                                    () async {},
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          if (_model
-                                                                  .getSolarInstallationOutput !=
-                                                              null)
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          12.0),
-                                                              child:
-                                                                  wrapWithModel(
-                                                                model: _model
-                                                                    .labeledValueModel4,
-                                                                updateCallback: () =>
-                                                                    safeSetState(
-                                                                        () {}),
-                                                                child:
-                                                                    LabeledValueWidget(
-                                                                  label:
-                                                                      'Certificate',
-                                                                  value: _model
-                                                                      .getSolarInstallationOutput
-                                                                      ?.mcs,
-                                                                  buttonLabel:
-                                                                      'View',
-                                                                  buttonAction:
-                                                                      () async {
-                                                                    var _shouldSetState =
-                                                                        false;
-                                                                    _model.certificateURL =
-                                                                        await actions
-                                                                            .supabaseGetStorageURL(
-                                                                      'mcs-certificates-${FFAppState().esco?.name}',
-                                                                      functions.mcsFileName(
-                                                                          _model
-                                                                              .getSolarInstallationOutput!
-                                                                              .mcs,
-                                                                          functions.streetNumberFromPropertyDescription(FFAppState()
-                                                                              .property
-                                                                              .description)!),
-                                                                    );
-                                                                    _shouldSetState =
-                                                                        true;
-                                                                    if (_model.certificateURL !=
-                                                                            null &&
-                                                                        _model.certificateURL !=
-                                                                            '') {
-                                                                      await actions
-                                                                          .openPDF(
-                                                                        _model
-                                                                            .certificateURL!,
-                                                                      );
-                                                                      if (_shouldSetState)
-                                                                        safeSetState(
-                                                                            () {});
-                                                                      return;
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'MCS Certificate path failed to build',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 10000),
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondaryBackground,
-                                                                        ),
-                                                                      );
-                                                                      if (_shouldSetState)
-                                                                        safeSetState(
-                                                                            () {});
-                                                                      return;
-                                                                    }
-
-                                                                    if (_shouldSetState)
-                                                                      safeSetState(
-                                                                          () {});
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          if (_model
-                                                                  .getSolarInstallationOutput !=
-                                                              null)
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0),
-                                                              child:
-                                                                  wrapWithModel(
-                                                                model: _model
-                                                                    .labeledValueModel5,
-                                                                updateCallback: () =>
-                                                                    safeSetState(
-                                                                        () {}),
-                                                                child:
-                                                                    LabeledValueWidget(
-                                                                  label:
-                                                                      'Net Capacity',
-                                                                  value:
-                                                                      '${_model.getSolarInstallationOutput?.declaredNetCapacity?.toString()} kW',
-                                                                  buttonAction:
-                                                                      () async {},
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          if (_model
-                                                                  .getSolarInstallationOutput !=
-                                                              null)
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0),
-                                                              child:
-                                                                  wrapWithModel(
-                                                                model: _model
-                                                                    .labeledValueModel6,
-                                                                updateCallback: () =>
-                                                                    safeSetState(
-                                                                        () {}),
-                                                                child:
-                                                                    LabeledValueWidget(
-                                                                  label:
-                                                                      'Commissioning Date',
-                                                                  value: dateTimeFormat(
-                                                                      "dd/MM/yyyy",
-                                                                      _model
-                                                                          .getSolarInstallationOutput
-                                                                          ?.commissioningDate),
-                                                                  buttonAction:
-                                                                      () async {},
-                                                                ),
-                                                              ),
-                                                            ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  constraints: BoxConstraints(
-                                                    minWidth: 300.0,
-                                                  ),
-                                                  decoration: BoxDecoration(),
-                                                  child: Visibility(
-                                                    visible: _model
-                                                            .supplyTariffCurrent !=
-                                                        null,
+                                                    decoration: BoxDecoration(),
                                                     child: Card(
                                                       clipBehavior: Clip
                                                           .antiAliasWithSaveLayer,
@@ -1400,10 +1150,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .start,
                                                           children: [
                                                             Container(
-                                                              constraints:
-                                                                  BoxConstraints(
-                                                                maxWidth: 400.0,
-                                                              ),
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
@@ -1417,7 +1163,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 children: [
                                                                   Icon(
                                                                     Icons
-                                                                        .bar_chart,
+                                                                        .electric_bolt,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primary,
@@ -1431,123 +1177,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             0.0,
                                                                             0.0),
                                                                     child: Text(
-                                                                      'Tariff Information',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .headlineSmall
-                                                                          .override(
-                                                                            font:
-                                                                                FlutterFlowTheme.of(context).headlineSmall,
-                                                                            letterSpacing:
-                                                                                0.0,
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                  wrapWithModel(
-                                                                    model: _model
-                                                                        .infoTooltipModel2,
-                                                                    updateCallback: () =>
-                                                                        safeSetState(
-                                                                            () {}),
-                                                                    child:
-                                                                        InfoTooltipWidget(
-                                                                      infoText:
-                                                                          'Benchmark Tariff: ${functions.formatGBPAmount(0.51)}${functions.newLineChar()}See ofgem rates at ...',
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            wrapWithModel(
-                                                              model: _model
-                                                                  .labeledValueWithUnitModel3,
-                                                              updateCallback: () =>
-                                                                  safeSetState(
-                                                                      () {}),
-                                                              child:
-                                                                  LabeledValueWithUnitWidget(
-                                                                label:
-                                                                    'Solar Credit',
-                                                                value: functions
-                                                                    .formatGBPAmount(_model
-                                                                            .solarCreditTariffCurrent!
-                                                                            .creditPencePerYear /
-                                                                        100),
-                                                                unit:
-                                                                    ' Per kW installed',
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  constraints: BoxConstraints(
-                                                    maxWidth: 400.0,
-                                                  ),
-                                                  decoration: BoxDecoration(),
-                                                  child: Visibility(
-                                                    visible: FFAppState()
-                                                            .supplyContractSigned &&
-                                                        (FFAppState()
-                                                                .supplyAccount
-                                                                .customerAccount
-                                                                .role ==
-                                                            'occupier'),
-                                                    child: Card(
-                                                      clipBehavior: Clip
-                                                          .antiAliasWithSaveLayer,
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      elevation: 3.0,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      child: Padding(
-                                                        padding: EdgeInsets.all(
-                                                            16.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Container(
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                              ),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Icon(
-                                                                    Icons
-                                                                        .edit_document,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            8.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      'Contract Details',
+                                                                      'Meter Details',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .headlineSmall
@@ -1567,60 +1197,433 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
-                                                                          10.0,
                                                                           0.0,
-                                                                          0.0),
+                                                                          0.0,
+                                                                          12.0),
                                                               child:
                                                                   wrapWithModel(
                                                                 model: _model
-                                                                    .solarContractRowModel,
+                                                                    .labeledValueModel3,
                                                                 updateCallback: () =>
                                                                     safeSetState(
                                                                         () {}),
                                                                 child:
-                                                                    SolarContractRowWidget(
-                                                                  isSigned:
-                                                                      FFAppState()
-                                                                          .solarContractSigned,
-                                                                  contract: functions.getContractByType(
-                                                                      FFAppState()
-                                                                          .accountsForCurrentProperty
-                                                                          .toList(),
-                                                                      'solar')!,
-                                                                  description: functions
-                                                                      .getTermsById(
-                                                                          functions
-                                                                              .getContractByType(FFAppState().accountsForCurrentProperty.toList(), 'solar')!
-                                                                              .termsId,
-                                                                          FFAppState().contractTerms.toList())!
-                                                                      .shortDescription,
+                                                                    LabeledValueWidget(
+                                                                  label:
+                                                                      'Serial',
+                                                                  value: _model
+                                                                      .solarMeter
+                                                                      ?.serial,
+                                                                  buttonAction:
+                                                                      () async {},
                                                                 ),
                                                               ),
                                                             ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Container(
-                                                                decoration:
-                                                                    BoxDecoration(),
+                                                            if (_model
+                                                                    .getSolarInstallationOutput !=
+                                                                null)
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            12.0),
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .labeledValueModel4,
+                                                                  updateCallback: () =>
+                                                                      safeSetState(
+                                                                          () {}),
+                                                                  child:
+                                                                      LabeledValueWidget(
+                                                                    label:
+                                                                        'Certificate',
+                                                                    value: _model
+                                                                        .getSolarInstallationOutput
+                                                                        ?.mcs,
+                                                                    buttonLabel:
+                                                                        'View',
+                                                                    buttonAction:
+                                                                        () async {
+                                                                      var _shouldSetState =
+                                                                          false;
+                                                                      _model.certificateURL =
+                                                                          await actions
+                                                                              .supabaseGetStorageURL(
+                                                                        'mcs-certificates-${FFAppState().esco?.name}',
+                                                                        functions.mcsFileName(
+                                                                            _model.getSolarInstallationOutput!.mcs,
+                                                                            functions.streetNumberFromPropertyDescription(FFAppState().property.description)!),
+                                                                      );
+                                                                      _shouldSetState =
+                                                                          true;
+                                                                      if (_model.certificateURL !=
+                                                                              null &&
+                                                                          _model.certificateURL !=
+                                                                              '') {
+                                                                        await actions
+                                                                            .openPDF(
+                                                                          _model
+                                                                              .certificateURL!,
+                                                                        );
+                                                                        if (_shouldSetState)
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        return;
+                                                                      } else {
+                                                                        ScaffoldMessenger.of(context)
+                                                                            .showSnackBar(
+                                                                          SnackBar(
+                                                                            content:
+                                                                                Text(
+                                                                              'MCS Certificate path failed to build',
+                                                                              style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                              ),
+                                                                            ),
+                                                                            duration:
+                                                                                Duration(milliseconds: 10000),
+                                                                            backgroundColor:
+                                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          ),
+                                                                        );
+                                                                        if (_shouldSetState)
+                                                                          safeSetState(
+                                                                              () {});
+                                                                        return;
+                                                                      }
+
+                                                                      if (_shouldSetState)
+                                                                        safeSetState(
+                                                                            () {});
+                                                                    },
+                                                                  ),
+                                                                ),
                                                               ),
-                                                            ),
+                                                            if (_model
+                                                                    .getSolarInstallationOutput !=
+                                                                null)
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0),
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .labeledValueModel5,
+                                                                  updateCallback: () =>
+                                                                      safeSetState(
+                                                                          () {}),
+                                                                  child:
+                                                                      LabeledValueWidget(
+                                                                    label:
+                                                                        'Net Capacity',
+                                                                    value:
+                                                                        '${_model.getSolarInstallationOutput?.declaredNetCapacity?.toString()} kW',
+                                                                    buttonAction:
+                                                                        () async {},
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            if (_model
+                                                                    .getSolarInstallationOutput !=
+                                                                null)
+                                                              Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0),
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .labeledValueModel6,
+                                                                  updateCallback: () =>
+                                                                      safeSetState(
+                                                                          () {}),
+                                                                  child:
+                                                                      LabeledValueWidget(
+                                                                    label:
+                                                                        'Commissioning Date',
+                                                                    value: dateTimeFormat(
+                                                                        "dd/MM/yyyy",
+                                                                        _model
+                                                                            .getSolarInstallationOutput
+                                                                            ?.commissioningDate),
+                                                                    buttonAction:
+                                                                        () async {},
+                                                                  ),
+                                                                ),
+                                                              ),
                                                           ],
                                                         ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Container(
+                                                    constraints: BoxConstraints(
+                                                      minWidth: 300.0,
+                                                    ),
+                                                    decoration: BoxDecoration(),
+                                                    child: Visibility(
+                                                      visible: _model
+                                                              .supplyTariffCurrent !=
+                                                          null,
+                                                      child: Card(
+                                                        clipBehavior: Clip
+                                                            .antiAliasWithSaveLayer,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        elevation: 3.0,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  16.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Container(
+                                                                constraints:
+                                                                    BoxConstraints(
+                                                                  maxWidth:
+                                                                      400.0,
+                                                                ),
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                ),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .bar_chart,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Tariff Information',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              font: FlutterFlowTheme.of(context).headlineSmall,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                    wrapWithModel(
+                                                                      model: _model
+                                                                          .infoTooltipModel2,
+                                                                      updateCallback:
+                                                                          () =>
+                                                                              safeSetState(() {}),
+                                                                      child:
+                                                                          InfoTooltipWidget(
+                                                                        infoText:
+                                                                            'Benchmark Tariff: ${functions.formatGBPAmount(0.51)}${functions.newLineChar()}See ofgem rates at ...',
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              wrapWithModel(
+                                                                model: _model
+                                                                    .labeledValueWithUnitModel3,
+                                                                updateCallback: () =>
+                                                                    safeSetState(
+                                                                        () {}),
+                                                                child:
+                                                                    LabeledValueWithUnitWidget(
+                                                                  label:
+                                                                      'Solar Credit',
+                                                                  value: functions
+                                                                      .formatGBPAmount(_model
+                                                                              .solarCreditTariffCurrent!
+                                                                              .creditPencePerYear /
+                                                                          100),
+                                                                  unit:
+                                                                      ' Per kW installed',
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    constraints: BoxConstraints(
+                                                      maxWidth: 400.0,
+                                                    ),
+                                                    decoration: BoxDecoration(),
+                                                    child: Visibility(
+                                                      visible: FFAppState()
+                                                              .supplyContractSigned &&
+                                                          (FFAppState()
+                                                                  .supplyAccount
+                                                                  .customerAccount
+                                                                  .role ==
+                                                              'occupier'),
+                                                      child: Card(
+                                                        clipBehavior: Clip
+                                                            .antiAliasWithSaveLayer,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        elevation: 3.0,
+                                                        shape:
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  16.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Container(
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                ),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Icon(
+                                                                      Icons
+                                                                          .edit_document,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                      size:
+                                                                          24.0,
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Contract Details',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .headlineSmall
+                                                                            .override(
+                                                                              font: FlutterFlowTheme.of(context).headlineSmall,
+                                                                              letterSpacing: 0.0,
+                                                                            ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child:
+                                                                    wrapWithModel(
+                                                                  model: _model
+                                                                      .solarContractRowModel,
+                                                                  updateCallback: () =>
+                                                                      safeSetState(
+                                                                          () {}),
+                                                                  child:
+                                                                      SolarContractRowWidget(
+                                                                    isSigned:
+                                                                        FFAppState()
+                                                                            .solarContractSigned,
+                                                                    contract: functions.getContractByType(
+                                                                        FFAppState()
+                                                                            .accountsForCurrentProperty
+                                                                            .toList(),
+                                                                        'solar')!,
+                                                                    description: functions
+                                                                        .getTermsById(
+                                                                            functions.getContractByType(FFAppState().accountsForCurrentProperty.toList(), 'solar')!.termsId,
+                                                                            FFAppState().contractTerms.toList())!
+                                                                        .shortDescription,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child:
+                                                                    Container(
+                                                                  decoration:
+                                                                      BoxDecoration(),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
