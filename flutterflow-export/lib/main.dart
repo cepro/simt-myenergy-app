@@ -17,10 +17,24 @@ import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.da
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
+import 'package:flutter/foundation.dart' show kDebugMode;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
+
+  // Set the ErrorWidget's builder before the app is started.
+  // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    // If we're in debug mode, use the normal error widget which shows the error
+    // message:
+    if (kDebugMode) {
+      return ErrorWidget(details.exception);
+    }
+    // In release builds, show a yellow-on-blue message instead:
+    return ReleaseModeErrorWidget(details: details);
+  };
 
   await SupaFlow.initialize();
 
@@ -37,6 +51,21 @@ void main() async {
     create: (context) => appState,
     child: MyApp(),
   ));
+}
+
+class ReleaseModeErrorWidget extends StatelessWidget {
+  const ReleaseModeErrorWidget({super.key, required this.details});
+
+  final FlutterErrorDetails details;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Error!\n${details.exception}',
+          style: const TextStyle(color: Colors.yellow),
+          textAlign: TextAlign.center),
+    );
+  }
 }
 
 class MyApp extends StatefulWidget {

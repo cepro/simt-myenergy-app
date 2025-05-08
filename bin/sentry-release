@@ -5,11 +5,13 @@
 # TODO: move me to github action that deploys to github pages, this should be 
 #       run immediately after that step succeeds.
 
+PROJECT=4506409085042688
+
 # Timestamp based release identifier
 # eg. myenergy@202312181151
 RELEASE=myenergy@`date +%Y%m%d%H%M`
 
-sentry-cli releases new "$RELEASE"
-sentry-cli releases files "$RELEASE" upload-sourcemaps . --ext dart
-sentry-cli releases files "$RELEASE" upload-sourcemaps "build/web" --ext map --ext js 
-sentry-cli releases finalize "$RELEASE"
+sentry-cli releases --project $PROJECT new "$RELEASE"
+sentry-cli releases --project $PROJECT files "$RELEASE" upload-sourcemaps . --ext dart
+sentry-cli releases --project $PROJECT files "$RELEASE" upload-sourcemaps "build/web" --ext map --ext js 
+sentry-cli releases --project $PROJECT finalize "$RELEASE"

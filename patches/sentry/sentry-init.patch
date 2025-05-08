@@ -1,6 +1,6 @@
 --- ./lib/main.dart
 +++ ./lib/main.dart
-@@ -5,6 +5,7 @@
+@@ -23,6 +23,7 @@
  
  import 'package:flutter_localizations/flutter_localizations.dart';
  import 'package:flutter_web_plugins/url_strategy.dart';
@@ -8,13 +8,25 @@
  
  import 'auth/supabase_auth/supabase_user_provider.dart';
  import 'auth/supabase_auth/auth_util.dart';
-@@ -17,25 +18,33 @@
+@@ -34,37 +35,45 @@
  import 'index.dart';
  
  void main() async {
 -  WidgetsFlutterBinding.ensureInitialized();
 -  GoRouter.optionURLReflectsImperativeAPIs = true;
 -  usePathUrlStrategy();
+-
+-  // Set the ErrorWidget's builder before the app is started.
+-  // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
+-  ErrorWidget.builder = (FlutterErrorDetails details) {
+-    // If we're in debug mode, use the normal error widget which shows the error
+-    // message:
+-    if (kDebugMode) {
+-      return ErrorWidget(details.exception);
+-    }
+-    // In release builds, show a yellow-on-blue message instead:
+-    return ReleaseModeErrorWidget(details: details);
+-  };
 -
 -  await SupaFlow.initialize();
 -
@@ -42,6 +54,18 @@
 +    GoRouter.optionURLReflectsImperativeAPIs = true;
 +    usePathUrlStrategy();
 +  
++    // Set the ErrorWidget's builder before the app is started.
++    // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
++    ErrorWidget.builder = (FlutterErrorDetails details) {
++      // If we're in debug mode, use the normal error widget which shows the error
++      // message:
++      if (kDebugMode) {
++        return ErrorWidget(details.exception);
++      }
++      // In release builds, show a yellow-on-blue message instead:
++      return ReleaseModeErrorWidget(details: details);
++    };
++  
 +    await SupaFlow.initialize();
 +  
 +    await FlutterFlowTheme.initialize();
@@ -60,7 +84,7 @@
 +  });
  }
  
- class MyApp extends StatefulWidget {
+ class ReleaseModeErrorWidget extends StatelessWidget {
 --- ./pubspec.yaml
 +++ ./pubspec.yaml
 @@ -64,6 +64,7 @@
