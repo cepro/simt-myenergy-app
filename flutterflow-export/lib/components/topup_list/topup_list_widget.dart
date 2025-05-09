@@ -49,7 +49,7 @@ class _TopupListWidgetState extends State<TopupListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250.0,
+      height: widget!.topups!.length <= 5 ? 400.0 : 600.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
       ),
