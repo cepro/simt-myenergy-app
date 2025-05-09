@@ -1,6 +1,6 @@
 --- ./lib/main.dart
 +++ ./lib/main.dart
-@@ -23,6 +23,7 @@
+@@ -5,6 +5,7 @@
  
  import 'package:flutter_localizations/flutter_localizations.dart';
  import 'package:flutter_web_plugins/url_strategy.dart';
@@ -8,8 +8,8 @@
  
  import 'auth/supabase_auth/supabase_user_provider.dart';
  import 'auth/supabase_auth/auth_util.dart';
-@@ -34,37 +35,45 @@
- import 'index.dart';
+@@ -20,40 +21,48 @@
+ import 'package:flutter/foundation.dart' show kDebugMode;
  
  void main() async {
 -  WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +19,9 @@
 -  // Set the ErrorWidget's builder before the app is started.
 -  // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
 -  ErrorWidget.builder = (FlutterErrorDetails details) {
+-    print('Error occurred: ${details.exception}');
+-    print('Stack trace: ${details.stack}');
+-
 -    // If we're in debug mode, use the normal error widget which shows the error
 -    // message:
 -    if (kDebugMode) {
@@ -57,6 +60,9 @@
 +    // Set the ErrorWidget's builder before the app is started.
 +    // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
 +    ErrorWidget.builder = (FlutterErrorDetails details) {
++      print('Error occurred: ${details.exception}');
++      print('Stack trace: ${details.stack}');
++  
 +      // If we're in debug mode, use the normal error widget which shows the error
 +      // message:
 +      if (kDebugMode) {
@@ -91,7 +97,7 @@
    provider: 6.1.2
    realtime_client: 1.4.0
    rxdart: 0.27.7
-+  sentry_flutter: 8.9.0
++  sentry_flutter: 8.14.2
    shared_preferences: 2.3.2
    shared_preferences_android: 2.3.2
    shared_preferences_foundation: 2.5.2

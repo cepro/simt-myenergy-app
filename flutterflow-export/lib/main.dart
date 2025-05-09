@@ -27,6 +27,9 @@ void main() async {
   // Set the ErrorWidget's builder before the app is started.
   // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
   ErrorWidget.builder = (FlutterErrorDetails details) {
+    print('Error occurred: ${details.exception}');
+    print('Stack trace: ${details.stack}');
+
     // If we're in debug mode, use the normal error widget which shows the error
     // message:
     if (kDebugMode) {
@@ -62,7 +65,7 @@ class ReleaseModeErrorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text('Error!\n${details.exception}',
-          style: const TextStyle(color: Colors.yellow),
+          style: const TextStyle(color: Colors.black, fontSize: 18.0),
           textAlign: TextAlign.center),
     );
   }
