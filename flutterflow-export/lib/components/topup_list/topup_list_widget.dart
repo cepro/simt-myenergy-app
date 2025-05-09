@@ -50,6 +50,9 @@ class _TopupListWidgetState extends State<TopupListWidget> {
   Widget build(BuildContext context) {
     return Container(
       height: widget!.topups!.length <= 5 ? 400.0 : 600.0,
+      constraints: BoxConstraints(
+        minHeight: 300.0,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
       ),
