@@ -1515,7 +1515,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   .solarAccount
                                                                   .customerAccount
                                                                   .role ==
-                                                              'occupier'),
+                                                              'owner'),
                                                       child: Card(
                                                         clipBehavior: Clip
                                                             .antiAliasWithSaveLayer,
