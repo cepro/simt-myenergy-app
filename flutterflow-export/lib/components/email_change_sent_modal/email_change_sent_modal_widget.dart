@@ -98,9 +98,12 @@ class _EmailChangeSentModalWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
-                                        font: FlutterFlowTheme.of(context)
-                                            .headlineLarge,
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineLargeFamily,
                                         letterSpacing: 0.0,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .headlineLargeIsCustom,
                                       ),
                                 ),
                               ],
@@ -129,16 +132,22 @@ class _EmailChangeSentModalWidgetState
                       child: Text(
                         'A verification email has been sent to the new email address.',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                     ),
                     Text(
                       'Click on the \"Change Email\" link in the email to complete the email change.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: FlutterFlowTheme.of(context).bodyMedium,
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
                           ),
                     ),
                     Padding(
@@ -162,11 +171,14 @@ class _EmailChangeSentModalWidgetState
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
                               borderSide: BorderSide(

@@ -49,7 +49,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
                 r'''$[0].topupThreshold''',
-              )?.toString()?.toString(),
+              )?.toString(),
               '30',
             );
           });
@@ -58,7 +58,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
               getJsonField(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
                 r'''$[0].topupAmount''',
-              )?.toString()?.toString(),
+              )?.toString(),
               '50',
             );
           });
@@ -174,11 +174,15 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .displaySmall
                                                       .override(
-                                                        font:
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .displaySmall,
+                                                                .displaySmallFamily,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts:
+                                                            !FlutterFlowTheme
+                                                                    .of(context)
+                                                                .displaySmallIsCustom,
                                                       ),
                                             ),
                                           ],
@@ -272,16 +276,21 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                         20.0, 0.0, 0.0, 0.0),
                                                 child: Text(
                                                   'Settings',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineSmall
-                                                      .override(
-                                                        font:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .headlineSmall,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineSmall
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmallIsCustom,
+                                                          ),
                                                 ),
                                               ),
                                               Form(
@@ -332,22 +341,28 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
-                                                                      font: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium,
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .labelMediumIsCustom,
                                                                     ),
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
-                                                                      font: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium,
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .labelMediumIsCustom,
                                                                     ),
                                                             enabledBorder:
                                                                 UnderlineInputBorder(
@@ -410,11 +425,15 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMediumFamily,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumIsCustom,
                                                               ),
                                                           validator: _model
                                                               .minimumBalanceTextControllerValidator
@@ -457,22 +476,28 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
-                                                                      font: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium,
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .labelMediumIsCustom,
                                                                     ),
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelMedium
                                                                     .override(
-                                                                      font: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelMedium,
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .labelMediumIsCustom,
                                                                     ),
                                                             enabledBorder:
                                                                 UnderlineInputBorder(
@@ -535,11 +560,15 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMediumFamily,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumIsCustom,
                                                               ),
                                                           validator: _model
                                                               .topUpAmountTextControllerValidator
@@ -652,13 +681,16 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                         context)
                                                                     .titleSmall
                                                                     .override(
-                                                                      font: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleSmall,
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .titleSmallFamily,
                                                                       color: Colors
                                                                           .white,
                                                                       letterSpacing:
                                                                           0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .titleSmallIsCustom,
                                                                     ),
                                                             elevation: 3.0,
                                                             borderSide:

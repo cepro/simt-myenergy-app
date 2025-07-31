@@ -1,6 +1,7 @@
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -65,8 +66,11 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                   Text(
                     'Welcome',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          font: FlutterFlowTheme.of(context).headlineMedium,
+                          fontFamily:
+                              FlutterFlowTheme.of(context).headlineMediumFamily,
                           letterSpacing: 0.0,
+                          useGoogleFonts: !FlutterFlowTheme.of(context)
+                              .headlineMediumIsCustom,
                         ),
                   ),
                 ],
@@ -78,10 +82,13 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                     child: Text(
                       'The ${FFAppState().escoName} microgrid has been established to enable homes and electric vehicles to share solar energy across the ${FFAppState().escoName} estate; surplus solar is stored in the ${FFAppState().escoName} community battery for later use.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: FlutterFlowTheme.of(context).bodyMedium,
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             color: FlutterFlowTheme.of(context).primaryText,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
                           ),
                     ),
                   ),
@@ -131,10 +138,13 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),

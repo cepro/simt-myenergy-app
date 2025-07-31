@@ -179,10 +179,15 @@ class _TopupsPageWidgetState extends State<TopupsPageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium
                                                 .override(
-                                                  font: FlutterFlowTheme.of(
-                                                          context)
-                                                      .headlineMedium,
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMediumFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts:
+                                                      !FlutterFlowTheme.of(
+                                                              context)
+                                                          .headlineMediumIsCustom,
                                                 ),
                                           ),
                                         ),
@@ -236,10 +241,15 @@ class _TopupsPageWidgetState extends State<TopupsPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .headlineMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineMediumIsCustom,
                                                         ),
                                               ),
                                             ),

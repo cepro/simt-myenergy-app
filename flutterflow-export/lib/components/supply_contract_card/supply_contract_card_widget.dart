@@ -109,8 +109,11 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                       child: Text(
                         widget!.title!,
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              font: FlutterFlowTheme.of(context).bodyLarge,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyLargeFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyLargeIsCustom,
                             ),
                       ),
                     ),
@@ -125,8 +128,11 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).labelMedium.override(
-                        font: FlutterFlowTheme.of(context).labelMedium,
+                        fontFamily:
+                            FlutterFlowTheme.of(context).labelMediumFamily,
                         letterSpacing: 0.0,
+                        useGoogleFonts:
+                            !FlutterFlowTheme.of(context).labelMediumIsCustom,
                       ),
                 ),
               ),
@@ -151,7 +157,6 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                       text: 'View',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
-                        color: FlutterFlowTheme.of(context).primaryBtnText,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
@@ -161,15 +166,19 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconColor: FlutterFlowTheme.of(context).primaryBtnText,
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
-                              font: FlutterFlowTheme.of(context).titleSmall,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
                               fontSize: 14.0,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .titleSmallIsCustom,
                             ),
                         elevation: 3.0,
                         borderSide: BorderSide(

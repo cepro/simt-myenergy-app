@@ -133,10 +133,14 @@ class _AdminPaymentWidgetState extends State<AdminPaymentWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
-                                                font:
+                                                fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineMedium,
+                                                        .headlineMediumFamily,
                                                 letterSpacing: 0.0,
+                                                useGoogleFonts:
+                                                    !FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineMediumIsCustom,
                                               ),
                                         ),
                                       ],

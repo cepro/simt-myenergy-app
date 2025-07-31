@@ -84,8 +84,11 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                   Text(
                     widget!.contractTerms!.shortDescription,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          font: FlutterFlowTheme.of(context).bodyMedium,
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
                           letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                         ),
                   ),
                   Padding(
@@ -93,8 +96,11 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                     child: Text(
                       '',
                       style: FlutterFlowTheme.of(context).bodySmall.override(
-                            font: FlutterFlowTheme.of(context).bodySmall,
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodySmallFamily,
                             letterSpacing: 0.0,
+                            useGoogleFonts:
+                                !FlutterFlowTheme.of(context).bodySmallIsCustom,
                           ),
                     ),
                   ),
@@ -121,9 +127,12 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          font: FlutterFlowTheme.of(context).titleSmall,
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleSmallFamily,
                           color: Colors.white,
                           letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).titleSmallIsCustom,
                         ),
                     elevation: 3.0,
                     borderSide: BorderSide(

@@ -97,9 +97,12 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
-                                        font: FlutterFlowTheme.of(context)
-                                            .headlineLarge,
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineLargeFamily,
                                         letterSpacing: 0.0,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .headlineLargeIsCustom,
                                       ),
                                 ),
                               ],
@@ -128,8 +131,11 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                       child: Text(
                         'This initial version (v1) of MyEnergy can be used to:\n    1. Check your smart meter serial number, mode and credit balance.\n    2. Review monthly energy consumption (power & lights, electric heat)\n    3. Signing your electricity supply agreement\n    4. Signing your solar installation usage agreement\n    5. Manage your contact details\n    6. Add a payment method\n    7. Making payments for electricity consumption\n\nThe next app release will support:\n    1. Receiving credits for use of your solar installation',
                         style: FlutterFlowTheme.of(context).labelLarge.override(
-                              font: FlutterFlowTheme.of(context).labelLarge,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).labelLargeFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .labelLargeIsCustom,
                             ),
                       ),
                     ),
@@ -153,10 +159,13 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: Colors.white,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
                               borderSide: BorderSide(

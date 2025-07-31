@@ -2,6 +2,7 @@ import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:math';
 import 'dart:ui';
 import '/index.dart';
@@ -158,8 +159,10 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               child: Text(
                 'MENU',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: FlutterFlowTheme.of(context).bodyMedium,
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                       letterSpacing: 0.0,
+                      useGoogleFonts:
+                          !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                     ),
               ),
             ),
@@ -200,9 +203,12 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                       child: Text(
                         'Home',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               color: widget!.navOne,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                     ),
@@ -247,9 +253,12 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                       child: Text(
                         'My Energy',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               color: widget!.navTwo,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                     ),
@@ -294,9 +303,12 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                       child: Text(
                         'Payments',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               color: widget!.navThree,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                     ),
@@ -344,9 +356,12 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: widget!.navFour,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -394,9 +409,12 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: widget!.navFive,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -444,9 +462,12 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: widget!.navSix,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),

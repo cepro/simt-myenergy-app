@@ -57,6 +57,7 @@ class _ChangePhoneNumberModalWidgetState
     }());
     _model.phoneNumberFieldFocusNode ??= FocusNode();
 
+    _model.phoneNumberFieldMask = MaskTextInputFormatter(mask: '####-######');
     _model.verifyCodeFieldTextController ??= TextEditingController();
     _model.verifyCodeFieldFocusNode ??= FocusNode();
 
@@ -130,9 +131,12 @@ class _ChangePhoneNumberModalWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
-                                        font: FlutterFlowTheme.of(context)
-                                            .headlineLarge,
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineLargeFamily,
                                         letterSpacing: 0.0,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .headlineLargeIsCustom,
                                       ),
                                 ),
                               ],
@@ -164,8 +168,11 @@ class _ChangePhoneNumberModalWidgetState
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -178,8 +185,11 @@ class _ChangePhoneNumberModalWidgetState
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -192,9 +202,12 @@ class _ChangePhoneNumberModalWidgetState
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).error,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -207,9 +220,12 @@ class _ChangePhoneNumberModalWidgetState
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).error,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -226,9 +242,12 @@ class _ChangePhoneNumberModalWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .titleMedium
                                   .override(
-                                    font: FlutterFlowTheme.of(context)
-                                        .titleMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleMediumIsCustom,
                                   ),
                             ),
                             Padding(
@@ -248,20 +267,28 @@ class _ChangePhoneNumberModalWidgetState
                                     labelStyle: FlutterFlowTheme.of(context)
                                         .labelLarge
                                         .override(
-                                          font: FlutterFlowTheme.of(context)
-                                              .labelLarge,
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelLargeFamily,
                                           letterSpacing: 0.0,
+                                          useGoogleFonts:
+                                              !FlutterFlowTheme.of(context)
+                                                  .labelLargeIsCustom,
                                         ),
                                     hintText: '7123-456789',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
-                                          font: FlutterFlowTheme.of(context)
-                                              .titleMedium,
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMediumFamily,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.w300,
+                                          useGoogleFonts:
+                                              !FlutterFlowTheme.of(context)
+                                                  .titleMediumIsCustom,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -301,9 +328,12 @@ class _ChangePhoneNumberModalWidgetState
                                   style: FlutterFlowTheme.of(context)
                                       .titleMedium
                                       .override(
-                                        font: FlutterFlowTheme.of(context)
-                                            .titleMedium,
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .titleMediumFamily,
                                         letterSpacing: 0.0,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .titleMediumIsCustom,
                                       ),
                                   keyboardType: TextInputType.phone,
                                   cursorColor:
@@ -337,16 +367,22 @@ class _ChangePhoneNumberModalWidgetState
                               labelStyle: FlutterFlowTheme.of(context)
                                   .labelLarge
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).labelLarge,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelLargeFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .labelLargeIsCustom,
                                   ),
                               hintStyle: FlutterFlowTheme.of(context)
                                   .titleMedium
                                   .override(
-                                    font: FlutterFlowTheme.of(context)
-                                        .titleMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleMediumIsCustom,
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -383,9 +419,11 @@ class _ChangePhoneNumberModalWidgetState
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
-                                  font:
-                                      FlutterFlowTheme.of(context).titleMedium,
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .titleMediumIsCustom,
                                 ),
                             cursorColor:
                                 FlutterFlowTheme.of(context).primaryText,
@@ -410,9 +448,12 @@ class _ChangePhoneNumberModalWidgetState
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts:
+                                          !FlutterFlowTheme.of(context)
+                                              .bodyMediumIsCustom,
                                     ),
                               ),
                             ),
@@ -438,9 +479,12 @@ class _ChangePhoneNumberModalWidgetState
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
-                                      font: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .bodyMediumFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts:
+                                          !FlutterFlowTheme.of(context)
+                                              .bodyMediumIsCustom,
                                     ),
                               ),
                             Text(
@@ -448,9 +492,12 @@ class _ChangePhoneNumberModalWidgetState
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .bodyMediumIsCustom,
                                   ),
                             ),
                           ],
@@ -568,10 +615,13 @@ class _ChangePhoneNumberModalWidgetState
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: Colors.white,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
                               borderSide: BorderSide(
@@ -595,11 +645,14 @@ class _ChangePhoneNumberModalWidgetState
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
                               borderSide: BorderSide(

@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -70,12 +71,14 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Text(
                       'Usage',
-                      style: FlutterFlowTheme.of(context)
-                          .headlineMedium
-                          .override(
-                            font: FlutterFlowTheme.of(context).headlineMedium,
-                            letterSpacing: 0.0,
-                          ),
+                      style:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .headlineMediumIsCustom,
+                              ),
                     ),
                   ),
                 ],
@@ -110,9 +113,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      font: FlutterFlowTheme.of(context)
-                                          .labelLarge,
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelLargeFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts:
+                                          !FlutterFlowTheme.of(context)
+                                              .labelLargeIsCustom,
                                     ),
                               ),
                             ),
@@ -125,9 +131,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      font: FlutterFlowTheme.of(context)
-                                          .labelLarge,
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelLargeFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts:
+                                          !FlutterFlowTheme.of(context)
+                                              .labelLargeIsCustom,
                                     ),
                               ),
                             ),
@@ -140,9 +149,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                                 style: FlutterFlowTheme.of(context)
                                     .labelLarge
                                     .override(
-                                      font: FlutterFlowTheme.of(context)
-                                          .labelLarge,
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .labelLargeFamily,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts:
+                                          !FlutterFlowTheme.of(context)
+                                              .labelLargeIsCustom,
                                     ),
                               ),
                             ),
@@ -167,9 +179,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .bodyMediumIsCustom,
                                   ),
                             ),
                             Text(
@@ -182,9 +197,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .bodyMediumIsCustom,
                                   ),
                             ),
                             Text(
@@ -197,9 +215,12 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .bodyMediumIsCustom,
                                   ),
                             ),
                           ].map((c) => DataCell(c)).toList(),
@@ -236,8 +257,11 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                   child: Text(
                     'No usage',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          font: FlutterFlowTheme.of(context).bodyMedium,
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
                           letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                         ),
                   ),
                 ),

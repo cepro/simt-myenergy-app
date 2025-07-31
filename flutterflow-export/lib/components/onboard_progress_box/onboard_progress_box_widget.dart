@@ -1,6 +1,7 @@
 import '/components/onboard_progress_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -112,9 +113,12 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .headlineMedium
                                   .override(
-                                    font: FlutterFlowTheme.of(context)
-                                        .headlineMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .headlineMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .headlineMediumIsCustom,
                                   ),
                             ),
                           ],
@@ -221,9 +225,11 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  font: FlutterFlowTheme.of(context)
-                                      .headlineSmall,
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .headlineSmallIsCustom,
                                 ),
                           ),
                         ),
@@ -257,10 +263,12 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .headlineSmall
                                 .override(
-                                  font: FlutterFlowTheme.of(context)
-                                      .headlineSmall,
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .headlineSmallFamily,
                                   fontSize: 16.0,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .headlineSmallIsCustom,
                                 ),
                           ),
                         ),

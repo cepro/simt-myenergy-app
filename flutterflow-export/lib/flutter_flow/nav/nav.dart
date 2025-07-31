@@ -196,14 +196,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ImpersonateUserWidget(),
         ),
         FFRoute(
-          name: UserProfilePageWidget.routeName,
-          path: UserProfilePageWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => NavBarPage(
-            initialPage: '',
-            page: UserProfilePageWidget(),
-          ),
-        ),
+            name: UserProfilePageWidget.routeName,
+            path: UserProfilePageWidget.routePath,
+            requireAuth: true,
+            builder: (context, params) => NavBarPage(
+                  initialPage: '',
+                  page: UserProfilePageWidget(),
+                )),
         FFRoute(
           name: TopupsPageWidget.routeName,
           path: TopupsPageWidget.routePath,

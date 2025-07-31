@@ -121,10 +121,15 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                             style: FlutterFlowTheme.of(context)
                                                 .displaySmall
                                                 .override(
-                                                  font: FlutterFlowTheme.of(
-                                                          context)
-                                                      .displaySmall,
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallFamily,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts:
+                                                      !FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmallIsCustom,
                                                 ),
                                           ),
                                         ],
@@ -190,11 +195,15 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .titleMedium
                                                       .override(
-                                                        font:
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleMedium,
+                                                                .titleMediumFamily,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts:
+                                                            !FlutterFlowTheme
+                                                                    .of(context)
+                                                                .titleMediumIsCustom,
                                                       ),
                                             ),
                                           ],
@@ -210,11 +219,15 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .titleMedium
                                                       .override(
-                                                        font:
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleMedium,
+                                                                .titleMediumFamily,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts:
+                                                            !FlutterFlowTheme
+                                                                    .of(context)
+                                                                .titleMediumIsCustom,
                                                       ),
                                             ),
                                           ],
@@ -228,11 +241,15 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .titleMedium
                                                       .override(
-                                                        font:
+                                                        fontFamily:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .titleMedium,
+                                                                .titleMediumFamily,
                                                         letterSpacing: 0.0,
+                                                        useGoogleFonts:
+                                                            !FlutterFlowTheme
+                                                                    .of(context)
+                                                                .titleMediumIsCustom,
                                                       ),
                                             ),
                                           ],
@@ -272,10 +289,15 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                   ),
                                                 ],
@@ -292,10 +314,15 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                   ),
                                                 ],
@@ -311,10 +338,15 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                   ),
                                                 ],

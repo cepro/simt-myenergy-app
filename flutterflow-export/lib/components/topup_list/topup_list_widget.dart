@@ -2,6 +2,7 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -76,8 +77,11 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -90,8 +94,11 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -104,8 +111,11 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -118,8 +128,11 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -138,30 +151,42 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                         dateTimeFormat(
                             "dd/MM/yyyy HH:mm:ss", topupsItem.createdAt!),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                       Text(
                         topupsItem.source,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                       Text(
                         functions.formatGBPAmount(
                             topupsItem.amountPence.toDouble() / 100),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                       Text(
                         topupsItem.status,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                     ].map((c) => DataCell(c)).toList(),

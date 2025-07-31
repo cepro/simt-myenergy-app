@@ -85,8 +85,11 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -109,8 +112,11 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                       'Extra Menu Item 2',
                       textAlign: TextAlign.start,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: FlutterFlowTheme.of(context).bodyMedium,
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
                           ),
                     ),
                   ),
@@ -131,8 +137,11 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                     child: Text(
                       'Extra Menu Item 3',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: FlutterFlowTheme.of(context).bodyMedium,
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
                           ),
                     ),
                   ),

@@ -76,7 +76,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           bearerToken: _model.userToken,
         );
 
-        await Future.delayed(const Duration(milliseconds: 500));
+        await Future.delayed(
+          Duration(
+            milliseconds: 500,
+          ),
+        );
         if ((_model.homePageGetWallets?.succeeded ?? true) &&
             ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
           _model.singleWalletBalance = functions.formatGBPAmount(getJsonField(
@@ -249,9 +253,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
-                                              font: FlutterFlowTheme.of(context)
-                                                  .bodySmall,
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodySmallFamily,
                                               letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  !FlutterFlowTheme.of(context)
+                                                      .bodySmallIsCustom,
                                             ),
                                       ),
                                     ),
@@ -260,9 +268,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       style: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .override(
-                                            font: FlutterFlowTheme.of(context)
-                                                .headlineMedium,
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineMediumFamily,
                                             letterSpacing: 0.0,
+                                            useGoogleFonts:
+                                                !FlutterFlowTheme.of(context)
+                                                    .headlineMediumIsCustom,
                                           ),
                                     ),
                                     Padding(
@@ -315,12 +327,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             .of(context)
                                                         .titleSmall
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleSmall,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmallFamily,
                                                           color: Colors.white,
                                                           fontSize: 12.0,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .titleSmallIsCustom,
                                                         ),
                                                     elevation: 0.0,
                                                     borderRadius:
@@ -433,17 +450,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         EdgeInsets.all(4.0),
                                                     child: Text(
                                                       'Role: ${FFAppState().supplyAccount.customerAccount.role}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyLarge
-                                                              .override(
-                                                                font: FlutterFlowTheme.of(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyLarge
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyLarge,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                                    .bodyLargeFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLargeIsCustom,
+                                                          ),
                                                     ),
                                                   ),
                                                   offset: 4.0,
@@ -471,13 +491,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             context)
                                                         .headlineMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .headlineMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineMediumFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .headlineMediumIsCustom,
                                                         ),
                                                   ),
                                                 ),
@@ -566,10 +591,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             context)
                                                                         .headlineSmall
                                                                         .override(
-                                                                          font:
-                                                                              FlutterFlowTheme.of(context).headlineSmall,
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          useGoogleFonts:
+                                                                              !FlutterFlowTheme.of(context).headlineSmallIsCustom,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -676,12 +703,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               context)
                                                                           .bodyMedium
                                                                           .override(
-                                                                            font:
-                                                                                FlutterFlowTheme.of(context).bodyMedium,
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                             color:
                                                                                 Color(0x8A000000),
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            useGoogleFonts:
+                                                                                !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -700,12 +729,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               context)
                                                                           .titleLarge
                                                                           .override(
-                                                                            font:
-                                                                                FlutterFlowTheme.of(context).titleLarge,
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).titleLargeFamily,
                                                                             color:
                                                                                 Color(0xFF388E3C),
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            useGoogleFonts:
+                                                                                !FlutterFlowTheme.of(context).titleLargeIsCustom,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -784,10 +815,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             context)
                                                                         .headlineSmall
                                                                         .override(
-                                                                          font:
-                                                                              FlutterFlowTheme.of(context).headlineSmall,
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                           letterSpacing:
                                                                               0.0,
+                                                                          useGoogleFonts:
+                                                                              !FlutterFlowTheme.of(context).headlineSmallIsCustom,
                                                                         ),
                                                                   ),
                                                                 ),
@@ -939,10 +972,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               context)
                                                                           .headlineSmall
                                                                           .override(
-                                                                            font:
-                                                                                FlutterFlowTheme.of(context).headlineSmall,
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            useGoogleFonts:
+                                                                                !FlutterFlowTheme.of(context).headlineSmallIsCustom,
                                                                           ),
                                                                     ),
                                                                   ),
@@ -1067,11 +1102,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     context)
                                                                 .bodyLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyLarge,
+                                                                      .bodyLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyLargeIsCustom,
                                                                 ),
                                                       ),
                                                     ),
@@ -1101,14 +1140,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   context)
                                                               .headlineMedium
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .headlineMedium,
+                                                                    .headlineMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryBackground,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .headlineMediumIsCustom,
                                                               ),
                                                     ),
                                                   ),
@@ -1206,8 +1249,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall
                                                                             .override(
-                                                                              font: FlutterFlowTheme.of(context).headlineSmall,
+                                                                              fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                               letterSpacing: 0.0,
+                                                                              useGoogleFonts: !FlutterFlowTheme.of(context).headlineSmallIsCustom,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1455,8 +1499,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall
                                                                             .override(
-                                                                              font: FlutterFlowTheme.of(context).headlineSmall,
+                                                                              fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                               letterSpacing: 0.0,
+                                                                              useGoogleFonts: !FlutterFlowTheme.of(context).headlineSmallIsCustom,
                                                                             ),
                                                                       ),
                                                                     ),
@@ -1575,8 +1620,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall
                                                                             .override(
-                                                                              font: FlutterFlowTheme.of(context).headlineSmall,
+                                                                              fontFamily: FlutterFlowTheme.of(context).headlineSmallFamily,
                                                                               letterSpacing: 0.0,
+                                                                              useGoogleFonts: !FlutterFlowTheme.of(context).headlineSmallIsCustom,
                                                                             ),
                                                                       ),
                                                                     ),

@@ -52,7 +52,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
               getJsonField(
                 (_model.inviteLookupResult?.jsonBody ?? ''),
                 r'''$.email''',
-              ).toString().toString(),
+              ).toString(),
               ParamType.String,
             ),
             'fromInvite': serializeParam(
@@ -110,16 +110,22 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
                       Text(
                         'Oops seems that invite is no longer valid. Contact us to receive a fresh invite.',
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              font: FlutterFlowTheme.of(context).bodyLarge,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyLargeFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyLargeIsCustom,
                             ),
                       ),
                     if (_model.inviteLookupResult == null)
                       Text(
                         'checking invite ...',
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              font: FlutterFlowTheme.of(context).bodyLarge,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyLargeFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyLargeIsCustom,
                             ),
                       ),
                   ],

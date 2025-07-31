@@ -134,10 +134,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .displaySmall
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .displaySmall,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .displaySmallFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .displaySmallIsCustom,
                                                         ),
                                               ),
                                             ],
@@ -236,11 +241,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .titleLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge,
+                                                                      .titleLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLargeIsCustom,
                                                                 ),
                                                       ),
                                                       subtitle: Text(
@@ -250,11 +259,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                       ),
                                                       trailing: Icon(
@@ -281,11 +294,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .titleLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge,
+                                                                      .titleLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLargeIsCustom,
                                                                 ),
                                                       ),
                                                       subtitle: Text(
@@ -299,11 +316,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                       ),
                                                       trailing: Icon(
@@ -330,11 +351,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .titleLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge,
+                                                                      .titleLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLargeIsCustom,
                                                                 ),
                                                       ),
                                                       subtitle: Text(
@@ -348,11 +373,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                       ),
                                                       trailing: Icon(
@@ -379,11 +408,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .titleLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge,
+                                                                      .titleLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLargeIsCustom,
                                                                 ),
                                                       ),
                                                       subtitle: Text(
@@ -393,11 +426,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                       ),
                                                       trailing: Icon(
@@ -424,11 +461,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .titleLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge,
+                                                                      .titleLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLargeIsCustom,
                                                                 ),
                                                       ),
                                                       subtitle: Text(
@@ -438,11 +479,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                       ),
                                                       trailing: Icon(
@@ -469,11 +514,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .titleLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge,
+                                                                      .titleLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLargeIsCustom,
                                                                 ),
                                                       ),
                                                       subtitle: Text(
@@ -483,11 +532,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                       ),
                                                       trailing: Icon(
@@ -514,11 +567,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .titleLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleLarge,
+                                                                      .titleLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleLargeIsCustom,
                                                                 ),
                                                       ),
                                                       subtitle: Text(
@@ -528,11 +585,15 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                       ),
                                                       trailing: Icon(

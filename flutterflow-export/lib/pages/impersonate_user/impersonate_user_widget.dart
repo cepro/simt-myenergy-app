@@ -152,10 +152,14 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                           style: FlutterFlowTheme.of(context)
                                               .headlineMedium
                                               .override(
-                                                font:
+                                                fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .headlineMedium,
+                                                        .headlineMediumFamily,
                                                 letterSpacing: 0.0,
+                                                useGoogleFonts:
+                                                    !FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineMediumIsCustom,
                                               ),
                                         ),
                                       ],
@@ -197,14 +201,18 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                   context)
                                                               .bodyMedium
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumIsCustom,
                                                               ),
                                                     ),
                                                   Padding(
@@ -228,22 +236,30 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                     context)
                                                                 .labelLarge
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelLarge,
+                                                                      .labelLargeFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLargeIsCustom,
                                                                 ),
                                                         hintStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .labelMedium
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium,
+                                                                      .labelMediumFamily,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelMediumIsCustom,
                                                                 ),
                                                         enabledBorder:
                                                             OutlineInputBorder(
@@ -306,17 +322,20 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                     context)
                                                                 .primaryBackground,
                                                       ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font: FlutterFlowTheme.of(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
                                                       validator: _model
                                                           .emailFieldTextControllerValidator
                                                           .asValidator(context),
@@ -520,13 +539,17 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                     context)
                                                                 .titleSmall
                                                                 .override(
-                                                                  font: FlutterFlowTheme.of(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .titleSmall,
+                                                                      .titleSmallFamily,
                                                                   color: Colors
                                                                       .white,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .titleSmallIsCustom,
                                                                 ),
                                                         elevation: 3.0,
                                                         borderSide: BorderSide(
@@ -558,17 +581,20 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                 0.0, 15.0),
                                                     child: Text(
                                                       'Impersonating ${FFAppState().impersonationEmail}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font: FlutterFlowTheme.of(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
                                                     ),
                                                   ),
                                                   FFButtonWidget(
@@ -607,13 +633,17 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                   context)
                                                               .titleSmall
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .titleSmall,
+                                                                    .titleSmallFamily,
                                                                 color: Colors
                                                                     .white,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmallIsCustom,
                                                               ),
                                                       elevation: 0.0,
                                                       borderRadius:

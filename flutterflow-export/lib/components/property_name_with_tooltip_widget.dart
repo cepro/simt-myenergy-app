@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,8 +51,9 @@ class _PropertyNameWithTooltipWidgetState
         child: Text(
           '${FFAppState().property.plot}  Owner: ${FFAppState().property.ownerEmail}',
           style: FlutterFlowTheme.of(context).bodyLarge.override(
-                font: FlutterFlowTheme.of(context).bodyLarge,
+                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                 letterSpacing: 0.0,
+                useGoogleFonts: !FlutterFlowTheme.of(context).bodyLargeIsCustom,
               ),
         ),
       ),
@@ -70,8 +72,9 @@ class _PropertyNameWithTooltipWidgetState
         child: Text(
           FFAppState().property.description,
           style: FlutterFlowTheme.of(context).bodyLarge.override(
-                font: FlutterFlowTheme.of(context).bodyLarge,
+                fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
                 letterSpacing: 0.0,
+                useGoogleFonts: !FlutterFlowTheme.of(context).bodyLargeIsCustom,
               ),
         ),
       ),

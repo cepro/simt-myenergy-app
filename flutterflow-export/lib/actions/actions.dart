@@ -68,7 +68,11 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
   );
 
   if ((getAccountsResponse?.succeeded ?? true)) {
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(
+      Duration(
+        milliseconds: 500,
+      ),
+    );
     accounts = await actions.accountsJSONToAccountsDataType(
       getJsonField(
         (getAccountsResponse?.jsonBody ?? ''),
@@ -225,7 +229,11 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
   );
 
   if ((getContractTermsResponse?.succeeded ?? true)) {
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(
+      Duration(
+        milliseconds: 500,
+      ),
+    );
     contractTermsDataType =
         await actions.contractTermsJSONToContractTermsDataType(
       (getContractTermsResponse?.jsonBody ?? ''),
@@ -428,7 +436,11 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
   if ((getMonthlyCostResponse?.succeeded ?? true) &&
       (getTariffsResponse?.succeeded ?? true) &&
       (getMonthlyUsageResponse?.succeeded ?? true)) {
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(
+      Duration(
+        milliseconds: 500,
+      ),
+    );
     monthlyCostsTyped = await actions.monthlyCostJSONToDataType(
       (getMonthlyCostResponse?.jsonBody ?? ''),
     );

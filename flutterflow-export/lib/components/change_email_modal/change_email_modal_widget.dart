@@ -110,9 +110,12 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .headlineLarge
                                       .override(
-                                        font: FlutterFlowTheme.of(context)
-                                            .headlineLarge,
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .headlineLargeFamily,
                                         letterSpacing: 0.0,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .headlineLargeIsCustom,
                                       ),
                                 ),
                               ],
@@ -144,9 +147,12 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).error,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -169,17 +175,23 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                               labelStyle: FlutterFlowTheme.of(context)
                                   .titleMedium
                                   .override(
-                                    font: FlutterFlowTheme.of(context)
-                                        .titleMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleMediumIsCustom,
                                   ),
                               hintText: currentUserEmail,
                               hintStyle: FlutterFlowTheme.of(context)
                                   .titleMedium
                                   .override(
-                                    font: FlutterFlowTheme.of(context)
-                                        .titleMedium,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleMediumFamily,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleMediumIsCustom,
                                   ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -216,9 +228,11 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
                                 .override(
-                                  font:
-                                      FlutterFlowTheme.of(context).titleMedium,
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleMediumFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .titleMediumIsCustom,
                                 ),
                             keyboardType: TextInputType.emailAddress,
                             cursorColor:
@@ -304,10 +318,13 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: Colors.white,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
                               borderSide: BorderSide(
@@ -331,11 +348,14 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
-                                    font:
-                                        FlutterFlowTheme.of(context).titleSmall,
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .titleSmallFamily,
                                     color: FlutterFlowTheme.of(context)
                                         .primaryText,
                                     letterSpacing: 0.0,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
                               borderSide: BorderSide(

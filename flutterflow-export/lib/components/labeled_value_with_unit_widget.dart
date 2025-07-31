@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,9 +66,11 @@ class _LabeledValueWithUnitWidgetState
                 'Label',
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: FlutterFlowTheme.of(context).bodyMedium,
+                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                     color: Color(0x8A000000),
                     letterSpacing: 0.0,
+                    useGoogleFonts:
+                        !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                   ),
             ),
             Padding(
@@ -83,9 +86,12 @@ class _LabeledValueWithUnitWidgetState
                     'Unit',
                   ),
                   style: FlutterFlowTheme.of(context).labelMedium.override(
-                        font: FlutterFlowTheme.of(context).labelMedium,
+                        fontFamily:
+                            FlutterFlowTheme.of(context).labelMediumFamily,
                         color: Color(0xFF04A2F2),
                         letterSpacing: 0.0,
+                        useGoogleFonts:
+                            !FlutterFlowTheme.of(context).labelMediumIsCustom,
                       ),
                 ),
               ),
@@ -100,8 +106,10 @@ class _LabeledValueWithUnitWidgetState
               'value',
             ),
             style: FlutterFlowTheme.of(context).titleLarge.override(
-                  font: FlutterFlowTheme.of(context).titleLarge,
+                  fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                   letterSpacing: 0.0,
+                  useGoogleFonts:
+                      !FlutterFlowTheme.of(context).titleLargeIsCustom,
                 ),
           ),
         ),

@@ -76,8 +76,11 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -90,8 +93,11 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -104,8 +110,11 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -118,8 +127,11 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -132,8 +144,11 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .labelLarge
                               .override(
-                                font: FlutterFlowTheme.of(context).labelLarge,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelLargeFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .labelLargeIsCustom,
                               ),
                         ),
                       ),
@@ -156,8 +171,11 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyLarge
                                 .override(
-                                  font: FlutterFlowTheme.of(context).bodyLarge,
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyLargeFamily,
                                   letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .bodyLargeIsCustom,
                                 ),
                           ),
                         ),
@@ -178,31 +196,43 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
                       Text(
                         paymentsItem.description,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                       Text(
                         functions.formatGBPAmount(
                             paymentsItem.amount.toDouble() / 100),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                       Text(
                         paymentsItem.status,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                       Column(
@@ -228,10 +258,13 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      font: FlutterFlowTheme.of(context)
-                                          .titleSmall,
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
                                       color: Colors.white,
                                       letterSpacing: 0.0,
+                                      useGoogleFonts:
+                                          !FlutterFlowTheme.of(context)
+                                              .titleSmallIsCustom,
                                     ),
                                 elevation: 0.0,
                                 borderRadius: BorderRadius.circular(8.0),

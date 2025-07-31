@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,12 +66,14 @@ class _MonthlyGenerationWidgetState extends State<MonthlyGenerationWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Text(
                       'Solar Generation',
-                      style: FlutterFlowTheme.of(context)
-                          .headlineMedium
-                          .override(
-                            font: FlutterFlowTheme.of(context).headlineMedium,
-                            letterSpacing: 0.0,
-                          ),
+                      style:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .headlineMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .headlineMediumIsCustom,
+                              ),
                     ),
                   ),
                 ],
@@ -80,8 +83,11 @@ class _MonthlyGenerationWidgetState extends State<MonthlyGenerationWidget> {
                 child: Text(
                   'Coming soon ...',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        font: FlutterFlowTheme.of(context).bodyMedium,
+                        fontFamily:
+                            FlutterFlowTheme.of(context).bodyMediumFamily,
                         letterSpacing: 0.0,
+                        useGoogleFonts:
+                            !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                       ),
                 ),
               ),

@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -50,8 +51,10 @@ class _ComingSoonForPreonboardingWidgetState
         child: Text(
           'Coming Soon!',
           style: FlutterFlowTheme.of(context).bodyMedium.override(
-                font: FlutterFlowTheme.of(context).bodyMedium,
+                fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                 letterSpacing: 0.0,
+                useGoogleFonts:
+                    !FlutterFlowTheme.of(context).bodyMediumIsCustom,
               ),
         ),
       ),

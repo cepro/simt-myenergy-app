@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'labeled_value_with_unit_widget.dart' show LabeledValueWithUnitWidget;
 import 'package:flutter/material.dart';

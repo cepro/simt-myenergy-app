@@ -67,9 +67,11 @@ class _LabeledValueWidgetState extends State<LabeledValueWidget> {
             'Label',
           ),
           style: FlutterFlowTheme.of(context).bodyMedium.override(
-                font: FlutterFlowTheme.of(context).bodyMedium,
+                fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                 color: Color(0x8A000000),
                 letterSpacing: 0.0,
+                useGoogleFonts:
+                    !FlutterFlowTheme.of(context).bodyMediumIsCustom,
               ),
         ),
         Row(
@@ -83,8 +85,10 @@ class _LabeledValueWidgetState extends State<LabeledValueWidget> {
                   'value',
                 ),
                 style: FlutterFlowTheme.of(context).titleLarge.override(
-                      font: FlutterFlowTheme.of(context).titleLarge,
+                      fontFamily: FlutterFlowTheme.of(context).titleLargeFamily,
                       letterSpacing: 0.0,
+                      useGoogleFonts:
+                          !FlutterFlowTheme.of(context).titleLargeIsCustom,
                     ),
               ),
             ),
@@ -105,13 +109,17 @@ class _LabeledValueWidgetState extends State<LabeledValueWidget> {
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                font: FlutterFlowTheme.of(context).titleSmall,
-                                color: Colors.white,
-                                fontSize: 12.0,
-                                letterSpacing: 0.0,
-                              ),
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).titleSmallFamily,
+                            color: Colors.white,
+                            fontSize: 12.0,
+                            letterSpacing: 0.0,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .titleSmallIsCustom,
+                          ),
                       elevation: 0.0,
                       borderRadius: BorderRadius.circular(8.0),
                     ),

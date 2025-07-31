@@ -6,6 +6,7 @@ import '/components/user_profile_button/user_profile_button_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
@@ -109,8 +110,10 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
               Text(
                 'Property: ',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: FlutterFlowTheme.of(context).bodyMedium,
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                       letterSpacing: 0.0,
+                      useGoogleFonts:
+                          !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                     ),
               ),
             if (((FFAppState().properties.length > 1) &&
@@ -139,8 +142,10 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                 width: 200.0,
                 height: 40.0,
                 textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                      font: FlutterFlowTheme.of(context).bodyMedium,
+                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                       letterSpacing: 0.0,
+                      useGoogleFonts:
+                          !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                     ),
                 hintText: 'Select Property...',
                 icon: Icon(

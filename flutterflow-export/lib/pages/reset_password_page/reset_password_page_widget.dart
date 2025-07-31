@@ -72,9 +72,12 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                 child: Text(
                   'Reset Password',
                   style: FlutterFlowTheme.of(context).displaySmall.override(
-                        font: FlutterFlowTheme.of(context).displaySmall,
+                        fontFamily:
+                            FlutterFlowTheme.of(context).displaySmallFamily,
                         fontSize: 32.0,
                         letterSpacing: 0.0,
+                        useGoogleFonts:
+                            !FlutterFlowTheme.of(context).displaySmallIsCustom,
                       ),
                 ),
               ),
@@ -97,9 +100,12 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).error,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -112,9 +118,12 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).error,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -127,9 +136,12 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
-                                font: FlutterFlowTheme.of(context).bodyMedium,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
                                 color: FlutterFlowTheme.of(context).error,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodyMediumIsCustom,
                               ),
                         ),
                       ),
@@ -146,15 +158,21 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           labelStyle: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                font: FlutterFlowTheme.of(context).bodySmall,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodySmallIsCustom,
                               ),
                           hintText: 'Enter new password...',
                           hintStyle: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                font: FlutterFlowTheme.of(context).bodySmall,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodySmallIsCustom,
                               ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -205,8 +223,11 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                         validator: _model.newPasswordTextControllerValidator
                             .asValidator(context),
@@ -224,15 +245,21 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           labelStyle: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                font: FlutterFlowTheme.of(context).bodySmall,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodySmallIsCustom,
                               ),
                           hintText: 'Confirm your password...',
                           hintStyle: FlutterFlowTheme.of(context)
                               .bodySmall
                               .override(
-                                font: FlutterFlowTheme.of(context).bodySmall,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodySmallIsCustom,
                               ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -283,8 +310,11 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                         validator: _model.confirmPasswordTextControllerValidator
                             .asValidator(context),
@@ -346,10 +376,13 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                font: FlutterFlowTheme.of(context).titleSmall,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleSmallFamily,
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 letterSpacing: 0.0,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .titleSmallIsCustom,
                               ),
                           elevation: 3.0,
                           borderSide: BorderSide(

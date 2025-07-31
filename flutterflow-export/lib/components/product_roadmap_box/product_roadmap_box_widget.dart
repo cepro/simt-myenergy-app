@@ -1,6 +1,7 @@
 import '/components/product_road_map_modal/product_road_map_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,8 +64,11 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                   Text(
                     'Product Roadmap',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          font: FlutterFlowTheme.of(context).headlineMedium,
+                          fontFamily:
+                              FlutterFlowTheme.of(context).headlineMediumFamily,
                           letterSpacing: 0.0,
+                          useGoogleFonts: !FlutterFlowTheme.of(context)
+                              .headlineMediumIsCustom,
                         ),
                   ),
                 ],
@@ -76,9 +80,12 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                     child: Text(
                       'The Cepro team is working hard to enable microgrid customers to manage all aspects of their energy use through this “MyEnergy” app. New features are being rolled out regularly.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: FlutterFlowTheme.of(context).bodyMedium,
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
                           ),
                     ),
                   ),
@@ -110,10 +117,13 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                       child: Text(
                         'Click to show Product Roadmap',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: FlutterFlowTheme.of(context).bodyMedium,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyMediumFamily,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.w600,
                               decoration: TextDecoration.underline,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyMediumIsCustom,
                             ),
                       ),
                     ),

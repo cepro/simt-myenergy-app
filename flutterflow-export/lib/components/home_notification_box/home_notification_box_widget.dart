@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -66,9 +67,12 @@ class _HomeNotificationBoxWidgetState extends State<HomeNotificationBoxWidget> {
                   Text(
                     'Notice - Upcoming payment',
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          font: FlutterFlowTheme.of(context).headlineMedium,
+                          fontFamily:
+                              FlutterFlowTheme.of(context).headlineMediumFamily,
                           color: FlutterFlowTheme.of(context).black600,
                           letterSpacing: 0.0,
+                          useGoogleFonts: !FlutterFlowTheme.of(context)
+                              .headlineMediumIsCustom,
                         ),
                   ),
                 ],
@@ -80,10 +84,13 @@ class _HomeNotificationBoxWidgetState extends State<HomeNotificationBoxWidget> {
                     child: Text(
                       'A payment for ${functions.formatGBPAmount(FFAppState().pendingPayments.firstOrNull!.amount.toDouble() / 100.0)} is scheduled for ${dateTimeFormat("dd/MM/yyyy HH:mm:ss", FFAppState().pendingPayments.firstOrNull?.scheduledAt)}.',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            font: FlutterFlowTheme.of(context).bodyMedium,
+                            fontFamily:
+                                FlutterFlowTheme.of(context).bodyMediumFamily,
                             color: FlutterFlowTheme.of(context).gray600,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w600,
+                            useGoogleFonts: !FlutterFlowTheme.of(context)
+                                .bodyMediumIsCustom,
                           ),
                     ),
                   ),

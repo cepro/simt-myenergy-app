@@ -212,9 +212,13 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .titleMedium
                                             .override(
-                                              font: FlutterFlowTheme.of(context)
-                                                  .titleMedium,
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .titleMediumFamily,
                                               letterSpacing: 0.0,
+                                              useGoogleFonts:
+                                                  !FlutterFlowTheme.of(context)
+                                                      .titleMediumIsCustom,
                                             ),
                                         unselectedLabelStyle: TextStyle(),
                                         labelColor: FlutterFlowTheme.of(context)
@@ -263,14 +267,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .bodyMedium
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumIsCustom,
                                                               ),
                                                     ),
                                                   ),
@@ -292,14 +300,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .bodyMedium
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMediumFamily,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .error,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumIsCustom,
                                                               ),
                                                     ),
                                                   ),
@@ -325,11 +337,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .bodySmall
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodySmall,
+                                                                    .bodySmallFamily,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmallIsCustom,
                                                               ),
                                                       hintText:
                                                           'Enter your email...',
@@ -338,11 +354,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .bodySmall
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodySmall,
+                                                                    .bodySmallFamily,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmallIsCustom,
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
@@ -408,10 +428,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                     validator: _model
                                                         .emailTextController1Validator
@@ -439,11 +464,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .bodySmall
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodySmall,
+                                                                    .bodySmallFamily,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmallIsCustom,
                                                               ),
                                                       hintText:
                                                           'Enter your password...',
@@ -452,11 +481,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .bodySmall
                                                               .override(
-                                                                font: FlutterFlowTheme.of(
+                                                                fontFamily: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodySmall,
+                                                                    .bodySmallFamily,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmallIsCustom,
                                                               ),
                                                       enabledBorder:
                                                           OutlineInputBorder(
@@ -545,10 +578,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                     validator: _model
                                                         .passwordTextController1Validator
@@ -575,17 +613,20 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     },
                                                     child: Text(
                                                       'Forgot Password?',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font: FlutterFlowTheme.of(
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
                                                     ),
                                                   ),
                                                 ),
@@ -638,9 +679,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           }
 
                                                           await Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      500));
+                                                            Duration(
+                                                              milliseconds: 500,
+                                                            ),
+                                                          );
                                                           if (loggedIn ==
                                                               true) {
                                                             await Future.wait([
@@ -784,14 +826,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       context)
                                                                   .titleSmall
                                                                   .override(
-                                                                    font: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall,
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .titleSmallFamily,
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .primaryBtnText,
                                                                     letterSpacing:
                                                                         0.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(context)
+                                                                            .titleSmallIsCustom,
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
@@ -826,10 +871,15 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                   ),
                                                 ),
@@ -844,13 +894,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .error,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                   ),
                                                 ),
@@ -865,13 +920,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .error,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                   ),
                                                 ),
@@ -886,13 +946,18 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                             context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium,
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMediumFamily,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .error,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMediumIsCustom,
                                                         ),
                                                   ),
                                                 ),
@@ -909,26 +974,40 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'Email Address',
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    labelStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallIsCustom,
+                                                            ),
                                                     hintText:
                                                         'Enter your email...',
-                                                    hintStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    hintStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallIsCustom,
+                                                            ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -992,16 +1071,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 20.0,
                                                                 24.0),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
                                                   validator: _model
                                                       .emailTextController2Validator
                                                       .asValidator(context),
@@ -1023,26 +1107,40 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .passwordVisibility2,
                                                   decoration: InputDecoration(
                                                     labelText: 'Password',
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    labelStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallIsCustom,
+                                                            ),
                                                     hintText:
                                                         'Enter your password...',
-                                                    hintStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    hintStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallIsCustom,
+                                                            ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -1128,16 +1226,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       ),
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
                                                   validator: _model
                                                       .passwordTextController2Validator
                                                       .asValidator(context),
@@ -1160,26 +1263,40 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   decoration: InputDecoration(
                                                     labelText:
                                                         'Confirm password',
-                                                    labelStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    labelStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallIsCustom,
+                                                            ),
                                                     hintText:
                                                         'Confirm your password...',
-                                                    hintStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodySmall
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    hintStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodySmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallFamily,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmallIsCustom,
+                                                            ),
                                                     enabledBorder:
                                                         OutlineInputBorder(
                                                       borderSide: BorderSide(
@@ -1265,16 +1382,21 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       ),
                                                     ),
                                                   ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily,
+                                                            letterSpacing: 0.0,
+                                                            useGoogleFonts:
+                                                                !FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumIsCustom,
+                                                          ),
                                                   validator: _model
                                                       .confirmCreateTextControllerValidator
                                                       .asValidator(context),
@@ -1340,9 +1462,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         }
 
                                                         await Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    1000));
+                                                          Duration(
+                                                            milliseconds: 1000,
+                                                          ),
+                                                        );
                                                         if (loggedIn) {
                                                           await Future.wait([
                                                             Future(() async {
@@ -1425,18 +1548,25 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          font: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .titleSmall,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBtnText,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                    textStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmall
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallFamily,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBtnText,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmallIsCustom,
+                                                            ),
                                                     elevation: 3.0,
                                                     borderSide: BorderSide(
                                                       color: Colors.transparent,

@@ -112,8 +112,11 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                           'Title Not Set',
                         ),
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
-                              font: FlutterFlowTheme.of(context).bodyLarge,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyLargeFamily,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .bodyLargeIsCustom,
                             ),
                       ),
                     ),
@@ -128,8 +131,11 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).labelMedium.override(
-                        font: FlutterFlowTheme.of(context).labelMedium,
+                        fontFamily:
+                            FlutterFlowTheme.of(context).labelMediumFamily,
                         letterSpacing: 0.0,
+                        useGoogleFonts:
+                            !FlutterFlowTheme.of(context).labelMediumIsCustom,
                       ),
                 ),
               ),
@@ -154,7 +160,6 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                       text: 'View',
                       icon: FaIcon(
                         FontAwesomeIcons.pencilAlt,
-                        color: FlutterFlowTheme.of(context).primaryBtnText,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
@@ -164,15 +169,19 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconColor: FlutterFlowTheme.of(context).primaryBtnText,
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
-                              font: FlutterFlowTheme.of(context).titleSmall,
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).titleSmallFamily,
                               color:
                                   FlutterFlowTheme.of(context).primaryBtnText,
                               fontSize: 14.0,
                               letterSpacing: 0.0,
+                              useGoogleFonts: !FlutterFlowTheme.of(context)
+                                  .titleSmallIsCustom,
                             ),
                         elevation: 3.0,
                         borderSide: BorderSide(
