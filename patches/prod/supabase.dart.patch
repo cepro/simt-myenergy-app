@@ -5,10 +5,10 @@
  export 'database/database.dart';
  
 -String _kSupabaseUrl = 'https://rkzgrxssutcwrauaazjz.supabase.co';
-+String _kSupabaseUrl = 'https://pqlwxerasppsyleweruk.supabase.co';
++String _kSupabaseUrl = 'https://supabase-kong-mgf.fly.dev';
  String _kSupabaseAnonKey =
 -    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJremdyeHNzdXRjd3JhdWFhemp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1MDgwNTgsImV4cCI6MTk5MjA4NDA1OH0.8DG3Bt2sfxVuB8j4diCCTtyiUJUBcYlbNTc5a7BUrTw';
-+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBxbHd4ZXJhc3Bwc3lsZXdlcnVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDY3Mzk1NTgsImV4cCI6MjAyMjMxNTU1OH0.UL57w9o5aaRD8Muc8DpNyyW5oxfL_LmoWm-km8fcY-c';
++    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE4NDA4Nzk5NDUsImlhdCI6MTc1NTA5MDkwNiwiaXNzIjoic3VwYWJhc2UiLCJyb2xlIjoiYW5vbiJ9.MA8tojsiizRZ4uPDgJAC2znkLNk4j_20wzZofpx-cQc';
  
  class SupaFlow {
    SupaFlow._();
