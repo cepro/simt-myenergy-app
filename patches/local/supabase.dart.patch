@@ -5,7 +5,7 @@
  export 'database/database.dart';
  
 -String _kSupabaseUrl = 'https://rkzgrxssutcwrauaazjz.supabase.co';
-+String _kSupabaseUrl = 'http://localhost:54321';
++String _kSupabaseUrl = 'http://localhost:8000';
  String _kSupabaseAnonKey =
 -    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJremdyeHNzdXRjd3JhdWFhemp6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1MDgwNTgsImV4cCI6MTk5MjA4NDA1OH0.8DG3Bt2sfxVuB8j4diCCTtyiUJUBcYlbNTc5a7BUrTw';
 +    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0';
