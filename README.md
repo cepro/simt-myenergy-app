@@ -70,7 +70,7 @@ bin/run-local [hmce]
 ## Build for github pages deployment
 Run the following to build the app and copy to the simt-myenergy-gh-pages/ folder.
 ```sh
-bin/build-github-pages <qa|prod>
+bin/build-github-pages <qa|prod|mgf>
 ```
 
 The script will:

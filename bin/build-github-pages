@@ -2,8 +2,8 @@
 
 set -e
 
-if [ "$1" != "qa" ] && [ "$1" != "prod" ]; then
-    echo "Usage: build-github-pages <qa|prod>"
+if [ "$1" != "qa" ] && [ "$1" != "prod" ] && [ "$1" != "mgf" ]; then
+    echo "Usage: build-github-pages <qa|prod|mgf>"
     exit 1
 fi
 ENV=$1
@@ -33,6 +33,8 @@ $THIS_PROJECT/bin/patch-app $PATCHES
 
 if [ "$ENV" = "prod" ]; then
     $THIS_PROJECT/bin/patch-for-prod $PATCHES $GIT_COMMIT
+elif [ "$ENV" = "mgf" ]; then
+    $THIS_PROJECT/bin/patch-for-mgf $PATCHES $GIT_COMMIT
 else
     $THIS_PROJECT/bin/patch-for-qa $GIT_COMMIT
 fi

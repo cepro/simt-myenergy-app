@@ -22,7 +22,7 @@ bin/run-local [hmce]  # runs on local.waterlilies.energy:4242 or local.hazelmead
 ### Production Builds
 ```bash
 # Build for deployment to GitHub Pages
-bin/build-github-pages <qa|prod>
+bin/build-github-pages <qa|prod|mgf>
 ```
 
 ### Flutter Commands
