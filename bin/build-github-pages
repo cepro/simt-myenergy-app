@@ -69,6 +69,6 @@ cd $GH_PAGES_HOME
 
 # we blow away everything before copying over the flutter app
 # but we want the following files as customizations and addons:
-git restore README.md manifest.json CNAME 404.html favicon.png favicon.ico
+git restore README.md CNAME 404.html favicon.png favicon.ico
 
 git status

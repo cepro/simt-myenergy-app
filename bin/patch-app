@@ -18,3 +18,8 @@ cat $PATCHES/theme/*_site_theme.dart.snippet >> lib/flutter_flow/flutter_flow_th
 echo "\nPatch 4: flutter-bootstrap-js ...\n"
 patch -p0 < $PATCHES/web/flutter-bootstrap-js.patch
 
+echo "\nPatch 5: add service worker and app updater ...\n"
+cp $PATCHES/web/sw.js web/
+cp $PATCHES/web/app-updater.js web/
+cp $PATCHES/web/manifest.json web/
+
