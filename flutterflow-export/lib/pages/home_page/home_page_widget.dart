@@ -910,7 +910,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .supplyAccount
                                                               .customerAccount
                                                               .role ==
-                                                          'occupier'),
+                                                          'occupier') &&
+                                                      (FFAppState()
+                                                              .contractTerms
+                                                              .where((e) =>
+                                                                  e.type ==
+                                                                  'supply')
+                                                              .toList()
+                                                              .length >
+                                                          0) &&
+                                                      (functions.getContractByType(
+                                                              FFAppState()
+                                                                  .accountsForCurrentProperty
+                                                                  .toList(),
+                                                              'supply') !=
+                                                          null),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
@@ -1316,8 +1330,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         var _shouldSetState =
                                                                             false;
                                                                         _model.certificateURL =
-                                                                            await actions.supabaseGetStorageURL(
-                                                                          'mcs-certificates-${FFAppState().esco?.name}',
+                                                                            await actions.getStorageURL(
+                                                                          functions.bucketNameFromEsco(FFAppState()
+                                                                              .esco!
+                                                                              .name)!,
                                                                           functions.mcsFileName(
                                                                               _model.getSolarInstallationOutput!.mcs,
                                                                               functions.streetNumberFromPropertyDescription(FFAppState().property.description)!),

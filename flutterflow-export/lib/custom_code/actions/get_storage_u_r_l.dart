@@ -11,9 +11,9 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<String> supabaseGetStorageURL(
+Future<String> getStorageURL(
   String bucketName,
   String filePath,
 ) async {
-  return SupaFlow.client.storage.from(bucketName).getPublicUrl(filePath);
+  return 'https://${bucketName}.t3.storage.dev/${filePath}';
 }

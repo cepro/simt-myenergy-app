@@ -371,3 +371,14 @@ SupplyTariffStruct? supplyTariffCurrent(TariffsStruct tariffs) {
   customerTariffs.sort((a, b) => b.periodStart!.compareTo(a.periodStart!));
   return customerTariffs.length > 0 ? customerTariffs[0] : null;
 }
+
+String? bucketNameFromEsco(String esco) {
+  if (esco == 'wlce') {
+    // see https://console.tigris.dev/flyio_y84kn0rgdrrnz3gw/buckets/820d6d83-0640-4935-92de-689d9716719a
+    return '820d6d83-0640-4935-92de-689d9716719a';
+  } else if (esco == 'hmce') {
+    return 'd7abc543-1e92-458a-afc3-1724573d64c3';
+  } else {
+    return null;
+  }
+}

@@ -36,7 +36,7 @@ if [ "$ENV" = "prod" ]; then
 elif [ "$ENV" = "mgf" ]; then
     $THIS_PROJECT/bin/patch-for-mgf $PATCHES $GIT_COMMIT
 else
-    $THIS_PROJECT/bin/patch-for-qa $GIT_COMMIT
+    $THIS_PROJECT/bin/patch-for-qa $PATCHES $GIT_COMMIT
 fi
 
 # Set version and build number
