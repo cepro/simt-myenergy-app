@@ -47,7 +47,13 @@ void main() async {
   await appState.initializePersistedState();
 
   // Start final custom actions code
-  await actions.initSupabaseRealtimeSubscriptions();
+
+  // Comment out this as we are moving to a self hosted supabase where realtime is not available.
+  // We may replace the functionality with some other realtime mechanism, in which case this
+  // could be restored and initSupabaseRealtimeSubscriptions tweaked:
+
+  // await actions.initSupabaseRealtimeSubscriptions();
+
   // End final custom actions code
 
   runApp(ChangeNotifierProvider(
