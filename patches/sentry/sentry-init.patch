@@ -8,7 +8,7 @@
  
  import 'auth/supabase_auth/supabase_user_provider.dart';
  import 'auth/supabase_auth/auth_util.dart';
-@@ -20,40 +21,48 @@
+@@ -20,46 +21,48 @@
  import 'package:flutter/foundation.dart' show kDebugMode;
  
  void main() async {
@@ -39,7 +39,13 @@
 -  await appState.initializePersistedState();
 -
 -  // Start final custom actions code
--  await actions.initSupabaseRealtimeSubscriptions();
+-
+-  // Comment out this as we are moving to a self hosted supabase where realtime is not available.
+-  // We may replace the functionality with some other realtime mechanism, in which case this
+-  // could be restored and initSupabaseRealtimeSubscriptions tweaked:
+-
+-  // await actions.initSupabaseRealtimeSubscriptions();
+-
 -  // End final custom actions code
 -
 -  runApp(ChangeNotifierProvider(
@@ -80,7 +86,7 @@
 +    await appState.initializePersistedState();
 +  
 +    // Start final custom actions code
-+    await actions.initSupabaseRealtimeSubscriptions();
++    // await actions.initSupabaseRealtimeSubscriptions();
 +    // End final custom actions code
 +  
 +    runApp(ChangeNotifierProvider(
