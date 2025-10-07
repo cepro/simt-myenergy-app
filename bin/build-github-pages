@@ -2,7 +2,7 @@
 
 set -e
 
-if [ "$1" != "qa" ] && [ "$1" != "prod" ] && [ "$1" != "mgf" ]; then
+if [ "$1" != "qa" ] && [ "$1" != "prod" ]; then
     echo "Usage: build-github-pages <qa|prod>"
     exit 1
 fi
