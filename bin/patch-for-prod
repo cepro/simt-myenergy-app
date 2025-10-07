@@ -8,15 +8,15 @@ GIT_COMMIT=$2
 
 echo "\n\n=====     Apply patches for prod     ====="
 
-echo "\nPatch 1: api call change '-qa' addresses to '-prod' ..."
-sed -i -e 's/simt-j-accounts-qa.fly.dev/simt-j-accounts-prod.fly.dev/' lib/backend/api_requests/api_calls.dart
+echo "\nPatch 1: api call change '-qa' addresses to '-mgf' ..."
+sed -i -e 's/simt-j-accounts-qa.fly.dev/simt-j-accounts-mgf.fly.dev/' lib/backend/api_requests/api_calls.dart
 
-echo "\nPatch 2: change supabase address and key to supabase prod instance ...\n"
+echo "\nPatch 2: change supabase address and key to supabase mgf instance ...\n"
 patch -p0 < $PATCHES/prod/supabase.dart.patch
 
 echo "\nPatch 3: /sysinfo variables"
 setSysInfoEnvironment prod
-setSysInfoSupabaseProject pqlwxerasppsyleweruk
+setSysInfoSupabaseProject "self-hosted"
 setSysInfoGitCommit $GIT_COMMIT
 setSysInfoFlutterVersion
-setSysInfoAccountsBaseURI simt-j-accounts-prod.fly.dev
+setSysInfoAccountsBaseURI simt-j-accounts-mgf.fly.dev
