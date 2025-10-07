@@ -10,17 +10,8 @@ echo "\n\n=====     Apply patches for qa     ====="
 
 echo "\nPatch 1: /sysinfo variables"
 setSysInfoEnvironment qa
-setSysInfoSupabaseProject self-hosted
+setSysInfoSupabaseProject rkzgrxssutcwrauaazjz
 setSysInfoGitCommit $GIT_COMMIT
 setSysInfoFlutterVersion
-setSysInfoAccountsBaseURI "simt-j-accounts-mgf.fly.dev"
+setSysInfoAccountsBaseURI "simt-j-accounts-qa.fly.dev"
 
-##
-## TEMP ADD - change qa values to mgf values:
-##
-
-echo "\nPatch 2: api call change '-qa' addresses to '-mgf' ..."
-sed -i -e 's/simt-j-accounts-qa.fly.dev/simt-j-accounts-mgf.fly.dev/' lib/backend/api_requests/api_calls.dart
- 
-echo "\nPatch 3: change supabase address and key to supabase mgf instance ...\n"
-patch -p0 < $PATCHES/mgf/supabase.dart.patch
