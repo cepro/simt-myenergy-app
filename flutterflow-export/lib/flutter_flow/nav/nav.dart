@@ -214,6 +214,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PropertySelectionPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PropertySelectionPageWidget(),
+        ),
+        FFRoute(
+          name: DisplayRemoteImageWidget.routeName,
+          path: DisplayRemoteImageWidget.routePath,
+          builder: (context, params) => DisplayRemoteImageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

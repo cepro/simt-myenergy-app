@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "name": "MyEnergy (Root)",
+      "path": "."
+    },
+    {
+      "name": "FlutterFlow Export",
+      "path": "flutterflow-export"
+    }
+  ],
+  "settings": {
+    "dart.flutterSdkPath": ".fvm/versions/3.32.4",
+    "dart.analysisExcludedFolders": [
+      "local-stage",
+      "patches",
+      ".fvm"
+    ],
+    "files.exclude": {
+      "**/local-stage": true
+    },
+    "search.exclude": {
+      "**/local-stage": true,
+      "**/.dart_tool": true,
+      "**/.fvm": true
+    }
+  }
+}
