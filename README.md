@@ -10,25 +10,6 @@ Install:
 - [Flutterflow cli](https://github.com/FlutterFlow/flutterflow-cli)
 - [fvm](https://fvm.app/docs/getting_started/installation)
 
-## Setup
-
-Setup 2 folders, the first with this code and tools, the second points to the github pages repo where the built code will be pushed too:  
-```sh
-# Clone this repository
-project> git clone git@github.com:cepro/simt-myenergy-all.git
-
-# Then setup a repository that points to the github pages repositories using a remote for each:
-project> mkdir simt-myenergy-gh-pages && cd simt-myenergy-gh-pages 
-simt-myenergy-gh-pages> git init
-simt-myenergy-gh-pages(main)> git remote add qa git@github.com:cepro/simt-myenergy-gh-pages-qa.git
-simt-myenergy-gh-pages(main)> git remote add prod git@github.com:cepro/simt-myenergy-gh-pages-prod.git
-simt-myenergy-gh-pages(main)> git fetch qa
-simt-myenergy-gh-pages(main)> git fetch prod
-simt-myenergy-gh-pages(main)> git checkout -b main-prod prod/main
-simt-myenergy-gh-pages(main-prod)> git checkout -b main-qa qa/main
-simt-myenergy-gh-pages(main-qa)>
-```
-
 ## Flutter Version
 
 The version used by the project is in [.flutter-version](./.flutter-version).
@@ -62,26 +43,32 @@ Add the following to /etc/hosts:
 
 Run:
 ```sh
-bin/flutterflow-export
 bin/build-local
 bin/run-local [hmce]
 ```
 
-## Build for github pages deployment
-Run the following to build the app and copy to the simt-myenergy-gh-pages/ folder.
+## Build for fly
+
+Run the following to build the app ready for a `fly deploy`.
 ```sh
-bin/build-github-pages <qa|prod>
+bin/build-fly <hmce|wlce>
 ```
 
 The script will:
- - export code from flutterflow
- - apply our patches
+ - apply patches
  - build it
- - copy files to the simt-myenergy-gh-pages/ folder created in the setup step above
+ - copy files to local build/web where fly and docker will pick it up
 
-Then from that simt-myenergy-gh-pages/:
- - manually check the changes look okay
- - git commit
- - push changes
+### Create
 
-A Github Action will then rebuild and deploy the site.
+```sh
+fly --config fly/fly.<esco>.toml launch --org microgridfoundry --copy-config
+fly --config fly/fly.<esco>.toml scale count 1
+```
+
+### Deploy / Update
+
+```sh
+fly --config fly/fly.<esco>.toml deploy
+```
+

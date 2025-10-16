@@ -2,8 +2,8 @@
 
 set -e
 
-if [ "$1" != "qa" ] && [ "$1" != "prod" ]; then
-    echo "Usage: build-fly <qa|prod>"
+if [ "$1" != "hmce" ] && [ "$1" != "wlce" ]; then
+    echo "Usage: build-fly <hmce|wlce>"
     exit 1
 fi
 ENV=$1
@@ -31,12 +31,7 @@ cd $BUILD_HOME
 
 # Apply patches
 $THIS_PROJECT/bin/patch-app $PATCHES
-
-if [ "$ENV" = "prod" ]; then
-    $THIS_PROJECT/bin/patch-for-prod $PATCHES $GIT_COMMIT
-else
-    $THIS_PROJECT/bin/patch-for-qa $PATCHES $GIT_COMMIT
-fi
+$THIS_PROJECT/bin/patch-for-prod $PATCHES $GIT_COMMIT
 
 # Set version and build number
 echo "\nSetting pubspec.yaml version to '$NEW_APP_VERSION'"
@@ -61,6 +56,9 @@ rm -rf $THIS_PROJECT/build/web
 # Copy the build output
 mkdir -p $THIS_PROJECT/build
 cp -r $BUILD_HOME/build/web $THIS_PROJECT/build/.
+
+# Copy the favicons
+cp $THIS_PROJECT/assets/$ENV/favicon* $THIS_PROJECT/build/web/.
 
 echo "\n=========================================="
 echo "Build complete for $ENV environment!"
