@@ -1,10 +1,16 @@
 {
   "files.exclude": {
-    "**/local-stage": false,
-    "bin/flutterflow-export": false,
-    "**/flutterflow-export/": true,
-    "flutterflow-export/": true
+    "**/local-stage": true
   },
-  "dart.analysisExcludedFolders": [],
-  "dart.flutterSdkPath": ".fvm/versions/3.32.4"
+  "dart.analysisExcludedFolders": [
+    "${workspaceFolder}/.fvm",
+    "${workspaceFolder}/local-stage",
+    "${workspaceFolder}/patches"
+  ],
+  "dart.flutterSdkPath": ".fvm/versions/3.32.4",
+  "search.exclude": {
+    "**/local-stage": true,
+    "**/.dart_tool": true,
+    "**/.fvm": true
+  }
 }
