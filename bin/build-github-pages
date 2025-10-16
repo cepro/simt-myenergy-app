@@ -24,7 +24,7 @@ BUILD_HOME=/tmp/myenergy-pages-build-`date +'%s'`
 mkdir $BUILD_HOME
 echo "BUILD_HOME: $BUILD_HOME"
 
-$THIS_PROJECT/bin/flutterflow-export || exit 1
+# $THIS_PROJECT/bin/flutterflow-export || exit 1
 cp -rf $THIS_PROJECT/flutterflow-export/* $BUILD_HOME/.
 cd $BUILD_HOME
 

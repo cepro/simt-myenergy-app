@@ -1,0 +1,75 @@
+#!/bin/sh
+
+set -e
+
+if [ "$1" != "qa" ] && [ "$1" != "prod" ]; then
+    echo "Usage: build-fly <qa|prod>"
+    exit 1
+fi
+ENV=$1
+
+. `dirname $0`/library.sh
+
+# Set up some build variables
+GIT_COMMIT=`getGitCommit`
+APP_VERSION=`getAppVersion`
+NEW_BUILD_NUMBER=`incrementBuildNumber`
+NEW_APP_VERSION="$APP_VERSION+$NEW_BUILD_NUMBER"
+
+THIS_PROJECT=`pwd`/`dirname $0`/..
+PATCHES=$THIS_PROJECT/patches
+
+# Export the flutterflow code to a temp build directory
+BUILD_HOME=/tmp/myenergy-fly-build-`date +'%s'`
+mkdir $BUILD_HOME
+echo "BUILD_HOME: $BUILD_HOME"
+
+# Copy flutterflow export to build directory
+# Note: If you want fresh export, run: $THIS_PROJECT/bin/flutterflow-export first
+cp -rf $THIS_PROJECT/flutterflow-export/* $BUILD_HOME/.
+cd $BUILD_HOME
+
+# Apply patches
+$THIS_PROJECT/bin/patch-app $PATCHES
+
+if [ "$ENV" = "prod" ]; then
+    $THIS_PROJECT/bin/patch-for-prod $PATCHES $GIT_COMMIT
+else
+    $THIS_PROJECT/bin/patch-for-qa $PATCHES $GIT_COMMIT
+fi
+
+# Set version and build number
+echo "\nSetting pubspec.yaml version to '$NEW_APP_VERSION'"
+sed -i -e 's/^version:.*/version: '"$NEW_APP_VERSION"'/' $BUILD_HOME/pubspec.yaml
+
+# Build web app
+echo "\nBuilding for web ...\n"
+# --source-maps added for sentry
+flutter build web --source-maps --pwa-strategy none || exit 1
+
+echo "\nInject build number into script hrefs for cache busting ..."
+cd build/web
+sed -i -e 's/v=123/v='${NEW_BUILD_NUMBER}/g index.html || exit 1
+cd - > /dev/null
+
+# Copy build artifacts and Docker files to project root for deployment
+echo "\nCopying build artifacts to $THIS_PROJECT for Fly.io deployment ..."
+
+# Clean up any previous build
+rm -rf $THIS_PROJECT/build/web
+
+# Copy the build output
+mkdir -p $THIS_PROJECT/build
+cp -r $BUILD_HOME/build/web $THIS_PROJECT/build/.
+
+echo "\n=========================================="
+echo "Build complete for $ENV environment!"
+echo "Build number: $NEW_BUILD_NUMBER"
+echo "App version: $NEW_APP_VERSION"
+echo "Git commit: $GIT_COMMIT"
+echo "=========================================="
+echo "\nTo deploy to Fly.io, run:"
+echo "  fly deploy --config fly.$ENV.toml"
+echo "\nBuild artifacts are in: $THIS_PROJECT/build/web"
+echo "Temporary build directory: $BUILD_HOME"
+echo ""

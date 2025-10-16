@@ -1,0 +1,19 @@
+# Ignore everything by default
+*
+
+# Only include what we need for the Docker image
+!build/web
+!nginx.conf
+
+# Ensure we don't accidentally include these
+.fvm
+.fvmrc
+.git
+.github
+node_modules
+.dart_tool
+local-stage
+flutterflow-export
+patches
+bin
+*.md
