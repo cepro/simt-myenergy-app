@@ -63,8 +63,14 @@ jobs:
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
 
+      - name: Switch to main branch for commit
+        run: |
+          git fetch origin main
+          git checkout main
+
       - name: Commit version file
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'github action: build number incremented'
           file_pattern: 'myenergy.version'
+          branch: main
