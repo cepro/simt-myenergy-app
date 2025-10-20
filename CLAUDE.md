@@ -22,11 +22,11 @@ bin/run-local [hmce]  # runs on local.waterlilies.energy:4242 or local.hazelmead
 ### Production Builds
 ```bash
 # Build for deployment to Fly.io
-bin/build-fly <qa|prod>
+bin/build-fly <wlce|hmce>
 
 # Deploy to Fly.io (after building)
-fly deploy --config fly.qa.toml    # QA environment
-fly deploy --config fly.prod.toml  # Production environment
+fly deploy --config fly/fly.wlce.toml    # Waterlilies Community Energy
+fly deploy --config fly/fly.hmce.toml    # Hazelmead Community Energy
 
 # Legacy GitHub Pages build (deprecated)
 bin/build-github-pages <qa|prod>
@@ -55,8 +55,8 @@ flutter analyze
 - `bin/` - Build and utility scripts
 - `nginx.conf` - nginx configuration for Fly.io deployment
 - `Dockerfile` - Docker configuration for Fly.io deployment
-- `fly.qa.toml` - Fly.io QA environment configuration
-- `fly.prod.toml` - Fly.io production environment configuration
+- `fly/fly.wlce.toml` - Fly.io Waterlilies Community Energy environment configuration
+- `fly/fly.hmce.toml` - Fly.io Hazelmead Community Energy environment configuration
 
 ### Flutter Version
 The project uses Flutter 3.32.4 (defined in `.flutter-version`). This must match the FlutterFlow version shown in their UI.
@@ -88,8 +88,8 @@ The app is built using FlutterFlow with custom code additions:
 4. Test changes
 
 ### Deployment to Fly.io
-1. Build for target environment: `bin/build-fly <qa|prod>`
-2. Deploy: `fly deploy --config fly.<qa|prod>.toml`
+1. Build for target environment: `bin/build-fly <wlce|hmce>`
+2. Deploy: `fly deploy --config fly/fly.<wlce|hmce>.toml`
 
 The build script:
 - Creates a temporary build directory
@@ -114,8 +114,8 @@ Always work from `local-stage/` directory for development. Never modify `flutter
 The app is deployed as a static site using nginx in a Docker container:
 - **Dockerfile**: Uses nginx:alpine base image, copies build output and custom nginx config
 - **nginx.conf**: Configures SPA routing with `try_files`, cache headers, and gzip compression
-- **fly.qa.toml**: QA environment config (auto-stop, scale-to-zero for cost savings)
-- **fly.prod.toml**: Production config (always-on, 1+ machines)
+- **fly/fly.wlce.toml**: Waterlilies Community Energy environment config
+- **fly/fly.hmce.toml**: Hazelmead Community Energy environment config
 
 Cache busting is handled by injecting the build number into script hrefs in index.html (e.g., `script.js?v=123`).
 
