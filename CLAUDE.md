@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the Simtricity MyEnergy Flutter app - a web-based energy management application built with Flutter and FlutterFlow. The app is deployed to GitHub Pages and uses Supabase as the backend.
+This is the Simtricity MyEnergy Flutter app - a web-based energy management application built with Flutter and FlutterFlow. The app is deployed to Fly.io and uses Supabase as the backend.
 
 ## Build System and Scripts
 
@@ -21,7 +21,14 @@ bin/run-local [hmce]  # runs on local.waterlilies.energy:4242 or local.hazelmead
 
 ### Production Builds
 ```bash
-# Build for deployment to GitHub Pages
+# Build for deployment to Fly.io
+bin/build-fly <wlce|hmce>
+
+# Deploy to Fly.io (after building)
+fly deploy --config fly/fly.wlce.toml    # Waterlilies Community Energy
+fly deploy --config fly/fly.hmce.toml    # Hazelmead Community Energy
+
+# Legacy GitHub Pages build (deprecated)
 bin/build-github-pages <qa|prod>
 ```
 
@@ -39,11 +46,17 @@ flutter analyze
 ### Directory Structure
 - `flutterflow-export/` - Original FlutterFlow exported code (read-only)
 - `local-stage/` - Working copy for local development with patches applied
+- `build/web/` - Flutter web build output (created by build scripts, used for Fly.io deployment)
 - `patches/` - Patches applied to customize FlutterFlow export
   - `patches/local/` - Local development patches (Supabase URL override)
   - `patches/prod/` - Production patches
   - `patches/sentry/` - Sentry error tracking patches
+  - `patches/github-pages/` - Legacy GitHub Pages patches (deprecated)
 - `bin/` - Build and utility scripts
+- `nginx.conf` - nginx configuration for Fly.io deployment
+- `Dockerfile` - Docker configuration for Fly.io deployment
+- `fly/fly.wlce.toml` - Fly.io Waterlilies Community Energy environment configuration
+- `fly/fly.hmce.toml` - Fly.io Hazelmead Community Energy environment configuration
 
 ### Flutter Version
 The project uses Flutter 3.32.4 (defined in `.flutter-version`). This must match the FlutterFlow version shown in their UI.
@@ -68,20 +81,43 @@ The app is built using FlutterFlow with custom code additions:
 
 ## Development Workflow
 
+### Local Development
 1. Export from FlutterFlow using `bin/flutterflow-export`
 2. Build local version using `bin/build-local`
 3. Run locally using `bin/run-local`
 4. Test changes
-5. Build for deployment using `bin/build-github-pages`
+
+### Deployment to Fly.io
+1. Build for target environment: `bin/build-fly <wlce|hmce>`
+2. Deploy: `fly deploy --config fly/fly.<wlce|hmce>.toml`
+
+The build script:
+- Creates a temporary build directory
+- Applies environment-specific patches
+- Increments build number
+- Runs `flutter build web` with source maps
+- Injects build number into script hrefs for cache busting
+- Copies build artifacts to `build/web/` for Docker deployment
 
 ## Patch System
 The build process applies patches to customize the FlutterFlow export:
 - Environment-specific configuration (URLs, keys)
 - Sentry integration
 - Theme customizations
-- GitHub Pages compatibility fixes
+- Build number injection for cache busting
 
 Always work from `local-stage/` directory for development. Never modify `flutterflow-export/` directly as it gets overwritten.
+
+## Deployment
+
+### Fly.io Deployment
+The app is deployed as a static site using nginx in a Docker container:
+- **Dockerfile**: Uses nginx:alpine base image, copies build output and custom nginx config
+- **nginx.conf**: Configures SPA routing with `try_files`, cache headers, and gzip compression
+- **fly/fly.wlce.toml**: Waterlilies Community Energy environment config
+- **fly/fly.hmce.toml**: Hazelmead Community Energy environment config
+
+Cache busting is handled by injecting the build number into script hrefs in index.html (e.g., `script.js?v=123`).
 
 ## Testing
 Run tests from the `local-stage/` directory:
@@ -94,3 +130,4 @@ flutter test
 - Flutter 3.32.4 (use fvm: `fvm use 3.32.4`)
 - FlutterFlow CLI
 - Local Supabase instance for development
+- Fly CLI (`flyctl`) for deployment

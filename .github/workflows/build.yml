@@ -1,0 +1,29 @@
+name: Build and Test
+
+on:
+  push:
+
+jobs:
+  build-hmce:
+    name: Build for hmce
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Read Flutter version
+        id: flutter-version
+        run: |
+          FLUTTER_VERSION=$(cat .flutter-version)
+          echo "FLUTTER_VERSION=$FLUTTER_VERSION" >> $GITHUB_ENV
+          echo "Flutter version: $FLUTTER_VERSION"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Build Flutter app for hmce
+        run: bin/build-fly hmce

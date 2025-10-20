@@ -1,0 +1,32 @@
+name: Deploy to Fly on Tag
+
+on:
+  push:
+    tags:
+      - "**-wlce"
+      - "**-hmce"
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  deploy-wlce:
+    name: Deploy to wlce
+    if: contains(github.ref, '-wlce')
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      environment: wlce
+      fly_config: fly/fly.wlce.toml
+    secrets:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+  deploy-hmce:
+    name: Deploy to hmce
+    if: contains(github.ref, '-hmce')
+    uses: ./.github/workflows/deploy-template.yml
+    with:
+      environment: hmce
+      fly_config: fly/fly.hmce.toml
+    secrets:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

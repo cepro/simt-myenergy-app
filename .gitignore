@@ -1,3 +1,5 @@
+build/
+
 local-stage/
 !local-stage/.vscode/settings.json
 
