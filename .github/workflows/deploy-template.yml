@@ -65,8 +65,10 @@ jobs:
 
       - name: Switch to main branch for commit
         run: |
+          git stash
           git fetch origin main
           git checkout main
+          git stash pop
 
       - name: Commit version file
         uses: stefanzweifel/git-auto-commit-action@v5
