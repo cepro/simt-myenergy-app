@@ -13,10 +13,6 @@ on:
       FLY_API_TOKEN:
         required: true
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-
 jobs:
   deploy:
     name: Deploy to ${{ inputs.environment }}
@@ -25,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -47,36 +42,23 @@ jobs:
       - name: Build Flutter app
         run: bin/build-fly ${{ inputs.environment }}
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata for Docker
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=tag
-            type=sha,prefix={{branch}}-
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+      - name: Build Docker Image
+        id: build_image
+        run: docker build -t myenergy:${GITHUB_REF_NAME} .
 
       - name: Setup Fly CLI
         uses: superfly/flyctl-actions/setup-flyctl@1.5
         with:
           version: 0.3.195
 
+      - name: Get Project version
+        id: project-version
+        run: |
+          PROJECT_VERSION=$(grep '^version=' myenergy.version | cut -d'=' -f2)
+          BUILD_NUMBER=$(grep '^build=' myenergy.version | cut -d'=' -f2)
+          echo "PROJECT_VERSION=${PROJECT_VERSION}+${BUILD_NUMBER}" >> $GITHUB_ENV
+
       - name: Deploy to Fly.io
-        run: flyctl deploy --config ${{ inputs.fly_config }} --image ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}
+        run: flyctl deploy --config ${{ inputs.fly_config }} --local-only --image myenergy:${GITHUB_REF_NAME}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
