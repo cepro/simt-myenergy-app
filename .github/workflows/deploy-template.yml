@@ -20,7 +20,7 @@ jobs:
       name: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -62,3 +62,11 @@ jobs:
         run: flyctl deploy --config ${{ inputs.fly_config }} --local-only --image myenergy:${GITHUB_REF_NAME}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Commit version file
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add myenergy.version
+          git commit -m "Bump build number after ${{ inputs.environment }} deployment [skip ci]" || echo "No changes to commit"
+          git push
