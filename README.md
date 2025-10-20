@@ -47,28 +47,26 @@ bin/build-local
 bin/run-local [hmce]
 ```
 
-## Build for fly
+## Build and Deploy to Fly
 
-Run the following to build the app ready for a `fly deploy`.
-```sh
-bin/build-fly <hmce|wlce>
-```
+### Github Setup
 
-The script will:
- - apply patches
- - build it
- - copy files to local build/web where fly and docker will pick it up
+In github dashboard:
+- create 2 environments - "hmce" and "wlce" and for each
+  - create a rule under "deployment branches and tags" that limits to only tags that match "*-hmce" and "*-wlce" respectively
+  - create a secret FLY_API_TOKEN for each environment with `fly tokens create deploy --name github-action-deploy-<env> --config fly/fly-<env>.toml`
 
-### Create
+### Create Fly App
 
 ```sh
 fly --config fly/fly.<esco>.toml launch --org microgridfoundry --copy-config
 fly --config fly/fly.<esco>.toml scale count 1
 ```
 
-### Deploy / Update
+### Deploy
 
-```sh
-fly --config fly/fly.<esco>.toml deploy
-```
+Tag and push tag to trigger a deploy. eg. 1.0.0-wlce will deploy the wlce app from the given tag.
+
+see the github workflow file `deploy.yml` for how this works.
+
 
