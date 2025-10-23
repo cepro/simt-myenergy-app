@@ -30,7 +30,6 @@ cp -rf $THIS_PROJECT/flutterflow-export/* $BUILD_HOME/.
 cd $BUILD_HOME
 
 # Apply patches
-$THIS_PROJECT/bin/patch-app $PATCHES
 $THIS_PROJECT/bin/patch-for-prod $PATCHES $GIT_COMMIT
 
 # Set version and build number

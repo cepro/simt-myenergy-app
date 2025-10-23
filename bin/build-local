@@ -23,7 +23,6 @@ cp -rf $EXPORT_DIR/* $LOCAL_STAGE/.
 cd $LOCAL_STAGE
 
 $THIS_PROJECT/bin/patch-for-local $PATCHES
-$THIS_PROJECT/bin/patch-app $PATCHES
 
 if [ ! -f ".fvm" ]; then  
     if ! type fvm >/dev/null; then

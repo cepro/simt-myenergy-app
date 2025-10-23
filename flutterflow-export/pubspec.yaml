@@ -69,6 +69,7 @@ dependencies:
   provider: 6.1.5
   realtime_client: 2.5.0
   rxdart: 0.27.7
+  sentry_flutter: 8.14.2
   shared_preferences: 2.5.3
   shared_preferences_android: 2.4.10
   shared_preferences_foundation: 2.5.4
