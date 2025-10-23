@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'auth/supabase_auth/supabase_user_provider.dart';
 import 'auth/supabase_auth/auth_util.dart';
@@ -20,46 +21,48 @@ import 'index.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  GoRouter.optionURLReflectsImperativeAPIs = true;
-  usePathUrlStrategy();
-
-  // Set the ErrorWidget's builder before the app is started.
-  // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
-  ErrorWidget.builder = (FlutterErrorDetails details) {
-    print('Error occurred: ${details.exception}');
-    print('Stack trace: ${details.stack}');
-
-    // If we're in debug mode, use the normal error widget which shows the error
-    // message:
-    if (kDebugMode) {
-      return ErrorWidget(details.exception);
-    }
-    // In release builds, show a yellow-on-blue message instead:
-    return ReleaseModeErrorWidget(details: details);
-  };
-
-  await SupaFlow.initialize();
-
-  await FlutterFlowTheme.initialize();
-
-  final appState = FFAppState(); // Initialize FFAppState
-  await appState.initializePersistedState();
-
-  // Start final custom actions code
-
-  // Comment out this as we are moving to a self hosted supabase where realtime is not available.
-  // We may replace the functionality with some other realtime mechanism, in which case this
-  // could be restored and initSupabaseRealtimeSubscriptions tweaked:
-
-  // await actions.initSupabaseRealtimeSubscriptions();
-
-  // End final custom actions code
-
-  runApp(ChangeNotifierProvider(
-    create: (context) => appState,
-    child: MyApp(),
-  ));
+  await SentryFlutter.init((options) {
+    options.dsn =
+        'https://b378c6db98e5c54511fc29154355f563@o4506409083994112.ingest.sentry.io/4506409085042688';
+    // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+    // We recommend adjusting this value in production.
+    options.tracesSampleRate = 1.0;
+  }, appRunner: () async {
+    WidgetsFlutterBinding.ensureInitialized();
+    GoRouter.optionURLReflectsImperativeAPIs = true;
+    usePathUrlStrategy();
+  
+    // Set the ErrorWidget's builder before the app is started.
+    // From: https://api.flutter.dev/flutter/widgets/ErrorWidget-class.html
+    ErrorWidget.builder = (FlutterErrorDetails details) {
+      print('Error occurred: ${details.exception}');
+      print('Stack trace: ${details.stack}');
+  
+      // If we're in debug mode, use the normal error widget which shows the error
+      // message:
+      if (kDebugMode) {
+        return ErrorWidget(details.exception);
+      }
+      // In release builds, show a yellow-on-blue message instead:
+      return ReleaseModeErrorWidget(details: details);
+    };
+  
+    await SupaFlow.initialize();
+  
+    await FlutterFlowTheme.initialize();
+  
+    final appState = FFAppState(); // Initialize FFAppState
+    await appState.initializePersistedState();
+  
+    // Start final custom actions code
+    // await actions.initSupabaseRealtimeSubscriptions();
+    // End final custom actions code
+  
+    runApp(ChangeNotifierProvider(
+      create: (context) => appState,
+      child: MyApp(),
+    ));
+  });
 }
 
 class ReleaseModeErrorWidget extends StatelessWidget {

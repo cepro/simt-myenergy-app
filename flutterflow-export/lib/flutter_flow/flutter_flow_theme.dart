@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_energy/app_state.dart';
+import 'package:my_energy/backend/schema/enums/enums.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,9 +38,16 @@ abstract class FlutterFlowTheme {
 
   static FlutterFlowTheme of(BuildContext context) {
     deviceSize = getDeviceSize(context);
-    return Theme.of(context).brightness == Brightness.dark
-        ? DarkModeTheme()
-        : LightModeTheme();
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    EscoCodeEnum? esco = FFAppState().esco;
+
+    if (esco == EscoCodeEnum.hmce) {
+      return isDarkMode ? HazelDarkModeTheme() : HazelLightModeTheme();
+    }
+
+    // default theme is the wlce theme although we might think about a
+    // CEPRO fallback theme instead.
+    return isDarkMode ? DarkModeTheme() : LightModeTheme();
   }
 
   @Deprecated('Use primary instead')
@@ -687,4 +696,20 @@ extension TextStyleHelper on TextStyle {
             shadows: shadows,
           );
   }
+}
+
+// To be added to flutter_flow_theme.dart and made available when the 
+// Hazelmead esco is active in the app. Active is determined by ether:
+//  - the domain name on web 
+//  - the esco associated with a user after login (all platforms including web
+//    after login) 
+
+class HazelLightModeTheme extends LightModeTheme {
+  late Color primary = const Color(0xFFCC6E29);
+  late Color secondary = const Color(0xFFE8BA40);
+}
+
+class HazelDarkModeTheme extends DarkModeTheme {
+  late Color primary = const Color(0xFFCC6E29);
+  late Color secondary = const Color(0xFFE8BA40);
 }

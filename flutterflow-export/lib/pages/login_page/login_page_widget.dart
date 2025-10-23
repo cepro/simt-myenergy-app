@@ -674,9 +674,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 .passwordTextController1
                                                                 .text,
                                                           );
-                                                          if (user == null) {
-                                                            return;
-                                                          }
 
                                                           await Future.delayed(
                                                             Duration(
@@ -1457,9 +1454,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               .passwordTextController2
                                                               .text,
                                                         );
-                                                        if (user == null) {
-                                                          return;
-                                                        }
 
                                                         await Future.delayed(
                                                           Duration(
