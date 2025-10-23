@@ -6,7 +6,7 @@ if [ "$1" != "hmce" ] && [ "$1" != "wlce" ]; then
     echo "Usage: build-fly <hmce|wlce>"
     exit 1
 fi
-ENV=$1
+ESCO=$1
 
 . `dirname $0`/library.sh
 
@@ -17,7 +17,6 @@ NEW_BUILD_NUMBER=`incrementBuildNumber`
 NEW_APP_VERSION="$APP_VERSION+$NEW_BUILD_NUMBER"
 
 THIS_PROJECT=`pwd`/`dirname $0`/..
-PATCHES=$THIS_PROJECT/patches
 
 # Copy code to a temp build directory
 BUILD_HOME=/tmp/myenergy-fly-build-`date +'%s'`
@@ -52,16 +51,16 @@ mkdir -p $THIS_PROJECT/build
 cp -r $BUILD_HOME/build/web $THIS_PROJECT/build/.
 
 # Copy the favicons
-cp $THIS_PROJECT/assets/$ENV/favicon* $THIS_PROJECT/build/web/.
+cp $THIS_PROJECT/assets/$ESCO/favicon* $THIS_PROJECT/build/web/.
 
 echo "\n=========================================="
-echo "Build complete for $ENV environment!"
+echo "Build complete for $ESCO esco!"
 echo "Build number: $NEW_BUILD_NUMBER"
 echo "App version: $NEW_APP_VERSION"
 echo "Git commit: $GIT_COMMIT"
 echo "=========================================="
 echo "\nTo deploy to Fly.io, run:"
-echo "  fly deploy --config fly/fly.$ENV.toml"
+echo "  fly deploy --config fly/fly.$ESCO.toml"
 echo "\nBuild artifacts are in: $THIS_PROJECT/build/web"
 echo "Temporary build directory: $BUILD_HOME"
 echo ""
