@@ -27,9 +27,6 @@ echo "BUILD_HOME: $BUILD_HOME"
 cp -rf $THIS_PROJECT/app/* $BUILD_HOME/.
 cd $BUILD_HOME
 
-# Apply patches
-$THIS_PROJECT/bin/patch-for-prod $PATCHES $GIT_COMMIT
-
 # Set version and build number
 echo "\nSetting pubspec.yaml version to '$NEW_APP_VERSION'"
 sed -i -e 's/^version:.*/version: '"$NEW_APP_VERSION"'/' $BUILD_HOME/pubspec.yaml
