@@ -11,7 +11,9 @@ ESCO=$1
 . `dirname $0`/library.sh
 
 # Set up some build variables
+ENV=prod
 GIT_COMMIT=`getGitCommit`
+BUILD_FLUTTER_VERSION=`getFlutterVersion`
 APP_VERSION=`getAppVersion`
 NEW_BUILD_NUMBER=`incrementBuildNumber`
 NEW_APP_VERSION="$APP_VERSION+$NEW_BUILD_NUMBER"
@@ -33,7 +35,12 @@ sed -i -e 's/^version:.*/version: '"$NEW_APP_VERSION"'/' $BUILD_HOME/pubspec.yam
 # Build web app
 echo "\nBuilding for web ...\n"
 # --source-maps added for sentry
-flutter build web --source-maps --pwa-strategy none || exit 1
+flutter build web \
+    --source-maps \
+    --pwa-strategy none \
+    --dart-define=ENV=$ENV \
+    --dart-define=BUILD_FLUTTER_VERSION=$BUILD_FLUTTER_VERSION \
+    --dart-define=GIT_COMMIT=$GIT_COMMIT || exit 1
 
 echo "\nInject build number into script hrefs for cache busting ..."
 cd build/web
@@ -55,12 +62,16 @@ cp $THIS_PROJECT/assets/$ESCO/favicon* $THIS_PROJECT/build/web/.
 
 echo "\n=========================================="
 echo "Build complete for $ESCO esco!"
+echo ""
 echo "Build number: $NEW_BUILD_NUMBER"
 echo "App version: $NEW_APP_VERSION"
 echo "Git commit: $GIT_COMMIT"
+echo "Flutter Version: $BUILD_FLUTTER_VERSION"
 echo "=========================================="
-echo "\nTo deploy to Fly.io, run:"
+echo ""
+echo "To deploy to Fly.io, run:"
 echo "  fly deploy --config fly/fly.$ESCO.toml"
-echo "\nBuild artifacts are in: $THIS_PROJECT/build/web"
+echo ""
+echo "Build artifacts are in: $THIS_PROJECT/build/web"
 echo "Temporary build directory: $BUILD_HOME"
 echo ""
