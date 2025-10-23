@@ -5,3 +5,6 @@ local-stage/
 
 # FVM Version Cache
 .fvm/
+
+# Flutter ephemeral files
+app/ios/Flutter/ephemeral/

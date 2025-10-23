@@ -6,8 +6,14 @@
 #
 set -e
 
+. `dirname $0`/library.sh
+
+ENV=dev
+BUILD_FLUTTER_VERSION=`getFlutterVersion`
+GIT_COMMIT=`getGitCommit`
+
 THIS_PROJECT=`pwd`/`dirname $0`/..
-LOCAL_STAGE=$THIS_PROJECT/local-stage
+APP_HOME=$THIS_PROJECT/app
 
 if [ "$1" = "hmce" ]; then
   SITE_NAME=hazelmead
@@ -16,11 +22,13 @@ else
 fi
 SITE_HOSTNAME=local.$SITE_NAME.energy
 
-# fix the following: paths are messed up when invoking like this:
-# if [ "$1" = "--export" ]; then
-#     $THIS_PROJECT/patch-local $1
-# fi
-
-cd $LOCAL_STAGE
-echo "\nRun app from $LOCAL_STAGE ...\n"
-flutter run -d chrome --web-hostname $SITE_HOSTNAME --web-port 4242 --web-browser-flag "--disable-web-security"
+cd $APP_HOME
+echo "\nRun app from $APP_HOME ...\n"
+flutter run -d chrome \
+  --web-hostname $SITE_HOSTNAME \
+  --web-port 4242 \
+  --web-browser-flag "--disable-web-security" \
+  --dart-define=ENV=$ENV \
+  --dart-define=BUILD_FLUTTER_VERSION=$BUILD_FLUTTER_VERSION \
+  --dart-define=GIT_COMMIT=$GIT_COMMIT
+  
