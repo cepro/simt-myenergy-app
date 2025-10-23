@@ -19,14 +19,12 @@ NEW_APP_VERSION="$APP_VERSION+$NEW_BUILD_NUMBER"
 THIS_PROJECT=`pwd`/`dirname $0`/..
 PATCHES=$THIS_PROJECT/patches
 
-# Export the flutterflow code to a temp build directory
+# Copy code to a temp build directory
 BUILD_HOME=/tmp/myenergy-fly-build-`date +'%s'`
 mkdir $BUILD_HOME
 echo "BUILD_HOME: $BUILD_HOME"
 
-# Copy flutterflow export to build directory
-# Note: If you want fresh export, run: $THIS_PROJECT/bin/flutterflow-export first
-cp -rf $THIS_PROJECT/flutterflow-export/* $BUILD_HOME/.
+cp -rf $THIS_PROJECT/app/* $BUILD_HOME/.
 cd $BUILD_HOME
 
 # Apply patches

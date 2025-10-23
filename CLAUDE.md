@@ -44,14 +44,8 @@ flutter analyze
 ## Architecture
 
 ### Directory Structure
-- `flutterflow-export/` - Original FlutterFlow exported code (read-only)
-- `local-stage/` - Working copy for local development with patches applied
+- `app/` - Flutter app code
 - `build/web/` - Flutter web build output (created by build scripts, used for Fly.io deployment)
-- `patches/` - Patches applied to customize FlutterFlow export
-  - `patches/local/` - Local development patches (Supabase URL override)
-  - `patches/prod/` - Production patches
-  - `patches/sentry/` - Sentry error tracking patches
-  - `patches/github-pages/` - Legacy GitHub Pages patches (deprecated)
 - `bin/` - Build and utility scripts
 - `nginx.conf` - nginx configuration for Fly.io deployment
 - `Dockerfile` - Docker configuration for Fly.io deployment
@@ -82,10 +76,9 @@ The app is built using FlutterFlow with custom code additions:
 ## Development Workflow
 
 ### Local Development
-1. Export from FlutterFlow using `bin/flutterflow-export`
-2. Build local version using `bin/build-local`
-3. Run locally using `bin/run-local`
-4. Test changes
+1. Build local version using `bin/build-local`
+2. Run locally using `bin/run-local`
+3. Test changes
 
 ### Deployment to Fly.io
 1. Build for target environment: `bin/build-fly <wlce|hmce>`
@@ -98,15 +91,6 @@ The build script:
 - Runs `flutter build web` with source maps
 - Injects build number into script hrefs for cache busting
 - Copies build artifacts to `build/web/` for Docker deployment
-
-## Patch System
-The build process applies patches to customize the FlutterFlow export:
-- Environment-specific configuration (URLs, keys)
-- Sentry integration
-- Theme customizations
-- Build number injection for cache busting
-
-Always work from `local-stage/` directory for development. Never modify `flutterflow-export/` directly as it gets overwritten.
 
 ## Deployment
 

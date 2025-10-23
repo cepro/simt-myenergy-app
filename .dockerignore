@@ -13,7 +13,6 @@
 node_modules
 .dart_tool
 local-stage
-flutterflow-export
 patches
 bin
 *.md

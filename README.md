@@ -20,19 +20,6 @@ We use the same flutter version that Flutterflow uses which can be seen in the t
 
 Manually update .flutter-version when Flutterflow upgrades this Flutter version.
 
-## Folders
-
-flutterflow-export/
-- export app code from flutterflow
-- track copies of the original flutterflow code without any modifications
-
-local-stage/
-- local build (see [bin/build-local](bin/build-local))
-- local dev runs from this copy (see [bin/run-local](bin/run-local))
-
-patches/
-- patches to be applied to the flutterflow export code
-
 ## Run Locally
 
 Add the following to /etc/hosts:

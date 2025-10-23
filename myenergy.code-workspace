@@ -5,8 +5,8 @@
       "path": "."
     },
     {
-      "name": "FlutterFlow Export",
-      "path": "flutterflow-export"
+      "name": "MyEnergy App",
+      "path": "app"
     }
   ],
   "settings": {

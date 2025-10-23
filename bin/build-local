@@ -1,25 +1,18 @@
 #!/bin/sh
 #
-# Copy the exported app from flutterflow-export/ to local-stage/ and apply
-# patches.
-#
-# --export will export a fresh copy from flutterflow before making the copy.
+# Build local app
 #
 set -e
 
 THIS_PROJECT=`pwd`/`dirname $0`/..
 LOCAL_STAGE=$THIS_PROJECT/local-stage
-EXPORT_DIR=$THIS_PROJECT/flutterflow-export
+APP_DIR=$THIS_PROJECT/app
 PATCHES=$THIS_PROJECT/patches
-
-if [ "$1" = "--export" ]; then
-    $THIS_PROJECT/bin/flutterflow-export
-fi
 
 echo "LOCAL_STAGE: $LOCAL_STAGE"
 rm -rf $LOCAL_STAGE/lib $LOCAL_STAGE/web $LOCAL_STAGE/assets $LOCAL_STAGE/pubspec* 
 mkdir -p $LOCAL_STAGE
-cp -rf $EXPORT_DIR/* $LOCAL_STAGE/.
+cp -rf $APP_DIR/* $LOCAL_STAGE/.
 cd $LOCAL_STAGE
 
 $THIS_PROJECT/bin/patch-for-local $PATCHES
