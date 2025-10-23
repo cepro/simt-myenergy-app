@@ -54,9 +54,8 @@ jobs:
       - name: Get Project version
         id: project-version
         run: |
-          PROJECT_VERSION=$(grep '^version=' myenergy.version | cut -d'=' -f2)
-          BUILD_NUMBER=$(grep '^build=' myenergy.version | cut -d'=' -f2)
-          echo "PROJECT_VERSION=${PROJECT_VERSION}+${BUILD_NUMBER}" >> $GITHUB_ENV
+          PROJECT_VERSION=$(grep '^version:' app/pubspec.yaml | sed -e 's/version: *//')
+          echo "PROJECT_VERSION=${PROJECT_VERSION}" >> $GITHUB_ENV
 
       - name: Deploy to Fly.io
         run: flyctl deploy --config ${{ inputs.fly_config }} --local-only --image myenergy:${GITHUB_REF_NAME}
@@ -74,5 +73,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'github action: build number incremented'
-          file_pattern: 'myenergy.version'
+          file_pattern: 'app/pubspec.yaml'
           branch: main
