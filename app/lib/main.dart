@@ -16,11 +16,14 @@ import 'flutter_flow/flutter_flow_util.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'flutter_flow/nav/nav.dart';
+import 'config/environment.dart';
 import 'index.dart';
 
 import 'package:flutter/foundation.dart' show kDebugMode;
 
 void main() async {
+  Environment.initialize();
+  
   await SentryFlutter.init((options) {
     options.dsn =
         'https://b378c6db98e5c54511fc29154355f563@o4506409083994112.ingest.sentry.io/4506409085042688';

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/config/environment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -253,7 +254,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                                 ),
                                                       ),
                                                       subtitle: Text(
-                                                        'replace_me_environment',
+                                                        Environment.config.env,
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
