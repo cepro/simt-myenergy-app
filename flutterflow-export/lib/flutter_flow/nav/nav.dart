@@ -216,9 +216,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PropertySelectionPageWidget(),
         ),
         FFRoute(
-          name: DisplayRemoteImageWidget.routeName,
-          path: DisplayRemoteImageWidget.routePath,
-          builder: (context, params) => DisplayRemoteImageWidget(),
+          name: ForecastGraphsWidget.routeName,
+          path: ForecastGraphsWidget.routePath,
+          builder: (context, params) => ForecastGraphsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
