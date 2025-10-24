@@ -16,6 +16,8 @@ export '/expanded_menu/expanded_menu_widget.dart' show ExpandedMenuWidget;
 export '/pages/admin_payment/admin_payment_widget.dart' show AdminPaymentWidget;
 export '/pages/my_energy_page/my_energy_page_widget.dart'
     show MyEnergyPageWidget;
+export '/pages/my_energy_page_v2/my_energy_page_v2_widget.dart'
+    show MyEnergyPageV2Widget;
 export '/pages/impersonate_user/impersonate_user_widget.dart'
     show ImpersonateUserWidget;
 export '/pages/user_profile_page/user_profile_page_widget.dart'

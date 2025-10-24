@@ -2,11 +2,7 @@ import '/components/logout_button/logout_button_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'forecast_graphs_model.dart';
 export 'forecast_graphs_model.dart';
 
@@ -60,7 +56,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,13 +66,13 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
               children: [
                 Text(
                   emoji,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 28.0,
                     fontFamily: 'NotoColorEmoji',
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                   child: Text(
                     title,
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -91,7 +87,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: Image.network(
@@ -114,7 +110,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
                               size: 48.0,
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 0.0),
                               child: Text(
                                 'Error loading graph',
@@ -202,12 +198,12 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 1400.0,
                             ),
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 24.0, 16.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -235,7 +231,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
                                         flex: 7,
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 12.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -274,7 +270,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
                                               model: _model.logoutButtonModel,
                                               updateCallback: () =>
                                                   safeSetState(() {}),
-                                              child: LogoutButtonWidget(),
+                                              child: const LogoutButtonWidget(),
                                             ),
                                           ],
                                         ),
@@ -305,7 +301,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
                                     ),
                                   // Graph panes - side by side on desktop, vertical on mobile
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 24.0),
                                     child: responsiveVisibility(
                                       context: context,
@@ -323,7 +319,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
                                                     costGraphTitle,
                                                     '💰'),
                                               ),
-                                              SizedBox(width: 16.0),
+                                              const SizedBox(width: 16.0),
                                               Expanded(
                                                 child: _buildGraphPane(
                                                     image2Url,
@@ -339,7 +335,7 @@ class _ForecastGraphsWidgetState extends State<ForecastGraphsWidget> {
                                                   image1Url,
                                                   costGraphTitle,
                                                   '💰'),
-                                              SizedBox(height: 16.0),
+                                              const SizedBox(height: 16.0),
                                               _buildGraphPane(
                                                   image2Url,
                                                   energyGraphTitle,
