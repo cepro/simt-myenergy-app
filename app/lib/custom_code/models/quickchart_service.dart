@@ -32,15 +32,14 @@ class QuickChartService {
     final chartJson = request.toJsonString();
     final encodedChart = Uri.encodeComponent(chartJson);
 
-    final queryParams = {
-      'c': encodedChart,
-      'width': width.toString(),
-      'height': height.toString(),
-      'backgroundColor': backgroundColor,
-      'format': format,
-    };
+    // Build URL manually to avoid double-encoding
+    // Uri.replace() would encode the already-encoded chart parameter again
+    final url = '$baseUrl?c=$encodedChart'
+        '&width=$width'
+        '&height=$height'
+        '&backgroundColor=${Uri.encodeComponent(backgroundColor)}'
+        '&format=$format';
 
-    final uri = Uri.parse(baseUrl).replace(queryParameters: queryParams);
-    return uri.toString();
+    return url;
   }
 }

@@ -180,16 +180,23 @@ void main() {
         expect(uri.scheme, equals('https'));
         expect(uri.host, equals('quickchart.io'));
 
-        // The chart parameter should be present and contain encoded data
-        expect(uri.queryParameters['c'], isNotNull);
+        // Extract the 'c' parameter from the query string manually
+        final queryString = uri.query;
+        expect(queryString, contains('c='));
 
-        // Decode the parameter to verify the content
-        final chartJson = Uri.decodeComponent(uri.queryParameters['c']!);
-        final chartData = jsonDecode(chartJson);
+        // Verify single encoding by checking for %7B (encoded {) not %257B (double-encoded)
+        expect(queryString, contains('%7B'));
+        expect(queryString, isNot(contains('%257B')));
 
+        // Parse the URL properly to get the decoded chart parameter
+        final params = Uri.splitQueryString(queryString);
+        expect(params['c'], isNotNull);
+
+        final chartData = jsonDecode(params['c']!);
         expect(chartData['type'], equals('bar'));
         expect(chartData['data']['datasets'][0]['label'], equals('Test Dataset'));
-        expect(chartData['options']['plugins']['title']['text'], equals('Test Chart Title'));
+        expect(chartData['options']['plugins']['title']['text'],
+            equals('Test Chart Title'));
       });
 
       test('handles stacked bar chart configuration', () {
@@ -264,17 +271,21 @@ void main() {
         final uri = Uri.parse(url);
         expect(uri.isAbsolute, isTrue);
 
-        // Verify the chart data is present in the URL by decoding the parameter
-        final chartParam = uri.queryParameters['c'];
-        expect(chartParam, isNotNull);
+        // Verify single encoding (not double-encoded)
+        final queryString = uri.query;
+        expect(queryString, contains('%7B')); // Single encoded {
+        expect(queryString, isNot(contains('%257B'))); // Not double-encoded
 
-        // Decode and parse the JSON to verify content
-        final chartJson = Uri.decodeComponent(chartParam!);
-        final chartData = jsonDecode(chartJson);
+        // Parse the URL properly to get the decoded chart parameter
+        final params = Uri.splitQueryString(queryString);
+        expect(params['c'], isNotNull);
+
+        final chartData = jsonDecode(params['c']!);
 
         // Verify chart structure
         expect(chartData['type'], equals('bar'));
-        expect(chartData['options']['plugins']['title']['text'], equals('Forecasted Monthly Costs'));
+        expect(chartData['options']['plugins']['title']['text'],
+            equals('Forecasted Monthly Costs'));
 
         // Verify datasets
         final datasets = chartData['data']['datasets'] as List;

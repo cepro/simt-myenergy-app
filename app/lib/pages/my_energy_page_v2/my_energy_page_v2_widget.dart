@@ -7,13 +7,13 @@ import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/custom_code/actions/build_monthly_costs_chart_url.dart'
+    as custom_actions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_energy_page_v2_model.dart';
 export 'my_energy_page_v2_model.dart';
@@ -33,11 +33,34 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  // Graph URLs - replace with actual forecast graph URLs
-  final String costsGraphUrl =
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800';
+  // Graph URLs - built dynamically from data
+  String _costsGraphUrl = '';
   final String energyGraphUrl =
       'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800';
+
+  /// Builds the costs chart URL from monthly costs data
+  Future<void> _buildCostsChartUrl() async {
+    if (FFAppState().monthlyCosts.isNotEmpty) {
+      final url =
+          await custom_actions.buildMonthlyCostsChartUrl(FFAppState().monthlyCosts);
+      if (mounted) {
+        setState(() {
+          _costsGraphUrl = url;
+        });
+      }
+    }
+  }
+
+  /// Gets the costs graph URL, building it if necessary
+  String get costsGraphUrl {
+    if (_costsGraphUrl.isEmpty && FFAppState().monthlyCosts.isNotEmpty) {
+      // Build URL asynchronously
+      _buildCostsChartUrl();
+      // Return placeholder while building
+      return 'https://quickchart.io/chart?c=%7B%22type%22%3A%22bar%22%7D&width=550&height=350';
+    }
+    return _costsGraphUrl;
+  }
 
   @override
   void initState() {
@@ -46,6 +69,9 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      // Build costs chart URL from existing data
+      await _buildCostsChartUrl();
+
       // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
       if ((!FFAppState().monthlyCostsLoading &&
               !FFAppState().monthlyUsageLoading) &&
@@ -55,6 +81,9 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                   10))) {
         // RefreshTariffsCostsUsage
         await action_blocks.getTariffsCostsUsage(context);
+
+        // Rebuild costs chart URL after loading new data
+        await _buildCostsChartUrl();
         return;
       } else {
         return;
@@ -225,16 +254,16 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 100.0),
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 100.0),
                     child: Container(
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 1024.0,
                       ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 0.0, 10.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -242,7 +271,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                             wrapWithModel(
                               model: _model.topBarLoggedInModel,
                               updateCallback: () => safeSetState(() {}),
-                              child: TopBarLoggedInWidget(),
+                              child: const TopBarLoggedInWidget(),
                             ),
                             if (responsiveVisibility(
                               context: context,
@@ -265,7 +294,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                                 color: FlutterFlowTheme.of(context).lineColor,
                               ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -285,7 +314,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -296,7 +325,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child:
-                                              PropertyNameWithTooltipWidget(),
+                                              const PropertyNameWithTooltipWidget(),
                                         ),
                                         if (responsiveVisibility(
                                           context: context,
@@ -305,9 +334,9 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                                         ))
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 1.0),
+                                                const AlignmentDirectional(0.0, 1.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 0.0, 0.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
@@ -318,11 +347,11 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                                                 text: 'Change',
                                                 options: FFButtonOptions(
                                                   height: 25.0,
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 10.0, 0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -365,7 +394,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                                     .role ==
                                 'occupier')
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 0.0),
                                 child: _buildGraphPane(
                                     costsGraphUrl, 'Cost Breakdown', '💰'),
@@ -378,7 +407,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                               wrapWithModel(
                                 model: _model.monthlyCostsModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: MonthlyCostsWidget(),
+                                child: const MonthlyCostsWidget(),
                               ),
                             if (FFAppState()
                                     .supplyAccount
@@ -386,7 +415,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                                     .role ==
                                 'occupier')
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 0.0),
                                 child: _buildGraphPane(
                                     energyGraphUrl, 'Energy Forecast', '⚡'),
@@ -399,7 +428,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                               wrapWithModel(
                                 model: _model.monthlyUsageModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: MonthlyUsageWidget(),
+                                child: const MonthlyUsageWidget(),
                               ),
                             if (FFAppState()
                                     .solarAccount
@@ -409,7 +438,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                               wrapWithModel(
                                 model: _model.monthlyGenerationModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: MonthlyGenerationWidget(),
+                                child: const MonthlyGenerationWidget(),
                               ),
                           ],
                         ),

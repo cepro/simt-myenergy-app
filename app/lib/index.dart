@@ -25,5 +25,3 @@ export '/pages/user_profile_page/user_profile_page_widget.dart'
 export '/pages/topups_page/topups_page_widget.dart' show TopupsPageWidget;
 export '/pages/property_selection_page/property_selection_page_widget.dart'
     show PropertySelectionPageWidget;
-export '/pages/forecast_graphs/forecast_graphs_widget.dart'
-    show ForecastGraphsWidget;

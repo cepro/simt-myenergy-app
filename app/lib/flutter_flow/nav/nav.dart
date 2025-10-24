@@ -220,11 +220,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PropertySelectionPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PropertySelectionPageWidget(),
-        ),
-        FFRoute(
-          name: ForecastGraphsWidget.routeName,
-          path: ForecastGraphsWidget.routePath,
-          builder: (context, params) => ForecastGraphsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
