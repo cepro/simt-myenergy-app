@@ -62,6 +62,8 @@ class ChartDataset {
   final String? stack;
   final String? borderColor;
   final double? borderWidth;
+  final bool? fill;
+  final double? tension;
 
   ChartDataset({
     required this.label,
@@ -70,6 +72,8 @@ class ChartDataset {
     this.stack,
     this.borderColor,
     this.borderWidth,
+    this.fill,
+    this.tension,
   });
 
   Map<String, dynamic> toJson() {
@@ -82,6 +86,8 @@ class ChartDataset {
     if (stack != null) json['stack'] = stack;
     if (borderColor != null) json['borderColor'] = borderColor;
     if (borderWidth != null) json['borderWidth'] = borderWidth;
+    if (fill != null) json['fill'] = fill;
+    if (tension != null) json['tension'] = tension;
 
     return json;
   }
@@ -94,6 +100,8 @@ class ChartDataset {
       stack: json['stack'] as String?,
       borderColor: json['borderColor'] as String?,
       borderWidth: (json['borderWidth'] as num?)?.toDouble(),
+      fill: json['fill'] as bool?,
+      tension: (json['tension'] as num?)?.toDouble(),
     );
   }
 }

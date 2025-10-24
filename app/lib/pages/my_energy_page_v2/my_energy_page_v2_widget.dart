@@ -10,7 +10,9 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/custom_code/actions/build_monthly_costs_chart_url.dart'
-    as custom_actions;
+    as build_costs_chart;
+import '/custom_code/actions/build_monthly_usage_chart_url.dart'
+    as build_usage_chart;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -35,17 +37,29 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
 
   // Graph URLs - built dynamically from data
   String _costsGraphUrl = '';
-  final String energyGraphUrl =
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800';
+  String _energyGraphUrl = '';
 
   /// Builds the costs chart URL from monthly costs data
   Future<void> _buildCostsChartUrl() async {
     if (FFAppState().monthlyCosts.isNotEmpty) {
-      final url =
-          await custom_actions.buildMonthlyCostsChartUrl(FFAppState().monthlyCosts);
+      final url = await build_costs_chart.buildMonthlyCostsChartUrl(
+          FFAppState().monthlyCosts);
       if (mounted) {
         setState(() {
           _costsGraphUrl = url;
+        });
+      }
+    }
+  }
+
+  /// Builds the energy usage chart URL from monthly usage data
+  Future<void> _buildEnergyChartUrl() async {
+    if (FFAppState().monthlyUsage.isNotEmpty) {
+      final url = await build_usage_chart.buildMonthlyUsageChartUrl(
+          FFAppState().monthlyUsage);
+      if (mounted) {
+        setState(() {
+          _energyGraphUrl = url;
         });
       }
     }
@@ -62,6 +76,17 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
     return _costsGraphUrl;
   }
 
+  /// Gets the energy graph URL, building it if necessary
+  String get energyGraphUrl {
+    if (_energyGraphUrl.isEmpty && FFAppState().monthlyUsage.isNotEmpty) {
+      // Build URL asynchronously
+      _buildEnergyChartUrl();
+      // Return placeholder while building
+      return 'https://quickchart.io/chart?c=%7B%22type%22%3A%22line%22%7D&width=550&height=350';
+    }
+    return _energyGraphUrl;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -69,8 +94,9 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      // Build costs chart URL from existing data
+      // Build chart URLs from existing data
       await _buildCostsChartUrl();
+      await _buildEnergyChartUrl();
 
       // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
       if ((!FFAppState().monthlyCostsLoading &&
@@ -82,8 +108,9 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
         // RefreshTariffsCostsUsage
         await action_blocks.getTariffsCostsUsage(context);
 
-        // Rebuild costs chart URL after loading new data
+        // Rebuild chart URLs after loading new data
         await _buildCostsChartUrl();
+        await _buildEnergyChartUrl();
         return;
       } else {
         return;
