@@ -9,7 +9,7 @@ import 'quickchart_service.dart';
 /// 1. Build a chart request from scratch
 /// 2. Load a chart request from JSON
 /// 3. Update chart data dynamically
-/// 4. Generate URLs and fetch images
+/// 4. Generate URLs for use with Image.network()
 
 class QuickChartExample {
   /// Creates a bar chart for monthly costs
@@ -123,40 +123,7 @@ class QuickChartExample {
     );
   }
 
-  /// Example: Fetch chart image
-  static Future<void> exampleFetchChart() async {
-    // Create a simple chart
-    final request = createMonthlyCostChart(
-      monthLabels: ['Oct 24', 'Nov 24', 'Dec 24'],
-      standingCharges: [12.34, 16.15, 19.58],
-      powerAndLights: [45.24, 59.21, 71.78],
-      heatingAndHotWater: [24.68, 32.30, 39.15],
-    );
-
-    try {
-      // Fetch as bytes
-      final imageBytes = await QuickChartService.fetchChart(
-        request: request,
-        width: 800,
-        height: 400,
-      );
-
-      print('Fetched chart image: ${imageBytes.length} bytes');
-
-      // Or fetch as data URL for embedding
-      final dataUrl = await QuickChartService.fetchChartAsDataUrl(
-        request: request,
-        width: 800,
-        height: 400,
-      );
-
-      print('Data URL: ${dataUrl.substring(0, 50)}...');
-    } catch (e) {
-      print('Error fetching chart: $e');
-    }
-  }
-
-  /// Example: Generate URL only (no fetch)
+  /// Example: Generate URL for use with Image.network()
   static String exampleGenerateUrl() {
     final request = createMonthlyCostChart(
       monthLabels: ['Jan', 'Feb', 'Mar'],
