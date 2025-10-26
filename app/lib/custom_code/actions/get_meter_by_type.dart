@@ -14,7 +14,7 @@ Future<MeterStruct?> getMeterByType(
   String? meterId =
       meterType == 'solar' ? property.solarMeterUUID : property.supplyMeterUUID;
 
-  MeterStruct meter;
+  MeterStruct? meter;
   var meterResult = getJsonField(metersJSON, "\$['$meterId']", false);
   if (meterResult != null) {
     meter = MeterStruct.fromMap(meterResult);

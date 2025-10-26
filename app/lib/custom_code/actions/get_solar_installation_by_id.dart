@@ -8,7 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 Future<SolarInstallationStruct?> getSolarInstallationById(
     dynamic solarInstallationJSON, String? id) async {
-  SolarInstallationStruct solar;
+  SolarInstallationStruct? solar;
 
   var solarResult = getJsonField(solarInstallationJSON, "\$['$id']", false);
   if (solarResult != null) {
