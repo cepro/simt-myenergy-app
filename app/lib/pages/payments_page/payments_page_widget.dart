@@ -62,7 +62,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
           _model.loadingMethod = false;
           safeSetState(() {});
-          if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
+          if ((_model.getPaymentMethodsOutput?.succeeded != false)) {
             _model.paymentMethods =
                 (_model.getPaymentMethodsOutput?.jsonBody ?? '');
             safeSetState(() {});
@@ -102,7 +102,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
           _model.loadingPaymentHistory = false;
           safeSetState(() {});
-          if ((_model.getPaymentsOutput?.succeeded ?? true)) {
+          if ((_model.getPaymentsOutput?.succeeded != false)) {
             _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
               (_model.getPaymentsOutput?.jsonBody ?? ''),
             );
@@ -130,7 +130,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
           _model.loadingTopupHistory = false;
           safeSetState(() {});
-          if ((_model.getTopupsOutput?.succeeded ?? true)) {
+          if ((_model.getTopupsOutput?.succeeded != false)) {
             _model.topupsTyped = await actions.topupsJSONToTopupsDataType(
               (_model.getTopupsOutput?.jsonBody ?? ''),
             );

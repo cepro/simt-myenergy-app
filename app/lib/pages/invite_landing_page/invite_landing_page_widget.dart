@@ -40,7 +40,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
         inviteToken: widget.inviteToken,
       );
 
-      if ((_model.inviteLookupResult?.succeeded ?? true)) {
+      if ((_model.inviteLookupResult?.succeeded != false)) {
         context.pushNamed(
           LoginPageWidget.routeName,
           queryParameters: {

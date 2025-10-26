@@ -54,7 +54,7 @@ class _OnboardProgressRowWidgetState extends State<OnboardProgressRowWidget> {
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          if (widget.checked ?? true)
+          if (widget.checked != false)
             Icon(
               Icons.check_box,
               color: FlutterFlowTheme.of(context).primaryText,

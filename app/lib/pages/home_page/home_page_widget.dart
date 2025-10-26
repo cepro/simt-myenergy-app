@@ -78,7 +78,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             milliseconds: 500,
           ),
         );
-        if ((_model.homePageGetWallets?.succeeded ?? true) &&
+        if ((_model.homePageGetWallets?.succeeded != false) &&
             ((_model.homePageGetWallets?.jsonBody ?? '') != null)) {
           _model.singleWalletBalance = functions.formatGBPAmount(getJsonField(
             (_model.homePageGetWallets?.jsonBody ?? ''),

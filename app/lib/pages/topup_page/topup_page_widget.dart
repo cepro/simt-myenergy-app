@@ -38,7 +38,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
         bearerToken: currentJwtToken,
       );
 
-      if ((_model.topupPreferencesGetOutput?.succeeded ?? true) == true) {
+      if ((_model.topupPreferencesGetOutput?.succeeded != false) == true) {
         if (!functions
             .isListEmpty((_model.topupPreferencesGetOutput?.jsonBody ?? ''))) {
           safeSetState(() {

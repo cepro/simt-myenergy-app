@@ -420,7 +420,7 @@ class _AdminInitiatePaymentWidgetState
                         );
 
                         shouldSetState = true;
-                        if ((_model.sendPaymentResult?.succeeded ?? true)) {
+                        if ((_model.sendPaymentResult?.succeeded != false)) {
                           // Set success flag
                           _model.paymentSuccess = true;
                           safeSetState(() {});

@@ -64,7 +64,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     bearerToken: userToken,
   );
 
-  if ((getAccountsResponse.succeeded ?? true)) {
+  if ((getAccountsResponse.succeeded )) {
     await Future.delayed(
       const Duration(
         milliseconds: 500,
@@ -141,7 +141,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         escoCode: FFAppState().esco?.name,
       );
 
-      if ((propertiesOutput.succeeded ?? true)) {
+      if ((propertiesOutput.succeeded )) {
         propertiesTyped = await actions.propertiesJSONToPropertiesDataType(
           (propertiesOutput.jsonBody ?? ''),
         );
@@ -192,7 +192,7 @@ Future<String?> contractSignEmbed(
     impersonating: FFAppState().impersonationToken != '',
   );
 
-  if ((contractSigningEmbedResponse.succeeded ?? true)) {
+  if ((contractSigningEmbedResponse.succeeded )) {
     return (contractSigningEmbedResponse.bodyText ?? '');
   }
 
@@ -223,7 +223,7 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
     esco: FFAppState().esco?.name,
   );
 
-  if ((getContractTermsResponse.succeeded ?? true)) {
+  if ((getContractTermsResponse.succeeded )) {
     await Future.delayed(
       const Duration(
         milliseconds: 500,
@@ -427,9 +427,9 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
       );
     }),
   ]);
-  if ((getMonthlyCostResponse?.succeeded ?? true) &&
-      (getTariffsResponse?.succeeded ?? true) &&
-      (getMonthlyUsageResponse?.succeeded ?? true)) {
+  if ((getMonthlyCostResponse?.succeeded != false) &&
+       (getTariffsResponse?.succeeded != false) &&
+       (getMonthlyUsageResponse?.succeeded != false)) {
     await Future.delayed(
       const Duration(
         milliseconds: 500,
@@ -547,7 +547,7 @@ Future pendingPayments(BuildContext context) async {
     bearerToken: userToken,
   );
 
-  if ((getPaymentsOutput.succeeded ?? true)) {
+  if ((getPaymentsOutput.succeeded )) {
     paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
       (getPaymentsOutput.jsonBody ?? ''),
     );
@@ -582,7 +582,7 @@ Future<bool?> impersonateCustomer(
     bearerToken: currentJwtToken,
   );
 
-  if ((generateTokenResponse.succeeded ?? true) == true) {
+  if ((generateTokenResponse.succeeded ) == true) {
     FFAppState().impersonationToken = (generateTokenResponse.bodyText ?? '');
     impersonateCustomerDetailsResponse =
         await action_blocks.getCustomerDetailsAndInitAppState(context);
