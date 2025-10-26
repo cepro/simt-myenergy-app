@@ -210,12 +210,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   page: UserProfilePageWidget(),
                 )),
         FFRoute(
-          name: TopupsPageWidget.routeName,
-          path: TopupsPageWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => TopupsPageWidget(),
-        ),
-        FFRoute(
           name: PropertySelectionPageWidget.routeName,
           path: PropertySelectionPageWidget.routePath,
           requireAuth: true,
