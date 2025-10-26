@@ -3,14 +3,10 @@ import '/components/solar_contract_card/solar_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'solar_contract_choose_or_view_modal_model.dart';
 export 'solar_contract_choose_or_view_modal_model.dart';
 
@@ -59,9 +55,9 @@ class _SolarContractChooseOrViewModalWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
           height: double.infinity,
@@ -69,11 +65,11 @@ class _SolarContractChooseOrViewModalWidgetState
             color: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
-              color: Color(0xFFE0E3E7),
+              color: const Color(0xFFE0E3E7),
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -84,10 +80,10 @@ class _SolarContractChooseOrViewModalWidgetState
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Text(
-                            widget!.readOnly!
+                            widget.readOnly!
                                 ? 'Solar Contract'
                                 : 'Choose Solar Contract',
                             style: FlutterFlowTheme.of(context)
@@ -127,27 +123,27 @@ class _SolarContractChooseOrViewModalWidgetState
                   ),
                   Stack(
                     children: [
-                      if ((widget!.contract?.id != null &&
-                              widget!.contract?.id != '') &&
+                      if ((widget.contract?.id != null &&
+                              widget.contract?.id != '') &&
                           (_model.docusealEmbedHTML == null ||
                               _model.docusealEmbedHTML == ''))
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (widget!.contract?.termsId != null &&
-                                widget!.contract?.termsId != '')
+                            if (widget.contract?.termsId != null &&
+                                widget.contract?.termsId != '')
                               wrapWithModel(
                                 model: _model.solarShortTermContractCardModel,
                                 updateCallback: () => safeSetState(() {}),
                                 child: SolarContractCardWidget(
                                   title: 'Short Term',
-                                  contract: widget!.contract!,
-                                  terms: widget!.termsSolarShortTerm!,
+                                  contract: widget.contract!,
+                                  terms: widget.termsSolarShortTerm!,
                                   setSignEmbedHTML: () async {
                                     _model.signEmbedHTMLShortTerm =
                                         await action_blocks.contractSignEmbed(
                                       context,
-                                      contractId: widget!.contract?.id,
+                                      contractId: widget.contract?.id,
                                       termsSubtype: 'short_term',
                                     );
                                     _model.docusealEmbedHTML =
@@ -158,11 +154,11 @@ class _SolarContractChooseOrViewModalWidgetState
                                   },
                                 ),
                               ),
-                          ].divide(SizedBox(height: 30.0)),
+                          ].divide(const SizedBox(height: 30.0)),
                         ),
                       if (_model.docusealEmbedHTML != null &&
                           _model.docusealEmbedHTML != '')
-                        Container(
+                        SizedBox(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           height: MediaQuery.sizeOf(context).height * 0.85,
                           child: custom_widgets.ContractSigningWidget(
@@ -171,10 +167,10 @@ class _SolarContractChooseOrViewModalWidgetState
                             html: _model.docusealEmbedHTML!,
                           ),
                         ),
-                      if ((widget!.contract?.id == null ||
-                              widget!.contract?.id == '') ||
-                          (widget!.contract?.termsId == null ||
-                              widget!.contract?.termsId == ''))
+                      if ((widget.contract?.id == null ||
+                              widget.contract?.id == '') ||
+                          (widget.contract?.termsId == null ||
+                              widget.contract?.termsId == ''))
                         Text(
                           'Contract has not yet been created. Please contact support to find out why.',
                           style: FlutterFlowTheme.of(context)

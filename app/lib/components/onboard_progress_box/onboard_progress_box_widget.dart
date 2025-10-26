@@ -1,14 +1,11 @@
 import '/components/onboard_progress_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'onboard_progress_box_model.dart';
@@ -23,8 +20,8 @@ class OnboardProgressBoxWidget extends StatefulWidget {
     required this.hasPaymentMethod,
     bool? isOccupier,
     bool? isOwner,
-  })  : this.isOccupier = isOccupier ?? false,
-        this.isOwner = isOwner ?? false;
+  })  : isOccupier = isOccupier ?? false,
+        isOwner = isOwner ?? false;
 
   final bool? haveSupplyContract;
   final bool? haveSolarContract;
@@ -57,12 +54,12 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
       _model.actionsDonePercent = functions.onboardingActionsDonePercent(
           FFAppState().solarContractSigned,
           FFAppState().supplyContractSigned,
-          widget!.haveSolarContract!,
-          widget!.haveSupplyContract!,
-          widget!.hasPaymentMethod!,
-          widget!.confirmedDetails!,
-          widget!.isOccupier,
-          widget!.isOwner)!;
+          widget.haveSolarContract!,
+          widget.haveSupplyContract!,
+          widget.hasPaymentMethod!,
+          widget.confirmedDetails!,
+          widget.isOccupier,
+          widget.isOwner)!;
       safeSetState(() {});
     });
 
@@ -84,7 +81,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
@@ -99,7 +96,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
               children: [
                 Flexible(
                   child: Padding(
-                    padding: EdgeInsets.all(15.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +143,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                             },
                           ),
                         ),
-                        if (widget!.haveSupplyContract! && widget!.isOccupier)
+                        if (widget.haveSupplyContract! && widget.isOccupier)
                           wrapWithModel(
                             model: _model.onboardProgressRowModel3,
                             updateCallback: () => safeSetState(() {}),
@@ -159,7 +156,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               },
                             ),
                           ),
-                        if (widget!.haveSolarContract! && widget!.isOwner)
+                        if (widget.haveSolarContract! && widget.isOwner)
                           wrapWithModel(
                             model: _model.onboardProgressRowModel4,
                             updateCallback: () => safeSetState(() {}),
@@ -172,7 +169,7 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               },
                             ),
                           ),
-                        if (widget!.isOccupier)
+                        if (widget.isOccupier)
                           wrapWithModel(
                             model: _model.onboardProgressRowModel5,
                             updateCallback: () => safeSetState(() {}),
@@ -185,12 +182,12 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
                               },
                             ),
                           ),
-                      ].divide(SizedBox(height: 10.0)),
+                      ].divide(const SizedBox(height: 10.0)),
                     ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,

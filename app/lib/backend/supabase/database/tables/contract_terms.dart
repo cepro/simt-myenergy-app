@@ -10,7 +10,7 @@ class ContractTermsTable extends SupabaseTable<ContractTermsRow> {
 }
 
 class ContractTermsRow extends SupabaseDataRow {
-  ContractTermsRow(Map<String, dynamic> data) : super(data);
+  ContractTermsRow(super.data);
 
   @override
   SupabaseTable get table => ContractTermsTable();

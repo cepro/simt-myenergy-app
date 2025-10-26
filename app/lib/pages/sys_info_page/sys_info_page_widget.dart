@@ -1,16 +1,11 @@
-import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/config/environment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'sys_info_page_model.dart';
 export 'sys_info_page_model.dart';
 
@@ -89,12 +84,12 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            constraints: BoxConstraints(
+                            constraints: const BoxConstraints(
                               maxWidth: 1024.0,
                             ),
-                            decoration: BoxDecoration(),
+                            decoration: const BoxDecoration(),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 24.0, 16.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -122,7 +117,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                         flex: 7,
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 12.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
@@ -161,7 +156,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                               model: _model.logoutButtonModel,
                                               updateCallback: () =>
                                                   safeSetState(() {}),
-                                              child: LogoutButtonWidget(),
+                                              child: const LogoutButtonWidget(),
                                             ),
                                           ],
                                         ),
@@ -191,7 +186,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                           .lineColor,
                                     ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Container(
                                       width: double.infinity,
@@ -206,13 +201,13 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                           width: 0.0,
                                         ),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 12.0, 0.0, 12.0),
                                           child: Wrap(
                                             spacing: 24.0,

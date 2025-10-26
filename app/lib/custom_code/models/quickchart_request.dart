@@ -126,7 +126,7 @@ class ChartOptions {
 
   factory ChartOptions.fromJson(Map<String, dynamic> json) {
     return ChartOptions(
-      responsive: json['responsive'] as bool? ?? true,
+      responsive: (json['responsive'] as bool?) != false,
       plugins: ChartPlugins.fromJson(json['plugins'] as Map<String, dynamic>),
       scales: ChartScales.fromJson(json['scales'] as Map<String, dynamic>),
     );

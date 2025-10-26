@@ -3,13 +3,10 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'payments_list_model.dart';
 export 'payments_list_model.dart';
 
@@ -52,7 +49,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget!.payments!.length <= 5 ? 400.0 : 600.0,
+      height: widget.payments!.length <= 5 ? 400.0 : 600.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0.0),
       ),
@@ -62,7 +59,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
           Expanded(
             child: Builder(
               builder: (context) {
-                final payments = widget!.payments!.toList().take(24).toList();
+                final payments = widget.payments!.toList().take(24).toList();
 
                 return FlutterFlowDataTable<PaymentStruct>(
                   controller: _model.paginatedDataTableController,
@@ -157,7 +154,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                   dataRowBuilder: (paymentsItem, paymentsIndex, selected,
                           onSelectChanged) =>
                       DataRow(
-                    color: MaterialStateProperty.all(
+                    color: WidgetStateProperty.all(
                       paymentsIndex % 2 == 0
                           ? FlutterFlowTheme.of(context).secondaryBackground
                           : FlutterFlowTheme.of(context).primaryBackground,
@@ -165,7 +162,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                     cells: [
                       AlignedTooltip(
                         content: Padding(
-                          padding: EdgeInsets.all(4.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: Text(
                             paymentsItem.paymentIntent,
                             style: FlutterFlowTheme.of(context)
@@ -187,8 +184,8 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                         elevation: 4.0,
                         tailBaseWidth: 24.0,
                         tailLength: 12.0,
-                        waitDuration: Duration(milliseconds: 100),
-                        showDuration: Duration(milliseconds: 1500),
+                        waitDuration: const Duration(milliseconds: 100),
+                        showDuration: const Duration(milliseconds: 1500),
                         triggerMode: TooltipTriggerMode.tap,
                         child: Text(
                           dateTimeFormat(
@@ -239,8 +236,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          if (paymentsItem.receiptUrl != null &&
-                              paymentsItem.receiptUrl != '')
+                          if (paymentsItem.receiptUrl != '')
                             FFButtonWidget(
                               onPressed: () async {
                                 await actions.openURL(
@@ -250,9 +246,9 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                               text: 'View',
                               options: FFButtonOptions(
                                 height: 35.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16.0, 0.0, 16.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: FlutterFlowTheme.of(context).primary,
                                 textStyle: FlutterFlowTheme.of(context)

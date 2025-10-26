@@ -5,10 +5,8 @@ import '/components/solar_contract_choose_or_view_modal/solar_contract_choose_or
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'solar_contract_row_model.dart';
 export 'solar_contract_row_model.dart';
@@ -58,7 +56,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -66,10 +64,10 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
             width: 60.0,
             height: 60.0,
             decoration: BoxDecoration(
-              color: Color(0x428377F3),
+              color: const Color(0x428377F3),
               borderRadius: BorderRadius.circular(16.0),
             ),
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Icon(
               Icons.contact_page_outlined,
               color: FlutterFlowTheme.of(context).primary,
@@ -79,13 +77,13 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
           Expanded(
             flex: 5,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget!.description!,
+                    widget.description!,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -94,10 +92,10 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                               !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                         ),
                   ),
-                  if (widget!.isSigned == true)
+                  if (widget.isSigned == true)
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                       child: Text(
                         '',
                         style: FlutterFlowTheme.of(context).bodySmall.override(
@@ -121,9 +119,9 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
               children: [
                 FFButtonWidget(
                   onPressed: () async {
-                    if (widget!.isSigned!) {
+                    if (widget.isSigned!) {
                       await actions.openPDF(
-                        widget!.contract!.signedContractURL,
+                        widget.contract!.signedContractURL,
                       );
                     } else {
                       _model.contractTermsLatest =
@@ -146,8 +144,8 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                           return Padding(
                             padding: MediaQuery.viewInsetsOf(context),
                             child: SolarContractChooseOrViewModalWidget(
-                              readOnly: widget!.isSigned!,
-                              contract: widget!.contract!,
+                              readOnly: widget.isSigned!,
+                              contract: widget.contract!,
                               termsSolarShortTerm: _model.termsSolarShortTerm!,
                             ),
                           );
@@ -161,9 +159,9 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily:
@@ -174,7 +172,7 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                               !FlutterFlowTheme.of(context).titleSmallIsCustom,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

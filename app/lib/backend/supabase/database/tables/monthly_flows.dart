@@ -9,7 +9,7 @@ class MonthlyFlowsTable extends SupabaseTable<MonthlyFlowsRow> {
 }
 
 class MonthlyFlowsRow extends SupabaseDataRow {
-  MonthlyFlowsRow(Map<String, dynamic> data) : super(data);
+  MonthlyFlowsRow(super.data);
 
   @override
   SupabaseTable get table => MonthlyFlowsTable();

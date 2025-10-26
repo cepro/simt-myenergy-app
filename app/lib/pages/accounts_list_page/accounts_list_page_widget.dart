@@ -1,12 +1,8 @@
-import '/backend/schema/structs/index.dart';
 import '/components/logout_button/logout_button_widget.dart';
 import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'accounts_list_page_model.dart';
 export 'accounts_list_page_model.dart';
@@ -82,7 +78,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 24.0, 16.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -109,7 +105,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                   Expanded(
                                     flex: 7,
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 12.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
@@ -146,7 +142,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                           model: _model.logoutButtonModel,
                                           updateCallback: () =>
                                               safeSetState(() {}),
-                                          child: LogoutButtonWidget(),
+                                          child: const LogoutButtonWidget(),
                                         ),
                                       ],
                                     ),
@@ -177,7 +173,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 40.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -268,7 +264,7 @@ class _AccountsListPageWidgetState extends State<AccountsListPageWidget> {
                                         scrollDirection: Axis.vertical,
                                         itemCount: accounts.length,
                                         separatorBuilder: (_, __) =>
-                                            SizedBox(height: 25.0),
+                                            const SizedBox(height: 25.0),
                                         itemBuilder: (context, accountsIndex) {
                                           final accountsItem =
                                               accounts[accountsIndex];

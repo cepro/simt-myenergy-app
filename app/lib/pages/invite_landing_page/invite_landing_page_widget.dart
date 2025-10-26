@@ -2,13 +2,9 @@ import '/backend/api_requests/api_calls.dart';
 import '/components/logo_container_row/logo_container_row_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'invite_landing_page_model.dart';
 export 'invite_landing_page_model.dart';
 
@@ -41,10 +37,10 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.inviteLookupResult = await CustomerInviteLookupCall.call(
-        inviteToken: widget!.inviteToken,
+        inviteToken: widget.inviteToken,
       );
 
-      if ((_model.inviteLookupResult?.succeeded ?? true)) {
+      if ((_model.inviteLookupResult?.succeeded != false)) {
         context.pushNamed(
           LoginPageWidget.routeName,
           queryParameters: {
@@ -88,7 +84,7 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             height: double.infinity,
             child: Stack(
@@ -99,11 +95,11 @@ class _InviteLandingPageWidgetState extends State<InviteLandingPageWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 30.0),
                       child: wrapWithModel(
                         model: _model.logoContainerRowModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: LogoContainerRowWidget(),
+                        child: const LogoContainerRowWidget(),
                       ),
                     ),
                     if ((_model.inviteLookupResult?.statusCode ?? 200) != 200)

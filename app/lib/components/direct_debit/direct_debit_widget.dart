@@ -1,10 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'direct_debit_model.dart';
 export 'direct_debit_model.dart';
 
@@ -52,7 +49,7 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
       width: double.infinity,
       height: 210.0,
       decoration: BoxDecoration(
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 6.0,
             color: Color(0x4B1A1F24),
@@ -67,20 +64,20 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
             FlutterFlowTheme.of(context).primary,
             FlutterFlowTheme.of(context).alternate
           ],
-          stops: [0.0, 1.0],
-          begin: AlignmentDirectional(1.0, -1.0),
-          end: AlignmentDirectional(-1.0, 1.0),
+          stops: const [0.0, 1.0],
+          begin: const AlignmentDirectional(1.0, -1.0),
+          end: const AlignmentDirectional(-1.0, 1.0),
         ),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -91,19 +88,19 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
                       width: 120.0,
                       height: 50.0,
                       fit: BoxFit.cover,
-                      alignment: Alignment(1.0, 0.0),
+                      alignment: const Alignment(1.0, 0.0),
                     ),
                   ),
                 ],
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Sort code: ${widget!.sortCode}',
+                    'Sort code: ${widget.sortCode}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           font: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.normal,
@@ -123,12 +120,12 @@ class _DirectDebitWidgetState extends State<DirectDebitWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    'Account: **** ${widget!.last4Digits}',
+                    'Account: **** ${widget.last4Digits}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           font: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.normal,

@@ -2,12 +2,9 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'property_table_model.dart';
 export 'property_table_model.dart';
@@ -64,7 +61,7 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
             Expanded(
               child: Builder(
                 builder: (context) {
-                  final properties = widget!.properties!.toList();
+                  final properties = widget.properties!.toList();
 
                   return FlutterFlowDataTable<PropertyStruct>(
                     controller: _model.paginatedDataTableController,
@@ -143,7 +140,7 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                     dataRowBuilder: (propertiesItem, propertiesIndex, selected,
                             onSelectChanged) =>
                         DataRow(
-                      color: MaterialStateProperty.all(
+                      color: WidgetStateProperty.all(
                         propertiesIndex % 2 == 0
                             ? FlutterFlowTheme.of(context).secondaryBackground
                             : FlutterFlowTheme.of(context).primaryBackground,
@@ -174,26 +171,25 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                               ),
                         ),
                         Visibility(
-                          visible: propertiesItem.ownerEmail != null &&
-                              propertiesItem.ownerEmail != '',
+                          visible: propertiesItem.ownerEmail != '',
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              var _shouldSetState = false;
+                              var shouldSetState = false;
                               _model.impersonateResult =
                                   await action_blocks.impersonateCustomer(
                                 context,
                                 email: propertiesItem.ownerEmail,
                               );
-                              _shouldSetState = true;
+                              shouldSetState = true;
                               if (FFAppState().properties.length > 1) {
                                 context.pushNamed(
                                     PropertySelectionPageWidget.routeName);
 
-                                if (_shouldSetState) safeSetState(() {});
+                                if (shouldSetState) safeSetState(() {});
                                 return;
                               } else {
                                 await action_blocks.changeProperty(
@@ -201,11 +197,11 @@ class _PropertyTableWidgetState extends State<PropertyTableWidget> {
                                   propertyId:
                                       FFAppState().properties.firstOrNull?.id,
                                 );
-                                if (_shouldSetState) safeSetState(() {});
+                                if (shouldSetState) safeSetState(() {});
                                 return;
                               }
 
-                              if (_shouldSetState) safeSetState(() {});
+                              if (shouldSetState) safeSetState(() {});
                             },
                             child: Text(
                               propertiesItem.ownerEmail,

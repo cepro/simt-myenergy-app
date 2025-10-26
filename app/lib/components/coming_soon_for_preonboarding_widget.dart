@@ -1,8 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'coming_soon_for_preonboarding_model.dart';
 export 'coming_soon_for_preonboarding_model.dart';
@@ -47,7 +45,7 @@ class _ComingSoonForPreonboardingWidgetState
     return Visibility(
       visible: FFAppState().customer.status == 'preonboarding',
       child: Align(
-        alignment: AlignmentDirectional(-1.0, 0.0),
+        alignment: const AlignmentDirectional(-1.0, 0.0),
         child: Text(
           'Coming Soon!',
           style: FlutterFlowTheme.of(context).bodyMedium.override(

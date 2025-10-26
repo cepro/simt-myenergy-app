@@ -76,10 +76,10 @@ class SendPaymentAdminCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "amount": "${amount}",
-  "customerEmail": "${customerEmail}",
-  "description": "${description}",
-  "scheduledAt": "${scheduledAt}"
+  "amount": "$amount",
+  "customerEmail": "$customerEmail",
+  "description": "$description",
+  "scheduledAt": "$scheduledAt"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Send Payment Admin',
@@ -397,7 +397,7 @@ class UpdateCustomerEmailCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "newEmail": "${email}"
+  "newEmail": "$email"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Customer Email',
@@ -426,7 +426,7 @@ class UpdateCustomerFullnameCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "fullname": "${fullname}"
+  "fullname": "$fullname"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Customer Fullname',
@@ -457,8 +457,8 @@ class UpdateTopupPreferencesCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "amount": ${amount},
-  "threshold": ${threshold}
+  "amount": $amount,
+  "threshold": $threshold
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Topup Preferences',
@@ -488,7 +488,7 @@ class GenerateTokenForImpersonateCall {
   }) async {
     final ffApiRequestBody = '''
 {
-  "customerEmail": "${customerEmail}"
+  "customerEmail": "$customerEmail"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Generate Token for Impersonate',

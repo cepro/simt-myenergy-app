@@ -1,15 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'confirm_details_confirmation_modal_model.dart';
 export 'confirm_details_confirmation_modal_model.dart';
@@ -54,7 +51,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
       child: Column(
@@ -62,15 +59,15 @@ class _ConfirmDetailsConfirmationModalWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Container(
               width: double.infinity,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 700.0,
               ),
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 12.0,
                     color: Color(0x33000000),
@@ -83,7 +80,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -91,7 +88,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -137,7 +134,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 20.0, 0.0, 20.0),
                           child: Text(
                             'Please check the details. Are you sure your name is correct?',
@@ -156,18 +153,16 @@ class _ConfirmDetailsConfirmationModalWidgetState
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           FFButtonWidget(
-                            onPressed: (FFAppState().impersonationToken !=
-                                        null &&
-                                    FFAppState().impersonationToken != '')
+                            onPressed: (FFAppState().impersonationToken != '')
                                 ? null
                                 : () async {
-                                    var _shouldSetState = false;
+                                    var shouldSetState = false;
                                     await action_blocks
                                         .checkAndBlockWriteableAPICall(context);
                                     _model.customerDetailsConfirmedResponse =
@@ -175,7 +170,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                                       bearerToken: currentJwtToken,
                                     );
 
-                                    _shouldSetState = true;
+                                    shouldSetState = true;
                                     if ((_model.customerDetailsConfirmedResponse
                                             ?.succeeded ??
                                         true)) {
@@ -186,7 +181,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                                       );
                                       safeSetState(() {});
                                       Navigator.pop(context, true);
-                                      if (_shouldSetState) safeSetState(() {});
+                                      if (shouldSetState) safeSetState(() {});
                                       return;
                                     } else {
                                       ScaffoldMessenger.of(context)
@@ -201,23 +196,23 @@ class _ConfirmDetailsConfirmationModalWidgetState
                                             ),
                                           ),
                                           duration:
-                                              Duration(milliseconds: 10000),
+                                              const Duration(milliseconds: 10000),
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                         ),
                                       );
                                       Navigator.pop(context, false);
-                                      if (_shouldSetState) safeSetState(() {});
+                                      if (shouldSetState) safeSetState(() {});
                                       return;
                                     }
 
-                                    if (_shouldSetState) safeSetState(() {});
+                                    if (shouldSetState) safeSetState(() {});
                                   },
                             text: 'Confirm',
                             options: FFButtonOptions(
-                              padding: EdgeInsets.all(24.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsets.all(24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -232,7 +227,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                                             .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -245,8 +240,8 @@ class _ConfirmDetailsConfirmationModalWidgetState
                             },
                             text: 'Cancel',
                             options: FFButtonOptions(
-                              padding: EdgeInsets.all(24.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsets.all(24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
@@ -263,7 +258,7 @@ class _ConfirmDetailsConfirmationModalWidgetState
                                             .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

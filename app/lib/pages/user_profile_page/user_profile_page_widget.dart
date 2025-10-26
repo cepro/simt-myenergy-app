@@ -1,5 +1,4 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/change_email_modal/change_email_modal_widget.dart';
 import '/components/change_name_modal/change_name_modal_widget.dart';
 import '/components/change_phone_number_modal/change_phone_number_modal_widget.dart';
@@ -11,12 +10,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'user_profile_page_model.dart';
 export 'user_profile_page_model.dart';
@@ -44,10 +41,9 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.decodeTokenForProfileResponse = await actions.decodeSupabaseJwt(
-        FFAppState().impersonationToken != null &&
-                FFAppState().impersonationToken != ''
+        FFAppState().impersonationToken != ''
             ? FFAppState().impersonationToken
-            : currentJwtToken!,
+            : currentJwtToken,
       );
     });
 
@@ -100,10 +96,10 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           15.0, 0.0, 15.0, 100.0),
                       child: Container(
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 1024.0,
                         ),
                         decoration: BoxDecoration(
@@ -111,7 +107,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -119,7 +115,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                               wrapWithModel(
                                 model: _model.topBarLoggedInModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: TopBarLoggedInWidget(),
+                                child: const TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
                                 context: context,
@@ -142,13 +138,13 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                   color: FlutterFlowTheme.of(context).lineColor,
                                 ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 10.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -157,7 +153,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 10.0, 0.0),
                                             child: FlutterFlowIconButton(
                                               borderColor: Colors.transparent,
@@ -199,7 +195,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 16.0),
                                 child: Container(
                                   width: double.infinity,
@@ -213,7 +209,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                       width: 0.0,
                                     ),
                                   ),
-                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  alignment: const AlignmentDirectional(0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -244,7 +240,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                       MediaQuery.viewInsetsOf(
                                                           context),
                                                   child:
-                                                      ChangeNameModalWidget(),
+                                                      const ChangeNameModalWidget(),
                                                 ),
                                               );
                                             },
@@ -259,7 +255,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             label: 'Name',
                                             value: FFAppState().customer.name,
                                             linkLabel: 'Change name',
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.label,
                                             ),
                                             infoTooltipText:
@@ -292,7 +288,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                       MediaQuery.viewInsetsOf(
                                                           context),
                                                   child:
-                                                      ChangeEmailModalWidget(),
+                                                      const ChangeEmailModalWidget(),
                                                 ),
                                               );
                                             },
@@ -307,15 +303,12 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             label: 'Email Address',
                                             value: FFAppState()
                                                             .impersonationEmail !=
-                                                        null &&
-                                                    FFAppState()
-                                                            .impersonationEmail !=
                                                         ''
                                                 ? FFAppState()
                                                     .impersonationEmail
                                                 : currentUserEmail,
                                             linkLabel: 'Change email address',
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.email,
                                             ),
                                           ),
@@ -346,7 +339,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                       MediaQuery.viewInsetsOf(
                                                           context),
                                                   child:
-                                                      ChangePhoneNumberModalWidget(),
+                                                      const ChangePhoneNumberModalWidget(),
                                                 ),
                                               );
                                             },
@@ -362,28 +355,20 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             value: () {
                                               if (FFAppState()
                                                           .impersonationPhone !=
-                                                      null &&
-                                                  FFAppState()
-                                                          .impersonationPhone !=
                                                       '') {
                                                 return '+${FFAppState().impersonationPhone}';
                                               } else if ((currentPhoneNumber !=
-                                                          null &&
-                                                      currentPhoneNumber !=
                                                           '') &&
                                                   (FFAppState()
                                                               .impersonationToken ==
-                                                          null ||
-                                                      FFAppState()
-                                                              .impersonationToken ==
                                                           '')) {
-                                                return '+${currentPhoneNumber}';
+                                                return '+$currentPhoneNumber';
                                               } else {
                                                 return '[not set]';
                                               }
                                             }(),
                                             linkLabel: 'Change mobile number',
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.phone,
                                             ),
                                             infoTooltipText:
@@ -394,7 +379,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                       if (_model.detailsJustConfirmed)
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   70.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'Details confirmed. Thank you!',
@@ -416,7 +401,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                       if (_model.detailsConfirmedFailure)
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   70.0, 5.0, 0.0, 0.0),
                                           child: Text(
                                             'Details confirmation failed. Please try again or contact support.',
@@ -448,12 +433,12 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       70.0, 0.0, 0.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
-                                                  var _shouldSetState = false;
+                                                  var shouldSetState = false;
                                                   _model.detailsConfirmedFailure =
                                                       false;
                                                   safeSetState(() {});
@@ -477,7 +462,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                               .viewInsetsOf(
                                                                   context),
                                                           child:
-                                                              ConfirmDetailsConfirmationModalWidget(),
+                                                              const ConfirmDetailsConfirmationModalWidget(),
                                                         ),
                                                       );
                                                     },
@@ -486,7 +471,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                               .confirmDetailsModalResponse =
                                                           value));
 
-                                                  _shouldSetState = true;
+                                                  shouldSetState = true;
                                                   if (_model
                                                           .confirmDetailsModalResponse !=
                                                       null) {
@@ -495,34 +480,38 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                                       _model.detailsJustConfirmed =
                                                           true;
                                                       safeSetState(() {});
-                                                      if (_shouldSetState)
+                                                      if (shouldSetState) {
                                                         safeSetState(() {});
+                                                      }
                                                       return;
                                                     } else {
                                                       _model.detailsConfirmedFailure =
                                                           true;
                                                       safeSetState(() {});
-                                                      if (_shouldSetState)
+                                                      if (shouldSetState) {
                                                         safeSetState(() {});
+                                                      }
                                                       return;
                                                     }
                                                   } else {
-                                                    if (_shouldSetState)
+                                                    if (shouldSetState) {
                                                       safeSetState(() {});
+                                                    }
                                                     return;
                                                   }
 
-                                                  if (_shouldSetState)
+                                                  if (shouldSetState) {
                                                     safeSetState(() {});
+                                                  }
                                                 },
                                                 text: 'Confirm Details',
                                                 options: FFButtonOptions(
                                                   height: 40.0,
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           16.0, 0.0, 16.0, 0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -553,7 +542,7 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                             ),
                                             AlignedTooltip(
                                               content: Padding(
-                                                padding: EdgeInsets.all(4.0),
+                                                padding: const EdgeInsets.all(4.0),
                                                 child: Text(
                                                   'Confirm your contract details above are correct. This is a one time action to ensure your initial details are correct.',
                                                   style:
@@ -585,13 +574,13 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                               tailBaseWidth: 24.0,
                                               tailLength: 12.0,
                                               waitDuration:
-                                                  Duration(milliseconds: 100),
+                                                  const Duration(milliseconds: 100),
                                               showDuration:
-                                                  Duration(milliseconds: 1500),
+                                                  const Duration(milliseconds: 1500),
                                               triggerMode:
                                                   TooltipTriggerMode.tap,
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         10.0, 0.0, 0.0, 0.0),
                                                 child: Icon(
@@ -606,9 +595,9 @@ class _UserProfilePageWidgetState extends State<UserProfilePageWidget> {
                                           ],
                                         ),
                                     ]
-                                        .divide(SizedBox(height: 35.0))
-                                        .addToStart(SizedBox(height: 25.0))
-                                        .addToEnd(SizedBox(height: 25.0)),
+                                        .divide(const SizedBox(height: 35.0))
+                                        .addToStart(const SizedBox(height: 25.0))
+                                        .addToEnd(const SizedBox(height: 25.0)),
                                   ),
                                 ),
                               ),

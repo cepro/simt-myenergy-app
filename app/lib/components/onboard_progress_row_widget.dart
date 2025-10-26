@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'onboard_progress_row_model.dart';
 export 'onboard_progress_row_model.dart';
 
@@ -54,31 +50,31 @@ class _OnboardProgressRowWidgetState extends State<OnboardProgressRowWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          if (widget!.checked ?? true)
+          if (widget.checked != false)
             Icon(
               Icons.check_box,
               color: FlutterFlowTheme.of(context).primaryText,
               size: 30.0,
             ),
-          if (!widget!.checked!)
+          if (!widget.checked!)
             Icon(
               Icons.access_time_filled,
               color: FlutterFlowTheme.of(context).primaryText,
               size: 30.0,
             ),
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   valueOrDefault<String>(
-                    widget!.title,
+                    widget.title,
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).titleMedium.override(
@@ -89,7 +85,7 @@ class _OnboardProgressRowWidgetState extends State<OnboardProgressRowWidget> {
                             !FlutterFlowTheme.of(context).titleMediumIsCustom,
                       ),
                 ),
-                if (widget!.linkLabel != null && widget!.linkLabel != '')
+                if (widget.linkLabel != null && widget.linkLabel != '')
                   InkWell(
                     splashColor: Colors.transparent,
                     focusColor: Colors.transparent,
@@ -100,7 +96,7 @@ class _OnboardProgressRowWidgetState extends State<OnboardProgressRowWidget> {
                     },
                     child: Text(
                       valueOrDefault<String>(
-                        widget!.linkLabel,
+                        widget.linkLabel,
                         'unknown',
                       ),
                       textAlign: TextAlign.start,

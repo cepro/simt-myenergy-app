@@ -2,12 +2,8 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'topup_list_model.dart';
 export 'topup_list_model.dart';
 
@@ -50,8 +46,8 @@ class _TopupListWidgetState extends State<TopupListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget!.topups!.length <= 5 ? 400.0 : 600.0,
-      constraints: BoxConstraints(
+      height: widget.topups!.length <= 5 ? 400.0 : 600.0,
+      constraints: const BoxConstraints(
         minHeight: 300.0,
       ),
       decoration: BoxDecoration(
@@ -63,7 +59,7 @@ class _TopupListWidgetState extends State<TopupListWidget> {
           Expanded(
             child: Builder(
               builder: (context) {
-                final topups = widget!.topups!.toList().take(24).toList();
+                final topups = widget.topups!.toList().take(24).toList();
 
                 return FlutterFlowDataTable<TopupStruct>(
                   controller: _model.paginatedDataTableController,
@@ -141,7 +137,7 @@ class _TopupListWidgetState extends State<TopupListWidget> {
                   dataRowBuilder:
                       (topupsItem, topupsIndex, selected, onSelectChanged) =>
                           DataRow(
-                    color: MaterialStateProperty.all(
+                    color: WidgetStateProperty.all(
                       topupsIndex % 2 == 0
                           ? FlutterFlowTheme.of(context).secondaryBackground
                           : FlutterFlowTheme.of(context).primaryBackground,

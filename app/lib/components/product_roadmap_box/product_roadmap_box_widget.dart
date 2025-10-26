@@ -1,11 +1,7 @@
 import '/components/product_road_map_modal/product_road_map_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'product_roadmap_box_model.dart';
 export 'product_roadmap_box_model.dart';
 
@@ -44,7 +40,7 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
@@ -54,7 +50,7 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -109,7 +105,7 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                           builder: (context) {
                             return Padding(
                               padding: MediaQuery.viewInsetsOf(context),
-                              child: ProductRoadMapModalWidget(),
+                              child: const ProductRoadMapModalWidget(),
                             );
                           },
                         ).then((value) => safeSetState(() {}));
@@ -135,12 +131,12 @@ class _ProductRoadmapBoxWidgetState extends State<ProductRoadmapBoxWidget> {
                 children: [
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                     ),
                   ),
                 ],
               ),
-            ].divide(SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),

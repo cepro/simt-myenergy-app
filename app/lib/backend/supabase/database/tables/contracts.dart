@@ -9,7 +9,7 @@ class ContractsTable extends SupabaseTable<ContractsRow> {
 }
 
 class ContractsRow extends SupabaseDataRow {
-  ContractsRow(Map<String, dynamic> data) : super(data);
+  ContractsRow(super.data);
 
   @override
   SupabaseTable get table => ContractsTable();

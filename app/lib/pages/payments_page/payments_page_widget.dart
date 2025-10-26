@@ -12,7 +12,6 @@ import '/components/topup_list/topup_list_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -20,7 +19,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'payments_page_model.dart';
 export 'payments_page_model.dart';
@@ -64,7 +62,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
           _model.loadingMethod = false;
           safeSetState(() {});
-          if ((_model.getPaymentMethodsOutput?.succeeded ?? true)) {
+          if ((_model.getPaymentMethodsOutput?.succeeded != false)) {
             _model.paymentMethods =
                 (_model.getPaymentMethodsOutput?.jsonBody ?? '');
             safeSetState(() {});
@@ -104,7 +102,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
           _model.loadingPaymentHistory = false;
           safeSetState(() {});
-          if ((_model.getPaymentsOutput?.succeeded ?? true)) {
+          if ((_model.getPaymentsOutput?.succeeded != false)) {
             _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
               (_model.getPaymentsOutput?.jsonBody ?? ''),
             );
@@ -132,7 +130,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
           _model.loadingTopupHistory = false;
           safeSetState(() {});
-          if ((_model.getTopupsOutput?.succeeded ?? true)) {
+          if ((_model.getTopupsOutput?.succeeded != false)) {
             _model.topupsTyped = await actions.topupsJSONToTopupsDataType(
               (_model.getTopupsOutput?.jsonBody ?? ''),
             );
@@ -203,10 +201,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           15.0, 0.0, 15.0, 100.0),
                       child: Container(
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           maxWidth: 1024.0,
                         ),
                         decoration: BoxDecoration(
@@ -214,7 +212,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -222,7 +220,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                               wrapWithModel(
                                 model: _model.topBarLoggedInModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: TopBarLoggedInWidget(),
+                                child: const TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
                                 context: context,
@@ -245,9 +243,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   color: FlutterFlowTheme.of(context).lineColor,
                                 ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 10.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -256,7 +254,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     children: [
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(-1.0, 0.0),
+                                            const AlignmentDirectional(-1.0, 0.0),
                                         child: Text(
                                           'Payments',
                                           style: FlutterFlowTheme.of(context)
@@ -278,20 +276,20 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 10.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 0.0, 0.0, 30.0),
                                       child: wrapWithModel(
                                         model:
                                             _model.propertyNameWithTooltipModel,
                                         updateCallback: () =>
                                             safeSetState(() {}),
-                                        child: PropertyNameWithTooltipWidget(),
+                                        child: const PropertyNameWithTooltipWidget(),
                                       ),
                                     ),
                                     if (responsiveVisibility(
@@ -301,10 +299,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                     ))
                                       Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 1.0),
+                                            const AlignmentDirectional(0.0, 1.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   5.0, 0.0, 0.0, 0.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
@@ -315,10 +313,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                             text: 'Change',
                                             options: FFButtonOptions(
                                               height: 25.0,
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 0.0, 10.0, 0.0),
-                                              iconPadding: EdgeInsetsDirectional
+                                              iconPadding: const EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -354,7 +352,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   (FFAppState().customer.status !=
                                       'onboarding') &&
                                   _model.loadingPaymentHistory)
-                                Container(
+                                const SizedBox(
                                   width: 100.0,
                                   height: 100.0,
                                   child: custom_widgets.LoadingSpinner(
@@ -364,9 +362,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                 ),
                               if (!_model.loadingPaymentHistory)
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
@@ -383,15 +381,15 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(20.0),
+                                        padding: const EdgeInsets.all(20.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Text(
@@ -423,9 +421,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   payments: _model.payments,
                                                 ),
                                               ),
-                                            if (_model.payments.length == 0)
+                                            if (_model.payments.isEmpty)
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Text(
                                                   'No payments',
@@ -457,7 +455,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                   (FFAppState().customer.status !=
                                       'onboarding') &&
                                   _model.loadingTopupHistory)
-                                Container(
+                                const SizedBox(
                                   width: 100.0,
                                   height: 100.0,
                                   child: custom_widgets.LoadingSpinner(
@@ -472,9 +470,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           .role ==
                                       'occupier'))
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 30.0),
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
@@ -491,15 +489,15 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(20.0),
+                                        padding: const EdgeInsets.all(20.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -1.0, 0.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 15.0),
                                                 child: Text(
@@ -531,9 +529,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   topups: _model.topups,
                                                 ),
                                               ),
-                                            if (_model.topups.length == 0)
+                                            if (_model.topups.isEmpty)
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Text(
                                                   'No topups',
@@ -570,11 +568,11 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           .role ==
                                       'occupier'))
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
-                                    constraints: BoxConstraints(
+                                    constraints: const BoxConstraints(
                                       maxWidth: 333.0,
                                     ),
                                     decoration: BoxDecoration(
@@ -588,7 +586,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(20.0),
+                                      padding: const EdgeInsets.all(20.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -596,7 +594,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         children: [
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 15.0),
                                             child: Text(
                                               'Payment method',
@@ -682,16 +680,13 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                             ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
+                                                const AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 30.0, 0.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: (FFAppState()
-                                                                .impersonationToken !=
-                                                            null &&
-                                                        FFAppState()
                                                                 .impersonationToken !=
                                                             '')
                                                     ? null
@@ -743,11 +738,11 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 text: 'Remove Payment Method',
                                                 options: FFButtonOptions(
                                                   height: 40.0,
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           24.0, 0.0, 24.0, 0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -770,7 +765,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                     .titleSmallIsCustom,
                                                           ),
                                                   elevation: 3.0,
-                                                  borderSide: BorderSide(
+                                                  borderSide: const BorderSide(
                                                     color: Colors.transparent,
                                                     width: 1.0,
                                                   ),
@@ -792,7 +787,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           .customerAccount
                                           .role ==
                                       'occupier'))
-                                Container(
+                                const SizedBox(
                                   width: 100.0,
                                   height: 100.0,
                                   child: custom_widgets.LoadingSpinner(
@@ -810,7 +805,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           .role ==
                                       'occupier'))
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Container(
                                     width:
                                         MediaQuery.sizeOf(context).width * 1.0,
@@ -825,13 +820,13 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(20.0),
+                                      padding: const EdgeInsets.all(20.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(-1.0, 0.0),
+                                                const AlignmentDirectional(-1.0, 0.0),
                                             child: Text(
                                               'Add a new payment method',
                                               style:
@@ -852,7 +847,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
+                                                const EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 15.0, 0.0, 0.0),
                                             child: Text(
                                               'Customers use Stripe payments to automatically and securely add credit to your energy meter. Stripe supports either a Direct Debit mandate (protected by the Direct Debit Guarantee) or you may make payment with a debit card.\n\nNo payments will be taken until your energy supply contract has been signed. Once under contract customers nominate a day of the month to make payment. You pay each month for the following month\'s use, based on our projected use estimation for that month. If your usage is higher than expected, and the meter hits a user-defined threshold, a further payment is taken to avoid running out of credit. If your usage is lower than expected, the balance rolls over and the next month\'s payment is adjusted down.\n\nYou will be invited to sign contracts for energy supply. You will be notified by email 24 hours before any payments are taken.\n',
@@ -877,7 +872,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: (FFAppState()
@@ -934,11 +929,11 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   options: FFButtonOptions(
                                                     height: 40.0,
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(24.0, 0.0,
                                                                 24.0, 0.0),
                                                     iconPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -960,7 +955,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                   .titleSmallIsCustom,
                                                         ),
                                                     elevation: 3.0,
-                                                    borderSide: BorderSide(
+                                                    borderSide: const BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -979,10 +974,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment: AlignmentDirectional(
+                                                alignment: const AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           20.0, 0.0, 0.0, 0.0),
                                                   child: wrapWithModel(
@@ -991,7 +986,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     updateCallback: () =>
                                                         safeSetState(() {}),
                                                     child:
-                                                        ComingSoonForPreonboardingWidget(),
+                                                        const ComingSoonForPreonboardingWidget(),
                                                   ),
                                                 ),
                                               ),
@@ -1008,11 +1003,11 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       .role ==
                                   'owner')
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: wrapWithModel(
                                     model: _model.comingSoonForLandlordsModel,
                                     updateCallback: () => safeSetState(() {}),
-                                    child: ComingSoonForPreonboardingWidget(),
+                                    child: const ComingSoonForPreonboardingWidget(),
                                   ),
                                 ),
                             ],

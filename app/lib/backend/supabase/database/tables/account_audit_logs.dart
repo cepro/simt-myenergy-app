@@ -10,7 +10,7 @@ class AccountAuditLogsTable extends SupabaseTable<AccountAuditLogsRow> {
 }
 
 class AccountAuditLogsRow extends SupabaseDataRow {
-  AccountAuditLogsRow(Map<String, dynamic> data) : super(data);
+  AccountAuditLogsRow(super.data);
 
   @override
   SupabaseTable get table => AccountAuditLogsTable();

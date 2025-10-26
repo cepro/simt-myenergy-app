@@ -2,12 +2,9 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'supply_contract_row_model.dart';
 export 'supply_contract_row_model.dart';
 
@@ -55,7 +52,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -66,7 +63,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
               color: FlutterFlowTheme.of(context).secondary,
               borderRadius: BorderRadius.circular(16.0),
             ),
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: FaIcon(
               FontAwesomeIcons.fileContract,
               color: FlutterFlowTheme.of(context).primary,
@@ -76,13 +73,13 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
           Expanded(
             flex: 5,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget!.contractTerms!.shortDescription,
+                    widget.contractTerms!.shortDescription,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -92,7 +89,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                         ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                     child: Text(
                       '',
                       style: FlutterFlowTheme.of(context).bodySmall.override(
@@ -122,9 +119,9 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily:
@@ -135,7 +132,7 @@ class _SupplyContractRowWidgetState extends State<SupplyContractRowWidget> {
                               !FlutterFlowTheme.of(context).titleSmallIsCustom,
                         ),
                     elevation: 3.0,
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.transparent,
                       width: 1.0,
                     ),

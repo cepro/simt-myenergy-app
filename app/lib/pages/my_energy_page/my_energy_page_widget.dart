@@ -7,13 +7,11 @@ import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'my_energy_page_model.dart';
 export 'my_energy_page_model.dart';
@@ -106,16 +104,16 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 100.0),
+                        const EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 100.0),
                     child: Container(
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 1024.0,
                       ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             10.0, 0.0, 10.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -123,7 +121,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                             wrapWithModel(
                               model: _model.topBarLoggedInModel,
                               updateCallback: () => safeSetState(() {}),
-                              child: TopBarLoggedInWidget(),
+                              child: const TopBarLoggedInWidget(),
                             ),
                             if (responsiveVisibility(
                               context: context,
@@ -146,7 +144,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                 color: FlutterFlowTheme.of(context).lineColor,
                               ),
                             Align(
-                              alignment: AlignmentDirectional(-1.0, 0.0),
+                              alignment: const AlignmentDirectional(-1.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -166,7 +164,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -177,7 +175,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child:
-                                              PropertyNameWithTooltipWidget(),
+                                              const PropertyNameWithTooltipWidget(),
                                         ),
                                         if (responsiveVisibility(
                                           context: context,
@@ -186,9 +184,9 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                         ))
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 1.0),
+                                                const AlignmentDirectional(0.0, 1.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(5.0, 0.0, 0.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
@@ -199,11 +197,11 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                                 text: 'Change',
                                                 options: FFButtonOptions(
                                                   height: 25.0,
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           10.0, 0.0, 10.0, 0.0),
                                                   iconPadding:
-                                                      EdgeInsetsDirectional
+                                                      const EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
@@ -248,7 +246,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                               wrapWithModel(
                                 model: _model.monthlyCostsModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: MonthlyCostsWidget(),
+                                child: const MonthlyCostsWidget(),
                               ),
                             if (FFAppState()
                                     .supplyAccount
@@ -258,7 +256,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                               wrapWithModel(
                                 model: _model.monthlyUsageModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: MonthlyUsageWidget(),
+                                child: const MonthlyUsageWidget(),
                               ),
                             if (FFAppState()
                                     .solarAccount
@@ -268,7 +266,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                               wrapWithModel(
                                 model: _model.monthlyGenerationModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: MonthlyGenerationWidget(),
+                                child: const MonthlyGenerationWidget(),
                               ),
                           ],
                         ),

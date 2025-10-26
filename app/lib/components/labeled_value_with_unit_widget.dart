@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'labeled_value_with_unit_model.dart';
 export 'labeled_value_with_unit_model.dart';
 
@@ -62,19 +58,19 @@ class _LabeledValueWithUnitWidgetState
           children: [
             Text(
               valueOrDefault<String>(
-                widget!.label,
+                widget.label,
                 'Label',
               ),
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                    color: Color(0x8A000000),
+                    color: const Color(0x8A000000),
                     letterSpacing: 0.0,
                     useGoogleFonts:
                         !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                   ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 4.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -82,13 +78,13 @@ class _LabeledValueWithUnitWidgetState
                 ),
                 child: Text(
                   valueOrDefault<String>(
-                    widget!.unit,
+                    widget.unit,
                     'Unit',
                   ),
                   style: FlutterFlowTheme.of(context).labelMedium.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).labelMediumFamily,
-                        color: Color(0xFF04A2F2),
+                        color: const Color(0xFF04A2F2),
                         letterSpacing: 0.0,
                         useGoogleFonts:
                             !FlutterFlowTheme.of(context).labelMediumIsCustom,
@@ -99,10 +95,10 @@ class _LabeledValueWithUnitWidgetState
           ],
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
           child: Text(
             valueOrDefault<String>(
-              widget!.value,
+              widget.value,
               'value',
             ),
             style: FlutterFlowTheme.of(context).titleLarge.override(

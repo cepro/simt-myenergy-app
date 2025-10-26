@@ -1,12 +1,10 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/sidebar_property_list/sidebar_property_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -14,7 +12,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'impersonate_user_model.dart';
 export 'impersonate_user_model.dart';
@@ -42,8 +39,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (FFAppState().isCeproUser ||
-          (FFAppState().impersonationToken != null &&
-              FFAppState().impersonationToken != '')) {
+          (FFAppState().impersonationToken != '')) {
         return;
       }
 
@@ -78,7 +74,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         body: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(1.0, 0.0, 0.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +82,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
               wrapWithModel(
                 model: _model.sidebarPropertyListModel,
                 updateCallback: () => safeSetState(() {}),
-                child: SidebarPropertyListWidget(),
+                child: const SidebarPropertyListWidget(),
               ),
               Expanded(
                 child: SingleChildScrollView(
@@ -94,10 +90,10 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             15.0, 0.0, 15.0, 100.0),
                         child: Container(
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             maxWidth: 1024.0,
                           ),
                           decoration: BoxDecoration(
@@ -105,7 +101,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                 .secondaryBackground,
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 10.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -113,7 +109,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                 wrapWithModel(
                                   model: _model.topBarLoggedInModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: TopBarLoggedInWidget(),
+                                  child: const TopBarLoggedInWidget(),
                                 ),
                                 if (responsiveVisibility(
                                   context: context,
@@ -138,9 +134,9 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                         FlutterFlowTheme.of(context).lineColor,
                                   ),
                                 Align(
-                                  alignment: AlignmentDirectional(-1.0, 0.0),
+                                  alignment: const AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 25.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -168,7 +164,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                 ),
                                 if (_model.loading == false)
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: Container(
                                       width: 500.0,
@@ -177,15 +173,12 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                             .secondaryBackground,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             if (FFAppState()
-                                                        .impersonationToken ==
-                                                    null ||
-                                                FFAppState()
                                                         .impersonationToken ==
                                                     '')
                                               Column(
@@ -217,7 +210,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                     ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 20.0,
                                                                 8.0, 0.0),
                                                     child: TextFormField(
@@ -278,7 +271,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                         focusedBorder:
                                                             OutlineInputBorder(
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                             color: Color(
                                                                 0x00000000),
                                                             width: 2.0,
@@ -343,17 +336,14 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                   ),
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 12.0,
                                                                 0.0, 30.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
-                                                        var _shouldSetState =
+                                                        var shouldSetState =
                                                             false;
                                                         if (_model.emailFieldTextController
-                                                                    .text !=
-                                                                null &&
-                                                            _model.emailFieldTextController
                                                                     .text !=
                                                                 '') {
                                                           _model.loading = true;
@@ -370,7 +360,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                 currentJwtToken,
                                                           );
 
-                                                          _shouldSetState =
+                                                          shouldSetState =
                                                               true;
                                                           if ((_model.generateTokenResponse
                                                                       ?.succeeded ??
@@ -386,7 +376,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                 await action_blocks
                                                                     .getCustomerDetailsAndInitAppState(
                                                                         context);
-                                                            _shouldSetState =
+                                                            shouldSetState =
                                                                 true;
                                                             if (_model
                                                                     .impersonateCustomerDetailsResponse ==
@@ -397,7 +387,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                 FFAppState()
                                                                     .impersonationToken,
                                                               );
-                                                              _shouldSetState =
+                                                              shouldSetState =
                                                                   true;
                                                               FFAppState()
                                                                       .isCeproUser =
@@ -436,9 +426,10 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                     PropertySelectionPageWidget
                                                                         .routeName);
 
-                                                                if (_shouldSetState)
+                                                                if (shouldSetState) {
                                                                   safeSetState(
                                                                       () {});
+                                                                }
                                                                 return;
                                                               } else {
                                                                 await action_blocks
@@ -449,9 +440,10 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                       .firstOrNull
                                                                       ?.id,
                                                                 );
-                                                                if (_shouldSetState)
+                                                                if (shouldSetState) {
                                                                   safeSetState(
                                                                       () {});
+                                                                }
                                                                 return;
                                                               }
                                                             } else {
@@ -461,9 +453,10 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                   '';
                                                               safeSetState(
                                                                   () {});
-                                                              if (_shouldSetState)
+                                                              if (shouldSetState) {
                                                                 safeSetState(
                                                                     () {});
+                                                              }
                                                               return;
                                                             }
                                                           } else {
@@ -477,9 +470,10 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                               r'''$.error''',
                                                             ).toString();
                                                             safeSetState(() {});
-                                                            if (_shouldSetState)
+                                                            if (shouldSetState) {
                                                               safeSetState(
                                                                   () {});
+                                                            }
                                                             return;
                                                           }
                                                         } else {
@@ -496,7 +490,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                       .primaryText,
                                                                 ),
                                                               ),
-                                                              duration: Duration(
+                                                              duration: const Duration(
                                                                   milliseconds:
                                                                       10000),
                                                               backgroundColor:
@@ -505,26 +499,28 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                       .secondaryBackground,
                                                             ),
                                                           );
-                                                          if (_shouldSetState)
+                                                          if (shouldSetState) {
                                                             safeSetState(() {});
+                                                          }
                                                           return;
                                                         }
 
-                                                        if (_shouldSetState)
+                                                        if (shouldSetState) {
                                                           safeSetState(() {});
+                                                        }
                                                       },
                                                       text: 'Impersonate',
                                                       options: FFButtonOptions(
                                                         height: 40.0,
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     24.0,
                                                                     0.0,
                                                                     24.0,
                                                                     0.0),
                                                         iconPadding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
@@ -552,7 +548,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                                           .titleSmallIsCustom,
                                                                 ),
                                                         elevation: 3.0,
-                                                        borderSide: BorderSide(
+                                                        borderSide: const BorderSide(
                                                           color: Colors
                                                               .transparent,
                                                           width: 1.0,
@@ -567,16 +563,13 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                               ),
                                             if (FFAppState()
                                                         .impersonationToken !=
-                                                    null &&
-                                                FFAppState()
-                                                        .impersonationToken !=
                                                     '')
                                               Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 15.0),
                                                     child: Text(
@@ -611,14 +604,14 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                                     options: FFButtonOptions(
                                                       height: 40.0,
                                                       padding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   16.0,
                                                                   0.0,
                                                                   16.0,
                                                                   0.0),
                                                       iconPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
                                                                   0.0,
@@ -666,7 +659,7 @@ class _ImpersonateUserWidgetState extends State<ImpersonateUserWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                     ),
-                                    child: Container(
+                                    child: const SizedBox(
                                       width: 100.0,
                                       height: 100.0,
                                       child: custom_widgets.LoadingSpinner(
