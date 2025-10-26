@@ -157,7 +157,7 @@ class _SolarContractCardWidgetState extends State<SolarContractCardWidget> {
                                 },
                       text: 'View',
                       icon: const FaIcon(
-                        FontAwesomeIcons.pencilAlt,
+                        FontAwesomeIcons.pencil,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(

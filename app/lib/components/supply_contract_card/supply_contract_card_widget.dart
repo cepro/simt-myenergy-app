@@ -154,7 +154,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                                 },
                       text: 'View',
                       icon: const FaIcon(
-                        FontAwesomeIcons.pencilAlt,
+                        FontAwesomeIcons.pencil,
                         size: 15.0,
                       ),
                       options: FFButtonOptions(
