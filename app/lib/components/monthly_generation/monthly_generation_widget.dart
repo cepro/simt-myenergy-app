@@ -1,10 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'monthly_generation_model.dart';
 export 'monthly_generation_model.dart';
 
@@ -43,7 +39,7 @@ class _MonthlyGenerationWidgetState extends State<MonthlyGenerationWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
         height: 675.0,
         decoration: BoxDecoration(
@@ -54,7 +50,7 @@ class _MonthlyGenerationWidgetState extends State<MonthlyGenerationWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -63,7 +59,7 @@ class _MonthlyGenerationWidgetState extends State<MonthlyGenerationWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Text(
                       'Solar Generation',
                       style:
@@ -79,7 +75,7 @@ class _MonthlyGenerationWidgetState extends State<MonthlyGenerationWidget> {
                 ],
               ),
               Align(
-                alignment: AlignmentDirectional(-1.0, 0.0),
+                alignment: const AlignmentDirectional(-1.0, 0.0),
                 child: Text(
                   'Coming soon ...',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(

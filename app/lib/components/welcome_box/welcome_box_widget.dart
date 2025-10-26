@@ -1,11 +1,8 @@
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'welcome_box_model.dart';
 export 'welcome_box_model.dart';
@@ -46,7 +43,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
@@ -56,7 +53,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -99,18 +96,18 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                 children: [
                   Expanded(
                     child: Container(
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: RichText(
                         textScaler: MediaQuery.of(context).textScaler,
                         text: TextSpan(
                           children: [
-                            TextSpan(
+                            const TextSpan(
                               text: 'For further details please see the ',
                               style: TextStyle(),
                             ),
                             TextSpan(
                               text: 'Solution Brief',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 decoration: TextDecoration.underline,
                               ),
@@ -130,7 +127,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                                   }());
                                 },
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: '.',
                               style: TextStyle(),
                             )
@@ -152,7 +149,7 @@ class _WelcomeBoxWidgetState extends State<WelcomeBoxWidget> {
                   ),
                 ],
               ),
-            ].divide(SizedBox(height: 10.0)),
+            ].divide(const SizedBox(height: 10.0)),
           ),
         ),
       ),

@@ -2,14 +2,9 @@ import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'main_web_nav_model.dart';
 export 'main_web_nav_model.dart';
@@ -62,8 +57,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 350.0.ms,
-            begin: Offset(40.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(40.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -75,8 +70,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 350.0.ms,
-            begin: Offset(-40.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-40.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -111,7 +106,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
           BoxShadow(
             blurRadius: 0.0,
             color: FlutterFlowTheme.of(context).lineColor,
-            offset: Offset(
+            offset: const Offset(
               1.0,
               0.0,
             ),
@@ -119,7 +114,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
         ],
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 16.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 16.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,7 +150,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 ],
               ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
               child: Text(
                 'MENU',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -167,7 +162,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -177,7 +172,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   context.pushNamed(
                     HomePageWidget.routeName,
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -190,22 +185,22 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                       child: Icon(
                         Icons.home_rounded,
-                        color: widget!.navOne,
+                        color: widget.navOne,
                         size: 24.0,
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Home',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: widget!.navOne,
+                              color: widget.navOne,
                               letterSpacing: 0.0,
                               useGoogleFonts: !FlutterFlowTheme.of(context)
                                   .bodyMediumIsCustom,
@@ -217,7 +212,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -227,7 +222,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   context.pushNamed(
                     MyEnergyPageWidget.routeName,
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -240,22 +235,22 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                       child: Icon(
                         Icons.electrical_services,
-                        color: widget!.navTwo,
+                        color: widget.navTwo,
                         size: 24.0,
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'My Energy',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: widget!.navTwo,
+                              color: widget.navTwo,
                               letterSpacing: 0.0,
                               useGoogleFonts: !FlutterFlowTheme.of(context)
                                   .bodyMediumIsCustom,
@@ -267,7 +262,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -277,7 +272,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   context.pushNamed(
                     PaymentsPageWidget.routeName,
                     extra: <String, dynamic>{
-                      kTransitionInfoKey: TransitionInfo(
+                      kTransitionInfoKey: const TransitionInfo(
                         hasTransition: true,
                         transitionType: PageTransitionType.fade,
                         duration: Duration(milliseconds: 0),
@@ -290,22 +285,22 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                       child: Icon(
                         Icons.credit_card_rounded,
-                        color: widget!.navThree,
+                        color: widget.navThree,
                         size: 24.0,
                       ),
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Payments',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
-                              color: widget!.navThree,
+                              color: widget.navThree,
                               letterSpacing: 0.0,
                               useGoogleFonts: !FlutterFlowTheme.of(context)
                                   .bodyMediumIsCustom,
@@ -318,7 +313,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
             ),
             if (false && FFAppState().supplyContractSigned)
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -328,7 +323,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     context.pushNamed(
                       TopupPageWidget.routeName,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -341,16 +336,16 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.settings,
-                          color: widget!.navFour,
+                          color: widget.navFour,
                           size: 24.0,
                         ),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Topups',
                           style: FlutterFlowTheme.of(context)
@@ -358,7 +353,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
-                                color: widget!.navFour,
+                                color: widget.navFour,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: !FlutterFlowTheme.of(context)
                                     .bodyMediumIsCustom,
@@ -371,7 +366,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             if (FFAppState().isCeproUser)
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -381,7 +376,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     context.pushNamed(
                       AdminPaymentWidget.routeName,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -394,16 +389,16 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.monetization_on,
-                          color: widget!.navFive,
+                          color: widget.navFive,
                           size: 24.0,
                         ),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Admin Payment',
                           style: FlutterFlowTheme.of(context)
@@ -411,7 +406,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
-                                color: widget!.navFive,
+                                color: widget.navFive,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: !FlutterFlowTheme.of(context)
                                     .bodyMediumIsCustom,
@@ -424,7 +419,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             if (FFAppState().isCeproUser)
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -434,7 +429,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     context.pushNamed(
                       ImpersonateUserWidget.routeName,
                       extra: <String, dynamic>{
-                        kTransitionInfoKey: TransitionInfo(
+                        kTransitionInfoKey: const TransitionInfo(
                           hasTransition: true,
                           transitionType: PageTransitionType.fade,
                           duration: Duration(milliseconds: 0),
@@ -447,16 +442,16 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     children: [
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.face_2,
-                          color: widget!.navSix,
+                          color: widget.navSix,
                           size: 24.0,
                         ),
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Impersonate User',
                           style: FlutterFlowTheme.of(context)
@@ -464,7 +459,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                               .override(
                                 fontFamily: FlutterFlowTheme.of(context)
                                     .bodyMediumFamily,
-                                color: widget!.navSix,
+                                color: widget.navSix,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: !FlutterFlowTheme.of(context)
                                     .bodyMediumIsCustom,
@@ -477,14 +472,14 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -512,7 +507,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 12.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -530,9 +525,9 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                         ),
                                         child: Stack(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           children: [
-                                            Align(
+                                            const Align(
                                               alignment: AlignmentDirectional(
                                                   0.95, 0.0),
                                               child: Padding(
@@ -547,7 +542,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -0.85, 0.0),
                                               child: Container(
                                                 width: 36.0,
@@ -556,7 +551,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: [
+                                                  boxShadow: const [
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),
@@ -608,7 +603,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 12.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -626,9 +621,9 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                         ),
                                         child: Stack(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           children: [
-                                            Align(
+                                            const Align(
                                               alignment: AlignmentDirectional(
                                                   -0.9, 0.0),
                                               child: Padding(
@@ -643,7 +638,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.9, 0.0),
                                               child: Container(
                                                 width: 36.0,
@@ -652,7 +647,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: [
+                                                  boxShadow: const [
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),

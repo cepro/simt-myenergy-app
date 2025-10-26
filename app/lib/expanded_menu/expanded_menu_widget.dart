@@ -1,10 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'expanded_menu_model.dart';
 export 'expanded_menu_model.dart';
@@ -78,7 +75,7 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                         size: 24.0,
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 12.0, 0.0, 12.0),
                         child: Text(
                           'Admin Initiate Payment',
@@ -107,7 +104,7 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                     child: Text(
                       'Extra Menu Item 2',
                       textAlign: TextAlign.start,
@@ -133,7 +130,7 @@ class _ExpandedMenuWidgetState extends State<ExpandedMenuWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                     child: Text(
                       'Extra Menu Item 3',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(

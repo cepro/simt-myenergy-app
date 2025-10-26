@@ -1,11 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'stop_impersonating_link_model.dart';
 export 'stop_impersonating_link_model.dart';
@@ -48,15 +46,14 @@ class _StopImpersonatingLinkWidgetState
     context.watch<FFAppState>();
 
     return Visibility(
-      visible: FFAppState().impersonationToken != null &&
-          FFAppState().impersonationToken != '',
+      visible: FFAppState().impersonationToken != '',
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
@@ -85,8 +82,8 @@ class _StopImpersonatingLinkWidgetState
               text: 'Stop',
               options: FFButtonOptions(
                 height: 25.0,
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primary,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,

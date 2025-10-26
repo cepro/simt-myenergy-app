@@ -2,14 +2,10 @@ import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'sidebar_property_list_model.dart';
 export 'sidebar_property_list_model.dart';
@@ -65,8 +61,8 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 350.0.ms,
-            begin: Offset(40.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(40.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -78,8 +74,8 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 350.0.ms,
-            begin: Offset(-40.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-40.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -114,7 +110,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
           BoxShadow(
             blurRadius: 0.0,
             color: FlutterFlowTheme.of(context).lineColor,
-            offset: Offset(
+            offset: const Offset(
               1.0,
               0.0,
             ),
@@ -122,7 +118,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
         ],
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 16.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(24.0, 32.0, 24.0, 16.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,7 +155,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
               ),
             Expanded(
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -169,7 +165,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                       children: [
                         if (FFAppState().isCeproUser)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 30.0, 0.0, 8.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -180,7 +176,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 context.pushNamed(
                                   PropertySelectionPageWidget.routeName,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -192,16 +188,16 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Icon(
                                       Icons.house_sharp,
-                                      color: widget!.navSix,
+                                      color: widget.navSix,
                                       size: 24.0,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Properties',
@@ -211,7 +207,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
-                                            color: widget!.navSix,
+                                            color: widget.navSix,
                                             letterSpacing: 0.0,
                                             useGoogleFonts:
                                                 !FlutterFlowTheme.of(context)
@@ -225,7 +221,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                           ),
                         if (FFAppState().isCeproUser)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -236,7 +232,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 context.pushNamed(
                                   ImpersonateUserWidget.routeName,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -248,16 +244,16 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Icon(
                                       Icons.face_2,
-                                      color: widget!.navSix,
+                                      color: widget.navSix,
                                       size: 24.0,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Impersonate User',
@@ -267,7 +263,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
-                                            color: widget!.navSix,
+                                            color: widget.navSix,
                                             letterSpacing: 0.0,
                                             useGoogleFonts:
                                                 !FlutterFlowTheme.of(context)
@@ -281,7 +277,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                           ),
                         if (FFAppState().isCeproUser)
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 8.0),
                             child: InkWell(
                               splashColor: Colors.transparent,
@@ -292,7 +288,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 context.pushNamed(
                                   AdminPaymentWidget.routeName,
                                   extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
+                                    kTransitionInfoKey: const TransitionInfo(
                                       hasTransition: true,
                                       transitionType: PageTransitionType.fade,
                                       duration: Duration(milliseconds: 0),
@@ -304,16 +300,16 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Icon(
                                       Icons.monetization_on,
-                                      color: widget!.navFive,
+                                      color: widget.navFive,
                                       size: 24.0,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Admin Payment',
@@ -323,7 +319,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
-                                            color: widget!.navFive,
+                                            color: widget.navFive,
                                             letterSpacing: 0.0,
                                             useGoogleFonts:
                                                 !FlutterFlowTheme.of(context)
@@ -339,7 +335,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -370,7 +366,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 12.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -388,9 +384,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                         ),
                                         child: Stack(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           children: [
-                                            Align(
+                                            const Align(
                                               alignment: AlignmentDirectional(
                                                   0.95, 0.0),
                                               child: Padding(
@@ -405,7 +401,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   -0.85, 0.0),
                                               child: Container(
                                                 width: 36.0,
@@ -414,7 +410,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: [
+                                                  boxShadow: const [
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),
@@ -470,7 +466,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                       .secondaryBackground,
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 12.0, 12.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
@@ -488,9 +484,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                         ),
                                         child: Stack(
                                           alignment:
-                                              AlignmentDirectional(0.0, 0.0),
+                                              const AlignmentDirectional(0.0, 0.0),
                                           children: [
-                                            Align(
+                                            const Align(
                                               alignment: AlignmentDirectional(
                                                   -0.9, 0.0),
                                               child: Padding(
@@ -505,7 +501,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.9, 0.0),
                                               child: Container(
                                                 width: 36.0,
@@ -514,7 +510,7 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryBackground,
-                                                  boxShadow: [
+                                                  boxShadow: const [
                                                     BoxShadow(
                                                       blurRadius: 4.0,
                                                       color: Color(0x430B0D0F),

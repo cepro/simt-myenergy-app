@@ -1,17 +1,7 @@
-import 'dart:convert';
-import 'dart:math' as math;
 
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:timeago/timeago.dart' as timeago;
-import 'lat_lng.dart';
-import 'place.dart';
-import 'uploaded_file.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
-import '/backend/supabase/supabase.dart';
-import '/auth/supabase_auth/auth_util.dart';
 
 bool isJwtExpired(String wwwAuthenticateHeader) {
   return wwwAuthenticateHeader.contains('Jwt expired');
@@ -33,18 +23,18 @@ List<PropertyStruct> getPropertiesFromAccounts(List<AccountStruct> accounts) {
 
   // remove duplicates
   final Map<String, PropertyStruct> uniquePropertiesByIdMap = {
-    for (var prop in accounts.map((a) => a.property)) prop.id!: prop
+    for (var prop in accounts.map((a) => a.property)) prop.id: prop
   };
   properties = uniquePropertiesByIdMap.values.toList();
 
   // sort by address (description) ascending
-  properties.sort((a, b) => a.description!.compareTo(b.description!));
+  properties.sort((a, b) => a.description.compareTo(b.description));
 
   return properties;
 }
 
 bool isListEmpty(List<dynamic>? jsonList) {
-  return jsonList == null || jsonList.length == 0;
+  return jsonList == null || jsonList.isEmpty;
 }
 
 List<EscoStruct> getEscosFromProperties(List<PropertyStruct> properties) {
@@ -61,7 +51,7 @@ AccountStruct? getAccountByType(
 ) {
   AccountStruct? account = accounts.firstWhere(
       (account) => account.type == type,
-      orElse: () => new AccountStruct());
+      orElse: () => AccountStruct());
   return account;
 }
 
@@ -71,7 +61,7 @@ ContractStruct? getContractByType(
 ) {
   AccountStruct? account = accounts.firstWhere(
       (account) => account.contract.type == type,
-      orElse: () => new AccountStruct());
+      orElse: () => AccountStruct());
   return account.contract;
 }
 
@@ -80,7 +70,7 @@ ContractTermsStruct? getTermsById(
   List<ContractTermsStruct> termsList,
 ) {
   ContractTermsStruct? terms = termsList.firstWhere(
-    (t) => t != null && t.id != null && t.id == termsId,
+    (t) => t.id == termsId,
     orElse: () => ContractTermsStruct(),
   );
 
@@ -119,7 +109,7 @@ String formatGBPAmount(double? amountGBP) {
   }
 
   var f = NumberFormat("##0.00", "en_GB");
-  return "£" + f.format(amountGBP);
+  return "£${f.format(amountGBP)}";
 }
 
 bool isPrepayMode(MeterStruct? meter) {
@@ -199,7 +189,7 @@ DateTime nowDateTime() {
 
 String formatGBPPenceAmount(double amountGBP) {
   var f = NumberFormat("##0.0", "en_GB");
-  return f.format(amountGBP * 100) + "p";
+  return "${f.format(amountGBP * 100)}p";
 }
 
 String monthlyCostsTooltipPricingText(
@@ -284,15 +274,15 @@ String monthlyCostsTooltipPricingText(
 
   String unitStr = showRate ? 'kWh' : 'day';
 
-  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per ${unitStr} (${formatGBPAmount(benchmarkCharge)})'
+  return 'Benchmark rate: ${formatGBPPenceAmount(benchmarkRate)} per $unitStr (${formatGBPAmount(benchmarkCharge)})'
       '${newLineChar()}'
-      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per ${unitStr} (${formatGBPAmount(microgridCharge)})'
+      'Microgrid rate: ${formatGBPPenceAmount(microgridRate)} per $unitStr (${formatGBPAmount(microgridCharge)})'
       '${newLineChar()}'
-      'Your rate: ${formatGBPPenceAmount(customerRate)} per ${unitStr} (${formatGBPAmount(customerCharge)})';
+      'Your rate: ${formatGBPPenceAmount(customerRate)} per $unitStr (${formatGBPAmount(customerCharge)})';
 }
 
 String? tomorrowIso8601() {
-  final tomorrow = DateTime.now().toUtc().add(Duration(days: 1));
+  final tomorrow = DateTime.now().toUtc().add(const Duration(days: 1));
   final midnightTomorrow =
       DateTime.utc(tomorrow.year, tomorrow.month, tomorrow.day);
   return midnightTomorrow.toIso8601String();
@@ -335,7 +325,7 @@ String mcsFileName(
   String mcsId,
   String streetNumber,
 ) {
-  return streetNumber + "-MCS_Certificate_" + mcsId + "_v1.pdf";
+  return "$streetNumber-MCS_Certificate_${mcsId}_v1.pdf";
 }
 
 SolarCreditTariffStruct? solarTariffCurrent(TariffsStruct tariffs) {
@@ -343,7 +333,7 @@ SolarCreditTariffStruct? solarTariffCurrent(TariffsStruct tariffs) {
   List<SolarCreditTariffStruct> solarTariffs =
       List.of(tariffs.solarCreditTariffs);
   solarTariffs.sort((a, b) => b.periodStart!.compareTo(a.periodStart!));
-  return solarTariffs.length > 0 ? solarTariffs[0] : null;
+  return solarTariffs.isNotEmpty ? solarTariffs[0] : null;
 }
 
 String? streetNumberFromPropertyDescription(String description) {
@@ -369,7 +359,7 @@ SupplyTariffStruct? supplyTariffCurrent(TariffsStruct tariffs) {
   // use List.of to clone and avoid modifying the List in place
   List<SupplyTariffStruct> customerTariffs = List.of(tariffs.customerTariffs);
   customerTariffs.sort((a, b) => b.periodStart!.compareTo(a.periodStart!));
-  return customerTariffs.length > 0 ? customerTariffs[0] : null;
+  return customerTariffs.isNotEmpty ? customerTariffs[0] : null;
 }
 
 String? bucketNameFromEsco(String esco) {

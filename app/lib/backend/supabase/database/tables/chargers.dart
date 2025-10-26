@@ -9,7 +9,7 @@ class ChargersTable extends SupabaseTable<ChargersRow> {
 }
 
 class ChargersRow extends SupabaseDataRow {
-  ChargersRow(Map<String, dynamic> data) : super(data);
+  ChargersRow(super.data);
 
   @override
   SupabaseTable get table => ChargersTable();

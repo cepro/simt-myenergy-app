@@ -2,14 +2,9 @@ import '/components/property_list/property_list_widget.dart';
 import '/components/property_table/property_table_widget.dart';
 import '/components/sidebar_property_list/sidebar_property_list_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'property_selection_page_widget.dart' show PropertySelectionPageWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class PropertySelectionPageModel
     extends FlutterFlowModel<PropertySelectionPageWidget> {

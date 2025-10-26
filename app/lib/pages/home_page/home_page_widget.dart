@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/home_notification_box/home_notification_box_widget.dart';
 import '/components/info_tooltip_widget.dart';
 import '/components/labeled_value_widget.dart';
@@ -15,7 +14,6 @@ import '/components/welcome_box/welcome_box_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -23,7 +21,6 @@ import '/index.dart';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
 export 'home_page_model.dart';
@@ -77,7 +74,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         );
 
         await Future.delayed(
-          Duration(
+          const Duration(
             milliseconds: 500,
           ),
         );
@@ -132,7 +129,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   color: FlutterFlowTheme.of(context).primaryText,
                 ),
               ),
-              duration: Duration(milliseconds: 10000),
+              duration: const Duration(milliseconds: 10000),
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             ),
           );
@@ -190,16 +187,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             Expanded(
               child: SingleChildScrollView(
-                key: ValueKey('scrollingColumn'),
+                key: const ValueKey('scrollingColumn'),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           15.0, 0.0, 15.0, 100.0),
                       child: Container(
-                        key: ValueKey('maxWidthContainer'),
-                        constraints: BoxConstraints(
+                        key: const ValueKey('maxWidthContainer'),
+                        constraints: const BoxConstraints(
                           maxWidth: 1024.0,
                         ),
                         decoration: BoxDecoration(
@@ -207,16 +204,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               FlutterFlowTheme.of(context).secondaryBackground,
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               10.0, 0.0, 10.0, 0.0),
                           child: Column(
-                            key: ValueKey('mainPageColumn'),
+                            key: const ValueKey('mainPageColumn'),
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               wrapWithModel(
                                 model: _model.topBarLoggedInModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: TopBarLoggedInWidget(),
+                                child: const TopBarLoggedInWidget(),
                               ),
                               if (responsiveVisibility(
                                 context: context,
@@ -239,14 +236,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   color: FlutterFlowTheme.of(context).lineColor,
                                 ),
                               Align(
-                                alignment: AlignmentDirectional(-1.0, 0.0),
+                                alignment: const AlignmentDirectional(-1.0, 0.0),
                                 child: Column(
-                                  key: ValueKey('welcomeColumn'),
+                                  key: const ValueKey('welcomeColumn'),
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         'Welcome ${FFAppState().customer.name}',
@@ -278,7 +275,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                           0.0, 10.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -289,7 +286,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             updateCallback: () =>
                                                 safeSetState(() {}),
                                             child:
-                                                PropertyNameWithTooltipWidget(),
+                                                const PropertyNameWithTooltipWidget(),
                                           ),
                                           if (responsiveVisibility(
                                             context: context,
@@ -297,10 +294,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             desktop: false,
                                           ))
                                             Align(
-                                              alignment: AlignmentDirectional(
+                                              alignment: const AlignmentDirectional(
                                                   0.0, 1.0),
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         5.0, 0.0, 0.0, 0.0),
                                                 child: FFButtonWidget(
@@ -313,11 +310,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   options: FFButtonOptions(
                                                     height: 25.0,
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
                                                                 10.0, 0.0),
                                                     iconPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -357,7 +354,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 wrapWithModel(
                                   model: _model.homeNotificationBoxModel,
                                   updateCallback: () => safeSetState(() {}),
-                                  child: HomeNotificationBoxWidget(),
+                                  child: const HomeNotificationBoxWidget(),
                                 ),
                               if ((FFAppState().customer.status ==
                                       'preonboarding') ||
@@ -393,18 +390,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               wrapWithModel(
                                 model: _model.welcomeBoxModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: WelcomeBoxWidget(),
+                                child: const WelcomeBoxWidget(),
                               ),
                               wrapWithModel(
                                 model: _model.productRoadmapBoxModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: ProductRoadmapBoxWidget(),
+                                child: const ProductRoadmapBoxWidget(),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 30.0, 0.0, 0.0),
                                 child: Container(
-                                  key: ValueKey('supplyAccountView'),
+                                  key: const ValueKey('supplyAccountView'),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(15.0),
                                     border: Border.all(
@@ -414,25 +411,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(15.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
                                         Container(
-                                          key: ValueKey('supplyHeader'),
+                                          key: const ValueKey('supplyHeader'),
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
                                           ),
                                           child: Padding(
-                                            padding: EdgeInsets.all(12.0),
+                                            padding: const EdgeInsets.all(12.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 0.0, 12.0, 0.0),
                                                   child: Icon(
@@ -447,7 +444,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 AlignedTooltip(
                                                   content: Padding(
                                                     padding:
-                                                        EdgeInsets.all(4.0),
+                                                        const EdgeInsets.all(4.0),
                                                     child: Text(
                                                       'Role: ${FFAppState().supplyAccount.customerAccount.role}',
                                                       style: FlutterFlowTheme
@@ -479,9 +476,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   elevation: 4.0,
                                                   tailBaseWidth: 24.0,
                                                   tailLength: 12.0,
-                                                  waitDuration: Duration(
+                                                  waitDuration: const Duration(
                                                       milliseconds: 100),
-                                                  showDuration: Duration(
+                                                  showDuration: const Duration(
                                                       milliseconds: 1500),
                                                   triggerMode:
                                                       TooltipTriggerMode.tap,
@@ -512,10 +509,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         ),
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 12.0, 0.0, 0.0),
                                           child: Wrap(
-                                            key: ValueKey('supplyRow1'),
+                                            key: const ValueKey('supplyRow1'),
                                             spacing: 10.0,
                                             runSpacing: 0.0,
                                             alignment: WrapAlignment.center,
@@ -528,10 +525,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             clipBehavior: Clip.none,
                                             children: [
                                               Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minWidth: 300.0,
                                                 ),
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                                 child: Visibility(
                                                   visible: _model.supplyMeter !=
                                                       null,
@@ -550,7 +547,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsets.all(16.0),
+                                                          const EdgeInsets.all(16.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -579,7 +576,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   size: 24.0,
                                                                 ),
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -605,7 +602,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         12.0,
@@ -636,7 +633,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           ),
                                                           Padding(
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -662,7 +659,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           ),
                                                           Container(
                                                             constraints:
-                                                                BoxConstraints(
+                                                                const BoxConstraints(
                                                               minWidth: 200.0,
                                                             ),
                                                             decoration:
@@ -691,7 +688,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         .start,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             16.0,
@@ -706,7 +703,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             fontFamily:
                                                                                 FlutterFlowTheme.of(context).bodyMediumFamily,
                                                                             color:
-                                                                                Color(0x8A000000),
+                                                                                const Color(0x8A000000),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             useGoogleFonts:
@@ -715,7 +712,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     ),
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             16.0,
                                                                             8.0,
@@ -732,7 +729,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                             fontFamily:
                                                                                 FlutterFlowTheme.of(context).titleLargeFamily,
                                                                             color:
-                                                                                Color(0xFF388E3C),
+                                                                                const Color(0xFF388E3C),
                                                                             letterSpacing:
                                                                                 0.0,
                                                                             useGoogleFonts:
@@ -751,10 +748,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                               ),
                                               Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   minWidth: 300.0,
                                                 ),
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                                 child: Visibility(
                                                   visible: _model
                                                           .supplyTariffCurrent !=
@@ -774,7 +771,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                                     child: Padding(
                                                       padding:
-                                                          EdgeInsets.all(16.0),
+                                                          const EdgeInsets.all(16.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.min,
@@ -803,7 +800,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                   size: 24.0,
                                                                 ),
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           8.0,
                                                                           0.0,
@@ -845,7 +842,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               null)
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           12.0,
@@ -899,10 +896,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                               ),
                                               Container(
-                                                constraints: BoxConstraints(
+                                                constraints: const BoxConstraints(
                                                   maxWidth: 400.0,
                                                 ),
-                                                decoration: BoxDecoration(),
+                                                decoration: const BoxDecoration(),
                                                 child: Visibility(
                                                   visible: FFAppState()
                                                           .supplyContractSigned &&
@@ -916,9 +913,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .where((e) =>
                                                                   e.type ==
                                                                   'supply')
-                                                              .toList()
-                                                              .length >
-                                                          0) &&
+                                                              .toList().isNotEmpty) &&
                                                       (functions.getContractByType(
                                                               FFAppState()
                                                                   .accountsForCurrentProperty
@@ -927,7 +922,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                           null),
                                                   child: Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 16.0,
                                                                 0.0, 0.0),
                                                     child: Card(
@@ -944,7 +939,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                 .circular(8.0),
                                                       ),
                                                       child: Padding(
-                                                        padding: EdgeInsets.all(
+                                                        padding: const EdgeInsets.all(
                                                             16.0),
                                                         child: Column(
                                                           mainAxisSize:
@@ -974,7 +969,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                     size: 24.0,
                                                                   ),
                                                                   Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                                    padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             8.0,
                                                                             0.0,
@@ -1000,7 +995,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             ),
                                                             Padding(
                                                               padding:
-                                                                  EdgeInsetsDirectional
+                                                                  const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           10.0,
@@ -1038,11 +1033,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             ),
                                                             Align(
                                                               alignment:
-                                                                  AlignmentDirectional(
+                                                                  const AlignmentDirectional(
                                                                       0.0, 0.0),
                                                               child: Container(
                                                                 decoration:
-                                                                    BoxDecoration(),
+                                                                    const BoxDecoration(),
                                                               ),
                                                             ),
                                                           ],
@@ -1062,7 +1057,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               ),
                               if (FFAppState().haveSolarContract)
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 30.0, 0.0, 0.0),
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -1074,7 +1069,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(15.0),
+                                      padding: const EdgeInsets.all(15.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
@@ -1087,13 +1082,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                       .primary,
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.all(12.0),
+                                              padding: const EdgeInsets.all(12.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 12.0, 0.0),
                                                     child: Icon(
@@ -1108,7 +1103,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   AlignedTooltip(
                                                     content: Padding(
                                                       padding:
-                                                          EdgeInsets.all(4.0),
+                                                          const EdgeInsets.all(4.0),
                                                       child: Text(
                                                         'Role: ${FFAppState().supplyAccount.customerAccount.role}',
                                                         style:
@@ -1141,9 +1136,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     elevation: 4.0,
                                                     tailBaseWidth: 24.0,
                                                     tailLength: 12.0,
-                                                    waitDuration: Duration(
+                                                    waitDuration: const Duration(
                                                         milliseconds: 100),
-                                                    showDuration: Duration(
+                                                    showDuration: const Duration(
                                                         milliseconds: 1500),
                                                     triggerMode:
                                                         TooltipTriggerMode.tap,
@@ -1175,9 +1170,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(0.0, 0.0),
                                             child: Padding(
-                                              padding: EdgeInsetsDirectional
+                                              padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 12.0, 0.0, 0.0),
                                               child: Wrap(
@@ -1194,10 +1189,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 clipBehavior: Clip.none,
                                                 children: [
                                                   Container(
-                                                    constraints: BoxConstraints(
+                                                    constraints: const BoxConstraints(
                                                       minWidth: 300.0,
                                                     ),
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Visibility(
                                                       visible: (_model
                                                                   .solarMeter !=
@@ -1220,7 +1215,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   16.0),
                                                           child: Column(
                                                             mainAxisSize:
@@ -1252,7 +1247,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           24.0,
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           8.0,
                                                                           0.0,
                                                                           0.0,
@@ -1274,7 +1269,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             0.0,
@@ -1303,7 +1298,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       .getSolarInstallationOutput !=
                                                                   null)
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           0.0,
@@ -1327,7 +1322,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           'View',
                                                                       buttonAction:
                                                                           () async {
-                                                                        var _shouldSetState =
+                                                                        var shouldSetState =
                                                                             false;
                                                                         _model.certificateURL =
                                                                             await actions.getStorageURL(
@@ -1338,7 +1333,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               _model.getSolarInstallationOutput!.mcs,
                                                                               functions.streetNumberFromPropertyDescription(FFAppState().property.description)!),
                                                                         );
-                                                                        _shouldSetState =
+                                                                        shouldSetState =
                                                                             true;
                                                                         if (_model.certificateURL !=
                                                                                 null &&
@@ -1348,8 +1343,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                               .openPDF(
                                                                             _model.certificateURL!,
                                                                           );
-                                                                          if (_shouldSetState)
+                                                                          if (shouldSetState) {
                                                                             safeSetState(() {});
+                                                                          }
                                                                           return;
                                                                         } else {
                                                                           ScaffoldMessenger.of(context)
@@ -1361,18 +1357,20 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
                                                                                 ),
                                                                               ),
-                                                                              duration: Duration(milliseconds: 10000),
+                                                                              duration: const Duration(milliseconds: 10000),
                                                                               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
                                                                             ),
                                                                           );
-                                                                          if (_shouldSetState)
+                                                                          if (shouldSetState) {
                                                                             safeSetState(() {});
+                                                                          }
                                                                           return;
                                                                         }
 
-                                                                        if (_shouldSetState)
+                                                                        if (shouldSetState) {
                                                                           safeSetState(
                                                                               () {});
+                                                                        }
                                                                       },
                                                                     ),
                                                                   ),
@@ -1381,7 +1379,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       .getSolarInstallationOutput !=
                                                                   null)
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           12.0,
@@ -1399,7 +1397,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       label:
                                                                           'Net Capacity',
                                                                       value:
-                                                                          '${_model.getSolarInstallationOutput?.declaredNetCapacity?.toString()} kW',
+                                                                          '${_model.getSolarInstallationOutput?.declaredNetCapacity.toString()} kW',
                                                                       buttonAction:
                                                                           () async {},
                                                                     ),
@@ -1409,7 +1407,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                       .getSolarInstallationOutput !=
                                                                   null)
                                                                 Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                                  padding: const EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
                                                                           12.0,
@@ -1443,10 +1441,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                                   ),
                                                   Container(
-                                                    constraints: BoxConstraints(
+                                                    constraints: const BoxConstraints(
                                                       minWidth: 300.0,
                                                     ),
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Visibility(
                                                       visible: _model
                                                               .solarCreditTariffCurrent !=
@@ -1467,7 +1465,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   16.0),
                                                           child: Column(
                                                             mainAxisSize:
@@ -1479,7 +1477,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             children: [
                                                               Container(
                                                                 constraints:
-                                                                    BoxConstraints(
+                                                                    const BoxConstraints(
                                                                   maxWidth:
                                                                       400.0,
                                                                 ),
@@ -1504,7 +1502,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           24.0,
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           8.0,
                                                                           0.0,
                                                                           0.0,
@@ -1565,10 +1563,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                                   ),
                                                   Container(
-                                                    constraints: BoxConstraints(
+                                                    constraints: const BoxConstraints(
                                                       maxWidth: 400.0,
                                                     ),
-                                                    decoration: BoxDecoration(),
+                                                    decoration: const BoxDecoration(),
                                                     child: Visibility(
                                                       visible: FFAppState()
                                                               .solarContractSigned &&
@@ -1593,7 +1591,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         ),
                                                         child: Padding(
                                                           padding:
-                                                              EdgeInsets.all(
+                                                              const EdgeInsets.all(
                                                                   16.0),
                                                           child: Column(
                                                             mainAxisSize:
@@ -1625,7 +1623,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           24.0,
                                                                     ),
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                      padding: const EdgeInsetsDirectional.fromSTEB(
                                                                           8.0,
                                                                           0.0,
                                                                           0.0,
@@ -1647,7 +1645,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               ),
                                                               Padding(
                                                                 padding:
-                                                                    EdgeInsetsDirectional
+                                                                    const EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0.0,
                                                                             10.0,
@@ -1680,13 +1678,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               ),
                                                               Align(
                                                                 alignment:
-                                                                    AlignmentDirectional(
+                                                                    const AlignmentDirectional(
                                                                         0.0,
                                                                         0.0),
                                                                 child:
                                                                     Container(
                                                                   decoration:
-                                                                      BoxDecoration(),
+                                                                      const BoxDecoration(),
                                                                 ),
                                                               ),
                                                             ],

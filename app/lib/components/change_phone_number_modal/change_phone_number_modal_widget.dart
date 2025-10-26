@@ -1,16 +1,13 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'change_phone_number_modal_model.dart';
@@ -40,14 +37,12 @@ class _ChangePhoneNumberModalWidgetState
     _model = createModel(context, () => ChangePhoneNumberModalModel());
 
     _model.phoneNumberFieldTextController ??= TextEditingController(text: () {
-      if (FFAppState().impersonationPhone != null &&
-          FFAppState().impersonationPhone != '') {
+      if (FFAppState().impersonationPhone != '') {
         return ((String phone) {
           return phone.replaceFirst("44", "");
         }(FFAppState().impersonationPhone));
-      } else if ((currentPhoneNumber != null && currentPhoneNumber != '') &&
-          (FFAppState().impersonationToken == null ||
-              FFAppState().impersonationToken == '')) {
+      } else if ((currentPhoneNumber != '') &&
+          (FFAppState().impersonationToken == '')) {
         return ((String phone) {
           return phone.replaceFirst("44", "");
         }(currentPhoneNumber));
@@ -78,7 +73,7 @@ class _ChangePhoneNumberModalWidgetState
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
       child: Column(
@@ -86,15 +81,15 @@ class _ChangePhoneNumberModalWidgetState
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Container(
               width: 700.0,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 700.0,
               ),
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 12.0,
                     color: Color(0x33000000),
@@ -107,7 +102,7 @@ class _ChangePhoneNumberModalWidgetState
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -115,7 +110,7 @@ class _ChangePhoneNumberModalWidgetState
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -162,7 +157,7 @@ class _ChangePhoneNumberModalWidgetState
                     if (!_model.verifyCode)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
                           'We\'ll text a verification code to your new number to confirm it.',
                           style: FlutterFlowTheme.of(context)
@@ -179,7 +174,7 @@ class _ChangePhoneNumberModalWidgetState
                     if (_model.verifyCode)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
                           'A verification code has been sent to your new number. Enter the code below.',
                           style: FlutterFlowTheme.of(context)
@@ -196,7 +191,7 @@ class _ChangePhoneNumberModalWidgetState
                     if (_model.showUpdateError)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Text(
                           'Update number failed: ${_model.updatePhoneNumberResult?.errorMessage}',
                           style: FlutterFlowTheme.of(context)
@@ -214,7 +209,7 @@ class _ChangePhoneNumberModalWidgetState
                     if (_model.showVerifyError)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: Text(
                           'Verify OTP failed: ${_model.verifyUserPhoneResult?.errorMessage}',
                           style: FlutterFlowTheme.of(context)
@@ -231,7 +226,7 @@ class _ChangePhoneNumberModalWidgetState
                       ),
                     if (!_model.verifyCode)
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 25.0, 0.0, 30.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -251,9 +246,9 @@ class _ChangePhoneNumberModalWidgetState
                                   ),
                             ),
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   10.0, 0.0, 0.0, 0.0),
-                              child: Container(
+                              child: SizedBox(
                                 width: 200.0,
                                 child: TextFormField(
                                   controller:
@@ -299,7 +294,7 @@ class _ChangePhoneNumberModalWidgetState
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                                      borderSide: const BorderSide(
                                         color: Color(0x00000000),
                                         width: 1.0,
                                       ),
@@ -352,9 +347,9 @@ class _ChangePhoneNumberModalWidgetState
                       ),
                     if (_model.verifyCode)
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 30.0, 0.0, 30.0),
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.sizeOf(context).width * 0.5,
                           child: TextFormField(
                             controller: _model.verifyCodeFieldTextController,
@@ -392,7 +387,7 @@ class _ChangePhoneNumberModalWidgetState
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
@@ -436,12 +431,12 @@ class _ChangePhoneNumberModalWidgetState
                     if (_model.verifyCode && false)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 5.0, 0.0),
                               child: Text(
                                 'Time remaining: ',
@@ -469,7 +464,7 @@ class _ChangePhoneNumberModalWidgetState
                                 ),
                                 controller: _model.timerController,
                                 updateStateInterval:
-                                    Duration(milliseconds: 1000),
+                                    const Duration(milliseconds: 1000),
                                 onChanged: (value, displayTime, shouldUpdate) {
                                   _model.timerMilliseconds = value;
                                   _model.timerValue = displayTime;
@@ -505,18 +500,16 @@ class _ChangePhoneNumberModalWidgetState
                       ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           FFButtonWidget(
-                            onPressed: (FFAppState().impersonationToken !=
-                                        null &&
-                                    FFAppState().impersonationToken != '')
+                            onPressed: (FFAppState().impersonationToken != '')
                                 ? null
                                 : () async {
-                                    var _shouldSetState = false;
+                                    var shouldSetState = false;
                                     await action_blocks
                                         .checkAndBlockWriteableAPICall(context);
                                     _model.showUpdateError = false;
@@ -524,9 +517,6 @@ class _ChangePhoneNumberModalWidgetState
                                     safeSetState(() {});
                                     if (_model.verifyCode) {
                                       if (_model.verifyCodeFieldTextController
-                                                  .text !=
-                                              null &&
-                                          _model.verifyCodeFieldTextController
                                                   .text !=
                                               '') {
                                         _model.verifyUserPhoneResult =
@@ -537,7 +527,7 @@ class _ChangePhoneNumberModalWidgetState
                                           _model.verifyCodeFieldTextController
                                               .text,
                                         );
-                                        _shouldSetState = true;
+                                        shouldSetState = true;
                                         if (_model.verifyUserPhoneResult
                                                 ?.success ==
                                             true) {
@@ -546,26 +536,26 @@ class _ChangePhoneNumberModalWidgetState
                                           _model.verifyCode = false;
                                           safeSetState(() {});
                                           Navigator.pop(context);
-                                          if (_shouldSetState)
+                                          if (shouldSetState) {
                                             safeSetState(() {});
+                                          }
                                           return;
                                         } else {
                                           _model.showVerifyError = true;
                                           safeSetState(() {});
-                                          if (_shouldSetState)
+                                          if (shouldSetState) {
                                             safeSetState(() {});
+                                          }
                                           return;
                                         }
                                       } else {
-                                        if (_shouldSetState)
+                                        if (shouldSetState) {
                                           safeSetState(() {});
+                                        }
                                         return;
                                       }
                                     } else {
                                       if (_model.phoneNumberFieldTextController
-                                                  .text !=
-                                              null &&
-                                          _model.phoneNumberFieldTextController
                                                   .text !=
                                               '') {
                                         _model.updatePhoneNumberResult =
@@ -574,7 +564,7 @@ class _ChangePhoneNumberModalWidgetState
                                             return phone.replaceAll("-", "");
                                           }(_model.phoneNumberFieldTextController.text)}',
                                         );
-                                        _shouldSetState = true;
+                                        shouldSetState = true;
                                         if (_model.updatePhoneNumberResult
                                                 ?.success ==
                                             true) {
@@ -585,31 +575,34 @@ class _ChangePhoneNumberModalWidgetState
                                           _model.timerController.onStartTimer();
                                           _model.verifyCode = true;
                                           safeSetState(() {});
-                                          if (_shouldSetState)
+                                          if (shouldSetState) {
                                             safeSetState(() {});
+                                          }
                                           return;
                                         } else {
                                           _model.showUpdateError = true;
                                           safeSetState(() {});
-                                          if (_shouldSetState)
+                                          if (shouldSetState) {
                                             safeSetState(() {});
+                                          }
                                           return;
                                         }
                                       } else {
-                                        if (_shouldSetState)
+                                        if (shouldSetState) {
                                           safeSetState(() {});
+                                        }
                                         return;
                                       }
                                     }
 
-                                    if (_shouldSetState) safeSetState(() {});
+                                    if (shouldSetState) safeSetState(() {});
                                   },
                             text: _model.verifyCode
                                 ? 'Verify Code'
                                 : 'Update Mobile Number',
                             options: FFButtonOptions(
-                              padding: EdgeInsets.all(24.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsets.all(24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -624,7 +617,7 @@ class _ChangePhoneNumberModalWidgetState
                                             .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -637,8 +630,8 @@ class _ChangePhoneNumberModalWidgetState
                             },
                             text: 'Cancel',
                             options: FFButtonOptions(
-                              padding: EdgeInsets.all(24.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsets.all(24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
@@ -655,7 +648,7 @@ class _ChangePhoneNumberModalWidgetState
                                             .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

@@ -2,13 +2,10 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'monthly_costs_model.dart';
 export 'monthly_costs_model.dart';
@@ -49,7 +46,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
         height: 870.0,
         decoration: BoxDecoration(
@@ -60,7 +57,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -69,7 +66,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Text(
                       'Costs',
                       style:
@@ -85,7 +82,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                 ],
               ),
               if (FFAppState().monthlyCostsLoading)
-                Container(
+                const SizedBox(
                   width: 100.0,
                   height: 100.0,
                   child: custom_widgets.LoadingSpinner(
@@ -204,7 +201,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                         dataRowBuilder: (monthlyCostsItem, monthlyCostsIndex,
                                 selected, onSelectChanged) =>
                             DataRow(
-                          color: MaterialStateProperty.all(
+                          color: WidgetStateProperty.all(
                             monthlyCostsIndex % 2 == 0
                                 ? FlutterFlowTheme.of(context)
                                     .secondaryBackground
@@ -230,7 +227,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             ),
                             AlignedTooltip(
                               content: Padding(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   functions.monthlyCostsTooltipPricingText(
                                       monthlyCostsItem,
@@ -263,8 +260,8 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               elevation: 4.0,
                               tailBaseWidth: 24.0,
                               tailLength: 12.0,
-                              waitDuration: Duration(milliseconds: 100),
-                              showDuration: Duration(milliseconds: 1500),
+                              waitDuration: const Duration(milliseconds: 100),
+                              showDuration: const Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
                               child: Text(
                                 '${functions.formatGBPAmount(monthlyCostsItem.power)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkPower - monthlyCostsItem.power)})',
@@ -282,7 +279,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             ),
                             AlignedTooltip(
                               content: Padding(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   functions.monthlyCostsTooltipPricingText(
                                       monthlyCostsItem,
@@ -315,8 +312,8 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               elevation: 4.0,
                               tailBaseWidth: 24.0,
                               tailLength: 12.0,
-                              waitDuration: Duration(milliseconds: 100),
-                              showDuration: Duration(milliseconds: 1500),
+                              waitDuration: const Duration(milliseconds: 100),
+                              showDuration: const Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
                               child: Text(
                                 '${functions.formatGBPAmount(monthlyCostsItem.heat)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkHeat - monthlyCostsItem.heat)})',
@@ -334,7 +331,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                             ),
                             AlignedTooltip(
                               content: Padding(
-                                padding: EdgeInsets.all(4.0),
+                                padding: const EdgeInsets.all(4.0),
                                 child: Text(
                                   functions.monthlyCostsTooltipPricingText(
                                       monthlyCostsItem,
@@ -362,8 +359,8 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               elevation: 4.0,
                               tailBaseWidth: 24.0,
                               tailLength: 12.0,
-                              waitDuration: Duration(milliseconds: 100),
-                              showDuration: Duration(milliseconds: 1500),
+                              waitDuration: const Duration(milliseconds: 100),
+                              showDuration: const Duration(milliseconds: 1500),
                               triggerMode: TooltipTriggerMode.tap,
                               child: Text(
                                 '${functions.formatGBPAmount(monthlyCostsItem.standingCharge)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkStandingCharge - monthlyCostsItem.standingCharge)})',
@@ -384,7 +381,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                               children: [
                                 AlignedTooltip(
                                   content: Padding(
-                                    padding: EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       'Benchmark Charge: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkTotal)}${functions.newLineChar()}Microgrid Charge: ${functions.formatGBPAmount(monthlyCostsItem.microgridTotal)}${functions.newLineChar()}Your Charge: ${functions.formatGBPAmount(monthlyCostsItem.total)}',
                                       style: FlutterFlowTheme.of(context)
@@ -408,8 +405,8 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: Duration(milliseconds: 100),
-                                  showDuration: Duration(milliseconds: 1500),
+                                  waitDuration: const Duration(milliseconds: 100),
+                                  showDuration: const Duration(milliseconds: 1500),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Text(
                                     '${functions.formatGBPAmount(monthlyCostsItem.total)}${functions.newLineChar()}(Saved: ${functions.formatGBPAmount(monthlyCostsItem.benchmarkTotal - monthlyCostsItem.total)})',
@@ -459,7 +456,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                           FFAppState().monthlyCosts.toList()) ==
                       0))
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Text(
                     'No costs',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(

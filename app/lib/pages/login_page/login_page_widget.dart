@@ -1,14 +1,10 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/schema/enums/enums.dart';
 import '/components/logo_container_row/logo_container_row_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -16,7 +12,6 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'login_page_model.dart';
 export 'login_page_model.dart';
@@ -27,7 +22,7 @@ class LoginPageWidget extends StatefulWidget {
     this.emailPrefill,
     bool? fromInvite,
     this.errorMessage,
-  }) : this.fromInvite = fromInvite ?? false;
+  }) : fromInvite = fromInvite ?? false;
 
   final String? emailPrefill;
   final bool fromInvite;
@@ -62,12 +57,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       safeSetState(() {});
 
       safeSetState(() {});
-      if (widget!.fromInvite) {
+      if (widget.fromInvite) {
         // Focus Sign Up Tab
         safeSetState(() {
           _model.tabBarController!.animateTo(
             _model.tabBarController!.length - 1,
-            duration: Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 300),
             curve: Curves.ease,
           );
         });
@@ -81,14 +76,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
     )..addListener(() => safeSetState(() {}));
 
     _model.emailTextController1 ??=
-        TextEditingController(text: widget!.emailPrefill);
+        TextEditingController(text: widget.emailPrefill);
     _model.emailFocusNode1 ??= FocusNode();
 
     _model.passwordTextController1 ??= TextEditingController();
     _model.passwordFocusNode1 ??= FocusNode();
 
     _model.emailTextController2 ??=
-        TextEditingController(text: widget!.emailPrefill);
+        TextEditingController(text: widget.emailPrefill);
     _model.emailFocusNode2 ??= FocusNode();
 
     _model.passwordTextController2 ??= TextEditingController();
@@ -113,8 +108,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -133,8 +128,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
             curve: Curves.easeInOut,
             delay: 200.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -168,14 +163,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: Container(
+        body: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
-            alignment: AlignmentDirectional(0.0, -1.0),
+            alignment: const AlignmentDirectional(0.0, -1.0),
             children: [
               Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
+                alignment: const AlignmentDirectional(0.0, -1.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -184,19 +179,19 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                       wrapWithModel(
                         model: _model.logoContainerRowModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: LogoContainerRowWidget(),
+                        child: const LogoContainerRowWidget(),
                       ),
                       Align(
-                        alignment: AlignmentDirectional(0.0, -1.0),
+                        alignment: const AlignmentDirectional(0.0, -1.0),
                         child: Container(
                           height: 600.0,
-                          constraints: BoxConstraints(
+                          constraints: const BoxConstraints(
                             maxWidth: 570.0,
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16.0),
                           ),
-                          alignment: AlignmentDirectional(0.0, -1.0),
+                          alignment: const AlignmentDirectional(0.0, -1.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -205,7 +200,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                 child: Column(
                                   children: [
                                     Align(
-                                      alignment: Alignment(0.0, 0),
+                                      alignment: const Alignment(0.0, 0),
                                       child: FlutterFlowButtonTabBar(
                                         useToggleButtonStyle: false,
                                         isScrollable: true,
@@ -220,7 +215,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   !FlutterFlowTheme.of(context)
                                                       .titleMediumIsCustom,
                                             ),
-                                        unselectedLabelStyle: TextStyle(),
+                                        unselectedLabelStyle: const TextStyle(),
                                         labelColor: FlutterFlowTheme.of(context)
                                             .primaryText,
                                         unselectedLabelColor:
@@ -230,9 +225,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                         borderRadius: 0.0,
                                         elevation: 0.0,
                                         labelPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
+                                            const EdgeInsetsDirectional.fromSTEB(
                                                 24.0, 0.0, 24.0, 0.0),
-                                        tabs: [
+                                        tabs: const [
                                           Tab(
                                             text: 'Sign In',
                                           ),
@@ -257,7 +252,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 if (_model.loginError)
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: Text(
@@ -282,17 +277,17 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                               ),
                                                     ),
                                                   ),
-                                                if (widget!.errorMessage !=
+                                                if (widget.errorMessage !=
                                                         null &&
-                                                    widget!.errorMessage != '')
+                                                    widget.errorMessage != '')
                                                   Padding(
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 20.0,
                                                                 0.0, 0.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget!.errorMessage,
+                                                        widget.errorMessage,
                                                         'no error',
                                                       ),
                                                       style:
@@ -316,7 +311,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                   ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(24.0, 20.0,
                                                           24.0, 0.0),
                                                   child: TextFormField(
@@ -325,7 +320,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     focusNode:
                                                         _model.emailFocusNode1,
                                                     autofocus: true,
-                                                    autofillHints: [
+                                                    autofillHints: const [
                                                       AutofillHints.email
                                                     ],
                                                     obscureText: false,
@@ -378,7 +373,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       ),
                                                       focusedBorder:
                                                           OutlineInputBorder(
-                                                        borderSide: BorderSide(
+                                                        borderSide: const BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 1.0,
@@ -417,7 +412,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .primaryBackground,
                                                       contentPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   24.0,
@@ -444,7 +439,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(24.0, 12.0,
                                                           24.0, 0.0),
                                                   child: TextFormField(
@@ -452,7 +447,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         .passwordTextController1,
                                                     focusNode: _model
                                                         .passwordFocusNode1,
-                                                    autofillHints: [
+                                                    autofillHints: const [
                                                       AutofillHints.password
                                                     ],
                                                     obscureText: !_model
@@ -505,7 +500,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       ),
                                                       focusedBorder:
                                                           OutlineInputBorder(
-                                                        borderSide: BorderSide(
+                                                        borderSide: const BorderSide(
                                                           color:
                                                               Color(0x00000000),
                                                           width: 1.0,
@@ -544,7 +539,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   context)
                                                               .primaryBackground,
                                                       contentPadding:
-                                                          EdgeInsetsDirectional
+                                                          const EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   20.0,
                                                                   24.0,
@@ -594,7 +589,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 15.0, 0.0, 0.0),
                                                   child: InkWell(
@@ -631,7 +626,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(24.0, 16.0,
                                                           24.0, 0.0),
                                                   child: Wrap(
@@ -651,7 +646,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     children: [
                                                       FFButtonWidget(
                                                         onPressed: () async {
-                                                          var _shouldSetState =
+                                                          var shouldSetState =
                                                               false;
                                                           // Clear before login to remove any previous login and state. This can cause issues.
                                                           await action_blocks
@@ -676,7 +671,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           );
 
                                                           await Future.delayed(
-                                                            Duration(
+                                                            const Duration(
                                                               milliseconds: 500,
                                                             ),
                                                           );
@@ -688,7 +683,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     await action_blocks
                                                                         .getCustomerDetailsAndInitAppState(
                                                                             context);
-                                                                _shouldSetState =
+                                                                shouldSetState =
                                                                     true;
                                                               }),
                                                               Future(() async {
@@ -696,7 +691,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                     await action_blocks
                                                                         .getAndSaveContractTerms(
                                                                             context);
-                                                                _shouldSetState =
+                                                                shouldSetState =
                                                                     true;
                                                               }),
                                                             ]);
@@ -720,9 +715,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       context
                                                                           .mounted);
 
-                                                                  if (_shouldSetState)
+                                                                  if (shouldSetState) {
                                                                     safeSetState(
                                                                         () {});
+                                                                  }
                                                                   return;
                                                                 } else {
                                                                   await action_blocks
@@ -735,9 +731,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   );
                                                                   safeSetState(
                                                                       () {});
-                                                                  if (_shouldSetState)
+                                                                  if (shouldSetState) {
                                                                     safeSetState(
                                                                         () {});
+                                                                  }
                                                                   return;
                                                                 }
                                                               } else {
@@ -772,29 +769,33 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       true,
                                                                 );
 
-                                                                if (_shouldSetState)
+                                                                if (shouldSetState) {
                                                                   safeSetState(
                                                                       () {});
+                                                                }
                                                                 return;
                                                               }
                                                             } else {
-                                                              if (_shouldSetState)
+                                                              if (shouldSetState) {
                                                                 safeSetState(
                                                                     () {});
+                                                              }
                                                               return;
                                                             }
                                                           } else {
                                                             _model.loginError =
                                                                 true;
                                                             safeSetState(() {});
-                                                            if (_shouldSetState)
+                                                            if (shouldSetState) {
                                                               safeSetState(
                                                                   () {});
+                                                            }
                                                             return;
                                                           }
 
-                                                          if (_shouldSetState)
+                                                          if (shouldSetState) {
                                                             safeSetState(() {});
+                                                          }
                                                         },
                                                         text: 'Sign In',
                                                         options:
@@ -802,14 +803,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           width: 130.0,
                                                           height: 50.0,
                                                           padding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
                                                                       0.0,
                                                                       0.0),
                                                           iconPadding:
-                                                              EdgeInsetsDirectional
+                                                              const EdgeInsetsDirectional
                                                                   .fromSTEB(
                                                                       0.0,
                                                                       0.0,
@@ -837,7 +838,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   ),
                                                           elevation: 3.0,
                                                           borderSide:
-                                                              BorderSide(
+                                                              const BorderSide(
                                                             color: Colors
                                                                 .transparent,
                                                             width: 1.0,
@@ -857,9 +858,9 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              if (widget!.fromInvite == true)
+                                              if (widget.fromInvite == true)
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 15.0, 0.0, 0.0),
                                                   child: Text(
@@ -882,7 +883,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 ),
                                               if (_model.loginError)
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: Text(
@@ -908,7 +909,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 ),
                                               if (_model.signupPasswordMismatch)
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: Text(
@@ -934,7 +935,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 ),
                                               if (_model.signupPasswordWeak)
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
+                                                  padding: const EdgeInsetsDirectional
                                                       .fromSTEB(
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: Text(
@@ -959,7 +960,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                   ),
                                                 ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 20.0, 24.0, 0.0),
                                                 child: TextFormField(
@@ -1020,7 +1021,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Color(0x00000000),
                                                         width: 1.0,
@@ -1061,7 +1062,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 context)
                                                             .primaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 20.0,
                                                                 24.0,
@@ -1089,7 +1090,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 12.0, 24.0, 0.0),
                                                 child: TextFormField(
@@ -1097,7 +1098,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .passwordTextController2,
                                                   focusNode:
                                                       _model.passwordFocusNode2,
-                                                  autofillHints: [
+                                                  autofillHints: const [
                                                     AutofillHints.newPassword
                                                   ],
                                                   obscureText: !_model
@@ -1153,7 +1154,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Color(0x00000000),
                                                         width: 1.0,
@@ -1194,7 +1195,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 context)
                                                             .primaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 20.0,
                                                                 24.0,
@@ -1244,7 +1245,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         24.0, 12.0, 24.0, 0.0),
                                                 child: TextFormField(
@@ -1252,7 +1253,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                       .confirmCreateTextController,
                                                   focusNode: _model
                                                       .confirmCreateFocusNode,
-                                                  autofillHints: [
+                                                  autofillHints: const [
                                                     AutofillHints.newPassword
                                                   ],
                                                   obscureText: !_model
@@ -1309,7 +1310,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
-                                                      borderSide: BorderSide(
+                                                      borderSide: const BorderSide(
                                                         color:
                                                             Color(0x00000000),
                                                         width: 1.0,
@@ -1350,7 +1351,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 context)
                                                             .primaryBackground,
                                                     contentPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 20.0,
                                                                 24.0,
@@ -1400,12 +1401,12 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 16.0, 0.0, 0.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
-                                                    var _shouldSetState = false;
+                                                    var shouldSetState = false;
                                                     if (_model
                                                             .passwordTextController2
                                                             .text ==
@@ -1434,7 +1435,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                           ScaffoldMessenger.of(
                                                                   context)
                                                               .showSnackBar(
-                                                            SnackBar(
+                                                            const SnackBar(
                                                               content: Text(
                                                                 'Passwords don\'t match!',
                                                               ),
@@ -1456,7 +1457,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                         );
 
                                                         await Future.delayed(
-                                                          Duration(
+                                                          const Duration(
                                                             milliseconds: 1000,
                                                           ),
                                                         );
@@ -1467,7 +1468,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   await action_blocks
                                                                       .getCustomerDetailsAndInitAppState(
                                                                           context);
-                                                              _shouldSetState =
+                                                              shouldSetState =
                                                                   true;
                                                             }),
                                                             Future(() async {
@@ -1475,7 +1476,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                   await action_blocks
                                                                       .getAndSaveContractTerms(
                                                                           context);
-                                                              _shouldSetState =
+                                                              shouldSetState =
                                                                   true;
                                                             }),
                                                           ]);
@@ -1489,54 +1490,60 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                 context
                                                                     .mounted);
 
-                                                            if (_shouldSetState)
+                                                            if (shouldSetState) {
                                                               safeSetState(
                                                                   () {});
+                                                            }
                                                             return;
                                                           } else {
-                                                            if (_shouldSetState)
+                                                            if (shouldSetState) {
                                                               safeSetState(
                                                                   () {});
+                                                            }
                                                             return;
                                                           }
                                                         } else {
                                                           _model.loginError =
                                                               true;
                                                           safeSetState(() {});
-                                                          if (_shouldSetState)
+                                                          if (shouldSetState) {
                                                             safeSetState(() {});
+                                                          }
                                                           return;
                                                         }
                                                       } else {
                                                         _model.signupPasswordWeak =
                                                             true;
                                                         safeSetState(() {});
-                                                        if (_shouldSetState)
+                                                        if (shouldSetState) {
                                                           safeSetState(() {});
+                                                        }
                                                         return;
                                                       }
                                                     } else {
                                                       _model.signupPasswordMismatch =
                                                           true;
                                                       safeSetState(() {});
-                                                      if (_shouldSetState)
+                                                      if (shouldSetState) {
                                                         safeSetState(() {});
+                                                      }
                                                       return;
                                                     }
 
-                                                    if (_shouldSetState)
+                                                    if (shouldSetState) {
                                                       safeSetState(() {});
+                                                    }
                                                   },
                                                   text: 'Register',
                                                   options: FFButtonOptions(
                                                     width: 190.0,
                                                     height: 50.0,
                                                     padding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     iconPadding:
-                                                        EdgeInsetsDirectional
+                                                        const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
                                                                 0.0, 0.0),
                                                     color: FlutterFlowTheme.of(
@@ -1562,7 +1569,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                                                                       .titleSmallIsCustom,
                                                             ),
                                                     elevation: 3.0,
-                                                    borderSide: BorderSide(
+                                                    borderSide: const BorderSide(
                                                       color: Colors.transparent,
                                                       width: 1.0,
                                                     ),
@@ -1594,7 +1601,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget>
                         Container(
                           width: 50.0,
                           height: 50.0,
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                         ),
                     ],
                   ),

@@ -1,9 +1,7 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/backend/api_requests/api_manager.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
-import '/backend/supabase/supabase.dart';
 import '/components/solar_contract_choose_or_view_modal/solar_contract_choose_or_view_modal_widget.dart';
 import '/components/supply_contract_sign_or_view_modal/supply_contract_sign_or_view_modal_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -13,7 +11,6 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 Future handleMyEnergyApiCallFailure(
   BuildContext context, {
@@ -28,7 +25,7 @@ Future handleMyEnergyApiCallFailure(
           color: FlutterFlowTheme.of(context).primaryText,
         ),
       ),
-      duration: Duration(milliseconds: 10000),
+      duration: const Duration(milliseconds: 10000),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
     ),
   );
@@ -45,7 +42,7 @@ Future handleMyEnergyApiCallFailure(
             color: FlutterFlowTheme.of(context).primaryText,
           ),
         ),
-        duration: Duration(milliseconds: 10000),
+        duration: const Duration(milliseconds: 10000),
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       ),
     );
@@ -67,45 +64,45 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     bearerToken: userToken,
   );
 
-  if ((getAccountsResponse?.succeeded ?? true)) {
+  if ((getAccountsResponse.succeeded ?? true)) {
     await Future.delayed(
-      Duration(
+      const Duration(
         milliseconds: 500,
       ),
     );
     accounts = await actions.accountsJSONToAccountsDataType(
       getJsonField(
-        (getAccountsResponse?.jsonBody ?? ''),
+        (getAccountsResponse.jsonBody ?? ''),
         r'''$.accounts''',
         true,
       )!,
     );
     customerToDataTypeResponse = await actions.customerJSONToDataType(
       getJsonField(
-        (getAccountsResponse?.jsonBody ?? ''),
+        (getAccountsResponse.jsonBody ?? ''),
         r'''$.customer''',
       ),
     );
     // We get this on the login page but lets get it again to be sure it's set when all other app state is set.
     getHostnameResponse = await actions.getHostname();
     FFAppState().meters = getJsonField(
-      (getAccountsResponse?.jsonBody ?? ''),
+      (getAccountsResponse.jsonBody ?? ''),
       r'''$.meters''',
     );
     FFAppState().supplyContractSigned = functions
-                .getContractByType(accounts!.toList(), 'supply')
+                .getContractByType(accounts.toList(), 'supply')
                 ?.signedDate !=
             null &&
-        functions.getContractByType(accounts!.toList(), 'supply')?.signedDate !=
+        functions.getContractByType(accounts.toList(), 'supply')?.signedDate !=
             '';
-    FFAppState().accountsAll = accounts!.toList().cast<AccountStruct>();
+    FFAppState().accountsAll = accounts.toList().cast<AccountStruct>();
     FFAppState().properties = functions
-        .getPropertiesFromAccounts(accounts!.toList())
+        .getPropertiesFromAccounts(accounts.toList())
         .toList()
         .cast<PropertyStruct>();
-    FFAppState().hostname = getHostnameResponse!;
+    FFAppState().hostname = getHostnameResponse;
     FFAppState().isCeproUser = getJsonField(
-      (getAccountsResponse?.jsonBody ?? ''),
+      (getAccountsResponse.jsonBody ?? ''),
       r'''$.customer.isCeproUser''',
     );
     FFAppState().esco = functions.hostnameToEscoCode(getHostnameResponse);
@@ -120,18 +117,18 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     }();
     FFAppState().escos = functions
         .getEscosFromProperties(
-            functions.getPropertiesFromAccounts(accounts!.toList()).toList())
+            functions.getPropertiesFromAccounts(accounts.toList()).toList())
         .toList()
         .cast<EscoStruct>();
-    FFAppState().customer = customerToDataTypeResponse!;
+    FFAppState().customer = customerToDataTypeResponse;
     FFAppState().solarContractSigned = functions
-                .getContractByType(accounts!.toList(), 'solar')
+                .getContractByType(accounts.toList(), 'solar')
                 ?.signedDate !=
             null &&
-        functions.getContractByType(accounts!.toList(), 'solar')?.signedDate !=
+        functions.getContractByType(accounts.toList(), 'solar')?.signedDate !=
             '';
     FFAppState().solarInstallations = getJsonField(
-      (getAccountsResponse?.jsonBody ?? ''),
+      (getAccountsResponse.jsonBody ?? ''),
       r'''$.solarInstallations''',
     );
     FFAppState().supplyAccount = functions.getAccountByType(
@@ -144,12 +141,12 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         escoCode: FFAppState().esco?.name,
       );
 
-      if ((propertiesOutput?.succeeded ?? true)) {
+      if ((propertiesOutput.succeeded ?? true)) {
         propertiesTyped = await actions.propertiesJSONToPropertiesDataType(
-          (propertiesOutput?.jsonBody ?? ''),
+          (propertiesOutput.jsonBody ?? ''),
         );
         FFAppState().properties =
-            propertiesTyped!.toList().cast<PropertyStruct>();
+            propertiesTyped.toList().cast<PropertyStruct>();
         FFAppState().escos = functions
             .getEscosFromProperties(FFAppState().properties.toList())
             .toList()
@@ -160,8 +157,8 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         await action_blocks.handleMyEnergyApiCallFailure(
           context,
           wwwAuthenticateHeader:
-              (propertiesOutput?.getHeader('www-authenticate') ?? ''),
-          httpStatusCode: (propertiesOutput?.statusCode ?? 200),
+              (propertiesOutput.getHeader('www-authenticate') ?? ''),
+          httpStatusCode: (propertiesOutput.statusCode ?? 200),
         );
         return false;
       }
@@ -172,8 +169,8 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     await action_blocks.handleMyEnergyApiCallFailure(
       context,
       wwwAuthenticateHeader:
-          (getAccountsResponse?.getHeader('www-authenticate') ?? ''),
-      httpStatusCode: (getAccountsResponse?.statusCode ?? 200),
+          (getAccountsResponse.getHeader('www-authenticate') ?? ''),
+      httpStatusCode: (getAccountsResponse.statusCode ?? 200),
     );
     return false;
   }
@@ -192,23 +189,22 @@ Future<String?> contractSignEmbed(
     bearerToken: userToken,
     id: contractId,
     termsSubtype: termsSubtype,
-    impersonating: FFAppState().impersonationToken != null &&
-        FFAppState().impersonationToken != '',
+    impersonating: FFAppState().impersonationToken != '',
   );
 
-  if ((contractSigningEmbedResponse?.succeeded ?? true)) {
-    return (contractSigningEmbedResponse?.bodyText ?? '');
+  if ((contractSigningEmbedResponse.succeeded ?? true)) {
+    return (contractSigningEmbedResponse.bodyText ?? '');
   }
 
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(
-        'Failed:${(contractSigningEmbedResponse?.bodyText ?? '')}',
+        'Failed:${(contractSigningEmbedResponse.bodyText ?? '')}',
         style: TextStyle(
           color: FlutterFlowTheme.of(context).primaryText,
         ),
       ),
-      duration: Duration(milliseconds: 10000),
+      duration: const Duration(milliseconds: 10000),
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
     ),
   );
@@ -221,31 +217,30 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
   List<ContractTermsStruct>? contractTermsDataType;
 
   getContractTermsResponse = await ContractTermsLatestCall.call(
-    bearerToken: FFAppState().impersonationToken != null &&
-            FFAppState().impersonationToken != ''
+    bearerToken: FFAppState().impersonationToken != ''
         ? FFAppState().impersonationToken
         : currentJwtToken,
     esco: FFAppState().esco?.name,
   );
 
-  if ((getContractTermsResponse?.succeeded ?? true)) {
+  if ((getContractTermsResponse.succeeded ?? true)) {
     await Future.delayed(
-      Duration(
+      const Duration(
         milliseconds: 500,
       ),
     );
     contractTermsDataType =
         await actions.contractTermsJSONToContractTermsDataType(
-      (getContractTermsResponse?.jsonBody ?? ''),
+      (getContractTermsResponse.jsonBody ?? ''),
     );
     FFAppState().contractTerms =
-        contractTermsDataType!.toList().cast<ContractTermsStruct>();
+        contractTermsDataType.toList().cast<ContractTermsStruct>();
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
       context,
       wwwAuthenticateHeader:
-          (getContractTermsResponse?.getHeader('www-authenticate') ?? ''),
-      httpStatusCode: (getContractTermsResponse?.statusCode ?? 200),
+          (getContractTermsResponse.getHeader('www-authenticate') ?? ''),
+      httpStatusCode: (getContractTermsResponse.statusCode ?? 200),
     );
     return false;
   }
@@ -294,8 +289,7 @@ Future ceproUserOnly(BuildContext context) async {
 }
 
 Future checkAndBlockWriteableAPICall(BuildContext context) async {
-  if (FFAppState().impersonationToken == null ||
-      FFAppState().impersonationToken == '') {
+  if (FFAppState().impersonationToken == '') {
     return;
   }
 
@@ -307,7 +301,7 @@ Future checkAndBlockWriteableAPICall(BuildContext context) async {
           color: FlutterFlowTheme.of(context).primaryText,
         ),
       ),
-      duration: Duration(milliseconds: 10000),
+      duration: const Duration(milliseconds: 10000),
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
     ),
   );
@@ -332,9 +326,9 @@ Future openSupplyContract(BuildContext context) async {
           elevation: 0,
           insetPadding: EdgeInsets.zero,
           backgroundColor: Colors.transparent,
-          alignment: AlignmentDirectional(0.0, 0.0)
+          alignment: const AlignmentDirectional(0.0, 0.0)
               .resolve(Directionality.of(context)),
-          child: Container(
+          child: SizedBox(
             height: double.infinity,
             width: double.infinity,
             child: SupplyContractSignOrViewModalWidget(
@@ -382,9 +376,9 @@ Future openSolarContract(BuildContext context) async {
           elevation: 0,
           insetPadding: EdgeInsets.zero,
           backgroundColor: Colors.transparent,
-          alignment: AlignmentDirectional(0.0, 0.0)
+          alignment: const AlignmentDirectional(0.0, 0.0)
               .resolve(Directionality.of(context)),
-          child: Container(
+          child: SizedBox(
             height: double.infinity,
             width: double.infinity,
             child: SolarContractChooseOrViewModalWidget(
@@ -437,7 +431,7 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
       (getTariffsResponse?.succeeded ?? true) &&
       (getMonthlyUsageResponse?.succeeded ?? true)) {
     await Future.delayed(
-      Duration(
+      const Duration(
         milliseconds: 500,
       ),
     );
@@ -450,11 +444,11 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
     monthlyUsageTyped = await actions.monthlyUsageJSONToDataType(
       (getMonthlyUsageResponse?.jsonBody ?? ''),
     );
-    FFAppState().tariffs = tariffsTyped!;
+    FFAppState().tariffs = tariffsTyped;
     FFAppState().monthlyCosts =
-        monthlyCostsTyped!.toList().cast<MonthlyCostStruct>();
+        monthlyCostsTyped.toList().cast<MonthlyCostStruct>();
     FFAppState().monthlyUsage =
-        monthlyUsageTyped!.toList().cast<MonthlyUsageStruct>();
+        monthlyUsageTyped.toList().cast<MonthlyUsageStruct>();
     FFAppState().monthlyCostsLoading = false;
     FFAppState().monthlyUsageLoading = false;
     FFAppState().lastMonthlyCostAndUsageLoad = getCurrentTimestamp;
@@ -532,7 +526,7 @@ Future<bool?> changeProperty(
   );
   FFAppState().property = newProperty!;
   FFAppState().accountsForCurrentProperty = functions
-      .getAccountsByPropertyId(FFAppState().accountsAll.toList(), propertyId!)
+      .getAccountsByPropertyId(FFAppState().accountsAll.toList(), propertyId)
       .toList()
       .cast<AccountStruct>();
   if (Navigator.of(context).canPop()) {
@@ -553,11 +547,11 @@ Future pendingPayments(BuildContext context) async {
     bearerToken: userToken,
   );
 
-  if ((getPaymentsOutput?.succeeded ?? true)) {
+  if ((getPaymentsOutput.succeeded ?? true)) {
     paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
-      (getPaymentsOutput?.jsonBody ?? ''),
+      (getPaymentsOutput.jsonBody ?? ''),
     );
-    FFAppState().pendingPayments = paymentsTyped!
+    FFAppState().pendingPayments = paymentsTyped
         .where((e) => e.status == 'pending')
         .toList()
         .toList()
@@ -567,8 +561,8 @@ Future pendingPayments(BuildContext context) async {
     await action_blocks.handleMyEnergyApiCallFailure(
       context,
       wwwAuthenticateHeader:
-          (getPaymentsOutput?.getHeader('www-authenticate') ?? ''),
-      httpStatusCode: (getPaymentsOutput?.statusCode ?? 200),
+          (getPaymentsOutput.getHeader('www-authenticate') ?? ''),
+      httpStatusCode: (getPaymentsOutput.statusCode ?? 200),
     );
     return;
   }
@@ -588,17 +582,17 @@ Future<bool?> impersonateCustomer(
     bearerToken: currentJwtToken,
   );
 
-  if ((generateTokenResponse?.succeeded ?? true) == true) {
-    FFAppState().impersonationToken = (generateTokenResponse?.bodyText ?? '');
+  if ((generateTokenResponse.succeeded ?? true) == true) {
+    FFAppState().impersonationToken = (generateTokenResponse.bodyText ?? '');
     impersonateCustomerDetailsResponse =
         await action_blocks.getCustomerDetailsAndInitAppState(context);
     if (impersonateCustomerDetailsResponse == true) {
       decodeTokenResponse = await actions.decodeSupabaseJwt(
         FFAppState().impersonationToken,
       );
-      FFAppState().isCeproUser = decodeTokenResponse!.isCeproUser;
-      FFAppState().impersonationEmail = decodeTokenResponse!.email;
-      FFAppState().impersonationPhone = decodeTokenResponse!.phone;
+      FFAppState().isCeproUser = decodeTokenResponse.isCeproUser;
+      FFAppState().impersonationEmail = decodeTokenResponse.email;
+      FFAppState().impersonationPhone = decodeTokenResponse.phone;
       FFAppState().monthlyCosts = [];
       FFAppState().monthlyUsage = [];
       FFAppState().lastMonthlyCostAndUsageLoad =
@@ -630,9 +624,9 @@ Future stopImpersonation(BuildContext context) async {
       await action_blocks.getCustomerDetailsAndInitAppState(context);
   if (stopImpersonateGetCustomerDetailsResponse!) {
     decodeLoggedInUserTokenResponse = await actions.decodeSupabaseJwt(
-      currentJwtToken!,
+      currentJwtToken,
     );
-    FFAppState().isCeproUser = decodeLoggedInUserTokenResponse!.isCeproUser;
+    FFAppState().isCeproUser = decodeLoggedInUserTokenResponse.isCeproUser;
     FFAppState().update(() {});
     if (FFAppState().properties.length > 1) {
       context.pushNamed(PropertySelectionPageWidget.routeName);
@@ -654,7 +648,7 @@ Future stopImpersonation(BuildContext context) async {
             color: FlutterFlowTheme.of(context).primaryText,
           ),
         ),
-        duration: Duration(milliseconds: 10000),
+        duration: const Duration(milliseconds: 10000),
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       ),
     );

@@ -1,13 +1,8 @@
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
 import '/backend/supabase/supabase.dart';
-import '/actions/actions.dart' as action_blocks;
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import 'index.dart'; // Imports other custom actions
-import '/flutter_flow/custom_functions.dart'; // Imports custom functions
-import 'package:flutter/material.dart';
+// Imports other custom actions
+// Imports custom functions
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
@@ -25,7 +20,7 @@ Future<CustomActionResultStruct> updateUserPhone(String phone) async {
     //if (updatedUser?.new_phone == phone) {
     return CustomActionResultStruct(success: true, errorMessage: "");
   } on AuthException catch (e) {
-    print("ERROR: " + e.toString());
+    print("ERROR: $e");
     return CustomActionResultStruct(success: false, errorMessage: e.message);
   }
 }

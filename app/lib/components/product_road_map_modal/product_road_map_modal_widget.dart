@@ -2,10 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'product_road_map_modal_model.dart';
 export 'product_road_map_modal_model.dart';
 
@@ -46,7 +43,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
       child: Column(
@@ -54,15 +51,15 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Container(
               width: double.infinity,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 700.0,
               ),
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 12.0,
                     color: Color(0x33000000),
@@ -75,7 +72,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -83,7 +80,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -127,7 +124,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: Text(
                         'This initial version (v1) of MyEnergy can be used to:\n    1. Check your smart meter serial number, mode and credit balance.\n    2. Review monthly energy consumption (power & lights, electric heat)\n    3. Signing your electricity supply agreement\n    4. Signing your solar installation usage agreement\n    5. Manage your contact details\n    6. Add a payment method\n    7. Making payments for electricity consumption\n\nThe next app release will support:\n    1. Receiving credits for use of your solar installation',
                         style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -141,7 +138,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -152,8 +149,8 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                             },
                             text: 'Close',
                             options: FFButtonOptions(
-                              padding: EdgeInsets.all(24.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsets.all(24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -168,7 +165,7 @@ class _ProductRoadMapModalWidgetState extends State<ProductRoadMapModalWidget> {
                                             .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

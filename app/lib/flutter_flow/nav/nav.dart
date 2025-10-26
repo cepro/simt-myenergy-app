@@ -1,22 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
-import '/backend/schema/enums/enums.dart';
-import '/backend/supabase/supabase.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/lat_lng.dart';
-import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'serialization_util.dart';
 
 import '/index.dart';
 
@@ -86,7 +79,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => RootPageContext.wrap(
-        appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+        appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
         errorRoute: state.uri.toString(),
       ),
       routes: [
@@ -94,7 +87,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: '_initialize',
           path: '/',
           builder: (context, _) => RootPageContext.wrap(
-            appStateNotifier.loggedIn ? NavBarPage() : LoginPageWidget(),
+            appStateNotifier.loggedIn ? const NavBarPage() : const LoginPageWidget(),
           ),
         ),
         FFRoute(
@@ -120,25 +113,25 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PaymentsPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'PaymentsPage')
-              : PaymentsPageWidget(),
+              ? const NavBarPage(initialPage: 'PaymentsPage')
+              : const PaymentsPageWidget(),
         ),
         FFRoute(
           name: ForgotPasswordPageWidget.routeName,
           path: ForgotPasswordPageWidget.routePath,
-          builder: (context, params) => ForgotPasswordPageWidget(),
+          builder: (context, params) => const ForgotPasswordPageWidget(),
         ),
         FFRoute(
           name: AccountsListPageWidget.routeName,
           path: AccountsListPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => AccountsListPageWidget(),
+          builder: (context, params) => const AccountsListPageWidget(),
         ),
         FFRoute(
           name: TopupPageWidget.routeName,
           path: TopupPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => TopupPageWidget(),
+          builder: (context, params) => const TopupPageWidget(),
         ),
         FFRoute(
           name: InviteLandingPageWidget.routeName,
@@ -155,57 +148,57 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: HomePageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'HomePage')
-              : HomePageWidget(),
+              ? const NavBarPage(initialPage: 'HomePage')
+              : const HomePageWidget(),
         ),
         FFRoute(
           name: SysInfoPageWidget.routeName,
           path: SysInfoPageWidget.routePath,
-          builder: (context, params) => SysInfoPageWidget(),
+          builder: (context, params) => const SysInfoPageWidget(),
         ),
         FFRoute(
           name: ResetPasswordPageWidget.routeName,
           path: ResetPasswordPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => ResetPasswordPageWidget(),
+          builder: (context, params) => const ResetPasswordPageWidget(),
         ),
         FFRoute(
           name: ExpandedMenuWidget.routeName,
           path: ExpandedMenuWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => ExpandedMenuWidget(),
+          builder: (context, params) => const ExpandedMenuWidget(),
         ),
         FFRoute(
           name: AdminPaymentWidget.routeName,
           path: AdminPaymentWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => AdminPaymentWidget(),
+          builder: (context, params) => const AdminPaymentWidget(),
         ),
         FFRoute(
           name: MyEnergyPageWidget.routeName,
           path: MyEnergyPageWidget.routePath,
           requireAuth: true,
           builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'MyEnergyPage')
-              : MyEnergyPageWidget(),
+              ? const NavBarPage(initialPage: 'MyEnergyPage')
+              : const MyEnergyPageWidget(),
         ),
         FFRoute(
           name: MyEnergyPageV2Widget.routeName,
           path: MyEnergyPageV2Widget.routePath,
           requireAuth: true,
-          builder: (context, params) => MyEnergyPageV2Widget(),
+          builder: (context, params) => const MyEnergyPageV2Widget(),
         ),
         FFRoute(
           name: ImpersonateUserWidget.routeName,
           path: ImpersonateUserWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => ImpersonateUserWidget(),
+          builder: (context, params) => const ImpersonateUserWidget(),
         ),
         FFRoute(
             name: UserProfilePageWidget.routeName,
             path: UserProfilePageWidget.routePath,
             requireAuth: true,
-            builder: (context, params) => NavBarPage(
+            builder: (context, params) => const NavBarPage(
                   initialPage: '',
                   page: UserProfilePageWidget(),
                 )),
@@ -213,7 +206,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: PropertySelectionPageWidget.routeName,
           path: PropertySelectionPageWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => PropertySelectionPageWidget(),
+          builder: (context, params) => const PropertySelectionPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -451,7 +444,7 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

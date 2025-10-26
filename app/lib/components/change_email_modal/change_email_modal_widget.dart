@@ -1,15 +1,12 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/schema/structs/index.dart';
 import '/components/email_change_sent_modal/email_change_sent_modal_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'change_email_modal_model.dart';
 export 'change_email_modal_model.dart';
@@ -36,8 +33,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
     _model = createModel(context, () => ChangeEmailModalModel());
 
     _model.emailFieldTextController ??= TextEditingController(
-        text: FFAppState().impersonationEmail != null &&
-                FFAppState().impersonationEmail != ''
+        text: FFAppState().impersonationEmail != ''
             ? FFAppState().impersonationEmail
             : currentUserEmail);
     _model.emailFieldFocusNode ??= FocusNode();
@@ -59,7 +55,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.transparent,
       ),
       child: Column(
@@ -67,15 +63,15 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Align(
-            alignment: AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(0.0, 0.0),
             child: Container(
               width: double.infinity,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 700.0,
               ),
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     blurRadius: 12.0,
                     color: Color(0x33000000),
@@ -88,7 +84,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                 borderRadius: BorderRadius.circular(16.0),
               ),
               child: Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -96,7 +92,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                   children: [
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -141,7 +137,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                     if (_model.showError)
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Change email failed: ${_model.errorMessage}',
                           style: FlutterFlowTheme.of(context)
@@ -160,9 +156,9 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                       key: _model.formKey,
                       autovalidateMode: AutovalidateMode.always,
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 30.0, 0.0, 30.0),
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.sizeOf(context).width * 1.0,
                           child: TextFormField(
                             controller: _model.emailFieldTextController,
@@ -201,7 +197,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Color(0x00000000),
                                   width: 1.0,
                                 ),
@@ -245,21 +241,17 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           FFButtonWidget(
-                            onPressed: (FFAppState().impersonationToken !=
-                                        null &&
-                                    FFAppState().impersonationToken != '')
+                            onPressed: (FFAppState().impersonationToken != '')
                                 ? null
                                 : () async {
-                                    var _shouldSetState = false;
+                                    var shouldSetState = false;
                                     if (_model.emailFieldTextController.text !=
-                                            null &&
-                                        _model.emailFieldTextController.text !=
                                             '') {
                                       _model.showError = false;
                                       safeSetState(() {});
@@ -271,7 +263,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                         _model.emailFieldTextController.text
                                             .trim(),
                                       );
-                                      _shouldSetState = true;
+                                      shouldSetState = true;
                                       if (_model.updateEmailResult?.success ==
                                           true) {
                                         Navigator.pop(context);
@@ -285,34 +277,36 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
                                               child:
-                                                  EmailChangeSentModalWidget(),
+                                                  const EmailChangeSentModalWidget(),
                                             );
                                           },
                                         ).then((value) => safeSetState(() {}));
 
-                                        if (_shouldSetState)
+                                        if (shouldSetState) {
                                           safeSetState(() {});
+                                        }
                                         return;
                                       } else {
                                         _model.showError = true;
                                         _model.errorMessage = _model
                                             .updateEmailResult?.errorMessage;
                                         safeSetState(() {});
-                                        if (_shouldSetState)
+                                        if (shouldSetState) {
                                           safeSetState(() {});
+                                        }
                                         return;
                                       }
                                     } else {
-                                      if (_shouldSetState) safeSetState(() {});
+                                      if (shouldSetState) safeSetState(() {});
                                       return;
                                     }
 
-                                    if (_shouldSetState) safeSetState(() {});
+                                    if (shouldSetState) safeSetState(() {});
                                   },
                             text: 'Change Email',
                             options: FFButtonOptions(
-                              padding: EdgeInsets.all(24.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsets.all(24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
@@ -327,7 +321,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                             .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
@@ -340,8 +334,8 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                             },
                             text: 'Cancel',
                             options: FFButtonOptions(
-                              padding: EdgeInsets.all(24.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsets.all(24.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context)
                                   .primaryBackground,
@@ -358,7 +352,7 @@ class _ChangeEmailModalWidgetState extends State<ChangeEmailModalWidget> {
                                             .titleSmallIsCustom,
                                   ),
                               elevation: 1.0,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),

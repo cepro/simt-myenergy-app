@@ -1,4 +1,3 @@
-import '/custom_code/actions/index.dart' as actions;
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,7 @@ import 'auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
-import 'flutter_flow/nav/nav.dart';
 import 'config/environment.dart';
 import 'index.dart';
 
@@ -63,7 +60,7 @@ void main() async {
   
     runApp(ChangeNotifierProvider(
       create: (context) => appState,
-      child: MyApp(),
+      child: const MyApp(),
     ));
   });
 }
@@ -84,6 +81,8 @@ class ReleaseModeErrorWidget extends StatelessWidget {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
@@ -132,7 +131,7 @@ class _MyAppState extends State<MyApp> {
       });
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      Duration(milliseconds: 1000),
+      const Duration(milliseconds: 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }
@@ -148,7 +147,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'MyEnergy',
       scrollBehavior: MyAppScrollBehavior(),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
@@ -167,12 +166,12 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NavBarPage extends StatefulWidget {
-  NavBarPage({
-    Key? key,
+  const NavBarPage({
+    super.key,
     this.initialPage,
     this.page,
     this.disableResizeToAvoidBottomInset = false,
-  }) : super(key: key);
+  });
 
   final String? initialPage;
   final Widget? page;
@@ -197,9 +196,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'HomePage': HomePageWidget(),
-      'MyEnergyPage': MyEnergyPageWidget(),
-      'PaymentsPage': PaymentsPageWidget(),
+      'HomePage': const HomePageWidget(),
+      'MyEnergyPage': const MyEnergyPageWidget(),
+      'PaymentsPage': const PaymentsPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -228,11 +227,11 @@ class _NavBarPageState extends State<NavBarPage> {
           backgroundColor: Colors.white,
           selectedItemColor: FlutterFlowTheme.of(context).alternate,
           unselectedItemColor: FlutterFlowTheme.of(context).secondaryText,
-          selectedBackgroundColor: Color(0x00000000),
+          selectedBackgroundColor: const Color(0x00000000),
           borderRadius: 8.0,
           itemBorderRadius: 8.0,
-          margin: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+          margin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
           width: double.infinity,
           elevation: 0.0,
           items: [

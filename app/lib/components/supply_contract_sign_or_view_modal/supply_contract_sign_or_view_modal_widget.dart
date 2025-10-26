@@ -3,14 +3,10 @@ import '/components/supply_contract_card/supply_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'supply_contract_sign_or_view_modal_model.dart';
 export 'supply_contract_sign_or_view_modal_model.dart';
 
@@ -57,9 +53,9 @@ class _SupplyContractSignOrViewModalWidgetState
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Container(
           width: double.infinity,
           height: double.infinity,
@@ -67,11 +63,11 @@ class _SupplyContractSignOrViewModalWidgetState
             color: FlutterFlowTheme.of(context).secondaryBackground,
             borderRadius: BorderRadius.circular(12.0),
             border: Border.all(
-              color: Color(0xFFE0E3E7),
+              color: const Color(0xFFE0E3E7),
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.all(24.0),
+            padding: const EdgeInsets.all(24.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -82,7 +78,7 @@ class _SupplyContractSignOrViewModalWidgetState
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 12.0, 0.0),
                           child: Text(
                             'Electricity Supply Contract',
@@ -125,20 +121,20 @@ class _SupplyContractSignOrViewModalWidgetState
                     children: [
                       if ((_model.docusealEmbedHTML == null ||
                               _model.docusealEmbedHTML == '') &&
-                          (widget!.contract?.id != null &&
-                              widget!.contract?.id != ''))
+                          (widget.contract?.id != null &&
+                              widget.contract?.id != ''))
                         wrapWithModel(
                           model: _model.supplyContractCardModel,
                           updateCallback: () => safeSetState(() {}),
                           child: SupplyContractCardWidget(
                             title: 'Supply Contract',
-                            contract: widget!.contract!,
-                            terms: widget!.terms!,
+                            contract: widget.contract!,
+                            terms: widget.terms!,
                             setSignEmbedHTML: () async {
                               _model.signEmbedHTML =
                                   await action_blocks.contractSignEmbed(
                                 context,
-                                contractId: widget!.contract?.id,
+                                contractId: widget.contract?.id,
                               );
                               _model.docusealEmbedHTML = _model.signEmbedHTML;
                               safeSetState(() {});
@@ -150,9 +146,9 @@ class _SupplyContractSignOrViewModalWidgetState
                       if (_model.docusealEmbedHTML != null &&
                           _model.docusealEmbedHTML != '')
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 108.0),
-                          child: Container(
+                          child: SizedBox(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: MediaQuery.sizeOf(context).height * 0.85,
                             child: custom_widgets.ContractSigningWidget(
@@ -162,8 +158,8 @@ class _SupplyContractSignOrViewModalWidgetState
                             ),
                           ),
                         ),
-                      if (widget!.contract?.id == null ||
-                          widget!.contract?.id == '')
+                      if (widget.contract?.id == null ||
+                          widget.contract?.id == '')
                         Text(
                           'Contract has not yet been created. Please contact support to find out why.',
                           style: FlutterFlowTheme.of(context)

@@ -9,7 +9,7 @@ class SitesTable extends SupabaseTable<SitesRow> {
 }
 
 class SitesRow extends SupabaseDataRow {
-  SitesRow(Map<String, dynamic> data) : super(data);
+  SitesRow(super.data);
 
   @override
   SupabaseTable get table => SitesTable();

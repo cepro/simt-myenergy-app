@@ -3,10 +3,8 @@ import '/components/coming_soon_for_preonboarding_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'supply_contract_card_model.dart';
 export 'supply_contract_card_model.dart';
@@ -59,12 +57,12 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 16.0),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4.0,
               color: Color(0x2B202529),
@@ -77,7 +75,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Padding(
-          padding: EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +83,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 100.0,
                     height: 70.0,
                     child: Stack(
@@ -105,9 +103,9 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                       child: Text(
-                        widget!.title!,
+                        widget.title!,
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyLargeFamily,
@@ -121,10 +119,10 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Text(
                   valueOrDefault<String>(
-                    widget!.terms?.summaryText,
+                    widget.terms?.summaryText,
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -146,7 +144,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Align(
-                    alignment: AlignmentDirectional(1.0, 0.0),
+                    alignment: const AlignmentDirectional(1.0, 0.0),
                     child: FFButtonWidget(
                       onPressed:
                           (FFAppState().customer.status == 'preonboarding')
@@ -155,7 +153,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                                   await widget.setSignEmbedHTML?.call();
                                 },
                       text: 'View',
-                      icon: FaIcon(
+                      icon: const FaIcon(
                         FontAwesomeIcons.pencilAlt,
                         size: 15.0,
                       ),
@@ -163,9 +161,9 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                         width: 130.0,
                         height: 40.0,
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         iconColor: FlutterFlowTheme.of(context).primaryBtnText,
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle: FlutterFlowTheme.of(context)
@@ -181,7 +179,7 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                                   .titleSmallIsCustom,
                             ),
                         elevation: 3.0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1.0,
                         ),
@@ -194,11 +192,11 @@ class _SupplyContractCardWidgetState extends State<SupplyContractCardWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                     child: wrapWithModel(
                       model: _model.comingSoonForPreonboardingModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: ComingSoonForPreonboardingWidget(),
+                      child: const ComingSoonForPreonboardingWidget(),
                     ),
                   ),
                 ],

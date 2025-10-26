@@ -9,7 +9,7 @@ class MeterpointsTable extends SupabaseTable<MeterpointsRow> {
 }
 
 class MeterpointsRow extends SupabaseDataRow {
-  MeterpointsRow(Map<String, dynamic> data) : super(data);
+  MeterpointsRow(super.data);
 
   @override
   SupabaseTable get table => MeterpointsTable();

@@ -9,7 +9,7 @@ class RegistersTable extends SupabaseTable<RegistersRow> {
 }
 
 class RegistersRow extends SupabaseDataRow {
-  RegistersRow(Map<String, dynamic> data) : super(data);
+  RegistersRow(super.data);
 
   @override
   SupabaseTable get table => RegistersTable();

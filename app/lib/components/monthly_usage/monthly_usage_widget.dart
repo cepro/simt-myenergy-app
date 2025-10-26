@@ -2,12 +2,9 @@ import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'monthly_usage_model.dart';
 export 'monthly_usage_model.dart';
@@ -48,7 +45,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
       child: Container(
         height: 675.0,
         decoration: BoxDecoration(
@@ -59,7 +56,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -68,7 +65,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Text(
                       'Usage',
                       style:
@@ -84,7 +81,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                 ],
               ),
               if (FFAppState().monthlyUsageLoading)
-                Container(
+                const SizedBox(
                   width: 100.0,
                   height: 100.0,
                   child: custom_widgets.LoadingSpinner(
@@ -163,7 +160,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                         dataRowBuilder: (monthlyUsageItem, monthlyUsageIndex,
                                 selected, onSelectChanged) =>
                             DataRow(
-                          color: MaterialStateProperty.all(
+                          color: WidgetStateProperty.all(
                             monthlyUsageIndex % 2 == 0
                                 ? FlutterFlowTheme.of(context)
                                     .secondaryBackground
@@ -253,7 +250,7 @@ class _MonthlyUsageWidgetState extends State<MonthlyUsageWidget> {
                           FFAppState().monthlyUsage.toList()) ==
                       0))
                 Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Text(
                     'No usage',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(

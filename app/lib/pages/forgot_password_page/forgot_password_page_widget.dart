@@ -3,10 +3,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'forgot_password_page_model.dart';
 export 'forgot_password_page_model.dart';
@@ -56,7 +54,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
             child: InkWell(
               splashColor: Colors.transparent,
               focusColor: Colors.transparent,
@@ -70,7 +68,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                     child: FlutterFlowIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30.0,
@@ -87,7 +85,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                     child: Text(
                       'Back',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
@@ -107,7 +105,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
           wrapWithModel(
             model: _model.logoContainerRowModel,
             updateCallback: () => safeSetState(() {}),
-            child: LogoContainerRowWidget(),
+            child: const LogoContainerRowWidget(),
           ),
           Column(
             mainAxisSize: MainAxisSize.max,
@@ -115,7 +113,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 25.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 25.0),
                 child: Text(
                   'Forgot Password',
                   style: FlutterFlowTheme.of(context).displaySmall.override(
@@ -130,17 +128,17 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
               ),
               Container(
                 height: 350.0,
-                constraints: BoxConstraints(
+                constraints: const BoxConstraints(
                   maxWidth: 580.0,
                 ),
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     if (_model.resetSent == false)
                       Padding(
-                        padding: EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: Text(
                           'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
                           style: FlutterFlowTheme.of(context)
@@ -156,7 +154,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                       ),
                     if (_model.resetSent)
                       Padding(
-                        padding: EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: Text(
                           'Reset email sent. Check your inbox.',
                           style: FlutterFlowTheme.of(context)
@@ -172,7 +170,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                       ),
                     if (_model.resetError)
                       Padding(
-                        padding: EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.all(4.0),
                         child: Text(
                           'Send reset failure, try again or contact support.',
                           style: FlutterFlowTheme.of(context)
@@ -189,7 +187,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                       ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 20.0, 24.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 20.0, 24.0, 0.0),
                       child: TextFormField(
                         controller: _model.emailAddressTextController,
                         focusNode: _model.emailAddressFocusNode,
@@ -223,7 +221,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: Color(0x00000000),
                               width: 1.0,
                             ),
@@ -246,7 +244,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                           filled: true,
                           fillColor:
                               FlutterFlowTheme.of(context).primaryBackground,
-                          contentPadding: EdgeInsetsDirectional.fromSTEB(
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
                               20.0, 24.0, 20.0, 24.0),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -262,7 +260,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                     ),
                     Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           _model.resetError = false;
@@ -287,9 +285,9 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                         options: FFButtonOptions(
                           width: 270.0,
                           height: 50.0,
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
@@ -304,7 +302,7 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                                     .titleSmallIsCustom,
                               ),
                           elevation: 3.0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                             width: 1.0,
                           ),

@@ -1,12 +1,8 @@
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'property_list_model.dart';
 export 'property_list_model.dart';
 
@@ -57,7 +53,7 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
         children: [
           Builder(
             builder: (context) {
-              final properties = widget!.properties!.toList();
+              final properties = widget.properties!.toList();
 
               return ListView.builder(
                 padding: EdgeInsets.zero,
@@ -67,12 +63,12 @@ class _PropertyListWidgetState extends State<PropertyListWidget> {
                 itemBuilder: (context, propertiesIndex) {
                   final propertiesItem = properties[propertiesIndex];
                   return Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
                               5.0, 10.0, 0.0, 0.0),
                           child: InkWell(
                             splashColor: Colors.transparent,

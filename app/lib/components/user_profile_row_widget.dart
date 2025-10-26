@@ -1,11 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'user_profile_row_model.dart';
 export 'user_profile_row_model.dart';
 
@@ -56,13 +52,13 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
       child: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
-          widget!.icon!,
+          widget.icon!,
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
+            padding: const EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 0.0, 0.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +68,7 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                   children: [
                     Text(
                       valueOrDefault<String>(
-                        widget!.label,
+                        widget.label,
                         'unknown',
                       ),
                       style: FlutterFlowTheme.of(context).bodySmall.override(
@@ -83,16 +79,16 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                                 !FlutterFlowTheme.of(context).bodySmallIsCustom,
                           ),
                     ),
-                    if (widget!.infoTooltipText != null &&
-                        widget!.infoTooltipText != '')
+                    if (widget.infoTooltipText != null &&
+                        widget.infoTooltipText != '')
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                            const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                         child: AlignedTooltip(
                           content: Padding(
-                            padding: EdgeInsets.all(4.0),
+                            padding: const EdgeInsets.all(4.0),
                             child: Text(
-                              widget!.infoTooltipText!,
+                              widget.infoTooltipText!,
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
                                   .override(
@@ -113,8 +109,8 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                           elevation: 4.0,
                           tailBaseWidth: 24.0,
                           tailLength: 12.0,
-                          waitDuration: Duration(milliseconds: 100),
-                          showDuration: Duration(milliseconds: 1500),
+                          waitDuration: const Duration(milliseconds: 100),
+                          showDuration: const Duration(milliseconds: 1500),
                           triggerMode: TooltipTriggerMode.tap,
                           child: Icon(
                             Icons.info_outline,
@@ -126,7 +122,7 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                   ],
                 ),
                 Text(
-                  widget!.value!,
+                  widget.value!,
                   style: FlutterFlowTheme.of(context).bodyLarge.override(
                         fontFamily:
                             FlutterFlowTheme.of(context).bodyLargeFamily,
@@ -137,7 +133,7 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                 ),
                 Text(
                   valueOrDefault<String>(
-                    widget!.linkLabel,
+                    widget.linkLabel,
                     'unknown',
                   ),
                   style: FlutterFlowTheme.of(context).bodySmall.override(
@@ -149,7 +145,7 @@ class _UserProfileRowWidgetState extends State<UserProfileRowWidget> {
                             !FlutterFlowTheme.of(context).bodySmallIsCustom,
                       ),
                 ),
-              ].divide(SizedBox(height: 5.0)),
+              ].divide(const SizedBox(height: 5.0)),
             ),
           ),
         ],

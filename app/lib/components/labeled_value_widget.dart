@@ -1,10 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'labeled_value_model.dart';
 export 'labeled_value_model.dart';
 
@@ -63,12 +60,12 @@ class _LabeledValueWidgetState extends State<LabeledValueWidget> {
       children: [
         Text(
           valueOrDefault<String>(
-            widget!.label,
+            widget.label,
             'Label',
           ),
           style: FlutterFlowTheme.of(context).bodyMedium.override(
                 fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                color: Color(0x8A000000),
+                color: const Color(0x8A000000),
                 letterSpacing: 0.0,
                 useGoogleFonts:
                     !FlutterFlowTheme.of(context).bodyMediumIsCustom,
@@ -78,10 +75,10 @@ class _LabeledValueWidgetState extends State<LabeledValueWidget> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
               child: Text(
                 valueOrDefault<String>(
-                  widget!.value,
+                  widget.value,
                   'value',
                 ),
                 style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -92,22 +89,22 @@ class _LabeledValueWidgetState extends State<LabeledValueWidget> {
                     ),
               ),
             ),
-            if (widget!.buttonLabel != null && widget!.buttonLabel != '')
+            if (widget.buttonLabel != null && widget.buttonLabel != '')
               Align(
-                alignment: AlignmentDirectional(0.0, 1.0),
+                alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
                       await widget.buttonAction?.call();
                     },
-                    text: widget!.buttonLabel!,
+                    text: widget.buttonLabel!,
                     options: FFButtonOptions(
                       height: 25.0,
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                       iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle: FlutterFlowTheme.of(context)
                           .titleSmall

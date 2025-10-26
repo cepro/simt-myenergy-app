@@ -6,14 +6,11 @@ import '/components/user_profile_button/user_profile_button_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'top_bar_logged_in_model.dart';
 export 'top_bar_logged_in_model.dart';
@@ -54,11 +51,11 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0.0, 0.0),
+      alignment: const AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: double.infinity,
         height: 60.0,
-        decoration: BoxDecoration(),
+        decoration: const BoxDecoration(),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -71,7 +68,7 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   desktop: false,
                 ))
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -89,7 +86,7 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   desktop: false,
                 ))
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
@@ -158,25 +155,25 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                 borderColor: Colors.transparent,
                 borderWidth: 0.0,
                 borderRadius: 8.0,
-                margin: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
+                margin: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                 hidesUnderline: true,
                 isOverButton: false,
                 isSearchable: false,
                 isMultiSelect: false,
               ),
-            Spacer(),
+            const Spacer(),
             wrapWithModel(
               model: _model.stopImpersonatingLinkModel,
               updateCallback: () => safeSetState(() {}),
-              child: StopImpersonatingLinkWidget(),
+              child: const StopImpersonatingLinkWidget(),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                  child: Container(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                  child: SizedBox(
                     width: 35.0,
                     height: 35.0,
                     child: custom_widgets.URIIconButtonWithTooltip(
@@ -192,8 +189,8 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
-                  child: Container(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
+                  child: SizedBox(
                     width: 35.0,
                     height: 35.0,
                     child: custom_widgets.URIIconButtonWithTooltip(
@@ -213,25 +210,25 @@ class _TopBarLoggedInWidgetState extends State<TopBarLoggedInWidget> {
                   wrapWithModel(
                     model: _model.sysInfoButtonModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: SysInfoButtonWidget(),
+                    child: const SysInfoButtonWidget(),
                   ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                   child: wrapWithModel(
                     model: _model.userProfileButtonModel,
                     updateCallback: () => safeSetState(() {}),
-                    child: UserProfileButtonWidget(),
+                    child: const UserProfileButtonWidget(),
                   ),
                 ),
                 Align(
-                  alignment: AlignmentDirectional(0.0, 0.0),
+                  alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                     child: wrapWithModel(
                       model: _model.logoutButtonModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: LogoutButtonWidget(),
+                      child: const LogoutButtonWidget(),
                     ),
                   ),
                 ),

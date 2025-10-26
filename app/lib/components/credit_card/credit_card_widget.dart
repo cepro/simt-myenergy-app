@@ -1,10 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'credit_card_widget_model.dart';
 export 'credit_card_widget_model.dart';
 
@@ -56,7 +53,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
       width: double.infinity,
       height: 210.0,
       decoration: BoxDecoration(
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 6.0,
             color: Color(0x4B1A1F24),
@@ -71,25 +68,25 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
             FlutterFlowTheme.of(context).primary,
             FlutterFlowTheme.of(context).alternate
           ],
-          stops: [0.0, 1.0],
-          begin: AlignmentDirectional(1.0, -1.0),
-          end: AlignmentDirectional(-1.0, 1.0),
+          stops: const [0.0, 1.0],
+          begin: const AlignmentDirectional(1.0, -1.0),
+          end: const AlignmentDirectional(-1.0, 1.0),
         ),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(4.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
-                    widget!.cardBrand!,
+                    widget.cardBrand!,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:
                               FlutterFlowTheme.of(context).bodyMediumFamily,
@@ -103,14 +100,14 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                 ],
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 22.0, 20.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [],
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsetsDirectional.fromSTEB(20.0, 8.0, 20.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
@@ -118,13 +115,13 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 16.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(20.0, 12.0, 20.0, 16.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '**** ${widget!.last4Digits}',
+                    '**** ${widget.last4Digits}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           font: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.normal,
@@ -141,7 +138,7 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
                         ),
                   ),
                   Text(
-                    '${widget!.expiryMonth?.toString()}/${widget!.expiryYear?.toString()}',
+                    '${widget.expiryMonth?.toString()}/${widget.expiryYear?.toString()}',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           font: GoogleFonts.robotoMono(
                             fontWeight: FontWeight.normal,

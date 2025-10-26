@@ -10,7 +10,7 @@ class AccountEventsTable extends SupabaseTable<AccountEventsRow> {
 }
 
 class AccountEventsRow extends SupabaseDataRow {
-  AccountEventsRow(Map<String, dynamic> data) : super(data);
+  AccountEventsRow(super.data);
 
   @override
   SupabaseTable get table => AccountEventsTable();
