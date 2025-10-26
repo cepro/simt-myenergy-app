@@ -5,13 +5,10 @@ import '/components/main_web_nav/main_web_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'topup_page_model.dart';
 export 'topup_page_model.dart';
 
@@ -134,7 +131,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 16.0, 24.0, 16.0, 0.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -161,7 +158,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                     Expanded(
                                       flex: 7,
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -200,7 +197,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                             model: _model.logoutButtonModel,
                                             updateCallback: () =>
                                                 safeSetState(() {}),
-                                            child: LogoutButtonWidget(),
+                                            child: const LogoutButtonWidget(),
                                           ),
                                         ],
                                       ),
@@ -234,7 +231,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                   false,
                                 ))
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 16.0),
                                     child: Container(
                                       width: double.infinity,
@@ -249,13 +246,13 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                           width: 0.0,
                                         ),
                                       ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      alignment: const AlignmentDirectional(0.0, 0.0),
                                       child: Align(
                                         alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                            const AlignmentDirectional(0.0, 0.0),
                                         child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                              const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 12.0, 0.0, 12.0),
                                           child: Wrap(
                                             spacing: 24.0,
@@ -271,7 +268,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                             clipBehavior: Clip.none,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
+                                                padding: const EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         20.0, 0.0, 0.0, 0.0),
                                                 child: Text(
@@ -298,7 +295,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                 autovalidateMode:
                                                     AutovalidateMode.always,
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(12.0),
+                                                  padding: const EdgeInsets.all(12.0),
                                                   child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
@@ -308,7 +305,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -443,7 +440,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     8.0,
                                                                     0.0,
@@ -578,7 +575,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                       ),
                                                       Padding(
                                                         padding:
-                                                            EdgeInsetsDirectional
+                                                            const EdgeInsetsDirectional
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     10.0,
@@ -628,7 +625,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                           .primaryText,
                                                                     ),
                                                                   ),
-                                                                  duration: Duration(
+                                                                  duration: const Duration(
                                                                       milliseconds:
                                                                           4000),
                                                                   backgroundColor:
@@ -660,14 +657,14 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                               FFButtonOptions(
                                                             height: 40.0,
                                                             padding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         24.0,
                                                                         0.0,
                                                                         24.0,
                                                                         0.0),
                                                             iconPadding:
-                                                                EdgeInsetsDirectional
+                                                                const EdgeInsetsDirectional
                                                                     .fromSTEB(
                                                                         0.0,
                                                                         0.0,
@@ -694,7 +691,7 @@ class _TopupPageWidgetState extends State<TopupPageWidget> {
                                                                     ),
                                                             elevation: 3.0,
                                                             borderSide:
-                                                                BorderSide(
+                                                                const BorderSide(
                                                               color: Colors
                                                                   .transparent,
                                                               width: 1.0,
