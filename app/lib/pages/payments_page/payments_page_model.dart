@@ -9,6 +9,7 @@ import '/components/property_name_with_tooltip_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/components/topup_list/topup_list_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'payments_page_widget.dart' show PaymentsPageWidget;
 import 'package:flutter/material.dart';
@@ -107,16 +108,16 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     }
 
     if (!RegExp('^\\d{1,3}\$').hasMatch(val)) {
-      return 'Enter a number for the Threshold';
+      return 'Enter a number for the Minimum Balance';
     }
     return null;
   }
 
-  // State field(s) for TopUpAmount widget.
-  FocusNode? topUpAmountFocusNode;
-  TextEditingController? topUpAmountTextController;
-  String? Function(BuildContext, String?)? topUpAmountTextControllerValidator;
-  String? _topUpAmountTextControllerValidator(
+  // State field(s) for TargetBalance widget.
+  FocusNode? targetBalanceFocusNode;
+  TextEditingController? targetBalanceTextController;
+  String? Function(BuildContext, String?)? targetBalanceTextControllerValidator;
+  String? _targetBalanceTextControllerValidator(
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
@@ -131,7 +132,11 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     }
     return null;
   }
-  
+
+  // State field(s) for BalanceEnum dropdown.
+  String? balanceEnumValue;
+  FormFieldController<String>? balanceEnumValueController;
+
   // Stores action output result for [Backend Call - API (Update Topup Preferences)] action in Button widget.
   ApiCallResponse? updateTopupPreferenceOutput;
 
@@ -147,7 +152,7 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
     minimumBalanceTextControllerValidator =
         _minimumBalanceTextControllerValidator;
-    topUpAmountTextControllerValidator = _topUpAmountTextControllerValidator;
+    targetBalanceTextControllerValidator = _targetBalanceTextControllerValidator;
     comingSoonForPreonboardingModel =
         createModel(context, () => ComingSoonForPreonboardingModel());
     comingSoonForLandlordsModel =
@@ -165,8 +170,8 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     creditCardModel.dispose();
     minimumBalanceFocusNode?.dispose();
     minimumBalanceTextController?.dispose();
-    topUpAmountFocusNode?.dispose();
-    topUpAmountTextController?.dispose();
+    targetBalanceFocusNode?.dispose();
+    targetBalanceTextController?.dispose();
     comingSoonForPreonboardingModel.dispose();
     comingSoonForLandlordsModel.dispose();
   }

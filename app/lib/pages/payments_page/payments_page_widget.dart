@@ -9,9 +9,11 @@ import '/components/payments_list/payments_list_widget.dart';
 import '/components/property_name_with_tooltip_widget.dart';
 import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/components/topup_list/topup_list_widget.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -162,19 +164,25 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                     valueOrDefault<String>(
                   getJsonField(
                     (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
-                    r'''$[0].topupThreshold''',
+                    r'''$[0].minimumBalance''',
                   )?.toString(),
                   '30',
                 );
               });
               safeSetState(() {
-                _model.topUpAmountTextController?.text = valueOrDefault<String>(
+                _model.targetBalanceTextController?.text = valueOrDefault<String>(
                   getJsonField(
                     (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
-                    r'''$[0].topupAmount''',
+                    r'''$[0].targetBalance''',
                   )?.toString(),
                   '50',
                 );
+              });
+              safeSetState(() {
+                _model.balanceEnumValue = getJsonField(
+                  (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
+                  r'''$[0].balanceEnum''',
+                )?.toString();
               });
               _model.haveWallet = true;
             } else {
@@ -198,8 +206,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
     _model.minimumBalanceTextController ??= TextEditingController(text: '30');
     _model.minimumBalanceFocusNode ??= FocusNode();
 
-    _model.topUpAmountTextController ??= TextEditingController(text: '50');
-    _model.topUpAmountFocusNode ??= FocusNode();
+    _model.targetBalanceTextController ??= TextEditingController(text: '50');
+    _model.targetBalanceFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -910,7 +918,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                           obscureText: false,
                                                           decoration: InputDecoration(
                                                             labelText:
-                                                                'Minimum Balance Threshold (£)',
+                                                                'Minimum Balance (£)',
                                                             labelStyle:
                                                                 FlutterFlowTheme.of(context)
                                                                     .labelMedium
@@ -1003,13 +1011,13 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                             .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                                         child: TextFormField(
                                                           controller:
-                                                              _model.topUpAmountTextController,
+                                                              _model.targetBalanceTextController,
                                                           focusNode:
-                                                              _model.topUpAmountFocusNode,
+                                                              _model.targetBalanceFocusNode,
                                                           autofocus: true,
                                                           obscureText: false,
                                                           decoration: InputDecoration(
-                                                            labelText: 'Amount (£)',
+                                                            labelText: 'Target Balance (£)',
                                                             labelStyle:
                                                                 FlutterFlowTheme.of(context)
                                                                     .labelMedium
@@ -1093,8 +1101,60 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                         .bodyMediumIsCustom,
                                                               ),
                                                           validator: _model
-                                                              .topUpAmountTextControllerValidator
+                                                              .targetBalanceTextControllerValidator
                                                               .asValidator(context),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                                        child: FlutterFlowDropDown<String>(
+                                                          controller: _model.balanceEnumValueController ??=
+                                                              FormFieldController<String>(
+                                                            _model.balanceEnumValue ??= 'simple',
+                                                          ),
+                                                          options: const ['simple', 'smooth'],
+                                                          optionLabels: const [
+                                                            'Simple Prepayments',
+                                                            'Smoothed Prepayments'
+                                                          ],
+                                                          onChanged: (val) =>
+                                                              safeSetState(() => _model.balanceEnumValue = val),
+                                                          width: double.infinity,
+                                                          height: 56.0,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyMediumFamily,
+                                                                    letterSpacing: 0.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(context)
+                                                                            .bodyMediumIsCustom,
+                                                                  ),
+                                                          hintText: 'Payment Mode',
+                                                          icon: Icon(
+                                                            Icons.keyboard_arrow_down_rounded,
+                                                            color: FlutterFlowTheme.of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          fillColor:
+                                                              FlutterFlowTheme.of(context)
+                                                                  .secondaryBackground,
+                                                          elevation: 2.0,
+                                                          borderColor:
+                                                              FlutterFlowTheme.of(context).alternate,
+                                                          borderWidth: 2.0,
+                                                          borderRadius: 8.0,
+                                                          margin: const EdgeInsetsDirectional.fromSTEB(
+                                                              16.0, 4.0, 16.0, 4.0),
+                                                          hidesUnderline: true,
+                                                          isOverButton: true,
+                                                          isSearchable: false,
+                                                          isMultiSelect: false,
                                                         ),
                                                       ),
                                                       Padding(
@@ -1109,10 +1169,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                 await UpdateTopupPreferencesCall
                                                                     .call(
                                                               bearerToken: currentJwtToken,
-                                                              amount: int.tryParse(_model
-                                                                  .topUpAmountTextController
+                                                              minimumBalance: int.tryParse(_model
+                                                                  .targetBalanceTextController
                                                                   .text),
-                                                              threshold: int.tryParse(_model
+                                                              targetBalance: int.tryParse(_model
                                                                   .minimumBalanceTextController
                                                                   .text),
                                                               walletId: getJsonField(
@@ -1121,6 +1181,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                     ''),
                                                                 r'''$[0].id''',
                                                               ).toString(),
+                                                              balanceEnum: _model.balanceEnumValue,
                                                             );
 
                                                             if ((_model.updateTopupPreferenceOutput
@@ -1491,7 +1552,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                         obscureText: false,
                                                         decoration: InputDecoration(
                                                           labelText:
-                                                              'Minimum Balance Threshold (£)',
+                                                              'Minimum Balance (£)',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(context)
                                                                   .labelMedium
@@ -1584,13 +1645,13 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                           .fromSTEB(8.0, 0.0, 8.0, 0.0),
                                                       child: TextFormField(
                                                         controller:
-                                                            _model.topUpAmountTextController,
+                                                            _model.targetBalanceTextController,
                                                         focusNode:
-                                                            _model.topUpAmountFocusNode,
+                                                            _model.targetBalanceFocusNode,
                                                         autofocus: true,
                                                         obscureText: false,
                                                         decoration: InputDecoration(
-                                                          labelText: 'Amount (£)',
+                                                          labelText: 'Target Balance (£)',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(context)
                                                                   .labelMedium
@@ -1674,8 +1735,60 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                       .bodyMediumIsCustom,
                                                             ),
                                                         validator: _model
-                                                            .topUpAmountTextControllerValidator
+                                                            .targetBalanceTextControllerValidator
                                                             .asValidator(context),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsetsDirectional
+                                                          .fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                                      child: FlutterFlowDropDown<String>(
+                                                        controller: _model.balanceEnumValueController ??=
+                                                            FormFieldController<String>(
+                                                          _model.balanceEnumValue ??= 'simple',
+                                                        ),
+                                                        options: const ['simple', 'smooth'],
+                                                        optionLabels: const [
+                                                          'Simple Prepayments',
+                                                          'Smoothed Prepayments'
+                                                        ],
+                                                        onChanged: (val) =>
+                                                            safeSetState(() => _model.balanceEnumValue = val),
+                                                        width: double.infinity,
+                                                        height: 56.0,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      FlutterFlowTheme.of(context)
+                                                                          .bodyMediumFamily,
+                                                                  letterSpacing: 0.0,
+                                                                  useGoogleFonts:
+                                                                      !FlutterFlowTheme.of(context)
+                                                                          .bodyMediumIsCustom,
+                                                                ),
+                                                        hintText: 'Payment Mode',
+                                                        icon: Icon(
+                                                          Icons.keyboard_arrow_down_rounded,
+                                                          color: FlutterFlowTheme.of(context)
+                                                              .secondaryText,
+                                                          size: 24.0,
+                                                        ),
+                                                        fillColor:
+                                                            FlutterFlowTheme.of(context)
+                                                                .secondaryBackground,
+                                                        elevation: 2.0,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(context).alternate,
+                                                        borderWidth: 2.0,
+                                                        borderRadius: 8.0,
+                                                        margin: const EdgeInsetsDirectional.fromSTEB(
+                                                            16.0, 4.0, 16.0, 4.0),
+                                                        hidesUnderline: true,
+                                                        isOverButton: true,
+                                                        isSearchable: false,
+                                                        isMultiSelect: false,
                                                       ),
                                                     ),
                                                     Padding(
@@ -1690,10 +1803,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                               await UpdateTopupPreferencesCall
                                                                   .call(
                                                             bearerToken: currentJwtToken,
-                                                            amount: int.tryParse(_model
-                                                                .topUpAmountTextController
+                                                            minimumBalance: int.tryParse(_model
+                                                                .targetBalanceTextController
                                                                 .text),
-                                                            threshold: int.tryParse(_model
+                                                            targetBalance: int.tryParse(_model
                                                                 .minimumBalanceTextController
                                                                 .text),
                                                             walletId: getJsonField(
@@ -1702,6 +1815,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                   ''),
                                                               r'''$[0].id''',
                                                             ).toString(),
+                                                            balanceEnum: _model.balanceEnumValue,
                                                           );
 
                                                           if ((_model.updateTopupPreferenceOutput

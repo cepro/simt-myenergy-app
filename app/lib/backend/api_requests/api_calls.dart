@@ -451,14 +451,16 @@ class UpdateCustomerFullnameCall {
 class UpdateTopupPreferencesCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',
-    int? amount,
-    int? threshold,
+    int? minimumBalance,
+    int? targetBalance,
     String? walletId = '',
+    String? balanceEnum,
   }) async {
     final ffApiRequestBody = '''
 {
-  "amount": $amount,
-  "threshold": $threshold
+  "minimumBalance": $minimumBalance,
+  "targetBalance": $targetBalance,
+  "balanceEnum": "$balanceEnum"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Topup Preferences',
