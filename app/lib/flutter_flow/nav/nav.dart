@@ -128,12 +128,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const AccountsListPageWidget(),
         ),
         FFRoute(
-          name: TopupPageWidget.routeName,
-          path: TopupPageWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => const TopupPageWidget(),
-        ),
-        FFRoute(
           name: InviteLandingPageWidget.routeName,
           path: InviteLandingPageWidget.routePath,
           builder: (context, params) => InviteLandingPageWidget(

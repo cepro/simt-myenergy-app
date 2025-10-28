@@ -5,7 +5,6 @@ export '/pages/forgot_password_page/forgot_password_page_widget.dart'
     show ForgotPasswordPageWidget;
 export '/pages/accounts_list_page/accounts_list_page_widget.dart'
     show AccountsListPageWidget;
-export '/pages/topup_page/topup_page_widget.dart' show TopupPageWidget;
 export '/pages/invite_landing_page/invite_landing_page_widget.dart'
     show InviteLandingPageWidget;
 export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
