@@ -83,6 +83,58 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   // Model for ComingSoonForLandlords.
   late ComingSoonForPreonboardingModel comingSoonForLandlordsModel;
 
+
+  bool haveWallet = false;
+
+  final formKey = GlobalKey<FormState>();
+  // Stores action output result for [Backend Call - API (Get Wallets)] action in TopupPage widget.
+  ApiCallResponse? topupPreferencesGetOutput;
+  // Model for MainWebNav component.
+
+  // State field(s) for MinimumBalance widget.
+  FocusNode? minimumBalanceFocusNode;
+  TextEditingController? minimumBalanceTextController;
+  String? Function(BuildContext, String?)?
+      minimumBalanceTextControllerValidator;
+  String? _minimumBalanceTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.isEmpty) {
+      return 'Requires at least 1 characters.';
+    }
+
+    if (!RegExp('^\\d{1,3}\$').hasMatch(val)) {
+      return 'Enter a number for the Threshold';
+    }
+    return null;
+  }
+
+  // State field(s) for TopUpAmount widget.
+  FocusNode? topUpAmountFocusNode;
+  TextEditingController? topUpAmountTextController;
+  String? Function(BuildContext, String?)? topUpAmountTextControllerValidator;
+  String? _topUpAmountTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.isEmpty) {
+      return 'Requires at least 1 characters.';
+    }
+
+    if (!RegExp('^\\d{1,3}\$').hasMatch(val)) {
+      return 'Enter a number for the Amount';
+    }
+    return null;
+  }
+  
+  // Stores action output result for [Backend Call - API (Update Topup Preferences)] action in Button widget.
+  ApiCallResponse? updateTopupPreferenceOutput;
+
   @override
   void initState(BuildContext context) {
     mainWebNavModel = createModel(context, () => MainWebNavModel());
@@ -93,6 +145,9 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     topupListModel = createModel(context, () => TopupListModel());
     directDebitModel = createModel(context, () => DirectDebitModel());
     creditCardModel = createModel(context, () => CreditCardWidgetModel());
+    minimumBalanceTextControllerValidator =
+        _minimumBalanceTextControllerValidator;
+    topUpAmountTextControllerValidator = _topUpAmountTextControllerValidator;
     comingSoonForPreonboardingModel =
         createModel(context, () => ComingSoonForPreonboardingModel());
     comingSoonForLandlordsModel =
@@ -108,6 +163,10 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
     topupListModel.dispose();
     directDebitModel.dispose();
     creditCardModel.dispose();
+    minimumBalanceFocusNode?.dispose();
+    minimumBalanceTextController?.dispose();
+    topUpAmountFocusNode?.dispose();
+    topUpAmountTextController?.dispose();
     comingSoonForPreonboardingModel.dispose();
     comingSoonForLandlordsModel.dispose();
   }
