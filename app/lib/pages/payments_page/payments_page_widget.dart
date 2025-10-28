@@ -908,107 +908,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   children: [
                                                       Padding(
                                                         padding: const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                        child: TextFormField(
-                                                          controller: _model
-                                                              .minimumBalanceTextController,
-                                                          focusNode:
-                                                              _model.minimumBalanceFocusNode,
-                                                          autofocus: true,
-                                                          obscureText: false,
-                                                          decoration: InputDecoration(
-                                                            labelText:
-                                                                'Minimum Balance (£)',
-                                                            labelStyle:
-                                                                FlutterFlowTheme.of(context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(
-                                                                                  context)
-                                                                              .labelMediumFamily,
-                                                                      letterSpacing: 0.0,
-                                                                      useGoogleFonts:
-                                                                          !FlutterFlowTheme.of(
-                                                                                  context)
-                                                                              .labelMediumIsCustom,
-                                                                    ),
-                                                            hintStyle:
-                                                                FlutterFlowTheme.of(context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(
-                                                                                  context)
-                                                                              .labelMediumFamily,
-                                                                      letterSpacing: 0.0,
-                                                                      useGoogleFonts:
-                                                                          !FlutterFlowTheme.of(
-                                                                                  context)
-                                                                              .labelMediumIsCustom,
-                                                                    ),
-                                                            enabledBorder: UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color:
-                                                                    FlutterFlowTheme.of(context)
-                                                                        .alternate,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius.circular(8.0),
-                                                            ),
-                                                            focusedBorder: UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color:
-                                                                    FlutterFlowTheme.of(context)
-                                                                        .primary,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius.circular(8.0),
-                                                            ),
-                                                            errorBorder: UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color:
-                                                                    FlutterFlowTheme.of(context)
-                                                                        .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius.circular(8.0),
-                                                            ),
-                                                            focusedErrorBorder:
-                                                                UnderlineInputBorder(
-                                                              borderSide: BorderSide(
-                                                                color:
-                                                                    FlutterFlowTheme.of(context)
-                                                                        .error,
-                                                                width: 2.0,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius.circular(8.0),
-                                                            ),
-                                                          ),
-                                                          style: FlutterFlowTheme.of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    FlutterFlowTheme.of(context)
-                                                                        .bodyMediumFamily,
-                                                                letterSpacing: 0.0,
-                                                                useGoogleFonts:
-                                                                    !FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMediumIsCustom,
-                                                              ),
-                                                          validator: _model
-                                                              .minimumBalanceTextControllerValidator
-                                                              .asValidator(context),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                                            .fromSTEB(8.0, 0.0, 8.0, 10.0),
                                                         child: TextFormField(
                                                           controller:
                                                               _model.targetBalanceTextController,
@@ -1016,6 +916,14 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                               _model.targetBalanceFocusNode,
                                                           autofocus: true,
                                                           obscureText: false,
+                                                          onChanged: (_) => {
+                                                            safeSetState(() {
+                                                              final targetValue = int.tryParse(_model.targetBalanceTextController.text);
+                                                              if (targetValue != null && targetValue > 10) {
+                                                                _model.minimumBalanceTextController?.text = (targetValue - 10).toString();
+                                                              }
+                                                            })
+                                                          },
                                                           decoration: InputDecoration(
                                                             labelText: 'Target Balance (£)',
                                                             labelStyle:
@@ -1107,21 +1015,148 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                       ),
                                                       Padding(
                                                         padding: const EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                        child: FlutterFlowDropDown<String>(
-                                                          controller: _model.balanceEnumValueController ??=
-                                                              FormFieldController<String>(
-                                                            _model.balanceEnumValue ??= 'simple',
+                                                            .fromSTEB(8.0, 0.0, 8.0, 10.0),
+                                                        child: TextFormField(
+                                                          controller: _model
+                                                              .minimumBalanceTextController,
+                                                          focusNode:
+                                                              _model.minimumBalanceFocusNode,
+                                                          autofocus: false,
+                                                          readOnly: true,
+                                                          obscureText: false,
+                                                          decoration: InputDecoration(
+                                                            labelText:
+                                                                'Minimum Balance (£)',
+                                                            labelStyle:
+                                                                FlutterFlowTheme.of(context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(
+                                                                                  context)
+                                                                              .labelMediumFamily,
+                                                                      letterSpacing: 0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(
+                                                                                  context)
+                                                                              .labelMediumIsCustom,
+                                                                    ),
+                                                            hintStyle:
+                                                                FlutterFlowTheme.of(context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(
+                                                                                  context)
+                                                                              .labelMediumFamily,
+                                                                      letterSpacing: 0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(
+                                                                                  context)
+                                                                              .labelMediumIsCustom,
+                                                                    ),
+                                                            filled: true,
+                                                            fillColor:
+                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                            enabledBorder: UnderlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                color:
+                                                                    FlutterFlowTheme.of(context)
+                                                                        .alternate,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius.circular(8.0),
+                                                            ),
+                                                            focusedBorder: UnderlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                color:
+                                                                    FlutterFlowTheme.of(context)
+                                                                        .primary,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius.circular(8.0),
+                                                            ),
+                                                            errorBorder: UnderlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                color:
+                                                                    FlutterFlowTheme.of(context)
+                                                                        .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius.circular(8.0),
+                                                            ),
+                                                            focusedErrorBorder:
+                                                                UnderlineInputBorder(
+                                                              borderSide: BorderSide(
+                                                                color:
+                                                                    FlutterFlowTheme.of(context)
+                                                                        .error,
+                                                                width: 2.0,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius.circular(8.0),
+                                                            ),
                                                           ),
-                                                          options: const ['simple', 'smooth'],
-                                                          optionLabels: const [
-                                                            'Simple Prepayments',
-                                                            'Smoothed Prepayments'
-                                                          ],
-                                                          onChanged: (val) =>
-                                                              safeSetState(() => _model.balanceEnumValue = val),
-                                                          width: double.infinity,
-                                                          height: 56.0,
+                                                          style: FlutterFlowTheme.of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    FlutterFlowTheme.of(context)
+                                                                        .bodyMediumFamily,
+                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                letterSpacing: 0.0,
+                                                                useGoogleFonts:
+                                                                    !FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMediumIsCustom,
+                                                              ),
+                                                          validator: _model
+                                                              .minimumBalanceTextControllerValidator
+                                                              .asValidator(context),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0, 8.0, 10.0),
+                                                        child: Column(
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Padding(
+                                                              padding: const EdgeInsetsDirectional
+                                                                  .fromSTEB(0.0, 0.0, 0.0, 4.0),
+                                                              child: Text(
+                                                                'Payment Mode',
+                                                                style: FlutterFlowTheme.of(context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .labelMediumFamily,
+                                                                      letterSpacing: 0.0,
+                                                                      useGoogleFonts:
+                                                                          !FlutterFlowTheme.of(context)
+                                                                              .labelMediumIsCustom,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                            FlutterFlowDropDown<String>(
+                                                              controller: _model.balanceEnumValueController ??=
+                                                                  FormFieldController<String>(
+                                                                _model.balanceEnumValue ??= 'simple',
+                                                              ),
+                                                              options: const ['simple', 'smooth'],
+                                                              optionLabels: const [
+                                                                'Simple Prepayments',
+                                                                'Smoothed Prepayments'
+                                                              ],
+                                                              onChanged: (val) =>
+                                                                  safeSetState(() => _model.balanceEnumValue = val),
+                                                              width: double.infinity,
+                                                              height: 56.0,
                                                           textStyle:
                                                               FlutterFlowTheme.of(context)
                                                                   .bodyMedium
@@ -1155,6 +1190,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                           isOverButton: true,
                                                           isSearchable: false,
                                                           isMultiSelect: false,
+                                                        ),
+                                                          ],
                                                         ),
                                                       ),
                                                       Padding(
@@ -1542,107 +1579,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                 children: [
                                                     Padding(
                                                       padding: const EdgeInsetsDirectional
-                                                          .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                      child: TextFormField(
-                                                        controller: _model
-                                                            .minimumBalanceTextController,
-                                                        focusNode:
-                                                            _model.minimumBalanceFocusNode,
-                                                        autofocus: true,
-                                                        obscureText: false,
-                                                        decoration: InputDecoration(
-                                                          labelText:
-                                                              'Minimum Balance (£)',
-                                                          labelStyle:
-                                                              FlutterFlowTheme.of(context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(
-                                                                                context)
-                                                                            .labelMediumFamily,
-                                                                    letterSpacing: 0.0,
-                                                                    useGoogleFonts:
-                                                                        !FlutterFlowTheme.of(
-                                                                                context)
-                                                                            .labelMediumIsCustom,
-                                                                  ),
-                                                          hintStyle:
-                                                              FlutterFlowTheme.of(context)
-                                                                  .labelMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(
-                                                                                context)
-                                                                            .labelMediumFamily,
-                                                                    letterSpacing: 0.0,
-                                                                    useGoogleFonts:
-                                                                        !FlutterFlowTheme.of(
-                                                                                context)
-                                                                            .labelMediumIsCustom,
-                                                                  ),
-                                                          enabledBorder: UnderlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                              color:
-                                                                  FlutterFlowTheme.of(context)
-                                                                      .alternate,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius.circular(8.0),
-                                                          ),
-                                                          focusedBorder: UnderlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                              color:
-                                                                  FlutterFlowTheme.of(context)
-                                                                      .primary,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius.circular(8.0),
-                                                          ),
-                                                          errorBorder: UnderlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                              color:
-                                                                  FlutterFlowTheme.of(context)
-                                                                      .error,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius.circular(8.0),
-                                                          ),
-                                                          focusedErrorBorder:
-                                                              UnderlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                              color:
-                                                                  FlutterFlowTheme.of(context)
-                                                                      .error,
-                                                              width: 2.0,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius.circular(8.0),
-                                                          ),
-                                                        ),
-                                                        style: FlutterFlowTheme.of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              fontFamily:
-                                                                  FlutterFlowTheme.of(context)
-                                                                      .bodyMediumFamily,
-                                                              letterSpacing: 0.0,
-                                                              useGoogleFonts:
-                                                                  !FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumIsCustom,
-                                                            ),
-                                                        validator: _model
-                                                            .minimumBalanceTextControllerValidator
-                                                            .asValidator(context),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: const EdgeInsetsDirectional
-                                                          .fromSTEB(8.0, 0.0, 8.0, 0.0),
+                                                          .fromSTEB(8.0, 0.0, 8.0, 10.0),
                                                       child: TextFormField(
                                                         controller:
                                                             _model.targetBalanceTextController,
@@ -1650,6 +1587,14 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                             _model.targetBalanceFocusNode,
                                                         autofocus: true,
                                                         obscureText: false,
+                                                        onChanged: (_) {
+                                                          safeSetState(() {
+                                                            final targetValue = int.tryParse(_model.targetBalanceTextController.text);
+                                                            if (targetValue != null && targetValue > 10) {
+                                                              _model.minimumBalanceTextController?.text = (targetValue - 10).toString();
+                                                            }
+                                                          });
+                                                        },
                                                         decoration: InputDecoration(
                                                           labelText: 'Target Balance (£)',
                                                           labelStyle:
@@ -1741,21 +1686,148 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     ),
                                                     Padding(
                                                       padding: const EdgeInsetsDirectional
-                                                          .fromSTEB(8.0, 0.0, 8.0, 0.0),
-                                                      child: FlutterFlowDropDown<String>(
-                                                        controller: _model.balanceEnumValueController ??=
-                                                            FormFieldController<String>(
-                                                          _model.balanceEnumValue ??= 'simple',
+                                                          .fromSTEB(8.0, 0.0, 8.0, 10.0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .minimumBalanceTextController,
+                                                        focusNode:
+                                                            _model.minimumBalanceFocusNode,
+                                                        autofocus: false,
+                                                        readOnly: true,
+                                                        obscureText: false,
+                                                        decoration: InputDecoration(
+                                                          labelText:
+                                                              'Minimum Balance (£)',
+                                                          labelStyle:
+                                                              FlutterFlowTheme.of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(
+                                                                                context)
+                                                                            .labelMediumFamily,
+                                                                    letterSpacing: 0.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(
+                                                                                context)
+                                                                            .labelMediumIsCustom,
+                                                                  ),
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(
+                                                                                context)
+                                                                            .labelMediumFamily,
+                                                                    letterSpacing: 0.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(
+                                                                                context)
+                                                                            .labelMediumIsCustom,
+                                                                  ),
+                                                          filled: true,
+                                                          fillColor:
+                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                          enabledBorder: UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color:
+                                                                  FlutterFlowTheme.of(context)
+                                                                      .alternate,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius.circular(8.0),
+                                                          ),
+                                                          focusedBorder: UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color:
+                                                                  FlutterFlowTheme.of(context)
+                                                                      .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius.circular(8.0),
+                                                          ),
+                                                          errorBorder: UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color:
+                                                                  FlutterFlowTheme.of(context)
+                                                                      .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius.circular(8.0),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color:
+                                                                  FlutterFlowTheme.of(context)
+                                                                      .error,
+                                                              width: 2.0,
+                                                            ),
+                                                            borderRadius:
+                                                                BorderRadius.circular(8.0),
+                                                          ),
                                                         ),
-                                                        options: const ['simple', 'smooth'],
-                                                        optionLabels: const [
-                                                          'Simple Prepayments',
-                                                          'Smoothed Prepayments'
-                                                        ],
-                                                        onChanged: (val) =>
-                                                            safeSetState(() => _model.balanceEnumValue = val),
-                                                        width: double.infinity,
-                                                        height: 56.0,
+                                                        style: FlutterFlowTheme.of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(context)
+                                                                      .bodyMediumFamily,
+                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                              letterSpacing: 0.0,
+                                                              useGoogleFonts:
+                                                                  !FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumIsCustom,
+                                                            ),
+                                                        validator: _model
+                                                            .minimumBalanceTextControllerValidator
+                                                            .asValidator(context),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsetsDirectional
+                                                          .fromSTEB(8.0, 0.0, 8.0, 10.0),
+                                                      child: Column(
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Padding(
+                                                            padding: const EdgeInsetsDirectional
+                                                                .fromSTEB(0.0, 0.0, 0.0, 4.0),
+                                                            child: Text(
+                                                              'Payment Mode',
+                                                              style: FlutterFlowTheme.of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .labelMediumFamily,
+                                                                    letterSpacing: 0.0,
+                                                                    useGoogleFonts:
+                                                                        !FlutterFlowTheme.of(context)
+                                                                            .labelMediumIsCustom,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          FlutterFlowDropDown<String>(
+                                                            controller: _model.balanceEnumValueController ??=
+                                                                FormFieldController<String>(
+                                                              _model.balanceEnumValue ??= 'simple',
+                                                            ),
+                                                            options: const ['simple', 'smooth'],
+                                                            optionLabels: const [
+                                                              'Simple Prepayments',
+                                                              'Smoothed Prepayments'
+                                                            ],
+                                                            onChanged: (val) =>
+                                                                safeSetState(() => _model.balanceEnumValue = val),
+                                                            width: double.infinity,
+                                                            height: 56.0,
                                                         textStyle:
                                                             FlutterFlowTheme.of(context)
                                                                 .bodyMedium
@@ -1789,6 +1861,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                         isOverButton: true,
                                                         isSearchable: false,
                                                         isMultiSelect: false,
+                                                      ),
+                                                        ],
                                                       ),
                                                     ),
                                                     Padding(
