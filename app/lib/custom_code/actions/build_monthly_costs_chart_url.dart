@@ -23,10 +23,10 @@ Future<String> buildMonthlyCostsChartUrl(
   }
 
   // Extract labels (month names) and data arrays
-  final labels = <String>[];
-  final standingCharges = <double>[];
-  final powerData = <double>[];
-  final heatData = <double>[];
+  var labels = <String>[];
+  var standingCharges = <double>[];
+  var powerData = <double>[];
+  var heatData = <double>[];
 
   for (final cost in monthlyCosts) {
     labels.add(cost.month);
@@ -34,6 +34,12 @@ Future<String> buildMonthlyCostsChartUrl(
     powerData.add(cost.power);
     heatData.add(cost.heat);
   }
+
+  // Reverse the order to display ascending by month
+  labels = labels.reversed.toList();
+  standingCharges = standingCharges.reversed.toList();
+  powerData = powerData.reversed.toList();
+  heatData = heatData.reversed.toList();
 
   // Create the chart request
   final request = QuickChartRequest(

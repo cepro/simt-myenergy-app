@@ -22,15 +22,20 @@ Future<String> buildMonthlyUsageChartUrl(
   }
 
   // Extract labels (month names) and data arrays
-  final labels = <String>[];
-  final powerData = <double>[];
-  final heatData = <double>[];
+  var labels = <String>[];
+  var powerData = <double>[];
+  var heatData = <double>[];
 
   for (final usage in monthlyUsage) {
     labels.add(usage.month);
     powerData.add(usage.usagePower);
     heatData.add(usage.usageHeat);
   }
+
+  // Reverse the order to display ascending by month
+  labels = labels.reversed.toList();
+  powerData = powerData.reversed.toList();
+  heatData = heatData.reversed.toList();
 
   // Create the chart request
   final request = QuickChartRequest(
