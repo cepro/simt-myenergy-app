@@ -40,6 +40,13 @@ class _UserProfileButtonWidgetState extends State<UserProfileButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
+    String currentPagePath;
+    try {
+      currentPagePath = 'myenergy://myenergy.com${GoRouterState.of(context).uri.toString()}';
+    } catch (e) {
+      currentPagePath = '';  // Fallback: assume not on profile page
+    }
+
     return Container(
       width: 35.0,
       height: 35.0,
@@ -61,9 +68,9 @@ class _UserProfileButtonWidgetState extends State<UserProfileButtonWidget> {
         borderColor: FlutterFlowTheme.of(context).lineColor,
         borderRadius: 12.0,
         borderWidth: 1.0,
-        fillColor: (String currentPagePath) {
-          return currentPagePath.endsWith('/profile');
-        }('myenergy://myenergy.com${GoRouterState.of(context).uri.toString()}')
+        fillColor: (String path) {
+          return path.endsWith('/profile');
+        }(currentPagePath)
             ? FlutterFlowTheme.of(context).primaryBackground
             : FlutterFlowTheme.of(context).secondaryBackground,
         icon: Icon(
