@@ -40,9 +40,12 @@ class _UserProfileButtonWidgetState extends State<UserProfileButtonWidget> {
 
   @override
   Widget build(BuildContext context) {
-    String currentPagePath;
+    String currentPagePath = '';
     try {
-      currentPagePath = 'myenergy://myenergy.com${GoRouterState.of(context).uri.toString()}';
+      final ModalRoute<Object?>? route = ModalRoute.of(context);
+      if (route != null && route.settings is Page<Object?>) {
+        currentPagePath = 'myenergy://myenergy.com${GoRouterState.of(context).uri.toString()}';
+      }
     } catch (e) {
       currentPagePath = '';  // Fallback: assume not on profile page
     }
