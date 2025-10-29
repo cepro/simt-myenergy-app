@@ -909,6 +909,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               .role ==
                                                           'occupier') &&
                                                       (FFAppState()
+                                                              .contractTerms !=
+                                                          null) &&
+                                                      (FFAppState()
                                                               .contractTerms
                                                               .where((e) =>
                                                                   e.type ==
@@ -1027,7 +1030,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           e.type ==
                                                                           'supply')
                                                                       .toList()
-                                                                      .firstOrNull!,
+                                                                      .first,
                                                                 ),
                                                               ),
                                                             ),
