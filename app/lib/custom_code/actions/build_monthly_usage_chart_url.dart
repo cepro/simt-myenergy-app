@@ -14,8 +14,9 @@ import '/custom_code/models/quickchart_service.dart';
 ///
 /// Returns the URL that can be used with Image.network()
 Future<String> buildMonthlyUsageChartUrl(
-  List<MonthlyUsageStruct> monthlyUsage,
-) async {
+  List<MonthlyUsageStruct> monthlyUsage, {
+  int width = 550,
+}) async {
   // Return empty string if no data
   if (monthlyUsage.isEmpty) {
     return '';
@@ -93,8 +94,9 @@ Future<String> buildMonthlyUsageChartUrl(
   // Build and return the URL
   return QuickChartService.buildUrl(
     request: request,
-    width: 550,
+    width: width,
     height: 350,
     backgroundColor: 'white',
+    format: 'svg',
   );
 }

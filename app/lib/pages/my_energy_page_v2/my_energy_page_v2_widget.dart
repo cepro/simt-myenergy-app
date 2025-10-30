@@ -16,6 +16,7 @@ import '/custom_code/actions/build_monthly_usage_chart_url.dart'
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'my_energy_page_v2_model.dart';
 export 'my_energy_page_v2_model.dart';
@@ -39,11 +40,29 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
   String _costsGraphUrl = '';
   String _energyGraphUrl = '';
 
+  /// Gets the dynamic chart width based on screen size
+  int get _chartWidth {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Mobile: smaller width
+    if (screenWidth < 768) {
+      return 400;
+    }
+    // Tablet: medium width
+    else if (screenWidth < 1024) {
+      return 600;
+    }
+    // Desktop: larger width
+    else {
+      return 1000;
+    }
+  }
+
   /// Builds the costs chart URL from monthly costs data
   Future<void> _buildCostsChartUrl() async {
     if (FFAppState().monthlyCosts.isNotEmpty) {
       final url = await build_costs_chart.buildMonthlyCostsChartUrl(
-          FFAppState().monthlyCosts);
+          FFAppState().monthlyCosts, width: _chartWidth);
       if (mounted) {
         setState(() {
           _costsGraphUrl = url;
@@ -56,7 +75,7 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
   Future<void> _buildEnergyChartUrl() async {
     if (FFAppState().monthlyUsage.isNotEmpty) {
       final url = await build_usage_chart.buildMonthlyUsageChartUrl(
-          FFAppState().monthlyUsage);
+          FFAppState().monthlyUsage, width: _chartWidth);
       if (mounted) {
         setState(() {
           _energyGraphUrl = url;
@@ -172,65 +191,23 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
+                child: SvgPicture.network(
                   imageUrl,
                   width: double.infinity,
                   height: 300.0,
                   fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      width: double.infinity,
-                      height: 300.0,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.error_outline,
-                              color: FlutterFlowTheme.of(context).error,
-                              size: 48.0,
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 0.0),
-                              child: Text(
-                                'Error loading graph',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyMediumFamily,
-                                      color: FlutterFlowTheme.of(context).error,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: !FlutterFlowTheme.of(
-                                              context)
-                                          .bodyMediumIsCustom,
-                                    ),
-                              ),
-                            ),
-                          ],
+                  placeholderBuilder: (context) => Container(
+                    width: double.infinity,
+                    height: 300.0,
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          FlutterFlowTheme.of(context).primary,
                         ),
                       ),
-                    );
-                  },
-                  loadingBuilder: (context, child, loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return Container(
-                      width: double.infinity,
-                      height: 300.0,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            FlutterFlowTheme.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    );
-                  },
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -15,8 +15,9 @@ import '/custom_code/models/quickchart_service.dart';
 ///
 /// Returns the URL that can be used with Image.network()
 Future<String> buildMonthlyCostsChartUrl(
-  List<MonthlyCostStruct> monthlyCosts,
-) async {
+  List<MonthlyCostStruct> monthlyCosts, {
+  int width = 550,
+}) async {
   // Return empty string if no data
   if (monthlyCosts.isEmpty) {
     return '';
@@ -99,8 +100,9 @@ Future<String> buildMonthlyCostsChartUrl(
   // Build and return the URL
   return QuickChartService.buildUrl(
     request: request,
-    width: 550,
+    width: width,
     height: 350,
     backgroundColor: 'white',
+    format: 'svg',
   );
 }
