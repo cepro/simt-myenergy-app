@@ -40,6 +40,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
   late PaymentsPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -878,35 +879,37 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(20.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(0.0, 0.0, 0.0, 15.0),
-                                                child: Text(
-                                                  'Topup Settings',
-                                                  style: FlutterFlowTheme.of(context)
-                                                      .headlineMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(context)
-                                                                .headlineMediumFamily,
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts:
-                                                            !FlutterFlowTheme.of(context)
-                                                                .headlineMediumIsCustom,
-                                                      ),
+                                          child: Form(
+                                            key: _formKey,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsetsDirectional
+                                                      .fromSTEB(0.0, 0.0, 0.0, 15.0),
+                                                  child: Text(
+                                                    'Topup Settings',
+                                                    style: FlutterFlowTheme.of(context)
+                                                        .headlineMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(context)
+                                                                  .headlineMediumFamily,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts:
+                                                              !FlutterFlowTheme.of(context)
+                                                                  .headlineMediumIsCustom,
+                                                        ),
+                                                  ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.all(0.0),
-                                                child: Column(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.all(0.0),
+                                                  child: Column(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
                                                       Padding(
                                                         padding: const EdgeInsetsDirectional
                                                             .fromSTEB(8.0, 0.0, 8.0, 15.0),
@@ -1059,9 +1062,19 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                                     context)
                                                                                 .bodyMediumIsCustom,
                                                                   ),
-                                                              validator: _model
-                                                                  .targetBalanceTextControllerValidator
-                                                                  .asValidator(context),
+                                                              validator: (val) {
+                                                                if (val == null || val.isEmpty) {
+                                                                  return 'Target Balance is required';
+                                                                }
+                                                                final intValue = int.tryParse(val);
+                                                                if (intValue == null) {
+                                                                  return 'Please enter a valid number';
+                                                                }
+                                                                if (intValue < 30) {
+                                                                  return 'Target Balance must be at least £30';
+                                                                }
+                                                                return null;
+                                                              },
                                                             ),
                                                           ],
                                                         ),
@@ -1345,6 +1358,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                             .fromSTEB(0.0, 10.0, 0.0, 0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
+                                                            if (!_formKey.currentState!.validate()) {
+                                                              return;
+                                                            }
                                                             await action_blocks
                                                                 .checkAndBlockWriteableAPICall(
                                                                     context);
@@ -1353,10 +1369,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                     .call(
                                                               bearerToken: currentJwtToken,
                                                               minimumBalance: int.tryParse(_model
-                                                                  .targetBalanceTextController
+                                                                  .minimumBalanceTextController
                                                                   .text),
                                                               targetBalance: int.tryParse(_model
-                                                                  .minimumBalanceTextController
+                                                                  .targetBalanceTextController
                                                                   .text),
                                                               walletId: getJsonField(
                                                                 (_model.topupPreferencesGetOutput
@@ -1448,7 +1464,8 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     ],
                                                   ),
                                                 ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
