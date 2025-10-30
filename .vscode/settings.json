@@ -7,7 +7,7 @@
     "${workspaceFolder}/local-stage",
     "${workspaceFolder}/patches"
   ],
-  "dart.flutterSdkPath": ".fvm/versions/3.35.0",
+  "dart.flutterSdkPath": ".fvm/versions/3.35.7",
   "search.exclude": {
     "**/local-stage": true,
     "**/.dart_tool": true,
