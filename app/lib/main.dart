@@ -104,8 +104,8 @@ class _MyAppState extends State<MyApp> {
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
-  String getRoute([RouteMatch? routeMatch]) {
-    final RouteMatch lastMatch =
+  String getRoute([RouteMatchBase? routeMatch]) {
+    final RouteMatchBase lastMatch =
         routeMatch ?? _router.routerDelegate.currentConfiguration.last;
     final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
         ? lastMatch.matches
@@ -128,12 +128,14 @@ class _MyAppState extends State<MyApp> {
     userStream = myEnergySupabaseUserStream()
       ..listen((user) {
         _appStateNotifier.update(user);
+        // Only stop showing splash image after we have user state
+        if (!_appStateNotifier.showSplashImage) {
+          // Splash image already stopped
+        } else {
+          _appStateNotifier.stopShowingSplashImage();
+        }
       });
     jwtTokenStream.listen((_) {});
-    Future.delayed(
-      const Duration(milliseconds: 1000),
-      () => _appStateNotifier.stopShowingSplashImage(),
-    );
   }
 
   void setThemeMode(ThemeMode mode) => safeSetState(() {
@@ -143,24 +145,29 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'MyEnergy',
-      scrollBehavior: MyAppScrollBehavior(),
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [Locale('en', '')],
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      themeMode: _themeMode,
-      routerConfig: _router,
+    return AnimatedBuilder(
+      animation: _appStateNotifier,
+      builder: (context, child) {
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'MyEnergy',
+          scrollBehavior: MyAppScrollBehavior(),
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('en', '')],
+          theme: ThemeData(
+            brightness: Brightness.light,
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+          ),
+          themeMode: _themeMode,
+          routerConfig: _router,
+        );
+      },
     );
   }
 }

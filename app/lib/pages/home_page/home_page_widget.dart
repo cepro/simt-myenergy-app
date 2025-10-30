@@ -1030,7 +1030,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           e.type ==
                                                                           'supply')
                                                                       .toList()
-                                                                      .first,
+                                                                      .firstWhere((e) => true),
                                                                 ),
                                                               ),
                                                             ),
