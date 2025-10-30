@@ -444,7 +444,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                   await animationsMap[
                                           'containerOnActionTriggerAnimation2']!
                                       .controller
-                                      .forward(from: 0.0);
+                                      .forward();
                                 }
                               },
                               child: Container(
@@ -540,7 +540,7 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                   await animationsMap[
                                           'containerOnActionTriggerAnimation1']!
                                       .controller
-                                      .forward(from: 0.0);
+                                      .forward();
                                 }
                               },
                               child: Container(
