@@ -16,10 +16,10 @@ Future<List<TopupStruct>> topupsJSONToTopupsDataType(
         source: topup['source'],
         notes: topup['notes'],
         referenceStr: topup['reference'],
-        acquiredAt: DateTime.parse(topup['acquiredAt']),
-        usedAt: DateTime.parse(topup['usedAt']),
-        createdAt: DateTime.parse(topup['createdAt']),
-        updatedAt: DateTime.parse(topup['updatedAt'])));
+        acquiredAt: topup['acquiredAt'] != null ? DateTime.parse(topup['acquiredAt']) : null,
+        usedAt: topup['usedAt'] != null ? DateTime.parse(topup['usedAt']) : null,
+        createdAt: topup['createdAt'] != null ? DateTime.parse(topup['createdAt']) : null,
+        updatedAt: topup['updatedAt'] != null ? DateTime.parse(topup['updatedAt']) : null));
   }
 
   // reverse date order (ie. latest date first)
