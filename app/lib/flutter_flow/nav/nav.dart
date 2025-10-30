@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
@@ -62,6 +63,8 @@ class AppStateNotifier extends ChangeNotifier {
     // No need to update unless the user has changed.
     if (notifyOnAuthChange && shouldUpdate) {
       notifyListeners();
+      // Force a frame to be scheduled on web to ensure UI repaints
+      SchedulerBinding.instance.scheduleFrame();
     }
     // Once again mark the notifier as needing to update on auth change
     // (in order to catch sign in / out events).
@@ -71,6 +74,8 @@ class AppStateNotifier extends ChangeNotifier {
   void stopShowingSplashImage() {
     showSplashImage = false;
     notifyListeners();
+    // Force a frame to be scheduled on web to ensure UI repaints
+    SchedulerBinding.instance.scheduleFrame();
   }
 }
 
@@ -385,19 +390,26 @@ class FFRoute {
                   builder: (context, _) => builder(context, ffParams),
                 )
               : builder(context, ffParams);
-          final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
+          
+          // Wrap in AnimatedBuilder to rebuild when loading state changes
+          final child = AnimatedBuilder(
+            animation: appStateNotifier,
+            builder: (context, _) {
+              return appStateNotifier.loading
+                  ? Center(
+                      child: SizedBox(
+                        width: 50.0,
+                        height: 50.0,
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            FlutterFlowTheme.of(context).primary,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                )
-              : page;
+                    )
+                  : page;
+            },
+          );
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

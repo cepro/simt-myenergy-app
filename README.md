@@ -14,11 +14,11 @@ Install:
 
 The version used by the project is in [.flutter-version](./.flutter-version).
 
-We use the same flutter version that Flutterflow uses which can be seen in the top left corner of the FlutterFlow UI:
-
-![FlutterFlow UI Version](./ff-ui-version.png)
-
-Manually update .flutter-version when Flutterflow upgrades this Flutter version.
+To upgrade edit the .flutter-version file and run:
+```sh
+fvm use 3.35.0
+fvm global 3.35.0
+```
 
 ## Run Locally
 
