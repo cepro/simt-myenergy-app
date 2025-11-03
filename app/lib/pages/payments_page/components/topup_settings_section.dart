@@ -570,9 +570,9 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                           FlutterFlowDropDown<String>(
                             controller: widget.paymentTimingController ??
                                 FormFieldController<String>(
-                                  widget.paymentTimingValue ?? 'month',
+                                  widget.paymentTimingValue ?? 'monthly',
                                 ),
-                            options: const ['month', 'week'],
+                            options: const ['monthly', 'weekly'],
                             optionLabels: const [
                               'Monthly',
                               'Weekly'
@@ -621,6 +621,12 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                           if (!widget.formKey.currentState!.validate()) {
                             return;
                           }
+
+                          // Get the actual current values from the controllers
+                          // (not the widget properties which may be stale)
+                          final balanceEnum = widget.balanceEnumValueController?.value ?? widget.balanceEnumValue;
+                          final paymentTiming = widget.paymentTimingController?.value ?? widget.paymentTimingValue;
+
                           await action_blocks
                               .checkAndBlockWriteableAPICall(context);
                           updateTopupPreferenceOutput =
@@ -635,7 +641,8 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                   ''),
                               r'''$[0].id''',
                             ).toString(),
-                            balanceEnum: widget.balanceEnumValue,
+                            balanceEnum: balanceEnum,
+                            paymentTiming: paymentTiming,
                           );
 
                           if (!context.mounted) return;

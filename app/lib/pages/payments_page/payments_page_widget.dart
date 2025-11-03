@@ -183,6 +183,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                   r'''$[0].balanceEnum''',
                 )?.toString();
               });
+              safeSetState(() {
+                _model.paymentTimingValue = getJsonField(
+                  (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
+                  r'''$[0].paymentTiming''',
+                )?.toString();
+              });
               _model.haveWallet = true;
             } else {
               // Probably redundant as it initializes to false but being explicit to be certain here.
