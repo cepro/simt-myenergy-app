@@ -940,7 +940,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                     content: Padding(
                                                                       padding: const EdgeInsets.all(4.0),
                                                                       child: Text(
-                                                                        'This is the target balance you want to maintain in your meter.',
+                                                                        'Used when forecasting prepayments for the coming month.',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .override(
@@ -1265,7 +1265,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                                     content: Padding(
                                                                       padding: const EdgeInsets.all(4.0),
                                                                       child: Text(
-                                                                        'Choose between simple or smoothed prepayments.',
+                                                                        'Smoothed prepayments even out seasonal highs and lows. Simple prepayments aim to match usage in the coming month.',
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyLarge
                                                                             .override(
