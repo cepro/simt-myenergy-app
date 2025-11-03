@@ -63,13 +63,16 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                 child: Text(
                   'Topup Settings',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
-                        fontFamily: FlutterFlowTheme.of(context).headlineMediumFamily,
+                        fontFamily:
+                            FlutterFlowTheme.of(context).headlineMediumFamily,
                         letterSpacing: 0.0,
-                        useGoogleFonts: !FlutterFlowTheme.of(context).headlineMediumIsCustom,
+                        useGoogleFonts: !FlutterFlowTheme.of(context)
+                            .headlineMediumIsCustom,
                       ),
                 ),
               ),
@@ -80,21 +83,28 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 15.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 0.0, 8.0, 15.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 1.0),
                             child: Row(
                               children: [
                                 Text(
                                   'Target Balance (£)',
-                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                        fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
                                         letterSpacing: 0.0,
-                                        useGoogleFonts: !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .labelMediumIsCustom,
                                       ),
                                 ),
                                 AlignedTooltip(
@@ -102,28 +112,40 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       'Used when forecasting prepayments for the coming month.',
-                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                            fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: !FlutterFlowTheme.of(context).bodyLargeIsCustom,
+                                            useGoogleFonts:
+                                                !FlutterFlowTheme.of(context)
+                                                    .bodyLargeIsCustom,
                                           ),
                                     ),
                                   ),
                                   offset: 4.0,
                                   preferredDirection: AxisDirection.down,
                                   borderRadius: BorderRadius.circular(8.0),
-                                  backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: const Duration(milliseconds: 100),
-                                  showDuration: const Duration(milliseconds: 1500),
+                                  waitDuration:
+                                      const Duration(milliseconds: 100),
+                                  showDuration:
+                                      const Duration(milliseconds: 1500),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
                                     child: Icon(
                                       Icons.info_outline,
-                                      color: FlutterFlowTheme.of(context).primaryText,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       size: 24.0,
                                     ),
                                   ),
@@ -138,18 +160,26 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                             obscureText: false,
                             onChanged: (_) => {
                               setState(() {
-                                final targetValue = int.tryParse(widget.targetBalanceController.text);
+                                final targetValue = int.tryParse(
+                                    widget.targetBalanceController.text);
                                 if (targetValue != null && targetValue > 10) {
-                                  widget.minimumBalanceController.text = (targetValue - 10).toString();
+                                  widget.minimumBalanceController.text =
+                                      (targetValue - 10).toString();
                                 }
                               })
                             },
                             decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                              hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelMediumFamily,
                                     letterSpacing: 0.0,
-                                    useGoogleFonts: !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .labelMediumIsCustom,
                                   ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
@@ -180,10 +210,14 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .bodyMediumIsCustom,
                                 ),
                             validator: (val) {
                               if (val == null || val.isEmpty) {
@@ -203,21 +237,28 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 15.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 0.0, 8.0, 15.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 1.0),
                             child: Row(
                               children: [
                                 Text(
                                   'Minimum Balance (£)',
-                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                        fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
                                         letterSpacing: 0.0,
-                                        useGoogleFonts: !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .labelMediumIsCustom,
                                       ),
                                 ),
                                 AlignedTooltip(
@@ -225,28 +266,40 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       'This is the minimum balance before automatic top-up occurs.',
-                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                            fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: !FlutterFlowTheme.of(context).bodyLargeIsCustom,
+                                            useGoogleFonts:
+                                                !FlutterFlowTheme.of(context)
+                                                    .bodyLargeIsCustom,
                                           ),
                                     ),
                                   ),
                                   offset: 4.0,
                                   preferredDirection: AxisDirection.down,
                                   borderRadius: BorderRadius.circular(8.0),
-                                  backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: const Duration(milliseconds: 100),
-                                  showDuration: const Duration(milliseconds: 1500),
+                                  waitDuration:
+                                      const Duration(milliseconds: 100),
+                                  showDuration:
+                                      const Duration(milliseconds: 1500),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
                                     child: Icon(
                                       Icons.info_outline,
-                                      color: FlutterFlowTheme.of(context).primaryText,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       size: 24.0,
                                     ),
                                   ),
@@ -261,14 +314,21 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                             readOnly: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                              hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .labelMediumFamily,
                                     letterSpacing: 0.0,
-                                    useGoogleFonts: !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                                    useGoogleFonts:
+                                        !FlutterFlowTheme.of(context)
+                                            .labelMediumIsCustom,
                                   ),
                               filled: true,
-                              fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).alternate,
@@ -298,11 +358,16 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
-                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context).secondaryText,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .bodyMediumIsCustom,
                                 ),
                             validator: (val) => null,
                           ),
@@ -310,21 +375,28 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 15.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 0.0, 8.0, 15.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
                             child: Row(
                               children: [
                                 Text(
                                   'Payment Mode',
-                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                        fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
                                         letterSpacing: 0.0,
-                                        useGoogleFonts: !FlutterFlowTheme.of(context).labelMediumIsCustom,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .labelMediumIsCustom,
                                       ),
                                 ),
                                 AlignedTooltip(
@@ -332,28 +404,40 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                     padding: const EdgeInsets.all(4.0),
                                     child: Text(
                                       'Smoothed prepayments even out seasonal highs and lows. Simple prepayments aim to match usage in the coming month.',
-                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                            fontFamily: FlutterFlowTheme.of(context).bodyLargeFamily,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
                                             letterSpacing: 0.0,
-                                            useGoogleFonts: !FlutterFlowTheme.of(context).bodyLargeIsCustom,
+                                            useGoogleFonts:
+                                                !FlutterFlowTheme.of(context)
+                                                    .bodyLargeIsCustom,
                                           ),
                                     ),
                                   ),
                                   offset: 4.0,
                                   preferredDirection: AxisDirection.down,
                                   borderRadius: BorderRadius.circular(8.0),
-                                  backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   elevation: 4.0,
                                   tailBaseWidth: 24.0,
                                   tailLength: 12.0,
-                                  waitDuration: const Duration(milliseconds: 100),
-                                  showDuration: const Duration(milliseconds: 1500),
+                                  waitDuration:
+                                      const Duration(milliseconds: 100),
+                                  showDuration:
+                                      const Duration(milliseconds: 1500),
                                   triggerMode: TooltipTriggerMode.tap,
                                   child: Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
                                     child: Icon(
                                       Icons.info_outline,
-                                      color: FlutterFlowTheme.of(context).primaryText,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       size: 24.0,
                                     ),
                                   ),
@@ -367,14 +451,22 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                   widget.balanceEnumValue ?? 'simple',
                                 ),
                             options: const ['simple', 'smooth'],
-                            optionLabels: const ['Simple Prepayments', 'Smoothed Prepayments'],
-                            onChanged: (val) => widget.onBalanceEnumChanged(val),
+                            optionLabels: const [
+                              'Simple Prepayments',
+                              'Smoothed Prepayments'
+                            ],
+                            onChanged: (val) =>
+                                widget.onBalanceEnumChanged(val),
                             width: double.infinity,
                             height: 56.0,
-                            textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context).bodyMediumIsCustom,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .bodyMediumIsCustom,
                                 ),
                             hintText: 'Payment Mode',
                             icon: Icon(
@@ -382,12 +474,14 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 24.0,
                             ),
-                            fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             elevation: 2.0,
                             borderColor: FlutterFlowTheme.of(context).alternate,
                             borderWidth: 2.0,
                             borderRadius: 8.0,
-                            margin: const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                            margin: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 4.0, 16.0, 4.0),
                             hidesUnderline: true,
                             isOverButton: true,
                             isSearchable: false,
@@ -397,19 +491,25 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 10.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           if (!widget.formKey.currentState!.validate()) {
                             return;
                           }
-                          await action_blocks.checkAndBlockWriteableAPICall(context);
-                          updateTopupPreferenceOutput = await UpdateTopupPreferencesCall.call(
+                          await action_blocks
+                              .checkAndBlockWriteableAPICall(context);
+                          updateTopupPreferenceOutput =
+                              await UpdateTopupPreferencesCall.call(
                             bearerToken: currentJwtToken,
-                            minimumBalance: int.tryParse(widget.minimumBalanceController.text),
-                            targetBalance: int.tryParse(widget.targetBalanceController.text),
+                            minimumBalance: int.tryParse(
+                                widget.minimumBalanceController.text),
+                            targetBalance: int.tryParse(
+                                widget.targetBalanceController.text),
                             walletId: getJsonField(
-                              (widget.topupPreferencesGetOutput?.jsonBody ?? ''),
+                              (widget.topupPreferencesGetOutput?.jsonBody ??
+                                  ''),
                               r'''$[0].id''',
                             ).toString(),
                             balanceEnum: widget.balanceEnumValue,
@@ -417,24 +517,33 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
 
                           if (!context.mounted) return;
 
-                          if ((updateTopupPreferenceOutput?.succeeded ?? true) == true) {
+                          if ((updateTopupPreferenceOutput?.succeeded ??
+                                  true) ==
+                              true) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
                                   'Topup preferences updated successfully',
                                   style: TextStyle(
-                                    color: FlutterFlowTheme.of(context).primaryText,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
                                   ),
                                 ),
                                 duration: const Duration(milliseconds: 4000),
-                                backgroundColor: FlutterFlowTheme.of(context).secondary,
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
                               ),
                             );
                           } else {
                             await action_blocks.handleMyEnergyApiCallFailure(
                               context,
-                              wwwAuthenticateHeader: (updateTopupPreferenceOutput?.getHeader('www-authenticate') ?? ''),
-                              httpStatusCode: (updateTopupPreferenceOutput?.statusCode ?? 200),
+                              wwwAuthenticateHeader:
+                                  (updateTopupPreferenceOutput
+                                          ?.getHeader('www-authenticate') ??
+                                      ''),
+                              httpStatusCode:
+                                  (updateTopupPreferenceOutput?.statusCode ??
+                                      200),
                             );
                           }
 
@@ -443,14 +552,20 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                         text: 'Save',
                         options: FFButtonOptions(
                           height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
-                          textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleSmallFamily,
                                 color: Colors.white,
                                 letterSpacing: 0.0,
-                                useGoogleFonts: !FlutterFlowTheme.of(context).titleSmallIsCustom,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .titleSmallIsCustom,
                               ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
