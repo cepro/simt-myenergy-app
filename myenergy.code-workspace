@@ -10,7 +10,7 @@
     }
   ],
   "settings": {
-    "dart.flutterSdkPath": ".fvm/versions/3.32.4",
+    "dart.flutterSdkPath": ".fvm/versions/3.35.7",
     "dart.analysisExcludedFolders": [
       "local-stage",
       "patches",
