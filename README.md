@@ -16,8 +16,13 @@ The version used by the project is in [.flutter-version](./.flutter-version).
 
 To upgrade edit the .flutter-version file and run:
 ```sh
-fvm use 3.35.0
-fvm global 3.35.0
+fvm use 3.35.7
+fvm global 3.35.7
+```
+
+You may need to update the vscodium settings file too:
+```
+"dart.flutterSdkPath": ".fvm/versions/3.35.7",
 ```
 
 ## Run Locally
