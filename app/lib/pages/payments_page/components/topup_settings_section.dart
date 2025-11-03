@@ -21,6 +21,9 @@ class TopupSettingsSection extends StatefulWidget {
     required this.formKey,
     required this.topupPreferencesGetOutput,
     required this.onBalanceEnumChanged,
+    required this.paymentTimingValue,
+    required this.paymentTimingController,
+    required this.onPaymentTimingChanged,
   });
 
   final TextEditingController minimumBalanceController;
@@ -32,6 +35,9 @@ class TopupSettingsSection extends StatefulWidget {
   final GlobalKey<FormState> formKey;
   final ApiCallResponse? topupPreferencesGetOutput;
   final Function(String?) onBalanceEnumChanged;
+  final String? paymentTimingValue;
+  final FormFieldController<String>? paymentTimingController;
+  final Function(String?) onPaymentTimingChanged;
 
   @override
   State<TopupSettingsSection> createState() => _TopupSettingsSectionState();
@@ -469,6 +475,123 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                       .bodyMediumIsCustom,
                                 ),
                             hintText: 'Payment Mode',
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: FlutterFlowTheme.of(context).alternate,
+                            borderWidth: 2.0,
+                            borderRadius: 8.0,
+                            margin: const EdgeInsetsDirectional.fromSTEB(
+                                16.0, 4.0, 16.0, 4.0),
+                            hidesUnderline: true,
+                            isOverButton: true,
+                            isSearchable: false,
+                            isMultiSelect: false,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 0.0, 8.0, 15.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 8.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Payment Timing',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .labelMediumFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts:
+                                            !FlutterFlowTheme.of(context)
+                                                .labelMediumIsCustom,
+                                      ),
+                                ),
+                                AlignedTooltip(
+                                  content: Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: Text(
+                                      'Take one payment each month or four payments each month.',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyLarge
+                                          .override(
+                                            fontFamily:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyLargeFamily,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts:
+                                                !FlutterFlowTheme.of(context)
+                                                    .bodyLargeIsCustom,
+                                          ),
+                                    ),
+                                  ),
+                                  offset: 4.0,
+                                  preferredDirection: AxisDirection.down,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  elevation: 4.0,
+                                  tailBaseWidth: 24.0,
+                                  tailLength: 12.0,
+                                  waitDuration:
+                                      const Duration(milliseconds: 100),
+                                  showDuration:
+                                      const Duration(milliseconds: 1500),
+                                  triggerMode: TooltipTriggerMode.tap,
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 0.0, 0.0),
+                                    child: Icon(
+                                      Icons.info_outline,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          FlutterFlowDropDown<String>(
+                            controller: widget.paymentTimingController ??
+                                FormFieldController<String>(
+                                  widget.paymentTimingValue ?? 'month',
+                                ),
+                            options: const ['month', 'week'],
+                            optionLabels: const [
+                              'Monthly',
+                              'Weekly'
+                            ],
+                            onChanged: (val) =>
+                                widget.onPaymentTimingChanged(val),
+                            width: double.infinity,
+                            height: 56.0,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts:
+                                      !FlutterFlowTheme.of(context)
+                                          .bodyMediumIsCustom,
+                                ),
+                            hintText: 'Payment Timing',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,

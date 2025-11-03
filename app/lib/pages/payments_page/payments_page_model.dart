@@ -137,6 +137,10 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   String? balanceEnumValue;
   FormFieldController<String>? balanceEnumValueController;
 
+  // State field(s) for PaymentTiming dropdown.
+  String? paymentTimingValue;
+  FormFieldController<String>? paymentTimingController;
+
   // Stores action output result for [Backend Call - API (Update Topup Preferences)] action in Button widget.
   ApiCallResponse? updateTopupPreferenceOutput;
 
