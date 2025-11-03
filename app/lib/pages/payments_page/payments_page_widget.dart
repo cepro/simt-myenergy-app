@@ -474,7 +474,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         onBalanceEnumChanged: (val) => safeSetState(() => _model.balanceEnumValue = val),
                                         paymentTimingValue: _model.paymentTimingValue,
                                         paymentTimingController: _model.paymentTimingController,
-                                        onPaymentTimingChanged: (val) => safeSetState(() => _model.paymentTimingValue = val),
+                                        onPaymentTimingChanged: (val) {
+                                          safeSetState(() {
+                                            _model.paymentTimingValue = val;
+                                            _model.paymentTimingController?.value = val;
+                                          });
+                                        },
                                       ),
                                     ),
                                   ],
@@ -514,7 +519,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                       onBalanceEnumChanged: (val) => safeSetState(() => _model.balanceEnumValue = val),
                                       paymentTimingValue: _model.paymentTimingValue,
                                       paymentTimingController: _model.paymentTimingController,
-                                      onPaymentTimingChanged: (val) => safeSetState(() => _model.paymentTimingValue = val),
+                                      onPaymentTimingChanged: (val) {
+                                        safeSetState(() {
+                                          _model.paymentTimingValue = val;
+                                          _model.paymentTimingController?.value = val;
+                                        });
+                                      },
                                     ),
                                   ],
                                 ),

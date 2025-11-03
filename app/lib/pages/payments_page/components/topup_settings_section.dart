@@ -624,8 +624,8 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
 
                           // Get the actual current values from the controllers
                           // (not the widget properties which may be stale)
-                          final balanceEnum = widget.balanceEnumValueController?.value ?? widget.balanceEnumValue;
-                          final paymentTiming = widget.paymentTimingController?.value ?? widget.paymentTimingValue;
+                          final balanceEnum = widget.balanceEnumValue ?? widget.balanceEnumValueController?.value;
+                          final paymentTiming = widget.paymentTimingValue ?? widget.paymentTimingController?.value;
 
                           await action_blocks
                               .checkAndBlockWriteableAPICall(context);
