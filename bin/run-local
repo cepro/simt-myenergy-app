@@ -2,7 +2,7 @@
 #
 # Run web app from the local-stage/.
 #
-# --export will force a fresh export and patch
+# Pass 'hmce' to override default 'wlce' esco.
 #
 set -e
 
@@ -16,16 +16,16 @@ THIS_PROJECT=`pwd`/`dirname $0`/..
 APP_HOME=$THIS_PROJECT/app
 
 if [ "$1" = "hmce" ]; then
-  SITE_NAME=hazelmead
+  ESCO_NAME=hazelmead
 else
-  SITE_NAME=waterlilies
+  ESCO_NAME=waterlilies
 fi
-SITE_HOSTNAME=local.$SITE_NAME.energy
+ESCO_HOSTNAME=local.$ESCO_NAME.energy
 
 cd $APP_HOME
 echo "\nRun app from $APP_HOME ...\n"
 flutter run -d chrome \
-  --web-hostname $SITE_HOSTNAME \
+  --web-hostname $ESCO_HOSTNAME \
   --web-port 4242 \
   --web-browser-flag "--disable-web-security" \
   --dart-define=ENV=$ENV \
