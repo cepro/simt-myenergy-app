@@ -47,6 +47,9 @@ cd build/web
 sed -i -e 's/v=123/v='${NEW_BUILD_NUMBER}/g index.html || exit 1
 cd - > /dev/null
 
+echo "\nEmbedding source content into sourcemap for Sentry ..."
+python3 $THIS_PROJECT/bin/embed-sources.py $BUILD_HOME/build/web/main.dart.js.map $BUILD_HOME || exit 1
+
 # Copy build artifacts and Docker files to project root for deployment
 echo "\nCopying build artifacts to $THIS_PROJECT for Fly.io deployment ..."
 
