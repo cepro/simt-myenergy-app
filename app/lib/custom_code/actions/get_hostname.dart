@@ -4,9 +4,9 @@
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'dart:html';
+import 'package:web/web.dart' as web;
 
 Future<String> getHostname() async {
-  Uri uri = Uri.parse(window.location.href);
+  Uri uri = Uri.parse(web.window.location.href);
   return uri.host;
 }
