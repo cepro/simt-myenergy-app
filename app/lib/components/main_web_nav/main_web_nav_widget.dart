@@ -150,7 +150,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                 ],
               ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
               child: Text(
                 'MENU',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -184,8 +185,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 8.0, 0.0, 8.0),
                       child: Icon(
                         Icons.home_rounded,
                         color: widget.navOne,
@@ -193,8 +194,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Home',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -234,8 +235,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 8.0, 0.0, 8.0),
                       child: Icon(
                         Icons.electrical_services,
                         color: widget.navTwo,
@@ -243,8 +244,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'My Energy',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -284,8 +285,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 8.0, 0.0, 8.0),
                       child: Icon(
                         Icons.credit_card_rounded,
                         color: widget.navThree,
@@ -293,8 +294,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 0.0, 0.0, 0.0),
                       child: Text(
                         'Payments',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -313,7 +314,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
             ),
             if (FFAppState().isCeproUser)
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -335,8 +337,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.monetization_on,
                           color: widget.navFive,
@@ -344,8 +346,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Admin Payment',
                           style: FlutterFlowTheme.of(context)
@@ -366,7 +368,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             if (FFAppState().isCeproUser)
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -388,8 +391,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 8.0, 0.0, 8.0),
                         child: Icon(
                           Icons.face_2,
                           color: widget.navSix,
@@ -397,8 +400,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 0.0, 0.0),
                         child: Text(
                           'Impersonate User',
                           style: FlutterFlowTheme.of(context)
@@ -419,14 +422,15 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
               ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 12.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -441,10 +445,11 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 if (animationsMap[
                                         'containerOnActionTriggerAnimation2'] !=
                                     null) {
-                                  await animationsMap[
+                                  final controller = animationsMap[
                                           'containerOnActionTriggerAnimation2']!
-                                      .controller
-                                      .forward();
+                                      .controller;
+                                  controller.duration ??= const Duration(milliseconds: 350);
+                                  await controller.forward();
                                 }
                               },
                               child: Container(
@@ -471,8 +476,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                               BorderRadius.circular(20.0),
                                         ),
                                         child: Stack(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                          alignment: const AlignmentDirectional(
+                                              0.0, 0.0),
                                           children: [
                                             const Align(
                                               alignment: AlignmentDirectional(
@@ -489,8 +494,9 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -0.85, 0.0),
+                                              alignment:
+                                                  const AlignmentDirectional(
+                                                      -0.85, 0.0),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,
@@ -537,10 +543,11 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                 if (animationsMap[
                                         'containerOnActionTriggerAnimation1'] !=
                                     null) {
-                                  await animationsMap[
+                                  final controller = animationsMap[
                                           'containerOnActionTriggerAnimation1']!
-                                      .controller
-                                      .forward();
+                                      .controller;
+                                  controller.duration ??= const Duration(milliseconds: 350);
+                                  await controller.forward();
                                 }
                               },
                               child: Container(
@@ -567,8 +574,8 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                               BorderRadius.circular(20.0),
                                         ),
                                         child: Stack(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                          alignment: const AlignmentDirectional(
+                                              0.0, 0.0),
                                           children: [
                                             const Align(
                                               alignment: AlignmentDirectional(
@@ -585,8 +592,9 @@ class _MainWebNavWidgetState extends State<MainWebNavWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.9, 0.0),
+                                              alignment:
+                                                  const AlignmentDirectional(
+                                                      0.9, 0.0),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,

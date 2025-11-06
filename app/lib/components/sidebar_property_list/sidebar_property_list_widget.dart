@@ -155,7 +155,8 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
               ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,8 +189,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 8.0, 0.0, 8.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 8.0, 0.0, 8.0),
                                     child: Icon(
                                       Icons.house_sharp,
                                       color: widget.navSix,
@@ -197,8 +199,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Properties',
                                       style: FlutterFlowTheme.of(context)
@@ -244,8 +247,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 8.0, 0.0, 8.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 8.0, 0.0, 8.0),
                                     child: Icon(
                                       Icons.face_2,
                                       color: widget.navSix,
@@ -253,8 +257,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Impersonate User',
                                       style: FlutterFlowTheme.of(context)
@@ -300,8 +305,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 8.0, 0.0, 8.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 8.0, 0.0, 8.0),
                                     child: Icon(
                                       Icons.monetization_on,
                                       color: widget.navFive,
@@ -309,8 +315,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 0.0, 0.0),
                                     child: Text(
                                       'Admin Payment',
                                       style: FlutterFlowTheme.of(context)
@@ -334,8 +341,8 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                       ],
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 12.0, 0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -352,11 +359,14 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                     null) {
                                   safeSetState(
                                       () => hasContainerTriggered2 = true);
-                                  SchedulerBinding.instance.addPostFrameCallback(
-                                      (_) async => await animationsMap[
-                                              'containerOnActionTriggerAnimation2']!
-                                          .controller
-                                          .forward(from: 0.0));
+                                  SchedulerBinding.instance
+                                      .addPostFrameCallback((_) async {
+                                    final controller = animationsMap[
+                                            'containerOnActionTriggerAnimation2']!
+                                        .controller;
+                                    controller.duration ??= const Duration(milliseconds: 350);
+                                    await controller.forward(from: 0.0);
+                                  });
                                 }
                               },
                               child: Container(
@@ -383,8 +393,8 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                               BorderRadius.circular(20.0),
                                         ),
                                         child: Stack(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                          alignment: const AlignmentDirectional(
+                                              0.0, 0.0),
                                           children: [
                                             const Align(
                                               alignment: AlignmentDirectional(
@@ -401,8 +411,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -0.85, 0.0),
+                                              alignment:
+                                                  const AlignmentDirectional(
+                                                      -0.85, 0.0),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,
@@ -452,11 +463,14 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                     null) {
                                   safeSetState(
                                       () => hasContainerTriggered1 = true);
-                                  SchedulerBinding.instance.addPostFrameCallback(
-                                      (_) async => await animationsMap[
-                                              'containerOnActionTriggerAnimation1']!
-                                          .controller
-                                          .forward(from: 0.0));
+                                  SchedulerBinding.instance
+                                      .addPostFrameCallback((_) async {
+                                    final controller = animationsMap[
+                                            'containerOnActionTriggerAnimation1']!
+                                        .controller;
+                                    controller.duration ??= const Duration(milliseconds: 350);
+                                    await controller.forward(from: 0.0);
+                                  });
                                 }
                               },
                               child: Container(
@@ -483,8 +497,8 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                               BorderRadius.circular(20.0),
                                         ),
                                         child: Stack(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
+                                          alignment: const AlignmentDirectional(
+                                              0.0, 0.0),
                                           children: [
                                             const Align(
                                               alignment: AlignmentDirectional(
@@ -501,8 +515,9 @@ class _SidebarPropertyListWidgetState extends State<SidebarPropertyListWidget>
                                               ),
                                             ),
                                             Align(
-                                              alignment: const AlignmentDirectional(
-                                                  0.9, 0.0),
+                                              alignment:
+                                                  const AlignmentDirectional(
+                                                      0.9, 0.0),
                                               child: Container(
                                                 width: 36.0,
                                                 height: 36.0,
