@@ -18,15 +18,20 @@ import 'index.dart';
 
 import 'package:flutter/foundation.dart' show kDebugMode;
 
+// Release version passed at build time via --dart-define
+const String appVersion = String.fromEnvironment('APP_VERSION', defaultValue: 'unknown');
+
 void main() async {
   Environment.initialize();
-  
+
   await SentryFlutter.init((options) {
     options.dsn =
         'https://b378c6db98e5c54511fc29154355f563@o4506409083994112.ingest.sentry.io/4506409085042688';
     // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
     // We recommend adjusting this value in production.
     options.tracesSampleRate = 1.0;
+    // Set release version for sourcemap matching (passed at build time)
+    options.release = appVersion;
   }, appRunner: () async {
     WidgetsFlutterBinding.ensureInitialized();
     GoRouter.optionURLReflectsImperativeAPIs = true;

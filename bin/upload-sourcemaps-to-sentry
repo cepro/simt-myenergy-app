@@ -1,0 +1,73 @@
+#!/bin/sh
+
+set -e
+
+# Sentry configuration
+SENTRY_ORG="simtricity"  # Update this to your Sentry organization slug
+SENTRY_PROJECT="myenergy-app"  # Update this to your Sentry project slug
+
+if [ -z "$SENTRY_AUTH_TOKEN" ]; then
+    echo "Error: SENTRY_AUTH_TOKEN environment variable not set"
+    echo ""
+    echo "To get an auth token:"
+    echo "1. Go to https://sentry.io/settings/account/api/auth-tokens/"
+    echo "2. Create a new token with 'project:releases' and 'project:write' scopes"
+    echo "3. Export it: export SENTRY_AUTH_TOKEN=<your-token>"
+    exit 1
+fi
+
+THIS_PROJECT=`pwd`/`dirname $0`/..
+BUILD_DIR="$THIS_PROJECT/build/web"
+
+if [ ! -d "$BUILD_DIR" ]; then
+    echo "Error: Build directory not found: $BUILD_DIR"
+    echo "Run bin/build-fly first"
+    exit 1
+fi
+
+# Get the release version from pubspec.yaml
+RELEASE=$(grep '^version:' $THIS_PROJECT/app/pubspec.yaml | sed -e 's/version: *//')
+
+if [ -z "$RELEASE" ]; then
+    echo "Error: Could not determine release version from pubspec.yaml"
+    exit 1
+fi
+
+echo "=========================================="
+echo "Uploading sourcemaps to Sentry"
+echo "Organization: $SENTRY_ORG"
+echo "Project: $SENTRY_PROJECT"
+echo "Release: $RELEASE"
+echo "=========================================="
+echo ""
+
+# Create a new release in Sentry
+echo "Creating release $RELEASE..."
+sentry-cli releases new "$RELEASE" \
+    --org "$SENTRY_ORG" \
+    --project "$SENTRY_PROJECT" || true  # Don't fail if already exists
+
+# Upload source maps
+echo "Uploading sourcemaps..."
+sentry-cli sourcemaps upload \
+    --org "$SENTRY_ORG" \
+    --project "$SENTRY_PROJECT" \
+    --release "$RELEASE" \
+    --url-prefix '~/' \
+    "$BUILD_DIR"
+
+# Finalize the release
+echo "Finalizing release..."
+sentry-cli releases finalize "$RELEASE" \
+    --org "$SENTRY_ORG" \
+    --project "$SENTRY_PROJECT"
+
+echo ""
+echo "=========================================="
+echo "Sourcemaps uploaded successfully!"
+echo "Release: $RELEASE"
+echo "=========================================="
+echo ""
+echo "Note: Sourcemaps are now stored privately in Sentry."
+echo "You can safely remove .map files from your web server if desired."
+echo ""

@@ -40,7 +40,8 @@ flutter build web \
     --pwa-strategy none \
     --dart-define=ENV=$ENV \
     --dart-define=BUILD_FLUTTER_VERSION=$BUILD_FLUTTER_VERSION \
-    --dart-define=GIT_COMMIT=$GIT_COMMIT || exit 1
+    --dart-define=GIT_COMMIT=$GIT_COMMIT \
+    --dart-define=APP_VERSION=$NEW_APP_VERSION || exit 1
 
 echo "\nInject build number into script hrefs for cache busting ..."
 cd build/web
