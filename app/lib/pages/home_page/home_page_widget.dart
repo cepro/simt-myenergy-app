@@ -1,4 +1,5 @@
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/home_notification_box/home_notification_box_widget.dart';
 import '/components/info_tooltip_widget.dart';
 import '/components/labeled_value_widget.dart';
@@ -1030,7 +1031,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                           e.type ==
                                                                           'supply')
                                                                       .toList()
-                                                                      .firstWhere((e) => true),
+                                                                      .firstOrNull ??
+                                                                      ContractTermsStruct(),
                                                                 ),
                                                               ),
                                                             ),
