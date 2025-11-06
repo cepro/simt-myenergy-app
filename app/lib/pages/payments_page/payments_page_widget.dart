@@ -8,6 +8,7 @@ import '/components/top_bar_logged_in/top_bar_logged_in_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
@@ -183,13 +184,17 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                   r'''$[0].balanceEnum''',
                 )?.toString();
               });
-              safeSetState(() {
+safeSetState(() {
                 _model.paymentTimingValue = getJsonField(
                   (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
                   r'''$[0].paymentTiming''',
                 )?.toString();
               });
               _model.haveWallet = true;
+              
+              // Update controllers with actual API response values
+              _model.paymentTimingController?.value = _model.paymentTimingValue;
+              _model.balanceEnumValueController?.value = _model.balanceEnumValue;
             } else {
               // Probably redundant as it initializes to false but being explicit to be certain here.
               _model.haveWallet = false;
@@ -213,6 +218,10 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
     _model.targetBalanceTextController ??= TextEditingController(text: '50');
     _model.targetBalanceFocusNode ??= FocusNode();
+
+    // Initialize form field controllers with proper initial values
+    _model.paymentTimingController ??= FormFieldController<String>(_model.paymentTimingValue ?? 'monthly');
+    _model.balanceEnumValueController ??= FormFieldController<String>(_model.balanceEnumValue ?? 'simple');
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
