@@ -84,7 +84,7 @@ Future<String> buildMonthlyCostsChartUrl(
       heatForecast.add(cost.heat);
     } else {
       // Past data - actual
-      standingActual.add(cost.standingCharge);
+      standingActual.add(cost.microgridStandingCharge);
       standingForecast.add(0.0);
       powerActual.add(cost.microgridPower);
       powerForecast.add(0.0);
