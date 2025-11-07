@@ -167,6 +167,45 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
     );
   }
 
+  /// Builds a "No data" widget with consistent styling
+  Widget _buildNoDataWidget(BuildContext context, String title) {
+    return Container(
+      width: double.infinity,
+      height: 400.0,
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).secondaryBackground,
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(
+          color: FlutterFlowTheme.of(context).lineColor,
+          width: 1.0,
+        ),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.show_chart,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              size: 48.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'No data',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -207,18 +246,18 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
     super.dispose();
   }
 
-  Widget _buildGraphPane(String imageUrl, String title, String emoji) {
+  Widget _buildGraphPane(String imageUrl, String title, String emoji, bool hasData) {
     return Container(
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(15.0),
         border: Border.all(
-          color: FlutterFlowTheme.of(context).lineColor,
+          color: FlutterFlowTheme.of(context).primary,
           width: 1.0,
         ),
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -237,86 +276,88 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
                   child: Text(
                     title,
-                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                    style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily:
-                              FlutterFlowTheme.of(context).headlineSmallFamily,
+                              FlutterFlowTheme.of(context).headlineMediumFamily,
                           letterSpacing: 0.0,
                           useGoogleFonts:
-                              !FlutterFlowTheme.of(context).headlineSmallIsCustom,
+                              !FlutterFlowTheme.of(context).headlineMediumIsCustom,
                         ),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: FutureBuilder<String>(
-                  future: _fetchImageContent(imageUrl),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Container(
-                        width: double.infinity,
-                        height: 400.0,
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        child: Center(
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    } else if (snapshot.hasError) {
-                      print('🔥 Network Error at line ~250 in _buildGraphPane method:');
-                      print('Image URL: $imageUrl');
-                      print('Network Error: ${snapshot.error}');
-                      return _buildErrorWidget(context, 'Network Error', snapshot.error.toString());
-                    } else if (snapshot.hasData) {
-                      final content = snapshot.data!;
-                      
-                      // Check if content starts with XML/SVG header
-                      if (!content.trim().startsWith('<?xml') &&
-                          !content.trim().startsWith('<svg') &&
-                          !content.trim().startsWith('<!DOCTYPE svg')) {
-                        // This is not valid SVG - log the raw response
-                        print('🔥 Invalid SVG Response at line ~260 in _buildGraphPane method:');
-                        print('Image URL: $imageUrl');
-                        print('Content Type: Non-SVG (likely HTML error page or API response)');
-                        print('Response Length: ${content.length} characters');
-                        print('First 500 characters of response:');
-                        print(content.substring(0, content.length > 500 ? 500 : content.length));
-                        print('--- End of Response ---');
-                        
-                        return _buildErrorWidget(context, 'Invalid SVG Response',
-                          'Received non-SVG content (${content.length} chars). Check console for details.');
-                      }
-                      
-                      // Valid SVG - display it
-                      return SvgPicture.memory(
-                        Uint8List.fromList(content.codeUnits),
-                        width: double.infinity,
-                        height: 400.0,
-                        fit: BoxFit.contain,
-                        placeholderBuilder: (context) => Container(
-                          width: double.infinity,
-                          height: 400.0,
-                          color: FlutterFlowTheme.of(context).secondaryBackground,
-                          child: Center(
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
+                child: hasData
+                    ? FutureBuilder<String>(
+                        future: _fetchImageContent(imageUrl),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return Container(
+                              width: double.infinity,
+                              height: 400.0,
+                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    
-                    return _buildErrorWidget(context, 'Unknown Error', 'No data received');
-                  },
-                ),
+                            );
+                          } else if (snapshot.hasError) {
+                            print('🔥 Network Error at line ~250 in _buildGraphPane method:');
+                            print('Image URL: $imageUrl');
+                            print('Network Error: ${snapshot.error}');
+                            return _buildErrorWidget(context, 'Network Error', snapshot.error.toString());
+                          } else if (snapshot.hasData) {
+                            final content = snapshot.data!;
+                            
+                            // Check if content starts with XML/SVG header
+                            if (!content.trim().startsWith('<?xml') &&
+                                !content.trim().startsWith('<svg') &&
+                                !content.trim().startsWith('<!DOCTYPE svg')) {
+                              // This is not valid SVG - log the raw response
+                              print('🔥 Invalid SVG Response at line ~260 in _buildGraphPane method:');
+                              print('Image URL: $imageUrl');
+                              print('Content Type: Non-SVG (likely HTML error page or API response)');
+                              print('Response Length: ${content.length} characters');
+                              print('First 500 characters of response:');
+                              print(content.substring(0, content.length > 500 ? 500 : content.length));
+                              print('--- End of Response ---');
+                              
+                              return _buildErrorWidget(context, 'Invalid SVG Response',
+                                'Received non-SVG content (${content.length} chars). Check console for details.');
+                            }
+                            
+                            // Valid SVG - display it
+                            return SvgPicture.memory(
+                              Uint8List.fromList(content.codeUnits),
+                              width: double.infinity,
+                              height: 400.0,
+                              fit: BoxFit.contain,
+                              placeholderBuilder: (context) => Container(
+                                width: double.infinity,
+                                height: 400.0,
+                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                child: Center(
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          
+                          return _buildErrorWidget(context, 'Unknown Error', 'No data received');
+                        },
+                      )
+                    : _buildNoDataWidget(context, title),
               ),
             ),
           ],
@@ -509,7 +550,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 0.0),
                                 child: _buildGraphPane(
-                                    costsGraphUrl, 'Cost Breakdown', '💰'),
+                                    costsGraphUrl, 'Cost Breakdown', '💰', FFAppState().monthlyCosts.isNotEmpty),
                               ),
                             if (FFAppState()
                                     .supplyAccount
@@ -519,7 +560,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                               wrapWithModel(
                                 model: _model.monthlyCostsModel,
                                 updateCallback: () => safeSetState(() {}),
-                                child: const MonthlyCostsWidget(),
+                                child: MonthlyCostsWidget(),
                               ),
                             if (FFAppState()
                                     .supplyAccount
@@ -530,7 +571,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 24.0, 0.0, 0.0),
                                 child: _buildGraphPane(
-                                    energyGraphUrl, 'Energy Forecast', '⚡'),
+                                    energyGraphUrl, 'Energy Usage', '⚡', FFAppState().monthlyUsage.isNotEmpty),
                               ),
                             if (FFAppState()
                                     .supplyAccount

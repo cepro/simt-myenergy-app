@@ -61,7 +61,7 @@ class _MonthlyGenerationWidgetState extends State<MonthlyGenerationWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Text(
-                      'Solar Generation',
+                      'Solar Generation Table',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: FlutterFlowTheme.of(context)

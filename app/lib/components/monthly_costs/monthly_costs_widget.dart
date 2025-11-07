@@ -68,7 +68,7 @@ class _MonthlyCostsWidgetState extends State<MonthlyCostsWidget> {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: Text(
-                      'Costs',
+                      'Costs Table',
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: FlutterFlowTheme.of(context)
