@@ -46,6 +46,10 @@ class TopupSettingsSection extends StatefulWidget {
 class _TopupSettingsSectionState extends State<TopupSettingsSection> {
   ApiCallResponse? updateTopupPreferenceOutput;
 
+  int calculateMinimumBalance(int targetBalance) {
+    return (targetBalance - 10).clamp(0, targetBalance);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -168,9 +172,9 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                               setState(() {
                                 final targetValue = int.tryParse(
                                     widget.targetBalanceController.text);
-                                if (targetValue != null && targetValue > 10) {
+                                if (targetValue != null) {
                                   widget.minimumBalanceController.text =
-                                      (targetValue - 10).toString();
+                                      calculateMinimumBalance(targetValue).toString();
                                 }
                               })
                             },
@@ -222,8 +226,9 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context)
-                                      .bodyMediumIsCustom,
+                                  useGoogleFonts:
+                                      !FlutterFlowTheme.of(context)
+                                          .bodyMediumIsCustom,
                                 ),
                             validator: (val) {
                               if (val == null || val.isEmpty) {
@@ -245,139 +250,20 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           8.0, 0.0, 8.0, 15.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 1.0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Minimum Balance (£)',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .labelMediumFamily,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts:
-                                            !FlutterFlowTheme.of(context)
-                                                .labelMediumIsCustom,
-                                      ),
-                                ),
-                                AlignedTooltip(
-                                  content: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text(
-                                      'This is the minimum balance before automatic top-up occurs.',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyLarge
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyLargeFamily,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts:
-                                                !FlutterFlowTheme.of(context)
-                                                    .bodyLargeIsCustom,
-                                          ),
-                                    ),
-                                  ),
-                                  offset: 4.0,
-                                  preferredDirection: AxisDirection.down,
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  backgroundColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  elevation: 4.0,
-                                  tailBaseWidth: 24.0,
-                                  tailLength: 12.0,
-                                  waitDuration:
-                                      const Duration(milliseconds: 100),
-                                  showDuration:
-                                      const Duration(milliseconds: 1500),
-                                  triggerMode: TooltipTriggerMode.tap,
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                    child: Icon(
-                                      Icons.info_outline,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                      size: 24.0,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          TextFormField(
-                            controller: widget.minimumBalanceController,
-                            focusNode: widget.minimumBalanceFocusNode,
-                            autofocus: false,
-                            readOnly: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 8),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .labelMediumFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .labelMediumIsCustom,
-                                  ),
-                              filled: true,
-                              fillColor: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                      child: Text(
+                        'The minimum balance before automatic top-up occurs is £${int.tryParse(widget.targetBalanceController.text) != null ? calculateMinimumBalance(int.parse(widget.targetBalanceController.text)) : 0}.',
+                        style: FlutterFlowTheme.of(context)
+                            .bodyMedium
+                            .override(
+                              fontFamily: FlutterFlowTheme.of(context)
+                                  .bodyMediumFamily,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryText,
+                              letterSpacing: 0.0,
+                              useGoogleFonts:
+                                  !FlutterFlowTheme.of(context)
                                       .bodyMediumIsCustom,
-                                ),
-                            validator: (val) => null,
-                          ),
-                        ],
+                            ),
                       ),
                     ),
                     Padding(
@@ -471,8 +357,9 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyMediumFamily,
                                   letterSpacing: 0.0,
-                                  useGoogleFonts: !FlutterFlowTheme.of(context)
-                                      .bodyMediumIsCustom,
+                                  useGoogleFonts:
+                                      !FlutterFlowTheme.of(context)
+                                          .bodyMediumIsCustom,
                                 ),
                             hintText: 'Payment Mode',
                             icon: Icon(
