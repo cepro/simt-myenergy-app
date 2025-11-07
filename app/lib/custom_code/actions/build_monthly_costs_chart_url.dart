@@ -26,9 +26,20 @@ Future<String> buildMonthlyCostsChartUrl(
     return '';
   }
 
-  // Sort costs by month (earliest first)
+  // Sort costs by month (latest first) to get the most recent data
   final sortedCosts = List<MonthlyCostStruct>.from(monthlyCosts);
   sortedCosts.sort((a, b) {
+    if (a.monthTyped != null && b.monthTyped != null) {
+      return b.monthTyped!.compareTo(a.monthTyped!);
+    }
+    return b.month.compareTo(a.month);
+  });
+
+  // Take only the most recent 24 months
+  final recentCosts = sortedCosts.take(24).toList();
+  
+  // Reverse back to earliest first for chart display
+  recentCosts.sort((a, b) {
     if (a.monthTyped != null && b.monthTyped != null) {
       return a.monthTyped!.compareTo(b.monthTyped!);
     }
@@ -46,7 +57,7 @@ Future<String> buildMonthlyCostsChartUrl(
 
   final now = DateTime.now();
 
-  for (final cost in sortedCosts) {
+  for (final cost in recentCosts) {
     labels.add(cost.month);
     
     // Determine if this is actual (past) or forecast (future) data

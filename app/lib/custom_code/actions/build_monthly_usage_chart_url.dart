@@ -22,21 +22,26 @@ Future<String> buildMonthlyUsageChartUrl(
     return '';
   }
 
+  // Sort usage by month (latest first) to get the most recent data
+  final sortedUsage = List<MonthlyUsageStruct>.from(monthlyUsage);
+  sortedUsage.sort((a, b) => b.month.compareTo(a.month));
+
+  // Take only the most recent 24 months
+  final recentUsage = sortedUsage.take(24).toList();
+  
+  // Reverse back to earliest first for proper chart display
+  recentUsage.sort((a, b) => a.month.compareTo(b.month));
+
   // Extract labels (month names) and data arrays
   var labels = <String>[];
   var powerData = <double>[];
   var heatData = <double>[];
 
-  for (final usage in monthlyUsage) {
+  for (final usage in recentUsage) {
     labels.add(usage.month);
     powerData.add(usage.usagePower);
     heatData.add(usage.usageHeat);
   }
-
-  // Reverse the order to display ascending by month
-  labels = labels.reversed.toList();
-  powerData = powerData.reversed.toList();
-  heatData = heatData.reversed.toList();
 
   // Create the chart request
   final request = QuickChartRequest(
