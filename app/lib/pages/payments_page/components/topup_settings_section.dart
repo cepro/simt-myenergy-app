@@ -105,7 +105,7 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                             child: Row(
                               children: [
                                 Text(
-                                  'Target Balanceee (£)',
+                                  'Target Balance (£)',
                                   style: FlutterFlowTheme.of(context)
                                       .labelMedium
                                       .override(
@@ -191,7 +191,7 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                                   ),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
+                                  color: FlutterFlowTheme.of(context).primary,
                                   width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -368,7 +368,7 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             elevation: 2.0,
-                            borderColor: FlutterFlowTheme.of(context).alternate,
+                            borderColor: FlutterFlowTheme.of(context).primary,
                             borderWidth: 2.0,
                             borderRadius: 8.0,
                             margin: const EdgeInsetsDirectional.fromSTEB(
@@ -485,7 +485,7 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                             fillColor: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             elevation: 2.0,
-                            borderColor: FlutterFlowTheme.of(context).alternate,
+                            borderColor: FlutterFlowTheme.of(context).primary,
                             borderWidth: 2.0,
                             borderRadius: 8.0,
                             margin: const EdgeInsetsDirectional.fromSTEB(
