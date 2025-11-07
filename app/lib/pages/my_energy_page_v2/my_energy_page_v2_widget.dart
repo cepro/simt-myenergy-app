@@ -14,9 +14,11 @@ import '/custom_code/actions/build_monthly_costs_chart_url.dart'
 import '/custom_code/actions/build_monthly_usage_chart_url.dart'
     as build_usage_chart;
 import '/index.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'my_energy_page_v2_model.dart';
 export 'my_energy_page_v2_model.dart';
@@ -106,6 +108,65 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
     return _energyGraphUrl;
   }
 
+  /// Fetches the image content from the URL as a string
+  Future<String> _fetchImageContent(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        return utf8.decode(response.bodyBytes);
+      } else {
+        throw Exception('HTTP ${response.statusCode}: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch image: $e');
+    }
+  }
+
+  /// Builds an error widget with consistent styling
+  Widget _buildErrorWidget(BuildContext context, String title, String message) {
+    return Container(
+      width: double.infinity,
+      height: 400.0,
+      color: FlutterFlowTheme.of(context).error,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error_outline,
+              color: Colors.white,
+              size: 48.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 12.0,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -191,23 +252,70 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: SvgPicture.network(
-                  imageUrl,
-                  width: double.infinity,
-                  height: 400.0,
-                  fit: BoxFit.contain,
-                  placeholderBuilder: (context) => Container(
-                    width: double.infinity,
-                    height: 400.0,
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          FlutterFlowTheme.of(context).primary,
+                child: FutureBuilder<String>(
+                  future: _fetchImageContent(imageUrl),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container(
+                        width: double.infinity,
+                        height: 400.0,
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
+                      );
+                    } else if (snapshot.hasError) {
+                      print('🔥 Network Error at line ~250 in _buildGraphPane method:');
+                      print('Image URL: $imageUrl');
+                      print('Network Error: ${snapshot.error}');
+                      return _buildErrorWidget(context, 'Network Error', snapshot.error.toString());
+                    } else if (snapshot.hasData) {
+                      final content = snapshot.data!;
+                      
+                      // Check if content starts with XML/SVG header
+                      if (!content.trim().startsWith('<?xml') &&
+                          !content.trim().startsWith('<svg') &&
+                          !content.trim().startsWith('<!DOCTYPE svg')) {
+                        // This is not valid SVG - log the raw response
+                        print('🔥 Invalid SVG Response at line ~260 in _buildGraphPane method:');
+                        print('Image URL: $imageUrl');
+                        print('Content Type: Non-SVG (likely HTML error page or API response)');
+                        print('Response Length: ${content.length} characters');
+                        print('First 500 characters of response:');
+                        print(content.substring(0, content.length > 500 ? 500 : content.length));
+                        print('--- End of Response ---');
+                        
+                        return _buildErrorWidget(context, 'Invalid SVG Response',
+                          'Received non-SVG content (${content.length} chars). Check console for details.');
+                      }
+                      
+                      // Valid SVG - display it
+                      return SvgPicture.memory(
+                        Uint8List.fromList(content.codeUnits),
+                        width: double.infinity,
+                        height: 400.0,
+                        fit: BoxFit.contain,
+                        placeholderBuilder: (context) => Container(
+                          width: double.infinity,
+                          height: 400.0,
+                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    
+                    return _buildErrorWidget(context, 'Unknown Error', 'No data received');
+                  },
                 ),
               ),
             ),
