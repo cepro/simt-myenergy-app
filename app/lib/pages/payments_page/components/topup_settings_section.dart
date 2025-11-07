@@ -168,13 +168,15 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                             focusNode: widget.targetBalanceFocusNode,
                             autofocus: true,
                             obscureText: false,
-                            onChanged: (_) {
-                              final targetValue = int.tryParse(
-                                  widget.targetBalanceController.text);
-                              if (targetValue != null) {
-                                widget.minimumBalanceController.text =
-                                    calculateMinimumBalance(targetValue).toString();
-                              }
+                            onChanged: (_) => {
+                              setState(() {
+                                final targetValue = int.tryParse(
+                                    widget.targetBalanceController.text);
+                                if (targetValue != null) {
+                                  widget.minimumBalanceController.text =
+                                      calculateMinimumBalance(targetValue).toString();
+                                }
+                              })
                             },
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
