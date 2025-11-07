@@ -9,9 +9,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/custom_code/actions/build_monthly_costs_chart_url.dart'
+    as build_costs_chart;
+import '/custom_code/actions/build_monthly_usage_chart_url.dart'
+    as build_usage_chart;
 import '/index.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'my_energy_page_model.dart';
 export 'my_energy_page_model.dart';
@@ -31,6 +38,135 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  // Graph URLs - built dynamically from data
+  String _costsGraphUrl = '';
+  String _energyGraphUrl = '';
+
+  /// Gets the dynamic chart width based on screen size
+  int get _chartWidth {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    // Mobile: smaller width
+    if (screenWidth < 768) {
+      return 400;
+    }
+    // Tablet: medium width
+    else if (screenWidth < 1024) {
+      return 600;
+    }
+    // Desktop: larger width
+    else {
+      return 1000;
+    }
+  }
+
+  /// Builds the costs chart URL from monthly costs data
+  Future<void> _buildCostsChartUrl() async {
+    if (FFAppState().monthlyCosts.isNotEmpty) {
+      final url = await build_costs_chart.buildMonthlyCostsChartUrl(
+          FFAppState().monthlyCosts, width: _chartWidth);
+      if (mounted) {
+        setState(() {
+          _costsGraphUrl = url;
+        });
+      }
+    }
+  }
+
+  /// Builds the energy usage chart URL from monthly usage data
+  Future<void> _buildEnergyChartUrl() async {
+    if (FFAppState().monthlyUsage.isNotEmpty) {
+      final url = await build_usage_chart.buildMonthlyUsageChartUrl(
+          FFAppState().monthlyUsage, width: _chartWidth);
+      if (mounted) {
+        setState(() {
+          _energyGraphUrl = url;
+        });
+      }
+    }
+  }
+
+  /// Gets the costs graph URL, building it if necessary
+  String get costsGraphUrl {
+    if (_costsGraphUrl.isEmpty && FFAppState().monthlyCosts.isNotEmpty) {
+      // Build URL asynchronously
+      _buildCostsChartUrl();
+      // Return placeholder while building
+      return 'https://quickchart.io/chart?c=%7B%22type%22%3A%22bar%22%7D&width=550&height=350';
+    }
+    return _costsGraphUrl;
+  }
+
+  /// Gets the energy graph URL, building it if necessary
+  String get energyGraphUrl {
+    if (_energyGraphUrl.isEmpty && FFAppState().monthlyUsage.isNotEmpty) {
+      // Build URL asynchronously
+      _buildEnergyChartUrl();
+      // Return placeholder while building
+      return 'https://quickchart.io/chart?c=%7B%22type%22%3A%22line%22%7D&width=550&height=350';
+    }
+    return _energyGraphUrl;
+  }
+
+  /// Fetches the image content from the URL as a string
+  Future<String> _fetchImageContent(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        return utf8.decode(response.bodyBytes);
+      } else {
+        throw Exception('HTTP ${response.statusCode}: ${response.reasonPhrase}');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch image: $e');
+    }
+  }
+
+  /// Builds an error widget with consistent styling
+  Widget _buildErrorWidget(BuildContext context, String title, String message) {
+    return Container(
+      width: double.infinity,
+      height: 400.0,
+      color: FlutterFlowTheme.of(context).error,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.error_outline,
+              color: Colors.white,
+              size: 48.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                message,
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 12.0,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +174,10 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      // Build chart URLs from existing data
+      await _buildCostsChartUrl();
+      await _buildEnergyChartUrl();
+
       // First time only load usage, costs and tariffs in the background which will speed up the first load of MyEnergy page.
       if ((!FFAppState().monthlyCostsLoading &&
               !FFAppState().monthlyUsageLoading) &&
@@ -47,6 +187,10 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                   10))) {
         // RefreshTariffsCostsUsage
         await action_blocks.getTariffsCostsUsage(context);
+
+        // Rebuild chart URLs after loading new data
+        await _buildCostsChartUrl();
+        await _buildEnergyChartUrl();
         return;
       } else {
         return;
@@ -61,6 +205,124 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
     _model.dispose();
 
     super.dispose();
+  }
+
+  Widget _buildGraphPane(String imageUrl, String title, String emoji) {
+    return Container(
+      decoration: BoxDecoration(
+        color: FlutterFlowTheme.of(context).secondaryBackground,
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(
+          color: FlutterFlowTheme.of(context).lineColor,
+          width: 1.0,
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  emoji,
+                  style: const TextStyle(
+                    fontSize: 28.0,
+                    fontFamily: 'NotoColorEmoji',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 0.0, 0.0),
+                  child: Text(
+                    title,
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).headlineSmallFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts:
+                              !FlutterFlowTheme.of(context).headlineSmallIsCustom,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: FutureBuilder<String>(
+                  future: _fetchImageContent(imageUrl),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container(
+                        width: double.infinity,
+                        height: 400.0,
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      print('🔥 Network Error at line ~250 in _buildGraphPane method:');
+                      print('Image URL: $imageUrl');
+                      print('Network Error: ${snapshot.error}');
+                      return _buildErrorWidget(context, 'Network Error', snapshot.error.toString());
+                    } else if (snapshot.hasData) {
+                      final content = snapshot.data!;
+                      
+                      // Check if content starts with XML/SVG header
+                      if (!content.trim().startsWith('<?xml') &&
+                          !content.trim().startsWith('<svg') &&
+                          !content.trim().startsWith('<!DOCTYPE svg')) {
+                        // This is not valid SVG - log the raw response
+                        print('🔥 Invalid SVG Response at line ~260 in _buildGraphPane method:');
+                        print('Image URL: $imageUrl');
+                        print('Content Type: Non-SVG (likely HTML error page or API response)');
+                        print('Response Length: ${content.length} characters');
+                        print('First 500 characters of response:');
+                        print(content.substring(0, content.length > 500 ? 500 : content.length));
+                        print('--- End of Response ---');
+                        
+                        return _buildErrorWidget(context, 'Invalid SVG Response',
+                          'Received non-SVG content (${content.length} chars). Check console for details.');
+                      }
+                      
+                      // Valid SVG - display it
+                      return SvgPicture.memory(
+                        Uint8List.fromList(content.codeUnits),
+                        width: double.infinity,
+                        height: 400.0,
+                        fit: BoxFit.contain,
+                        placeholderBuilder: (context) => Container(
+                          width: double.infinity,
+                          height: 400.0,
+                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                          child: Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    
+                    return _buildErrorWidget(context, 'Unknown Error', 'No data received');
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -243,10 +505,32 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                                     .customerAccount
                                     .role ==
                                 'occupier')
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 24.0, 0.0, 0.0),
+                                child: _buildGraphPane(
+                                    costsGraphUrl, 'Cost Breakdown', '💰'),
+                              ),
+                            if (FFAppState()
+                                    .supplyAccount
+                                    .customerAccount
+                                    .role ==
+                                'occupier')
                               wrapWithModel(
                                 model: _model.monthlyCostsModel,
                                 updateCallback: () => safeSetState(() {}),
                                 child: const MonthlyCostsWidget(),
+                              ),
+                            if (FFAppState()
+                                    .supplyAccount
+                                    .customerAccount
+                                    .role ==
+                                'occupier')
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 24.0, 0.0, 0.0),
+                                child: _buildGraphPane(
+                                    energyGraphUrl, 'Energy Forecast', '⚡'),
                               ),
                             if (FFAppState()
                                     .supplyAccount

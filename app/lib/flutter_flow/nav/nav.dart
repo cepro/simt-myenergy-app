@@ -183,12 +183,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const MyEnergyPageWidget(),
         ),
         FFRoute(
-          name: MyEnergyPageV2Widget.routeName,
-          path: MyEnergyPageV2Widget.routePath,
-          requireAuth: true,
-          builder: (context, params) => const MyEnergyPageV2Widget(),
-        ),
-        FFRoute(
           name: ImpersonateUserWidget.routeName,
           path: ImpersonateUserWidget.routePath,
           requireAuth: true,
