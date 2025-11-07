@@ -194,11 +194,11 @@ class _MyEnergyPageV2WidgetState extends State<MyEnergyPageV2Widget> {
                 child: SvgPicture.network(
                   imageUrl,
                   width: double.infinity,
-                  height: 300.0,
+                  height: 400.0,
                   fit: BoxFit.contain,
                   placeholderBuilder: (context) => Container(
                     width: double.infinity,
-                    height: 300.0,
+                    height: 400.0,
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     child: Center(
                       child: CircularProgressIndicator(

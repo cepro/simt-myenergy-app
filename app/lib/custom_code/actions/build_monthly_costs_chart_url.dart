@@ -8,10 +8,13 @@ import '/custom_code/models/quickchart_service.dart';
 
 /// Builds a QuickChart URL from monthly costs data
 ///
-/// Creates a stacked bar chart showing:
-/// - Standing Charge (gray)
-/// - Power & Lights (blue)
-/// - Heating & Hot Water (red)
+/// Creates a stacked bar chart showing both actual and forecast data:
+/// - Standing (Actual) - gray solid
+/// - Standing (Forecast) - gray transparent
+/// - Power (Actual) - blue solid
+/// - Power (Forecast) - blue transparent
+/// - Heat (Actual) - red solid
+/// - Heat (Forecast) - red transparent
 ///
 /// Returns the URL that can be used with Image.network()
 Future<String> buildMonthlyCostsChartUrl(
@@ -23,61 +26,108 @@ Future<String> buildMonthlyCostsChartUrl(
     return '';
   }
 
-  // Extract labels (month names) and data arrays
-  var labels = <String>[];
-  var standingCharges = <double>[];
-  var powerData = <double>[];
-  var heatData = <double>[];
+  // Sort costs by month (earliest first)
+  final sortedCosts = List<MonthlyCostStruct>.from(monthlyCosts);
+  sortedCosts.sort((a, b) {
+    if (a.monthTyped != null && b.monthTyped != null) {
+      return a.monthTyped!.compareTo(b.monthTyped!);
+    }
+    return a.month.compareTo(b.month);
+  });
 
-  for (final cost in monthlyCosts) {
+  // Extract labels and separate actual vs forecast data
+  var labels = <String>[];
+  var standingActual = <double>[];
+  var standingForecast = <double>[];
+  var powerActual = <double>[];
+  var powerForecast = <double>[];
+  var heatActual = <double>[];
+  var heatForecast = <double>[];
+
+  final now = DateTime.now();
+
+  for (final cost in sortedCosts) {
     labels.add(cost.month);
-    standingCharges.add(cost.standingCharge);
-    powerData.add(cost.power);
-    heatData.add(cost.heat);
+    
+    // Determine if this is actual (past) or forecast (future) data
+    bool isForecast = false;
+    if (cost.monthTyped != null) {
+      // If month is in the future, it's forecast data
+      isForecast = cost.monthTyped!.isAfter(now);
+    } else {
+      // Fallback: check if month string contains future year
+      final currentYear = now.year;
+      final costYear = int.tryParse(cost.month.split('-').first);
+      if (costYear != null && costYear > currentYear) {
+        isForecast = true;
+      }
+    }
+
+    if (isForecast) {
+      // Future data - forecast
+      standingActual.add(0.0);
+      standingForecast.add(cost.standingCharge);
+      powerActual.add(0.0);
+      powerForecast.add(cost.power);
+      heatActual.add(0.0);
+      heatForecast.add(cost.heat);
+    } else {
+      // Past data - actual
+      standingActual.add(cost.standingCharge);
+      standingForecast.add(0.0);
+      powerActual.add(cost.power);
+      powerForecast.add(0.0);
+      heatActual.add(cost.heat);
+      heatForecast.add(0.0);
+    }
   }
 
-  // Reverse the order to display ascending by month
-  labels = labels.reversed.toList();
-  standingCharges = standingCharges.reversed.toList();
-  powerData = powerData.reversed.toList();
-  heatData = heatData.reversed.toList();
-
-  // Create the chart request
+  // Create the chart request with new structure
   final request = QuickChartRequest(
     type: 'bar',
     data: ChartData(
       labels: labels,
       datasets: [
         ChartDataset(
-          label: 'Standing Charge',
-          data: standingCharges,
+          label: 'Standing (Actual)',
+          data: standingActual,
           backgroundColor: '#95A5A6',
           stack: 'stack1',
         ),
         ChartDataset(
-          label: 'Power & Lights',
-          data: powerData,
+          label: 'Standing (Forecast)',
+          data: standingForecast,
+          backgroundColor: 'rgba(149, 165, 166, 0.5)',
+          stack: 'stack1',
+        ),
+        ChartDataset(
+          label: 'Power (Actual)',
+          data: powerActual,
           backgroundColor: '#3498DB',
           stack: 'stack1',
         ),
         ChartDataset(
-          label: 'Heating & Hot Water',
-          data: heatData,
+          label: 'Power (Forecast)',
+          data: powerForecast,
+          backgroundColor: 'rgba(52, 152, 219, 0.5)',
+          stack: 'stack1',
+        ),
+        ChartDataset(
+          label: 'Heat (Actual)',
+          data: heatActual,
           backgroundColor: '#E74C3C',
+          stack: 'stack1',
+        ),
+        ChartDataset(
+          label: 'Heat (Forecast)',
+          data: heatForecast,
+          backgroundColor: 'rgba(231, 76, 60, 0.5)',
           stack: 'stack1',
         ),
       ],
     ),
     options: ChartOptions(
       responsive: true,
-      plugins: ChartPlugins(
-        title: ChartTitle(
-          display: true,
-          text: 'Forecasted Monthly Costs',
-          font: ChartFont(size: 16),
-        ),
-        legend: ChartLegend(display: true),
-      ),
       scales: ChartScales(
         xAxes: [ChartAxis(stacked: true)],
         yAxes: [
@@ -94,6 +144,16 @@ Future<String> buildMonthlyCostsChartUrl(
           ),
         ],
       ),
+      plugins: ChartPlugins(
+        legend: ChartLegend(
+          display: true,
+        ),
+        title: ChartTitle(
+          display: true,
+          text: 'Monthly Cost Breakdown',
+          font: ChartFont(size: 16),
+        ),
+      ),
     ),
   );
 
@@ -101,7 +161,7 @@ Future<String> buildMonthlyCostsChartUrl(
   return QuickChartService.buildUrl(
     request: request,
     width: width,
-    height: 350,
+    height: 400,
     backgroundColor: 'white',
     format: 'svg',
   );
