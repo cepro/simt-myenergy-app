@@ -47,6 +47,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (!mounted) return;
       _model.loadPaymentHistoryFailure = false;
       _model.loadingPaymentHistory = true;
       _model.loadingMethod = true;
@@ -54,6 +55,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
       _model.loadTopupHistoryFailure = false;
       safeSetState(() {});
       _model.userToken = await actions.activeUserToken();
+      if (!mounted) return;
       await Future.wait([
         Future(() async {
           _model.getPaymentMethodsOutput =
@@ -63,11 +65,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
           );
 
           _model.loadingMethod = false;
-          safeSetState(() {});
           if ((_model.getPaymentMethodsOutput?.succeeded != false)) {
             _model.paymentMethods =
                 (_model.getPaymentMethodsOutput?.jsonBody ?? '');
-            safeSetState(() {});
             // This is a hack to workaround the fact that we don't receive realtime update immediately after redirect from stripe back to the app (after adding a payment method).  Ideally we can fix that but until then this check will look for app state being out of date with the fact we just got payment methods.
             if ((functions.jsonArrayLengthOrNegativeOne(
                         (_model.getPaymentMethodsOutput?.jsonBody ?? '')) >
@@ -76,16 +76,16 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               FFAppState().updateCustomerStruct(
                 (e) => e..hasPaymentMethod = true,
               );
-              safeSetState(() {});
               // Here we just want to update the customer status but use the action block that refetches everything. This is fine. Not advantage to only updated customer status on it's own as we still need to fetch the accounts data from the backend and the update part is super fast.
               // RefreshCustomerStatus
+              if (!mounted) return;
               await action_blocks.getCustomerDetailsAndInitAppState(context);
-            } else {
-              return;
             }
-
+            if (!mounted) return;
+            safeSetState(() {});
             return;
           } else {
+            if (!mounted) return;
             await action_blocks.handleMyEnergyApiCallFailure(
               context,
               wwwAuthenticateHeader: (_model.getPaymentMethodsOutput
@@ -103,16 +103,14 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
           );
 
           _model.loadingPaymentHistory = false;
-          safeSetState(() {});
           if ((_model.getPaymentsOutput?.succeeded != false)) {
             _model.paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
               (_model.getPaymentsOutput?.jsonBody ?? ''),
             );
             _model.payments =
                 _model.paymentsTyped!.toList().cast<PaymentStruct>();
-            safeSetState(() {});
-            return;
           } else {
+            if (!mounted) return;
             await action_blocks.handleMyEnergyApiCallFailure(
               context,
               wwwAuthenticateHeader:
@@ -121,9 +119,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               httpStatusCode: (_model.getPaymentsOutput?.statusCode ?? 200),
             );
             _model.loadPaymentHistoryFailure = true;
-            safeSetState(() {});
-            return;
           }
+          if (!mounted) return;
+          safeSetState(() {});
         }),
         Future(() async {
           _model.getTopupsOutput = await GetTopupsCall.call(
@@ -131,15 +129,13 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
           );
 
           _model.loadingTopupHistory = false;
-          safeSetState(() {});
           if ((_model.getTopupsOutput?.succeeded != false)) {
             _model.topupsTyped = await actions.topupsJSONToTopupsDataType(
               (_model.getTopupsOutput?.jsonBody ?? ''),
             );
             _model.topups = _model.topupsTyped!.toList().cast<TopupStruct>();
-            safeSetState(() {});
-            return;
           } else {
+            if (!mounted) return;
             await action_blocks.handleMyEnergyApiCallFailure(
               context,
               wwwAuthenticateHeader:
@@ -147,9 +143,9 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               httpStatusCode: (_model.getTopupsOutput?.statusCode ?? 200),
             );
             _model.loadTopupHistoryFailure = true;
-            safeSetState(() {});
-            return;
           }
+          if (!mounted) return;
+          safeSetState(() {});
         }),
         Future(() async {
           _model.topupPreferencesGetOutput = await GetWalletsCall.call(
@@ -159,47 +155,43 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
           if ((_model.topupPreferencesGetOutput?.succeeded != false) == true) {
             if (!functions.isListEmpty(
                 (_model.topupPreferencesGetOutput?.jsonBody ?? ''))) {
-              safeSetState(() {
-                _model.minimumBalanceTextController?.text =
-                    valueOrDefault<String>(
-                  getJsonField(
-                    (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
-                    r'''$[0].minimumBalance''',
-                  )?.toString(),
-                  '30',
-                );
-              });
-              safeSetState(() {
-                _model.targetBalanceTextController?.text = valueOrDefault<String>(
-                  getJsonField(
-                    (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
-                    r'''$[0].targetBalance''',
-                  )?.toString(),
-                  '50',
-                );
-              });
-              safeSetState(() {
-                _model.balanceEnumValue = getJsonField(
+              _model.minimumBalanceTextController?.text =
+                  valueOrDefault<String>(
+                getJsonField(
                   (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
-                  r'''$[0].balanceEnum''',
-                )?.toString();
-              });
-safeSetState(() {
-                _model.paymentTimingValue = getJsonField(
+                  r'''$[0].minimumBalance''',
+                )?.toString(),
+                '30',
+              );
+              _model.targetBalanceTextController?.text = valueOrDefault<String>(
+                getJsonField(
                   (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
-                  r'''$[0].paymentTiming''',
-                )?.toString();
-              });
+                  r'''$[0].targetBalance''',
+                )?.toString(),
+                '50',
+              );
+              _model.balanceEnumValue = getJsonField(
+                (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
+                r'''$[0].balanceEnum''',
+              )?.toString();
+              _model.paymentTimingValue = getJsonField(
+                (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
+                r'''$[0].paymentTiming''',
+              )?.toString();
               _model.haveWallet = true;
-              
+
               // Update controllers with actual API response values
               _model.paymentTimingController?.value = _model.paymentTimingValue;
               _model.balanceEnumValueController?.value = _model.balanceEnumValue;
+
+              if (!mounted) return;
+              safeSetState(() {});
             } else {
               // Probably redundant as it initializes to false but being explicit to be certain here.
               _model.haveWallet = false;
             }
           } else {
+            if (!mounted) return;
             await action_blocks.handleMyEnergyApiCallFailure(
               context,
               wwwAuthenticateHeader: (_model.topupPreferencesGetOutput
@@ -222,8 +214,6 @@ safeSetState(() {
     // Initialize form field controllers with proper initial values
     _model.paymentTimingController ??= FormFieldController<String>(_model.paymentTimingValue ?? 'monthly');
     _model.balanceEnumValueController ??= FormFieldController<String>(_model.balanceEnumValue ?? 'simple');
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -480,14 +470,14 @@ safeSetState(() {
                                         balanceEnumValueController: _model.balanceEnumValueController,
                                         formKey: _model.formKey,
                                         topupPreferencesGetOutput: _model.topupPreferencesGetOutput,
-                                        onBalanceEnumChanged: (val) => safeSetState(() => _model.balanceEnumValue = val),
+                                        onBalanceEnumChanged: (val) {
+                                          _model.balanceEnumValue = val;
+                                        },
                                         paymentTimingValue: _model.paymentTimingValue,
                                         paymentTimingController: _model.paymentTimingController,
                                         onPaymentTimingChanged: (val) {
-                                          safeSetState(() {
-                                            _model.paymentTimingValue = val;
-                                            _model.paymentTimingController?.value = val;
-                                          });
+                                          _model.paymentTimingValue = val;
+                                          _model.paymentTimingController?.value = val;
                                         },
                                       ),
                                     ),
@@ -525,14 +515,14 @@ safeSetState(() {
                                       balanceEnumValueController: _model.balanceEnumValueController,
                                       formKey: _model.formKey,
                                       topupPreferencesGetOutput: _model.topupPreferencesGetOutput,
-                                      onBalanceEnumChanged: (val) => safeSetState(() => _model.balanceEnumValue = val),
+                                      onBalanceEnumChanged: (val) {
+                                        _model.balanceEnumValue = val;
+                                      },
                                       paymentTimingValue: _model.paymentTimingValue,
                                       paymentTimingController: _model.paymentTimingController,
                                       onPaymentTimingChanged: (val) {
-                                        safeSetState(() {
-                                          _model.paymentTimingValue = val;
-                                          _model.paymentTimingController?.value = val;
-                                        });
+                                        _model.paymentTimingValue = val;
+                                        _model.paymentTimingController?.value = val;
                                       },
                                     ),
                                   ],
