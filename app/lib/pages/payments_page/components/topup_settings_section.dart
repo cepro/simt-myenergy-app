@@ -24,6 +24,8 @@ class TopupSettingsSection extends StatefulWidget {
     required this.paymentTimingValue,
     required this.paymentTimingController,
     required this.onPaymentTimingChanged,
+    required this.autoTopupValue,
+    required this.onAutoTopupChanged,
   });
 
   final TextEditingController minimumBalanceController;
@@ -38,6 +40,8 @@ class TopupSettingsSection extends StatefulWidget {
   final String? paymentTimingValue;
   final FormFieldController<String>? paymentTimingController;
   final Function(String?) onPaymentTimingChanged;
+  final bool? autoTopupValue;
+  final Function(bool?) onAutoTopupChanged;
 
   @override
   State<TopupSettingsSection> createState() => _TopupSettingsSectionState();
@@ -502,6 +506,48 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                     ),
                     Padding(
                       padding: const EdgeInsetsDirectional.fromSTEB(
+                          8.0, 0.0, 8.0, 15.0),
+                      child: CheckboxListTile(
+                        value: widget.autoTopupValue ?? false,
+                        onChanged: widget.onAutoTopupChanged,
+                        title: Text(
+                          'Enable Automatic Top-up',
+                          style: FlutterFlowTheme.of(context)
+                              .labelMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .labelMediumFamily,
+                                letterSpacing: 0.0,
+                                useGoogleFonts:
+                                    !FlutterFlowTheme.of(context)
+                                        .labelMediumIsCustom,
+                              ),
+                        ),
+                        subtitle: Text(
+                          'Automatically top up when balance falls below minimum',
+                          style: FlutterFlowTheme.of(context)
+                              .bodySmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryText,
+                                letterSpacing: 0.0,
+                                useGoogleFonts:
+                                    !FlutterFlowTheme.of(context)
+                                        .bodySmallIsCustom,
+                              ),
+                        ),
+                        activeColor: FlutterFlowTheme.of(context).primary,
+                        checkColor: Colors.white,
+                        dense: false,
+                        controlAffinity: ListTileControlAffinity.leading,
+                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 0.0, 0.0, 0.0),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
                           0.0, 10.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
@@ -530,6 +576,7 @@ class _TopupSettingsSectionState extends State<TopupSettingsSection> {
                             ).toString(),
                             balanceEnum: balanceEnum,
                             paymentTiming: paymentTiming,
+                            autoTopup: widget.autoTopupValue,
                           );
 
                           if (!context.mounted) return;

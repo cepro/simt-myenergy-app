@@ -190,8 +190,14 @@ safeSetState(() {
                   r'''$[0].paymentTiming''',
                 )?.toString();
               });
+              safeSetState(() {
+                _model.autoTopupValue = getJsonField(
+                  (_model.topupPreferencesGetOutput?.jsonBody ?? ''),
+                  r'''$[0].autoTopup''',
+                );
+              });
               _model.haveWallet = true;
-              
+
               // Update controllers with actual API response values
               _model.paymentTimingController?.value = _model.paymentTimingValue;
               _model.balanceEnumValueController?.value = _model.balanceEnumValue;
@@ -489,6 +495,8 @@ safeSetState(() {
                                             _model.paymentTimingController?.value = val;
                                           });
                                         },
+                                        autoTopupValue: _model.autoTopupValue,
+                                        onAutoTopupChanged: (val) => safeSetState(() => _model.autoTopupValue = val),
                                       ),
                                     ),
                                   ],
@@ -534,6 +542,8 @@ safeSetState(() {
                                           _model.paymentTimingController?.value = val;
                                         });
                                       },
+                                      autoTopupValue: _model.autoTopupValue,
+                                      onAutoTopupChanged: (val) => safeSetState(() => _model.autoTopupValue = val),
                                     ),
                                   ],
                                 ),

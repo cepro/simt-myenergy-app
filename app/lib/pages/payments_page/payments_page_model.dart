@@ -141,6 +141,9 @@ class PaymentsPageModel extends FlutterFlowModel<PaymentsPageWidget> {
   String? paymentTimingValue;
   FormFieldController<String>? paymentTimingController;
 
+  // State field(s) for AutoTopup checkbox.
+  bool? autoTopupValue;
+
   // Stores action output result for [Backend Call - API (Update Topup Preferences)] action in Button widget.
   ApiCallResponse? updateTopupPreferenceOutput;
 

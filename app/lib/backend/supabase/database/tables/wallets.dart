@@ -35,4 +35,7 @@ class WalletsRow extends SupabaseDataRow {
 
   DateTime get updatedAt => getField<DateTime>('updated_at')!;
   set updatedAt(DateTime value) => setField<DateTime>('updated_at', value);
+
+  bool? get autoTopup => getField<bool>('auto_topup');
+  set autoTopup(bool? value) => setField<bool>('auto_topup', value);
 }

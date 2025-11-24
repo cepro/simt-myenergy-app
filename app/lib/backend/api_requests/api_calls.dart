@@ -456,13 +456,15 @@ class UpdateTopupPreferencesCall {
     String? walletId = '',
     String? balanceEnum,
     String? paymentTiming,
+    bool? autoTopup,
   }) async {
     final ffApiRequestBody = '''
 {
   "minimumBalance": $minimumBalance,
   "targetBalance": $targetBalance,
   "balanceEnum": "$balanceEnum",
-  "paymentTiming": "$paymentTiming"
+  "paymentTiming": "$paymentTiming",
+  "autoTopup": $autoTopup
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Topup Preferences',
