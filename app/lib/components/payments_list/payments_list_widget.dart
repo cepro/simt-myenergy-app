@@ -189,7 +189,7 @@ class _PaymentsListWidgetState extends State<PaymentsListWidget> {
                         triggerMode: TooltipTriggerMode.tap,
                         child: Text(
                           dateTimeFormat(
-                              "dd/MM/yyyy HH:mm:ss", paymentsItem.createdAt!),
+                              "dd/MM/yyyy HH:mm:ss", paymentsItem.status == 'pending' ? paymentsItem.scheduledAt! : paymentsItem.createdAt!),
                           style: FlutterFlowTheme.of(context)
                               .bodyMedium
                               .override(
