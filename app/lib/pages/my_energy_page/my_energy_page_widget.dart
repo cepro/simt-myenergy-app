@@ -113,7 +113,15 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        return utf8.decode(response.bodyBytes);
+        final content = utf8.decode(response.bodyBytes);
+        // Check if the content is valid SVG
+        if (content.trim().startsWith('<?xml') ||
+            content.trim().startsWith('<svg') ||
+            content.trim().startsWith('<!DOCTYPE svg')) {
+          return content;
+        } else {
+          throw Exception('The server returned an invalid response. Please try again later.');
+        }
       } else {
         throw Exception('HTTP ${response.statusCode}: ${response.reasonPhrase}');
       }
@@ -314,7 +322,12 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                             print('Network Error: ${snapshot.error}');
                             return _buildErrorWidget(context, 'Network Error', snapshot.error.toString());
                           } else if (snapshot.hasData) {
-                            final content = snapshot.data!;
+                            final content = snapshot.data;
+                            if (content == null) {
+                              print('🔥 Null content received at line ~260 in _buildGraphPane method:');
+                              print('Image URL: $imageUrl');
+                              return _buildErrorWidget(context, 'Null Content', 'Received null content from the server.');
+                            }
                             
                             // Check if content starts with XML/SVG header
                             if (!content.trim().startsWith('<?xml') &&
@@ -328,7 +341,7 @@ class _MyEnergyPageWidgetState extends State<MyEnergyPageWidget> {
                               print('First 500 characters of response:');
                               print(content.substring(0, content.length > 500 ? 500 : content.length));
                               print('--- End of Response ---');
-                              
+                                
                               return _buildErrorWidget(context, 'Invalid SVG Response',
                                 'Received non-SVG content (${content.length} chars). Check console for details.');
                             }
