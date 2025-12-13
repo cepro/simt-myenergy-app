@@ -20,6 +20,7 @@ Future<List<MonthlyUsageStruct>> monthlyUsageJSONToDataType(
       usageHeat: usageRec['usageHeat'],
       usagePower: usageRec['usagePower'],
       month: monthStr,
+      monthDateTime: month,
     ));
   });
 

@@ -22,15 +22,15 @@ Future<String> buildMonthlyUsageChartUrl(
     return '';
   }
 
-  // Sort usage by month (latest first) to get the most recent data
+  // Sort usage by monthDateTime (latest first) to get the most recent data
   final sortedUsage = List<MonthlyUsageStruct>.from(monthlyUsage);
-  sortedUsage.sort((a, b) => b.month.compareTo(a.month));
+  sortedUsage.sort((a, b) => b.monthDateTime!.compareTo(a.monthDateTime!));
 
   // Take only the most recent 24 months
   final recentUsage = sortedUsage.take(24).toList();
   
-  // Reverse back to earliest first for proper chart display
-  recentUsage.sort((a, b) => a.month.compareTo(b.month));
+  // Sort by monthDateTime (earliest first) for proper chart display
+  recentUsage.sort((a, b) => a.monthDateTime!.compareTo(b.monthDateTime!));
 
   // Extract labels (month names) and data arrays
   var labels = <String>[];
