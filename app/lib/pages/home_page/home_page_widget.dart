@@ -619,14 +619,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                               child:
                                                                   LabeledValueWidget(
                                                                 label: 'Mode',
-                                                                value: _model
-                                                                            .inPrepayMode ==
-                                                                        null
-                                                                    ? 'Mode:  loading ...'
-                                                                    : (_model
-                                                                            .inPrepayMode!
-                                                                        ? 'Mode:  Prepayment'
-                                                                        : 'Mode:  Credit'),
+                                                                value: 'Mode:  Prepayment',
+                                                                // Comment out for now: everyone in credit mode but we treat it like prepayment so hard coding that.
+                                                                // _model
+                                                                //             .inPrepayMode ==
+                                                                //         null
+                                                                //     ? 'Mode:  loading ...'
+                                                                //     : (_model
+                                                                //             .inPrepayMode!
+                                                                //         ? 'Mode:  Prepayment'
+                                                                //         : 'Mode:  Credit'),
                                                                 buttonAction:
                                                                     () async {},
                                                               ),
@@ -676,10 +678,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                             child: Visibility(
                                                               visible: (_model
                                                                           .supplyMeter !=
-                                                                      null) &&
-                                                                  _model
-                                                                      .supplyMeter!
-                                                                      .prepayEnabled,
+                                                                      null),
                                                               child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
