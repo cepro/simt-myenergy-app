@@ -551,11 +551,19 @@ Future pendingPayments(BuildContext context) async {
     paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
       (getPaymentsOutput.jsonBody ?? ''),
     );
-    FFAppState().pendingPayments = paymentsTyped
+    final pendingPayments = paymentsTyped
         .where((e) => e.status == 'pending')
         .toList()
-        .toList()
-        .cast<PaymentStruct>();
+        .cast<PaymentStruct>()
+        .where((e) => e.scheduledAt != null)
+        .toList();
+    
+    if (pendingPayments.isEmpty) {
+      FFAppState().pendingPayments = [];
+    } else {
+      pendingPayments.sort((a, b) => a.scheduledAt!.compareTo(b.scheduledAt!));
+      FFAppState().pendingPayments = [pendingPayments.first];
+    }
     return;
   } else {
     await action_blocks.handleMyEnergyApiCallFailure(
