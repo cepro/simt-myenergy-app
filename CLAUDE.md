@@ -12,9 +12,6 @@ The project uses a custom build system with shell scripts in the `bin/` director
 
 ### Local Development
 ```bash
-# Export from FlutterFlow and build locally
-bin/build-local [--export]
-
 # Run locally (requires /etc/hosts entries)
 bin/run-local [hmce]  # runs on local.waterlilies.energy:4242 or local.hazelmead.energy:4242
 ```
@@ -27,15 +24,18 @@ bin/build-fly <wlce|hmce>
 # Deploy to Fly.io (after building)
 fly deploy --config fly/fly.wlce.toml    # Waterlilies Community Energy
 fly deploy --config fly/fly.hmce.toml    # Hazelmead Community Energy
+```
 
-# Legacy GitHub Pages build (deprecated)
-bin/build-github-pages <qa|prod>
+### Sentry Source Maps
+```bash
+bin/upload-sourcemaps-to-sentry   # Upload source maps after a build
+bin/sentry-release                # Create a Sentry release
 ```
 
 ### Flutter Commands
-Standard Flutter commands work from the `local-stage/` directory:
+Standard Flutter commands work from the `app/` directory:
 ```bash
-cd local-stage/
+cd app/
 flutter build web --source-maps --pwa-strategy none
 flutter test
 flutter analyze
@@ -45,15 +45,17 @@ flutter analyze
 
 ### Directory Structure
 - `app/` - Flutter app code
+- `assets/` - Environment-specific assets (hmce/, wlce/ subdirs)
 - `build/web/` - Flutter web build output (created by build scripts, used for Fly.io deployment)
-- `bin/` - Build and utility scripts
+- `bin/` - Build and utility scripts (build-fly, run-local, sentry-release, upload-sourcemaps-to-sentry, embed-sources.py, library.sh)
+- `.github/workflows/` - CI/CD workflows (build.yml, deploy.yml, deploy-template.yml)
 - `nginx.conf` - nginx configuration for Fly.io deployment
 - `Dockerfile` - Docker configuration for Fly.io deployment
 - `fly/fly.wlce.toml` - Fly.io Waterlilies Community Energy environment configuration
 - `fly/fly.hmce.toml` - Fly.io Hazelmead Community Energy environment configuration
 
 ### Flutter Version
-The project uses Flutter 3.32.4 (defined in `.flutter-version`). This must match the FlutterFlow version shown in their UI.
+The project uses Flutter 3.35.7 (defined in `.flutter-version`). This must match the FlutterFlow version shown in their UI.
 
 ### Key Dependencies
 - Supabase for backend (authentication, database, storage)
@@ -76,15 +78,13 @@ The app is built using FlutterFlow with custom code additions:
 ## Development Workflow
 
 ### Local Development
-1. Build local version using `bin/build-local`
-2. Run locally using `bin/run-local`
-3. Test changes
+1. Run locally using `bin/run-local`
+2. Test changes
 
 ### Deployment to Fly.io
-1. Build for target environment: `bin/build-fly <wlce|hmce>`
-2. Deploy: `fly deploy --config fly/fly.<wlce|hmce>.toml`
+Push a git tag ending in `-wlce` or `-hmce` to trigger the GitHub Actions deploy workflow.
 
-The build script:
+The build script (`bin/build-fly`):
 - Creates a temporary build directory
 - Applies environment-specific patches
 - Increments build number
@@ -93,6 +93,18 @@ The build script:
 - Copies build artifacts to `build/web/` for Docker deployment
 
 ## Deployment
+
+### CI/CD via GitHub Actions
+Deployment is triggered by pushing a git tag matching `**-wlce` or `**-hmce`:
+- Tags ending in `-wlce` deploy to the Waterlilies Community Energy environment
+- Tags ending in `-hmce` deploy to the Hazelmead Community Energy environment
+
+The deploy workflow (`.github/workflows/deploy.yml`) calls the shared template (`.github/workflows/deploy-template.yml`) which:
+1. Builds the Flutter app via `bin/build-fly <env>`
+2. Builds and deploys a Docker image to Fly.io
+3. Commits the incremented build number back to `main`
+
+A separate `build.yml` workflow runs `bin/build-fly hmce` on every push as a CI check.
 
 ### Fly.io Deployment
 The app is deployed as a static site using nginx in a Docker container:
@@ -104,14 +116,14 @@ The app is deployed as a static site using nginx in a Docker container:
 Cache busting is handled by injecting the build number into script hrefs in index.html (e.g., `script.js?v=123`).
 
 ## Testing
-Run tests from the `local-stage/` directory:
+Run tests from the `app/` directory:
 ```bash
-cd local-stage/
+cd app/
 flutter test
 ```
 
 ## Requirements
-- Flutter 3.32.4 (use fvm: `fvm use 3.32.4`)
+- Flutter 3.35.7 (use fvm: `fvm use 3.35.7`)
 - FlutterFlow CLI
 - Local Supabase instance for development
 - Fly CLI (`flyctl`) for deployment
