@@ -55,7 +55,7 @@ flutter analyze
 - `fly/fly.hmce.toml` - Fly.io Hazelmead Community Energy environment configuration
 
 ### Flutter Version
-The project uses Flutter 3.35.7 (defined in `.flutter-version`). This must match the FlutterFlow version shown in their UI.
+The project uses Flutter 3.41.7 (defined in `.flutter-version`). The project is no longer coupled to FlutterFlow — the code is maintained directly.
 
 ### Key Dependencies
 - Supabase for backend (authentication, database, storage)
@@ -123,7 +123,6 @@ flutter test
 ```
 
 ## Requirements
-- Flutter 3.35.7 (use fvm: `fvm use 3.35.7`)
-- FlutterFlow CLI
+- Flutter 3.41.7 (use fvm: `fvm use 3.41.7`)
 - Local Supabase instance for development
 - Fly CLI (`flyctl`) for deployment

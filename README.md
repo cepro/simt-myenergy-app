@@ -7,7 +7,6 @@ See the repositories [simt-myenergy-gh-pages-qa](https://github.com/cepro/simt-m
 ## Install Tools
 
 Install:
-- [Flutterflow cli](https://github.com/FlutterFlow/flutterflow-cli)
 - [fvm](https://fvm.app/docs/getting_started/installation)
 
 ## Flutter Version
@@ -16,13 +15,13 @@ The version used by the project is in [.flutter-version](./.flutter-version).
 
 To upgrade edit the .flutter-version file and run:
 ```sh
-fvm use 3.35.7
-fvm global 3.35.7
+fvm use 3.41.7
+fvm global 3.41.7
 ```
 
 You may need to update the vscodium settings file too:
 ```
-"dart.flutterSdkPath": ".fvm/versions/3.35.7",
+"dart.flutterSdkPath": ".fvm/versions/3.41.7",
 ```
 
 ## Run Locally
