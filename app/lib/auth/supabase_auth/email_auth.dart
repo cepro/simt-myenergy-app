@@ -1,3 +1,4 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '/backend/supabase/supabase.dart';
 
 Future<User?> emailSignInFunc(

@@ -1,6 +1,6 @@
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
-import '/backend/supabase/supabase.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 // Imports other custom actions
 // Imports custom functions
 // Begin custom action code

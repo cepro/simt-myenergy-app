@@ -1,4 +1,5 @@
 import 'package:rxdart/rxdart.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '/backend/supabase/supabase.dart';
 import '../base_auth_user_provider.dart';
