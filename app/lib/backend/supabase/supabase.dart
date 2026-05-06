@@ -1,8 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart' hide Provider;
 import '/config/environment.dart';
 
-export 'database/database.dart';
-
 String _kSupabaseUrl = Environment.config.supabaseURI;
 String _kSupabaseAnonKey = Environment.config.supabaseAnonKey;
 

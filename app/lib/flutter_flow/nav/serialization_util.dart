@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
-import '/backend/supabase/supabase.dart';
 
+import '../../flutter_flow/lat_lng.dart';
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
 
@@ -79,7 +79,7 @@ String? serializeParam(
         data = (param is Enum) ? param.serialize() : null;
 
       case ParamType.SupabaseRow:
-        return json.encode((param as SupabaseDataRow).data);
+        return null;
 
       default:
         data = null;
@@ -218,51 +218,7 @@ dynamic deserializeParam<T>(
         return json.decode(param);
 
       case ParamType.SupabaseRow:
-        final data = json.decode(param) as Map<String, dynamic>;
-        switch (T) {
-          case TransactionsRow:
-            return TransactionsRow(data);
-          case CustomerInvitesRow:
-            return CustomerInvitesRow(data);
-          case TransactionStatusesRow:
-            return TransactionStatusesRow(data);
-          case AccountAuditLogsRow:
-            return AccountAuditLogsRow(data);
-          case RegistersRow:
-            return RegistersRow(data);
-          case ContractTermsRow:
-            return ContractTermsRow(data);
-          case MetersRow:
-            return MetersRow(data);
-          case MeterpointsRow:
-            return MeterpointsRow(data);
-          case ReportsRow:
-            return ReportsRow(data);
-          case AccountEventsRow:
-            return AccountEventsRow(data);
-          case WalletsRow:
-            return WalletsRow(data);
-          case MonthlyFlowsRow:
-            return MonthlyFlowsRow(data);
-          case PlacesRow:
-            return PlacesRow(data);
-          case ContractsRow:
-            return ContractsRow(data);
-          case ChargersRow:
-            return ChargersRow(data);
-          case CustomersRow:
-            return CustomersRow(data);
-          case SitesRow:
-            return SitesRow(data);
-          case PropertiesRow:
-            return PropertiesRow(data);
-          case AccountsRow:
-            return AccountsRow(data);
-          case CustomerAccountsRow:
-            return CustomerAccountsRow(data);
-          default:
-            return null;
-        }
+        return null;
 
       case ParamType.DataStruct:
         final data = json.decode(param) as Map<String, dynamic>? ?? {};
