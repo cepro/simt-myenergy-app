@@ -7,6 +7,18 @@
     {
       "name": "MyEnergy App",
       "path": "app"
+    },
+    {
+      "path": "../../myenergy-db"
+    },
+    {
+      "path": "../simt-j-accountservice"
+    },
+    {
+      "path": "../../supabase-host"
+    },
+    {
+      "path": "../../flows-db"
     }
   ],
   "settings": {
