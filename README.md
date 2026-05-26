@@ -24,6 +24,14 @@ You may need to update the vscodium settings file too:
 "dart.flutterSdkPath": ".fvm/versions/3.41.7",
 ```
 
+## Setup Git Hooks
+
+Install the pre-commit hook to automatically check for Dart analysis issues before each commit:
+
+```sh
+bin/install-hooks
+```
+
 ## Run Locally
 
 Add the following to /etc/hosts:

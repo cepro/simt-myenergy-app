@@ -1,0 +1,31 @@
+#!/bin/sh
+# Pre-commit hook for Dart analysis
+#
+# Install by running:
+#   ln -sf ../../bin/pre-commit .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+
+cd "$(git rev-parse --show-toplevel)/app"
+
+echo "Running dart analyze..."
+dart analyze --no-fatal-warnings
+analyze_result=$?
+
+if [ $analyze_result -eq 1 ]; then
+    echo "Dart analyze found errors. Please fix them before committing."
+    exit 1
+fi
+
+echo "Checking for auto-fixable issues..."
+if dart fix --dry-run | grep -q "Some issues can be automatically fixed"; then
+    echo "Auto-fixable issues found. Applying fixes..."
+    dart fix
+    echo "Re-running dart analyze after fixes..."
+    dart analyze
+    if [ $? -eq 1 ]; then
+        echo "Dart analyze found errors after fixes. Please fix them before committing."
+        exit 1
+    fi
+fi
+
+echo "Pre-commit checks passed."

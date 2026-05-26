@@ -1,0 +1,20 @@
+#!/bin/sh
+#
+# Install shared git hooks stored in this repo.
+#
+# Creates symlinks from .git/hooks/ into bin/ so hooks stay in
+# version control and are shared with everyone who runs this script.
+#
+set -e
+
+HOOKS_DIR="$(cd "$(dirname "$0")/.." && pwd)/.git/hooks"
+REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
+for hook in pre-commit; do
+    src="../../bin/$hook"
+    dst="$HOOKS_DIR/$hook"
+    if [ -f "$REPO_DIR/bin/$hook" ]; then
+        ln -sf "$src" "$dst"
+        echo "Installed $hook hook"
+    fi
+done
