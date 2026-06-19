@@ -35,6 +35,7 @@
       "**/local-stage": true,
       "**/.dart_tool": true,
       "**/.fvm": true
-    }
+    },
+    "java.compile.nullAnalysis.mode": "automatic"
   }
 }
