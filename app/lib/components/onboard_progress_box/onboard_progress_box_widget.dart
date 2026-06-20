@@ -51,19 +51,42 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.actionsDonePercent = functions.onboardingActionsDonePercent(
-          FFAppState().solarContractSigned,
-          FFAppState().supplyContractSigned,
-          widget.haveSolarContract!,
-          widget.haveSupplyContract!,
-          widget.hasPaymentMethod!,
-          widget.confirmedDetails!,
-          widget.isOccupier,
-          widget.isOwner)!;
+      _model.actionsDonePercent = _computeActionsDonePercent();
       safeSetState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+  }
+
+  /// Recomputes the onboard progress percentage from the current widget
+  /// props and FFAppState contract flags.
+  ///
+  /// Called on every rebuild (see [build]). This is the fix for the
+  /// "100% with 2 contracts unsigned" bug:
+  ///
+  /// On first mount, `HomePage.initState` schedules `setContractStatusFlags`
+  /// in a post-frame callback. That flips `FFAppState.haveSupplyContract` /
+  /// `haveSolarContract` from false to true and triggers a rebuild. The
+  /// old code only computed the percent once inside this widget's
+  /// `initState` (also in a post-frame callback, racing with the parent's),
+  /// so it was pinned to a snapshot taken when only 3 conditional items
+  /// were visible (invitation + confirm details + payment method). After
+  /// the rebuild the two "Sign your ... contract" rows appeared but the
+  /// percent stayed at 100% because `initState` does not re-run.
+  ///
+  /// Doing the math on every rebuild keeps the donut in sync with the
+  /// row check-states below it. The function is a few `bool` operations
+  /// so the cost is negligible.
+  double _computeActionsDonePercent() {
+    return functions.onboardingActionsDonePercent(
+        FFAppState().solarContractSigned,
+        FFAppState().supplyContractSigned,
+        widget.haveSolarContract!,
+        widget.haveSupplyContract!,
+        widget.hasPaymentMethod!,
+        widget.confirmedDetails!,
+        widget.isOccupier,
+        widget.isOwner)!;
   }
 
   @override
@@ -76,6 +99,11 @@ class _OnboardProgressBoxWidgetState extends State<OnboardProgressBoxWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
+
+    // Recompute on every rebuild so the donut always matches the row
+    // check-states below. See `_computeActionsDonePercent` for the full
+    // explanation.
+    _model.actionsDonePercent = _computeActionsDonePercent();
 
     return Column(
       mainAxisSize: MainAxisSize.max,

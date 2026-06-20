@@ -901,9 +901,19 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 ),
                                                 decoration: const BoxDecoration(),
                                                 child: Visibility(
-                                                  visible: FFAppState()
-                                                          .supplyContractSigned &&
-                                                      (FFAppState()
+                                                  // Show the supply contract card whenever a supply
+                                                  // contract exists for this property — not only when
+                                                  // it is signed. Previously the row was gated on
+                                                  // `supplyContractSigned`, which made it impossible
+                                                  // to sign from the home page once the onboard
+                                                  // progress box was hidden (e.g. for users who skip
+                                                  // onboarding, or for any future flow where the
+                                                  // user is not in preonboarding/onboarding/pending).
+                                                  // The "View" button on the row opens the signing
+                                                  // modal for unsigned contracts and the signed PDF
+                                                  // for signed ones — see `openSupplyContract` in
+                                                  // actions.dart.
+                                                  visible: (FFAppState()
                                                               .supplyAccount
                                                               .customerAccount
                                                               .role ==
@@ -1572,13 +1582,21 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                     ),
                                                     decoration: const BoxDecoration(),
                                                     child: Visibility(
-                                                      visible: FFAppState()
-                                                              .solarContractSigned &&
-                                                          (FFAppState()
+                                                      // Show the solar contract card whenever a solar
+                                                      // contract exists for this property — not only
+                                                      // when it is signed. See the matching comment on
+                                                      // the supply contract card above for the reason.
+                                                      visible: (FFAppState()
                                                                   .solarAccount
                                                                   .customerAccount
                                                                   .role ==
-                                                              'owner'),
+                                                              'owner') &&
+                                                          (functions.getContractByType(
+                                                                  FFAppState()
+                                                                      .accountsForCurrentProperty
+                                                                      .toList(),
+                                                                  'solar') !=
+                                                              null),
                                                       child: Card(
                                                         clipBehavior: Clip
                                                             .antiAliasWithSaveLayer,
