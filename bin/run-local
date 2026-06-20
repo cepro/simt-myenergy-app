@@ -17,13 +17,20 @@ APP_HOME=$THIS_PROJECT/app
 
 if [ "$1" = "hmce" ]; then
   ESCO_NAME=hazelmead
+  ESCO_CODE=hmce
 else
   ESCO_NAME=waterlilies
+  ESCO_CODE=wlce
 fi
 ESCO_HOSTNAME=local.$ESCO_NAME.energy
+APP_URL=http://$ESCO_HOSTNAME:4242/
 
 cd $APP_HOME
-echo "\nRun app from $APP_HOME ...\n"
+echo ""
+echo "  esco:    $ESCO_CODE ($ESCO_NAME)"
+echo "  url:     $APP_URL"
+echo "  app dir: $APP_HOME"
+echo ""
 flutter run -d chrome \
   --web-hostname $ESCO_HOSTNAME \
   --web-port 4242 \
