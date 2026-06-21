@@ -329,10 +329,10 @@ packages:
     dependency: "direct main"
     description:
       name: font_awesome_flutter
-      sha256: b9011df3a1fa02993630b8fb83526368cf2206a711259830325bab2f1d2a4eb0
+      sha256: "09dcde8ab90ffae1a7d65ff2ef96fc62a17ad9d0ce7c127b317ded676b0d5935"
       url: "https://pub.dev"
     source: hosted
-    version: "10.12.0"
+    version: "11.0.0"
   from_css_color:
     dependency: "direct main"
     description:
@@ -617,10 +617,10 @@ packages:
     dependency: "direct main"
     description:
       name: page_transition
-      sha256: "9d2a780d7d68b53ae82fbcc43e06a16195e6775e9aae40e55dc0cbb593460f9d"
+      sha256: "61dac670e80ebdd7da847c21841e1dfd8f9ab483b3a0c5fddc877ad8d23b69ee"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.2"
   path:
     dependency: transitive
     description:
