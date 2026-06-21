@@ -89,12 +89,16 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
       (getAccountsResponse.jsonBody ?? ''),
       r'''$.meters''',
     );
+    // After sqitch migration 0022 the GraphQL response no longer carries
+    // `signedDate` (it now lives in `contract_signatures` per-customer), so
+    // the old check always returned false for a signed contract. The API
+    // returns `signedContractUrl` only for signed contracts — use that as
+    // the signal instead, matching the SSE live-update path which keys off
+    // `signed: true`.
     FFAppState().supplyContractSigned = functions
-                .getContractByType(accounts.toList(), 'supply')
-                ?.signedDate !=
-            null &&
-        functions.getContractByType(accounts.toList(), 'supply')?.signedDate !=
-            '';
+            .getContractByType(accounts.toList(), 'supply')
+            ?.signedContractURL !=
+        '';
     FFAppState().accountsAll = accounts.toList().cast<AccountStruct>();
     FFAppState().properties = functions
         .getPropertiesFromAccounts(accounts.toList())
@@ -121,12 +125,12 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         .toList()
         .cast<EscoStruct>();
     FFAppState().customer = customerToDataTypeResponse;
+    // See supplyContractSigned above — same signedDate-vs-signedContractURL
+    // fix.
     FFAppState().solarContractSigned = functions
-                .getContractByType(accounts.toList(), 'solar')
-                ?.signedDate !=
-            null &&
-        functions.getContractByType(accounts.toList(), 'solar')?.signedDate !=
-            '';
+            .getContractByType(accounts.toList(), 'solar')
+            ?.signedContractURL !=
+        '';
     FFAppState().solarInstallations = getJsonField(
       (getAccountsResponse.jsonBody ?? ''),
       r'''$.solarInstallations''',
@@ -462,21 +466,17 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
 }
 
 Future<bool?> setContractStatusFlags(BuildContext context) async {
+  // See the same fix in the initial-fetch block above — `signedDate` is
+  // not in the post-0022 GraphQL response; the backend sets
+  // `signedContractUrl` only for signed contracts.
   FFAppState().supplyContractSigned = (functions.getContractByType(
               FFAppState().accountsForCurrentProperty.toList(), 'supply') !=
           null) &&
-      (functions
-                  .getContractByType(
-                      FFAppState().accountsForCurrentProperty.toList(),
-                      'supply')
-                  ?.signedDate !=
-              null &&
-          functions
-                  .getContractByType(
-                      FFAppState().accountsForCurrentProperty.toList(),
-                      'supply')
-                  ?.signedDate !=
-              '');
+      functions
+              .getContractByType(
+                  FFAppState().accountsForCurrentProperty.toList(), 'supply')
+              ?.signedContractURL !=
+          '';
   FFAppState().haveSupplyContract = functions
               .getContractByType(
                   FFAppState().accountsForCurrentProperty.toList(), 'supply')
@@ -497,19 +497,16 @@ Future<bool?> setContractStatusFlags(BuildContext context) async {
                   FFAppState().accountsForCurrentProperty.toList(), 'solar')
               ?.id !=
           '';
+  // See the same fix above — `signedDate` no longer in the response; use
+  // `signedContractURL` as the "is signed" signal.
   FFAppState().solarContractSigned = (functions.getContractByType(
               FFAppState().accountsForCurrentProperty.toList(), 'solar') !=
           null) &&
-      (functions
-                  .getContractByType(
-                      FFAppState().accountsForCurrentProperty.toList(), 'solar')
-                  ?.signedDate !=
-              null &&
-          functions
-                  .getContractByType(
-                      FFAppState().accountsForCurrentProperty.toList(), 'solar')
-                  ?.signedDate !=
-              '');
+      functions
+              .getContractByType(
+                  FFAppState().accountsForCurrentProperty.toList(), 'solar')
+              ?.signedContractURL !=
+          '';
   FFAppState().update(() {});
   return true;
 }
