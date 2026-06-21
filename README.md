@@ -6,23 +6,36 @@ See the repositories [simt-myenergy-gh-pages-qa](https://github.com/cepro/simt-m
 
 ## Install Tools
 
-Install:
-- [fvm](https://fvm.app/docs/getting_started/installation)
+Install the Flutter SDK from the official tarball. We use the same source as
+our GitHub Actions CI (`subosito/flutter-action@v2`) — no version manager
+needed. The install script is at `~/bin/install-flutter`.
+
+```sh
+# One-time: install the SDK to the version pinned in .flutter-version
+install-flutter "$(cat .flutter-version)"
+
+# One-time: add Flutter to your PATH (re-open your shell after editing)
+echo 'export PATH="$HOME/.local/share/flutter/current/bin:$PATH"' >> ~/.bashrc
+```
+
+The script verifies the SHA256 against `releases_linux.json`, so the tarball
+can't be tampered with in transit. Idempotent — re-running on an already-
+installed version is a no-op.
 
 ## Flutter Version
 
 The version used by the project is in [.flutter-version](./.flutter-version).
+This is also what CI reads (`.github/workflows/build.yml`,
+`deploy-template.yml`), so local and CI stay in sync by editing this file.
 
-To upgrade edit the .flutter-version file and run:
-```sh
-fvm use 3.41.7
-fvm global 3.41.7
-```
+To upgrade:
+1. Bump the version in `.flutter-version` (e.g. `3.44.2`).
+2. Run `install-flutter <new-version>` locally.
+3. Push — CI picks up the new version on its next run.
 
-You may need to update the vscodium settings file too:
-```
-"dart.flutterSdkPath": ".fvm/versions/3.41.7",
-```
+No IDE SDK path change needed. `install-flutter` keeps a stable symlink at
+`~/.local/share/flutter/current` that follows whatever version you last
+installed, so VS Code / VSCodium picks it up automatically.
 
 ## Setup Git Hooks
 
