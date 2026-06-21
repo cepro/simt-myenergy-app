@@ -1,11 +1,11 @@
 // Tests for the SSE event handlers in
-// `lib/custom_code/actions/contract_event_handlers.dart`. The handlers
+// `lib/custom_code/actions/sse_event_handlers.dart`. The handlers
 // live in their own file (no SSE/wiring imports) precisely so they can
 // be tested directly without pulling in the launchdarkly_event_source
 // transitive deps.
 //
-// The connection setup (`initContractEventsSubscription`) is not tested
-// here — it instantiates a real `ContractEventsClient` and a real LD
+// The connection setup (`initSseEventsSubscription`) is not tested
+// here — it instantiates a real `SseEventsClient` and a real LD
 // `SSEClient`. Tests call the extracted handlers
 // (`handleContractSignedEvent` and `handleCustomerUpdatedEvent`) with
 // synthetic payloads. This is the approach the review recommends for
@@ -20,7 +20,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:my_energy/app_state.dart';
-import 'package:my_energy/custom_code/actions/contract_event_handlers.dart';
+import 'package:my_energy/custom_code/actions/sse_event_handlers.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

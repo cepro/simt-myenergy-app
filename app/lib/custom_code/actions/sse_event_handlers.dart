@@ -2,10 +2,10 @@
 // file (no SSE/wiring imports) so they can be tested directly without
 // pulling in the launchdarkly_event_source_client transitive deps.
 //
-// `initContractEventsSubscription` (in
-// `init_contract_events_subscription.dart`) wires these up to the
+// `initSseEventsSubscription` (in
+// `init_sse_events_subscription.dart`) wires these up to the
 // `contractSigned` and `customerUpdated` broadcast streams exposed by
-// `ContractEventsClient`.
+// `SseEventsClient`.
 
 // Automatic FlutterFlow imports
 import '/backend/schema/structs/index.dart';
@@ -18,9 +18,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 // Replaces the previous Supabase Realtime path
 // (`init_supabase_realtime_subscriptions.dart`). Same downstream effect
 // on `FFAppState()`, but driven by SSE from the accounts service
-// (`/contracts/events`) instead of `postgres_changes` channels on
+// (`/events/stream`) instead of `postgres_changes` channels on
 // `public:contracts` / `public:customers`. See
-// specs/contract-events-sse.md for the wire protocol.
+// specs/sse-events.md for the wire protocol.
 void updateAccountListWithNewContract(
     List<AccountStruct> accounts, Map<String, dynamic> newRec) {
   // Find the account via the accountId the backend now sends, not via

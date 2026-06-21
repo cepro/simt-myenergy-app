@@ -61,7 +61,7 @@ void main() async {
     await appState.initializePersistedState();
   
     // Start final custom actions code
-    await actions.initContractEventsSubscription();
+    await actions.initSseEventsSubscription();
     // End final custom actions code
   
     runApp(ChangeNotifierProvider(

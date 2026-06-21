@@ -1,4 +1,4 @@
-// SSE subscriber that talks to the /contracts/events endpoint on the
+// SSE subscriber that talks to the /events/stream endpoint on the
 // accounts service. Exposes two broadcast streams — `contractSigned`
 // and `customerUpdated` — so callers can subscribe independently.
 //
@@ -16,7 +16,7 @@ import '/auth/supabase_auth/auth_util.dart';
 import '/config/environment.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class ContractEventsClient {
+class SseEventsClient {
   SSEClient? _client;
   final _contractSigned = StreamController<Map<String, dynamic>>.broadcast();
   final _customerUpdated = StreamController<Map<String, dynamic>>.broadcast();
@@ -38,11 +38,11 @@ class ContractEventsClient {
 
     // The browser's native `EventSource` cannot set custom request
     // headers, so on web we put the JWT in the query string and let the
-    // backend's `/contracts/events` filter chain accept it. Mirrors the
+    // backend's `/events/stream` filter chain accept it. Mirrors the
     // existing `/payment-setup.html` pattern.
     final supportsHeaders = !kIsWeb;
     final base = Uri.parse(
-        '${Environment.config.myenergyServiceURI}/contracts/events');
+        '${Environment.config.myenergyServiceURI}/events/stream');
     final url = supportsHeaders
         ? base
         : base.replace(queryParameters: {'access_token': jwt});
