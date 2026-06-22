@@ -64,7 +64,7 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
     bearerToken: userToken,
   );
 
-  if ((getAccountsResponse.succeeded )) {
+  if ((getAccountsResponse.succeeded)) {
     await Future.delayed(
       const Duration(
         milliseconds: 500,
@@ -139,13 +139,14 @@ Future<bool?> getCustomerDetailsAndInitAppState(BuildContext context) async {
         FFAppState().accountsAll.toList(), 'supply')!;
     FFAppState().solarAccount =
         functions.getAccountByType(FFAppState().accountsAll.toList(), 'solar')!;
+    await actions.initSseEventsSubscription();
     if (FFAppState().isCeproUser == true) {
       propertiesOutput = await GetPropertiesCall.call(
         bearerToken: userToken,
         escoCode: FFAppState().esco?.name,
       );
 
-      if ((propertiesOutput.succeeded )) {
+      if ((propertiesOutput.succeeded)) {
         propertiesTyped = await actions.propertiesJSONToPropertiesDataType(
           (propertiesOutput.jsonBody ?? ''),
         );
@@ -196,7 +197,7 @@ Future<String?> contractSignEmbed(
     impersonating: FFAppState().impersonationToken != '',
   );
 
-  if ((contractSigningEmbedResponse.succeeded )) {
+  if ((contractSigningEmbedResponse.succeeded)) {
     return (contractSigningEmbedResponse.bodyText ?? '');
   }
 
@@ -227,7 +228,7 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
     esco: FFAppState().esco?.name,
   );
 
-  if ((getContractTermsResponse.succeeded )) {
+  if ((getContractTermsResponse.succeeded)) {
     await Future.delayed(
       const Duration(
         milliseconds: 500,
@@ -253,6 +254,8 @@ Future<bool> getAndSaveContractTerms(BuildContext context) async {
 }
 
 Future clearAppState(BuildContext context) async {
+  await actions.disconnectSseEventsSubscription();
+
   // Clear All App State
   FFAppState().meters = null;
   FFAppState().supplyContractSigned = false;
@@ -432,8 +435,8 @@ Future<bool> getTariffsCostsUsage(BuildContext context) async {
     }),
   ]);
   if ((getMonthlyCostResponse?.succeeded != false) &&
-       (getTariffsResponse?.succeeded != false) &&
-       (getMonthlyUsageResponse?.succeeded != false)) {
+      (getTariffsResponse?.succeeded != false) &&
+      (getMonthlyUsageResponse?.succeeded != false)) {
     await Future.delayed(
       const Duration(
         milliseconds: 500,
@@ -544,7 +547,7 @@ Future pendingPayments(BuildContext context) async {
     bearerToken: userToken,
   );
 
-  if ((getPaymentsOutput.succeeded )) {
+  if ((getPaymentsOutput.succeeded)) {
     paymentsTyped = await actions.paymentsJSONToPaymentsDataType(
       (getPaymentsOutput.jsonBody ?? ''),
     );
@@ -554,7 +557,7 @@ Future pendingPayments(BuildContext context) async {
         .cast<PaymentStruct>()
         .where((e) => e.scheduledAt != null)
         .toList();
-    
+
     if (pendingPayments.isEmpty) {
       FFAppState().pendingPayments = [];
     } else {
@@ -587,7 +590,7 @@ Future<bool?> impersonateCustomer(
     bearerToken: currentJwtToken,
   );
 
-  if ((generateTokenResponse.succeeded ) == true) {
+  if ((generateTokenResponse.succeeded) == true) {
     FFAppState().impersonationToken = (generateTokenResponse.bodyText ?? '');
     impersonateCustomerDetailsResponse =
         await action_blocks.getCustomerDetailsAndInitAppState(context);

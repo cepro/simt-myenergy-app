@@ -21,7 +21,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 // (`/events/stream`) instead of `postgres_changes` channels on
 // `public:contracts` / `public:customers`. See
 // specs/sse-events.md for the wire protocol.
-void updateAccountListWithNewContract(
+AccountStruct? updateAccountListWithNewContract(
     List<AccountStruct> accounts, Map<String, dynamic> newRec) {
   // Find the account via the accountId the backend now sends, not via
   // contract.id scan. Falls back to the old scan if accountId is absent
@@ -44,8 +44,9 @@ void updateAccountListWithNewContract(
   }();
 
   if (accountForContract == null) {
-    print("no account found for contract ${newRec['id']} (accountId=$accountId)");
-    return;
+    print(
+        "no account found for contract ${newRec['id']} (accountId=$accountId)");
+    return null;
   }
 
   // Build the new contract from the camelCase SSE payload. signedDate is
@@ -61,34 +62,53 @@ void updateAccountListWithNewContract(
     endDate: newRec['endDate'],
   );
 
-  // Replace the account in place; copy the other fields through unchanged.
-  final updatedAccount = AccountStruct(
-    id: accountForContract.id,
-    contract: updatedContract,
-    name: accountForContract.name,
-  );
-
   final index = accounts.indexOf(accountForContract);
   if (index != -1) {
-    accounts[index] = updatedAccount;
+    accountForContract.contract = updatedContract;
+    accounts[index] = accountForContract;
+    return accountForContract;
   }
+
+  return null;
 }
 
 // Handler for `contract_signed` SSE messages. Same state updates as the
 // old Supabase Realtime path — but now keyed off the post-migration
 // `signed` boolean, not the dropped `signed_date`.
 void handleContractSignedEvent(Map<String, dynamic> newRec) {
-  updateAccountListWithNewContract(FFAppState().accountsAll, newRec);
-  updateAccountListWithNewContract(
-      FFAppState().accountsForCurrentProperty, newRec);
+  FFAppState().update(() {
+    final appState = FFAppState();
+    final updatedAll =
+        updateAccountListWithNewContract(appState.accountsAll, newRec);
+    final updatedCurrent = updateAccountListWithNewContract(
+        appState.accountsForCurrentProperty, newRec);
 
-  final type = newRec['type'];
-  final signed = newRec['signed'] == true;
-  if (type == 'solar') {
-    FFAppState().solarContractSigned = signed;
-  } else if (type == 'supply') {
-    FFAppState().supplyContractSigned = signed;
-  }
+    // Persist the mutated lists. FlutterFlow list getters return the backing
+    // list, so direct element replacement above does not hit the generated
+    // setters unless we reassign.
+    appState.accountsAll = appState.accountsAll.toList();
+    appState.accountsForCurrentProperty =
+        appState.accountsForCurrentProperty.toList();
+
+    final type = newRec['type'];
+    final signed = newRec['signed'] == true;
+    final updatedAccount = updatedCurrent ?? updatedAll;
+    if (type == 'solar') {
+      appState.solarContractSigned = signed;
+      if (updatedAccount != null &&
+          (appState.solarAccount.id == updatedAccount.id ||
+              appState.solarAccount.id.isEmpty)) {
+        appState.solarAccount = updatedAccount;
+      }
+    } else if (type == 'supply') {
+      appState.supplyContractSigned = signed;
+      if (updatedAccount != null &&
+          (appState.supplyAccount.id == updatedAccount.id ||
+              appState.supplyAccount.id.isEmpty)) {
+        appState.supplyAccount = updatedAccount;
+      }
+    }
+  });
 
   print("patched contract by replacing account records in both lists");
 }
@@ -98,14 +118,16 @@ void handleContractSignedEvent(Map<String, dynamic> newRec) {
 // payload (null on the wire, dropped by @JsonInclude(NON_NULL)) is
 // left as-is on FFAppState().customer.
 void handleCustomerUpdatedEvent(Map<String, dynamic> newRec) {
-  FFAppState().updateCustomerStruct((c) {
-    if (newRec.containsKey('status')) c.status = newRec['status'];
-    if (newRec.containsKey('hasPaymentMethod')) {
-      c.hasPaymentMethod = newRec['hasPaymentMethod'];
-    }
-    if (newRec.containsKey('allowOnboardTransition')) {
-      c.allowOnboardTransition = newRec['allowOnboardTransition'];
-    }
+  FFAppState().update(() {
+    FFAppState().updateCustomerStruct((c) {
+      if (newRec.containsKey('status')) c.status = newRec['status'];
+      if (newRec.containsKey('hasPaymentMethod')) {
+        c.hasPaymentMethod = newRec['hasPaymentMethod'];
+      }
+      if (newRec.containsKey('allowOnboardTransition')) {
+        c.allowOnboardTransition = newRec['allowOnboardTransition'];
+      }
+    });
   });
 
   print("patched customer record: ${FFAppState().customer}");
