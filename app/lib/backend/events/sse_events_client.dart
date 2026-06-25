@@ -38,14 +38,18 @@ class SseEventsClient {
 
     // The browser's native `EventSource` cannot set custom request
     // headers, so on web we put the JWT in the query string and let the
-    // backend's `/events/stream` filter chain accept it. Mirrors the
-    // existing `/payment-setup.html` pattern.
+    // backend's `/events/stream` filter chain accept it.
     final supportsHeaders = !kIsWeb;
-    final base = Uri.parse(
+    final endpoint = Uri.parse(
         '${Environment.config.myenergyServiceURI}/events/stream');
     final url = supportsHeaders
-        ? base
-        : base.replace(queryParameters: {'access_token': jwt});
+        ? endpoint
+        : endpoint.replace(queryParameters: {'access_token': jwt});
+    // Log the endpoint only — never the `url` with the access_token
+    // query param. On web the JWT in the URL must not land in DevTools
+    // or log forwarders.
+    final transport = supportsHeaders ? 'Authorization header' : 'access_token query';
+    print('contract events: starting connect (transport=$transport, endpoint=$endpoint, hasQueryAuth=${!supportsHeaders})');
 
     _client = SSEClient(
       url,
@@ -59,6 +63,12 @@ class SseEventsClient {
 
     _client!.stream.listen(
       (event) {
+        if (event is OpenEvent) {
+          // Server accepted the connection — pairs with the
+          // `SSE stream opened` log on the accounts service side.
+          print('contract events: opened');
+          return;
+        }
         if (event is! MessageEvent) return;
         try {
           final payload = jsonDecode(event.data) as Map<String, dynamic>;
@@ -86,6 +96,14 @@ class SseEventsClient {
         }
         // Transient errors (network drops, 5xx) are swallowed — the LD
         // client will backoff and retry automatically.
+      },
+      onDone: () {
+        // Stream closed cleanly (server shutdown, explicit close, or
+        // network drop after the response was fully read). The LD
+        // client will not auto-reconnect from here on web — useful to
+        // spot silent disconnects vs. expected disconnects from
+        // `disconnect()`.
+        print('contract events: stream closed');
       },
     );
   }
