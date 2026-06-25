@@ -4,7 +4,7 @@ class ProdConfig extends AppConfig {
   ProdConfig() : super('prod');
 
   @override
-  String get myenergyServiceURI => "https://simt-j-accounts-mgf.fly.dev";
+  String get myenergyServiceURI => "https://simt-j-myenergy-mgf.fly.dev";
 
   @override
   String get supabaseURI => "https://supabase-kong-mgf.fly.dev";
