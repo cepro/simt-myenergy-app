@@ -1023,12 +1023,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                                         () {}),
                                                                 child:
                                                                     SupplyContractRowWidget(
-                                                                  isSigned: functions.getContractByType(FFAppState().accountsForCurrentProperty.toList(), 'supply')?.signedDate !=
-                                                                          null &&
-                                                                      functions
-                                                                              .getContractByType(FFAppState().accountsForCurrentProperty.toList(), 'supply')
-                                                                              ?.signedDate !=
-                                                                          '',
+                                                                  // Post-0022 the GraphQL response no longer carries
+                                                                  // `signedDate`. The backend sets `signedContractUrl`
+                                                                  // only for signed contracts — same fix as in
+                                                                  // lib/actions/actions.dart.
+                                                                  isSigned: functions.getContractByType(FFAppState().accountsForCurrentProperty.toList(), 'supply')
+                                                                          ?.signedContractURL !=
+                                                                      '',
                                                                   contract: functions.getContractByType(
                                                                       FFAppState()
                                                                           .accountsForCurrentProperty

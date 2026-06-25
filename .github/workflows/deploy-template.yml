@@ -23,7 +23,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Read Flutter version
         id: flutter-version
@@ -70,7 +70,7 @@ jobs:
           git stash pop
 
       - name: Commit version file
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: 'github action: build number incremented'
           file_pattern: 'app/pubspec.yaml'

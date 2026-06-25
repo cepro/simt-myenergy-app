@@ -113,6 +113,6 @@ flutter test
 ```
 
 ## Requirements
-- Flutter version as specified in [`.flutter-version`](.flutter-version) (use fvm: `fvm use`)
+- Flutter version as specified in [`.flutter-version`](.flutter-version)
 - Local Supabase instance for development
 - Fly CLI (`flyctl`) for deployment

@@ -14,6 +14,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'config/environment.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'index.dart';
 
 import 'package:flutter/foundation.dart' show kDebugMode;
@@ -60,7 +61,7 @@ void main() async {
     await appState.initializePersistedState();
   
     // Start final custom actions code
-    // await actions.initSupabaseRealtimeSubscriptions();
+    await actions.initSseEventsSubscription();
     // End final custom actions code
   
     runApp(ChangeNotifierProvider(
