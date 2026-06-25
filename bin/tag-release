@@ -1,0 +1,165 @@
+#!/bin/sh
+#
+# tag-release - tag a release and push to trigger a Fly.io deploy
+#
+# Verifies app/pubspec.yaml is at the requested version, then creates
+# and pushes tags of the form <version>-<env>. Pushing a matching tag
+# triggers .github/workflows/deploy.yml, which builds and deploys via
+# GitHub Actions. Do not run fly deploy manually.
+#
+set -e
+
+. `dirname $0`/library.sh
+
+usage() {
+    cat <<EOF
+Usage: tag-release <X.Y.Z> [-wlce|-hmce|-both] [-h|--help]
+
+Tag a release and push to trigger a deploy via GitHub Actions.
+
+  <X.Y.Z>            Version to tag, e.g. 3.6.0. Must match the
+                     semantic version already in app/pubspec.yaml.
+                     The build number (+N) is ignored.
+  -wlce              Tag and push only <X.Y.Z>-wlce
+  -hmce              Tag and push only <X.Y.Z>-hmce
+  -both              Tag and push both (default if no env flag given)
+  -h, --help         Show this help and exit
+
+Examples:
+  tag-release 3.6.0 -both
+      Tags and pushes 3.6.0-wlce and 3.6.0-hmce, triggering two
+      parallel deploy workflows via .github/workflows/deploy.yml.
+
+  tag-release 3.6.0 -hmce
+      Tags and pushes only 3.6.0-hmce - useful for staging a release
+      to hmce before promoting to wlce.
+
+Prerequisites (checked by this script):
+  - app/pubspec.yaml is at version <X.Y.Z>  (use bump-version if not)
+  - app/pubspec.yaml has no uncommitted changes
+  - You are on the main branch
+
+Each pushed tag triggers .github/workflows/deploy.yml, which runs
+bin/build-fly <env> and deploys to Fly.io. The build number in
+app/pubspec.yaml is auto-incremented and committed back to main.
+EOF
+}
+
+# Defaults
+ENV_FLAG="-both"
+
+# Parse args
+VERSION=""
+while [ $# -gt 0 ]; do
+    case "$1" in
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        -wlce|-hmce|-both)
+            ENV_FLAG="$1"
+            shift
+            ;;
+        -*)
+            echo "Error: unknown flag '$1'"
+            echo ""
+            usage
+            exit 1
+            ;;
+        *)
+            if [ -n "$VERSION" ]; then
+                echo "Error: unexpected extra argument '$1' (already have version '$VERSION')"
+                echo ""
+                usage
+                exit 1
+            fi
+            VERSION="$1"
+            shift
+            ;;
+    esac
+done
+
+if [ -z "$VERSION" ]; then
+    echo "Error: missing <X.Y.Z> version"
+    echo ""
+    usage
+    exit 1
+fi
+
+# Validate X.Y.Z
+if ! echo "$VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+    echo "Error: version must be in the form X.Y.Z (digits and dots only)"
+    echo "Got: '$VERSION'"
+    echo ""
+    usage
+    exit 1
+fi
+
+# Verify pubspec.yaml matches the requested semver
+CURRENT_VERSION=`getAppVersion`
+CURRENT_BUILD=`getBuildNumber`
+if [ "$VERSION" != "$CURRENT_VERSION" ]; then
+    echo "Error: pubspec.yaml is at version $CURRENT_VERSION (build $CURRENT_BUILD), not $VERSION"
+    echo "Run bump-version $VERSION first, commit it, then re-run this script."
+    exit 1
+fi
+
+# Require main branch (releases ship from main)
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+if [ "$BRANCH" != "main" ]; then
+    echo "Error: you are on branch '$BRANCH', not 'main'."
+    echo "Releases must be tagged from main."
+    exit 1
+fi
+
+# Require pubspec.yaml committed (the tag must point at the version bump)
+if ! git diff --quiet HEAD -- app/pubspec.yaml; then
+    echo "Error: app/pubspec.yaml has uncommitted changes."
+    echo "Commit or stash them before tagging."
+    git status --short -- app/pubspec.yaml
+    exit 1
+fi
+
+# Build env list
+ENVS=""
+case "$ENV_FLAG" in
+    -wlce) ENVS="wlce" ;;
+    -hmce) ENVS="hmce" ;;
+    -both) ENVS="wlce hmce" ;;
+esac
+
+# Derive GitHub repo from origin URL for the watch URL
+REMOTE_URL=`git config --get remote.origin.url 2>/dev/null || echo ""`
+GITHUB_REPO=""
+if [ -n "$REMOTE_URL" ]; then
+    GITHUB_REPO=`echo "$REMOTE_URL" | sed -e 's|.*github\.com[:/]||' -e 's|\.git$||'`
+fi
+
+# Create + push each tag
+echo "Tagging and pushing from $BRANCH @ `git rev-parse --short HEAD`:"
+for ENV in $ENVS; do
+    TAG="$VERSION-$ENV"
+    if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null 2>&1; then
+        echo "  $TAG"
+        echo "    Error: tag already exists locally. Delete it first with:  git tag -d $TAG"
+        exit 1
+    fi
+    git tag "$TAG"
+    echo "  $TAG - created locally, pushing ..."
+    git push origin "$TAG"
+done
+
+echo ""
+echo "Tags pushed. Watch the deploys at:"
+if [ -n "$GITHUB_REPO" ]; then
+    for ENV in $ENVS; do
+        echo "  https://github.com/$GITHUB_REPO/actions?query=tag%3A$VERSION-$ENV"
+    done
+else
+    echo "  (could not determine GitHub repo from remote URL: '$REMOTE_URL')"
+fi
+echo ""
+echo "Each workflow will:"
+echo "  - run bin/build-fly <env>"
+echo "  - build the Docker image and deploy to Fly.io"
+echo "  - commit the bumped build number back to main"

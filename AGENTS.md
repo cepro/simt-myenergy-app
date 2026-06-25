@@ -36,7 +36,7 @@ flutter analyze
 - `app/` - Flutter app code
 - `assets/` - Environment-specific assets (hmce/, wlce/ subdirs)
 - `build/web/` - Flutter web build output (created by build scripts, used for Fly.io deployment)
-- `bin/` - Build and utility scripts (build-fly, run-local, sentry-release, upload-sourcemaps-to-sentry, embed-sources.py, library.sh, install-hooks, pre-commit)
+- `bin/` - Build and utility scripts (build-fly, bump-version, tag-release, run-local, sentry-release, upload-sourcemaps-to-sentry, embed-sources.py, library.sh, install-hooks, pre-commit)
 - `.github/workflows/` - CI/CD workflows (build.yml, deploy.yml, deploy-template.yml)
 - `nginx.conf` - nginx configuration for Fly.io deployment
 - `Dockerfile` - Docker configuration for Fly.io deployment
@@ -96,6 +96,28 @@ The `bin/build-fly` script:
 - Runs `flutter build web` with source maps
 - Injects build number into script hrefs for cache busting
 - Copies build artifacts to `build/web/` for Docker deployment
+
+### Versioning and Tagging
+
+Two scripts manage the version lifecycle before pushing the deploy tag:
+
+```bash
+bin/bump-version <X.Y.Z>                              # Edit app/pubspec.yaml to <X.Y.Z>+<current_build>
+bin/tag-release <X.Y.Z> [-wlce|-hmce|-both]           # Tag and push to trigger deploy
+```
+
+`pubspec.yaml` holds `version: X.Y.Z+NNNN`. The `+NNNN` build number is **auto-incremented** by `bin/build-fly` on every deploy and committed back to `main` by the deploy workflow — never hand-edit it. The semantic `X.Y.Z` is what you control.
+
+To cut a release:
+
+```bash
+bin/bump-version 3.6.0             # edits app/pubspec.yaml -> 3.6.0+<current_build>
+git add app/pubspec.yaml
+git commit -m "bump to 3.6.0"
+bin/tag-release 3.6.0 -both        # creates and pushes 3.6.0-wlce and 3.6.0-hmce
+```
+
+`tag-release` checks that pubspec is at the requested version, that you are on `main`, and that the version bump is committed, before pushing each tag. It refuses to push tags that already exist locally. Run either script with `-h` or `--help` for full usage.
 
 ### Fly.io Deployment
 The app is deployed as a static site using nginx in a Docker container:

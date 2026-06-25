@@ -1,0 +1,97 @@
+#!/bin/sh
+#
+# bump-version - bump the semantic version in app/pubspec.yaml
+#
+# Preserves the build number (+N suffix), which is auto-incremented on
+# every deploy by bin/build-fly and committed back to main by the
+# deploy workflow. This script only edits the file - commit and tag
+# yourself (or use tag-release).
+#
+set -e
+
+. `dirname $0`/library.sh
+
+usage() {
+    cat <<EOF
+Usage: bump-version <X.Y.Z> [-h|--help]
+
+Bump the semantic version in app/pubspec.yaml.
+
+  <X.Y.Z>      New semantic version, e.g. 3.6.0
+  -h, --help   Show this help and exit
+
+The build number (+N suffix) is preserved. It auto-increments on every
+deploy via bin/build-fly and is committed back to main by the deploy
+workflow. Do not hand-edit the build number - it will be stomped.
+
+This script edits the file but does not commit. After it runs:
+
+  git diff app/pubspec.yaml      # review
+  git add app/pubspec.yaml
+  git commit -m "bump to 3.6.0"
+  tag-release 3.6.0 -both       # tag and deploy
+
+Examples:
+  bump-version 3.6.0
+      Sets app/pubspec.yaml to: version: 3.6.0+<current_build>
+
+  bump-version 4.0.0
+      Sets app/pubspec.yaml to: version: 4.0.0+<current_build>
+EOF
+}
+
+# Help
+case "${1:-}" in
+    -h|--help)
+        usage
+        exit 0
+        ;;
+esac
+
+# Need exactly one arg
+if [ $# -ne 1 ]; then
+    echo "Error: expected exactly one argument"
+    echo ""
+    usage
+    exit 1
+fi
+
+NEW_VERSION="$1"
+
+# Validate X.Y.Z
+if ! echo "$NEW_VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+    echo "Error: version must be in the form X.Y.Z (digits and dots only)"
+    echo "Got: '$NEW_VERSION'"
+    echo ""
+    usage
+    exit 1
+fi
+
+# Refuse if already at that version
+CURRENT_VERSION=`getAppVersion`
+CURRENT_BUILD=`getBuildNumber`
+if [ "$NEW_VERSION" = "$CURRENT_VERSION" ]; then
+    echo "Error: pubspec.yaml is already at version $NEW_VERSION (build $CURRENT_BUILD)"
+    echo "Pick a different version."
+    exit 1
+fi
+
+OLD_LINE="version: $CURRENT_VERSION+$CURRENT_BUILD"
+NEW_LINE="version: $NEW_VERSION+$CURRENT_BUILD"
+
+# Edit
+sed -i -e "s/^version:.*/$NEW_LINE/" $PUBSPEC_FILE
+
+echo ""
+echo "Updated $PUBSPEC_FILE"
+echo "  was: $OLD_LINE"
+echo "  now: $NEW_LINE"
+echo ""
+echo "Build number preserved at $CURRENT_BUILD (auto-increments on every deploy)."
+echo ""
+echo "Next steps:"
+echo "  git diff app/pubspec.yaml"
+echo "  git add app/pubspec.yaml"
+echo "  git commit -m \"bump to $NEW_VERSION\""
+echo "  tag-release $NEW_VERSION -both"
+echo ""
