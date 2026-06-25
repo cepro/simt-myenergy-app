@@ -12,7 +12,7 @@ abstract class AppConfig {
   String get flutterVersion =>
       const String.fromEnvironment('BUILD_FLUTTER_VERSION', defaultValue: 'unknown');
 
-  // see simt-j-accounts-service - the myenergy / accounts service
+  // see simt-j-myenergyservice - the myenergy service
   String get myenergyServiceURI;
 
   // self hosted supabase

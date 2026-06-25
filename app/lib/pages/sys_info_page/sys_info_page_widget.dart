@@ -451,7 +451,7 @@ class _SysInfoPageWidgetState extends State<SysInfoPageWidget> {
                                                     color: Colors.transparent,
                                                     child: ListTile(
                                                       title: Text(
-                                                        'simt-j-accounts URI',
+                                                        'myenergyservice URI',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
