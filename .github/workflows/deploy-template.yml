@@ -47,9 +47,9 @@ jobs:
         run: docker build -t myenergy:${GITHUB_REF_NAME} .
 
       - name: Setup Fly CLI
-        uses: superfly/flyctl-actions/setup-flyctl@1.5
+        uses: superfly/flyctl-actions/setup-flyctl@1.6
         with:
-          version: 0.3.195
+          version: 0.4.61
 
       - name: Get Project version
         id: project-version
@@ -70,7 +70,7 @@ jobs:
           git stash pop
 
       - name: Commit version file
-        uses: stefanzweifel/git-auto-commit-action@v6
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: 'github action: build number incremented'
           file_pattern: 'app/pubspec.yaml'
