@@ -15,6 +15,7 @@ class ContractStruct extends BaseStruct {
     String? effectiveDate,
     String? endDate,
     String? termsId,
+    int? signaturesRequired,
   })  : _id = id,
         _type = type,
         _docusealSubmissionId = docusealSubmissionId,
@@ -22,7 +23,8 @@ class ContractStruct extends BaseStruct {
         _signedDate = signedDate,
         _effectiveDate = effectiveDate,
         _endDate = endDate,
-        _termsId = termsId;
+        _termsId = termsId,
+        _signaturesRequired = signaturesRequired;
 
   // "id" field.
   String? _id;
@@ -83,6 +85,16 @@ class ContractStruct extends BaseStruct {
 
   bool hasTermsId() => _termsId != null;
 
+  // "signaturesRequired" field. Defaults to 1 (the pre-migration-0022
+  // behaviour) when the GraphQL response omits the column (e.g. legacy
+  // single-signer contracts). Used by the signing modal to decide between
+  // the single-signer and the multi-party interstitial screens.
+  int? _signaturesRequired;
+  int get signaturesRequired => _signaturesRequired ?? 1;
+  set signaturesRequired(int? val) => _signaturesRequired = val;
+
+  bool hasSignaturesRequired() => _signaturesRequired != null;
+
   static ContractStruct fromMap(Map<String, dynamic> data) => ContractStruct(
         id: data['id'] as String?,
         type: data['type'] as String?,
@@ -92,6 +104,7 @@ class ContractStruct extends BaseStruct {
         effectiveDate: data['effectiveDate'] as String?,
         endDate: data['endDate'] as String?,
         termsId: data['termsId'] as String?,
+        signaturesRequired: castToType<int>(data['signaturesRequired']),
       );
 
   static ContractStruct? maybeFromMap(dynamic data) =>
@@ -106,6 +119,7 @@ class ContractStruct extends BaseStruct {
         'effectiveDate': _effectiveDate,
         'endDate': _endDate,
         'termsId': _termsId,
+        'signaturesRequired': _signaturesRequired,
       }.withoutNulls;
 
   @override
@@ -141,6 +155,10 @@ class ContractStruct extends BaseStruct {
         'termsId': serializeParam(
           _termsId,
           ParamType.String,
+        ),
+        'signaturesRequired': serializeParam(
+          _signaturesRequired,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -186,6 +204,11 @@ class ContractStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        signaturesRequired: deserializeParam(
+          data['signaturesRequired'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -201,7 +224,8 @@ class ContractStruct extends BaseStruct {
         signedDate == other.signedDate &&
         effectiveDate == other.effectiveDate &&
         endDate == other.endDate &&
-        termsId == other.termsId;
+        termsId == other.termsId &&
+        signaturesRequired == other.signaturesRequired;
   }
 
   @override
@@ -213,7 +237,8 @@ class ContractStruct extends BaseStruct {
         signedDate,
         effectiveDate,
         endDate,
-        termsId
+        termsId,
+        signaturesRequired
       ]);
 }
 
@@ -226,6 +251,7 @@ ContractStruct createContractStruct({
   String? effectiveDate,
   String? endDate,
   String? termsId,
+  int? signaturesRequired,
 }) =>
     ContractStruct(
       id: id,
@@ -236,4 +262,5 @@ ContractStruct createContractStruct({
       effectiveDate: effectiveDate,
       endDate: endDate,
       termsId: termsId,
+      signaturesRequired: signaturesRequired,
     );
