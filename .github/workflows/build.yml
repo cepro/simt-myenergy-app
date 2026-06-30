@@ -35,34 +35,27 @@ jobs:
         run: bin/build-fly hmce
 
   # Phase 2 — full vulnerability sweep of the Dart deps (pubspec.lock).
-  # Fails on HIGH/CRITICAL. NOTE: on the first run this may go red if a
-  # known HIGH vuln already exists in pubspec.lock — fix it, or relax
-  # --fail-on to 'critical'. This is the full sweep; the dependency-review
-  # job below is the diff-only PR gate (they're complementary).
+  # Calls osv-scanner-action's reusable workflow, which runs the scan,
+  # uploads SARIF to Code Scanning itself, and fails when a vuln is found
+  # (fail-on-vuln: true). This is the full sweep; the dependency-review job
+  # below is the diff-only PR gate (they're complementary).
+  #
+  # osv-scanner has NO severity-threshold flag — fail-on-vuln is boolean,
+  # so this fails on ANY vuln, not just HIGH/CRITICAL. Triage findings via
+  # the Security tab; if a build is blocked by an acceptable/low-severity
+  # finding, suppress that specific advisory with an osv-scanner.toml
+  # [[PackageOverrides]] entry. (The image scan in deploy-template.yml uses
+  # trivy, which DOES honor a HIGH/CRITICAL severity filter.)
   dependency-scan:
-    name: Dependency scan (pubspec.lock)
-    runs-on: ubuntu-latest
     permissions:
+      actions: read # required for SARIF upload to Code Scanning
       contents: read
-      security-events: write # upload osv-scanner SARIF to Code Scanning
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
-
-      - name: osv-scanner on pubspec.lock
-        uses: google/osv-scanner-action/osv-scanner-action@9a498708959aeaef5ef730655706c5a1df1edbc2 # v2.3.8
-        with:
-          scan-args: |-
-            --lockfile=app/pubspec.lock
-            --format=sarif
-            --output=results.sarif
-            --fail-on=high
-
-      - name: Upload SARIF to Code Scanning
-        if: always() # upload even if osv-scanner failed the job
-        uses: github/codeql-action/upload-sarif@dd903d2e4f5405488e5ef1422510ee31c8b32357 # v3.36.2
-        with:
-          sarif_file: results.sarif
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@9a498708959aeaef5ef730655706c5a1df1edbc2 # v2.3.8
+    with:
+      scan-args: |-
+        --lockfile=app/pubspec.lock
+      fail-on-vuln: true
 
   # Phase 4 — SBOM for the Dart app source (CycloneDX). Uploaded as a
   # workflow artifact (no GitHub Release; see plan Phase 4).
@@ -83,6 +76,11 @@ jobs:
   # Phase 3 — PR gate. Diff-only: fails when changed deps ADD a vuln of the
   # given severity or higher. Does NOT catch vulns in unchanged deps (that
   # is dependency-scan above). Runs on pull requests only.
+  #
+  # PREREQ: requires the repo's Dependency graph to be ON (Settings → Code
+  # security). Until enabled (and this PR merged so .github/dependabot.yml
+  # lands), this job errors with "Dependency review is not supported" —
+  # that's a setting, not a bug.
   dependency-review:
     name: Dependency review (PR gate)
     runs-on: ubuntu-latest
