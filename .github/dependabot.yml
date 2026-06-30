@@ -1,0 +1,49 @@
+# Dependency update bot. Enables the dependency graph and free security
+# alerts as a side effect (this is a public repo, so all of that is free).
+# See specs/dependency-security-plan.md Phase 1.
+version: 2
+updates:
+  # Flutter / Dart packages. The app lives under /app.
+  - package-ecosystem: "pub"
+    directory: "/app"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "deps(flutter)"
+    groups:
+      # The Supabase client family is version-coupled — bundle the whole
+      # set into one PR so a bump never lands piecemeal and breaks compat.
+      # (First matching group wins, so this must come before minor-patch.)
+      supabase:
+        patterns:
+          - "supabase"
+          - "supabase_flutter"
+          - "gotrue"
+          - "realtime_client"
+          - "storage_client"
+          - "functions_client"
+      minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Dockerfile base image (nginx). Dependabot refreshes the pinned digest.
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "deps(docker)"
+
+  # GitHub Actions referenced from .github/workflows/*. Dependabot bumps the
+  # SHA-pinned actions and keeps the "# vX.Y.Z" comments current.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "deps(ci)"
