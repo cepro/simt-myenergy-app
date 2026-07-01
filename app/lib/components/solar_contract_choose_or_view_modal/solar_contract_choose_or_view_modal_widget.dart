@@ -167,6 +167,35 @@ class _SolarContractChooseOrViewModalWidgetState
                             html: _model.docusealEmbedHTML!,
                           ),
                         ),
+                      // Multi-party awaiting-co-signer banner. For multi-party
+                      // contracts (signaturesRequired > 1) the WebView's own
+                      // data-completed-* attributes carry the "your part is
+                      // done" interstitial inside the DocuSeal embed; this
+                      // banner only appears if the SSE-driven state shows the
+                      // contract as still unsigned while the user has just
+                      // completed signing. The modal's WebView lives inside
+                      // the same Stack so the banner sits above the embed.
+                      if (_model.docusealEmbedHTML != null &&
+                          _model.docusealEmbedHTML != '' &&
+                          (widget.contract?.signaturesRequired ?? 1) > 1 &&
+                          (widget.contract?.signedContractURL == null ||
+                              widget.contract?.signedContractURL == ''))
+                        Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
+                          child: Text(
+                            'Multi-party contract: both registered proprietors must sign before the contract is fully signed.',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyMediumFamily,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: !FlutterFlowTheme.of(context)
+                                      .bodyMediumIsCustom,
+                                ),
+                          ),
+                        ),
                       if ((widget.contract?.id == null ||
                               widget.contract?.id == '') ||
                           (widget.contract?.termsId == null ||

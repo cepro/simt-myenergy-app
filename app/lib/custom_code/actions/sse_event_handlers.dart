@@ -51,7 +51,9 @@ AccountStruct? updateAccountListWithNewContract(
 
   // Build the new contract from the camelCase SSE payload. signedDate is
   // intentionally absent — post-migration 0022 it lives in
-  // `contract_signatures` per-customer, not on the contract.
+  // `contract_signatures` per-customer, not on the contract. signaturesRequired
+  // is optional in the SSE payload (older events may not include it) and
+  // defaults to null on the struct (= 1 via the getter).
   final updatedContract = ContractStruct(
     id: newRec['id'],
     type: newRec['type'],
@@ -60,6 +62,9 @@ AccountStruct? updateAccountListWithNewContract(
     signedContractURL: newRec['signedContractUrl'],
     effectiveDate: newRec['effectiveDate'],
     endDate: newRec['endDate'],
+    signaturesRequired: newRec['signaturesRequired'] is int
+        ? newRec['signaturesRequired'] as int
+        : null,
   );
 
   final index = accounts.indexOf(accountForContract);
