@@ -2,6 +2,12 @@ name: Build and Test
 
 on:
   push:
+  pull_request:
+    branches: [main]
+
+# Least-privilege defaults. Jobs that need more grant it explicitly.
+permissions:
+  contents: read
 
 jobs:
   build-hmce:
@@ -9,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: Read Flutter version
         id: flutter-version
@@ -19,7 +25,7 @@ jobs:
           echo "Flutter version: $FLUTTER_VERSION"
 
       - name: Setup Flutter
-        uses: subosito/flutter-action@v2
+        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: 'stable'
@@ -27,3 +33,68 @@ jobs:
 
       - name: Build Flutter app for hmce
         run: bin/build-fly hmce
+
+  # Phase 2 — full vulnerability sweep of the Dart deps (pubspec.lock).
+  # Calls osv-scanner-action's reusable workflow, which runs the scan,
+  # uploads SARIF to Code Scanning itself, and fails when a vuln is found
+  # (fail-on-vuln: true). This is the full sweep; the dependency-review job
+  # below is the diff-only PR gate (they're complementary).
+  #
+  # osv-scanner has NO severity-threshold flag — fail-on-vuln is boolean,
+  # so this fails on ANY vuln, not just HIGH/CRITICAL. Triage findings via
+  # the Security tab; if a build is blocked by an acceptable/low-severity
+  # finding, suppress that specific advisory with an osv-scanner.toml
+  # [[PackageOverrides]] entry. (The image scan in deploy-template.yml uses
+  # trivy, which DOES honor a HIGH/CRITICAL severity filter.)
+  dependency-scan:
+    permissions:
+      actions: read # required for SARIF upload to Code Scanning
+      contents: read
+      security-events: write
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@9a498708959aeaef5ef730655706c5a1df1edbc2 # v2.3.8
+    with:
+      scan-args: |-
+        --lockfile=app/pubspec.lock
+      fail-on-vuln: true
+
+  # Phase 4 — SBOM for the Dart app source (CycloneDX). Uploaded as a
+  # workflow artifact (no GitHub Release; see plan Phase 4).
+  app-sbom:
+    name: SBOM (app source)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Generate SBOM with syft
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
+        with:
+          path: app
+          format: cyclonedx-json
+          artifact-name: app.cdx.json
+
+  # Phase 3 — PR gate. Diff-only: fails when changed deps ADD a vuln of the
+  # given severity or higher. Does NOT catch vulns in unchanged deps (that
+  # is dependency-scan above). Runs on pull requests only.
+  #
+  # PREREQ: requires the repo's Dependency graph to be ON (Settings → Code
+  # security). Until enabled (and this PR merged so .github/dependabot.yml
+  # lands), this job errors with "Dependency review is not supported" —
+  # that's a setting, not a bug.
+  dependency-review:
+    name: Dependency review (PR gate)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write # post the failure summary as a PR comment
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Review changed dependencies
+        uses: actions/dependency-review-action@2031cfc080254a8a887f58cffee85186f0e49e48 # v4.9.0
+        with:
+          # Block on HIGH/CRITICAL; MODERATE and below are reported but pass.
+          fail-on-severity: high
+          comment-summary-in-pr: on-failure
