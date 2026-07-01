@@ -9,7 +9,12 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 10
+      time: "06:00"
+      timezone: "Australia/Sydney"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "flutter"
     commit-message:
       prefix: "deps(flutter)"
     groups:
@@ -35,6 +40,11 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+      time: "06:00"
+      timezone: "Australia/Sydney"
+    labels:
+      - "dependencies"
+      - "docker"
     commit-message:
       prefix: "deps(docker)"
 
@@ -45,5 +55,11 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
+      time: "06:00"
+      timezone: "Australia/Sydney"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "ci"
     commit-message:
       prefix: "deps(ci)"
