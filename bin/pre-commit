@@ -28,4 +28,14 @@ if dart fix --dry-run | grep -q "Some issues can be automatically fixed"; then
     fi
 fi
 
+# Run the unit-test suite when Dart sources are staged. Skipped for
+# non-Dart commits (docs, config, ops) so those stay instant.
+if git diff --cached --name-only --diff-filter=ACMR | grep -qE '\.dart$'; then
+    echo "Running flutter test..."
+    if ! flutter test; then
+        echo "Tests failed. Fix them before committing (or bypass with --no-verify)."
+        exit 1
+    fi
+fi
+
 echo "Pre-commit checks passed."
