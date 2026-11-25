@@ -3,6 +3,7 @@ import 'dart:async';
 
 import '/backend/events/sse_events_client.dart';
 // Imports other custom actions
+import 'contract_signed_refresh.dart';
 import 'sse_event_handlers.dart';
 // Imports custom functions
 // Begin custom action code
@@ -25,7 +26,11 @@ Future initSseEventsSubscription() async {
   await _events.connect();
 
   _contractSignedSubscription =
-      _events.contractSigned.listen(handleContractSignedEvent);
+      _events.contractSigned.listen((rec) => handleContractSignedEvent(
+            rec,
+            onSignedWithoutPdf: (id) =>
+                unawaited(refreshContractUntilSignedPdf(id)),
+          ));
   _customerUpdatedSubscription =
       _events.customerUpdated.listen(handleCustomerUpdatedEvent);
 }

@@ -80,7 +80,17 @@ AccountStruct? updateAccountListWithNewContract(
 // Handler for `contract_signed` SSE messages. Same state updates as the
 // old Supabase Realtime path — but now keyed off the post-migration
 // `signed` boolean, not the dropped `signed_date`.
-void handleContractSignedEvent(Map<String, dynamic> newRec) {
+//
+// The event fires on the `signed` flip, which usually happens before the
+// service has written `signedContractUrl` (see contract_signed_refresh.dart).
+// The "<type>ContractSigned" flags only go true once the PDF URL is known,
+// matching `setContractStatusFlags`, so "open signed contract" never opens an
+// empty URL. When the event is signed but has no URL, [onSignedWithoutPdf] is
+// called with the contract id so the caller can fetch it.
+void handleContractSignedEvent(
+  Map<String, dynamic> newRec, {
+  void Function(String contractId)? onSignedWithoutPdf,
+}) {
   FFAppState().update(() {
     final appState = FFAppState();
     final updatedAll =
@@ -96,7 +106,8 @@ void handleContractSignedEvent(Map<String, dynamic> newRec) {
         appState.accountsForCurrentProperty.toList();
 
     final type = newRec['type'];
-    final signed = newRec['signed'] == true;
+    final url = newRec['signedContractUrl'];
+    final signed = newRec['signed'] == true && url is String && url.isNotEmpty;
     final updatedAccount = updatedCurrent ?? updatedAll;
     if (type == 'solar') {
       appState.solarContractSigned = signed;
@@ -116,6 +127,15 @@ void handleContractSignedEvent(Map<String, dynamic> newRec) {
   });
 
   print("patched contract by replacing account records in both lists");
+
+  final contractId = newRec['id'];
+  final url = newRec['signedContractUrl'];
+  if (newRec['signed'] == true &&
+      (url is! String || url.isEmpty) &&
+      contractId is String &&
+      onSignedWithoutPdf != null) {
+    onSignedWithoutPdf(contractId);
+  }
 }
 
 // Handler for `customer_updated` SSE messages. Mirrors the old

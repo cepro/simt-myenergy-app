@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/contract_signers.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_choose_or_view_modal/solar_contract_choose_or_view_modal_widget.dart';
@@ -11,6 +12,10 @@ import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
+
+import 'contract_sign_embed_error.dart';
+export 'contract_sign_embed_error.dart';
+export '/backend/schema/contract_signers.dart';
 
 Future handleMyEnergyApiCallFailure(
   BuildContext context, {
@@ -185,6 +190,9 @@ Future<String?> contractSignEmbed(
   BuildContext context, {
   required String? contractId,
   String? termsSubtype,
+  // When given, a failed call is reported here instead of as a snackbar, so
+  // the caller can show the error inline (with a retry for 502).
+  void Function(ContractSignEmbedError error)? onError,
 }) async {
   String? userToken;
   ApiCallResponse? contractSigningEmbedResponse;
@@ -201,10 +209,29 @@ Future<String?> contractSignEmbed(
     return (contractSigningEmbedResponse.bodyText ?? '');
   }
 
+  final statusCode = contractSigningEmbedResponse.statusCode;
+  if (statusCode == 401) {
+    if (!context.mounted) return null;
+    await action_blocks.handleMyEnergyApiCallFailure(
+      context,
+      wwwAuthenticateHeader:
+          contractSigningEmbedResponse.getHeader('www-authenticate'),
+      httpStatusCode: statusCode,
+    );
+    return null;
+  }
+
+  final error = contractSignEmbedErrorFor(statusCode);
+  if (onError != null) {
+    onError(error);
+    return null;
+  }
+
+  if (!context.mounted) return null;
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(
-        'Failed:${(contractSigningEmbedResponse.bodyText ?? '')}',
+        error.message,
         style: TextStyle(
           color: FlutterFlowTheme.of(context).primaryText,
         ),
@@ -215,6 +242,21 @@ Future<String?> contractSignEmbed(
   );
 
   return null;
+}
+
+/// Signing progress for a multi-party contract, or null if the call fails.
+/// Failures are only logged: the modal falls back to a generic message.
+Future<ContractSigners?> contractSigners({required String? contractId}) async {
+  if (contractId == null || contractId.isEmpty) return null;
+  final response = await ContractSignersCall.call(
+    bearerToken: await actions.activeUserToken(),
+    id: contractId,
+  );
+  if (!response.succeeded) {
+    print('contract signers: ${response.statusCode} for $contractId');
+    return null;
+  }
+  return ContractSigners.fromJson(response.jsonBody);
 }
 
 Future<bool> getAndSaveContractTerms(BuildContext context) async {
