@@ -77,7 +77,8 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
           Expanded(
             flex: 5,
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,19 +93,32 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                               !FlutterFlowTheme.of(context).bodyMediumIsCustom,
                         ),
                   ),
-                  if (widget.isSigned == true)
+                  // DocuSeal audit log for a signed contract (who signed,
+                  // when, from where).
+                  if (widget.isSigned == true &&
+                      (widget.contract?.auditLogURL ?? '') != '')
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                      child: Text(
-                        '',
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodySmallFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: !FlutterFlowTheme.of(context)
-                                  .bodySmallIsCustom,
-                            ),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 4.0, 0.0, 0.0),
+                      child: InkWell(
+                        key: const ValueKey('solar-contract-audit-log-link'),
+                        onTap: () async {
+                          await actions.openPDF(widget.contract!.auditLogURL);
+                        },
+                        child: Text(
+                          'Signing audit log',
+                          style: FlutterFlowTheme.of(context)
+                              .bodySmall
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodySmallFamily,
+                                color: FlutterFlowTheme.of(context).primary,
+                                letterSpacing: 0.0,
+                                decoration: TextDecoration.underline,
+                                useGoogleFonts: !FlutterFlowTheme.of(context)
+                                    .bodySmallIsCustom,
+                              ),
+                        ),
                       ),
                     ),
                 ],
@@ -158,10 +172,10 @@ class _SolarContractRowWidgetState extends State<SolarContractRowWidget> {
                   text: 'View',
                   options: FFButtonOptions(
                     height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        24.0, 0.0, 24.0, 0.0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily:

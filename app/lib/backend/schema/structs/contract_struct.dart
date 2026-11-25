@@ -16,6 +16,7 @@ class ContractStruct extends BaseStruct {
     String? endDate,
     String? termsId,
     int? signaturesRequired,
+    String? auditLogURL,
   })  : _id = id,
         _type = type,
         _docusealSubmissionId = docusealSubmissionId,
@@ -24,7 +25,8 @@ class ContractStruct extends BaseStruct {
         _effectiveDate = effectiveDate,
         _endDate = endDate,
         _termsId = termsId,
-        _signaturesRequired = signaturesRequired;
+        _signaturesRequired = signaturesRequired,
+        _auditLogURL = auditLogURL;
 
   // "id" field.
   String? _id;
@@ -93,6 +95,14 @@ class ContractStruct extends BaseStruct {
   int get signaturesRequired => _signaturesRequired ?? 1;
   set signaturesRequired(int? val) => _signaturesRequired = val;
 
+  // "auditLogURL" field. DocuSeal audit log for a signed contract, written
+  // on `submission.completed` (multi-party) or the final `form.completed`.
+  String? _auditLogURL;
+  String get auditLogURL => _auditLogURL ?? '';
+  set auditLogURL(String? val) => _auditLogURL = val;
+
+  bool hasAuditLogURL() => _auditLogURL != null;
+
   bool hasSignaturesRequired() => _signaturesRequired != null;
 
   static ContractStruct fromMap(Map<String, dynamic> data) => ContractStruct(
@@ -105,6 +115,7 @@ class ContractStruct extends BaseStruct {
         endDate: data['endDate'] as String?,
         termsId: data['termsId'] as String?,
         signaturesRequired: castToType<int>(data['signaturesRequired']),
+        auditLogURL: data['auditLogURL'] as String?,
       );
 
   static ContractStruct? maybeFromMap(dynamic data) =>
@@ -120,6 +131,7 @@ class ContractStruct extends BaseStruct {
         'endDate': _endDate,
         'termsId': _termsId,
         'signaturesRequired': _signaturesRequired,
+        'auditLogURL': _auditLogURL,
       }.withoutNulls;
 
   @override
@@ -159,6 +171,10 @@ class ContractStruct extends BaseStruct {
         'signaturesRequired': serializeParam(
           _signaturesRequired,
           ParamType.int,
+        ),
+        'auditLogURL': serializeParam(
+          _auditLogURL,
+          ParamType.String,
         ),
       }.withoutNulls;
 
@@ -209,6 +225,11 @@ class ContractStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
+        auditLogURL: deserializeParam(
+          data['auditLogURL'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -225,7 +246,8 @@ class ContractStruct extends BaseStruct {
         effectiveDate == other.effectiveDate &&
         endDate == other.endDate &&
         termsId == other.termsId &&
-        signaturesRequired == other.signaturesRequired;
+        signaturesRequired == other.signaturesRequired &&
+        auditLogURL == other.auditLogURL;
   }
 
   @override
@@ -238,7 +260,8 @@ class ContractStruct extends BaseStruct {
         effectiveDate,
         endDate,
         termsId,
-        signaturesRequired
+        signaturesRequired,
+        auditLogURL
       ]);
 }
 
@@ -252,6 +275,7 @@ ContractStruct createContractStruct({
   String? endDate,
   String? termsId,
   int? signaturesRequired,
+  String? auditLogURL,
 }) =>
     ContractStruct(
       id: id,
@@ -263,4 +287,5 @@ ContractStruct createContractStruct({
       endDate: endDate,
       termsId: termsId,
       signaturesRequired: signaturesRequired,
+      auditLogURL: auditLogURL,
     );

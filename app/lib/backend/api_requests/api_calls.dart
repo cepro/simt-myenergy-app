@@ -591,6 +591,32 @@ class ContractSigningEmbedCall {
   }
 }
 
+// Signing progress for a multi-party contract (who must sign, who has
+// signed). 404 if the contract isn't on the caller's accounts.
+class ContractSignersCall {
+  static Future<ApiCallResponse> call({
+    String? bearerToken = '',
+    String? id = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Contract Signers',
+      apiUrl: uri('/contract/$id/signers'),
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $bearerToken',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ContractTermsLatestCall {
   static Future<ApiCallResponse> call({
     String? bearerToken = '',

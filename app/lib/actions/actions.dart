@@ -1,5 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/contract_signers.dart';
 import '/backend/schema/enums/enums.dart';
 import '/backend/schema/structs/index.dart';
 import '/components/solar_contract_choose_or_view_modal/solar_contract_choose_or_view_modal_widget.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart';
 
 import 'contract_sign_embed_error.dart';
 export 'contract_sign_embed_error.dart';
+export '/backend/schema/contract_signers.dart';
 
 Future handleMyEnergyApiCallFailure(
   BuildContext context, {
@@ -240,6 +242,21 @@ Future<String?> contractSignEmbed(
   );
 
   return null;
+}
+
+/// Signing progress for a multi-party contract, or null if the call fails.
+/// Failures are only logged: the modal falls back to a generic message.
+Future<ContractSigners?> contractSigners({required String? contractId}) async {
+  if (contractId == null || contractId.isEmpty) return null;
+  final response = await ContractSignersCall.call(
+    bearerToken: await actions.activeUserToken(),
+    id: contractId,
+  );
+  if (!response.succeeded) {
+    print('contract signers: ${response.statusCode} for $contractId');
+    return null;
+  }
+  return ContractSigners.fromJson(response.jsonBody);
 }
 
 Future<bool> getAndSaveContractTerms(BuildContext context) async {

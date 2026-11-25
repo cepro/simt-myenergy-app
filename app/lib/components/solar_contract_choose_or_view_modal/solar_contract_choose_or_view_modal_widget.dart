@@ -1,4 +1,8 @@
 import '/backend/schema/structs/index.dart';
+import 'dart:async';
+
+import '/backend/schema/contract_signers.dart';
+import '/components/contract_signing_progress/contract_signing_progress_widget.dart';
 import '/components/solar_contract_card/solar_contract_card_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -48,10 +52,35 @@ class _SolarContractChooseOrViewModalWidgetState
     _model = createModel(context, () => SolarContractChooseOrViewModalModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+
+    // Multi-party contracts: load signing progress now, and keep it fresh
+    // while the modal is open so "waiting for you" changes once the customer
+    // (or the co-signer) signs. Stops once the contract is fully signed.
+    if ((widget.contract?.signaturesRequired ?? 1) > 1 &&
+        !hasSignedContractPdf(widget.contract)) {
+      _loadSigners();
+      _signersTimer =
+          Timer.periodic(const Duration(seconds: 15), (_) => _loadSigners());
+    }
+  }
+
+  ContractSigners? _signers;
+  Timer? _signersTimer;
+
+  Future<void> _loadSigners() async {
+    final signers =
+        await action_blocks.contractSigners(contractId: widget.contract?.id);
+    if (!mounted) return;
+    if (signers != null) {
+      _signers = signers;
+      if (signers.signed) _signersTimer?.cancel();
+      safeSetState(() {});
+    }
   }
 
   @override
   void dispose() {
+    _signersTimer?.cancel();
     _model.maybeDispose();
 
     super.dispose();
@@ -70,6 +99,9 @@ class _SolarContractChooseOrViewModalWidgetState
     _model.docusealEmbedHTML = _model.signEmbedHTMLShortTerm;
     _model.embedLoading = false;
     safeSetState(() {});
+    // Opening the embed creates the DocuSeal submission on first open, which
+    // is when `/signers` starts listing the proprietors.
+    if (_signersTimer != null) unawaited(_loadSigners());
   }
 
   TextStyle _bodyStyle(BuildContext context) =>
@@ -159,6 +191,14 @@ class _SolarContractChooseOrViewModalWidgetState
             borderRadius: BorderRadius.circular(8.0),
           ),
         ),
+        if (contract.auditLogURL.isNotEmpty)
+          TextButton(
+            key: const ValueKey('contract-audit-log-link'),
+            onPressed: () async {
+              await actions.openPDF(contract.auditLogURL);
+            },
+            child: const Text('View signing audit log'),
+          ),
       ],
     );
   }
@@ -241,6 +281,18 @@ class _SolarContractChooseOrViewModalWidgetState
                     thickness: 2.0,
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
+                  if (!signedPdfReady &&
+                      (liveContract?.signaturesRequired ?? 1) > 1 &&
+                      (liveContract?.id ?? '') != '')
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          0.0, 0.0, 0.0, 16.0),
+                      child: ContractSigningProgressWidget(
+                        signaturesRequired: liveContract!.signaturesRequired,
+                        signers: _signers,
+                        textStyle: _bodyStyle(context),
+                      ),
+                    ),
                   if (signedPdfReady)
                     _signedPanel(context, liveContract!)
                   else
@@ -286,36 +338,6 @@ class _SolarContractChooseOrViewModalWidgetState
                               width: MediaQuery.sizeOf(context).width * 1.0,
                               height: MediaQuery.sizeOf(context).height * 0.85,
                               html: _model.docusealEmbedHTML!,
-                            ),
-                          ),
-                        // Multi-party awaiting-co-signer banner. For multi-party
-                        // contracts (signaturesRequired > 1) the WebView's own
-                        // data-completed-* attributes carry the "your part is
-                        // done" interstitial inside the DocuSeal embed; this
-                        // banner only appears if the SSE-driven state shows the
-                        // contract as still unsigned while the user has just
-                        // completed signing. The modal's WebView lives inside
-                        // the same Stack so the banner sits above the embed.
-                        if (_model.docusealEmbedHTML != null &&
-                            _model.docusealEmbedHTML != '' &&
-                            (widget.contract?.signaturesRequired ?? 1) > 1 &&
-                            (widget.contract?.signedContractURL == null ||
-                                widget.contract?.signedContractURL == ''))
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
-                            child: Text(
-                              'Multi-party contract: both registered proprietors must sign before the contract is fully signed.',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .bodyMediumFamily,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts:
-                                        !FlutterFlowTheme.of(context)
-                                            .bodyMediumIsCustom,
-                                  ),
                             ),
                           ),
                         if ((widget.contract?.id == null ||
