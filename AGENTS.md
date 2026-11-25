@@ -4,7 +4,18 @@ This file provides guidance to AI agents when working with code in this reposito
 
 ## Project Overview
 
-This is the Simtricity MyEnergy Flutter app - a web-based energy management application built with Flutter and FlutterFlow. The app is deployed to Fly.io and uses Supabase as the backend.
+This is the Simtricity MyEnergy Flutter app - a web-based energy management application built with Flutter. The app is deployed to Fly.io and uses Supabase as the backend.
+
+## Codebase Maintenance (IMPORTANT)
+
+**The project is no longer coupled to FlutterFlow and is not regenerated from
+it.** The codebase originated as a FlutterFlow export, but it is now
+maintained directly by hand: edit files under `app/lib/` (including the
+`flutter_flow/` and `custom_code/` directories) as normal Flutter source.
+There is no code generation step and no FlutterFlow sync — feel free to edit
+generated-looking files (`*_widget.dart`, `*_model.dart`, action blocks, etc.)
+directly. Treat the whole `app/` tree as ordinary, hand-maintained Flutter
+code.
 
 ## Build System and Scripts
 
@@ -44,7 +55,7 @@ flutter analyze
 - `fly/fly.hmce.toml` - Fly.io Hazelmead Community Energy environment configuration
 
 ### Flutter Version
-The project uses the Flutter version specified in [`.flutter-version`](.flutter-version). The project is no longer coupled to FlutterFlow — the code is maintained directly.
+The project uses the Flutter version specified in [`.flutter-version`](.flutter-version). The project is no longer coupled to FlutterFlow — the code is maintained directly (see "Codebase Maintenance" above).
 
 ### Key Dependencies
 - Supabase for backend (authentication, database, storage)
@@ -52,11 +63,11 @@ The project uses the Flutter version specified in [`.flutter-version`](.flutter-
 - Various Flutter UI packages (data_table_2, dropdown_button2, etc.)
 - Custom widgets in `lib/components/`
 
-### FlutterFlow Integration
-The app is built using FlutterFlow with custom code additions:
+### FlutterFlow Origin (legacy)
+The codebase originated as a FlutterFlow export and is now maintained directly by hand (no generation, no sync — see "Codebase Maintenance" above). The historical FlutterFlow layout is preserved:
 - Custom actions in `lib/custom_code/actions/`
 - Custom widgets in `lib/custom_code/widgets/`
-- FlutterFlow generated code in `lib/flutter_flow/`
+- Supporting framework/runtime helpers in `lib/flutter_flow/`
 
 ### Authentication & Backend
 - Supabase authentication with email/password
@@ -133,6 +144,37 @@ Cache busting is handled by injecting the build number into script hrefs in inde
 cd app/
 flutter test
 ```
+
+`flutter test` also runs in the pre-commit hook (`bin/pre-commit`) whenever
+`.dart` files are staged.
+
+### Native-runner constraint (important)
+
+`flutter test` runs on the native (VM) runner, but the app's `lib/main.dart`
+import chain pulls in `package:web` (via Supabase), and the pinned `web`
+package does **not** compile under the native runner with the current Dart
+SDK. `flutter test` compiles *all* test files together and aborts if any one
+fails to load, so a single offending test would block every commit.
+
+The chain is: every struct → `backend/schema/util/schema_util.dart` →
+`flutter_flow/flutter_flow_util.dart` → `../main.dart` → Supabase →
+`package:web`. So importing app/widget types (structs, widgets, anything that
+reaches `flutter_flow_util.dart`) from a test breaks the suite.
+
+**Therefore: write unit tests against pure logic that imports no app types.**
+Extract testable decisions into small, import-free helper functions that take
+plain data (e.g. records, primitives) and keep the widget/struct adaptation in
+the call site — see `test/custom_code/models/quickchart_service_test.dart` for
+the pattern.
+
+Widget tests are fine as long as the widget only uses plain Material and
+import-free types (pass theme text styles in as parameters rather than calling
+`FlutterFlowTheme.of`, which imports app state). Widget tests that need the
+app graph would have to run on the web runner (`flutter test --platform
+chrome`), which is not part of the default suite.
+A proper fix would be to break the `import '../main.dart'` coupling in
+`flutter_flow_util.dart` (it uses `MyApp.of(context)` for theme/route state);
+that is a larger refactor tracked separately.
 
 ## Requirements
 - Flutter version as specified in [`.flutter-version`](.flutter-version)
